@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated & User.IsInRole("Admin") ) {
+    using (Html.BeginForm("LogOff", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" , title = "خروج"})) {
+        @Html.AntiForgeryToken()
+
+       @Html.Partial("_top")
+
+        @Html.Partial("_sidebar")
+    }
+}
+@*else {
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("ورود", "Login", "Dashboard", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@

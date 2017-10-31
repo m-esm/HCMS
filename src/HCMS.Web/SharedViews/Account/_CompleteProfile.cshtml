@@ -1,0 +1,72 @@
+﻿@model HCMS.Web.Areas.Manage.Models.CompleteProfileDTO
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+
+}
+
+<div class="row">
+
+    <div class="col-sm-4">
+        @Html.LabelFor(m => m.FirstName, new { @class = "" })
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "" })
+    </div>
+
+
+    <div class="col-sm-4">
+        @Html.LabelFor(m => m.LastName, new { @class = "" })
+        @Html.TextBoxFor(m => m.LastName, new { @class = "" })
+    </div>
+
+
+
+    <div class="col-sm-2">
+        @Html.LabelFor(m => m.NationalCode, new { @class = "" })
+        @Html.TextBoxFor(m => m.NationalCode, new { @class = "" })
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.ZipCode, new { @class = "" })
+        @Html.TextBoxFor(m => m.ZipCode, new { @class = "" })
+    </div>
+
+    <div class="col-md-4">
+        @Html.LabelFor(m => m.Phone, new { @class = "" })
+        @Html.TextBoxFor(m => m.Phone, new { @class = "" })
+    </div>
+
+    <div class="col-md-8">
+        @Html.LabelFor(m => m.Address, new { @class = "" })
+        @Html.TextBoxFor(m => m.Address, new { @class = "" })
+    </div>
+
+    @*<div class="col-sm-4">
+        @Html.LabelFor(m => m.ImageUrl, new { @class = "" })
+        <div class="row">
+       
+            <div class="col-xs-6">
+                <div class="user-pic">
+                    <img id="output" style="max-height:140px;" class="img-responsive img-thumbnail" src="@Url.Content(string.IsNullOrEmpty(Model.ImageUrl) ? "~/content/happy/default-profile-picture.png" : Model.ImageUrl)" />
+
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="">
+                    <input id="fileLoader" name="file" type="file" onchange="loadFile(event)" value="test" style="display: none;" />
+                    <input id="btnfileloader" value="@Phrases.Get("Upload Image")" type="button" onclick="openfileDialog();" class="btn btn-default" />
+                    <input type="submit" value="@Phrases.Get("Save")" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>*@
+
+
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+
+</div>
+

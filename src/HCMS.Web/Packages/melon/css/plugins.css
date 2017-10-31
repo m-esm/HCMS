@@ -1,0 +1,14 @@
+/* ========================================================
+*
+* Melon - Flat & Responsive Admin Template
+*
+* ========================================================
+*
+* File: plugins.css
+* Description: Contains styles for plugins, if you don't use any of plugins, you can remove its styling
+* Version: 1.0
+*
+* ======================================================== */
+
+@import url('../../jquery.ui.combined.1.12.0/themes/base/all.min.css');
+@import url('../../select2/select2.min.css');

@@ -1,0 +1,109 @@
+﻿@using System.Web.UI.WebControls
+@using MoreLinq
+@using HCMS.Dynamics.Grids.Models
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    int cpage = 1;
+
+    if (Request.QueryString["page"] != null)
+    {
+        int.TryParse(Request.QueryString["page"], out cpage);
+    }
+
+    Form form = ViewBag.DynamicsForm;
+    Layout = ViewBag.Layout;
+    ViewBag.Title = form.GetCaption(CaptionModes.List, Phrases);
+    FormBuilderRepository formBuilder = new FormBuilderRepository(form.ID);
+    var rows = HCMS.Dynamics.Data.DDB.GetTable(form.Section.Name, form.Name, Phrases.CurrentCulture.ID).DRows;
+
+    //TODO: paging . rowa => model.
+
+
+    int _pageSize = 15;
+
+    var PagedRows = rows.ToPagedList(cpage, _pageSize);
+    int i = PagedRows.FirstItemOnPage;
+}
+
+
+<br />
+
+<p class="buttons">
+    <a class="btn btn-success" href="~/@cc/Manage/Dynamics/@form.Section.Name/@form.Name/Create">@Phrases.Get("Submit new item")</a>
+</p>
+
+<table class="table table-bordered table-striped table-responsive hcms-standard-grid">
+    <thead>
+        <tr>
+            <th class="en">
+                #
+            </th>
+            <th class="en">
+                RowId
+            </th>
+            @foreach (var prop in form.Fields.Where(p => p.ShowInGrid).OrderBy(p => p.OrderID))
+            {
+                <th>
+                    @Phrases.Get(prop.Label)
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="result">
+        @foreach (var row in PagedRows)
+        {
+
+            <tr>
+                <td class="en">
+                    @i
+                </td>
+                <td class="en">
+                    @row.RowID
+                </td>
+                @foreach (var field in form.Fields.Where(p => p.ShowInGrid).OrderBy(p => p.OrderID))
+                {
+                    <td>
+                        @if (field.AllowMultipleEntry)
+                        {
+                            foreach (var mfield in row.GetGroup(field.GroupWith))
+                            {
+
+                                @Html.Partial("Grids/_CellRender", new StandradGridModel { DRow = mfield.GetValue(field.Name), Field = field })
+                                @Html.Raw(field.MultipleEntrySpliter)
+
+                            }
+                        }
+                        else
+                        {
+
+                            @Html.Partial("Grids/_CellRender", new StandradGridModel { DRow = row.GetValue(field.Name), Field = field })
+
+                        }
+                    </td>
+                }
+
+
+                <td>
+                    <a href="~/@cc/Manage/Dynamics/@form.Section.Name/@form.Name/Details?RowID=@row.RowID" class="btn btn-default">@Phrases.Get("Details") </a>
+                    <a href="~/@cc/Manage/Dynamics/@form.Section.Name/@form.Name/Edit?RowID=@row.RowID" class="btn btn-primary">@Phrases.Get("Edit")</a>
+                    <a href="~/@cc/Manage/Dynamics/@form.Section.Name/@form.Name/Delete?RowID=@row.RowID" class="btn btn-danger">@Phrases.Get("Delete")</a>
+
+                </td>
+            </tr>
+
+                i++;
+
+        }
+
+    </tbody>
+
+</table>
+
+@Html.PagedListPager((IPagedList)PagedRows, page => Url.Action("Index", new { page }))
+
+

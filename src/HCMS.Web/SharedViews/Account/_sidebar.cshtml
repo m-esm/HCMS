@@ -1,0 +1,127 @@
+﻿@using HCMS.Business.Auth
+@using HCMS.Data.Identity
+@using Microsoft.AspNet.Identity
+@using MoreLinq
+@using HCMS.Business;
+@{
+    var sections = new GenericRepository<Section>().GetAll();
+    var ThemeCount = new HCMS.Dynamics.Themes.Models.Theme().GetThemes(Server.MapPath("~/Themes/")).Count();
+    var ModulesCount = MvcApplication.Plugins.Count();
+    var user = UserRepository.GetFullName(User.Identity.Name);
+
+}
+
+<div id="sidebar">
+
+    <div class="sidebar-tabs">
+
+
+
+        <div class="sidebar-user widget">
+            <div class="navbar">
+                <div class="navbar-inner">
+
+                    <h4 class="@(user.Contains("@") ? "font-en" : "") text-center">@user</h4>
+
+                </div>
+            </div>
+            <div class="user-pic"><div style="background-image:url('@UserRepository.GetProfilePictureUrl(User.Identity.Name)?maxwidth=300')" class="bg"></div></div>
+        </div>
+
+
+        <!-- Main navigation -->
+        @*<ul class="navigation widget">
+
+            <li class="text-uppercase">
+                <a href="#" title="" class="expand" id=""><i class="fa fa-user-md"></i>مدیریت کاربران</a>
+                <ul>
+                    <li>
+                        <a href="~/Manage/RolesAdmin">
+                            <i class="fa fa-user-secret"></i> مدیریت نقش ها
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Manage/UsersAdmin">
+                            <i class="fa fa-users"></i> لیست کاربران
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a href="~/Manage/Dashboard" title=""><i class="fa fa-line-chart"></i>داشبورد</a></li>
+
+            <li>
+                <a href="~/Manage/Themes" class="" title="">
+                    <i class="fa fa-tv"></i>مدیریت پوسته ها
+                    <strong>@ThemeCount</strong>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/Manage/Modules" title="">
+                    <i class="fa fa-object-group"></i>مدیریت ماژول ها
+                    <strong>@ModulesCount</strong>
+                </a>
+            </li>
+
+
+            <li>
+                <a href="#" id="open-filemanager">
+
+                    <i class="fa fa-files-o"></i>مدیریت فایل ها
+
+                </a>
+            </li>
+
+            <li>
+                <a href="~/Manage/Settings"><i class="fa fa-gears"></i>تنظیمات سیستم</a>
+            </li>
+
+
+
+
+
+
+            <!-- Sections -->
+            @foreach (var sec in sections)
+            {
+                <li>
+
+                    <a href="#" title="" class="expand" id="">
+                        <i class="fa fa-list-ol"></i>
+                        @sec.Caption
+                    </a>
+
+                    <ul>
+                        @foreach (var fo in sec.Forms)
+                        {
+                            <li>
+                                <a href="~/Manage/Dynamics/@sec.Name/@fo.Name/Index">
+                                    <i class="fa fa-angle-left"></i> @fo.GetCaption(CaptionModes.List)
+                                </a>
+                            </li>
+                        }
+
+
+                    </ul>
+
+                </li>
+
+            }
+
+
+            <!-- /Sections -->
+
+
+        </ul>*@
+
+
+
+        <!-- /main navigation -->
+
+
+
+    </div>
+
+</div>

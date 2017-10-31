@@ -1,0 +1,74 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<HCMS.Vitrin.Model.Vitrin>
+@{
+    int i = Model.FirstItemOnPage;
+}
+
+<h1>@ViewBag.Title</h1>
+
+
+@Html.ValidationSummary(true)
+<div id="result">
+
+    @if (Model != null)
+    {
+        if (Model.Count == 0)
+        {
+            <div>موردی یافت نشد.</div>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Owner Name</td>
+                        <td>Descrp</td>
+
+                        <td>Block Count</td>
+                        <td>Banner Image</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.Name</td>
+                            <td>@item.Owner</td>
+                            <td>@item.Descrp</td>
+
+                            <td>@item.BlockCount</td>
+                            <td>
+                                <img src="@item.BannerImage?width=150&height=100" />
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Details", "Details", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-info" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-danger" })
+                                @if (item.Status)
+                                {
+                                    <input type="button" value="DeActive" onclick="DeActive(@item.Id);" class="btn btn-danger" />
+
+                                }
+                                else
+                                {
+                                    <input type="button" value="Active" onclick="Active(@item.Id);" class="btn btn-success" />
+
+                                }
+
+                                @Html.ActionLink("Select Banner Image", "SelectBannerImage", new { vitrinId = item.Id, userId = item.UserId, plugin = "Vitrin" }, new { @class = "btn btn-success" })
+
+                            </td>
+                        </tr>
+                                i++;
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Ix", new { page, plugin = "Vitrin" }))
+        }
+    }
+</div>

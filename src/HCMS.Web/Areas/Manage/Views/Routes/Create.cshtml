@@ -1,0 +1,15 @@
+﻿@model HCMS.Dynamics.DSystem.Models.RouteModel
+@{
+    ViewBag.Title = "New Route";
+}
+
+<div class="box-bordered info">
+    <h2>
+        @ViewBag.title
+    </h2>
+    <div class="container">
+        <div class="row">
+            @Html.Partial("Forms/ObjectForm", Model)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@using System.Web.Optimization
+@model HCMS.Web.Areas.Manage.Models.EditUserViewModel
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("User Managment | User Edit");
+}
+
+<h2>
+    @ViewBag.Title
+</h2>
+
+<form class="form" method="post">
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+
+            @Html.LabelFor(model => model.Status)
+            @Html.EnumDropDownListFor(m => m.Status, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status)
+
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+
+            @Html.Label(Phrases.Get("Roles"))
+            <div class="row">
+                @foreach (var item in Model.RolesList)
+                {
+                    <div class="col-xs-2">
+                        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label en" })
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <input type="submit" value="@Phrases.Get("Save")" class="btn btn-success" />
+
+
+    <div class="clearfix"></div>
+
+
+
+</form>
+
+<div class="text-right">
+
+    @Html.ActionLink(Phrases.Get("Back To List"), "Index", null, new { @class = "btn btn-primary" })
+
+
+
+    @Html.ActionLink(Phrases.Get("Send Email"), "Index", null, new { @class = "btn btn-primary" })
+
+
+
+
+    @Html.ActionLink(Phrases.Get("Change Password"), "ChangeUserPassword", new { id = Model.Id }, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

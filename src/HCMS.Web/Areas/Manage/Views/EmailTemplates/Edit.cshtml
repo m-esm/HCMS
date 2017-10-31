@@ -1,0 +1,29 @@
+﻿@model HCMS.Dynamics.Tools.MailTemplate
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @Model.Name</h2>
+
+<div class="box-bordered">
+
+    <form method="post">
+        @Html.HiddenFor(p=>p.ID)
+        <div class="form-group">
+            Name :
+            <div>
+                @Html.TextBoxFor(p => p.Name)
+            </div>
+        </div>
+           <div class="form-group">
+            Template :
+            <div>
+                @Html.TextAreaFor(p => p.Template)
+            </div>
+        </div>
+
+        <input type="submit" value="Save" />
+    </form>
+
+
+</div>

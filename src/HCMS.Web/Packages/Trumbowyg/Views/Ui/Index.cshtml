@@ -1,0 +1,15 @@
+﻿@using HCMS.Data.Extention
+@model HCMS.Vitrin.Model.Vitrin[]
+@{
+    bool emailConfirmed = (bool) TempData["emailConfirm"];
+ 
+}
+
+<input type="hidden" value="@emailConfirmed" id="emailConfirm"/>
+
+@Html.Partial("_homeblocks",Model)
+
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->

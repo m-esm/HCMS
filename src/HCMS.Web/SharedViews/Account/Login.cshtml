@@ -1,0 +1,81 @@
+﻿@using HCMS.Web.Areas.Manage.Models
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+
+    ViewBag.Title = Phrases.Get("Login");
+    Layout = null;
+
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/main.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/plugins.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Packages/elFinder/css/elfinder.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Packages/sweetalert/sweetalert.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/Trumbowyg/ui/trumbowyg.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/HappyStyle.min.css" />
+
+    @if (Phrases.CurrentCulture.RTL)
+    {
+        <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/main-rtl.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/Packages/melon/css/HappyStyle-rtl.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/Packages/bootstrap-rtl/css/bootstrap-rtl.min.css" />
+    }
+
+    <script type="text/javascript" src="~/Packages/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Packages/jquery.ui.1.9.0/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Packages/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Packages/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/Packages/lodash/lodash.compat.min.js"></script>
+    <!--[if lt IE 9]>
+          <script  type="text/javascript" src="~/Packages/html5shiv-master/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- toch events -->
+    <script type="text/javascript" src="~/Packages/jquery.ui.touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="~/Packages/jquery.event.swipe/jquery.event.move.min.js"></script>
+    <script type="text/javascript" src="~/Packages/jquery.event.swipe/jquery.event.swipe.min.js"></script>
+
+    <!-- General -->
+    <script type="text/javascript" src="~/Packages/breakpoints/breakpoints.min.js"></script>
+    <script type="text/javascript" src="~/Packages/elFinder/js/elfinder.min.js"></script>
+    <script type="text/javascript" src="~/Packages/respond/respond.min.js"></script>
+    <script type="text/javascript" src="~/Packages/jquery.cookie/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="~/Packages/slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="~/Packages/slimscroll/jquery.slimscroll.horizontal.min.js"></script>
+
+    <!-- Charts -->
+    <!--[if lt IE 9]>
+           <script type="text/javascript" src="~/Packages/jquery.flot/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- Forms -->
+    <script type="text/javascript" src="~/Packages/jquery.uniform/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/Packages/select2/select2.min.js"></script>
+
+    <script type="text/javascript" src="~/Packages/Trumbowyg/trumbowyg.min.js"></script>
+    <!-- App -->
+    <script type="text/javascript" src="~/Packages/melon/js/app.min.js"></script>
+    <script type="text/javascript" src="~/Packages/melon/js/plugins.min.js"></script>
+    <script type="text/javascript" src="~/Packages/melon/js/plugins.form-components.min.js"></script>
+    <script type="text/javascript" src="~/Packages/HCMS/js/DStats.min.js"></script>
+
+
+
+</head>
+<body class="login-page">
+
+            @Html.Partial("Account/_LoginForm")
+
+            @*@Html.Partial("Account/_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+</body>
+</html>

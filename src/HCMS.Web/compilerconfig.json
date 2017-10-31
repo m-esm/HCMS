@@ -1,0 +1,54 @@
+﻿[
+  {
+    "outputFile": "Themes/Anzim/css/custom.css",
+    "inputFile": "Themes/Anzim/css/custom.less"
+  },
+  {
+    "outputFile": "Themes/Avatiss/css/style.css",
+    "inputFile": "Themes/Avatiss/css/style.less"
+  },
+  {
+    "outputFile": "Plugins/Vitrin/Repository/Css/Vitrin.css",
+    "inputFile": "Plugins/Vitrin/Repository/Css/Vitrin.less"
+  },
+  {
+    "outputFile": "Plugins/Vitrin/Repository/Register/Register.css",
+    "inputFile": "Plugins/Vitrin/Repository/Register/Register.less"
+  },
+  {
+    "outputFile": "Plugins/Vitrin/Repository/Register/upload.css",
+    "inputFile": "Plugins/Vitrin/Repository/Register/upload.less"
+  },
+  {
+    "outputFile": "Themes/raminpahlavan/styles/site.css",
+    "inputFile": "Themes/raminpahlavan/styles/site.less"
+  },
+  {
+    "outputFile": "Themes/mohsenes/Css/style.css",
+    "inputFile": "Themes/mohsenes/Css/style.less"
+  },
+  {
+    "outputFile": "Themes/food/Css/style.css",
+    "inputFile": "Themes/food/Css/style.less"
+  },
+  {
+    "outputFile": "Packages/melon/css/main.css",
+    "inputFile": "Packages/melon/css/main.less"
+  },
+  {
+    "outputFile": "Packages/melon/css/HappyStyle.css",
+    "inputFile": "Packages/melon/css/HappyStyle.less"
+  },
+  {
+    "outputFile": "Themes/bestmehr.ir/css/site.css",
+    "inputFile": "Themes/bestmehr.ir/css/site.less"
+  },
+  {
+    "outputFile": "Themes/ARXE_ASC/Content/ARXE.ASC.css",
+    "inputFile": "Themes/ARXE_ASC/Content/ARXE.ASC.less"
+  },
+  {
+    "outputFile": "Themes/happy/css/style.css",
+    "inputFile": "Themes/happy/css/style.less"
+  }
+]

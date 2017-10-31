@@ -1,0 +1,15 @@
+﻿@model int
+@{
+    HCMS.Dynamics.Forms.FormBuilderRepository formBuilder;
+    
+    if (Request.QueryString["RowID"] != null) { 
+       int RowID = int.Parse(Request.QueryString["RowID"].ToString());
+       formBuilder = new HCMS.Dynamics.Forms.FormBuilderRepository(Model, RowID);
+    }
+    else {
+        formBuilder = new HCMS.Dynamics.Forms.FormBuilderRepository(Model);
+    }
+    
+}
+
+@Html.Partial("Forms/_FormRender", formBuilder)

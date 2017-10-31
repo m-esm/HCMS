@@ -1,0 +1,39 @@
+﻿@model object
+
+@{
+    var formBuilder = new HCMS.Dynamics.Forms.FormBuilderRepository(Model);
+    ViewBag.Title = "حذف" + formBuilder.Form.Caption;
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+}
+
+
+
+<h3>
+    @Phrases.Get("Are you sure ?")
+</h3>
+<div>
+    <dl class="dl-horizontal">
+        @foreach (var prop in formBuilder.Properties.Where(p => p.PropertyInputType != (int)HCMS.Dynamics.Forms.InputTypes.NotDefined))
+        {
+            <dt>
+                @prop.PropertyLabel
+            </dt>
+
+            <dd>
+                @prop.PropertyValue
+            </dd>
+        }
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Phrases.Get("Delete")" class="btn btn-danger" />
+        </div>
+    }
+</div>

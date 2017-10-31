@@ -1,0 +1,200 @@
+﻿@using HCMS.Business.Auth
+@using HCMS.Web.Areas.Manage.Models
+@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+    
+    bool userHasPassword = true;
+    if (User.Identity.IsAuthenticated)
+    {
+        userHasPassword = UserRepository.UserHassPassword(User.Identity.GetUserId());
+    }
+    
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div class="account-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"> پروفایل من</a></li>
+            @if (userHasPassword)
+            {
+                <li role="presentation"><a href="#changePassword" aria-controls="changePassword" role="tab" data-toggle="tab">تغییر رمز</a></li>
+            }
+            else
+            {
+                <li role="presentation"><a href="#setPassword" aria-controls="setPassword" role="tab" data-toggle="tab">گذاشتن رمز</a></li>
+            }
+            <li role="presentation"><a href="#favoriate" aria-controls="favoriate" role="tab" data-toggle="tab">لیست علاقه مندی ها</a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="profile">
+                @Html.Partial("_completeProfile")
+            </div>
+
+            @if (userHasPassword)
+            {
+                <div role="tabpanel" class="tab-pane" id="changePassword">
+                    @Html.Partial("_changePassword")
+                </div>
+
+            }
+            else
+            {
+                <div role="tabpanel" class="tab-pane" id="setPassword">
+                    @Html.Partial("_setPassword")
+                </div>
+            }
+
+            <div role="tabpanel" class="tab-pane" id="favoriate">
+                @Html.Partial("_favoriate")
+            </div>
+
+        </div>
+        <div id="message-result" class="alert " style="display:none;">
+        </div>
+    </div>
+
+
+
+
+    <div class="signout">
+        <a href="/manage/Auth/logoff">
+            <i class="glyphicon glyphicon-log-out"></i>
+            <span>برای خروج کلیک کنید .</span>
+
+        </a>
+    </div>
+
+}
+else
+{
+    <div class="tabs-container login-tabs">
+
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-left" role="tablist" id="tablist">
+
+            <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">ورود</a></li>
+            <li role="presentation" class=""><a href="#register" aria-controls="register" role="tab" data-toggle="tab">ثبت نام</a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane  active" id="login">
+                <form method="post" id="login-form" action="/fa-ir/manage/Auth/Login">
+
+                    @{
+    string login_c_guid = Guid.NewGuid().ToString();
+                    }
+
+                    @Html.Hidden("captcha_guid", login_c_guid)
+                    @Html.AntiForgeryToken()
+
+                   
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+                    <input type="email" style="display: none;" />
+                    <input type="password" style="display: none;" />
+
+                  
+
+                    <div class="input-field">
+                        <label>ایمیل</label> <input name="email" type="email" />
+                    </div>
+
+                    <div class="input-field">
+                        <label>رمز عبور</label> <input name="password" type="password" />
+                    </div>
+                    <div class="input-field captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=_login&guid=@login_c_guid" id="captcha-image" />
+                        <span class="refresh"><i class="fa fa-refresh "></i>  </span>
+                        <input id="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" value="تایید" />
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="links">
+                        <a id="fgpassword"> فراموشی رمز عبور ؟</a>
+                    </div>
+                    <div class="links">
+                        <a id="confirmPassword"> فعال سازی ایمیل</a>
+                    </div>
+
+                      
+                </form>
+
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="register">
+
+                <form method="post" id="register-form" action="/fa-ir/manage/Auth/register">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+                    <input type="email" style="display: none;" />
+                    <input type="password" style="display: none;" />
+                    <div class="input-field">
+                        <label>ایمیل</label> <input name="email" type="email" />
+                    </div>
+
+                    <div class="input-field">
+                        <label>رمز عبور</label> <input name="password" type="password" />
+                    </div>
+                    <div class="input-field">
+                        <label>تکرار رمز عبور</label> <input name="ConfirmPassword" type="password" />
+                    </div>
+                    <div class="input-field captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=_register" id="captcha-image" />
+                        <span class="refresh"><i class="fa fa-refresh "></i>  </span>
+                        <input id="captcha" autocomplete="off"  required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" value="تایید" />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+
+        <div class="social-logins">
+
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            @*<div class="border">
+                    <a class="fb" href="#">
+                        <i class="fa fa-facebook-official"></i>
+                    </a>
+                </div>
+
+                <div class="border">
+
+                    <a class="google" href="#">
+                        <i class="fa fa-google-plus-square"></i>
+                    </a>
+                </div>
+
+                <div class="border">
+                    <a class="linkedin" href="#">
+                        <i class="fa fa-linkedin-square"></i>
+                    </a>
+                </div>*@
+
+
+
+        </div>
+
+    </div>
+}

@@ -1,0 +1,95 @@
+﻿@model HCMS.Dynamics.Data.DRow
+@{
+    HCMS.Dynamics.Forms.Models.Form form = ViewBag.form;
+    string[] exclude = { "name", "description", "image", "field", "value" };
+
+    var ffValueDb = new HCMS.Business.GenericRepository<HCMS.Dynamics.Forms.Models.FormFieldValue>();
+    var vitrinRepo = new HCMS.Business.GenericRepository<HCMS.Vitrin.Model.Vitrin>();
+    var ownerUID = ffValueDb.Find(Model.RowID).UserId;
+}
+
+<div class="layout-container ">
+    <div class="product-page">
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (ViewBag.incart == null)
+                {
+                    <a href="/vitrin/ui/AddToCart?pid=@Model.RowID&vid=" class="btn btn-success">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        اضافه کردن به کالا های انتخابی
+                    </a>
+                }
+                else
+                {
+                    HCMS.Vitrin.Model.ShoppingCart cart = ViewBag.incart;
+
+                    <a href="/vitrin/ui/RemoveFromCart?pid=@Model.RowID&cid=@cart.Id" class="btn btn-danger">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        حذف از کالاهای انتخابی
+                    </a>
+                }
+
+
+                <a class="btn btn-default">
+                    <i class="glyphicon glyphicon-heart"></i>
+                    اضافه کردن به لیست علاقه مندی ها
+                </a>
+                <a class="btn btn-primary  start-product-chat"
+                   data-pid="@Model.RowID"
+                   data-cid="@ownerUID">
+                    <i class="glyphicon glyphicon-headphones"></i>
+                    گفت و گو با فروشنده
+                </a>
+                <h1>@Model.GetValue("name")</h1>
+
+            </div>
+
+            <div class="col-md-9">
+                <div class="description">
+                    @Html.Raw(Model.GetValue("description").Value.Replace(Environment.NewLine, "<br />"))
+                </div>
+
+                <div class="details">
+                    <table class="table  table-bordered">
+
+                        @foreach (var field in form.Fields.Where(p => exclude.Contains(p.Name) == false))
+                        {
+                            <tr>
+                                <td>
+                                    @field.Label
+                                </td>
+                                <td>
+                                    @Model.GetValue(field.Name)
+                                </td>
+                            </tr>
+
+                        }
+
+                        @foreach (var item in Model.GetGroup("other"))
+                        {
+                            <tr>
+                                <td>
+                                    @item.GetValue("field")
+                                </td>
+                                <td>
+                                    @item.GetValue("value")
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="images">
+                    @foreach (var img in Model.GetGroup("img"))
+                    {
+                        <img class="img-responsive img-thumbnail" src="@img.GetValue("image")" />
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

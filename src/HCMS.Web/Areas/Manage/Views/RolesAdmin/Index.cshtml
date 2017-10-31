@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("Role Managment");
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink(Phrases.Get("Create Role"), "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Phrases.Get("Role Name")
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="en">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink(Phrases.Get("Edit"), "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink(Phrases.Get("Details"), "Details", new { id = item.Id }, new { @class = "btn btn-info" }) 
+                @Html.ActionLink(Phrases.Get("Delete"), "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

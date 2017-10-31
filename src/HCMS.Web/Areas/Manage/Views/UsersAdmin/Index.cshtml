@@ -1,0 +1,76 @@
+﻿@using HCMS.Business.Enum
+@using HCMS.Dynamics.Tools.HtmlHelpers
+@using EnumHelper = HCMS.Dynamics.Tools.HtmlHelpers.ExtentionEnumHelper
+
+@model IEnumerable<HCMS.Data.Identity.ApplicationUser>
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("User List");
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink(Phrases.Get("Create"), "Create", null, new { @class = "btn btn-success" })
+</p>
+
+@if (Model == null || !Model.Any())
+{
+    <h2>@Phrases.Get("Not Found")</h2>
+}
+else
+{
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th></th>
+            <th>@Phrases.Get("User Name")</th>
+            <th>@Phrases.Get("First Name")</th>
+            <th>@Phrases.Get("Last Name")</th>
+            <th>@Phrases.Get("Confirmed Email")</th>
+            <th>@Phrases.Get("Phone Number")</th>
+            <th>@Phrases.Get("Confirmed Phone Number")</th>
+            <th>@Phrases.Get("Status")</th>
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            
+            <tr>
+                <td>@Html.ActionLink(Phrases.Get("Complete Profile"), "CompleteUserProfile", new { id = item.Id }, new { @class = "btn btn-primary" })</td>
+                <td class="en">
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                @(item.EmailConfirmed ? Phrases.Get("Yes") : Phrases.Get("No"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @(item.PhoneNumberConfirmed ? Phrases.Get("Yes") : Phrases.Get("No"))
+            </td>
+            <td>
+                @Html.EnumDropDownListFor(a => item.Status, new { disabled = "disabled" })
+            </td>
+
+            <td>
+                @Html.ActionLink(Phrases.Get("Edit"), "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(Phrases.Get("Confirm Email"), "ConfirmEmail", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(Phrases.Get("Details"), "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                @Html.ActionLink(Phrases.Get("Delete"), "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        }
+
+    </table>
+}
+

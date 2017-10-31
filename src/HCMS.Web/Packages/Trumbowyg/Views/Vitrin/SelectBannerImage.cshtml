@@ -1,0 +1,78 @@
+﻿@model string
+@{
+    var images = (List<string>)TempData["files"];
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+  
+}
+
+<input type="hidden" id="vtrinId" value="@Model"/>
+@if (TempData["files"] != null)
+{
+    <div class="col-sm-12 text-center">
+        <h3>لیست بنرهای بارگذاری شده</h3>
+    </div>
+    
+    foreach (var image in images)
+    {
+        string src = Url.Content("~/vitrin_users/documents/" + ViewBag.userId + "/" + image + "?width=150&height=100");
+
+        <div class="col-md-4" style="margin:10px 0;">
+            <a href="@src.Split('?')[0]" class="zoom">
+
+                <img src="@src"  style="width: 100%; height: 150px; border: 2px solid;">
+                <a class="btn btn-success" style="width:100%;" data-src="@src.Split('?')[0]">Selcet</a>
+            </a>
+        </div>
+        @*<div class="list-image-item">
+
+            <a href="@src.Split('?')[0]" class="zoom">
+                <img src="@src" />
+            </a>
+            <a class="btn btn-success">Selcet</a>
+        </div>*@
+
+    }
+
+}
+else
+{
+    <div class="col-sm-12">
+        <h3>سندی از قبل بارگذاری نشده است .</h3>
+    </div>
+}
+
+
+
+
+<link href="~/Packages/Magnific-Popup/magnific-popup.css" rel="stylesheet" />
+
+<script src="~/Packages/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+
+<script>
+    $(document)
+        .ready(function () {
+            $('.zoom')
+                .magnificPopup({
+                    gallery: {
+                        enabled: true
+                    },
+                    type: 'image' // this is default type
+                });
+
+            $('.btn-success')
+                .click(function () {
+                    var src = $(this).attr('data-src');
+                    var vitrinId = $('#vtrinId').val();
+                    $.post('/vitrin/vitrin/SelectBannerImage', { vitrinId: vitrinId, path: src })
+                        .done(function() {
+                            window.location.href = '@Url.Action("Index", "Vitrin", new{plugin = "vitrin"})';
+                        }).error(function (ex) {
+                            alert();
+                            console.log(ex);
+                        });
+
+
+                });
+
+        });
+</script>

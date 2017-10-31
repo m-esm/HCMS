@@ -1,0 +1,146 @@
+﻿@model HCMS.Dynamics.Grids.Models.StandradGridModel
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+}
+
+@functions{
+    string splitBy3(string str)
+    {
+        int number = 0;
+        if (int.TryParse(str, out number))
+        {
+            return number.ToString("N0", new System.Globalization.NumberFormatInfo()
+            {
+                NumberGroupSizes = new[] { 3 },
+                NumberGroupSeparator = "."
+            });
+        }
+        else
+        {
+            return str;
+        }
+    }
+
+}
+
+@switch (Model.Field.InputType)
+{
+
+    case (int)InputTypes.SingleLineText:
+
+        <text>
+            <span class="@Model.Field.CssClass">
+                @if (Model.DRow.Value.IsInt())
+                {
+                    <text>   @(splitBy3(Model.DRow.Value)) </text>
+                }
+                else
+                {
+                    <text>   @Model.DRow.Value</text>
+                }
+            </span>
+        </text>
+
+        break;
+    case (int)InputTypes.Image:
+        <img class="img-responsive img-thumbnail" src="@Model.DRow.Value?maxwidth=100&quality=30&crop=10,10,-10,10" />
+        break;
+
+
+    case (int)InputTypes.RichTextEditor:
+        @Html.Raw(Model.DRow.Value)
+        break;
+
+    case (int)InputTypes.CheckBox:
+        if (Model.DRow.Value == "true")
+        {
+            <span><input type="checkbox" disabled="disabled" checked="checked" /> </span>
+        }
+        else
+        {
+            <span><input type="checkbox" disabled="disabled" /> </span>
+        }
+        break;
+
+    case (int)InputTypes.DropDown:
+
+
+        try
+        {
+            if (Model.DRow.Value.ToCharArray().Any(p => char.IsDigit(p) == false))
+            {
+                <span class="ajax-cell" data-url="@Model.Field.DataURL" data-value="@Model.DRow.Value">
+                    @Model.DRow.Value
+                </span>
+            }
+            else
+            {
+                string fieldName = "Name";
+                string dataUrl = Model.Field.DataURL.ToLower();
+                var dataUrlQS = HttpUtility.ParseQueryString(dataUrl.Split('?').Last());
+                if (dataUrl.Contains("formid") && dataUrl.Contains("label"))
+                {
+                    int formid = int.Parse(dataUrlQS["formid"]);
+                    fieldName = dataUrlQS["label"].ToString();
+
+                    <text>
+                        @(new HCMS.Dynamics.Data.DRow(int.Parse(Model.DRow.Value), Phrases.CurrentCulture.ID, null).GetValue(fieldName))
+                    </text>
+                }
+                else
+                {
+                    <text>
+    @(new HCMS.Dynamics.Data.DRow(int.Parse(Model.DRow.Value), Phrases.CurrentCulture.ID, null).GetValue(fieldName))
+</text>
+                }
+
+            }
+
+        }
+        catch
+        {
+
+        }
+
+        break;
+    case (int)InputTypes.CheckList:
+        try
+        {
+
+            string dataUrl = Model.Field.DataURL.ToLower();
+            var dataUrlQS = HttpUtility.ParseQueryString(dataUrl.Split('?').Last());
+            if (dataUrl.Contains("formid") && dataUrl.Contains("label"))
+            {
+                int formid = int.Parse(dataUrlQS["formid"]);
+                string fieldName = dataUrlQS["label"].ToString();
+                foreach (var v in Model.DRow.Value.Split(','))
+                {
+                    <text>
+                        @(new DynamicDB().Get(formid, int.Parse(v))[fieldName]) .
+                    </text>
+                }
+
+            }
+
+        }
+        catch
+        {
+
+        }
+
+        break;
+
+
+
+
+    default:
+        <text>
+            <span class="@Model.Field.CssClass">
+                @Model.DRow.Value
+            </span>
+        </text>
+        break;
+
+}
+

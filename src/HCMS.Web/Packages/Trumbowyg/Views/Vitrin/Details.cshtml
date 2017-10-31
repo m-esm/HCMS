@@ -1,0 +1,49 @@
+﻿
+@model HCMS.Vitrin.Model.Vitrin
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+
+    ViewBag.Title = "نمایش ویترین";
+
+}
+
+<h2>@ViewBag.Title | @Model.Id</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>نام ویترین</th>
+            <th>نام صاحب امتیاز</th>
+            <th>توضیحات</th>
+            <th>صنف</th>
+            <th>زیر صنف</th>
+            <th>تعداد بلاک</th>
+            <th>تاریخ ایجاد</th>
+            <th>بنر</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Owner</td>
+            <td>@Model.Descrp</td>
+            <td>@Model.GuildId</td>
+            <td>@Model.GuildId</td>
+            <td>@Model.BlockCount</td>
+            <td>@Model.CreateDate</td>
+            <td>
+                <img src="@Model.BannerImage" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to list", "Index", new { plugin = "Vitrin" }, new { @class = "btn btn-default" })
+</p>
+
+
+
+
+
+

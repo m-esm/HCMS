@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Section>
+@using System.Linq
+@using System.Xml.Linq
+@using System.Xml.Serialization
+@using Newtonsoft.Json
+@{
+    GenericRepository<FormFieldValue> Values = new GenericRepository<FormFieldValue>();
+    bool includeValues = false;
+
+    if (Request.QueryString["includeValues"] != null)
+    {
+        if (!bool.TryParse(Request.QueryString["includeValues"].ToString(), out includeValues))
+        {
+            Response.End();
+        }
+    }
+   
+    
+    string fileName = "PlatForm Export(";
+    foreach (var section in Model)
+    {
+        fileName += section.Name + " - ";
+    }
+    fileName = fileName.Remove(fileName.Length - 3);
+
+
+    Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName + ").json");
+    Response.ContentType = "application/json";
+    var model = Model.Select(p => new
+    {
+        p.Caption,
+        p.Name,
+        p.OrderID,
+        Forms = p.Forms.Select(frm => new
+        {
+            frm.Name,
+            frm.Method,
+            frm.Caption,
+            frm.ActionURL,
+            frm.CreatAccessRole,
+            frm.ReadAccessRole,
+            frm.DeleteAccessRole,
+            frm.EditAccessRole,
+            Values = includeValues ? Values.Where(d => d.Field.FormID == frm.ID).GroupBy(d => d.RowID).Select(v => new
+            {
+                Row = v.Select(row => new
+                {
+                    FieldName = row.Field.Name,
+                    row.ChangeDate,
+                    row.RelatedToID,
+                    row.RowID,
+                    row.Value
+                })
+            }) : null,
+            Fields = frm.Fields.Select(field => new
+            {
+                field.AllowMultipleEntry,
+                field.CreatAccessRole,
+                field.CssClass,
+                field.CustomRegEx,
+                field.DataURL,
+                field.DeleteAccessRole,
+                field.DependOnProperty,
+                field.EditAccessRole,
+                field.GroupWith,
+                field.InputDivCssClass,
+                field.InputFilter,
+                field.InputType,
+                field.Label,
+                field.Mask,
+                field.Max,
+                field.Min,
+                field.MultipleEntrySpliter,
+                field.Name,
+                field.OrderID,
+                field.Placeholder,
+                field.ReadAccessRole,
+                field.Related,
+                field.Required,
+                field.RichTextEditorLanguage,
+                field.RichTextEditorMode,
+                field.RichTextEditorSkin,
+                field.SavePath,
+                field.SearchPath,
+                field.ShowInGrid
+            })
+        })
+    });
+
+
+    Response.Write(JsonConvert.SerializeObject(model, Formatting.Indented));
+    Response.End();
+
+}

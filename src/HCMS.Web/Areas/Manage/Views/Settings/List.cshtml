@@ -1,0 +1,87 @@
+﻿@model IEnumerable<HCMS.Dynamics.DSystem.Models.Setting>
+
+@{
+      var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("Settings");
+    }
+                      <br />
+    <p>
+        @Html.ActionLink(phrases.Get("Create"), "Create", null, new{@class = "btn btn-success"})
+    </p>
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Caption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaduleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InputType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IconURL)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.LastUserGUID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ChangeDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaduleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InputType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IconURL)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.LastUserGUID)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ChangeDate)
+            </td>
+            <td>
+                @Html.ActionLink(phrases.Get("Edit"), "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(phrases.Get("Details"), "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                @Html.ActionLink(phrases.Get("Delete"), "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                @*@Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
+                @Html.ActionLink("Details", "Details", new {id = item.ID}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.ID})*@
+            </td>
+        </tr>
+    }
+
+</table>

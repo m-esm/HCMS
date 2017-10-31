@@ -1,0 +1,58 @@
+@model IEnumerable<HCMS.Dynamics.Localization.Entities.Culture>
+@{
+    
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    ViewBag.title = phrases.Get("Localization Cultures");
+}
+<div class="box-bordered primary">
+    <h2>@ViewBag.title</h2>
+
+    <form method="post" action="~/Manage/Cultures/Import" enctype="multipart/form-data" style="margin:20px 0;">
+        <label>  @phrases.Get("Over write values") : @Html.CheckBox("overWrite", false, new { @style = "height:20px;display:inline-block;" })</label>
+        <input type="file" style="display:inline;width:auto;" name="file" />
+        <input type="submit" style="display:inline;width:auto;" value="@phrases.Get("Send")" />
+    </form>
+
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@phrases.Get("Culture")</th>
+                <th>@phrases.Get("Country")</th>
+                <th>@phrases.Get("Language")</th>
+                <th>@phrases.Get("Direction")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.CultureName()</td>
+                    <td>@item.CountryName</td>
+                    <td>@item.LanguageEnglishName</td>
+                    <td>
+                        @if (item.RTL)
+                        {
+                            <span>@phrases.Get("RTL")</span>
+                        }
+                        else
+                        {
+                            <span>@phrases.Get("LTR")</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="~/Manage/Cultures/Edit/@item.ID"><i class="fa fa-edit"></i> @phrases.Get("Edit")</a>
+                        <a class="btn btn-default" href="~/Manage/Cultures/Export/@item.ID"><i class="fa fa-download"></i> @phrases.Get("Export")</a>
+
+                    </td>
+              
+                 
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

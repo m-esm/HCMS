@@ -1,0 +1,46 @@
+﻿@using HCMS.Vitrin.Controllers
+@model HCMS.Vitrin.Model.Guild
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+
+    ViewBag.Title = "لیست اصناف";
+
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Pid == null)
+    {
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Name</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>@Model.Id</td>
+            <td>@GuildsController.GetParrentName(Model.Pid.Value) --> @Model.Name</td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to list", "Index", new{plugin = "Vitrin"}, new { @class = "btn btn-default" })
+</p>
+
+
+
+
+
+
+

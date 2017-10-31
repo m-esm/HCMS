@@ -1,0 +1,13 @@
+﻿@helper CheckBoxList(string name, System.Web.Mvc.SelectList items)
+{
+    <div class="checkboxList">@*  *@
+        @foreach (var item in items)
+        {
+            @item.Text
+            <input type="checkbox" name="@name"
+                   value="@item.Value"
+                   @if (item.Selected) { <text> checked="checked" </text>   } />
+            <br />
+        }
+    </div>
+}

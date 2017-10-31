@@ -1,0 +1,25 @@
+﻿@model HCMS.Web.Areas.Manage.Models.IndexViewModel
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("User Account Managment");
+}
+
+<h2>@ViewBag.Title.</h2>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @Html.ActionLink(Phrases.Get("CompleteProfile"), "CompleteProfile", null, new { @class = "btn btn-primary" })
+        </p>
+        <p>
+            @Html.ActionLink(Phrases.Get("ChangePassword"), "ChangePassword", null, new { @class = "btn btn-primary" })
+        </p>
+
+        @if (User.IsInRole("admin") || User.IsInRole("Developer"))
+        {
+            <p>
+                @Html.ActionLink(Phrases.Get("Complete Users Profile"), "CompleteUsersProfile", null, new { @class = "btn btn-primary" })
+            </p>
+        }
+    </div>
+</div>

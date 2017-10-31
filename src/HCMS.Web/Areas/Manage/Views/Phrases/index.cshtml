@@ -1,0 +1,184 @@
+@model IEnumerable<HCMS.Dynamics.Localization.Entities.Culture>
+@{
+    ViewBag.title = "Localization Phrase Keys";
+}
+<br />
+<div class="ltr">
+    <div class="tabbable tabbable-custom">
+        <ul class="nav nav-tabs">
+            @{
+                int i = 0;
+
+            }
+            @foreach (var item in Model)
+            {
+                <li role="presentation" @(i == 0 ? "class=active" : "")>
+                    <a style="font-weight:bold;" data-toggle="tab" href="#t@(item.ID)">
+                        <img style="max-height:36px;" src="~/Packages/Flags/@(item.CountryNameAbbr.ToUpper()).png" />
+                        @item.CultureName()
+                    </a>
+                </li>
+                i++;
+
+            }
+
+        </ul>
+
+        <div class="tab-content">
+            @{
+                i = 0;
+            }
+            @foreach (var item in Model)
+            {
+                <div class="tab-pane @(i == 0 ? "active" : "")" id="t@(item.ID)">
+
+                    <table class="table table-bordered table-hover table-responsive en">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>
+                                    Key
+                                    <input type="text" class="find-key" placeholder="Find ..." />
+                                </th>
+                                <th>
+                                    Value
+                                    <input type="text" class="find-value" placeholder="Find ..." />
+
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in item.Phrases.OrderBy(p => p.PhraseKey.Key.ToLower() != p.Value.ToLower()).ThenBy(p=> p.PhraseKey.Key.ToLower().Contains(p.Value.ToLower()) == false).ThenBy(p => p.PhraseKey.Key))
+                            {
+                                <tr>
+                                    <td>@p.ID</td>
+                                    <td class="ltr text-left">
+                                        <a data-id="@p.ID" class="remove fa fa-remove text-danger"></a>
+                                        <input disabled="disabled" class="key-value" type="text" value="@p.PhraseKey.Key" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="phrase-value @(p.Culture.RTL ? "rtl" : "ltr")" data-id="@p.ID" value="@p.Value" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+                            i++;
+            }
+
+
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(function ()
+        {
+
+            function findKey(ee)
+            {
+                elem = $(ee);
+                var table = $(elem).parents("table").first();
+                if (elem.val() != "")
+                    $("input.key-value", table).each(function (itd, key)
+                    {
+                        if ($(key).val().search("\\" + elem.val().toString()) == -1)
+                            $(key).parents("tr").hide();
+                        else
+                            $(key).parents("tr").show();
+                    });
+
+                else
+                    $("tr", table).show();
+            }
+
+            $("input.find-key").keyup(function ()
+            {
+                findKey(this);
+            });
+
+
+            function findVal(ee)
+            {
+                elem = $(ee);
+                var table = $(elem).parents("table").first();
+                if (elem.val() != "")
+                    $(".phrase-value", table).each(function (itd, key)
+                    {
+                        if ($(key).val().search("\\" + elem.val().toString()) == -1)
+                            $(key).parents("tr").hide();
+                        else
+                            $(key).parents("tr").show();
+                    });
+
+                else
+                    $("tr", table).show();
+            }
+
+            $("input.find-value").keyup(function ()
+            {
+                findVal(this);
+            });
+
+
+
+            $("a.remove").click(function ()
+            {
+                var elem = $(this);
+                var tr = $(this).parents("tr").first();
+                $.ajax({ url: "/Manage/Phrases/Delete", type: "POST", data: { phraseid: elem.attr("data-id") } }).done(function (res)
+                {
+                    if (res == "OK")
+                        tr.remove();
+                    else
+                        tr.css("borderBottomColor", "red");
+
+
+                }).error(function ()
+                {
+                    $("td", tr).css("borderBottomColor", "red");
+                });
+
+                setTimeout(function ()
+                {
+                    $("td", tr).css("borderBottomColor", "#ccc");
+                }, 3000);
+
+
+            });
+            $("input.phrase-value").blur(function ()
+            {
+                var elem = $(this);
+                $.ajax({ url: "/Manage/Phrases/Update", type: "POST", data: { phraseid: elem.attr("data-id"), value: elem.val() } }).done(function (res)
+                {
+                    if (res == "OK")
+                        elem.css("borderColor", "#37d111");
+                    else
+                        elem.css("borderColor", "red");
+
+                    setTimeout(function ()
+                    {
+                        elem.css("borderColor", "#ccc");
+                    }, 3000);
+
+                });
+            });
+
+            $("input.phrase-value").focus(function ()
+            {
+                $(this).select();
+            });
+
+            $("input.find-key,input.find-value").focus(function ()
+            {
+                $(this).select();
+            });
+
+        });
+    </script>
+}

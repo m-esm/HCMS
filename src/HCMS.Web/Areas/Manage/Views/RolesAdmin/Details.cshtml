@@ -1,0 +1,45 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = @Phrases.Get("Details");
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<h4>@Phrases.Get("List of users in this role")</h4>
+@if (ViewBag.UserCount == 0)
+{
+    <hr />
+    <p>@Phrases.Get("No users found in this role.") </p>
+}
+
+<table class="table">
+
+    @foreach (var item in ViewBag.Users)
+    {
+        <tr>
+            <td>
+                @item.UserName
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink(Phrases.Get("Edit"), "Edit", new { id = Model.Id }, new { @class = "btn btn-success"}) |
+    @Html.ActionLink(Phrases.Get("Back To List"), "Index", null, new { @class = "btn btn-primmary"})
+</p>
+
+
+

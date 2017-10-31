@@ -1,0 +1,31 @@
+﻿@model HCMS.Web.Areas.Manage.Models.CompleteProfileDTO
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("Complete User Profile");
+}
+
+<h2>@ViewBag.Title | @HCMS.Business.Auth.UserRepository.GetFullNameByUserId(Model.UserId)</h2>
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(a=>a.UserId)
+    @Html.Partial("Account/_CompleteProfile", Model)
+
+</form>
+
+@section Scripts {
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function openfileDialog() {
+            $("#fileLoader").click();
+        }
+    </script>
+}
+
+
+
+

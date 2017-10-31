@@ -1,0 +1,130 @@
+﻿@model IEnumerable<HCMS.Dynamics.DSystem.Models.RouteModel>
+@using HCMS.Dynamics.DSystem.Models;
+
+@{
+    ViewBag.Title = "System Routes";
+    //var routes = Model;
+    //routes = routes.Concat(RouteTable.Routes
+    //    .Select(p => p as Route)
+    //    .Select(p => new RouteModel()
+    //    {
+    //        Name = p.Url,
+    //        Enable = true,
+    //        URL = p.Url,
+    //        Namespaces = "",
+    //        SortId = 0,
+    //        ID = 0,
+    //        Defaults = string.Join("\n", p.Defaults.Select(d => d.Key + ":" + d.Value))
+    //    }));
+    System.Web.Routing.RouteCollection routeCollection = System.Web.Routing.RouteTable.Routes;
+}
+
+
+<div class="box-bordered warning en">
+    <h2>
+        <i class="fa fa-gears"></i> @ViewBag.Title
+    </h2>
+    <p class="en buttons">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Create Defaults", "Create_Defaults", null, new { @class = "btn btn-default" })
+    </p>
+
+
+    <table class="table en">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Defaults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Namespaces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SortId)
+
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (var plugin in MvcApplication.Plugins)
+        {
+            foreach (var item in plugin.GetUrlRoutes())
+            {
+                <tr class="disabled">
+                    <td>
+                        @(plugin.Name)_@item.Name
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.URL)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Defaults.Replace(",", ",<br />").Replace(" ",""))
+                    </td>
+                    <td>
+                        @if (string.IsNullOrWhiteSpace(item.Namespaces) == false)
+                        {
+                            <div>
+                                @Html.Raw(item.Namespaces.Replace(Environment.NewLine, "<br />"))
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => item.Enable)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(p => item.SortId)
+                    </td>
+
+                    <td>
+                      
+                    </td>
+                </tr>
+            }
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URL)
+                </td>
+                <td>
+                    @Html.Raw(item.Defaults.Replace(Environment.NewLine, "<br />"))
+                </td>
+                <td>
+                    @if (string.IsNullOrWhiteSpace(item.Namespaces) == false)
+                    {
+                        <div>
+                            @Html.Raw(item.Namespaces.Replace(Environment.NewLine, "<br />"))
+                        </div>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(p => item.Enable)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(p => item.SortId)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger confirm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

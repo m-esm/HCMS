@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>به روز رسانی به نسخه 4</h2>
+<p>
+    ویژگی های این نسخه:
+</p>
+
+<h3 class="text-success">@ViewBag.StatusMessage</h3>
+
+@Html.ActionLink("به روز رسانی", "Update", null, new{@class = "btn btn-success"})
+

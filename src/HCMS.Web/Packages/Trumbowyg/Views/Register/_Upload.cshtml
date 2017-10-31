@@ -1,0 +1,72 @@
+﻿@using HCMS.Business.Auth
+
+@{
+    Layout = null;
+    int i = 0;
+    var images = (List<string>)TempData["files"];
+    var userId = UserRepository.GetUserIdByUsername(User.Identity.Name);
+}
+
+
+        <h3>لطفا اسناد ذیل را بارگذاری کنید : </h3>
+<ul>
+    <li>
+        اسکن اصل کارت ملی مالک ویترین
+    </li>
+    <li>
+        اسکن آخرین قبض تلفن محل کسب و کار
+    </li>
+    <li>
+        بنر مربوط به ویترین. نام فایل آپلودی حتما باید Banner باشد
+    </li>
+</ul>
+
+<hr>
+<div>
+    <form action="~/vitrin/register/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="file-dropzone">
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+            <input type="submit" value="Upload" />
+
+
+        </div>
+    </form>
+</div>
+
+<div class="tumbs">
+    <h3>اسناد بارگذاری شده :</h3>
+    @if (TempData["files"] != null)
+    {
+        foreach (var image in images)
+        {
+            i++;
+            string src = Url.Content("~/vitrin_users/documents/" + userId + "/" + image + "?width=100&height=100");
+
+            <div class="existImage">
+                <input type="button" value="X" class="removeimage" data-trgt="@src.Split('/').Last().Split('?')[0]" />
+
+            <a href="@src.Split('?')[0]" class="zoom">
+
+                    <img src="@src" style="max-width: 100px" />
+            </a>
+            </div>
+
+
+        }
+
+    }
+    else
+    {
+        <div class="col-sm-12">
+            <h3>سندی از قبل بارگذاری نشده است .</h3>
+        </div>
+    }
+    <div class="clearfix"></div>
+
+    <div class="text-center">
+
+        <input class="btn btn-success" value="ثبت و ادامه" id="btnContinueUpload" />
+    </div>
+
+</div>
+

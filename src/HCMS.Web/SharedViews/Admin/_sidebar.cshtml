@@ -1,0 +1,155 @@
+﻿@using HCMS.Business.Auth
+@using HCMS.Data.Identity
+@using Microsoft.AspNet.Identity
+@using MoreLinq
+@using HCMS.Business;
+@{
+    var sections = new GenericRepository<Section>().GetAll();
+    var ThemeCount = new HCMS.Dynamics.Themes.Models.Theme().GetThemes(Server.MapPath("~/Themes/")).Count();
+    var ModulesCount = MvcApplication.Plugins.Count();
+    var user = UserRepository.GetFullName(User.Identity.Name);
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+}
+
+<ul id="nav">
+
+
+    @if (User.IsInRole("developer"))
+    {
+        <li class="text-uppercase">
+            <a href="#" title="" class="expand" id=""><i class="fa fa-code"></i>@Phrases.Get("Platform")</a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="~/@cc/Manage/Sections">
+                        <i class="fa fa-list"></i>
+                        @Phrases.Get("Sections")
+                    </a>
+                </li>
+                <li>
+                    <a href="~/@cc/Manage/Forms"><i class="fa fa-list"></i>@Phrases.Get("Forms")</a>
+                </li>
+                <li><a href="~/@cc/Manage/Fields"><i class="fa fa-list"></i>@Phrases.Get("Fields")</a></li>
+                <li><a href="~/@cc/Manage/Grids"><i class="fa fa-list"></i>@Phrases.Get("Grids")</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="~/@cc/Manage/Routes" title="">
+                <i class="fa fa-server"></i>@Phrases.Get("Routes")
+            </a>
+        </li>
+    }
+    @if (User.IsInRole("admin") || User.IsInRole("developer"))
+    {
+
+
+        <li>
+            <a href="#" title="" id=""><i class="fa fa-globe"></i>@Phrases.Get("Localization") </a>
+            <ul class="sub-menu">
+                <li><a href="~/@cc/Manage/Cultures"><i class="fa fa-list"></i>@Phrases.Get("Cultures")</a></li>
+                <li><a href="~/@cc/Manage/PhraseKeys"><i class="fa fa-list"></i>@Phrases.Get("Phrase Keys")</a></li>
+                <li><a href="~/@cc/Manage/Phrases"><i class="fa fa-list"></i>@Phrases.Get("Phrases")</a></li>
+            </ul>
+
+        </li>
+
+
+
+        <li class="text-uppercase">
+            <a href="#" title="" id=""><i class="fa fa-user-md"></i>@Phrases.Get("Users Managment")</a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="~/@cc/Manage/RolesAdmin">
+                        <i class="fa fa-user-secret"></i> @Phrases.Get("Roles")
+                    </a>
+                </li>
+
+                <li>
+                    <a href="~/@cc/Manage/UsersAdmin">
+                        <i class="fa fa-users"></i> @Phrases.Get("Users List")
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li><a href="~/@cc/Manage/Dashboard" title=""><i class="fa fa-line-chart"></i>@Phrases.Get("Dashboard")</a></li>
+
+        <li>
+            <a href="~/@cc/Manage/Themes" class="" title="">
+                <i class="fa fa-tv"></i>@Phrases.Get("UI Themes")
+                <span class="label label-default">@ThemeCount</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="~/@cc/Manage/Modules" title="">
+                <i class="fa fa-object-group"></i>@Phrases.Get("Modules & Plugins")
+                <span class="label label-default">@ModulesCount</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="#" id="open-filemanager">
+
+                <i class="fa fa-files-o"></i>@Phrases.Get("File Manager")
+
+            </a>
+        </li>
+
+        <li>
+            <a href="~/@cc/Manage/Settings"><i class="fa fa-gears"></i>@Phrases.Get("Settings")</a>
+        </li>
+    }
+
+    @foreach (var sec in sections.Where(p => p.ShowInMenu))
+    {
+        <li>
+
+            <a href="#" title="" class="expand" id="">
+                <i class="fa fa-list-ol"></i>@Phrases.Get(sec.Caption)
+            </a>
+
+            <ul class="sub-menu">
+                @foreach (var fo in sec.Forms)
+                {
+                    <li>
+                        <a href="~/@cc/Manage/Dynamics/@sec.Name/@fo.Name/Index">
+                            <i class="fa fa-angle-right"></i>@Phrases.Get("List of") @Phrases.Get(fo.Caption)
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+
+        </li>
+
+    }
+
+
+    @foreach (var menu in MvcApplication.Plugins.Where(p => p.GetManageMenu() != null).Select(p => p.GetManageMenu()).OrderBy(p => p.SortId))
+    {
+        if (menu != null)
+        {
+            <li class="@menu.CssClass">
+                <a href="@menu.Link" title="" class="expand" id=""><i class="@menu.Icon"></i>@Phrases.Get( menu.Name)</a>
+                @if (menu.Items.Count() > 0)
+                {
+                    <ul class="sub-menu">
+                        @foreach (var subItem in menu.Items.OrderBy(p => p.SortId))
+                        {
+                            <li><a href="/@Url.Content(subItem.Link.Replace("@cc",cc))"><i class="fa fa-list"></i>@Phrases.Get(subItem.Name)</a></li>
+
+                        }
+                    </ul>
+                }
+
+            </li>
+        }
+    }
+
+
+</ul>
+

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<HCMS.Dynamics.DSystem.Models.Setting>
+@using HCMS.Dynamics.DSystem.Models
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    ViewBag.Title = Phrases.Get("System Settings");
+}
+<div class="box-bordered en warning settings-page ltr">
+    <h2>
+        <i class="fa fa-gears"></i>
+       @ViewBag.title
+    </h2>
+
+    @if (User.IsInRole("developer"))
+    {
+        <p>
+            @Html.ActionLink("List", "List", null, new{@class = "btn btn-success"})
+        </p>
+    }
+
+
+    <ul class="nav nav-tabs right-aligned-tabs">
+            <li role="presentation" class="active"><a href="#General">@Phrases.Get("General")</a></li>
+            <li role="presentation"><a href="#Security">@Phrases.Get("Security")</a></li>
+            <li role="presentation"><a href="#Email">@Phrases.Get("Email")</a></li>
+            <li role="presentation"><a href="#Sms">@Phrases.Get("SMS")</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="General">
+                @foreach (var item in Model.Where(p => p.Category == SettingCategories.General || (int)p.Category == 0))
+                {
+                    <div class="setting-item">
+                        @Html.Partial("_settingItem", item)
+                    </div>
+                }
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Security">
+                @foreach (var item in Model.Where(p => p.Category == SettingCategories.Security))
+                {
+                    <div class="setting-item">
+                        @Html.Partial("_settingItem", item)
+                    </div>
+
+                }
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Email">
+
+                @foreach (var item in Model.Where(p => p.Category == SettingCategories.Email))
+                {
+                    <div class="setting-item">
+                        @Html.Partial("_settingItem", item)
+                    </div>
+
+                }
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Sms">
+
+                @foreach (var item in Model.Where(p => p.Category == SettingCategories.Sms))
+                {
+                    <div class="setting-item">
+                        @Html.Partial("_settingItem", item)
+                    </div>
+                }
+            </div>
+        </div>
+
+
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('.nav-tabs a')
+                .click(function(e) {
+                    e.preventDefault();
+                    $(this).tab('show');
+                });
+
+
+        
+        })
+    </script>
+}

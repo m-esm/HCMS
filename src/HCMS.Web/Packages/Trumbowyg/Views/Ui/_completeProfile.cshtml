@@ -1,0 +1,94 @@
+﻿@using HCMS.Business.Enum
+
+@{
+    Layout = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+
+    var user = HCMS.Business.Auth.UserRepository.GetUserByUsername(User.Identity.Name);
+    string year = null;
+    string month = null;
+    string day = null;
+    if (user.BirthDate != null && user.BirthDate.Length > 5)
+    {
+        year = user.BirthDate.Substring(0, 4);
+        month = user.BirthDate.Substring(4, 2);
+        day = user.BirthDate.Substring(6, 2);
+    }
+}
+
+<form method="post" id="profile-form" action="/fa-ir/vitrin/register/personalInformation">
+
+    @Html.AntiForgeryToken()
+
+    <div class="input-field">
+        <label>نام</label> <input name="FirstName" type="text" value="@user.FirstName" />
+    </div>
+
+    <div class="input-field">
+        <label>نام خانوادگی</label> <input name="LastName" type="text" value="@user.LastName" />
+    </div>
+
+    <div class="input-field">
+        <label>جنسیت</label> @Html.DropDownList("MyType", EnumHelper.GetSelectList(typeof(Enumerations.Gender)))
+    </div>
+
+    <div class="input-field">
+        <label>نام پدر</label> <input name="FatherName" type="text" value="@user.FatherName" />
+    </div>
+
+    <div class="input-field">
+        <label>کد ملی</label> <input name="NationalCode" type="text" value="@user.NationalCode" />
+    </div>
+
+    <div class="input-field birth">
+        <label>تاریخ تولد</label>
+        <div class="input-field">
+            <label>سال</label>
+            <select id="select-year" name="Year">
+                @for (int i = 1300; i < 1390; i++)
+                {
+                    <option value="@i" @(i.ToString() == year ? "selected='selected'" : "")>@i</option>
+                }
+            </select>
+        </div>
+        <div class="input-field">
+            <label>ماه</label> <select id="select-month" name="month">
+
+                @for (int i = 1; i <= 12; i++)
+                {
+                    <option value="@i.ToString("00")" @(i.ToString("00") == month ? "selected='selected'" : "")>@i</option>
+                }
+
+            </select>
+        </div>
+        <div class="input-field">
+            <label>روز</label> <select id="select-day" name="day">
+                @for (int i = 1; i <= 31; i++)
+                {
+                    <option value="@i.ToString("00")" @(i.ToString("00") == day ? "selected='selected'" : "")>@i</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="input-field">
+        <label>شماره ثابت</label> <input name="Phone" type="text" value="@user.Phone" />
+    </div>
+
+    <div class="input-field">
+        <label>شماره همراه</label> <input name="Mobile" type="text" value="@user.Mobile" />
+    </div>
+
+    <div class="input-field">
+        <label>آدرس</label> <input name="Address" type="text" value="@user.Address" />
+    </div>
+
+    <div class="input-field">
+        <label>کد پستی</label> <input name="ZipCode" type="text" value="@user.ZipCode" />
+    </div>
+
+    <div class="input-field">
+        <input type="submit" value="ذخیره" />
+    </div>
+
+</form>

@@ -1,0 +1,183 @@
+﻿@{
+    var StatsCalc = new HCMS.Dynamics.Stats.StatsCalculator();
+    var GeneralInfo = StatsCalc.GetGeneralDateInfo();
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("Dashboard");
+    
+
+}
+<style>
+    .chart-label-box {
+        background: #000;
+        width: 20px;
+        height: 20px;
+        margin: 0 2px 0 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+<div class="col-md-12">
+    <div class="box-bordered danger">
+        <h2><i class="fa text-danger fa-line-chart"></i> @phrases.Get("Visits this month")</h2>
+        <canvas id="stats-dashboard-chart" width="2000" style="max-width:100%" height="600"></canvas>
+        <div class="text-center">
+            <span class="chart-label-box" style="background-color:rgb(253, 193, 14)"></span> @phrases.Get("Visits")
+            <span class="chart-label-box" style="background-color:rgb(33, 150, 243)"></span>@phrases.Get("Visitors")
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="box-bordered info">
+        <h3><i class="fa text-info fa-list"></i> @phrases.Get("Visits") <small> @DateTime.Now.ToString("HH:MM")</small> </h3>
+        <table class="table">
+            <tr>
+                <td>@phrases.Get("Today") :</td>
+                <td class="en">@GeneralInfo.VisitsToday</td>
+            </tr>
+         
+            <tr>
+                <td>@phrases.Get("This Month") :</td>
+                <td class="en">@GeneralInfo.VisitsThisMonth</td>
+            </tr>
+            <tr>
+                <td>@phrases.Get("This Year") :</td>
+                <td class="en">@GeneralInfo.TotalVisits</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box-bordered info">
+        <h3> <i class="fa text-info fa-list"></i> @phrases.Get("Visitors") <small>  @DateTime.Now.ToString("HH:MM")</small></h3>
+        <table class="table">
+            <tr>
+                <td>@phrases.Get("Today") :</td>
+                <td class="en">@GeneralInfo.VisitorsToday IP</td>
+            </tr>
+         
+            <tr>
+                <td>@phrases.Get("This Month") :</td>
+                <td class="en">@GeneralInfo.VisitorsThisMonth IP</td>
+            </tr>
+            <tr>
+                <td>@phrases.Get("This Year") :</td>
+                <td class="en">@GeneralInfo.TotalVisitors IP</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="box-bordered warning">
+        <h3><i class="fa text-warning fa-list"></i> @phrases.Get("Current Visits")</h3>
+        <table id="log-list" class="table">
+            <thead>
+                <tr>
+                    <th>
+                      @phrases.Get("IP Address")
+                    </th>
+
+                    <th>
+                      @phrases.Get("Page URL")
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Collections.DictionaryEntry d in this.Cache)
+                {
+
+                    if (d.Key.ToString().StartsWith("dynamics_stats_"))
+                    {
+                        var statsModel = d.Value as HCMS.Dynamics.Stats.Models.StatsModel;
+                        if ((DateTime.Now - statsModel.Time).TotalSeconds < 3)
+                        {
+                            statsModel.CustomTimeFormat = HCMS.Dynamics.Tools.DateHelper.FamiliarDateTime(statsModel.Time);
+                            <tr>
+                                <td class="en">
+                                    @statsModel.IP
+                                </td>
+
+                                <td class="en">
+                                    @statsModel.URL
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Packages/jquery.signalR-2.2.0/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/Packages/Chart.js-master/Chart.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        $(function ()
+        {
+            var ctx = document.getElementById("stats-dashboard-chart").getContext("2d");
+            var statsChartData = {};
+            $.get("/en-us/Manage/stats/ChartJsData?query=year", function (chart_data)
+            {
+                var statsChart = new Chart(ctx).Line(chart_data);
+            });
+
+
+
+            var dSystemHub = $.connection.dSystemHub;
+
+            var newStats = 0;
+
+            dSystemHub.client.AddToLogList = function (statsModel)
+            {
+                if (newStats > 5)
+                {
+                    newStats = 0;
+                    $.get("/en-us/Manage/stats/ChartJsData?query=month", function (chart_data)
+                    {
+                        var statsChart = new Chart(ctx).Line(chart_data);
+                    });
+                }
+                var table = $("#log-list tbody");
+                //  console.log(statsModel);
+                var tr = document.createElement("tr");
+                $(tr).hide();
+                $(tr).append($("<td class='en'>").text(statsModel.IP));
+
+                $(tr).append($("<td class='en'>").text(statsModel.URL));
+
+                table.prepend(tr);
+                $(tr).fadeIn('slow');
+
+                if ($("tr", table).size() > 10)
+                    $("tr:last-child", table).remove();
+
+                newStats++;
+
+
+            };
+            dSystemHub.client.ConsoleLog = function (msg)
+            {
+                console.log(msg);
+            };
+
+            setInterval(function ()
+            {
+                var table = $("#log-list tbody");
+                $("tr:last-child", table).remove();
+            }, 5000);
+
+
+            $.connection.hub.start().done(function ()
+            {
+
+            });
+
+        });
+    </script>
+}

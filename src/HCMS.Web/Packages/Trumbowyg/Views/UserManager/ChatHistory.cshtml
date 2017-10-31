@@ -1,0 +1,110 @@
+﻿@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+    var userid = TempData["userId"].ToString();
+    var user = HCMS.Business.Auth.UserRepository.GetUserById(userid);
+}
+
+
+@section styles{
+    <link href="~/Plugins/OnlineChat/css/manage.css" rel="stylesheet" />
+}
+<h2>Chat History For : @user.FirstName @user.LastName @user.Email</h2>
+<input type="hidden" value="@userid" id="userId" />
+<div class="box-bordered info">
+
+    <div class="chat_history">
+        <ul class="contacts"></ul>
+        <div class="history-wrapper">
+            <ul></ul>
+        </div>
+        <div class="clearfix">
+
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script>
+
+        $(function () {
+
+            $(document).on('click', 'ul.contacts li', function () {
+                var contactUid = '@userid';
+                $('.history-wrapper ul li').remove();
+                var userId =  $(this).attr('data-uid');
+                $.get("/onlinechat/chat/GetFullHistory", { userId: userId, contactId: contactUid }, function () {
+                }).done(function (data) {
+
+                    $.each(data,
+                          function (index, item) {
+
+                              if (item.MessageDescrp.startsWith('<#') && item.MessageDescrp.endsWith('#>'))
+                                  return;
+
+                              var liToAdd = null;
+
+                              var res = "";
+
+                              if ($(this)[0].ToUserId === userId) {
+                                  liToAdd = $(String.format('<li class="{0}">{1}</li>',
+                                       'sender',
+                                       $(this)[0].MessageDescrp,
+                                    ''));
+
+
+                                  if (item.Status == 0) {
+                                      liToAdd.addClass('sent');
+                                  }
+
+                                  if (item.Status == 2) {
+                                      liToAdd.addClass('seen');
+                                  }
+
+                              } else {
+                                  liToAdd = $(String.format('<li class="{0}">{1}</li>',
+                                      'reciver',
+                                      $(this)[0].MessageDescrp,
+                                      ''));
+                              }
+
+                              if (item.Status == 1) {
+                                  liToAdd.addClass('deleted');
+                              }
+                            
+                              liToAdd.append($('<span class="date" />').text(item.CreateDate));
+                              liToAdd.attr('data-guid', item.GuidId);
+
+                              $('.history-wrapper ul').append(liToAdd);
+
+                          });
+
+                    //      $.get('/OnlineChat/Chat/Seen', { guid: $('#discussion li.reciver').attr('data-guid') });
+
+
+                }).error(function (ex) {
+                    swal(ex);
+                });
+
+
+
+            });
+            $.get("/onlinechat/chat/ContactHistory", function (data) {
+
+                $(data).each(function (key, item) {
+
+                    $('ul.contacts').append($('<li  />').attr('data-uid', item.userid).text(item.username));
+                    //addContact(item.userid, item.username, item.preview, item.date, item.count);
+
+                });
+
+            });
+
+
+
+        });
+
+    </script>
+
+}

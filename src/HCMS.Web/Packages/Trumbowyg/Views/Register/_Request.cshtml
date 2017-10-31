@@ -1,0 +1,170 @@
+﻿@using System.Collections
+@model HCMS.Vitrin.Model.Vitrin
+@{
+    Layout = null;
+}
+
+<div class="width-80">
+
+
+    @using (Ajax.BeginForm("RequestForVitrin", "Register", new { plugin = "Vitrin" }, new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "fff",
+    LoadingElementId = "sendrequestLoader",
+    OnBegin = "requestBegin",
+    OnSuccess = "requestSuccess"
+}
+    ))
+    {
+        @Html.AntiForgeryToken()
+         
+        <div class="name-register-info" style="display:none;">
+            <ul class="register_name_concerns">
+                <li>
+                    حداكثر مجاز استفاده از كلمات براي نامگذاري  ١٠ كاركتر ميباشد
+                </li>
+                <li>
+                    براي اسامي بيشتر از ١٠ كاركتر جداگانه بررسي مي شود و ممكن است فرايند تاييد مدارك را به تاخير بياندازد.
+                </li>
+                <li>
+                    استفاده از كلمات فروشگاه، مركز پخش، مغازه، بنگاه،بازرگاني، خودداري شود
+                </li>
+                <li>
+                    استفاده از نام برند به تنهايي خودداري شود
+                    مثلا : از كلمه اپل به تنهايي براي ويترين نبايد استفاده شود
+                </li>
+                <li>
+                    استفاده از نام مكان خودداري شود.(وب سايت محل فروشگاه را در پوسترهاي ويترين نمايش ميدهد)
+                    مثلا : قدس نارمك قابل قبول نيست (فقط زماني نام مكان قابل قبول است كه نام واقعي فروشگاه همان نام موقعيت مكاني باشد و بايد صاحب ويترين عكس تابلو فروشگاه خود را براي وب سايت ارسال كند)
+                </li>
+                <li>
+                    نبايد در نام گذاري از حروف انگليسي استفاده شود
+                    در صورتي كلمه انگليسي قابل قبول است كه نام واقعي فروشگاه انگليسي باشد مثلا seven
+                    (ويترين دار بايد عكس از تابلو فروشگاه خود را براي وب سايت ارسال كند)
+                </li>
+            </ul>
+        </div>
+    <!-- first section -->
+        <div class="bhoechie-tab-content active" id="requsetResult">
+            <h1>اطلاعات ویترین</h1>
+            <div class="form-group">
+                <label for="Name" class="col-sm-2 control-label">
+                    نام ویترین
+                </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+
+                </div>
+
+                <div class="col-sm-4">
+                    <a href="#" class="btn btn-info show-name-register-info">
+                        نکات انتخاب نام
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="LastName" class="col-sm-2 control-label">
+                    صاحب امتیاز
+                </label>
+                <div class="col-sm-10">
+                    @Html.EditorFor(a => a.Owner, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    توضیحات ویترین
+                </label>
+                <div class="col-sm-10">
+                    @Html.TextArea("Descrp")
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    تعداد بلاک های مورد نظر
+                </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("BlockCount", null, new { htmlAttributes = new { @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    صنف
+                </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("GuildPId", "صنف را انتخاب کنید")
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    زیر صنف
+                </label>
+                <div class="col-sm-10">
+                    <select id="GuildId" name="GuildId">
+                        <option value="0">زیر صنف را انتخاب کنید</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    بنر ویترین
+                </label>
+                <div class="col-sm-10">
+
+                    <div class="vbanner-upload-zone input-field">
+                        <input type="hidden" name="uploaded_files" id="uploaded_files" value="@ViewBag.uploaded_files" />
+
+                        <input type="file" name="images" id="images_upload" multiple />
+
+                        @{
+        var originalDirectory =
+    new DirectoryInfo(Server.MapPath("~/app_data/documents"));
+        var uid = HCMS.Business.Auth.UserRepository.GetUserIdByUsername(User.Identity.Name);
+
+        string pathString = System.IO.Path.Combine(originalDirectory.ToString(), uid);
+
+        if (Directory.Exists(pathString))
+        {
+            var bannerFiles = new DirectoryInfo(pathString).GetFiles().Where(p => p.Name.StartsWith("banner-"));
+
+            foreach (var item in bannerFiles)
+            {
+                <div class="file_tumb_wrapper">
+                    <div class='file_remove_button'></div>
+                    <img data-filename="@item.Name" class="file_tumb" src="/vitrin_users/documents/@uid/@item.Name" />
+                </div>
+            }
+        }
+
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center">
+                <input type="submit" class="btn btn-success" value="ارسال درخواست" />
+            </p>
+
+
+        </div>
+    }
+</div>

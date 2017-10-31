@@ -1,0 +1,30 @@
+﻿@model HCMS.Data.Identity.ApplicationUser
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("Users Managment | Delete");
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<h3>@Phrases.Get("You Want To Delete. Are You Sure?")</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Phrases.Get("User Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Phrases.Get("Delete")" class="btn btn-primary" /> |
+            @Html.ActionLink(@Phrases.Get("Back To List"), "Index", null, new {@class = "btn btn-default"})
+        </div>
+    }
+</div>

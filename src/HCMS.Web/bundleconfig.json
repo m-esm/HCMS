@@ -1,0 +1,50 @@
+[
+  {
+    "outputFileName": "Packages/HCMS/js/Base.min.js",
+    "inputFiles": [
+      "Packages/HCMS/js/Base.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/Avatiss/js/main.min.js",
+    "inputFiles": [
+      "Themes/Avatiss/js/main.js"
+    ]
+  },
+  {
+    "outputFileName": "Plugins/Vitrin/Repository/Js/Vitrin.min.js",
+    "inputFiles": [
+      "Plugins/Vitrin/Repository/Js/Vitrin.js"
+    ]
+  },
+  {
+    "outputFileName": "Packages/HCMS/js/Base.Forms.min.js",
+    "inputFiles": [
+      "Packages/HCMS/js/Base.Forms.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/mohsenes/Scripts/ui.min.js",
+    "inputFiles": [
+      "Themes/mohsenes/Scripts/ui.js"
+    ]
+  },
+  {
+    "outputFileName": "Packages/melon/css/main.min.css",
+    "inputFiles": [
+      "Packages/melon/css/main.css"
+    ]
+  },
+  {
+    "outputFileName": "Plugins/Vitrin/Repository/Js/Chat.min.js",
+    "inputFiles": [
+      "Plugins/Vitrin/Repository/Js/Chat.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/ARXE_ASC/Scripts/ARXE.ASC.min.js",
+    "inputFiles": [
+      "Themes/ARXE_ASC/Scripts/ARXE.ASC.js"
+    ]
+  }
+]

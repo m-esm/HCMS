@@ -1,0 +1,21 @@
+﻿@using HCMS.Business
+@using HCMS.Vitrin.Model
+@using Microsoft.AspNet.Identity
+@{
+    GenericRepository<Favorites> db = new GenericRepository<Favorites>(true);
+    GenericRepository<Vitrin> vitrinDb = new GenericRepository<Vitrin>(true);
+    var userId = User.Identity.GetUserId();
+    var favoriate = db.Where(a => a.UserId == userId);
+}
+
+<ul class="vitrin-fav-list">
+    @foreach (var item in favoriate)
+    {
+        var vitrin = vitrinDb.Find(item.VitrinId);
+        if (vitrin != null)
+        {
+            <li data-vid="@item.VitrinId"><i class="glyphicon glyphicon-remove remove-fav-vitrin"></i> @vitrin.Name</li>
+        }
+
+    }
+</ul>

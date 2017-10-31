@@ -1,0 +1,45 @@
+﻿@using HCMS.Business.Auth
+
+@model HCMS.Data.Identity.ApplicationUser
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+}
+
+<style>
+    .user-info-page {
+        padding: 0;
+        margin: 0;
+    }
+
+        .user-info-page li {
+            height: 36px;
+            padding: 5px;
+            list-style: square inside;
+            border-bottom: 1px solid #ccc;
+        }
+</style>
+
+<div class="box-bordered danger">
+    <h2>User Info</h2>
+    <ul class="user-info-page">
+
+
+        <li># : @Model.Id</li>
+        <li>Name : @Model.FirstName </li>
+        <li>Family : @Model.LastName</li>
+        <li>National Code : @Model.NationalCode</li>
+        <li>Email : @Model.Email</li>
+        <li>Phone : @Model.Phone</li>
+        <li>Mobile : @Model.Mobile</li>
+        <li>ZipCode : @Model.ZipCode</li>
+        <li>Birth date : @Model.BirthDate</li>
+        <li>Address : @Model.Address</li>
+
+
+    </ul>
+    <br />
+    <a href="/Manage/UsersAdmin/ChangeUserPassword/@Model.Id" class="btn btn-default">Change Password</a>
+    <a href="/Manage/UsersAdmin/Edit/@Model.Id" class="btn btn-default">Edit Basics</a>
+    <a href="/Manage/UsersAdmin/CompleteUserProfile/@Model.Id" class="btn btn-default">Complete User Profile</a>
+
+</div>

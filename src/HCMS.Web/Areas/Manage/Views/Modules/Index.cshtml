@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HCMS.Dynamics.DSystem.Models.Plugin>
+
+@{
+    ViewBag.Title = " ماژول ها";
+    var installedPlugins = Model.Where(p => p.IsPlugin && p.Active == true);
+    var readyToInstall = Model.Where(p => p.IsPlugin && p.Active == false);
+    var systemAssems = Model.Where(p => p.IsPlugin == false);
+
+
+}
+
+<div class="modules-page en">
+
+    <div class="box-bordered primary en">
+    <form enctype="multipart/form-data" method="post">
+        <br />
+        Upload Plugin(.zip) : <input style="display:inline-block;" name="file" type="file" />
+        <input  type="submit" style="height:20px!important;vertical-align:middle;font-weight:bold;color:#000;" value="Submit" />
+    </form>
+    </div>
+
+    @if (readyToInstall.Count() > 0)
+    {
+        <div class="box-bordered primary en">
+            <h2>Ready to install :</h2>
+            <div class="row">
+                @foreach (var module in readyToInstall)
+                {
+                    <text>
+                        @Html.Partial("_ModuleView", module)
+                    </text>
+                }
+            </div>
+        </div>
+    }
+
+    @if (installedPlugins.Count() > 0)
+    {
+        <div class="box-bordered success en">
+            <h2>Installed Plugins : </h2>
+            <div class="row">
+                @foreach (var module in installedPlugins)
+                {
+                    <text>
+                        @Html.Partial("_ModuleView", module)
+                    </text>
+                }
+            </div>
+        </div>
+    }
+
+</div>

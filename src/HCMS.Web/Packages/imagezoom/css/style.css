@@ -1,0 +1,47 @@
+
+
+
+
+/*.spritezoom-container {
+  margin: 10px;
+  text-decoration: none;
+}*/
+
+/*.spritezoom-view {
+  border: 1px solid #ccc;
+  margin: -4px;
+}*/
+
+.spritezoom-zoom {
+    border: 1px solid #ccc;
+    /*margin: -4px;*/
+}
+
+.spritezoom-tint {
+    background: #ccc;
+}
+
+
+
+.spritezoom-lens {
+    border: 2px solid #ccc;
+    /*margin: -4px;*/
+}
+
+.spritezoom-sens {
+    float: right;
+    width: 90%;
+    height: 900px;
+    margin: 50px;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+/*.spritezoom-title {
+  background: #888;
+  color: white;
+  padding: 3px;
+  text-align: center;
+}*/
+
+

@@ -1,0 +1,292 @@
+﻿@model HCMS.Dynamics.Forms.PropertyModel
+
+@{
+    Layout = null;
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cid = Phrases.CurrentCulture.ID;
+    var Mask = Model.GetMemberValue("Mask");
+    var Required = bool.Parse(string.IsNullOrWhiteSpace(Model.GetMemberValue("Required")) ? "false" : Model.GetMemberValue("Required"));
+    string dataUrl = Model.GetMemberValue("DataURL") ?? "";
+    dataUrl = dataUrl.Contains('?') ? dataUrl + "&cultureId=" + cid : dataUrl;
+
+    if (Model.PropertyValue == null)
+    {
+        Model.PropertyValue = "";
+    }
+    string MasterPropertyName = Model.PropertyName.Contains("_edit_") ? Model.PropertyName.Remove(Model.PropertyName.IndexOf("_edit_")) : Model.PropertyName;
+
+}
+
+<div title="@Model.GroupOrderID" data-property="@MasterPropertyName" data-relationid="@Model.RelationID" class="@Model.GetMemberValue("InputDivCssClass") dynamics-field-wrapper">
+
+    <div class="input-field dynamics-field" data-property="@MasterPropertyName">
+        @if (Model.PropertyInputType != 1 && Model.PropertyInputType != -1)
+        {
+            if (!string.IsNullOrWhiteSpace(Model.PropertyLabel))
+            {
+                <label class="">
+                    @if (Model.GetMemberValue("AllowMultipleEntry") == "True")
+                    {
+                        <a data-property="@Model.PropertyName" data-group="@Model.GroupName" class="fa fa-plus-circle text-info AddInput"></a>
+                    }
+                    @Phrases.Get(Model.PropertyLabel)
+                </label>
+            }
+        }
+
+        @switch (Model.PropertyInputType)
+        {
+            case 0:
+
+                <input oninvalid="browser_input_oninvalid(this, event);"
+                       id="dinput_@Model.PropertyName"
+                       data-property="@Model.PropertyName"
+                       data-group="@Model.GroupName"
+                       value="@Model.PropertyValue"
+                       data-mask="@Mask"
+                       @(Required ? "required" : "")
+                       class="dinput @Model.GetMemberValue("CssClass")"
+                       placeholder="@Model.GetMemberValue("PlaceHolder")"
+                       type="text"
+                       name="@Model.PropertyName" />
+
+                break;
+
+            case 1:
+            <input value="@Model.PropertyValue" id="dinput_@Model.PropertyName" type="hidden" name="@Model.PropertyName" />
+                break;
+
+            case (int)InputTypes.TextArea:
+
+            <textarea value="@Model.PropertyValue" class="dinput @Model.GetMemberValue(" cssclass")" id="dinput_@Model.PropertyName" oninvalid="browser_input_oninvalid(this, event);" placeholder="@Model.PropertyLabel" name="@Model.PropertyName">@Model.PropertyValue</textarea>
+
+                break;
+
+
+            case 3:
+
+            <textarea value="@Model.PropertyValue" id="dinput_@Model.PropertyName" class="dinput RichTextEditor @Model.GetMemberValue("CssClass")" data-lang="@Model.GetMemberValue("RichTextEditorLanguage")" data-skin="@Model.GetMemberValue("RichTextEditorSkin")" data-mode="@Model.GetMemberValue("RichTextEditorMode")" placeholder="@Model.PropertyLabel" name="@Model.PropertyName">@Model.PropertyValue</textarea>
+
+                break;
+
+
+
+            case (int)InputTypes.CheckBox:
+
+                bool value = false;
+                if (Model.PropertyValue.ToString().ToLower().Contains("true"))
+                {
+                    value = true;
+                }
+
+                @Html.CheckBox(Model.PropertyName, value, new { @class = Model.GetMemberValue("CssClass") + " dinput" })
+                @*<input class="dinput @Model.GetMemberValue("CssClass")" @(value ? "checked='checked'" : "") id="@MasterPropertyName" name="@MasterPropertyName" type="checkbox">*@
+
+                break;
+
+            case (int)InputTypes.Radio:
+
+                value = false;
+
+                if (Model.PropertyValue.ToString().ToLower().Contains("true"))
+                {
+                    value = true;
+                }
+
+                @Html.RadioButton(Model.PropertyName, value, new { @class = "dinput " + Model.GetMemberValue("CssClass") })
+
+                break;
+
+
+
+            case (int)InputTypes.DropDown:
+
+            <select data-value="@Model.PropertyValue" oninvalid="browser_input_oninvalid(this, event);" class="dinput  @Model.GetMemberValue("CssClass")" name="@Model.PropertyName"
+                    @(Model.PropertyInputType == 23 ? "multiple" : "")
+                    data-related="@Model.GetMemberValue("related")"
+                    data-depend="@Model.GetMemberValue("DependOnProperty")"
+                    id="dinput_@Model.PropertyName"
+                    data-url="@(dataUrl.IsInt() ? "local": dataUrl)">
+                @if (dataUrl.IsInt() && !string.IsNullOrWhiteSpace(dataUrl) && dataUrl != "0")
+                {
+                    var options = HCMS.Dynamics.Data.DDB.GetTable(int.Parse(dataUrl), cid).DRows;
+                    <option>...</option>
+                    foreach (var item in options)
+                    {
+                        <option @(item.RowID.ToString() == Model.PropertyValue.ToString() ? "selected='selected'" : "") value="@item.RowID">
+                            @if (string.IsNullOrWhiteSpace(item.GetValue("name").Value))
+                            {
+                                <text> @item.GetValue("title") </text>
+
+                            }
+                            else
+                            {
+                                <text> @item.GetValue("name") </text>
+                            }
+                          
+                        </option>
+                    }
+                }
+            </select>
+
+
+                break;
+
+            case (int)InputTypes.MultiSelect:
+
+            <select multiple="multiple" data-value="@Model.PropertyValue" oninvalid="browser_input_oninvalid(this, event);" class="dinput  @Model.GetMemberValue("CssClass")" name="@Model.PropertyName"
+                    @(Model.PropertyInputType == 23 ? "multiple" : "")
+                    data-related="@Model.GetMemberValue("related")"
+                    data-depend="@Model.GetMemberValue("DependOnProperty")"
+                    id="dinput_@Model.PropertyName"
+                    data-url="@(dataUrl.IsInt() ? "local": dataUrl)">
+                @if (dataUrl.IsInt() && !string.IsNullOrWhiteSpace(dataUrl) && dataUrl != "0")
+                {
+                    var options = HCMS.Dynamics.Data.DDB.GetTable(int.Parse(dataUrl), cid).DRows;
+                    <option>...</option>
+                    foreach (var item in options)
+                    {
+                        <option value="@item.RowID">@item.GetValue("name")</option>
+                    }
+                }
+            </select>
+
+
+                break;
+            case (int)InputTypes.CultureSelect:
+                var _cultures = new HCMS.Business.GenericRepository<HCMS.Dynamics.Localization.Entities.Culture>().GetAll();
+
+                <select  data-value="@Model.PropertyValue" 
+                        oninvalid="browser_input_oninvalid(this, event);"
+                        class="dinput  @Model.GetMemberValue("CssClass")" name="@Model.PropertyName"
+                        data-related="@Model.GetMemberValue("related")"
+                        data-depend="@Model.GetMemberValue("DependOnProperty")"
+                        id="dinput_@Model.PropertyName"
+                        data-url="@(dataUrl.IsInt() ? "local": dataUrl)">
+                  
+                        <option>...</option>
+                        @foreach (var item in _cultures)
+                        {
+                            <option value="@item.CultureName()">@item.CultureName()</option>
+                        }
+                </select>
+
+
+                break;
+
+
+            case 10:
+
+
+            <input class="dinput " value="@Model.PropertyValue" oninvalid="browser_input_oninvalid(this, event);" data-inputmask="'alias': 'date'" placeholder="@Model.PropertyLabel" type="date" name="@Model.PropertyName" />
+
+                break;
+
+            case (int)InputTypes.UploadControl:
+
+
+
+            <input oninvalid="browser_input_oninvalid(this, event);"
+                   id="dinput_@Model.PropertyName"
+                   data-property="@Model.PropertyName"
+                   data-group="@Model.GroupName"
+                   value="@Model.PropertyValue"
+                   data-mask="@Mask"
+                   @(Required ? "required" : "")
+                   class="dinput @Model.GetMemberValue("CssClass") uploadcontrol-input"
+                   placeholder="برای آپلود فایل کلیک کنید"
+                   type="text"
+                   name="@Model.PropertyName" />
+
+
+
+                break;
+
+            case (int)InputTypes.File:
+
+            <div class="ajax-upload-input" data-url="@dataUrl">
+                <div class="btn btn-default fileinput-button">
+                    <i class="fa fa-upload"></i>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.PropertyValue.ToString()))
+                    {
+                        <div class="en fileName pull-left">
+                            @Model.PropertyValue.ToString().Split('/').Last()
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="fileName">
+
+                        </div>
+                    }
+
+
+                    <input id="fileupload" type="file" name="files[]">
+                </div>
+                <input id="dinput_@Model.PropertyName"
+                       data-property="@Model.PropertyName"
+                       data-group="@Model.GroupName"
+                       value="@Model.PropertyValue"
+                       data-mask="@Mask"
+                       @(Required ? "required" : "")
+                       class="en hidden"
+                       placeholder="@Model.GetMemberValue("PlaceHolder")"
+                       type="text"
+                       name="@Model.PropertyName" />
+            </div>
+
+                    break;
+
+            case (int)InputTypes.Number:
+                    /// number
+
+                    <input oninvalid="browser_input_oninvalid(this, event);"
+                           @(Required ? "required" : "")
+                           value="@Model.PropertyValue"
+                           data-group="@Model.GroupName"
+                           placeholder="@Model.PropertyLabel"
+                           class="dinput @Model.GetMemberValue("CssClass") "
+                           type="number" name="@Model.PropertyName"
+                           id="dinput_@Model.PropertyName"
+                           min="@Model.GetMemberValue("Min")"
+                           max="@Model.GetMemberValue("Max")"
+                           data-property="@Model.PropertyName" />
+                    break;
+
+            case (int)InputTypes.Image:
+                    //image
+                    <span class="btn btn-default select-file-btn" data-propertyid="dinput_@Model.PropertyName"><i class="fa fa-file-picture-o"></i></span>
+
+                    <span class="property-image-tumbnail img-thumbnail img-responsive" style="background-image:url('@Model.PropertyValue?maxwidth=80');"></span>
+
+                    <input id="dinput_@Model.PropertyName"
+                           data-type="image"
+                           data-property="@Model.PropertyName"
+                           data-group="@Model.GroupName"
+                           value="@Model.PropertyValue"
+                           data-mask="@Mask" @(Required ? "required" : "")
+                           class="dinput @Model.GetMemberValue("CssClass") ltr"
+                           placeholder="@Model.GetMemberValue("PlaceHolder")"
+                           type="text"
+                           name="@Model.PropertyName" />
+
+                    break;
+
+
+            case (int)InputTypes.CheckList:
+            <div class="dinput check-list"
+                 data-name="@Model.PropertyName"
+                 data-depend="@Model.GetMemberValue("DependOnProperty")"
+                 data-url="@(dataUrl.IsInt() ? "/datacontroller/GetDynamicsRows?formid=" + dataUrl : dataUrl)"
+                 data-value="@Model.PropertyValue">
+            </div>
+
+                    break;
+
+        }
+
+    </div>
+
+</div>
+

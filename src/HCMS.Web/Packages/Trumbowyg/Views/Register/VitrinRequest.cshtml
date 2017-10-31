@@ -1,0 +1,82 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<HCMS.Data.Identity.ApplicationUser>
+
+@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+    int i = 0;
+    ViewBag.Title = "Vitrin requests";
+}
+
+@*<link href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    @if (phrases.CurrentCulture.RTL)
+    {
+
+        <link href="~/Packages/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    }*@
+
+
+<h1>@ViewBag.Title</h1>
+
+
+@Html.Partial("_Search")
+<div id="result">
+
+    @if (Model != null)
+    {
+        if (Model.Count == 0)
+        {
+            <div>Nothing found .</div>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Family</td>
+                        <td>Nationalcode</td>
+                        <td>Tel</td>
+                        <td>Email</td>
+                        <td>Address</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.NationalCode</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.Address</td>
+                            <td>
+                                <a href="~/vitrin/register/VitrinRequestDetails/@item.Id" class="btn btn-info">Show</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("VitrinRequest", new { page, plugin = "Vitrin" }))
+        }
+    }
+</div>
+@section scripts{
+    <script src="~/Packages/jquery.unobtrusive-ajax/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+
+
+
+
+
+
+

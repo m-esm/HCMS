@@ -1,0 +1,12 @@
+﻿@model Form
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    ViewBag.Title = Model.GetCaption(CaptionModes.Edit,Phrases);
+}
+
+<h2>
+    @ViewBag.title
+</h2>
+
+@Html.Partial("Forms/DbForm", Model.ID)

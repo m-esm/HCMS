@@ -1,0 +1,40 @@
+﻿@model HCMS.Dynamics.DSystem.Models.Setting
+
+@{
+    Layout = null;
+    string fullName = HCMS.Business.Auth.UserRepository.GetFullNameByUserId(Model.LastUserGUID.ToString());
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    
+}
+
+
+<div class="pull-left box-bordered en primary">
+    <h2>
+        @Model.Caption
+    </h2>
+    <h5 class="font-en">@Model.Name</h5>
+</div>
+<div class="pull-left box-bordered en  info">
+    <h2 class="">@Phrases.Get("Value") : <span class="font-en"> @Html.Partial("Forms/_FieldRender",new PropertyModel{ PropertyInputType = (int)Model.InputType , PropertyValue = Model.Value, PropertyName = Model.Name})  </span></h2>
+    <div class="small">
+       @Phrases.Get("Last change by")
+        @if (string.IsNullOrWhiteSpace(fullName))
+        {
+            <b>@Phrases.Get("System")</b>
+        }
+        else
+        {
+            <b>    @fullName</b>
+        }
+
+
+
+       @Phrases.Get("In")
+        <u>
+           @Model.ChangeDate.ToString()
+        </u>
+    </div>
+
+</div>
+<div class="clearfix"></div>

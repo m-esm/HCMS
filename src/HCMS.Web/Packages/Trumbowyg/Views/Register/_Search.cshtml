@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+@using (Ajax.BeginForm("VitrinRequestIx", "Register", new { plugin = "Vitrin" }, new AjaxOptions()
+{
+    HttpMethod = "Post",
+    LoadingElementId = "loading",
+    UpdateTargetId = "result",
+    InsertionMode = InsertionMode.Replace
+}))
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-2">
+                    National code
+                </div>
+                <div class="col-md-10">
+                    <input name="nationalCode" id="nationalCode" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <div class="loader"></div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" value="Go" class="btn btn-primary" />
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+}
+

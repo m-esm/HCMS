@@ -1,0 +1,197 @@
+﻿@model  IEnumerable<HCMS.Dynamics.Forms.Models.Field>
+@using MoreLinq
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    ViewBag.title = Phrases.Get("Fields");
+    GenericRepository<Form> formsDb = new GenericRepository<Form>();
+    int formId = 0;
+    if (Request.QueryString["formId"] != null)
+    {
+        int.TryParse(Request.QueryString["formId"].ToString(), out formId);
+    }
+}
+
+<div class="en">
+    <h2>
+        @if (formId != 0)
+        {
+            <a>@Phrases.Get("Fields") @Phrases.Get("List of") @formsDb.Find(formId).Caption </a>
+        }
+
+
+
+    </h2>
+
+    @if (formId != 0)
+    {
+        <div id="fieldsApp" ng-app="fieldsApp" ng-controller="fieldsController" data-formid="@formId">
+
+            <table class="table table-bordered" id="invoice">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th ng-click="orderByMe('Id')">#</th>
+                        <th><i class="fa fa-sort"></i> </th>
+                        <th>Name</th>
+                        <th>Label</th>
+                        <th>Show in grid</th>
+                        <th>Required</th>
+                        <th>Input Type</th>
+                        <th>Allow Multiple Entry</th>
+                        <th>Group</th>
+                        <th>Source</th>
+                        <th>Input Div Css Class</th>
+                        <th>Css Class</th>
+                        <th>Localize</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in fields | orderObjectBy:'OrderID':false">
+                        <td>
+                            <a style="text-align:center;float:left;width:33.33333%" ng-click="removeItem(item)" class="btn btn-danger btn-sm">-</a>
+                            <a style="text-align:center;float:left;width:33.33333%" ng-click="moveUp(item)" class="btn btn-default btn-sm"><i class="fa fa-sort-down"></i></a>
+                            <a style="text-align:center;float:left;width:33.33333%" ng-click="moveDown(item)" class="btn btn-default btn-sm"><i class="fa fa-sort-up"></i></a>
+
+                        </td>
+                        <td>
+                            <label>  #{{ item.ID == 0 ? ($index + 1) : item.ID}}</label>
+                        </td>
+                        <td>
+                            {{ item.OrderID }}
+                        </td>
+                        <td>
+                            <input type="text" ng-model="item.Name" />
+                        </td>
+                        <td>
+                            <input type="text" ng-model="item.Label" />
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-model="item.ShowInGrid" />
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-model="item.Required" />
+                        </td>
+                        <td>
+
+                            <select ng-change="onChange()" ng-model="item.InputType"
+                                    ng-options="x.key as x.value for x in inputTypes"></select>
+
+                        </td>
+
+                        <td>
+                            <input type="checkbox" ng-change="onChange()" ng-model="item.Multiple" />
+                        </td>
+                        <td>
+                            <input type="text" ng-change="onChange()" class="GroupWith" ng-model="item.GroupWith" />
+                        </td>
+
+                        <td>
+
+                            <select ng-change="onChange()" ng-model="item.Source"
+                                    ng-options="x.key.toString() as x.value for x in sources"></select>
+
+                        </td>
+                        <td>
+                            <input type="text" ng-change="onChange()" ng-model="item.InputDivCssClass" />
+                        </td>
+                        <td>
+                            <input type="text" ng-change="onChange()" ng-model="item.CssClass" />
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-change="onChange()" ng-model="item.Localize" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="btn btn-primary" ng-click="addItem()">+</a>
+                        </td>
+                        <td colspan="13"></td>
+
+
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <p class="text-right">
+                <input type="button" class="btn btn-default" ng-click="onDefaults()" value="Add Default Product Values" />
+                <input type="button" class="btn btn-primary" ng-click="onPreview()" value="Preview" />
+                <input type="button" class="btn btn-success" ng-click="onSubmit()" value="Save" />
+            </p>
+
+            <div id="preview">
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+    else
+    {
+
+    }
+    <p class="buttons">
+        <a href="~/@cc/Manage/Fields/Create?FormID=@Request.QueryString["FormID"]" class="btn btn-success margin-tweny">New Form Field</a>
+    </p>
+    <table class="table table-bordered en">
+        <tr>
+            <th class="en">
+                ID
+            </th>
+
+            <th class="en">
+                Parent
+            </th>
+
+            <th class="en">
+                Name
+            </th>
+            <th class="en">
+                Label
+            </th>
+
+            <th class="en">
+                Input Type
+            </th>
+
+            <th class="en">
+                Sort ID
+            </th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="en">@item.ID</td>
+                <td class="en">@item.Form.Section.Name > @item.Form.Name</td>
+                <td class="en">@item.Name</td>
+                <td class="en">@item.Label</td>
+                <td class="en">@((InputTypes)item.InputType)</td>
+                <td class="en">@item.OrderID</td>
+
+                <td class="en">
+                    <a href="~/@cc/Manage/Fields/Edit/@item.ID" class="btn btn-primary">Edit</a>
+                    <a href="~/@cc/Manage/Fields/Delete/@item.ID" class="btn btn-danger">Delete</a>
+                    <a href="~/@cc/Manage/Dynamics/@item.Form.Section.Name/@item.Form.Name/Create" class="btn btn-default">Show In Form</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+
+</div>
+
+
+
+@section scripts{
+
+    <script src="~/Packages/angular-1.5.8/angular.min.js"></script>
+    <script src="~/Packages/HCMS/js/Base.Fields.Angular.min.js"></script>
+
+
+}

@@ -1,0 +1,50 @@
+﻿@model Dictionary<string, string>
+@{
+    Layout = null;
+}
+
+<div id="panel_spc">
+
+    <div class="box">
+        <div class="close">X</div>
+        <div class="box-cat">
+            <h2>نوع محصول را انتخاب کنید :</h2>
+            <select id="formid">
+
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Key">
+                        @item.Value
+                    </option>
+                }
+
+            </select>
+
+            <a class="btn btn-info" id="show_form">
+                ادامــه
+                <i class="glyphicon glyphicon-menu-left"></i>
+
+            </a>
+        </div>
+        <div class="box-content">
+          
+        </div>
+        <div class="form-buttons">
+
+            <a class="btn btn-success" id="edit">
+                <i class="glyphicon glyphicon-ok"></i>
+                ذخیره تغییرات
+            </a>
+            <a class="btn btn-success" id="submit">
+                <i class="glyphicon glyphicon-ok"></i>
+                ثبت
+            </a>
+            <a class="btn btn-warning" id="reset">
+                <i class="glyphicon glyphicon-refresh"></i>
+                خالی کردن فرم
+            </a>
+
+        </div>
+    </div>
+
+</div>

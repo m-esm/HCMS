@@ -1,0 +1,21 @@
+﻿@using System.Web.Optimization
+@model HCMS.Web.Areas.Manage.Models.RoleViewModel
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("Role Managment | Create Role");
+}
+
+<h1>
+    @ViewBag.title
+</h1>
+
+@Html.Partial("Forms/ObjectForm", Model)
+
+<div class="text-left">
+    @Html.ActionLink(Phrases.Get("Back To List"), "Index", null, new { @class = "btn btn-default" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

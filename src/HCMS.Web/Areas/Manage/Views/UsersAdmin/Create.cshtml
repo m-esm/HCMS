@@ -1,0 +1,83 @@
+﻿@model HCMS.Web.Areas.Manage.Models.RegisterViewModel
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("Users Managment | Create User");
+    var roleList = (SelectList)TempData["Roles"];
+    TempData.Keep("Roles");
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary()
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+            @*@Html.PasswordFor(m => m.Password, new { @class = "form-control" })*@
+            <input type="password" name="password" id="=password" value="" />
+        </div>
+    </div>
+
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+            @*@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })*@
+            <input type="Password" name="ConfirmPassword" id="=ConfirmPassword" value="" />
+        </div>
+    </div>
+
+    @*@MyCheckBox.CheckBoxList("hadi", (SelectList)ViewBag.RoleId)*@
+
+    @*foreach (var role in list)
+        {
+
+            <div class="col-xs-2">
+                <input type="checkbox" name="@role.Value" value="@role.Value" id="@role.Value" class="checkbox-inline" />
+                @Html.Label(role.Value, new { @class = "control-label en" })
+            </div>
+        }*@
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            <label class="control-label">
+                @Phrases.Get("Select User Role.")
+            </label>
+            <div class="row">
+                @foreach (var item in roleList)
+                {
+                    <div class="col-xs-2">
+                        <input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label en" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="@Phrases.Get("Save")" />
+
+}
+
+<div class="text-right">
+    @Html.ActionLink(Phrases.Get("Back To List"), "Index", null, new {@class = "btn btn-primary"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

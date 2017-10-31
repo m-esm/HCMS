@@ -1,0 +1,61 @@
+﻿@model HCMS.Dynamics.DSystem.Models.Plugin
+@{
+    ViewBag.Title = "_ModuleView";
+}
+
+<div class="col-md-3 col-sm-4" title="@Model.FileName">
+    <div class="module">
+
+        <div class="action row">
+
+            <div class="buttons col-xs-6">
+                @if (Model.IsPlugin)
+                {
+                    if (Model.Active)
+                    {
+                        <a href="~/Manage/Modules/uninstall?FileName=@Model.FileName" class="btn btn-danger"><small> Uninstall </small></a>
+                    }
+                    else
+                    {
+                        <a href="~/Manage/Modules/install?PluginName=@Model.PluginRegisterName()" class="btn btn-success"><small> install </small></a>
+                    }
+                }
+            </div>
+            <div class="icon col-xs-6">
+                <i class="fa fa-gears"></i>
+                @*   <img class="img-responsive img-thumbnail" src="~/Content/Pannonia/img/icons/dll_file_37106.jpg" />*@
+
+                @*@if (string.IsNullOrWhiteSpace(Model.IconURL) || Model.Active == false)
+                    {
+                    }
+                    else
+                    {
+                        <img class="img-responsive img-thumbnail" src="@Url.Content(Model.IconURL)" />
+                    }*@
+            </div>
+
+        </div>
+        <ul class="info">
+            <li>
+                <small> File : @Model.FileName</small>
+            </li>
+
+            <li>
+                <small>   Name : @Model.Name</small>
+            </li>
+            <li>
+                <small>     Version : @Model.Version</small>
+            </li>
+            <li>
+                <small>     developer : @Model.developer</small>
+            </li>
+            <li>
+                <small>    developer Link : @Model.developerLink</small>
+            </li>
+
+
+
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+﻿@import 'https://fonts.googleapis.com/css?family=Open+Sans|Poiret+One';
+body {
+  /*background: url(../img/happy-bg.jpg);*/
+  background: #ddd;
+  font-family: 'Poiret One', cursive;
+}
+@keyframes img {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+.box {
+  position: relative;
+  height: 300px;
+  margin: 100px auto;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.box img {
+  animation-name: img;
+  animation-delay: 5s;
+  animation-direction: normal;
+  animation-play-state: running;
+  animation-iteration-count: 5;
+  animation-duration: 1.5s;
+  max-width: 300px;
+}
+.box h1 {
+  color: #201e1e;
+  font-weight: bold;
+  line-height: 100px;
+  font-size: 60px;
+}
+.box h4 {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 40px;
+}
+.box h5 {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 40px;
+  font-family: 'Open Sans', sans-serif;
+}
+/*# sourceMappingURL=404.css.map */

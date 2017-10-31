@@ -1,0 +1,11 @@
+﻿@{
+    bool isAjax = Request.Form["ajax"] == "true";
+    if (isAjax)
+    {
+        Layout = null;
+    }
+    var model = new KeyValuePair<string, bool>("account", true);
+}
+
+
+@Html.Partial("_TabbedContent", model)

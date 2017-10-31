@@ -1,0 +1,336 @@
+﻿@using HCMS.Business
+@using HCMS.Vitrin.Model
+@using HCMS.Business.Auth
+
+@{
+    Layout = null;
+    HCMS.Data.Identity.ApplicationUser currentUser = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        currentUser = HCMS.Business.Auth.UserRepository.GetUserByUsername(User.Identity.Name);
+    }
+    bool vitrinOwner = false;
+
+    if (currentUser != null)
+    {
+        vitrinOwner = currentUser.Status == HCMS.Data.Enum.AuthenticateEnum.Status.ActiveVitrin;
+    }
+    var shopCartRepo = new GenericRepository<ShoppingCart>();
+    var vitrinRepo = new GenericRepository<Vitrin>();
+
+    var userid = HCMS.Business.Auth.UserRepository.GetUserIdByUsername(User.Identity.Name);
+
+    var cart = shopCartRepo.Where(p => p.UserId == userid).GroupBy(p => p.VitrinId).Select(p => new
+    {
+        vitrinId = p.FirstOrDefault().VitrinId,
+        items = p
+    });
+
+}
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+
+    <meta charset="utf-8"><!-- html5 version of http-equiv="Content-Type"... -->
+    <meta name="description" content="Bazarsoo Description">
+    <meta name="keywords" content="Bazarsoo, Vitrine, eShop,Online Store">
+    @*<link rel="author" href="{{google plus id}}" />*@
+    <link rel="canonical" href="http://bazarsoo.com/" />
+    <!-- fb meta -->
+    <meta property="og:url" content="http://bazarsoo.com/">
+    <meta property="og:image" content="http://bazarsoo.com/Plugins/Vitrin/Repository/Images/preview.png">
+    <meta property="og:description" content="Bazaroo Description">
+    <meta property="og:title" content="Bazaroo Vitrines">
+    <meta property="og:site_name" content="Bazarsoo">
+    <meta property="og:see_also" content="http://bazarsoo.com/">
+    <!-- g+ meta -->
+    <meta itemprop="name" content="Bazarsoo">
+    <meta itemprop="description" content="Bazaroo Description">
+    <meta itemprop="image" content="http://bazarsoo.com/Plugins/Vitrin/Repository/Images/preview.png">
+    <!-- Twitter meta -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://bazarsoo.com/">
+    <meta name="twitter:title" content="Bazarsoo">
+    <meta name="twitter:description" content="Bazarsoo Description">
+    <meta name="twitter:image" content="http://bazarsoo.com/Plugins/Vitrin/Repository/Images/preview.png">
+
+
+    <!-- CSS Files -->
+    <link href="~/Plugins/Vitrin/Repository/Css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Css/bootstrap-flipped.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+
+    <link href="~/Packages/jquery.ui.combined.1.12.0/themes/base/all.css" rel="stylesheet" />
+    <link href="~/Packages/Magnific-Popup/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Css/ytLoad.jquery.css" rel="stylesheet" />
+    <link href="~/Packages/sweetalert/sweetalert.min.css" rel="stylesheet" />
+    <link href="~/Packages/jquery.toast/jquery.toast.min.css" rel="stylesheet" />
+
+    @RenderSection("styles", false)
+    @RenderSection("style", false)
+
+    <!--/ CSS Files -->
+
+    <link href="~/Plugins/Vitrin/Repository/Css/Vitrin.min.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title</title>
+
+</head>
+<body data-vitrinowner="@vitrinOwner" data-uid="@UserRepository.GetUserIdByUsername(User.Identity.Name)">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div id="chat-dialog">
+            @Html.Partial("~/Plugins/Vitrin/Views/Ui/_chat.cshtml")
+        </div>
+    }
+    else
+    {
+
+    }
+
+
+
+    <div id="shopping-cart">
+        <span class="title">
+            <i class="glyphicon glyphicon-shopping-cart"></i>
+            کالاهای انتخابی
+            ( @cart.SelectMany(p => p.items).Count() )
+
+        </span>
+        <ul>
+
+            @foreach (var item in cart)
+            {
+                <li>
+                    @vitrinRepo.Find(item.vitrinId).Name
+                    <ul>
+
+
+                        @foreach (var product in item.items)
+                        {
+                            <li>
+                                @(new HCMS.Dynamics.Data.DRow(product.ProductId).GetValue("name").Value)
+                                <a class="btn btn-default start-product-chat"
+                                   data-pid="@product.ProductId"
+                                   data-cid="@vitrinRepo.Find(product.VitrinId).UserId">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                    چانه زنی
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            }
+        </ul>
+
+    </div>
+
+    <header>
+        <div class="layout-container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="nav-account">
+                        <div class="nav-icon">
+                            <i class="icon fa fa-bars"></i>
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="~/">
+                                            <i class="fa fa-home"></i>
+                                            صفحه اصلی
+                                        </a>
+                                    </li>
+
+                                    <li>
+
+                                        <a id="nav-vitrin-register" class="" href="~/fa-ir/vitrin/register">
+                                            <i class="fa fa-plus"></i>
+                                            ثبت ویترین
+                                        </a>
+
+                                    </li>
+                                    @if (vitrinOwner)
+                                    {
+                                        <li>
+                                            <a href="/vitrin/panel/products">
+                                                <i class="fa fa-users"></i>
+                                                مدیریت ویترین
+                                            </a>
+                                        </li>
+                                    }
+
+
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users"></i>
+                                            تالار گفتمان
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="ajax-box" href="~/contents/about-us">
+                                            <i class="fa fa-info-circle"></i>
+                                            درباره ما
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="ajax-box" href="~/contents/contact-us">
+                                            <i class="fa fa-phone"></i>
+
+                                            تماس با ما
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-newspaper-o"></i>
+                                            اخبار سایت
+                                        </a>
+                                    </li>
+
+
+
+                                </ul>
+
+                            </nav>
+                        </div>
+                        <div class="notification-icon">
+
+                            <i class="icon fa fa-commenting"></i>
+                        </div>
+                        <div class="account">
+                            <a class="ajax-box" href="~/contents/account">
+                                <i class="fa fa-user"></i>
+                                <small dir="auto">
+                                    @if (currentUser != null)
+                                    {
+
+                                        if (string.IsNullOrWhiteSpace(currentUser.FirstName))
+                                        {
+                                            if (string.IsNullOrWhiteSpace(currentUser.Email))
+                                            {
+                                                <text>@currentUser.UserName</text>
+                                            }
+                                            else
+                                            {
+
+                                                <text>@currentUser.Email</text>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            < text > @currentUser.FirstName </ text >
+                                        }
+
+                                    }
+                                    else
+                                    {
+
+                                        <text>
+                                            حساب کاربری
+                                        </text>
+                                    }
+                                </small>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="logo logo-mobile">
+                        <a href="~/">    بــازارســو</a>
+                    </div>
+                    <div class="search">
+                        <div class="search-option">
+                            <div class="option-icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                            <div class="options">
+                                <label class="checked">
+                                    <input value="product" checked="checked" type="radio" name="search_mode" />
+                                    محصول
+                                </label>
+                                <label>
+                                    <input value="vitrin" type="radio" name="search_mode" />
+                                    ویترین
+                                </label>
+                            </div>
+                        </div>
+                        <i class="fa fa-search icon-search"></i>
+                        <input id="search" placeholder="بخشی از نام کالای مورد نظر ..." type="search" />
+                    </div>
+                    <div class="logo">
+                        <a href="~/">    بــازارســو</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    <div class="render-body">
+        @RenderBody()
+    </div>
+
+
+    <!-- Javascript Files -->
+    @*<script src="~/Plugins/Vitrin/Repository/Js/jquery-2.1.4.min.js"></script>*@
+
+    <script src="~/Packages/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+
+
+
+    <script src="~/Packages/jquery.signalR-2.2.0/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Packages/jquery.ui.1.9.0/jquery-ui.min.js"></script>
+
+    <script src="~/Packages/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/html5shiv.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/respond.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/holder.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/jquery.mosaicflow.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/bootstrap.min.js"></script>
+    <script src="~/Packages/jquery.toast/jquery.toast.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/jalaali.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/jquery.transit.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/ytLoad.jquery.js"></script>
+    <script src="~/Packages/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+
+    <script src="~/Plugins/Vitrin/Repository/Js/Vitrin.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Js/Chat.js"></script>
+
+    @RenderSection("scripts", false)
+
+    <!--/ Javascript Files -->
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

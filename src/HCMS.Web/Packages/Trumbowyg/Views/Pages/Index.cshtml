@@ -1,0 +1,30 @@
+﻿@model HCMS.UiBuilder.Models.UiPage
+
+@{
+    Layout = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+ 
+    var depens = new HCMS.Business.GenericRepository<HCMS.UiBuilder.Models.UiDependency>();
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="~/packages/uibuilder/" />
+    <title></title>
+    @foreach (var depen in depens.Where(p => p.Type == HCMS.UiBuilder.Models.UiDependencyType.CSS))
+    {
+        <link href="@depen.FilePath" rel="stylesheet" />
+    }
+
+</head>
+<body>
+    @Html.Raw(Model.PageContent)
+
+    @foreach (var depen in depens.Where(p => p.Type == HCMS.UiBuilder.Models.UiDependencyType.JS))
+    {
+        <script type="text/javascript" src="@depen.FilePath"></script>
+    }
+</body>
+</html>

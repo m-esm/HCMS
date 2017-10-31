@@ -1,0 +1,84 @@
+﻿@model HCMS.Dynamics.DSystem.Models.Setting
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.Title | @Model.Id</h2>
+
+@using (Html.BeginForm("Edit", "Settings", FormMethod.Post, new { @class = "form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary()
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            Name
+
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            Caption
+            @Html.EditorFor(m => m.Caption, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            MaduleID
+            @Html.EditorFor(m => m.MaduleID, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            Details
+            @Html.TextAreaFor(m => m.Details, new {@class = "form-control"})
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            Value
+            @Html.EditorFor(m => m.Value, new {@class = "form-control"})
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            InputType
+            @Html.EnumDropDownListFor(p => p.InputType)
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            IconURL
+            @Html.EditorFor(m => m.IconURL, new {@class = "form-control"})
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            Category
+            @Html.EnumDropDownListFor(p => p.Category)
+        </div>
+    </div>
+
+
+    <input type="submit" class="btn btn-success" value="Save" />
+
+}
+
+<div class="text-right">
+    @Html.ActionLink("بازگشت به لیست اصلی", "List", null, new { @class = "btn btn-primary" })
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

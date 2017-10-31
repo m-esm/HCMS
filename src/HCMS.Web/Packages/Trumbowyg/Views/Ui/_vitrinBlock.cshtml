@@ -1,0 +1,54 @@
+﻿@model HCMS.Vitrin.Model.Vitrin
+
+@{
+    Layout = null;
+}
+@functions{
+    private static Random random;
+    private static object syncObj = new object();
+    private static void InitRandomNumber(int seed)
+    {
+        random = new Random(seed);
+    }
+    private static int GenerateRandomNumber(int min, int max)
+    {
+        lock (syncObj)
+        {
+            if (random == null)
+                random = new Random(); // Or exception...
+            return random.Next(min, max);
+        }
+    }
+
+}
+<div class="mosaicflow__item">
+    <div data-order="@Model.UiOrder" data-uid="@Model.UserId" data-vid="@Model.Id" id="vitrin-block-@Model.Id" class="vitrin-block block-@Model.BlockCount color-@(GenerateRandomNumber(0, 4))">
+        <div class="inner" style="background-image:url('@Model.BannerImage')">
+            @*@if (!string.IsNullOrWhiteSpace(block.GetValue("BannerImage").Value))
+                {
+                    <img src="@block.GetValue("BannerImage")" />
+                }*@
+            <div class="description" style="display:none;">
+                @Model.Descrp
+            </div>
+            <div class="glass">
+                <div class="top-buttons">
+                    <a><i class="glyphicon glyphicon-link"></i></a>
+                    <a class="heart"><i class="glyphicon glyphicon-heart-empty @(Model.UiFav ? "active" : "")"></i></a>
+                    <a class="msg"><i class="glyphicon glyphicon-envelope "></i></a>
+                </div>
+                <ul>
+                    <li>
+                        <label>صاحب امتیاز</label>
+                        <span data-uid="@Model.UserId" class="owner">@Model.Owner</span>
+
+                    </li>
+                    <li>
+                        <label>ویترین</label>
+                        <span class="vitrin-name">@Model.Name</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

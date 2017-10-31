@@ -1,0 +1,59 @@
+﻿@using HCMS.Vitrin.Controllers
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<HCMS.Vitrin.Model.Guild>
+@{
+    int i = Model.FirstItemOnPage;
+}
+
+@if (Model == null || !Model.Any())
+{
+    <h2>موردی یافت نشد</h2>
+}
+else
+{
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>کد</th>
+            <th>نام</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var item in Model)
+        {
+            if (item.Pid == null)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-primary"})
+                        @Html.ActionLink("نمایش", "Details", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-info"})
+                        @Html.ActionLink("حذف", "Delete", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.Id</td>
+                    <td>@GuildsController.GetParrentName(item.Pid.Value) --> @item.Name</td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-primary"})
+                        @Html.ActionLink("نمایش", "Details", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-info"})
+                        @Html.ActionLink("حذف", "Delete", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+            i++;
+        }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Ix", new {page, plugin = "Vitrin"}))
+}

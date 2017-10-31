@@ -1,0 +1,134 @@
+﻿@using HCMS.Dynamics.Data
+@using System.Collections
+@using System.Reflection
+@{
+    
+    Layout = null;
+    float size = 0;
+    long memCacheSize = 0;
+    
+    foreach (System.Collections.DictionaryEntry d in this.Cache)
+    {
+        if (d.Key.ToString().StartsWith("dynamics_stats") )
+        {
+            Response.Write(d.Key);
+            Response.Write(" - ");
+            Response.Write(d.Value.ToString().Length);
+            Response.Write("<hr>");
+        }
+     
+        memCacheSize++;
+        size += System.Text.ASCIIEncoding.Unicode.GetByteCount(d.Key + d.Value.ToString());
+    }
+
+    if (IsPost)
+    {
+        ClearOutputCache();
+    }
+    
+}
+
+<form method="post">
+    <input type="submit" value="Clear Page Cache" />
+</form>
+
+@functions{
+    public static void ClearOutputCache()
+    {
+
+        var runtimeType = typeof(HttpRuntime);
+
+        var ci = runtimeType.GetProperty(
+           "CacheInternal",
+           BindingFlags.NonPublic | BindingFlags.Static);
+
+        var cache = ci.GetValue(ci, new object[0]);
+
+        var cachesInfo = cache.GetType().GetField(
+            "_caches",
+            BindingFlags.NonPublic | BindingFlags.Instance);
+        var cacheEntries = cachesInfo.GetValue(cache);
+
+        var outputCacheEntries = new List<object>();
+
+        foreach (Object singleCache in cacheEntries as Array)
+        {
+            var singleCacheInfo =
+            singleCache.GetType().GetField("_entries",
+               BindingFlags.NonPublic | BindingFlags.Instance);
+            var entries = singleCacheInfo.GetValue(singleCache);
+
+            foreach (DictionaryEntry cacheEntry in entries as Hashtable)
+            {
+                var cacheEntryInfo = cacheEntry.Value.GetType().GetField("_value",
+                   BindingFlags.NonPublic | BindingFlags.Instance);
+                var value = cacheEntryInfo.GetValue(cacheEntry.Value);
+                if (value.GetType().Name == "CachedRawResponse")
+                {
+                    var key = (string)cacheEntry.Value.GetType().BaseType.GetField("_key", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(cacheEntry.Value);
+                    key = key.Substring(key.IndexOf("/"));
+                    outputCacheEntries.Add(key);
+                }
+            }
+        }
+        foreach (string key in outputCacheEntries)
+        {
+            HttpResponse.RemoveOutputCacheItem(key);
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        * {
+           
+        }
+        .en{
+
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="en">EffectivePercentagePhysicalMemoryLimit : @Cache.EffectivePercentagePhysicalMemoryLimit %</h1>
+    <h1>EffectivePrivateBytesLimit : @Cache.EffectivePrivateBytesLimit</h1>
+    <h1>Used : @(size / 1024)</h1>
+    <h1>MEM Cache Count : @memCacheSize</h1>
+
+    <ul>
+        @*<h1>@DDB.GetTable("HotelAndPackages", "Package").DRows.First().GetValue("name")</h1>*@
+
+
+        @foreach (var row in DDB.GetTable("HotelAndPackages", "Package").DRows)
+        {
+            var cities = row.GetGroup("city");
+            <li>
+                <h2>نام : @row.GetValue("name") </h2>
+                <h3>
+                    شهر :
+                </h3>
+                <ul>
+
+                    @foreach (var item in cities)
+                    {
+                        <li>
+                            @item.GetValue("city.country.name") > @item.GetValue("city.name")
+                        </li>
+                    }
+                </ul>
+
+
+
+            </li>
+        }
+
+    </ul>
+
+
+
+
+</body>
+</html>

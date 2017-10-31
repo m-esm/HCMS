@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+}
+
+
+<form class="login-form" method="post">
+
+
+    @Html.AntiForgeryToken()
+    <h1>
+        <i class="fa fa-user-plus"></i>
+        @Phrases.Get("Register")
+    </h1>
+    <div class="clearfix"></div>
+    <div>
+        <label for="email">
+            <i class="fa fa-at"></i>
+            @Phrases.Get("Email")
+        </label><input id="email" required name="email" placeholder="@Phrases.Get(" enter your email address. for example ") : example@site.com" type="email" />
+    </div>
+
+    <div>
+        <label for="password">
+            @Phrases.Get("Password")
+        </label><input id="password" required placeholder="@Phrases.Get(" password")" name="password" type="password" />
+    </div>
+
+    <div>
+        <label for="ConfirmPassword">
+            @Phrases.Get("ConfirmPassword")
+        </label><input id="ConfirmPassword" required placeholder="@Phrases.Get(" confirmpassword")" name="ConfirmPassword" type="password" />
+    </div>
+
+    <div class="captcha">
+
+        <img src="~/manage/Captcha/msdn" id="captcha-image" />
+        <span class="refresh"><i class="fa fa-refresh "></i>  </span>
+        <input id="captcha" required type="text" name="captcha" placeholder="@Phrases.Get(" security code")" />
+    </div>
+
+    <div class="clearfix">
+        <input type="submit" class="btn btn-success" value="@Phrases.Get(" register")" />
+    </div>
+
+    @Html.ValidationSummary()
+
+</form>

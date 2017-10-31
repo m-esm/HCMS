@@ -1,0 +1,52 @@
+﻿  @{
+      var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+      var cc = Phrases.CurrentCulture.CultureName();
+      string login_c_guid = "manage";
+      //string login_c_guid = Guid.NewGuid().ToString();
+
+  }
+  <form class="login-form" method="post">
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <div class="col-xs-12">
+            <h1>
+                <i class="fa fa-user-secret"></i>
+              @Phrases.Get("Login to system")
+            </h1>
+         
+
+            @Html.Hidden("captcha_guid", login_c_guid)
+          
+
+            <input id="email" required placeholder="Phone number or email" name="Username" type="text" />
+            <input id="password" required placeholder="@Phrases.Get("Password")" name="password" type="password" />
+            <div class="captcha">
+
+                <img src="~/manage/Captcha/msdn?prefix=_login&guid=@login_c_guid" id="captcha-image" />
+                <span class="refresh"><i class="fa fa-refresh "></i>  </span>
+                <input id="captcha" required type="text" name="captcha" placeholder="@Phrases.Get("Security Code")" />
+            </div>
+            <div class="buttons">
+                @Html.CheckBox("RememberMe", true)   <label class="RememberMe" for="RememberMe">
+                 @Phrases.Get("Remember Me ?!")
+                </label>
+            
+
+
+                <a href="~/manage/Auth/ForgotPassword">
+                    <i class="fa fa-lock"></i>
+                  @Phrases.Get("Forgot password")
+                </a>
+                <a href="~/manage/Auth/Register">
+                    <i class="fa fa-plus"></i>
+                 @Phrases.Get("Register")
+                </a>
+            </div>
+
+            <input type="submit" class="btn btn-success" value="@Phrases.Get("Login")" />
+            <div class="clearfix"></div>
+            @Html.ValidationSummary()
+        </div>
+    </div>
+</form>

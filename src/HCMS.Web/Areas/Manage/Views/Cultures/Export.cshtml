@@ -1,0 +1,67 @@
+﻿@using HCMS.Dynamics.Localization.Entities;
+@model List<Phrase>
+@{
+    ViewBag.Title = "Export";
+    int i = 0;
+    int caltureId = Model[0].CultureID;
+}
+
+<style>
+    .fixbuttom{
+        position: fixed;
+        bottom:20px;
+        right:100px;
+        z-index:5665;
+        background-color: #4CAF50;
+        line-height: 50px;
+        width: 200px;
+    }
+</style>
+
+<h2>Export For : @ViewBag.cultere</h2>
+
+<h3>@ViewBag.resultMsg</h3>
+@using (Html.BeginForm(Model))
+{
+    @Html.HiddenFor(a => caltureId);
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Value</th>
+                <th>
+
+                    <input id="checkAll" type="checkbox" onchange="changeSelect();" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td style="font-size:20px;"> @item.Value</td>
+                    <td>
+                        <input id="@item.ID" name="selectedItem" type="checkbox" value="@item.ID" />
+                    </td>
+                </tr>
+                <tr></tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="submit" class="fixbuttom" />
+}
+
+
+
+@section Scripts {
+    <script>
+
+        function changeSelect() {   
+            $("input:checkbox").prop('checked', document.getElementById('checkAll').checked);
+        }
+    </script>
+}
+

@@ -1,0 +1,70 @@
+﻿@model byte
+@{
+    Layout = null;
+
+    HCMS.Dynamics.Data.DRow contentRows = HCMS.Dynamics.Data.DDB.GetTable("Bazarsoo", "Contents").DRows.First(p => p.GetValue("Name").Value == "vitrin-register");
+    var tabs = contentRows.GetGroup("tabs");
+
+    int i = 0;
+    int j = 0;
+}
+
+@using (Ajax.BeginForm("PloicyAccept", "Register", new { plugin = "Vitrin" }, new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "PloicyAccept",
+    LoadingElementId = "policyLoader",
+    OnBegin = "policyBegin",
+    OnSuccess = "policySuccess"
+}
+    ))
+{
+    @Html.AntiForgeryToken()
+    <div class=" bhoechie-tab-container">
+
+
+
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+            <!-- flight section -->
+            @foreach (var tab in tabs)
+            {
+
+                <div class="bhoechie-tab-content @(j == 0 ? "active" : "")" id="commitments@(j)">
+                    <h1>@tab.GetValue("tabName")</h1>
+                    <p>
+                        @Html.Raw(tab.GetValue("tabContent"))
+                    </p>
+
+                </div>
+                j++;
+            }
+            <div class="Policy-check">
+                <input type="checkbox" id="chk-policy" name="chk-policy" checked/>
+                @*<i class="glyphicon glyphicon-unchecked" id="Check@(j)"></i>*@
+                می پذیرم
+            </div>
+            <input type="submit" id="btn-policy" value="ذخیره و ادامه" class="btn btn-success" />
+
+        </div>
+
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+            <div class="list-group">
+                @foreach (HCMS.Dynamics.Data.DRow item in tabs)
+                {
+                    <a href="#commitments@(i)" class="list-group-item @(i == 0 ?"active" : "") text-center">
+                        <h4 class="glyphicon glyphicon-pencil"></h4><br />
+                        <p> @item.GetValue("tabName")</p>
+                    </a>
+                    i++;
+                }
+
+
+            </div>
+        </div>
+
+
+    </div>
+}
+

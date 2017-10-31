@@ -1,0 +1,105 @@
+﻿@model HCMS.Vitrin.Model.Vitrin
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+    ViewBag.Title = "ویرایش ویترین";
+
+}
+
+<h1>@ViewBag.Title | @Model.Id</h1>
+
+@using (Html.BeginForm("Edit", "Vitrin", FormMethod.Post, new { @class = "form", plugin = "Vitrin" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <input type="hidden" value="@Model.CreateDate" name="CreateDate"/>
+    <input type="hidden" value="@Model.UserId" name="userId"/>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("نام ویترین")
+
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("نام صاحب امتیاز")
+
+            @Html.EditorFor(m => m.Owner, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("توضیحات")
+
+            @Html.TextBoxFor(m => m.Descrp, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("تعداد بلاک")
+
+            @Html.DropDownList("BlockCount")
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("صنف")
+
+            @Html.DropDownList("GuildPId")
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("زیر صنف")
+
+            @Html.DropDownList("GuildId")
+        </div>
+    </div>
+
+   
+    <input type="submit" class="btn btn-success" value="Save" />
+
+}
+
+<div class="text-right">
+    @Html.ActionLink("Back to list", "Index", new { plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+        $(document).ready(function () {
+            $('#GuildPId')
+           .change(function () {
+
+               $.get("/vitrin/vitrin/GetGuilds", { id: $(this).val() })
+                   .done(function (data) {
+                       $('#GuildId').empty();
+                       $('#GuildId').append($('<option>').text("زیر صنف را انتخاب کنید").attr('value', 0));
+                       $.each(data,
+                           function (index, result) {
+                               $('#GuildId').append($('<option>').text(result.Name).attr('value', result.Id));
+                           });
+                   })
+               .error(function (ex) {
+                   alert(ex.statusCode + ex.statusText);
+               });;
+           });
+
+        });
+
+
+
+
+    </script>
+}
+

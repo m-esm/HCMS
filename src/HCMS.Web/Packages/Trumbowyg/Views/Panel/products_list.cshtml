@@ -1,0 +1,178 @@
+﻿@using System.Web.UI.WebControls
+@using MoreLinq
+@using HCMS.Dynamics.Grids.Models
+@using HCMS.Dynamics.Forms
+@using HCMS.Dynamics.Forms.Models
+    @using PagedList.Mvc
+    @using PagedList
+    @model IEnumerable<HCMS.Dynamics.Data.DRow>
+
+    @{
+        int cpage = 1;
+
+        if (Request.QueryString["page"] != null)
+        {
+            int.TryParse(Request.QueryString["page"], out cpage);
+        }
+
+        Form form = ViewBag.DynamicsForm;
+
+        FormBuilderRepository formBuilder = new FormBuilderRepository(form.ID);
+        var rows = Model;
+
+        //TODO: paging . rowa => model.
+
+
+        int _pageSize = 15;
+
+        var PagedRows = rows.ToPagedList(cpage, _pageSize);
+        int i = PagedRows.FirstItemOnPage;
+    }
+
+    <div class="layout-container userpanel">
+
+        @Html.Partial("panel_spc", (Dictionary<string, string>)ViewBag.productCats)
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title">
+                    محصولات -  @ViewBag.caption
+
+                </h1>
+
+            </div>
+        </div>
+        <div class="row">
+
+
+            <div class="col-md-12">
+                @if (Model.Count() == 0)
+                {
+                    <h3>
+                        محصولی یافت نشد !
+                    </h3>
+
+                }
+                <a class="btn btn-default" href="/vitrin/panel/products">
+                    <i class="glyphicon glyphicon-menu-right"></i>
+                    بازگشت به لیست کلی
+                </a>
+                <a class="btn btn-default" id="submit-product">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    ثبت محصول جدید
+                </a>
+          
+
+                @if (Model.Count() != 0)
+                {
+                    <div id="userproducts">
+                        <table class="table table-bordered table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="en">
+                                        ردیف
+                                    </th>
+                                    <th class="en">
+                                        شماره محصول
+                                    </th>
+                                    @foreach (var prop in form.Fields.Where(p => p.ShowInGrid).OrderBy(p => p.OrderID))
+                                    {
+                                        <th>
+                                            @prop.Label
+                                        </th>
+                                    }
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="result">
+                                @foreach (var row in PagedRows)
+                                {
+
+                                    <tr>
+                                        <td class="en">
+                                            @i
+                                        </td>
+                                        <td class="en">
+                                            @row.RowID
+                                        </td>
+                                        @foreach (var field in form.Fields.Where(p => p.ShowInGrid).OrderBy(p => p.OrderID))
+                                        {
+                                            <td>
+                                                @if (field.AllowMultipleEntry)
+                                                {
+                                                    foreach (var mfield in row.GetGroup(field.GroupWith))
+                                                    {
+
+                                                        @Html.Partial("Grids/_CellRender", new StandradGridModel { DRow = mfield.GetValue(field.Name), Field = field })
+                                                        @Html.Raw(field.MultipleEntrySpliter)
+
+                                                    }
+                                                }
+                                                else
+                                                {
+
+                                                    @Html.Partial("Grids/_CellRender", new StandradGridModel { DRow = row.GetValue(field.Name), Field = field })
+
+                                                }
+                                            </td>
+                                        }
+
+
+                                        <td class="text-left">
+                                            <a data-rid="@row.RowID" data-fid="@form.ID" class="edit btn btn-primary">
+                                                <i class="glyphicon glyphicon-pencil">
+                                                </i>
+                                                @*ویرایش محصول*@
+                                            </a>
+                                            <a data-rid="@row.RowID" class="delete btn btn-danger">
+
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                                @*حذف محصول*@
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                        i++;
+
+                                }
+
+                            </tbody>
+
+                        </table>
+
+
+                        @Html.PagedListPager((IPagedList)PagedRows, page => Url.Action("Index", new { page }))
+
+                    </div>
+                }
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    @section scripts{
+    <script src="~/Packages/select2/select2.min.js"></script>
+    <script src="~/Packages/jquery.inputmask/inputmask.min.js"></script>
+    <script src="~/Packages/jquery.inputmask/jquery.inputmask.min.js"></script>
+    <script src="~/Packages/jquery.ui.1.9.0/jquery-ui.min.js"></script>
+    <script src="~/Packages/elFinder/js/elfinder.js"></script>
+    <script src="~/Packages/HCMS/js/Base.js"></script>
+    <script src="~/Packages/HCMS/js/Base.DateHelper.js"></script>
+    <script src="~/Packages/HCMS/js/Base.Forms.js"></script>
+
+    }
+
+    @section styles{
+        <link href="~/Packages/elFinder/css/elfinder.min.css" rel="stylesheet" />
+        <link href="~/Packages/jquery.ui.combined.1.12.0/themes/base/all.css" rel="stylesheet" />
+    }

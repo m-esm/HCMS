@@ -1,0 +1,82 @@
+﻿@using HCMS.Vitrin.Controllers
+
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<HCMS.Vitrin.Model.Guild>
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+
+    ViewBag.Title = "Guilds list";
+    int i = Model.FirstItemOnPage;
+
+
+}
+
+@Html.Partial("_Search")
+<p>
+    @Html.ActionLink("Submit new guild", "Create", new { plugin = "Vitrin" }, new { @class = "btn btn-success" })
+</p>
+<div id="result">
+
+
+    @if (Model == null || !Model.Any())
+    {
+        <h2>Nothing found .</h2>
+    }
+    else
+    {       
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach (var item in Model)
+            {
+                if (item.Pid == null)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-primary"})
+                            @Html.ActionLink("Details", "Details", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-info"})
+                            @Html.ActionLink("Delete", "Delete", new {id = item.Id, plugin = "Vitrin"}, new {@class = "btn btn-danger"})
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Id</td>
+                        <td>@GuildsController.GetParrentName(item.Pid.Value) --> @item.Name</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Details", "Details", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+                i++;
+            }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new {page, plugin = "Vitrin"}))
+    }
+
+</div>
+
+@section scripts{
+<script src="~/Packages/jquery.unobtrusive-ajax/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@using HCMS.Vitrin.Controllers
+@model HCMS.Vitrin.Model.Guild
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+
+    ViewBag.Title = "Delete guild";
+
+}
+
+
+<h2>@ViewBag.Title.</h2>
+
+<h3>Are you sure ?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @if (Model.Pid == null)
+            {
+                @Html.DisplayFor(model => model.Name)
+            }
+            else
+            {
+
+                <p>@GuildsController.GetParrentName(Model.Pid.Value) --> @Model.Name</p>
+
+            }
+
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to list", "Index", new { plugin = "vitrin" }, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

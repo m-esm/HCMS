@@ -1,0 +1,23 @@
+﻿@model IEnumerable<HCMS.Dynamics.Localization.Entities.PhraseKey>
+
+<div class="box-bordered primary en">
+    <h2>Localization Phrase Keys</h2>
+    <table class="table table-bordered table-hover table-responsive en">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Key</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Key</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

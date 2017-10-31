@@ -1,0 +1,44 @@
+﻿@using System.Drawing.Imaging
+@using System.Drawing.Design
+@using System.Drawing
+@using System.Drawing.Drawing2D
+
+@{
+ 
+    Response.Clear();
+    
+    int Width = 200;
+    int Height =60;
+  
+    Response.ContentType = "image/png";
+
+    Bitmap bitmap = new System.Drawing.Bitmap(Width, Height);
+
+    Graphics g = Graphics.FromImage(bitmap);
+
+    Font font = new Font("B Yekan",20,FontStyle.Regular);
+
+
+
+    Rectangle rect = new Rectangle(0, 0, Width, Height);
+
+    Brush font_brush = new SolidBrush(Color.White);
+
+    Brush bg_brush = new HatchBrush(HatchStyle.HorizontalBrick, Color.Gray, Color.Transparent);
+
+    g.FillRectangle(bg_brush, rect);
+    
+    g.DrawString("سه - دو = ؟", font, font_brush, new PointF(10, 5));
+    
+    bitmap.Save(Response.OutputStream, ImageFormat.Png);
+    
+  
+  
+    
+    
+    Response.End();
+    
+    
+       
+}
+

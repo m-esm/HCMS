@@ -1,0 +1,35 @@
+﻿@model HCMS.Web.Areas.Manage.Models.CompleteProfileDTO
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    ViewBag.title = phrases.Get("Complete Profile");
+}
+
+
+
+<div class="box-bordered en danger">
+    <h4>@phrases.Get("Complete Profile")</h4>
+    <form method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        @Html.Partial("Account/_CompleteProfile", Model)
+
+    </form>
+</div>
+@section Scripts {
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function openfileDialog() {
+            $("#fileLoader").click();
+        }
+    </script>
+}
+
+
+
+

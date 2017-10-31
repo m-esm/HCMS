@@ -1,0 +1,266 @@
+﻿@using HCMS.Business
+@using HCMS.Business.Auth
+@using HCMS.Vitrin.Model
+
+@model HCMS.Data.Identity.ApplicationUser
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+    var images = (List<string>)TempData["files"];
+    GenericRepository<Vitrin> db = new GenericRepository<Vitrin>();
+    var vitrin = db.Where(a => a.UserId == Model.Id).First();
+    @*<link href="~/Packages/Vitrin/Register/Register.min.css" rel="stylesheet" />*@
+
+}
+
+
+
+<h3 style="text-transform:uppercase;">@Model.Email <small style="font-size:11px;">@Model.Id</small></h3>
+
+<div class="vitrin-form">
+    <div class="row">
+        <div class="group">
+            <label>
+                FirstName
+            </label>
+            <div>
+                @Model.FirstName
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Last name
+            </label>
+            <div>
+                @Model.LastName
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Father Name
+            </label>
+            <div>
+                @Model.FatherName
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                NationalCode
+            </label>
+            <div>
+                @Model.NationalCode
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Email
+            </label>
+            <div>
+                @Model.Email
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Phone
+            </label>
+            <div>
+                @Model.Phone
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Address
+            </label>
+            <div>
+                @Model.Address
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Documents
+            </label>
+            <div>
+                @if (TempData["files"] != null)
+                {
+                    foreach (var image in images)
+                    {
+                        string src = Url.Content("~/vitrin_users/documents/" + Model.Id + "/" + image + "?width=100&height=100");
+
+                        <a href="@src.Split('?')[0]" class="zoom">
+                            <img src="@src" style="max-width: 100px" />
+                        </a>
+
+                    }
+
+                }
+                else
+                {
+                    <div class="col-sm-12">
+                        <h3>No document Exist</h3>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Vitrin Name
+            </label>
+            <div>
+                @vitrin.Name
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Vitrin Owner
+            </label>
+            <div>
+                @vitrin.Owner
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Vitrin Descrp
+            </label>
+            <div>
+                @vitrin.Descrp
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Vitrin Block Count
+            </label>
+            <div>
+                @vitrin.BlockCount
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Guild
+            </label>
+            <div class="mainGuild">
+                @vitrin.Guild.Pid
+            </div>
+
+        </div>
+
+        <div class="group">
+            <label>
+                Sub Guild
+            </label>
+            <div>
+                @vitrin.Guild.Name
+            </div>
+        </div>
+
+        <div class="group">
+            <label>
+                Reason for reject
+            </label>
+            <div>
+                @using (Ajax.BeginForm("Reject", "Register", new { plugin = "Vitrin" }, new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    LoadingElementId = "loader",
+                    OnSuccess = "Success"
+                }
+                    ))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(a => a.Id)
+
+                    <textarea rows="5" cols="120" name="errorMsg"></textarea>
+                    <input type="submit" value="Reject" class="btn btn-danger" style="width: 100%;" />
+                    
+                }
+            </div>
+        </div>
+
+
+        <div class="group">
+
+
+            @using (Ajax.BeginForm("accept", "Register", new { plugin = "Vitrin" }, new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    LoadingElementId = "loader",
+                    OnSuccess = "Success"
+                }
+                    ))
+            {
+
+                @Html.HiddenFor(a => a.Id)
+                <input type="submit" value="Accept" class="btn btn-success" style="width: 100%;" />
+                <img id="loader" src="~/Packages/HCMS/img/ajax-loader.gif" style="display: none" />
+            }
+
+
+        </div>
+    </div>
+</div>
+@section scripts{
+
+
+    <link href="~/Packages/Magnific-Popup/magnific-popup.css" rel="stylesheet" />
+
+    <script src="~/Packages/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/Packages/jquery.unobtrusive-ajax/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        $()
+            .ready(function () {
+
+                $('.zoom')
+                    .magnificPopup({
+                        gallery: {
+                            enabled: true
+                        },
+                        type: 'image' // this is default type
+                    });
+
+                var id = $('.mainGuild').html();
+
+                $.get("/vitrin/register/GetMainGuild", { id: id })
+                    .done(function (data) {
+                        
+                        $.each(data,
+                            function (index, result) {
+                                $('.mainGuild').empty();
+                                $('.mainGuild').html(result.Name);
+                            });
+                      
+                       
+
+                    })
+                    .error(function () {
+                        alert('error');
+                    });
+
+            });
+
+
+        var Success = function (data) {
+
+
+            if (data.result === true) {
+                window.location.href = "/vitrin/register/VitrinRequest";
+
+
+            }
+        }
+
+
+    </script>
+}

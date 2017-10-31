@@ -1,0 +1,42 @@
+﻿@model IEnumerable<HCMS.Dynamics.Tools.MailTemplate>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mail Templates</h2>
+@Html.ActionLink("Create", "Create", null, new { @class = " btn btn-success" })
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>@item.Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = " btn btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "confirm btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>

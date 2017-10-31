@@ -1,0 +1,111 @@
+﻿@using HCMS.Business.Auth
+@using PagedList.Mvc
+@model PagedList.IPagedList<HCMS.Data.Identity.ApplicationUser>
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+    int i = Model.FirstItemOnPage;
+}
+
+<style>
+    form.search-form input{
+       height:36px;
+       border:1px solid #ccc;
+    }
+</style>
+<h1>@ViewBag.Title</h1>
+
+<div class="box-bordered danger">
+    <h3>Search users</h3>
+    <form class="search-form" method="get">
+        
+        <input class="col-md-3" name="NationalCode" placeholder="National Code" />
+        <input class="col-md-3" name="Email" placeholder="Email" />
+        <input class="col-md-4" name="Mobile" placeholder="Mobile" />
+        <input type="submit" value="search" class="btn btn-success col-md-2"/>
+
+        <div class="col-md-4">
+            <label>کاربران</label>
+            <input type="checkbox" value="user" name="user" checked="checked"/>
+        </div>
+
+        <div class="col-md-4">
+            <label>صاحبان ویترین</label>
+            <input type="checkbox" value="vitrin" name="vitrin" checked="checked" />
+        </div>
+
+        <div class="clearfix"></div>
+    </form>
+</div>
+
+@*@Html.Partial("_Search")*@
+<div id="result">
+
+    @if (Model != null)
+    {
+        if (Model.Count == 0)
+        {
+            <div>Not Found.</div>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Family</td>
+                        <td>National Code</td>
+                        <td>Email</td>
+                        <td>Phone</td>
+                        <td>Mobile</td>
+                        <td>ZipCode</td>
+                        <td>Birth date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.NationalCode</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Mobile</td>
+                       
+                            <td>
+                                @item.ZipCode
+                            </td>
+                            <td>
+                                @item.BirthDate
+                            </td>
+
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id, plugin = "Vitrin" }, new { @class = "btn btn-danger" })*@
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id, plugin = "onlineChat" }, new { @class = "btn btn-info" })
+                                @Html.ActionLink("Chat History", "ChatHistory", new { userId = item.Id, plugin = "onlineChat" }, new { @class = "btn btn-danger" })
+                                @*@if (item.Status)
+                                    {
+                                        <input type="button" value="DeActive" onclick="DeActive(@item.Id);" class="btn btn-danger" />
+
+                                    }
+                                    else
+                                    {
+                                        <input type="button" value="Active" onclick="Active(@item.Id);" class="btn btn-success" />
+
+                                    }*@
+
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, plugin = "Vitrin" }))
+        }
+    }
+</div>
+

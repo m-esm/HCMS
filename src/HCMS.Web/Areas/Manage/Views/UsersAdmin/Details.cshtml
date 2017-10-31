@@ -1,0 +1,44 @@
+﻿@model HCMS.Data.Identity.ApplicationUser
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    ViewBag.Title = Phrases.Get("Users Managment | Details");
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Phrases.Get("User Name")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+</div>
+<h4>@Phrases.Get("User Role List")</h4>
+@if (ViewBag.RoleNames.Count == 0)
+{
+    <hr />
+    <p>@Phrases.Get("Role Is Not define For User")</p>
+}
+
+<table class="table">
+
+    @foreach (var item in ViewBag.RoleNames)
+    {
+        <tr>
+            <td>
+                @item
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink(Phrases.Get("Edit"), "Edit", new { id = Model.Id }, new{@class = "btn btn-primary"}) 
+    @Html.ActionLink(Phrases.Get("Back To List"), "Index", null, new{@class = "btn btn-default"})
+</p>
+
+
+

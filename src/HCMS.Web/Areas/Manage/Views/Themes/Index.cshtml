@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HCMS.Dynamics.Themes.Models.Theme>
+
+@{
+    string CurrentTheme = Settings.Get("Dynamics.System.Theme");
+      var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    ViewBag.Title = Phrases.Get("UI Themes");
+    
+}
+
+<div class="theme-page row">
+
+    <h2 class="title"><i class="fa fa-eye"></i>  @ViewBag.Title</h2>
+
+    @*<p class="buttons">
+        <a class="btn btn-primary">جست و جو در بین صفحه</a>
+        <a class="btn btn-success">بارگزاری پوسته جدید</a>
+        <a class="btn btn-default">ساخت پوسته جدید</a>
+    </p>*@
+
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="theme @(CurrentTheme == item.FolderName ? "current" : "")">
+              
+
+                <div class="img">
+                    @if (CurrentTheme == item.FolderName)
+                    {
+                        <i class="icon-current glyphicon glyphicon-ok-circle"></i>
+                    }
+                    <img class="img-responsive " src="@item.ImageURL?width=300&quality=20" />
+                </div>
+                <ul>
+                    <li>
+                        <label>@Phrases.Get("Theme name")</label>
+                        <span class="en">@item.Name</span>
+                    </li>
+                    <li>
+                        <label>@Phrases.Get("developer")</label>
+                        <span class="en">@item.developer</span>
+                    </li>
+
+                    <li>
+                        <label>@Phrases.Get("Link")</label>
+                        <span class="en">@item.developerLink</span>
+                    </li>
+              
+                    <li class="buttons row">
+                        <a class="col-xs-6 btn btn-success set" href="~/Manage/Themes/Set?Name=@item.FolderName">@Phrases.Get("Install")</a>
+                        <a class="col-xs-6 btn btn-warning" href="~/Manage/Themes/Delete?Name=@item.FolderName">@Phrases.Get("Delete")</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    }
+
+
+</div>

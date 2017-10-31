@@ -1,0 +1,235 @@
+﻿@using HCMS.Business.Enum
+@using HCMS.Dynamics.Tools.HtmlHelpers
+@model HCMS.Business.DTO.PersonalInformationDTO
+@{
+    Layout = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+}
+
+
+@using (Ajax.BeginForm("personalInformation", "Register", new { plugin = "Vitrin" }, new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "fff",
+    LoadingElementId = "personalInformationLoader",
+    OnBegin = "registerBegin",
+    OnSuccess = "registerSuccess"
+}
+    ))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="width-80">
+        <div id="personal">
+
+            <h2>اطلاعات کاربر</h2>
+            <div class="form-group">
+                <label for="FirstName" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.FirstName)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" title="نام کوچک" id="FirstName" name="FirstName" class="form-control required" value="@Model.FirstName" />
+                    @*@Html.EditorFor(a => a.FirstName, new {htmlAttributes = new {@class = "form-control"}})*@
+                    @*<input id="FirstName" required name="FirstName" class="form-control" placeholder="@Phrases.Get("Enter your FirstName. For example") : hadi" type="text" />*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="LastName" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.LastName)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" title="نام خانوادگی" id="" name="LastName" class="form-control required" value="@Model.LastName" />
+                    @*@Html.EditorFor(a => a.LastName, new {htmlAttributes = new {@class = "form-control"}})*@
+                    @*<input id="FirstName" required name="FirstName" class="form-control" placeholder="@Phrases.Get("Enter your FirstName. For example") : hadi" type="text" />*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.Gender)
+                </label>
+                <div class="col-sm-10">
+                    @Html.EnumDropDownListFor(a => a.Gender, null, new { @class = "form-control required" })
+                    @*<input id="FirstName" required name="FirstName" class="form-control" placeholder="@Phrases.Get("Enter your FirstName. For example") : hadi" type="text" />*@
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.NationalCode)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" title="کد ملی" id="" name="NationalCode" class="form-control required" value="@Model.NationalCode" />
+
+                </div>
+            </div>
+
+            <div class="form-group" id="birthDate">
+
+                <label class="col-sm-3 control-label">
+                    تاریخ تولد
+                </label>
+
+                <div class="col-sm-3">
+                    <label>
+                        سال
+                    </label>
+                    <select title="سال تولد" id="select-year" name="Year">
+                        <option value="@Model.Year">@Model.Year</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label>
+                        ماه
+                    </label>
+                    <select title="ماه تولد" id="select-month" name="Month">
+                        <option value="@Model.Month">@Model.Month</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label>
+                        روز
+                    </label>
+                    <select title="روز تولد" id="select-day" name="Day">
+                        <option value="@Model.Day">@Model.Day</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.Phone)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" title="شماره تلفن" id="" name="Phone" class="form-control required" value="@Model.Phone" />
+
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="Mobile" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.Mobile)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" title="موبایل" id="" name="Mobile" class="form-control required" value="@Model.Mobile" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Address" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.Address)
+                </label>
+                <div class="col-sm-10">
+                    <textarea id="" title="آدرس" name="Address" class="form-control required" cols="2" rows="2">@Model.Address</textarea>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="ZipCode" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.ZipCode)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" title="کد پستی" id="ZipCode" name="ZipCode" class="form-control required" value="@Model.ZipCode" />
+                </div>
+            </div>
+        </div>
+        <div id="other">
+
+
+
+
+
+            <h2>اطلاعات بیشتر</h2>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.FatherName)
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" name="FatherName" class="form-control" value="@Model.FatherName" />
+                    @*@Html.EditorFor(a => a.FatherName, new {htmlAttributes = new {@class = "form-control"}})*@
+                    @*<input id="FirstName" required name="FirstName" class="form-control" placeholder="@Phrases.Get("Enter your FirstName. For example") : hadi" type="text" />*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.CertificateCode)
+                </label>
+                <div class="col-sm-10">
+                    @Html.EditorFor(a => a.CertificateCode, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="BirthPlace" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.BirthPlace)
+                </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("BirthPlace", "شهر مورد نظر را انتخاب کنید")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="DegreeOfEducation" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.DegreeOfEducation)
+                </label>
+                <div class="col-sm-10">
+                    @Html.EditorFor(a => a.DegreeOfEducation, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="FieldOfStudy" class="col-sm-2 control-label">
+                    @Html.LabelFor(a => a.FieldOfStudy)
+                </label>
+                <div class="col-sm-10">
+                    @Html.EditorFor(a => a.FieldOfStudy, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+
+        <!-- seconde section -->
+
+        <input id="btnPersonalInformation" type="submit" value="ذخیره و ادامه" class="btn btn-success" />
+    </div>
+    @*
+            <div class="bhoechie-tab-container">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                    <!-- first section -->
+                    <div class="bhoechie-tab-content active" id="personal">
+                    </div>
+                    <div class="bhoechie-tab-content" id="other">
+
+
+                </div>
+
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+                    <div class="list-group">
+
+                        <a href="#personal" class="list-group-item active text-center">
+                            <h4 class="glyphicon glyphicon-plane"></h4><br />
+                            <p> اطلاعات تکمیلی</p>
+                        </a>
+                        <a href="#other" class="list-group-item text-center">
+                                <h4 class="glyphicon glyphicon-road"></h4><br />
+                                <p>اطلاعات بیشتر</p>
+                            </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    *@
+}
+
+

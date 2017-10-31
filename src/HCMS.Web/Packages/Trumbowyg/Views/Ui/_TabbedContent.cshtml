@@ -1,0 +1,75 @@
+﻿@model KeyValuePair<string, bool>
+@{
+
+    bool isAjax = Request.Form["ajax"] == "true";
+    if (isAjax)
+    {
+        Layout = null;
+    }
+    int i = 0;
+}
+
+<div class="box-wrapper @(isAjax ? "" : "with-layout")">
+    @{
+        HCMS.Dynamics.Data.DRow contentRows = HCMS.Dynamics.Data.DDB.GetTable("Bazarsoo", "Contents").DRows.First(p => p.GetValue("Name").Value == Model.Key);
+        var tabs = contentRows.GetGroup("tabs");
+    }
+    <div class="box-inner">
+        <h1>
+            @contentRows.GetValue("Title")
+        </h1>
+    
+        @if (tabs.Count() == 1)
+        {
+            <div class="content">
+                @Html.Raw(contentRows.GetValue("tabContent"))
+            </div>
+        }
+        else
+        {
+            <div class="tabs-container">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    @foreach (HCMS.Dynamics.Data.DRow item in tabs)
+                    {
+
+                        string tabid = item.GetValue("tabName").Value.Replace(" ", "_");
+                        <li role="presentation" class="@(i == 0 ?"active" : "")"><a href="#@(tabid)" aria-controls="@(tabid)" role="tab" data-toggle="tab">@item.GetValue("tabName")</a></li>
+                        i++;
+                    }
+
+                </ul>
+                @{
+            i = 0;
+                }
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    @foreach (HCMS.Dynamics.Data.DRow item in tabs)
+                    {
+
+                        string tabid = item.GetValue("tabName").Value.Replace(" ", "_");
+                        <div role="tabpanel" class="tab-pane  @(i == 0 ?"active" : "")" id="@(tabid)">
+                            @Html.Raw(item.GetValue("tabContent"))
+                        </div>
+                        i++;
+                    }
+
+                </div>
+
+            </div>
+        }
+
+
+        @if (Model.Value)
+        {
+
+            <div>
+                @Html.Partial("_LoginBox")
+            </div>
+
+        }
+
+    </div>
+
+</div>

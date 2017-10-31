@@ -1,0 +1,45 @@
+﻿@model HCMS.Vitrin.Model.Guild
+@{
+    Layout = "~/SharedViews/Admin/_Layout.cshtml";
+
+    ViewBag.Title = "لیست اصناف";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "Guilds", FormMethod.Post, new { @class = "form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary()
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+            @Html.Label("Main guild")
+
+            @Html.DropDownList("PId", "...")
+        </div>
+    </div>
+
+    <div class="dynamics-field-wrapper col-md-12">
+        <div class="dynamics-field">
+          Guild name
+
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Save" />
+
+}
+
+<div class="text-right">
+    @Html.ActionLink("Back to list", "Index", new { plugin = "Vitrin" }, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

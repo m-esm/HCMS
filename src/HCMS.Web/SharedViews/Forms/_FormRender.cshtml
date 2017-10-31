@@ -1,0 +1,126 @@
+﻿@model HCMS.Dynamics.Forms.FormBuilderRepository
+@{
+    var groups_general = Model.Properties.Where(p => p.GetMemberValue("Localize") != "True").OrderBy(p => p.OrderID).GroupBy(p => p.GetMemberValue("GroupWith"));
+    var groups_localized = Model.Properties.Where(p => p.GetMemberValue("Localize") == "True").OrderBy(p => p.OrderID).GroupBy(p => p.GetMemberValue("GroupWith"));
+    var cultures = new GenericRepository<HCMS.Dynamics.Localization.Entities.Culture>().GetAll();
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+}
+<div class="text-danger bg-warning en">
+    @Html.ValidationSummary()
+</div>
+
+<form action="@Model.Form.ActionURL" id="@Model.Form.Name" class="dynamics-form @(Model.FilledWithDB ? "db-form" : "object-form") " method="@Model.Form.Method">
+
+    @Html.AntiForgeryToken()
+
+
+    @foreach (var group in groups_general.Where(p => p.Count() > 0))
+    {
+        <div class="row dynamics-field-group" data-group="@group.FirstOrDefault().GetMemberValue("GroupWith")">
+
+            @foreach (var input in group.OrderBy(p => p.GroupOrderID))
+            {
+                @Html.Partial("Forms/_FieldRender", input)
+            }
+
+        </div>
+
+
+    }
+
+
+    @if (groups_localized.Count() > 0)
+    {
+        bool activeli = true;
+        bool activeTab = true;
+        <div class="tabbable tabbable-custom tabs-left localize-tabs">
+            <ul class="nav nav-tabs tabs-left">
+
+                @foreach (var cul in cultures)
+                {
+                    <li class="en @(activeli ? "active" : "")">
+                        <a href="#cul-@(cul.ID)" data-toggle="tab">
+                            <img style="max-height:20px;" src="~/Packages/flags/@(cul.CountryNameAbbr.ToUpper()).png" />
+                            @cul.CultureName()
+                        </a>
+                    </li>
+                    activeli = false;
+                }
+
+            </ul>
+            <div class="tab-content">
+
+                @foreach (var cul in cultures)
+                {
+                    <div class="tab-pane @(activeTab ? "active" : "")" id="cul-@(cul.ID)">
+
+
+                        @foreach (var group in groups_localized.Where(p => p.Count() > 0))
+                        {
+                            var inputs = group.OrderBy(p => p.OrderID).Where(p => p.PropertyName.EndsWith("_" + cul.LanguageNameAbbr.ToLower()));
+                            if (inputs.Count() > 0)
+                            {
+                                string groupName = group.FirstOrDefault().GetMemberValue("GroupWith");
+                                if (!string.IsNullOrWhiteSpace(groupName))
+                                {
+                                    groupName += "_" + cul.LanguageNameAbbr.ToLower();
+                                }
+
+                                <div class="row dynamics-field-group" data-group="@groupName">
+
+                                    @foreach (var input in inputs)
+                                    {
+                                        input.GroupName = groupName;
+                                        @Html.Partial("Forms/_FieldRender", input)
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                        activeTab = false;
+                }
+
+
+            </div>
+        </div>
+    }
+    @if (Model.ShowButtons)
+    {
+
+        <div class="buttons">
+            @if (Model.FilledWithDB)
+            {
+                <input type="submit" style="display:none;" />
+                <a href="#" id="submit" class="btn btn-default">
+                    <i class="fa fa-send"></i>  @Phrases.Get("Submit")
+                </a>
+            }
+            else
+            {
+                <a href="#" onclick="document.getElementById('@Model.Form.Name').submit()" class="btn btn-default">
+                    <i class="fa fa-send"></i>  @Phrases.Get("Submit")
+                </a>
+            }
+
+            @if (Model.FilledWithDB)
+            {
+
+                <a class="btn btn-default" id="validate"><i class="fa fa-check-circle-o"></i> @Phrases.Get("Validate Inputs") </a>
+                <a class="btn btn-default" href="~/@cc/Manage/Dynamics/@ViewBag.SectionName/@Model.Form.Name">
+                    <i class="fa fa-list"></i>        @Phrases.Get("Back to")   @Model.Form.GetCaption(CaptionModes.List, Phrases)
+                </a>
+            }
+
+        </div>
+
+    }
+</form>
+
+
+
+
+
+
+
+<div class="clearfix"></div>

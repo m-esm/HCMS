@@ -1,0 +1,40 @@
+﻿@model Form
+
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+
+    ViewBag.Title = Model.GetCaption(CaptionModes.Delete, Phrases);
+    FormBuilderRepository formBuilder = new FormBuilderRepository(Model.ID, ViewBag.RowID);
+
+}
+
+<h2>@Model.GetCaption(HCMS.Dynamics.Forms.Models.CaptionModes.Delete, Phrases)</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        @foreach (var prop in formBuilder.Properties.Where(p =>
+            p.PropertyInputType == (int)HCMS.Dynamics.Forms.InputTypes.SingleLineText
+            ))
+        {
+            <dt>
+                @prop.PropertyLabel
+            </dt>
+
+            <dd>
+                @prop.PropertyValue
+            </dd>
+        }
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete It ! , i'm Sure" class="btn btn-danger" />
+        </div>
+    }
+</div>

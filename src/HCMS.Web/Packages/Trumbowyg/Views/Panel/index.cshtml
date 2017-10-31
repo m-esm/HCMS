@@ -1,0 +1,49 @@
+﻿@{
+    var cuid = HCMS.Business.Auth.UserRepository.GetUserIdByUsername(User.Identity.Name);
+    ViewBag.title = "مدیریت ویترین";
+}
+
+<div class="layout-container userpanel">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">
+                مدیریت ویترین
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                محصولی یافت نشد !
+            </h3>
+            <a class="btn btn-default" href="~/vitrin/panel/products">
+                <i class="glyphicon glyphicon-plus"></i>
+                ثبت محصول جدید
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">
+                سفارشی سازی صفحه ویترین
+            </h1>
+        </div>
+        <div class="col-md-12">
+            <br />
+            <a class="btn btn-default" href="~/UiBuilder/ThemePages/Editor">
+                <i class="glyphicon glyphicon-edit"></i>
+                ویرایش صفحه ویترین جاری
+            </a>
+
+            <a class="btn btn-default" target="_blank" href="~/vitrin/pages?uid=@cuid">
+                <i class="glyphicon glyphicon-paperclip"></i>
+                صفحه ویترین جاری
+            </a>
+
+        </div>
+    </div>
+
+
+</div>

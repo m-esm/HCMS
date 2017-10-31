@@ -1,0 +1,24 @@
+﻿
+@using HCMS.Web.Areas.Manage.Models
+@model HCMS.Web.Areas.Manage.Models.RegisterViewModel
+@{
+    ViewBag.Title = "ثبت نام";
+}
+
+<div class="col-md-offset-2 col-md-8 ">
+
+  
+    @*@Html.Partial("Account/_RegisterForm", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+    @Html.Partial("Account/_RegisterForm")
+
+
+
+
+    @Html.Partial("Account/_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

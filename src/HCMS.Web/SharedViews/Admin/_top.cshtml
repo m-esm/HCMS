@@ -1,0 +1,41 @@
+﻿@using HCMS.Business.Auth
+@using HCMS.Data.Extention
+@{
+    var user = User.FullName();
+}
+<div id="top">
+    <div class="fixed">
+        <a href="index-2.html" title="" class="logo">
+
+            <img src="~/Content/Happy/happy-logo-bg-black128.png" alt="" />
+            <img src="~/Content/Happy/happy-logo-type-bg-black.png" class="type" alt="" />
+
+
+        </a>
+        <ul class="top-menu">
+            <li><a class="fullview"></a></li>
+            <li><a class="showmenu"></a></li>
+            <li><a href="#" title="" class="messages"><i class="new-message"></i></a></li>
+            <li class="dropdown">
+                <a class="user-menu" data-toggle="dropdown">
+                    <img src="@UserRepository.GetProfilePictureUrl(User.Identity.Name)?maxwidth=300" alt="" /><span>
+                          <span class="@(user.Contains("@") ? "font-en" : "") text-center">@user</span>
+                       
+                        <b class="caret"></b>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                
+                    <li> <a href="~/Account/Manage" title=""><i class="fa fa-user"></i>  پروفایل  </a></li>
+                    <li><a href="#" title=""><i class="fa fa-inbox"></i>پیام ها<span class="badge badge-info">9</span></a></li>
+                    <li><a href="#" title=""><i class="fa fa-gear"></i>تنظیمات</a></li>
+                 
+                        <li><a href="~/Account/Auth/LogOff"><i class="fa fa-sign-out"></i> خروج</a></li>
+
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+</div>

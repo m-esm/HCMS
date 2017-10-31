@@ -1,0 +1,102 @@
+﻿@model  IEnumerable<HCMS.Dynamics.Forms.Models.Section>
+@{
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    ViewBag.title = "Sections";
+}
+<p class="buttons">
+    <a href="~/@cc/Manage/Sections/Create" class="btn btn-primary margin-tweny">New Section</a>
+    <a href="~/@cc/Manage/Sections/Import" class="btn btn-default margin-tweny">Import Data</a>
+    <a data-src="/Manage/Sections/Export" id="export" class="btn btn-default margin-tweny">
+
+       Export |
+        <label style="display:inline-block;">
+            <input type="checkbox" name="includeValues" value="true" />
+          With Values
+        </label>
+    </a>
+</p>
+<table class="table table-bordered en">
+    <tr>
+        <th>
+
+        </th>
+        <th class="en">
+            ID
+        </th>
+        <th class="en">
+            Name
+        </th>
+        <th class="en">
+            Caption
+        </th>
+        <th class="en">
+            Forms Count
+        </th>
+
+        <th class="en">
+            Order
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input value="@item.ID" name="sectionId" type="checkbox" /></td>
+            <td class="en">@item.ID</td>
+            <td class="en">@item.Name</td>
+            <td class="en">@item.Caption</td>
+            <td class="en">@item.Forms.Count()</td>
+            <td class="en">@item.OrderID</td>
+            <td class="en">
+                <a href="~/@cc/Manage/Forms?SectionID=@item.ID" class="btn btn-success">Forms</a>
+                <a href="~/@cc/Manage/Sections/Edit/@item.ID" class="btn btn-primary">Edit</a>
+                <a href="~/@cc/Manage/Sections/Delete/@item.ID" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+
+    <script>
+        $(document).ready(function ()
+        {
+
+            $("input[name=sectionId]").change(function ()
+            {
+                var selectedIds = "";
+                $("input[name=sectionId]:checked").each(function ()
+                {
+                    selectedIds += 'sectionids=' + $(this).val() + '&';
+                });
+
+                if (selectedIds != "")
+                    $("a#export").attr("href", $("a#export").attr("data-src") + '?' + selectedIds);
+                else
+                    $("a#export").removeAttr("href");
+              
+            });
+
+            $("a#export").click(function ()
+            {
+                $("input[name=includeValues]").change();
+            });
+            
+
+            $("input[name=includeValues]").change(function (event)
+            {
+                $("input[name=sectionId]").change();
+
+                if ($("a#export").attr("href") != "" && $("a#export").attr("href") != undefined )
+                    $("a#export").attr("href", $("a#export").attr("href") + "includeValues=" + $(this).is(":checked"));
+
+            });
+
+        });
+
+   
+
+    </script>
+
+}

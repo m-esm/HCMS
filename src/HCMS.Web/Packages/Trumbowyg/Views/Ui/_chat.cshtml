@@ -1,0 +1,228 @@
+﻿<div id="contacts-contextmenu">
+    <ul>
+        <li>
+            <a class="delete" class="btn btn-default">
+                <i class="glyphicon glyphicon-trash"></i>
+                حذف  گفت و گو
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="chat-modal">
+
+    <div class="history-wrapper">
+        <div class="close">X بستن</div>
+        <h2>سوابق خرید</h2>
+    </div>
+
+
+    <div class="invoice-history-wrapper">
+        <div class="close">X بستن</div>
+        <h2>لیست فاکتورها</h2>
+
+        <div class="invoices">
+
+        </div>
+    </div>
+
+
+    <div class="settings-wrapper">
+        <div class="close">X بستن</div>
+        <h2>تنظیمات چت</h2>
+
+        <div class="chat-settings">
+            <h3>
+                حریم شخصی
+            </h3>
+            <div class="input">
+                <label>
+                    <input id="public_name" type="checkbox" />
+                    مشاهده نام برای همه
+                </label>
+            </div>
+
+            <div class="input">
+                <label>
+                    <input id="public_pic" type="checkbox" />
+                    مشاهده عکس پروفایل برای همه
+                </label>
+            </div>
+            <h3>
+                لیست افراد مسدود شده
+            </h3>
+
+            <ul class="block-list"></ul>
+
+            <h3>
+                انتخاب تصویر زمینه
+            </h3>
+            <ul class="chat-bgs"></ul>
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="product-select-wrapper">
+        <div class="close">X بستن</div>
+
+        <h2>انتخاب کالا</h2>
+        <div class="inner-content">
+            <a class="btn btn-success done">
+                <i class="glyphicon glyphicon-ok"></i>
+                انجام شد !
+            </a>
+            <small>
+                برای انتخاب کالا ها کافیست بر روی آنها کلیک کنید .
+            </small>
+            <div class="products">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-content">
+        <div class="modal-body">
+
+            <div id="chat-side">
+
+
+
+
+
+                <h3>
+                    اطلاعات کالا
+                </h3>
+                <div class="product-info">
+                    @*@if (User.IsInRole("vitrin") == false)
+                        {*@
+                    <a id="select-product" class="btn btn-default">
+                        <i class="glyphicon glyphicon-pushpin"></i>
+                        انتخاب کالا
+                    </a>
+                    @*      }*@
+
+                </div>
+
+                @*<h3>
+                        اطلاعات مخاطب
+                    </h3>
+                    <div class="chat-info">
+                        <ul>
+                            <li>
+                                <i class="glyphicon glyphicon-eye-open"></i>    تعداد بازدید :
+                                <label id="viewCount">0</label>
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-star-empty"></i>        امتیاز ویترین :
+                                <label id="socer">0</label>
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-shopping-cart"></i>                تعداد ثبت سفارش :
+                                <label id="orderCount">0</label>
+                            </li>
+                        </ul>
+                    </div>*@
+
+                <div class="others">
+
+                    <a id="chat-settings" class="btn btn-default">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        تنظیمات
+                    </a>
+
+
+
+                    <a id="invoice-history" class="btn btn-default">
+                        <i class="glyphicon glyphicon-usd"></i>
+                        لیست فاکتورها
+                    </a>
+
+                    @*<a id="chat-history" class="btn btn-default">
+                            <i class="glyphicon glyphicon-align-justify"></i>
+                            سوابق خرید
+                        </a>*@
+
+                    <a id="delete-chat" class="btn btn-default">
+
+                        <i class="glyphicon glyphicon-trash"></i>
+                        حذف  گفت و گو
+                    </a>
+
+
+
+                    <a id="report-chat" class="btn btn-default">
+
+                        <i class="glyphicon glyphicon-warning-sign"></i>
+                        گزارش سوء استفاده
+                    </a>
+                    <div class="report-chat">
+                        <textarea placeholder="متن گزارش ..." class="report"></textarea>
+                        <a class="send">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                    </div>
+
+                    <a id="block-chat" class="btn btn-default">
+
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        مسدود سازی کاربر
+                    </a>
+
+
+
+                </div>
+
+            </div>
+            <div id="chat-content" class="chat">
+
+
+                <div class="chat-history">
+                    <div class="chat-message">
+                        <ul id="discussion" class="chat-message-content"></ul>
+                    </div>
+                </div> <!-- end chat-history -->
+            </div> <!-- end chat -->
+            <div id="chat-contacts">
+
+                <div class="search">
+
+                    <input type="search" placeholder="جست و جو ..." value="" />
+                    <a id="go-search">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </a>
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <ul class="contacts"></ul>
+
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer">
+            <div class="text-area">
+                <input type="text" rows="2" cols="50" dir="auto" id="message" placeholder="..." autofocus />
+                <div class="attach">
+                    <form class="attach-form">
+                        <input name="attach-file" id="attach-file" type="file" />
+                    </form>
+                    <i class="glyphicon glyphicon-paperclip"></i>
+                </div>
+            </div>
+            <a id="sendmessage">
+                <i class="glyphicon glyphicon-send"></i>
+                ارسال
+            </a>
+
+
+
+
+        </div>
+    </div>
+</div>

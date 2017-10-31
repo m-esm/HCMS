@@ -1,0 +1,130 @@
+﻿
+
+.validation-error-list {
+    text-align: left;
+}
+
+.trumbowyg-editor, .trumbowyg-textarea{
+    direction:rtl;
+    text-align:right;
+}
+
+    .validation-error-list li {
+        text-align: left;
+    }
+
+.ui-dialog {
+    direction: rtl;
+    text-align: right;
+}
+#elfinder *{
+    font-family:Calibri,'Segoe UI',Tahoma;
+}
+
+div.dynamics-grid-container div.dynamics-grid-pager {
+    text-align: right;
+}
+
+[class*=col-] + .col-xs-12, [class*=col-] + .col-sm-12, [class*=col-] + .col-md-12, [class*=col-] + .col-lg-12 {
+    float: right;
+}
+
+form .dynamics-field-wrapper.col-md-12 {
+    float: right;
+}
+
+form .localize-tabs {
+    margin: 20px 0 0 0;
+}
+
+    form .localize-tabs .tab-pane {
+        padding: 0 15px 15px 15px;
+    }
+
+form .ajax-upload-input .btn {
+    text-align: left;
+}
+
+form .check-list label {
+    border-left: 1px solid #ccc;
+}
+
+    form .check-list label input[type=checkbox] {
+        margin-right: 5px;
+    }
+
+form .dynamics-field .property-image-tumbnail {
+}
+
+form .dynamics-field .select-file-btn {
+   
+}
+
+form .dynamics-field .remove {
+    left: -15px;
+}
+
+form input[data-type=image] {
+    padding: 0 83px !important 0 0;
+}
+
+.multi-level-ul ul {
+    border-right: 1px dashed #555;
+    padding: 0 20px 0 0 !important;
+}
+
+#sidebar .user-pic {
+    padding: 5px 10px 0 10px;
+}
+
+div.theme-page .theme ul li span {
+    direction: rtl;
+}
+
+.validation-summary-errors {
+    border-left: 5px solid #e52e2e;
+}
+
+div.modules-page {
+    text-align: right;
+    direction: rtl;
+}
+
+    div.modules-page div.module div.icon {
+        text-align: right;
+    }
+
+
+
+.box-bordered {
+    padding: 0 10px 10px 10px;
+    border-right: none;
+    border-left: none;
+    border-right-style: solid;
+    border-right-width: 4px;
+}
+
+form.login-form {
+    margin: 10px 10px 0 0;
+}
+
+    form.login-form #socialLoginList {
+        text-align: right;
+    }
+
+    form.login-form h1 {
+        margin: 0 0 20px 0;
+    }
+
+    form.login-form .connect img {
+        margin: 0 auto 10px auto;
+    }
+
+    form.login-form input[type=password], form.login-form input[type=email], form.login-form input[type=text] {
+        margin: 0 0 10px 0;
+        direction: rtl;
+    }
+
+    form.login-form div.captcha .refresh {
+        right: 0;
+    }

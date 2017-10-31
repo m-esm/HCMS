@@ -1,0 +1,181 @@
+﻿@using HCMS.Business.Auth
+@model System.Collections.Generic.IEnumerable<HCMS.Vitrin.Model.Invoice>
+@{
+    Layout = null;
+    HCMS.Business.GenericRepository<HCMS.Vitrin.Model.Vitrin> vitrinRepo = new HCMS.Business.GenericRepository<HCMS.Vitrin.Model.Vitrin>();
+
+}
+
+<div class="buttons">
+
+    <a class="btn btn-default refresh-invoices">
+        <i class="glyphicon glyphicon-list "></i>
+        انتخاب همه فاکتورها
+    </a>
+
+    <a class="btn btn-default refresh-invoices">
+        <i class="glyphicon glyphicon-ok"></i>
+        پرداخت فاکتورهای انتخابی
+
+    </a>
+
+    <a class="btn btn-default refresh-invoices">
+        مجموع فاکتورها :
+        <span class="splitBy3">@Model.Sum(p => p.InvoiceItems.Sum(d => d.Price)) </span>تومان
+
+    </a>
+
+    <a class="btn btn-default refresh-invoices">
+        <i class="glyphicon glyphicon-refresh "></i>
+        به روز رسانی
+    </a>
+
+
+</div>
+
+@foreach (var invoiceGroup in Model.GroupBy(p => p.UserId))
+{
+    foreach (var invoice in invoiceGroup)
+    {
+        var customer_user = UserRepository.GetUserById(invoice.UserId);
+        <div class="invoice">
+
+            <table data-toggle="collapse" data-target="#invoice-collapse-@invoice.Id" class="table table-bordered invoice-summery">
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                        <label>شماره فاکتور : </label>
+                        <span>@invoice.Id</span>
+                    </td>
+
+                    <td>
+                        <label>مشتری : </label>
+                        <span>@UserRepository.GetFullName(customer_user.UserName)</span>
+                    </td>
+
+
+                    <td>
+                        <label>ویترین : </label>
+                        <span>@vitrinRepo.Find(invoice.VitrinId).Name</span>
+                    </td>
+
+                    <td>
+                        <label>تاریخ ثبت فاکتور : </label>
+                        <span>@HCMS.Dynamics.Tools.m2s.m2sMMWithHours(invoice.CreateDate)</span>
+                    </td>
+
+
+                    <td>
+                        <label>تاریخ پرداخت فاکتور : </label>
+                        @if (invoice.PayedDate.HasValue)
+                        {
+                            <span>@HCMS.Dynamics.Tools.m2s.m2sMMWithHours(invoice.PayedDate.Value)</span>
+                        }
+                        else
+                        {
+                            <span> - </span>
+                        }
+                    </td>
+                    @if (invoice.PayedDate.HasValue == false)
+                    {
+                        <td>
+                            <a class="btn btn-success pay" href="#">
+                                <i class="glyphicon glyphicon-usd"></i>       پرداخت فاکتور
+                            </a>
+                        </td>
+                    }
+
+                </tr>
+
+
+
+            </table>
+            <div class="collaps2e" id="invoice-collapse-@invoice.Id">
+                <table class="table table-striped table-bordered invoiceitem-summery">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                ردیف
+                            </th>
+                            <th>
+                                تعداد
+                            </th>
+
+                            <th>
+                                کد کالا
+                            </th>
+                            <th>
+                                نام کالا
+                            </th>
+
+
+                            <th>
+                                مبلغ واحد (تومان)
+                            </th>
+                            <th>
+                                مبلغ کل (تومان)
+                            </th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @for (int i = 1; i <= invoice.InvoiceItems.Count(); i++)
+                        {
+                            var item = invoice.InvoiceItems.ToArray()[i - 1];
+
+                            <tr data-id="@item.Id">
+                                <td>
+                                    <i class="glyphicon glyphicon-remove-sign remove-item"></i>   @i
+                                </td>
+                                <td>
+                                    @item.Count
+
+                                </td>
+                                <td>
+                                    @item.ProductId#
+                                </td>
+
+                                <td>
+                                    @(new HCMS.Dynamics.Data.DRow((int)item.ProductId).GetValue("name").Value)
+                                </td>
+
+                                <td>
+                                    <span class="splitBy3">  @(item.Price / item.Count)</span>
+                                </td>
+                                <td>
+                                    <span class="splitBy3"> @item.Price</span>
+                                </td>
+                            </tr>
+
+                        }
+                        <tr>
+                            <td>
+                                مجموع :
+                            </td>
+
+                            <td>@invoice.InvoiceItems.Sum(p => p.Count) </td>
+                            <td>-</td>
+
+                            <td>-</td>
+
+                            <td>-</td>
+
+                            <td>
+                                <span class="splitBy3">       @invoice.InvoiceItems.Sum(p => p.Price)</span>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+            </div>
+
+        </div>
+    }
+
+}

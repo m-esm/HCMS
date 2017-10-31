@@ -1,0 +1,56 @@
+﻿@model HCMS.Dynamics.DSystem.Models.Setting
+@{
+    ViewBag.Title = "ایجاد";
+}
+
+<h2>ایجاد</h2>
+
+<form method="post" class="dynamics-form">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="dynamics-field">
+        Name
+        <input type="text" name="Name"/>
+    </div>
+
+    <div class="dynamics-field">
+        Caption
+        <input type="text" name="Caption"/>
+    </div>
+
+    <div class="dynamics-field">
+        MaduleID
+        <input type="text" name="MaduleID"/>
+    </div>
+
+    <div class="dynamics-field">
+        Details
+        <input type="text" name="Details"/>
+    </div>
+
+    <div class="dynamics-field">
+        Value
+        <input type="text" name="Value"/>
+    </div>
+
+    <div class="dynamics-field">
+        InputType
+        @Html.EnumDropDownListFor(p => p.InputType)
+    </div>
+
+    <div class="dynamics-field">
+        IconURL
+        <input type="text" name="IconURL"/>
+    </div>
+
+    <div class="dynamics-field">
+        Category
+        @Html.EnumDropDownListFor(p => p.Category)
+    </div>
+
+
+    <input type="submit" value="ذخیره" class="btn btn-success"/>
+
+</form>
+
+@Html.ActionLink("بازگشت به لیست اصلی", "List" , null, new{@class = "btn btn-default"})

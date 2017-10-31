@@ -1,0 +1,284 @@
+﻿@using HCMS.Business.Auth
+@using HCMS.Vitrin.Model
+@using PagedList
+
+@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+
+    var personalInformation = (HCMS.Business.DTO.PersonalInformationDTO)TempData["PersonalInformation"];
+
+    List<string> msgs = (List<string>)TempData["message"];
+
+    var status = (byte)TempData["status"];
+    TempData.Keep("files");
+
+    var vitrinDetail = new Vitrin();
+    if (TempData["vitrinDetail"] != null)
+    {
+         vitrinDetail = (Vitrin)TempData["vitrinDetail"];
+    }
+
+
+
+}
+
+@section styles{
+
+    <!-- Vitrin Register CSS Files -->
+
+    <link href="~/Plugins/Vitrin/Repository/Register/Register.min.css" rel="stylesheet" />
+    @*<link href="~/Plugins/Vitrin/Repository/Register/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.min.css" rel="stylesheet" />*@
+    <link href="~/Plugins/Vitrin/Repository/Register/verticalTab.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Register/DropZone/basic.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Register/DropZone/dropzone.min.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Register/upload.css" rel="stylesheet" />
+    <link href="~/Plugins/Vitrin/Repository/Register/loader.css" rel="stylesheet" />
+    <link href="~/Packages/Magnific-Popup/magnific-popup.css" rel="stylesheet" />
+
+    <!--// End Vitrin Register  -->
+}
+<input type="hidden" id="status" value="@status"/>
+@if (TempData["vitrinDetail"] != null)
+{
+    <input type="hidden" id="guildpid" value="@vitrinDetail.Guild.Pid" />
+    <input type="hidden" id="guildid" value="@vitrinDetail.GuildId" />
+}
+
+
+<div class="register-vitrin layout-container">
+    <div class="message-result">
+        <div class="alert alert-danger" style="display:none;">
+
+        </div>
+        <div class="alert alert-success" style="display:none;">
+
+        </div>
+    </div>
+    <div class="board">
+
+        <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+        <div class="board-inner">
+            <ul class="nav nav-tabs" id="myTab">
+                <div class="liner"></div>
+                <li>
+                    <div id="policyLoader" class="loader" style="display:none;">
+                    </div>
+                    <a id="policyMenu" href="#Policy" data-toggle="tab" title="تعهدات" class="tab-group active">
+                        <span class="round-tabs">
+                            <i class="glyphicon glyphicon-align-right"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <div id="personalInformationLoader" class="loader" style="display:none;">
+                    </div>
+                    <a id="personalInformationMenu" href="#personalInformation" data-toggle="tab" title="اطلاعات تکمیلی" class="tab-group">
+                        <span class="round-tabs">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <div id="uploadLoader" class="loader" style="display:none;">
+                    </div>
+                    <a id="uploadMenu" href="#upload" data-toggle="tab" title="بارگذاری اسناد" class="tab-group">
+                        <span class="round-tabs">
+                            <i class="glyphicon glyphicon-upload"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <div id="sendrequestLoader" class="loader" style="display:none;">
+                    </div>
+                    <a id="sendrequestMenu" href="#sendrequest" data-toggle="tab" title="ارسال درخواست" class="tab-group">
+                        <span class="round-tabs">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="donerMenu" href="#doner" data-toggle="tab" title="پایان" class="tab-group disabled">
+                        <span class="round-tabs">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="Policy">
+                @Html.Partial("_PolicyVerticalTab", status)
+            </div>
+            <div class="tab-pane fade" id="personalInformation">
+                @Html.Partial("_PersonalVerticalTab", personalInformation)
+            </div>
+            <div class="tab-pane fade" id="upload">
+                @Html.Partial("_Upload")
+            </div>
+            <div class="tab-pane fade" id="sendrequest">
+                @Html.Partial("_Request", vitrinDetail)
+            </div>
+            <div class="tab-pane fade" id="doner">
+                <div class="text-center">
+                    <i class="img-intro icon-checkmark-circle"></i>
+                </div>
+                @switch (status)
+                {
+                    case 3:
+                        <h3 class=" text-center">درخواست شما ثبت شد. تا تایید مدیر منتظر بمانید.</h3>
+
+
+                        break;
+
+                    case 4:
+                    <h3 class=" text-center">در ثبت درخواست شما اشکلاتی پیش آمده. لطفا در برطرف کردن آن اقدام نمایید . </h3>
+
+                    <div class="alert alert-info">
+                        <ul>
+                            <li class="header">زیرا : </li>
+                            @foreach (var msg in msgs)
+                            {
+                                foreach (var item in msg.Split(Environment.NewLine.ToCharArray()))
+                                {
+                                    if (!string.IsNullOrWhiteSpace(item))
+                                    {
+                                        <li>@item</li>
+                            }
+
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                            break;
+
+                    case 5:
+                    <h3 class=" text-center">ویترین شما هم اکنون فعال می باشد <span style="color:#f48260;">♥</span> خوش آمدید</h3>
+                    <p class="narrow text-center">
+                        برای شروع بهتر است فیلم های آموزشی را مشاهده کنید.
+                    </p>
+                    <br />
+                    <p class="text-center">
+                        <a href="~/vitrin/panel/products" class="btn btn-primary">مدیریت ویترین</a>
+                        <br />
+                            <br />
+                        <input type="button" id="btnOpen" class="btn btn-default" value="تقاضای درخواست جدید" />
+                        @*<a id="btnOpen" href="" class="btnWhite"> تقاضای درخواست جدید </a>*@
+                    </p>
+                            break;
+
+                }
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+
+    <!-- Vitrin Register JS Files -->
+    <script src="/Packages/jquery.unobtrusive-ajax/jquery.unobtrusive-ajax.min.js"></script>
+    @*<script src="~/Plugins/Vitrin/Repository/Register/MdBootstrapPersianDateTimePicker/jalaali.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Register/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>*@
+
+    <script src="~/Plugins/Vitrin/Repository/Register/DropZone/dropzone.min.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Register/upload.js"></script>
+    <script src="~/Plugins/Vitrin/Repository/Register/Register.js"></script>
+    <script src="~/Packages/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+
+
+    <script>
+        $(document)
+            .ready(function () {
+
+                /// _Upload partial
+
+
+                $('.zoom')
+                    .magnificPopup({
+                        gallery: {
+                            enabled: true
+                        },
+                        type: 'image' // this is default type
+                    });
+
+
+                //// end _upload
+
+
+               
+
+
+                //$('#Check0')
+                //    .click(function() {
+                //        alert();
+                //    });
+                //$('.Policy-check')
+                //    .click(function() {
+                //        alert();
+                //        var id = '#' + $(this).find('i').attr('id');
+                //        console.log(id);
+                //        if ($(id).hasClass("glyphicon-unchecked")) {
+                //            $(id).removeClass("glyphicon-unchecked").addClass("glyphicon-check");
+                //            $(id).css("color", "#39C708");
+                //            $(this).find('input').attr('checked', true);
+                //        } else {
+                //            $(id).removeClass("glyphicon-check").addClass("glyphicon-unchecked");
+                //            $(id).removeAttr('style');
+                //            $(this).find('input').attr('checked', false);
+                //        }
+                //    });
+            });
+
+
+
+
+
+ 
+        //TODO: best solution is loadYear = function()
+        //$(document)
+        //.on('click',
+        //    "#select-year",
+        //    function() {
+        //        for (var i = 1300; i < 1393; i++) {
+        //            $(this).append($("<option></option>").attr("value", i).text(i));
+        //        }
+        //    });
+
+        //$(document)
+        //   .on('click',
+        //       "#select-month",
+        //       function () {
+        //           $(this).empty();
+        //           for (var i = 1; i <= 12; i++) {
+        //               $(this).append($("<option></option>").attr("value", i).text(i));
+        //           }
+               
+        //       });
+
+        //$(document)
+        //   .on('click',
+        //       "#select-day",
+        //       function () {
+        //           for (var i = 1; i <= 31; i++) {
+        //               $(this).append($("<option></option>").attr("value", i).text(i));
+        //           }
+              
+        //       });
+
+
+    </script>
+    <!--/// End Vitrin Register -->
+}

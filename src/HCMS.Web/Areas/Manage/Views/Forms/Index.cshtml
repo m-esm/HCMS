@@ -1,0 +1,73 @@
+﻿@model  IEnumerable<HCMS.Dynamics.Forms.Models.Form>
+@using MoreLinq
+    @{
+        ViewBag.title = "Forms";
+        var sections = Model.Select(p => p.Section).DistinctBy(p => p.ID).ToArray();
+        var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+        var cc = Phrases.CurrentCulture.CultureName();
+        
+        
+    }
+
+<div class="en">
+    <p class="buttons">
+        <a href="~/@cc/Manage/Forms/Create?SectionID=@Request.QueryString["SectionID"]" class="btn btn-success margin-tweny">New Form</a>
+    </p>
+    <h2>
+        Forms List
+        @foreach (var s in sections)
+        {
+            <a href="~/@cc/Manage/Forms?SectionID=@s.ID">@s.Caption</a><span class="split-poker"></span>
+        }
+
+        @if (sections.Count() == 1)
+        {
+            <a href="~/@cc/Manage/Forms">See all</a>
+        }
+
+    </h2>
+
+
+    <table class="table table-bordered en">
+        <tr>
+            <th class="en">
+                ID
+            </th>
+            <th class="en">
+                Name
+            </th>
+            <th class="en">
+                Caption
+            </th>
+
+            <th class="en">
+                Method
+            </th>
+            <th class="en">
+                Fields Count
+            </th>
+            <th class="en">
+                Action URL
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="en">@item.ID</td>
+                <td class="en">@item.Section.Name > @item.Name</td>
+                <td class="en">@item.Caption</td>
+                <td class="en">@item.Method</td>
+                <td class="en">@item.Fields.Count()</td>
+                <td class="en">@item.ActionURL</td>
+                <td class="en">
+                    <a href="~/@cc/Manage/Fields?FormID=@item.ID" class="btn btn-success">Fields</a>
+                    <a href="~/@cc/Manage/Forms/Edit/@item.ID" class="btn btn-primary">Edit</a>
+                    <a href="~/@cc/Manage/Forms/Delete/@item.ID" class="btn btn-danger">Delete</a>
+                    <a href="~/@cc/Manage/Dynamics/@item.Section.Name/@item.Name/Create" class="btn btn-default">Show  Form</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
