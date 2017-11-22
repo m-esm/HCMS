@@ -102,7 +102,9 @@ namespace HCMS.Web.Areas.Manage.Controllers
         [HttpPost]
         public ActionResult Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
-            
+            TempData["Roles"] = new SelectList(RoleManager.Roles, "Name","Name");
+          
+
             if (ModelState.IsValid)
             {
                 if (selectedRoles == null)
@@ -115,6 +117,8 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
                 user.RegisterDate = DateTime.Now;
                 user.LastLoginDate = DateTime.Now;
+                user.Email = user.UserName;
+                user.EmailConfirmed = true;
 
                 var adminresult =  UserManager.Create(user, userViewModel.Password);
 
@@ -360,7 +364,6 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 user.NationalCode = model.NationalCode;
                 user.PhoneNumber = model.Phone;
                 user.ZipCode = model.ZipCode;
-                user.ImageUrl = "/Files/Uploads/useravatar/" + model.UserId + Path.GetExtension(Request.Files[0].FileName).ToLower();
 
                 var result = UserManager.Update(user);
 

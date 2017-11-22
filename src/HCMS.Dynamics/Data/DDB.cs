@@ -23,6 +23,7 @@ namespace HCMS.Dynamics.Data
 
             var form = new GenericRepository<Form>().Get(p=>p.Name == Form_Name && p.Section.Name == Section_Name);
 
+               
 
             DCache dCache = new DCache();
             DTable result = new DTable(form.ID);

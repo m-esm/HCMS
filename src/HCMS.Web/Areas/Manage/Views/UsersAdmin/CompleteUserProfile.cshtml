@@ -10,7 +10,9 @@
     @Html.ValidationSummary()
     @Html.HiddenFor(a=>a.UserId)
     @Html.Partial("Account/_CompleteProfile", Model)
-
+    <br />
+    <br />
+    <input type="submit" value="save" class="btn btn-success" />
 </form>
 
 @section Scripts {

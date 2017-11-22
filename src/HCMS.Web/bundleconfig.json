@@ -46,5 +46,11 @@
     "inputFiles": [
       "Themes/ARXE_ASC/Scripts/ARXE.ASC.js"
     ]
+  },
+  {
+    "outputFileName": "Themes/gostarhost/js/main.min.js",
+    "inputFiles": [
+      "Themes/gostarhost/js/main.js"
+    ]
   }
 ]

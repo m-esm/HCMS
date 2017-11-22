@@ -50,5 +50,13 @@
   {
     "outputFile": "Themes/happy/css/style.css",
     "inputFile": "Themes/happy/css/style.less"
+  },
+  {
+    "outputFile": "Themes/gostarhost/css/lilyhost.css",
+    "inputFile": "Themes/gostarhost/css/lilyhost.less"
+  },
+  {
+    "outputFile": "Themes/happy/css/responsive-style.css",
+    "inputFile": "Themes/happy/css/responsive-style.less"
   }
 ]
