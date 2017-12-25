@@ -18,6 +18,7 @@ src/HCMS.Web/Plugins/*
 src/*/bin/*
 src/*/bin/Release/*
 src/*/Log/*
+!src/HCMS.Data/Log/*
 
 *.mp4
 *.ogv
