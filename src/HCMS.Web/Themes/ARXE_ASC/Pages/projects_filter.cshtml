@@ -1,0 +1,85 @@
+﻿@{
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_project").DRows.Where(p => p.GetValue("Confirmed").Value == "true");
+    Response.ClearContent();
+    Response.ClearHeaders();
+    Response.ContentType = "application/javascript";
+    int size = 0;
+    int status = 0;
+    int program = 0;
+    int year = 0;
+    string term = "";
+    int intervention = 0;
+
+    var model = projects;
+
+
+    if (Request.QueryString["term"] != null)
+    {
+        term = Request.QueryString["term"].ToString().ToLower();
+        model = model.Where(p => p.GetValue("name").Value.ToLower().Contains(term)
+            || p.GetValue("nameEn").Value.ToLower().Contains(term)
+            || p.GetValue("description").Value.ToLower().Contains(term)
+            || p.GetValue("descriptionEn").Value.ToLower().Contains(term));
+    }
+
+
+
+    if (Request.QueryString["size"] != null)
+    {
+        int.TryParse(Request.QueryString["size"].ToString(), out  size);
+        if (size != 0)
+        {
+            model = model.Where(p => string.IsNullOrWhiteSpace(p.GetValue("size").Value) == false)
+                .Where(p => int.Parse(p.GetValue("size").Value) < size);
+        }
+    }
+
+    if (Request.QueryString["year"] != null)
+    {
+        int.TryParse(Request.QueryString["year"].ToString(), out  year);
+        if (year != 0)
+        {
+            model = model.Where(p => p.GetValue("year").Value == year.ToString());
+        }
+    }
+
+    if (Request.QueryString["program"] != null)
+    {
+        int.TryParse(Request.QueryString["program"].ToString(), out  program);
+        if (program != 0)
+        {
+            model = model.Where(p => p.GetValue("programId").Value.Contains(program.ToString()));
+
+        }
+    }
+
+    if (Request.QueryString["status"] != null)
+    {
+        int.TryParse(Request.QueryString["status"].ToString(), out  status);
+        if (status != 0)
+        {
+            model = model.Where(p => p.GetValue("statusID").Value.Contains(status.ToString()));
+        }
+    }
+
+
+    if (Request.QueryString["intervention"] != null)
+    {
+        int.TryParse(Request.QueryString["intervention"].ToString(), out  intervention);
+        if (intervention != 0)
+        {
+            model = model.Where(p => p.GetValue("interventionID").Value == (intervention.ToString()));
+        }
+    }
+    
+
+ 
+    
+
+
+
+    string json = Newtonsoft.Json.JsonConvert.SerializeObject(model.Select(p => p.RowID).ToArray());
+    Response.Write(json);
+
+
+}

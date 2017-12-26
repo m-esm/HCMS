@@ -1,0 +1,85 @@
+﻿@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using Microsoft.AspNet.Identity
+@using System.Collections.Specialized
+@using System.Net
+@using Newtonsoft.Json
+@using System.Configuration
+@using RestSharp
+@{
+
+
+    var api = ConfigurationManager.AppSettings["api_payir"];
+
+    var cuserId = User.Identity.GetUserId();
+    var invoicesDb = DDB.GetTable("cms", "invoices").DRows.Where(p => p.GetValue("customer").Value == User.Identity.GetUserId()).OrderByDescending(p => p.RowID);
+
+    var transId = 0;
+    var invoicId = 0;
+    var status = 0;
+
+    if (Request.Form["transId"] != null)
+    {
+        int.TryParse(Request.Form["transId"].ToString(), out transId);
+    }
+
+    if (Request.Form["factorNumber"] != null)
+    {
+        int.TryParse(Request.Form["factorNumber"].ToString(), out invoicId);
+    }
+
+    if (Request.Form["status"] != null)
+    {
+        int.TryParse(Request.Form["status"].ToString(), out status);
+    }
+
+
+    var invoice = invoicesDb.FirstOrDefault(p => p.GetValue("transid").Value == transId.ToString() || p.RowID == invoicId);
+
+    if (invoice != null && status == 1)
+    {
+
+        var toPay = invoice.GetGroup("items").Sum(p => int.Parse(p.GetValue("itemPrice").Value.Replace(",", "").Replace(".", "")));
+
+
+        var client = new RestClient("https://pay.ir");
+        var request = new RestRequest("/payment/verify", Method.POST);
+
+        request.AddParameter("api", api);
+        request.AddParameter("transId", transId);
+
+        IRestResponse payres = client.Execute(request);
+
+        dynamic payresjson = JsonConvert.DeserializeObject(payres.Content);
+
+        if (!string.IsNullOrWhiteSpace((string)payresjson.amount))
+        {
+            string verifAmount = (string)payresjson.amount;
+
+            if (verifAmount == toPay.ToString())
+            {
+                invoice.changeValue("cardNumber", Request.Form["cardNumber"].ToString(), cuserId);
+                invoice.changeValue("payedDate", DateTime.Now.ToString(), cuserId);
+
+                Response.Redirect("/invoice?invoiceId=" + invoice.RowID);
+
+            }
+        }
+
+    }
+
+
+}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <h1>پرداخت ناموفق بوده است</h1>
+            <p>
+                @Request.Form["message"].ToString()
+            </p>
+        </div>
+    </div>
+</div>

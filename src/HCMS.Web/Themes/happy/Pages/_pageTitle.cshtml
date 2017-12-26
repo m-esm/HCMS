@@ -1,0 +1,36 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+
+}
+
+<div id="pageTitle">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title">
+                    <h2>
+                        @phrases.Get(viewName)
+                    </h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumb">
+                    <li>
+                        <span>
+                            @phrases.Get("You are here") :
+                        </span>
+                    </li>
+                    <li>
+                        <a href="http://happyspider.org/@cc">happyspider.org</a>
+                    </li>
+                    <li class="active">
+                        @phrases.Get(viewName)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

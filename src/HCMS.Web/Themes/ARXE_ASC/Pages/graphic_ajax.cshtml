@@ -1,0 +1,31 @@
+﻿@{
+
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("arxe_graphic", "categories_graphic").DRows.AsEnumerable();
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_graphic", "Projects_graphic").DRows.AsEnumerable();
+    var portfolio = HCMS.Dynamics.Data.DDB.GetTable("arxe_graphic", "Portfolio").DRows.AsEnumerable();
+
+    Response.ClearContent();
+    Response.ClearHeaders();
+    Response.ContentType = "application/json";
+    Response.StatusCode = 200;
+
+    string json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+    {
+        cats = cats.Select(p => new
+        {
+            name = p.GetValue("name").Value,
+            count = portfolio.Where(d=>d.GetValue("categoryid").Value.ToString()== p.RowID.ToString()).Count()
+        }),
+        projects = projects.Select(p => new
+        {
+            name = p.GetValue("name").Value,
+            count = portfolio.Where(d => d.GetValue("projectid").Value.ToString() == p.RowID.ToString()).Count()
+
+        }),
+        portfolio = portfolio.Count()
+    });
+
+    Response.Write(json);
+
+
+}

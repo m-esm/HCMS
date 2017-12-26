@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.lang = ViewContext.RouteData.Values["lang"].ToString().ToLower();
+   
+}
+@functions{
+
+    public string GetWord(string name)
+    {
+
+        try
+        {
+            return HCMS.Dynamics.Data.DDB.GetTable("content", "Phrases").DRows
+                .Where(p => p.GetValue("language.name").Value == ViewBag.lang)
+                .FirstOrDefault(p => p.GetValue("name").ToString().ToLower().Trim() == name.ToLower().Trim())
+                .GetValue("value").Value;
+
+        }
+        catch
+        {
+            return name;
+        }
+    }
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>FNSme</title>
+
+    <link href="/Themes/FNSME/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Themes/FNSME/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="/Themes/FNSME/Content/camera.css" rel="stylesheet" />
+    <link href="/Themes/FNSME/Content/stacktable.css" rel="stylesheet" />
+    <link href="/Themes/FNSME/Content/fns.css" rel="stylesheet" />
+    <link href="/Themes/FNSME/Content/fns-@(ViewBag.lang).css" rel="stylesheet" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+
+</head>
+<body>
+
+    <div id="loader">
+        <img src="/Themes/FNSME/Images/Load-ok-40-Px.gif" />
+    </div>
+
+    <div id="body" style="display:none;">
+
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-2 hidden-sm hidden-xs  sidecol  sidecol-@(ViewBag.lang == "en" ? "1" : "2")">
+
+                    <div class="logo"></div>
+
+                </div>
+                <div class="col-md-8 content">
+
+                    <header>
+                        <div class="row logos">
+                            <div class="col-xs-12 logo  visible-sm visible-xs">
+                                <div class="logo2"></div>
+                            </div>
+                        
+                        
+                        </div>
+                        <nav>
+                            <ul>
+                                <li class="navi">
+                                    @GetWord("Navigation")
+                                </li>
+                                <li>
+                                    <a href="/@ViewBag.lang/Home">@GetWord("Home")</a>
+                                </li>
+
+                                <li>
+                                    <a href="/@ViewBag.lang/About">@GetWord("About")</a>
+                                </li>
+
+                                <li>
+                                    <a href="/@ViewBag.lang/News">@GetWord("News") </a>
+                                </li>
+
+                                <li>
+                                    <a>@GetWord("Products") +</a>
+                                    <ul>
+                                        @foreach (HCMS.Dynamics.Data.DRow item in HCMS.Dynamics.Data.DDB.GetTable("content", "products").DRows.Where(p=>p.GetValue("language.name").ToString() == ViewBag.lang) )
+                                    {
+                                            <li>
+                                                <a href="/@ViewBag.lang/product?rid=@item.RowID">@item.GetValue("name") </a>
+                                            </li>
+                                    }
+
+
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="/@ViewBag.lang/Services">@GetWord("Services & Spare-Part")</a>
+                                </li>
+
+                                <li>
+                                    <a href="/@ViewBag.lang/Contact">@GetWord("Contact")</a>
+                                </li>
+
+
+                            </ul>
+                        </nav>
+
+
+
+                    </header>
+                    @RenderSection("slider",false)
+
+
+                    <div id="main-content">
+                        @RenderBody()
+                    </div>
+
+                </div>
+                <div class="col-sm-2 hidden-sm hidden-xs  sidecol sidecol-@(ViewBag.lang == "en" ? "2" : "1")">
+                    <div class="logo"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="languages">
+                @foreach (var item in HCMS.Dynamics.Data.DDB.GetTable("content", "languages").DRows)
+                {
+                    <a href="/@item.GetValue("name")"><img src="@item.GetValue("flagURL")" /></a>
+                }
+            </div>
+            <div class="socials">
+                <a href="https://www.facebook.com/fnsme.co" class="fb">
+                </a>
+                <a href="https://plus.google.com/101706420292365253667" class="google"></a>
+                <a class="skype"></a>
+                <a href="https://www.youtube.com/channel/UCEvQWdisNkc_fH_oLT22oRw/videos" class="youtube"></a>
+                <a class="linkedin"></a>
+            </div>
+            <div class="copyright">
+                &copy; FNS @DateTime.Now.Year | Developed By <a href="http://happyspider.org">HappySpider</a> | <a href="#">Sitemap</a> | <a href="#">Customers</a>
+            </div>
+
+        </footer>
+    </div>
+
+
+    <script src="/Themes/FNSME/Scripts/jquery-1.9.1.js"></script>
+    <script src="/Themes/FNSME/Scripts/jquery.easing.1.3.js"></script>
+    <script src="/Themes/FNSME/Scripts/bootstrap.js"></script>
+    <script src="/Themes/FNSME/Scripts/camera.js"></script>
+    <script src="/Themes/FNSME/Scripts/stacktable.js"></script>
+    <script src="/Themes/FNSME/Scripts/fns.js"></script>
+	  <script src="/Scripts/dstats.js"></script>
+    
+</body>
+</html>

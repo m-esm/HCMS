@@ -1,0 +1,94 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+<section id="tm-page-heading" style="background-image: url(/Themes/OneBuilding/demo-images/page-heading-bg.jpg);">
+    <div class="container">
+        <div class="row v-align-children">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="tm-section-heading tsh-light no-margin text-left">
+                            <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">@phrases.Get("Contact us")</h1>
+                        </div><!--//tm-section-heading-->
+                    </div>
+                    <div class="col-xs-12">
+                        <ol class="breadcrumb wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                            <li><a href="#">@phrases.Get("Home")</a></li>
+                            <li><a href="#">@phrases.Get("Contact us")</a></li>
+
+                        </ol>
+                    </div>
+                </div><!--//row-->
+            </div>
+            @Html.Partial("_socials")
+        </div><!--//row-->
+    </div><!--//container-->
+</section><!--//tm-page-heading-->
+
+<div id="tm-page-main">
+
+
+    <section class="contact-page-address">
+        <div class="container">
+            <div class="row v-align-children">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <div class="tm-section-heading tsh-dark no-margin">
+                        <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                         @phrases.Get("communication adress")
+                        </h1>
+                        <p class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+ @phrases.Get("communication adress text")                        </p>
+                    </div><!--//tm-section-heading-->
+                </div>
+
+                <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-12">
+                    <address class="contact-page-address-item">
+                        @phrases.Get("footer_address_text")
+                    </address><!--//contact-page-address-item-->
+
+
+                </div>
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//contact-page-address-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="form-horizontal tm-form">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="input1" placeholder="@phrases.Get("Your Name")">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control" id="input2" placeholder="@phrases.Get("E-Mail Address")">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="input3" placeholder="@phrases.Get("Subject")">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" rows="5" placeholder="@phrases.Get("Message")"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-filled">@phrases.Get("SEND MESSAGE")</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!--//col-xs-12-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//contact-page-form-->
+
+</div><!--//tm-page-main-->

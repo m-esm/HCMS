@@ -1,0 +1,314 @@
+﻿@{
+    var journals = HCMS.Dynamics.Data.DDB.GetTable("cms", "journal").DRows.OrderByDescending(p => p.RowID).Take(10);
+    var fileTypes = HCMS.Dynamics.Data.DDB.GetTable("cms", "FileTypes").DRows.ToArray();
+    var files = HCMS.Dynamics.Data.DDB.GetTable("cms", "files").DRows.ToArray();
+    var photo_gallery = HCMS.Dynamics.Data.DDB.GetTable("cms", "Photo_Gallery").DRows;
+    var videos = HCMS.Dynamics.Data.DDB.GetTable("cms", "video").DRows.OrderByDescending(p => p.RowID);
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news").DRows.OrderByDescending(p => p.RowID);
+    var pages = HCMS.Dynamics.Data.DDB.GetTable("cms", "page").DRows.OrderByDescending(p => p.RowID);
+    var settings = HCMS.Dynamics.Data.DDB.GetTable("cms", "settings").DRows.OrderByDescending(p => p.RowID);
+
+}
+<header>
+    <nav>
+        <ul>
+            @Html.Partial("_menuli")
+
+
+            <li class="logo">
+                @*<img src="~/Themes/Bauxite/Images/bauxite-logo.png" />*@
+                <img src="~/Themes/Bauxite/Images/logo.gif" />
+            </li>
+        </ul>
+    </nav>
+
+</header>
+
+<div id="slider">
+    <div class="bg"></div>
+    <div class="over"></div>
+    <a href="/#text-day" class="scroll-down">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </a>
+</div>
+
+<div class="home-page">
+    <div id="text-day">
+
+        <p>
+
+            @settings.First(p => p.GetValue("name").Value == "text-day").GetValue("value");
+
+        </p>
+        <ul class="menu">
+            <li>
+                <a href="/">
+                    <i class="glyphicon glyphicon-home"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="/news_list">
+                    اخبار
+                </a>
+            </li>
+
+            @foreach (var item in pages.Where(p => p.GetValue("showInMenu").Value == "true"))
+            {
+                <li>
+                    <a href="/page?rid=@item.RowID">@item.GetValue("title")</a>
+                </li>
+            }
+
+        </ul>
+
+    </div>
+
+
+
+    <div class="news-slider-wrapper">
+
+
+        <div class="news-and-slider">
+
+            <div class="last-news">
+                <div class="inner">
+                    <h2>
+                        <a href="/news_list">
+                            <img src="~/Themes/Bauxite/Images/logo-single.png" />
+                            آخرین اخبار صنایع معدنی
+                        </a>
+                    </h2>
+                    <ul>
+                        @foreach (var item in news.Take(10))
+                        {
+                            <li>
+                                <a href="/news?rid=@item.RowID">
+                                    <span>
+                                        @item.GetValue("title")
+                                    </span>
+                                </a>
+                            </li>
+                        }
+
+
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="news-slider">
+                <div class="inner">
+
+                    <h2>
+                        <img src="~/Themes/Bauxite/Images/logo-single.png" />
+                        آخرین های وبسایتـ
+                    </h2>
+
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+
+                            <div class="item active">
+                                <img src="@news.First().GetValue("Image")" alt="">
+                                <div class="carousel-caption">
+                                    <a href="/news?rid=@news.First().RowID">
+                                        @news.First().GetValue("title")
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="@journals.First().GetValue("thumbnail")" alt="">
+                                <a href="/journal?rid=@journals.First().RowID">
+                                    @journals.First().GetValue("Title")
+                                </a>
+                            </div>
+
+                            @{
+                                var imagetoShow = photo_gallery.Take(3).SelectMany(p => p.GetGroup("image").Take(1));
+
+                            }
+
+                            @foreach (var item in imagetoShow)
+                            {
+                                <div class="item">
+                                    <img src="@item.GetValue("image")" alt="">
+
+                                </div>
+                            }
+
+
+
+
+                        </div>
+
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                </div>
+            </div>
+
+
+            <div class="clearfix"></div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="tops">
+        <div class="last-price block">
+            <div class="title">آخرین قیمت آلومینیم</div>
+            <small>
+                ( دلار آمریکا / تن )
+            </small>
+            <div class="value">
+                ...
+            </div>
+        </div>
+        <div class="last-book  block">
+            <h2>آخرین کتاب</h2>
+        </div>
+        <div class="last-empty  block">
+            <h2>    معرفی وبسایت</h2>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+
+
+    <div class="item-slider">
+        <div class="inner">
+            <ul class="cats">
+                @for (int i = 0; i < fileTypes.Length; i++)
+                {
+                    var ft = fileTypes[i];
+                    <li class="@(i == 0 ? "active" :  "")" data-target="@i">
+                        @ft.GetValue("name")
+                    </li>
+                }
+
+            </ul>
+
+
+            @for (int i = 0; i < fileTypes.Length; i++)
+            {
+                var ft = fileTypes[i];
+                var targetFiles = files.Where(p => p.GetValue("FileTypeID").Value == ft.RowID.ToString()).OrderByDescending(p => p.RowID).Take(20);
+
+                <div data-cat="@i" class="thumbnail-slider @(i == 0 ? "active" :  "")">
+                    @foreach (var item in targetFiles)
+                    {
+                        <a href="@item.GetValue("url")" class="item" href="#">
+                            <img src="@item.GetValue("thumbnail")" />
+                            <span class="title">
+                                @item.GetValue("title")
+                            </span>
+                        </a>
+                    }
+
+                </div>
+            }
+
+
+
+        </div>
+
+
+    </div>
+
+    <div id="journals">
+        <div class="inner">
+            <h2>
+                <img src="~/Themes/Bauxite/Images/logo-single.png" />
+                ژورنال بوکسیت
+            </h2>
+            <div class="journals">
+
+
+
+                <div class="row">
+                    @foreach (var item in journals)
+                    {
+                        <div class="journal-wrapper width-@item.GetValue("width") height-@item.GetValue("height")">
+                            <a href="/journal?rid=@item.RowID" class="journal">
+                                <div class="image" style="background-image:url('@item.GetValue("thumbnail")')"></div>
+                                <h3>@item.GetValue("title")</h3>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="photo_gallery">
+        <div class="inner">
+
+            <div class="galleries">
+
+
+                @foreach (var gg in photo_gallery)
+                {
+                    <div data-rid="@gg.RowID" data-title="@gg.GetValue("title")" class="box">
+                        <img src="@gg.GetGroup("image").FirstOrDefault(p => p.GetValue("thumbnail").Value == "true").GetValue("image")" />
+                    </div>
+                }
+
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-inner">
+                    <div class="preview">
+
+                    </div>
+                    <div class="slider">
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+    <div id="videos">
+        <div class="inner">
+            @foreach (var item in videos)
+            {
+                <div data-rid="@item.RowID" class="box">
+                    <img src="@item.GetValue("thumbnail")" />
+                    <span class="title">@item.GetValue("title")</span>
+                    <a class="play"><i class="glyphicon glyphicon-play"></i></a>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+</div>
+
+@Html.Partial("_footer")

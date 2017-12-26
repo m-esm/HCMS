@@ -1,0 +1,247 @@
+﻿@using HCMS.Business
+@using HCMS.Business.Auth
+@using HCMS.Dynamics.Forms.Models
+@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using MoreLinq
+@using PagedList
+
+@{
+
+    IEnumerable<HCMS.Dynamics.Data.DRow> Model = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+
+    var cats = DDB.GetTable("cms", "blog_cats").DRows.Where(p => p.GetValue("cc").Value == cc).OrderByDescending(p => p.RowID);
+
+    var rows = DDB.GetTable("cms", "blog").DRows.Where(p => p.GetValue("cc").Value == cc).OrderByDescending(p => p.RowID);
+
+    var tags = rows.Where(p => !string.IsNullOrWhiteSpace(p.GetValue("tags").Value))
+              .SelectMany(p => p.GetValue("tags").Value.Replace(" ", "").Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries)).DistinctBy(p => p);
+
+    tags = tags.RandomSubset(tags.Count() > 10 ? 10 : tags.Count());
+
+
+
+
+    Model = rows;
+
+    var valueRepo = new GenericRepository<FormFieldValue>();
+
+    string slug = "";
+    string search = "";
+    string category = "";
+    int pageSize = 10;
+    int currentPage = 1;
+
+    if (ViewContext.RouteData.Values["slug"] != null)
+    {
+        slug = ViewContext.RouteData.Values["slug"].ToString().Trim().ToLower();
+    }
+
+    if (ViewContext.RouteData.Values["category"] != null)
+    {
+        category = ViewContext.RouteData.Values["category"].ToString().Trim().ToLower();
+    }
+
+
+
+    if (Request.QueryString["search"] != null)
+    {
+        search = Request.QueryString["search"].ToString().Trim().ToLower();
+    }
+
+    if (!string.IsNullOrWhiteSpace(search))
+    {
+        Model = Model.Where(p => p.GetValue("content").Value.ToLower().Contains(search) || p.GetValue("title").Value.ToLower().Contains(search));
+    }
+
+
+    if (!string.IsNullOrWhiteSpace(slug))
+    {
+        Model = Model.Where(p => p.GetValue("slug").Value.Trim().ToLower() == slug);
+    }
+
+    if (!string.IsNullOrWhiteSpace(category))
+    {
+        string catId = "X";
+
+        var cat = cats.FirstOrDefault(p => p.GetValue("slug").Value == category);
+        if (cat != null)
+        {
+            catId = cat.RowID.ToString();
+        }
+
+        Model = Model.Where(p => p.GetValue("categoryId").Value == catId);
+    }
+
+
+    if (Model.Count() > pageSize)
+    {
+
+        if (ViewContext.RouteData.Values["page"] != null)
+        {
+            int.TryParse(ViewContext.RouteData.Values["page"].ToString().Trim().ToLower(), out currentPage);
+        }
+
+        Model = Model.ToPagedList(currentPage, pageSize);
+
+    }
+
+
+
+}
+
+
+
+<div id="blog" class="page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 blog-page-content">
+                @if (Model.Count() == 0)
+                {
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="vc-parent">
+                                <div class="vc-child">
+                                    <div class="section-title">
+                                        <h2>404</h2>
+                                    </div>
+                                    <div class="description text-center">
+                                        <p>
+
+                                            صفحه مورد نظر شما پیدا نشد !
+                                        </p>
+
+                                        <a href="~/" class="btn btn-lg btn-custom">
+
+                                            بازگشت به خانه
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var item in Model)
+                {
+                    var publisher = UserRepository.GetUserById(valueRepo.Get(p => p.RowID == item.RowID).UserId);
+
+                    <div class="blog-item">
+                        <div class="blog-item-img">
+                            <a href="#"> <img src="@item.GetValue("image")" alt="" class="img-responsive"> </a>
+                        </div>
+                        <div class="blog-item-content">
+                            <h2>
+                                <a href="~/@cc/blog/@item.GetValue("slug")">@item.GetValue("title")</a>
+                            </h2>
+                            <div class="metadata">
+                                <i class="fa fa-calendar"></i>
+                                <a href="#">@(m2s.m2sMMWithHours(valueRepo.Get(p => p.RowID == item.RowID).ChangeDate)) </a>
+                                <span class="separator">|</span>
+                                <i class="fa fa-user"></i>
+                                <a href="#">
+                                    @publisher.FirstName @publisher.LastName
+                                </a>
+                            </div>
+
+                            @if (string.IsNullOrWhiteSpace(slug))
+                            {
+
+                                <p>
+                                    @Html.Raw(item.GetValue("intro").ToString())
+                                </p>
+                                <a href="~/@cc/blog/@item.GetValue("slug")" class="btn btn-custom">
+                                    ادامه مطلب
+                                </a>
+                            }
+                            else
+                            {
+
+                                @Html.Raw(item.GetValue("content").ToString())
+
+                            }
+
+                        </div>
+                    </div>
+                }
+
+                @if (rows.Count() > pageSize && string.IsNullOrWhiteSpace(slug))
+                {
+                    var totalPages = Math.Ceiling((decimal)(rows.Count() / pageSize));
+
+                    <ul class="pagination">
+                        @if (currentPage > 1)
+                        {
+                            <li>
+                                <a href="~/@cc/blog@(string.IsNullOrWhiteSpace(category)? "": "/" + category)/page/@(currentPage - 1)">«</a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= totalPages; i++)
+                        {
+                            <li class="@(i == currentPage ? "active" : "" )">
+                                <span>@i</span>
+                            </li>
+
+                        }
+
+
+                        @if (currentPage < totalPages)
+                        {
+                            <li>
+                                <a href="~/@cc/blog@(string.IsNullOrWhiteSpace(category)? "": "/" + category)/page/@(currentPage + 1)">»</a>
+                            </li>
+                        }
+
+                    </ul>
+                }
+
+            </div>
+            <div class="col-md-4 blog-page-sidebar">
+                <div class="widget search">
+                    <div data-form-validation="true">
+                        <form action="/@cc/blog" method="get" novalidate="novalidate">
+                            <div class="input-group">
+                                <input type="text" name="search" placeholder="Search" class="form-control" required="" value="@search" aria-required="true">
+                                <span class="input-group-addon">
+                                    <button type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                @*<div class="widget categories">
+                        <h3 class="widget-title">دسته بندی ها </h3>
+                        <ul>
+                            @foreach (var item in cats)
+                            {
+                                <li>
+                                    <a href="~/@cc/blog/categories/@item.GetValue("slug")">@item.GetValue("name")</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>*@
+
+                <div class="widget tags">
+                    <h3 class="widget-title">هشتگ ها </h3>
+                    <ul>
+
+                        @foreach (var item in tags)
+                        {
+                            <li>
+                                <a href="~/@cc/blog/tag/@item">#@item</a>
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

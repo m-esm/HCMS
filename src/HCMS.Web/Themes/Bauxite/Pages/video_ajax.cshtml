@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+
+    int rid = 0;
+
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out rid);
+    }
+
+
+    var video = HCMS.Dynamics.Data.DDB.GetTable("cms", "video").DRows.Where(p => p.RowID == rid).FirstOrDefault();
+
+}
+
+@Html.Raw(video.GetValue("video").Value)

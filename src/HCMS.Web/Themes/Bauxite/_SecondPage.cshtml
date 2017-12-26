@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Themes/Bauxite/_Layout.cshtml";
+}
+
+<div class="second-page">
+
+    <nav>
+        <div class="inner">
+
+            <a class="logo" href="~/">
+                <img src="~/Themes/Bauxite/Images/logo.gif" />
+            </a>
+            <ul>
+                @Html.Partial("_menuli")
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="content">
+        <div class="inner">
+            @RenderBody()
+
+
+        </div>
+
+        @Html.Partial("_footer")
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>

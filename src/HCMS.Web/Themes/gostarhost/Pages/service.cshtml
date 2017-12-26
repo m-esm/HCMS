@@ -1,0 +1,74 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Data
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+    var services = DDB.GetTable("cms", "services").DRows;
+    var id = 0;
+    if (Request.QueryString["id"] != null)
+    {
+        int.TryParse( Request.QueryString["id"].ToString().Trim().ToLower(),out id);
+    }
+
+    services = services.Where(p => p.RowID == id);
+    ViewBag.title = services.First().GetValue("name");
+}
+
+
+@for (int i = 0; i < services.Count(); i++)
+{
+    var item = services.ToArray()[i];
+
+    <div id="services" class="" data-bg-src="">
+        <div class="container">
+
+            <div class="row reset-gutter">
+                @if (i % 2 != 0)
+                {
+
+                    <div class="col-md-6">
+                        <div class="service-item-img">
+                            <img class="img-responsive" src="@item.GetValue("image")">
+                        </div>
+                    </div>
+                }
+                <div class="col-md-6">
+                    <div class="service-item-content ">
+                        <h2>
+                            <span>
+                                @item.GetValue("name")
+                            </span>
+                        </h2>
+                        <p>
+                            @Html.Raw(item.GetValue("desc").Value)
+                        </p>
+
+                        <div class="price">
+
+                            @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
+                            {
+                                <a href="@item.GetValue("link")" class="btn btn-lg btn-custom ">
+                                    @item.GetValue("linkText")
+                                </a>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+                @if (i % 2 == 0)
+                {
+
+                    <div class="col-md-6">
+                        <div class="service-item-img">
+                            <img class="img-responsive" src="@item.GetValue("image")">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,700);
+
+.tp-caption.roundedimage img {
+	-webkit-border-radius: 300px;
+    -moz-border-radius: 300px;
+    border-radius: 300px;
+}

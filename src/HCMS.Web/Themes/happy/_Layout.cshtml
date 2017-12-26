@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <title>
+       @ViewBag.title | هپی اسپایدر
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="theme-color" content="#03a9f4" />
+
+
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    
+
+    <link href="~/Themes/happy/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Themes/happy/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Themes/happy/css/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/Themes/happy/css/animate.min.css" rel="stylesheet">
+    <link href="~/Themes/happy/css/owl.carousel.css" rel="stylesheet">
+    <link href="~/Themes/happy/css/fakeLoader.css" rel="stylesheet" type='text/css'>
+    <link href="~/Themes/happy/css/responsive-style.css?v=@DateTime.Now.ToString("yyyy-MM-dd")-@DateTime.Now.Hour" rel="stylesheet">
+    <link href="~/Packages/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Themes/happy/css/style.css?v=@DateTime.Now.ToString("yyyy-MM-dd")-@DateTime.Now.Hour" rel="stylesheet">
+
+    <link href="~/Themes/happy/css/theme-color-3.css?v=@DateTime.Now.ToString("yyyy-MM-dd")-@DateTime.Now.Hour" rel="stylesheet" id="changeColorScheme">
+
+
+
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+    </script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+    </script>
+    <![endif]-->
+
+    <base href="/" />
+
+    @RenderSection("styles", false)
+
+</head>
+<body>
+    <div id="fakeLoader">
+    </div>
+    <div id="body">
+        @Html.Partial("_menu")
+
+        @if (viewName == "home")
+        {
+            <text>
+                @Html.Partial("_banner")
+
+            </text>
+        }
+
+        @RenderBody()
+
+        @Html.Partial("_footer")
+
+    </div>
+
+
+    <script src="~/Themes/happy/js/jquery-3.1.0.min.js">
+    </script>
+    <script src="~/Themes/happy/js/jquery-ui.min.js">
+    </script>
+    <script src="~/Themes/happy/js/jquery.ui.touch-punch.min.js">
+    </script>
+    <script src="~/Themes/happy/js/bootstrap.min.js">
+    </script>
+    <script src="~/Themes/happy/js/fakeLoader.min.js">
+    </script>
+    <script src="~/Themes/happy/js/jquery.sticky.js">
+    </script>
+    <script src="~/Themes/happy/js/owl.carousel.min.js">
+    </script>
+ 
+    <script src="~/Themes/happy/js/jquery.youtubebackground.js">
+    </script>
+    <script src="~/Themes/happy/js/jquery.magnific-popup.min.js">
+    </script>
+    <script src="~/Themes/happy/js/jquery.validate.min.js">
+    </script>
+    <script src="~/Themes/happy/js/animatescroll.min.js">
+    </script>
+  
+    <script src="~/Themes/happy/js/custom-color-switcher.js">
+    </script>
+
+    <script src="~/Themes/happy/js/main.js?v=@DateTime.Now.ToString("yyyy-MM-dd")-@DateTime.Now.Hour">
+    </script>
+    <script src="~/Packages/sweetalert/sweetalert.min.js"></script>
+
+    <script src="~/Themes/happy/js/fn.js?v=@DateTime.Now.ToString("yyyy-MM-dd")-@DateTime.Now.Hour"></script>
+
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>

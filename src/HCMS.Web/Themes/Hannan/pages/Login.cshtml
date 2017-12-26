@@ -1,0 +1,70 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cn = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("Login to site");
+
+}
+
+<div class="login-page">
+
+    <div class="container">
+
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <form class="login-form" method="post">
+                @Html.AntiForgeryToken()
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <h1>
+                            <i class="fa fa-user-secret"></i>
+                            @phrases.Get("Login to site")
+                        </h1>
+
+                        <input style="position:absolute;top:-8000px;" type="email" />
+                        <input style="position:absolute;top:-8000px;" type="password" />
+
+                        <div>
+                            <label>@phrases.Get("Email") :</label>   <input id="email" required placeholder="@phrases.Get("Your mail address") - example@site.com" name="email" type="email" />
+
+                        </div>
+                        <div>
+                            <label>@phrases.Get("Password") :</label>     <input id="password" required placeholder="@phrases.Get("Password")" name="password" type="password" />
+                        </div>
+                        <div class="captcha">
+
+                            <img src="/Account/Captcha/msdn" id="captcha-image" />
+                            <span class="refresh"><i class="fa fa-refresh "></i>  </span>
+                            <input id="captcha" required type="text" name="captcha" placeholder="@phrases.Get("Enter Captcha code")" />
+                        </div>
+                        <div class="buttons">
+                            <label class="RememberMe" for="RememberMe">
+                                @Html.CheckBox("RememberMe", true)
+
+
+                                @phrases.Get("Remember me !")
+                            </label>
+                       
+                        </div>
+
+                        <input type="submit" class="btn btn-default" value="@phrases.Get("Submit")" />
+                        <br />
+                        <a href="~/@cn/ForgotPassword">
+                            <i class="fa fa-lock"></i>
+                            @phrases.Get("Forgot password")
+                        </a>
+                        |
+                        <a href="~/@cn/Register">
+                            <i class="fa fa-plus"></i>
+                            @phrases.Get("Signup")
+                        </a>
+
+                        <div class="clearfix"></div>
+                        @Html.ValidationSummary()
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>

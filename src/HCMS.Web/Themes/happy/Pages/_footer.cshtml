@@ -1,0 +1,97 @@
+﻿@using HCMS.Business
+@using HCMS.Business.Auth
+@using HCMS.Dynamics.Forms.Models
+@using HCMS.Dynamics.Data
+@using MoreLinq
+@using PagedList
+@{
+
+    var blog = DDB.GetTable("cms", "blog").DRows.OrderByDescending(p => p.RowID);
+
+
+}
+
+<div id="footer" class="bg-color--secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 footer-widget">
+                <h4>
+                    آخرین نرم افزارها 
+                </h4>
+                <ul>
+                    @foreach (var item in blog.Where(p => p.GetValue("category.name").Value == "نرم افزار").Take(4))
+                    {
+                        <li>
+                            <a href="/blog/@item.GetValue("slug")">@item.GetValue("title")</a>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6 footer-widget">
+                <h4>
+                    آخرین آموزش ها
+                </h4>
+                <ul>
+                    @foreach (var item in blog.Where(p => p.GetValue("category.name").Value == "آموزش").Take(4))
+                    {
+                        <li>
+                            <a href="/blog/@item.GetValue("slug")">@item.GetValue("title")</a>
+                        </li>
+                    }
+                 
+                </ul>
+            </div>
+     
+            <div class="col-md-3 col-sm-6 footer-widget">
+                <h4>
+                    آخرین مقالات
+                </h4>
+                <ul>
+                    @foreach (var item in blog.Where(p => p.GetValue("category.name").Value == "مقالات").Take(4))
+                    {
+                        <li>
+                            <a href="/blog/@item.GetValue("slug")">@item.GetValue("title")</a>
+                        </li>
+                    }
+                   
+
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6 footer-widget">
+                <h4>
+                    عضویت در خبرنامه
+                </h4>
+                <div class="footer--subscribe-widget" data-form-validation="true">
+                    <form action="/subscribe" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate="novalidate">
+                        <input type="email" value="" name="EMAIL" placeholder="آدرس ایمیل خود را وارد کنید" class="form-control" required>
+                        <input type="submit" value="عضویت" class="btn btn-custom-reverse">
+                    </form>
+                </div>
+                <div class="footer--social-widget">
+                 
+                @Html.Partial("_socials")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="copyright">
+    <div class="container">
+        <p class="left">
+            Copyright 2017 &copy;
+            <a href="http://happyspider.org">
+                happyspider.org
+            </a>
+            . All Rights Reserved.
+        </p>
+       
+    </div>
+</div>
+<div id="backToTop">
+    <a href="body" data-animate-scroll="true">
+        <i class="fa fa-angle-up">
+        </i>
+    </a>
+</div>

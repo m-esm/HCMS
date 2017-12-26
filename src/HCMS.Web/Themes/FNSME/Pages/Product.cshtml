@@ -1,0 +1,57 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    var ridqs = Request.QueryString["rid"];
+  
+}
+@functions{
+
+    public string GetWord(string name)
+    {
+
+        try
+        {
+            return HCMS.Dynamics.Data.DDB.GetTable("content", "Phrases").DRows.Where(p => p.GetValue("language.name").Value == ViewBag.lang).FirstOrDefault(p => p.GetValue("name").ToString().ToLower().Trim() == name.ToLower().Trim()).GetValue("value").Value;
+
+        }
+        catch
+        {
+            return name;
+        }
+    }
+}
+
+@if (ridqs == null)
+{
+    @Html.Partial("404")
+}
+else
+{
+    var product = DDB.GetTable("content", "products").DRows.FirstOrDefault(p => p.RowID == int.Parse(ridqs));
+    if (product == null)
+    {
+        @Html.Partial("404")
+    }
+    else
+    {
+        <div class="products">
+            <div class="row">
+                <h2 class="col-xs-12">@GetWord("Products")</h2>
+                <div class="col-xs-12">
+                    <div class="box full">
+                        <h3>
+                            @product.GetValue("name")
+                        </h3>
+                        <div class="img">
+                            <img src="@product.GetValue("imageURL")" />
+                        </div>
+                        <div class="content">
+                            @Html.Raw(product.GetValue("content"))
+                        </div>
+                      
+                 
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

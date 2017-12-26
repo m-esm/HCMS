@@ -1,0 +1,115 @@
+﻿@{
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>
+        موسسه زبان مهر آیین
+    </title>
+    <link href="~/Packages/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Packages/bootstrap-rtl/css/bootstrap-flipped.min.css" rel="stylesheet" />
+    <link href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Themes/bestmehr.ir/css/site.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/Themes/bestmehr.ir/img/icon.png" />
+</head>
+<body>
+    <header class="@(viewName =="home" ? "home" : "")">
+        <div class="top container">
+            <div class="logo">
+                <div class="layer l1"></div>
+                <div class="layer l2"></div>
+                <div class="layer l3"></div>
+                <h1>موسسه زبان مهر آیین</h1>
+            </div>
+           @Html.Partial("_nav")
+            <div class="info">
+
+            </div>
+
+        </div>
+        <div class="slide">
+            <h1>
+                مهر آیین پیش رو در آموزش زبان
+            </h1>
+            <a class="btn" href="/panel">
+                ثبت نام و تعیین سطع
+            </a>
+        </div>
+
+    </header>
+    <div class="body">
+
+        @RenderBody()
+
+        
+    </div>
+
+    <footer id="footer">
+
+        <div class="container">
+            <div class="brand">
+
+                <h1 class="">
+                    موسسه زبان مهر آیین
+                </h1>
+                <ul>
+                    <li>
+                        شماره تماس :
+                        <span class="tel">
+                            02166591053
+                        </span>
+                    </li>
+                    <li>
+                        آدرس :
+                        <p class="addr">
+                            میدان انقلاب , ابتدای خیابان ازادی , کوچه جنتی , پلاک 1
+                        </p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="nav">
+
+                @Html.Partial("_nav")
+
+
+                <ul class="socials">
+                    <li>
+                        <a class="telegram" href="">
+                            <img src="~/Themes/bestmehr.ir/img/telegram.png" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="~/Themes/bestmehr.ir/img/instagram.png" />
+                        </a>
+                    </li>
+               
+
+
+                </ul>
+
+
+            </div>
+           
+
+
+        </div>
+        <div class="clear"></div>
+    </footer>
+    <script src="~/Packages/jquery-2.1.4/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="~/Packages/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="~/Packages/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Themes/bestmehr.ir/js/fn.js"></script>
+
+    @RenderSection("scripts",false)
+</body>
+</html>

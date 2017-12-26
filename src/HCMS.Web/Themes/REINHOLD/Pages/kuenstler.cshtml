@@ -1,0 +1,141 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+
+    var artists = DDB.GetTable("CMS", "Artist").DRows;
+    DRow artist = null;
+
+    var artistRid = 0;
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out artistRid);
+    }
+
+    if (artistRid != 0)
+    {
+        artist = artists.FirstOrDefault(p => p.RowID == artistRid);
+    }
+
+
+
+}
+@if (artist == null)
+{
+
+    <div class="outerbox">
+        <div class="innerbox">
+            @foreach (var item in artists)
+            {
+                <a class="blacklink" href="/kuenstler?rid=@item.RowID">
+                    <div class="kuenst-firstbox">
+                        <div class="kuenst-photobox">
+                            <img class="kuenst-photobox" src="@item.GetValue("portre")" />
+                        </div>
+                        <div class="kuenst-textbox2">
+                            <p>@item.GetValue("name")</p>
+                        </div>
+                        <div class="kuenst-textbox3">
+                            <p>@item.GetValue("birth")</p>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="artist-page">
+        <div class="details">
+            <div class="details-inner">
+                <h1>
+                    @artist.GetValue("name")
+                </h1>
+                <h5>
+                    @artist.GetValue("birth")
+                </h5>
+
+                <div class="bio">
+
+                    <h2>
+                        Lebenslauf
+                    </h2>
+                    <p>
+                        @Html.Raw(artist.GetValue("bio").Value.Replace(Environment.NewLine, "<br />"))
+                    </p>
+
+                </div>
+
+                <div class="exh">
+
+                    <h2>
+                        Ausstellungen
+                    </h2>
+                    <p>
+                        @Html.Raw(artist.GetValue("Exhibition").Value.Replace(Environment.NewLine, "<br />"))
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="images artist-gallery">
+            @foreach (var img in artist.GetGroup("img").OrderBy(p => p.GetValue("ImageOrderId").Value))
+            {
+                <div class="img-box">
+                    <a class="img" title="@img.GetValue("ImageDesc")" href="@img.GetValue("Image")">
+
+                        <img title="@img.GetValue("ImageDesc")" src="@img.GetValue("Image")" />
+                       
+                    </a>
+                    <span class="desc">
+                        @img.GetValue("ImageDesc")
+                        <a href="/kontakt?subject=@img.GetValue("ImageDesc") - @artist.GetValue("name")" class="buy">
+                            Kontakt
+                        </a>
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    @section scripts{
+        <script>
+
+            $(function () {
+                $(".bio > h2").click(function () {
+                    $(".bio").toggleClass("show");
+                });
+
+                $(".exh > h2").click(function () {
+                    $(".exh").toggleClass("show");
+                });
+
+            });
+
+            $('.artist-gallery').each(function () { // the containers for all your galleries
+                $(this).magnificPopup({
+                    delegate: 'a.img', // the selector for gallery item
+                    type: 'image',
+                    gallery: {
+                        enabled: true
+                    },
+                    image: {
+                        // options for image content type
+                        titleSrc: 'title'
+                    }
+                });
+            });
+
+        </script>
+
+    }
+
+}

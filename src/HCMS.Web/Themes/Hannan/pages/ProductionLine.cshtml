@@ -1,0 +1,93 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("contents", "products", phrases.CurrentCulture.ID).DRows;
+    ViewBag.Title = phrases.Get("Virtual  production line arrangement");
+}
+
+
+
+<div id="pline">
+
+    <div id="item-slider" class="home-products-slider">
+        <div class="container">
+
+            <div class="next">
+                <i class="glyphicon glyphicon-menu-right"></i>
+            </div>
+            <div class="prev">
+                <i class="glyphicon glyphicon-menu-left"></i>
+            </div>
+
+            <div class="item-slider">
+
+                <ul class="products" data-dir="@(phrases.CurrentCulture.RTL ? "right":"left")">
+
+                    @foreach (var pro in products)
+                    {
+                        <li>
+                            <img src="@pro.GetValue("pic")" />
+                            <span>@pro.GetValue("name")</span>
+
+                            <ul>
+                                @foreach (var sp in pro.GetGroup("sp"))
+                                {
+                                    <li>
+                                        <img src="@sp.GetValue("spPic")" />
+                                        <span>@sp.GetValue("spName")</span>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+
+                    }
+
+                </ul>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="sub-products">
+
+        </div>
+
+        <ul class="notes">
+            <li>
+                @phrases.Get("pline_note_1")
+            </li>
+
+            <li>
+                @phrases.Get("pline_note_2")
+            </li>
+        </ul>
+
+        <div class="pline-wrapper">
+            <div class="grid-nav up"><i class="glyphicon glyphicon-menu-up"></i></div>
+            <div class="grid-nav down"><i class="glyphicon glyphicon-menu-down"></i></div>
+            <div class="grid-nav right"><i class="glyphicon glyphicon-menu-right"></i></div>
+            <div class="grid-nav left"><i class="glyphicon glyphicon-menu-left"></i></div>
+            <div class="grid-nav zoom-in"><i class="glyphicon glyphicon-plus"></i></div>
+            <div class="grid-nav zoom-out"><i class="glyphicon glyphicon-minus"></i></div>
+            <div class="grid-nav grid-size">
+                <label>   @phrases.Get("Length (m)") :</label><input type="number" value="20" class="length" />
+                <label>   @phrases.Get("Width (m)") : </label><input type="number" value="20" class="width" />
+            </div>
+          <div class="grid-nav add-pillar">
+                <i class="glyphicon glyphicon-plus"></i>         @phrases.Get("Add Pillar")
+            </div>
+            <a class="grid-nav save">
+                <i class="glyphicon glyphicon-save"></i> 
+            </a>
+            <a class="download" download="Production Line Preview - Hannan Sanat Pouya.png"></a>
+            <div class="pline-grid">
+
+                <div class="inner-grid">
+                </div>
+            </div>
+        </div>
+        <ul class="pline-list"></ul>
+    </div>
+</div>
+

@@ -1,0 +1,214 @@
+/*------------------------------------*\
+    3. MENU AREA
+\*------------------------------------*/
+/* 3-1 PRIMARY MENU */
+#primaryMenu {
+	position: relative;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+#menu.secondarySticky #primaryMenu {
+    display: none;
+}
+#primaryMenu .navbar-toggle {
+    border-color: #ff6c3a;
+}
+#primaryMenu .navbar-toggle .icon-bar {
+    background-color: #ff6c3a;
+}
+.primary-menu-links li a,
+.primary-social-menu-links a {
+    color: #2e3138;
+}
+.primary-menu-links > li > a {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+#primaryMenu .nav > li > a:hover,
+#primaryMenu .nav > li > a:focus {
+    background-color: transparent;
+    color: #ff6c3a;
+}
+.primary-menu-links > li:first-child > a {
+    padding-left: 0;
+}
+.primary-social-menu-links {
+    margin-right: 0;
+}
+.primary-social-menu-links > li:last-child > a {
+    padding-right: 0;
+}
+
+/* 3-2 SECONDARY MENU */
+#secondaryMenu {
+    margin-bottom: 0;
+	border: 0;
+    border-radius: 0;
+    background-color: #2e3138;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.35);
+}
+#menu.secondarySticky #secondaryMenu {
+    border-top: none;
+}
+#secondaryMenu .navbar-toggle {
+    border-color: #ff6c3a;
+}
+#secondaryMenu .navbar-toggle .icon-bar {
+    background-color: #ff6c3a;
+}
+#secondaryMenu a.navbar-brand {
+    display: block;
+    height: 73px;
+    padding: 0;
+    margin-left: 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+}
+#secondaryMenu a.navbar-brand span {
+    color: #ff6c3a;
+}
+.secondary-menu-links li a {
+    color: #fff;
+    font-weight: 300;
+}
+.secondary-menu-links > li > a {
+    text-transform: uppercase;
+    -webkit-transition: background-color .25s;
+            transition: background-color .25s;
+}
+.secondary-menu-links > li > a > .fa {
+    display: block;
+    margin: 0 auto 3px;
+    font-size: 20px;
+}
+.secondary-menu-links > li:hover > .dropdown-menu {
+    display: block;
+}
+.secondary-menu-links > li > .dropdown-menu {
+	right: 0;
+	left: auto;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: #2e3138;
+}
+.secondary-menu-links .dropdown-menu > li > a {
+    padding: 12px 15px;
+	color: #fff;
+    -webkit-transition: background-color .25s;
+            transition: background-color .25s;
+    text-transform: uppercase;
+}
+.secondary-menu-links.default > li:hover > a,
+.secondary-menu-links.default > li > a:hover,
+.secondary-menu-links.default > li > a:focus,
+.secondary-menu-links.default > li.open > a,
+.secondary-menu-links.default > li.open > a:hover,
+.secondary-menu-links.default > li.open > a:focus,
+.secondary-menu-links.default > li.current-menu-ancestor > a,
+.secondary-menu-links.default li.active > a,
+.secondary-menu-links.default .dropdown-menu > li > a:hover {
+    background-color: #ff6c3a;
+    color: #fff;
+}
+.registration-links {
+    margin: 17px 0 0 20px;
+    display: inline-block;
+    float: right;
+}
+.registration-links a {
+    width: 100px;
+    padding: 8px 12px;
+    background-color: #ff6c3a;
+    text-transform: uppercase;
+}
+.registration-links a:hover,
+.registration-links a:focus {
+    background-color: #fff;
+    color: #ff6c3a;
+}
+
+@media screen and (max-width: 991px) {
+	#secondaryNavbar {
+		float: none !important;
+		display: none !important;
+		position: absolute;
+		left: 0;
+		right: 0;
+		max-width: 720px;
+		max-height: 320px;
+		margin: 0 auto;
+		background-color: #2e3138;
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+		text-align: center;
+		overflow: auto !important;
+		z-index: 999;
+	}
+	
+	#secondaryNavbar.in,
+	#secondaryNavbar.collapsing {
+		display: block !important;
+	}
+
+	#secondaryMenu .navbar-header {
+		float: none;
+	}
+
+	#secondaryMenu .navbar-toggle {
+		display: block;
+		margin-top: 19px;
+		margin-bottom: 19px;
+		margin-right: 0;
+	}
+
+	.secondary-menu-links,
+	.secondary-menu-links li {
+		float: none;
+	}
+
+	.secondary-menu-links > li > a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.secondary-menu-links > li > .dropdown-menu {
+		position: static;
+		float: none;
+		box-shadow: none;
+		background-color: rgba(0, 0, 0, 0.2) !important;
+	}
+
+	.secondary-menu-links > li:hover > .dropdown-menu {
+		display: none;
+	}
+
+	.secondary-menu-links > li.open > .dropdown-menu {
+		display: block;
+	}
+	
+	.default + .registration-links {
+		float: none;
+		display: block;
+		margin: 15px 0 20px;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	#secondaryNavbar {
+		max-width: none;
+	}
+	
+	#secondaryMenu a.navbar-brand {
+		margin-left: 15px;
+	}
+
+	#secondaryMenu .navbar-toggle {
+		margin-right: 15px;
+	}
+}

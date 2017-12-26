@@ -1,0 +1,379 @@
+﻿@using HCMS.Business.Auth
+@using HCMS.Web.Areas.Manage.Models
+@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using Microsoft.AspNet.Identity
+@using System.Collections.Specialized
+@{
+    var messages = DDB.GetTable("cms", "messages").DRows.Take(0);
+    var invoices = DDB.GetTable("cms", "invoices").DRows.Take(0);
+
+    if (User.Identity.IsAuthenticated)
+    {
+
+        var cuserId = User.Identity.GetUserId();
+        messages = DDB.GetTable("cms", "messages").DRows.Where(p => p.GetValue("customer").Value == User.Identity.GetUserId()).OrderByDescending(p => p.RowID);
+        invoices = DDB.GetTable("cms", "invoices").DRows.Where(p => p.GetValue("customer").Value == User.Identity.GetUserId()).OrderByDescending(p => p.RowID);
+
+        if (!invoices.Any(p => p.GetValue("description").Value == "فاکتور تعیین سطح"))
+        {
+
+            var toAdd = new NameValueCollection();
+            toAdd.Add("description", "فاکتور تعیین سطح");
+            toAdd.Add("customer", cuserId);
+            toAdd.Add("itemName", "تعیین سطح");
+            toAdd.Add("itemDesc", "-");
+            toAdd.Add("itemPrice", "20,000");
+
+            DDB.GetTable("cms", "invoices").add(toAdd, cuserId);
+
+
+            Response.Redirect("/panel");
+
+        }
+
+        if (IsPost)
+        {
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            Response.StatusCode = 200;
+
+
+            var values = new NameValueCollection();
+
+            values.Add("customer", cuserId);
+            values.Add("content", Request.Form["content"]);
+            values.Add("subject", Request.Form["subject"]);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                DDB.GetTable("cms", "messages").add(values, cuserId);
+            }
+
+
+            Response.End();
+
+
+        }
+
+    }
+
+
+}
+
+@if (User.Identity.IsAuthenticated)
+            {
+
+    <div class="container" id="panel">
+
+        <div class="signout">
+            <a class="btn btn-sm" href="/manage/Auth/logoff">
+                <i class="glyphicon glyphicon-log-out"></i>
+                <span>برای خروج کلیک کنید .</span>
+
+            </a>
+        </div>
+
+
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">پیام ها</a></li>
+
+
+                <li role="presentation"><a href="#invoices" aria-controls="invoices" role="tab" data-toggle="tab">فاکتور ها</a></li>
+
+
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">پروفایل</a></li>
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="messages">
+                    <div id="newMsgContent">
+
+                        <form class="inner">
+
+
+
+                            <input type="text" id="msg_subject" required placeholder="موضوع پیام" />
+                            <textarea id="msg_content" required placeholder="متن پیام"></textarea>
+
+                            <div class="buttons">
+
+                                <button type="submit" id="send" class="btn btn-sm btn-success">ارسال</button>
+                                <a id="close" class="btn btn-sm btn-warn">انصراف</a>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <a id="newMessage" class="btn btn-sm btn-success">ثبت پیام</a>
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        شماره پیام
+                                    </th>
+
+                                    <th>موضوع</th>
+                                    <th>تاریخ ارسال</th>
+                                    <th>وضعیت</th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @foreach (var item in messages)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @item.RowID
+                                        </td>
+
+                                        <td>
+                                            @item.GetValue("subject")
+
+                                        </td>
+
+                                        <td>
+                                            @(m2s.m2sMMWithHours(item.getChangeDate()))
+                                        </td>
+
+                                        <td>
+                                            @(string.IsNullOrWhiteSpace(item.GetValue("status").Value) ? "خوانده نشده" : item.GetValue("status").Value)
+                                        </td>
+
+                                        <td>
+                                            <a href="/message?id=@item.RowID" class="btn btn-sm btn-primary">
+                                                مشاهده
+                                            </a>
+                                        </td>
+
+
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="invoices">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        شماره فاکتور
+                                    </th>
+
+                                    <th>توضیحات</th>
+                                    <th>تاریخ </th>
+
+                                    <th>مبلغ (ریال)</th>
+
+                                    <th>
+                                        وضعیت
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @foreach (var item in invoices)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.RowID
+                                        </td>
+
+                                        <td>
+                                            @item.GetValue("description")
+
+                                        </td>
+                                        <td>
+                                            @(m2s.m2sMMWithHours(item.getCreateDate()))
+                                        </td>
+
+                                        <td>
+
+                                            <span class="splitBy3">
+                                                @item.GetGroup("items").Sum(p => int.Parse(p.GetValue("itemPrice").Value.Replace(",", "").Replace(".", "")))
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            @if (string.IsNullOrWhiteSpace(item.GetValue("payedDate").Value))
+                                            {
+
+                                                <span>پرداخت نشده</span>
+
+                                            }
+                                            else
+                                            {
+                                                <span>پرداخت شده در تاریخ </span>  @(m2s.m2sMMWithHours(DateTime.Parse(item.GetValue("payedDate").Value)))
+                                            }
+
+                                        </td>
+                                        <td>
+                                            @if (string.IsNullOrWhiteSpace(item.GetValue("payedDate").Value))
+                                            {
+
+                                                <a href="/invoice?invoiceId=@item.RowID" class="btn btn-sm btn-success">
+                                                    پرداخت
+
+                                                </a>
+
+                                            }
+                                            else
+                                            {
+                                                <a href="/invoice?invoiceId=@item.RowID" class="btn btn-sm btn-primary">
+                                                    مشاهده
+                                                </a>
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    @Html.Partial("_completeProfile")
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+}
+else
+{
+    <div id="panel">
+        <div class="container">
+            <!-- Tab panes -->
+            <div class="login">
+
+                <h2>ورود به اکانت</h2>
+                <form method="post" id="login-form" action="/fa-ir/manage/Auth/Login">
+
+                    @{
+                        string login_c_guid = Guid.NewGuid().ToString();
+                    }
+
+                    @Html.Hidden("captcha_guid", login_c_guid)
+                    @Html.AntiForgeryToken()
+
+
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+                    <input type="email" style="display: none;" />
+                    <input type="password" style="display: none;" />
+
+
+
+                    <div class="input-field">
+                        <label>
+                            آدرس ایمیل
+                        </label> <input name="UserName" type="text" placeholder="ایمیل " />
+                    </div>
+
+                    <div class="input-field">
+                        <label>رمز عبور</label> <input name="password" type="password" />
+                    </div>
+                    <div class="input-field captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=_login&guid=@login_c_guid" id="captcha-image" />
+                        <input id="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" value="تایید" />
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="links" style="text-align:center;">
+
+
+                        <a id="fgpassword"> فراموشی رمز عبور ؟</a>
+
+                        <a id="confirmPassword"> فعال سازی اکانت</a>
+
+
+
+                    </div>
+                    @*<div class="links">
+                        </div>*@
+
+
+                </form>
+
+
+            </div>
+
+            <div class="register">
+                <h2>ثبت نام</h2>
+
+                <form method="post" id="register-form" action="/fa-ir/manage/Auth/register">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+                    <input type="email" style="display: none;" />
+                    <input type="password" style="display: none;" />
+                    <div class="input-field">
+                        <label>نام کاربری</label> <input name="Username" type="text" placeholder="ایمیل" />
+                    </div>
+
+                    <div class="input-field">
+                        <label>رمز عبور</label> <input name="password" type="password" />
+                    </div>
+                    <div class="input-field">
+                        <label>تکرار رمز عبور</label> <input name="ConfirmPassword" type="password" />
+                    </div>
+                    <div class="input-field captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=_register" id="captcha-image" />
+                        <input id="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" value="تایید" />
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <div class="clearfix"></div>
+    </div>
+
+                        }

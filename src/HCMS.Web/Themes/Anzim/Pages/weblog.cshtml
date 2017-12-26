@@ -1,0 +1,142 @@
+﻿@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog_category").DRows;
+    var comments = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog_comments").DRows;
+    var blog = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog").DRows;
+    var page_size = 10;
+    var current_page = 1;
+
+    if (Request.QueryString["page"] != null)
+    {
+        int.TryParse(Request.QueryString["page"].ToString(), out current_page);
+    }
+
+    var posts = blog.OrderByDescending(p => p.RowID).AsEnumerable();
+    var search_query = "";
+    if (Request.QueryString["s"] != null)
+    {
+        search_query = Request.QueryString["s"].ToString();
+        if (!string.IsNullOrWhiteSpace(search_query))
+        {
+            posts = posts.Where(p => p.GetValue("title").Value.Contains(search_query));
+        }
+    }
+
+    if (Request.QueryString["cat"] != null)
+    {
+        var catId = Request.QueryString["cat"].ToString();
+        if (!string.IsNullOrWhiteSpace(catId))
+        {
+            posts = posts.Where(p => p.GetValue("catId").Value == catId);
+        }
+    }
+
+
+
+
+
+    var page_count = Math.Ceiling(a: posts.Count() / page_size);
+    if (page_count == 0)
+    {
+        page_count = 1;
+    }
+    posts = posts.Skip(page_size * (current_page - 1)).Take(page_size);
+
+
+
+
+    ViewBag.title = "وبلاگ";
+
+
+
+}
+
+
+<div class="container pt-xl">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-posts">
+                @foreach (var item in posts)
+                {
+
+                    <article class="post post-medium">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="post-content">
+
+                                    <h2>
+                                        <a href="/post?rid=@item.RowID">@item.GetValue("title")</a>
+                                    </h2>
+
+                                    <p>
+                                        @Html.Raw(item.GetValue("shortContent"))
+                                    </p>
+
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
+                {
+
+                                <div class="col-md-12">
+
+                                    <img class="img img-responsive img-thumbnail" src="@item.GetValue("image")" />
+
+                                </div>
+
+                            }
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="post-meta pt-sm">
+                                    <span>
+                                        <i class="fa fa-calendar"></i>
+                                        @item.GetValue("date")
+                                    </span>
+                                    <span><i class="fa fa-user"></i> توسط <a href="#">مدیریت سایت</a> </span>
+                                    <span><i class="fa fa-tag"></i>  @item.GetValue("cat.name") </span>
+                                    <span>
+                                        <i class="fa fa-comments"></i>
+                                        <a href="#">
+                                            @comments.Count(p => p.GetValue("postId").Value == item.RowID.ToString()) نظر
+                                        </a>
+                                    </span>
+                                    <a href="~/post?rid=@item.RowID" class="btn btn-xs btn-primary pull-right">ادامه مطلب</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </article>
+                }
+
+
+
+                <ul class="pagination pagination-lg pull-right">
+                    <li><a href="#">»</a></li>
+
+                    @for (int i = 1; i <= page_count; i++)
+                    {
+                        <li class="@(i == current_page ? "active" : "")">
+                            <a href="/weblog?page=@i&s=@search_query">@i</a>
+                        </li>
+                    }
+                    <li><a href="#">«</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            @Html.Partial("_blog_sidebar")
+        </div>
+    </div>
+
+</div>

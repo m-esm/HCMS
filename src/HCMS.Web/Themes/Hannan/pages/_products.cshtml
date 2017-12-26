@@ -1,0 +1,57 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("contents", "ProductCategories", phrases.CurrentCulture.ID).DRows.OrderBy(p => p.GetValue("OrderId").Value.ToString());
+    var products = HCMS.Dynamics.Data.DDB.GetTable("contents", "products", phrases.CurrentCulture.ID).DRows;
+    var productSections = HCMS.Dynamics.Data.DDB.GetTable("contents", "ProductSection", phrases.CurrentCulture.ID).DRows;
+    var cn = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("Products");
+}
+
+
+
+<div class="container">
+
+
+    <div class="row">
+
+        @foreach (var sec in productSections)
+        {
+            <div data-mcat="@sec.RowID" class="pcats col-xs-12 col-md-8 col-md-offset-2">
+                @foreach (var item in cats.Where(p => p.GetValue("SectionId").Value == sec.RowID.ToString()))
+                {
+                    <div class="pcat" data-id="@item.RowID">
+                        <i class="glyphicon glyphicon-object-align-bottom"></i>  @item.GetValue("name")
+                        <small>@item.GetValue("description")</small>
+                    </div>
+                }
+            </div>
+        }
+
+        @foreach (var cat in cats)
+        {
+            <div data-pcat="@cat.RowID" class="pcat-products col-md-8 col-md-offset-2">
+                <a href="/@cn/Products" class="back"><i class="glyphicon glyphicon-menu-left"></i> @phrases.Get("Back to products")</a>
+                @foreach (var product in products.Where(p => p.GetValue("catid").Value == cat.RowID.ToString()))
+                {
+                    <a href="/@cn/product?rid=@product.RowID" class="product">
+                        <img src="@product.GetValue("pic")" />  <span> @product.GetValue("name")</span>
+                    </a>
+                }
+            </div>
+        }
+
+
+        <div class="mcats">
+            @foreach (var item in productSections)
+            {
+                <a data-id="@item.RowID" class="mcat">
+                    <span>
+                        @item.GetValue("Name")
+                    </span>
+                </a>
+            }
+        </div>
+    </div>
+
+
+</div>

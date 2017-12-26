@@ -1,0 +1,62 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("contents", "ProductCategories", phrases.CurrentCulture.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("contents", "products", phrases.CurrentCulture.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("contents", "news", phrases.CurrentCulture.ID).DRows;
+    var cn = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("News");
+}
+
+<div class="home-news news-page">
+    <div class="container">
+        <div class="row">
+            <h1 class="col-xs-12">@phrases.Get("last_news")</h1>
+            <div class="col-sm-6">
+                <div class="top-news">
+                    @{
+                        var topnews = news.Where(p => string.IsNullOrWhiteSpace(p.GetValue("pic").Value.ToString()) == false).OrderByDescending(p => p.RowID).First();
+                    }
+                    <img src="@topnews.GetValue("pic")" />
+                    <h5>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        @topnews.GetValue("subject")
+                    </h5>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+
+                <ul class="news-list">
+                    @{
+                        var newsList = news.Where(p => p.RowID != topnews.RowID).OrderByDescending(p => p.RowID);
+                    }
+                    @foreach (var n in newsList)
+                    {
+                        <li>
+                            <a href="#">
+                                @n.GetValue("subject")
+                                <small>@n.GetValue("date")</small>
+                            </a>
+                        </li>
+                    }
+                    @if (news.Count() > 6)
+                    {
+                        <li>
+                            <a class="archive">
+                                <i class="glyphicon glyphicon-menu-left"></i>
+
+                                @phrases.Get("News_Archive")
+                                <i class="glyphicon glyphicon-menu-right"></i>
+
+                            </a>
+                        </li>
+                    }
+
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>

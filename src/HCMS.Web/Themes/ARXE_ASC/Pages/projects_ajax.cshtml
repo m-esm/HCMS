@@ -1,0 +1,12 @@
+﻿@{
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_project").DRows.Where(p=>p.GetValue("Confirmed").Value == "true");
+    Response.ClearContent();
+    Response.ClearHeaders();
+    Response.ContentType = "application/javascript";
+
+    string json = Newtonsoft.Json.JsonConvert.SerializeObject(projects.Select(p => p.GetValue("nameEn").Value.Trim().Replace(" ","_")).ToArray());
+    
+    Response.Write(json);
+
+
+}

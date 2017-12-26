@@ -1,0 +1,45 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+
+<div id="pageHeading">
+    <h1 data-aos="fade-right" class="page-heading">
+
+        Career
+    </h1>
+</div>
+<div id="pageContent">
+    <div class="career-page">
+
+        <div class="career-intro">
+            <div class="inner">
+                <h2>Makeing a difference</h2>
+
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="career-info">
+                        <h1>
+                            Career Opportunities :
+                        </h1>
+                        <div class="content">
+
+                            @Html.Partial("_content", "career")
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

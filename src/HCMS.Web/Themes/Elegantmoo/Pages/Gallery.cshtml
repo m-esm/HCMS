@@ -1,0 +1,55 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var catId = 0;
+    var galleryCats = DDB.GetTable("CMS", "GalleryCategory").DRows;
+    var gallery = DDB.GetTable("CMS", "Gallery").DRows;
+    if (Request.QueryString["cat"] != null)
+    {
+        int.TryParse(Request.QueryString["cat"].ToString(), out catId);
+        if (catId == 0)
+        {
+            Response.Redirect("/404");
+        }
+    }
+    else
+    {
+        int.TryParse(ViewContext.RouteData.Values["cat"].ToString(), out catId);
+    }
+    
+    
+
+
+    var cat = galleryCats.FirstOrDefault(p => p.RowID == catId);
+    if (cat == null)
+    {
+        Response.Redirect("/404");
+    }
+
+    gallery = gallery.Where(p => p.GetValue("categoryId").Value == catId.ToString());
+
+    
+    ViewBag.title = " لیست نمونه کار های " + cat.GetValue("name").Value;
+}
+
+
+<div class="section gallery-page">
+    <div class="bg-overlay">
+        @Html.Partial("_header", "مقالات")
+
+        <div class="gallery">
+            <h2>
+                @ViewBag.title
+            </h2>
+            @foreach (var item in gallery)
+            {
+                <a class="item" href="@item.GetValue("image")">
+                    <img alt="عکس شماره @item.RowID نمونه کار های @cat.GetValue("name")" src="@item.GetValue("image")?width=300" />
+                </a>
+            }
+
+        </div>
+    </div>
+
+</div>

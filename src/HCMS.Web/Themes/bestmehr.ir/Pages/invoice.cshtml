@@ -1,0 +1,170 @@
+﻿@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using Microsoft.AspNet.Identity
+@using System.Collections.Specialized
+@{
+
+
+
+    var cuserId = User.Identity.GetUserId();
+    var invoices = DDB.GetTable("cms", "invoices").DRows.Where(p => p.GetValue("customer").Value == User.Identity.GetUserId()).OrderByDescending(p => p.RowID);
+    var mid = 0;
+
+    if (Request.QueryString["invoiceId"] != null)
+    {
+        int.TryParse(Request.QueryString["invoiceId"].ToString(), out mid);
+    }
+
+    var item = invoices.FirstOrDefault(p => p.RowID == mid);
+    var amount = item.GetGroup("items").Sum(p => int.Parse(p.GetValue("itemPrice").Value.Replace(",", "").Replace(".", "")));
+
+    item.changeValue("amount", amount.ToString(), cuserId);
+
+    if (item == null)
+    {
+
+        Response.Write("not found");
+        Response.StatusCode = 404;
+        Response.End();
+    }
+
+}
+
+<div class="container">
+    <div class="signout">
+        <a class="btn btn-sm btn-info" href="/panel">
+            <i class="glyphicon glyphicon-menu-right"></i>
+            <span>صفحه قبل</span>
+
+        </a>
+        <a class="btn btn-sm pull-left" href="/manage/Auth/logoff">
+            <i class="glyphicon glyphicon-log-out"></i>
+            <span>برای خروج کلیک کنید .</span>
+
+        </a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        شماره فاکتور
+                    </th>
+
+                    <th>توضیحات</th>
+                    <th>تاریخ </th>
+
+                    <th>مبلغ (ریال)</th>
+
+                    <th>
+                        وضعیت
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @item.RowID
+                    </td>
+
+                    <td>
+                        @item.GetValue("description")
+
+                    </td>
+                    <td>
+                        @(m2s.m2sMMWithHours(item.getCreateDate()))
+                    </td>
+
+                    <td>
+
+                        <span class="splitBy3">
+                            @amount
+                        </span>
+
+                    </td>
+
+                    <td>
+                        @if (string.IsNullOrWhiteSpace(item.GetValue("payedDate").Value))
+                        {
+
+                            <span>پرداخت نشده</span>
+
+                        }
+                        else
+                        {
+                            <span>پرداخت شده در تاریخ </span>  @(m2s.m2sMMWithHours(DateTime.Parse(item.GetValue("payedDate").Value)))
+                        }
+
+                    </td>
+                    <td>
+                        @if (string.IsNullOrWhiteSpace(item.GetValue("payedDate").Value))
+                        {
+
+                            <a href="/pay?invoiceId=@item.RowID" class="btn btn-sm btn-success">
+                                پرداخت
+                            </a>
+
+                        }
+                        else
+                        {
+
+                            <a class="btn btn-sm btn-info">
+                                پرداخت شده
+                            </a>
+                        }
+
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                       شرح خدمات
+                    </th>
+
+                    <th>توضیحات</th>
+
+                    <th>مبلغ (ریال)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var invitem in item.GetGroup("items"))
+               {
+                   <tr>
+
+                       <td>
+                           @invitem.GetValue("itemName")
+                       </td>
+
+                       <td>
+                           @invitem.GetValue("itemDesc")
+                       </td>
+
+                       <td>
+                           @invitem.GetValue("itemPrice")
+                       </td>
+                   </tr>
+
+               }
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>

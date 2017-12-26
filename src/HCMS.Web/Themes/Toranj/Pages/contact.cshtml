@@ -1,0 +1,37 @@
+@{
+    
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+
+    var page = HCMS.Dynamics.Data.DDB.GetTable("theme", "pages").DRows
+        .Where(p => p.GetValue("Language.name").Value.ToLower() == phrases.CurrentCulture.LanguageNameAbbr.ToLower())
+        .FirstOrDefault(p => p.GetValue("name").Value.ToLower() == "contact");
+}
+
+
+
+<div class="container">
+    <div class="row">
+        @if (page != null)
+        {
+            <div class="col-md-6">
+                <div class="custom-page">
+
+                    @Html.Raw(page.GetValue("Content"))
+
+                </div>
+            </div>
+        }
+        <div class="col-md-6">
+            <form class="contact">
+                <div class="custom-page">
+                    <input name="name" placeholder="@phrases.Get("contact_name")" />
+                    <input name="name" placeholder="@phrases.Get("contact_phone")" />
+                    <input name="name" placeholder="@phrases.Get("contact_email")" />
+                    <textarea placeholder="@phrases.Get("contact_message")"></textarea>
+                    <input type="submit" value="@phrases.Get("Submit")" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

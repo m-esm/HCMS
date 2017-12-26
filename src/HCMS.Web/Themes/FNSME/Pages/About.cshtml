@@ -1,0 +1,21 @@
+﻿@using HCMS.Dynamics.Data;
+@{
+    string lang = ViewContext.RouteData.Values["lang"].ToString().ToLower();
+    DRow about = DDB.GetTable("content", "pages").DRows
+        .FirstOrDefault(p => p.GetValue("language.name").ToString().ToLower() == lang.ToLower() && p.GetValue("name").ToString().ToLower() == "about");
+        
+}
+
+@if (about == null)
+{
+    <div>
+        @Html.Partial("404")
+    </div>
+}else{
+<div class="page">
+  
+    <div class="content">
+        @Html.Raw(about.GetValue("content"))
+    </div>
+</div>
+}

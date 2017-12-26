@@ -1,0 +1,81 @@
+﻿@using HCMS.Dynamics.Data
+@{
+
+    HCMS.Dynamics.DynamicDB db = new HCMS.Dynamics.DynamicDB();
+
+
+    var products = DDB.GetTable("products", "product").DRows;
+    var productCategories = DDB.GetTable("products", "category").DRows;
+    bool hasCatID = false;
+    if (Request.QueryString["catID"] != null)
+    {
+        hasCatID = true;
+        productCategories = productCategories.Where(p => p.RowID.ToString() == Request.QueryString["catID"].ToString());
+    }
+
+} 
+<div class="last-products">
+
+
+    <ul>
+
+        @foreach (var cat in productCategories)
+        {
+            <li class="cat">
+                <div class="info">
+
+                    <div class="title">
+                        @cat.GetValue("name")
+                    </div>
+
+                    <div class="description">
+                        @cat.GetValue("description")
+                        @if (!hasCatID)
+                        {
+                            <div>
+                                <a class="btn btn-default more" href="/products?catid=@cat.RowID">See All</a>
+                            </div>
+                        }
+                      
+                    </div>
+
+
+
+                </div>
+                <ul>
+                    @{
+                        var productsToShow = products.Where(p => p.GetValue("categoryID").Value == cat.RowID.ToString().Trim());
+                        if (hasCatID)
+                        {
+                            productsToShow = productsToShow.Take(8).OrderByDescending(p => p.RowID);
+                        }
+                        else
+                        {
+                            productsToShow = productsToShow.OrderByDescending(p => p.RowID);
+                        }
+                    }
+                  
+
+                    @foreach (var product in productsToShow)
+                    {
+                    var images = product.GetGroup("image");
+
+                    <li class="product">
+                        <a href="/en/product?rid=@product.RowID">
+                            <div class="image" style="background-image:url('@images.First().GetValue("imageURL")')"></div>
+                            <div class="name">@product.GetValue("name")</div>
+                        </a>
+                    </li>
+                    }
+
+
+                </ul>
+
+
+
+            </li>
+        }
+
+
+    </ul>
+</div>

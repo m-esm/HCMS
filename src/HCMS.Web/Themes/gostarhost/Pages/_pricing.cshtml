@@ -1,0 +1,103 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Tools
+@using HCMS.Dynamics.Data
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+    var services = DDB.GetTable("cms", "services").DRows.Where(p => p.GetValue("type.name").Value == "هاستینگ");
+    var plans = DDB.GetTable("cms", "plans").DRows;
+
+
+}
+
+
+<div id="pricing" class="post-105 " data-bg-src="">
+    <div class="container">
+        <div class="section-title">
+            <h2>
+                تعرفه های هاستینگ
+            </h2>
+        </div>
+
+        <ul class="nav nav-tabs" role="tablist">
+            @for (int i = 0; i < services.Count(); i++)
+            {
+                var service = services.ToArray()[i];
+
+                <li role="presentation" class="@(i == 0 ?"active" : "")">
+                    <a href="#@service.GetValue("name").Value.Replace(" ","_")" aria-controls="@service.GetValue("name").Value.Replace(" ","_")" role="tab" data-toggle="tab">
+                        @service.GetValue("name")
+                    </a>
+                </li>
+
+            }
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            @for (int i = 0; i < services.Count(); i++)
+            {
+                var service = services.ToArray()[i];
+
+
+                <div role="tabpanel" class="tab-pane @(i == 0 ?"active" : "")" id="@service.GetValue("name").Value.Replace(" ","_")">
+
+                    <div class="row">
+
+                        @foreach (var item in plans.Where(p=>p.GetValue("serviceId").Value == service.RowID.ToString()))
+                        {
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="pricing-table-item">
+                                    <div class="pt-head">
+
+                                        <div class="pt-price-tag">
+                                            <b class="splitBy3">@item.GetValue("price")</b>تومان
+                                            <span>
+                                                /@item.GetValue("unit")
+
+                                            </span>
+                                        </div>
+                                        <div class="pt-plan">
+                                            @item.GetValue("name")
+                                        </div>
+                                    </div>
+                                    <div class="pt-body">
+                                        <div class="pt-features">
+                                            <ul>
+                                                @foreach (var ff in item.GetGroup("features"))
+                                                {
+                                                    <li>
+                                                        @ff.GetValue("features")
+                                                    </li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="pt-footer">
+                                        <a href="#" class="btn btn-custom">
+                                            خرید
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+
+                </div>
+
+
+            }
+
+
+        </div>
+
+    </div>
+
+  
+</div>

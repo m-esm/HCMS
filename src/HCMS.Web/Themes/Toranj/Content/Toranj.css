@@ -1,0 +1,303 @@
+﻿body {
+  background: #666;
+  font-family: Century Gothic, sans-serif;
+}
+.carousel {
+  background: #000;
+}
+.carousel .item img {
+  width: 100%;
+}
+header {
+  background: #fff;
+  box-shadow: 0 0 10px #000;
+  position: relative;
+  z-index: 100;
+}
+header .logo {
+  height: 180px;
+}
+header nav {
+  height: 40px;
+  width: 100%;
+  margin-top: 100px;
+}
+header nav .tinynav {
+  width: 100%;
+  border: 1px solid #000;
+  background: #d3b058;
+  line-height: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: #fff;
+  display: none;
+}
+header nav ul {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  color: #be8801;
+  cursor: pointer;
+}
+header nav ul li {
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 20px;
+}
+header nav ul li:hover > ul {
+  display: block;
+}
+header nav ul li > ul {
+  position: absolute;
+  display: none;
+  padding: 0;
+  background: #fff;
+  box-shadow: -10px 10px 10px rgba(204, 204, 204, 0.5);
+}
+header nav ul li > ul li {
+  display: list-item;
+  width: 200px;
+  list-style: square inside;
+  line-height: 30px;
+  border-top: 1px solid #ccc;
+  color: #ccc;
+}
+header nav ul li a {
+  font-weight: 400;
+  color: #be8801;
+}
+header nav ul li a:hover {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+.products-page {
+  background: #efefef;
+}
+/*# sourceMappingURL=Toranj.css.map */
+ul.products-list {
+  margin: 0;
+  padding: 0;
+}
+ul.products-list li {
+  list-style: none;
+  display: block;
+  padding: 20px;
+  background: #efefef;
+  border: 1px solid #ccc;
+}
+ul.products-list .images img {
+  display: inline-block;
+  margin: 0 10px;
+  width: 360px;
+  height: auto;
+}
+ul.products-list .info h1.name {
+  font-weight: 500;
+  color: #82600b;
+  margin: 0;
+  padding: 0;
+}
+ul.products-list .info h3 {
+  font-weight: 100;
+}
+form.contact {
+  margin: 100px 0 40px 0;
+  padding: 0;
+}
+form.contact input {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #999;
+  margin: 10px 0;
+  outline: none;
+}
+form.contact input:focus,
+form.contact textarea:focus {
+  -moz-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  -o-transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
+  -moz-transform-origin: top;
+  -ms-transform-origin: top;
+  -o-transform-origin: top;
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  box-shadow: 5px 5px 10px #ccc;
+  -moz-transition: all ease-in-out 0.5s;
+  -o-transition: all ease-in-out 0.5s;
+  -webkit-transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 0.5s;
+}
+form.contact textarea {
+  border: 1px solid #999;
+  width: 100%;
+  min-height: 200px;
+  padding: 0 10px;
+  line-height: 30px;
+  outline: none;
+}
+form.contact input[type=submit] {
+  background: #be8801;
+  color: #fff;
+  font-weight: bold;
+  width: 100px;
+}
+@media (max-width: 992px) {
+  form.contact {
+    margin: 0 0 40px 0;
+  }
+}
+#content {
+  background: #fff;
+}
+#content .custom-page {
+  padding: 10px;
+}
+#content .catalog-page img {
+  margin: 0 auto;
+}
+#content .catalog-page a.download {
+  background: #be8801;
+  color: #fff;
+  padding: 0 40px;
+  line-height: 60px;
+  margin: 20px;
+  height: 55px;
+  font-size: 30px;
+  text-shadow: 0 0 1px #000;
+  display: inline-block;
+  box-shadow: 0 0 5px #000;
+}
+#content .catalog-page a.download:hover {
+  text-decoration: none;
+}
+.last-products h1 {
+  color: #be8801;
+  margin-bottom: 50px;
+}
+.last-products ul {
+  padding: 0;
+  margin: 20px 0;
+}
+.last-products ul li {
+  display: block;
+}
+.last-products ul li ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.last-products ul li.cat {
+  min-height: 160px;
+  padding: 10px 10px 25px 10px;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #ccc;
+}
+.last-products ul li.cat .info {
+  vertical-align: top;
+  margin: 0 40px 0 0;
+  display: inline-block;
+}
+.last-products ul li.cat .info .title {
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+  color: #c30101;
+  font-weight: 600;
+}
+.last-products ul li.cat .info .description {
+  padding: 10px;
+  font-weight: 400;
+}
+.last-products ul li.cat .info .description a.more {
+  margin: 5px;
+  font-weight: 500;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+}
+.last-products ul li.product {
+  box-shadow: 0 0 10px #999;
+  display: inline-block;
+  vertical-align: top;
+  background: #fafafa;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 15px 20px 0 0;
+  -moz-transition: all ease-in-out 0.3s;
+  -o-transition: all ease-in-out 0.3s;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+.last-products ul li.product a,
+.last-products ul li.product a:hover {
+  text-decoration: none;
+  color: #333;
+}
+.last-products ul li.product:hover {
+  -moz-transform: scale(1.1) rotate(0.5deg);
+  -ms-transform: scale(1.1) rotate(0.5deg);
+  -o-transform: scale(1.1) rotate(0.5deg);
+  -webkit-transform: scale(1.1) rotate(0.5deg);
+  transform: scale(1.1) rotate(0.5deg);
+  box-shadow: 5px 5px 20px #555;
+}
+.last-products ul li.product div.image {
+  height: 120px;
+  width: 120px;
+  background-size: cover;
+}
+.last-products ul li.product div.name {
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+}
+footer {
+  background: #ccc;
+  height: auto;
+  position: relative;
+}
+footer .blocks {
+  z-index: 100;
+  position: relative;
+}
+footer .blocks .block ul {
+  margin: 0;
+  padding: 0;
+  line-height: 40px;
+}
+footer .blocks .block ul li {
+  list-style: square inside;
+  display: inline-block;
+  padding: 0 20px 0 0;
+}
+footer .blocks .block,
+footer .blocks .block a {
+  color: #000;
+}
+footer .copyright {
+  line-height: 60px;
+  height: 60px;
+  background: #666;
+  z-index: 100;
+  color: #fff;
+}
+@media (max-width: 995px) {
+  nav {
+    margin-top: 0 !important;
+  }
+  nav > ul {
+    display: none;
+  }
+  nav > .tinynav {
+    display: block !important;
+  }
+  .logo {
+    margin: 0 auto;
+  }
+}
+/*# sourceMappingURL=Toranj.css.map */

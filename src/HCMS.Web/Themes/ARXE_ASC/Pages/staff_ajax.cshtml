@@ -1,0 +1,12 @@
+﻿@{
+    var staff = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_people",1).DRows;
+    Response.ClearContent();
+    Response.ClearHeaders();
+    Response.ContentType = "application/javascript";
+
+    string json = Newtonsoft.Json.JsonConvert.SerializeObject(staff.Select(p => p.GetValue("name").Value.ToLower().Trim().Replace(" ","_")).ToArray());
+    
+    Response.Write(json);
+
+
+}

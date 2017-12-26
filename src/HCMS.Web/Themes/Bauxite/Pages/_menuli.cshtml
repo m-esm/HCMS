@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+    var pages = HCMS.Dynamics.Data.DDB.GetTable("cms", "page").DRows.OrderByDescending(p => p.RowID);
+
+}
+
+<li>
+    <a href="/">
+        <i class="glyphicon glyphicon-home"></i>
+    </a>
+</li>
+
+
+
+<li>
+    <a href="/journals">ژورنال ها</a>
+</li>
+@foreach (var item in pages.Where(p => p.GetValue("showInMenu").Value != "true"))
+{
+    <li>
+        <a href="/page?rid=@item.RowID">@item.GetValue("title")</a>
+    </li>
+}

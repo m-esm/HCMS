@@ -1,0 +1,85 @@
+﻿@{
+
+
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var departments = HCMS.Dynamics.Data.DDB.GetTable("cms", "departments").DRows.OrderBy(p => p.GetValue("orderid").Value);
+    var department_members = HCMS.Dynamics.Data.DDB.GetTable("cms", "department_members").DRows;
+
+
+
+
+    ViewBag.title = "چرا آزمون‌های آنزیم؟";
+}
+
+<div id="whyus-page">
+    <div class="intro">
+        <div class="container  p-xl">
+
+            <div class="row center ">
+                <div class="col-md-12">
+                    <h2 class="mb-none mt-none font-weight-semibold">چرا آزمون&zwnj;های آنزیم؟</h2>
+                    <small class="lead mb-xlg">
+                        بدون آنزیم مثل لاک&zwnj;پشت؛ با آنزیم مثل بنز!
+                    </small>
+                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                        <hr>
+                    </div>
+                    <p class="mb-none">
+                        @Html.Raw(contents.FirstOrDefault(p => p.GetValue("accessName").Value == "whyus").GetValue("content").Value)
+                    </p>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container p-xl">
+
+
+        @foreach (var item in departments)
+        {
+            var members = department_members.Where(p => p.GetValue("departmentId").Value == item.RowID.ToString());
+
+            <div class="row center m-xl pb-xl">
+                <div class="col-md-12">
+                    <h3 class="mb-none mt-none font-weight-semibold">@item.GetValue("name")</h3>
+
+                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                        <hr>
+                    </div>
+                    <div class="members">
+                        @foreach (var mem in members)
+                        {
+                            <div class="member">
+                                <img src="@mem.GetValue("image")" class="img" />
+                                <h4 class="name">@mem.GetValue("name")</h4>
+                                <h4 class="title">@Html.Raw(mem.GetValue("title").Value.Replace(Environment.NewLine, "<br />"))</h4>
+                            <div class="socials">
+                                @foreach (var s in mem.GetGroup("socials"))
+                                {
+                                    <a href="@s.GetValue("socialLink")" class="social">
+                                        <i class="@s.GetValue("socialType.class")"></i>
+                                    </a>
+                                }
+
+                            </div>
+
+                        </div>
+                        }
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        }
+
+
+
+    </div>
+</div>

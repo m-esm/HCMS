@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.lang = ViewContext.RouteData.Values["lang"].ToString().ToLower();
+}
+
+@functions{
+    public string GetWord(string name)
+    {
+        try
+        {
+            return HCMS.Dynamics.Data.DDB.GetTable("Theme", "Phrases").DRows
+                         .Where(p => p.GetValue("language.name").Value.ToLower() == ViewBag.lang)
+                         .FirstOrDefault(p => p.GetValue("name").ToString().ToLower().Trim() == name.ToLower().Trim())
+                         .GetValue("value").Value;
+        }
+        catch
+        {
+            return name;
+        }
+    }
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="custom-page catalog-page text-center">
+                <h1>    @GetWord("download_catalog")</h1>
+                <a href="" class="download">
+                    <i class="glyphicon glyphicon-download-alt"></i>
+                    @GetWord("Download File")
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

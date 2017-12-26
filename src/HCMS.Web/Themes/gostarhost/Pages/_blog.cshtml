@@ -1,0 +1,75 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Tools
+@using HCMS.Dynamics.Data
+@using HCMS.Business.Auth
+@using HCMS.Dynamics.Forms.Models
+@using MoreLinq
+@using PagedList
+
+
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+    var lastposts = DDB.GetTable("cms", "blog").DRows.OrderByDescending(p => p.RowID).Take(4);
+    var valueRepo = new GenericRepository<FormFieldValue>();
+
+
+}
+
+
+<div id="blog" class="post-94 " data-bg-src="">
+    <div class="container">
+        <div class="section-title">
+            <h2>
+                آخرین های بلاگ
+            </h2>
+        </div>
+        <div class="row">
+            @foreach (var post in lastposts)
+            {
+                var publisher = UserRepository.GetUserById(valueRepo.Get(p => p.RowID == post.RowID).UserId);
+
+                <div class="col-md-6">
+                    <div class="blog-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="blog-item-img">
+                                    <a href="/fa-ir/blog/@post.GetValue("slug")">
+                                        <img src="@post.GetValue("banner")?width=300" class="img-responsive wp-post-image" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="blog-item-content">
+                                    <h2>
+                                        <a href="/lorem-ipsum-dolor-sit-amet-3/">
+                                            @post.GetValue("title")
+                                        </a>
+                                    </h2>
+                                    <div class="metadata">
+                                        <i class="fa fa-calendar"></i>
+                                        <a href="#">@(m2s.m2sMMWithHours(valueRepo.Get(p => p.RowID == post.RowID).ChangeDate)) </a>
+                                        <span class="separator">|</span>
+                                        <i class="fa fa-user"></i>
+                                        <a href="#">
+                                            @publisher.FirstName @publisher.LastName
+                                        </a>
+                                    </div>
+
+                                    <p>
+                                        @Html.Raw(post.GetValue("intro").Value)
+                                    </p>
+                                    <a href="/fa-ir/blog/@post.GetValue("slug")" class="btn btn-custom-reverse">
+                                        ادامه مطلب
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

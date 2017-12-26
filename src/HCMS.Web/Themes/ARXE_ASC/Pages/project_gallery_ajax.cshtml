@@ -1,0 +1,10 @@
+﻿@{
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_project").DRows;
+    Response.ClearContent();
+    Response.ClearHeaders();
+    Response.ContentType = "application/javascript";
+    var project = projects.First(p => p.GetValue("nameEn").Value.Trim().Replace(" ", "_") == Request.QueryString["pname"].ToString());
+    var model = project.GetGroup("gallery").OrderBy(p=>p.GetValue("GallerySortId").Value).Select(p => p.GetValue("GalleryPicture").Value).ToArray();
+    string json = Newtonsoft.Json.JsonConvert.SerializeObject(model);
+    Response.Write(json);
+}

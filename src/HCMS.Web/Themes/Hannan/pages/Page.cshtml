@@ -1,0 +1,20 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var page = HCMS.Dynamics.Data.DDB.GetTable("contents", "pages", phrases.CurrentCulture.ID).DRows.First(p => p.GetValue("name").ToString() == Request.QueryString["name"].ToString());
+    ViewBag.Title = page.GetValue("caption");
+}
+
+<div class="container page">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                @page.GetValue("Caption")
+            </h1>
+        </div>
+        <div class="col-md-12 content">
+            <p>
+                @Html.Raw(page.GetValue("content"))
+            </p>
+        </div>
+    </div>
+</div>

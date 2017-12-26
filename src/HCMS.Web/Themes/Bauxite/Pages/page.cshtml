@@ -1,0 +1,51 @@
+﻿@{
+    var journals = HCMS.Dynamics.Data.DDB.GetTable("cms", "page").DRows;
+    int rid = 0;
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out rid);
+    }
+    if (journals.Any(p => p.RowID == rid) == false)
+    {
+        Response.Redirect("/404");
+    }
+
+    var journal = journals.FirstOrDefault(p => p.RowID == rid);
+
+}
+<div class="detail-page">
+
+    <header>
+        <a class="logo" href="~/">
+            <img src="~/Themes/Bauxite/Images/logo-2.png" />
+        </a>
+        <h1 class="title">
+            @journal.GetValue("title")
+        </h1>
+        <a class="nav-btn">
+            <i class="glyphicon glyphicon-th-list"></i>
+        </a>
+
+        <a class="search">
+            <i class="glyphicon glyphicon-search"></i>
+        </a>
+        <nav>
+            <a class="close-nav">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+            <ul>
+                @Html.Partial("_menuli")
+            </ul>
+        </nav>
+        <div class="clearfix"></div>
+    </header>
+    <div class="detail-content">
+        <div style="background-image:url('@journal.GetValue("image")')" cla class="detail-thumb">
+        </div>
+
+        <div class="content">
+            @Html.Raw(journal.GetValue("content").Value)
+        </div>
+    </div>
+
+</div>

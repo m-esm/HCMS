@@ -1,0 +1,43 @@
+﻿@{
+    var product = HCMS.Dynamics.Data.DDB.GetTable("products", "product").DRows.FirstOrDefault(p => p.RowID.ToString() == Request.QueryString["rid"].ToString());
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="product-page">
+                <div class="info">
+                    <h1 class="name">@product.GetValue("name") <small>@product.GetValue("category.name")</small> </h1>
+                  
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Description : </h3>
+                            @Html.Raw(product.GetValue("description"))
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Weight : </h3>
+                            @product.GetValue("weight") gr
+                            <h3>Compounds :</h3>
+                            @Html.Raw(product.GetValue("Compounds"))
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="images">
+                    @foreach (var img in product.GetGroup("image"))
+                    {
+                        <img src="@img.GetValue("imageURL")?maxheight=300" />
+
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

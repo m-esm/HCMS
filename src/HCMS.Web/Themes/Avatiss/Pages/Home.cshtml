@@ -1,0 +1,22 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+
+<div id="pageHeading">
+    <h1 data-aos="fade-right" class="page-heading">
+
+        <img data-aos-duration="1600" data-aos="fade-left" src="~/Themes/Avatiss/images/logo-3.png" />
+        vailing Life Quality
+    </h1>
+</div>
+<div id="pageContent">
+    <div class="news-page">
+
+    </div>
+</div>
+

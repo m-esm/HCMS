@@ -1,0 +1,433 @@
+﻿/*
+
+[Responsive Stylesheet]
+
+Project: NYHost - Responsive HTML5 Technology, Web Hosting and WHMCS Template
+Version: 1.0
+Author : themelooks.com
+
+*/
+@media screen and (max-width: 1199px) {
+  #domainSearch .left-content,
+  #domainSearch .right-content {
+    float: none;
+    width: auto;
+    text-align: center;
+  }
+  #domainSearch .left-content {
+    display: none;
+  }
+}
+@media screen and (max-width: 991px) {
+  #secondaryMenu .navbar-header {
+    float: none;
+  }
+  .navbar-toggle {
+    float: left;
+  }
+  #secondaryMenu .navbar-toggle,
+  #secondaryNavbar.collapsing,
+  .row-vc > div[class*=col-md] {
+    display: block;
+  }
+  #dedicatedPricing table thead,
+  #domainPricing table thead,
+  .banner-slider .owl-buttons,
+  .features-tab--nav ul li:before,
+  .secondary-menu--custom-btn,
+  .services-tab--nav ul li:before {
+    display: none;
+  }
+  #secondaryNavbar {
+    float: none !important;
+    display: none !important;
+    max-height: calc(100vh - 90px);
+    border-top: 1px solid #e9e9e9;
+    background: rgba(4, 165, 238, 0.1);
+  }
+  #secondaryNavbar ul.secondary-menu-links {
+    padding: 10px;
+  }
+  #secondaryNavbar ul.secondary-menu-links > li {
+    display: block !important;
+    float: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  #secondaryNavbar ul.secondary-menu-links > li > ul {
+    padding: 0 20px;
+    background: rgba(4, 165, 238, 0.1);
+  }
+  #secondaryNavbar ul.secondary-menu-links > li > ul li a:before {
+    content: ' - ';
+  }
+  #secondaryNavbar ul.secondary-menu-links > li a {
+    padding: 0;
+    padding-bottom: 0 !important;
+    line-height: 30px;
+    margin-bottom: 5px;
+  }
+  #secondaryNavbar[aria-expanded=true] {
+    display: block !important;
+    max-width: 300px;
+    width: 100%;
+    float: left !important;
+  }
+  .navbar-brand {
+    float: right;
+  }
+  .navbar-header {
+    display: block;
+    width: 100%;
+    float: none !important;
+  }
+  #secondaryNavbar.in {
+    display: block;
+    overflow: auto;
+  }
+  .secondary-menu-links,
+  .secondary-menu-links > li {
+    float: none;
+  }
+  .secondary-menu-links > li > a {
+    padding: 15px 0;
+  }
+  .secondary-menu-links li .dropdown-menu,
+  .secondary-menu-links li.open .dropdown-menu {
+    float: none;
+    position: static;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  #menu.nextBanner .sticky-wrapper:not(.is-sticky) #secondaryNavbar {
+    background-color: #fff;
+  }
+  #menu.nextBanner .sticky-wrapper:not(.is-sticky) .secondary-menu-links > li > a {
+    color: #333;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #pageTitle .breadcrumb {
+    margin: -11px 0 30px;
+    text-align: left;
+  }
+  .banner-item {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .banner-item:not([data-bg-video]) > .container,
+  .banner-item:not([data-bg-video]) > .container > .row,
+  .banner-item:not([data-bg-video]) > .container > .row > div {
+    height: auto;
+  }
+  .banner-item-content,
+  .banner-item-img,
+  .service-item-content + .service-item-img,
+  .service-item-img + .service-item-content {
+    margin-top: 50px;
+  }
+  .banner-item-img img {
+    margin: 0 auto;
+  }
+  #domainSearch .left-content {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .about-desc-img,
+  .pricing-table-item {
+    margin-bottom: 30px;
+  }
+  #pricing {
+    padding-bottom: 80px;
+  }
+  .pricing-table-item .pt-features {
+    text-align: right;
+  }
+  .pricing-table-item .pt-features li strong {
+    display: block;
+    float: left;
+  }
+  #blog {
+    padding-bottom: 60px;
+  }
+  .blog-page-content + .blog-page-sidebar {
+    margin-top: 80px;
+  }
+  .blog-page-sidebar + .blog-page-content {
+    margin-top: 50px;
+  }
+  #team > .container > .row > div {
+    margin-bottom: 50px;
+  }
+  #team > .container > .row > div:last-child {
+    margin-bottom: 0;
+  }
+  #footer {
+    padding-bottom: 0;
+  }
+  #dedicatedPricing,
+  #domainPricing {
+    padding-bottom: 50px;
+  }
+  #dedicatedPricing table,
+  #domainPricing table {
+    border: 0;
+  }
+  #dedicatedPricing table tr {
+    margin-bottom: 30px;
+    display: block;
+    border-bottom: 2px solid #ddd;
+  }
+  #dedicatedPricing table td,
+  #domainPricing table td {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    border-bottom: 1px dotted #ccc;
+  }
+  #dedicatedPricing table td:last-child,
+  #domainPricing table td:last-child {
+    border-bottom: 0;
+  }
+  #dedicatedPricing table td span.labelText {
+    display: block;
+    float: left;
+    margin-right: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  #dedicatedPricing table tbody tr:nth-child(even) td,
+  #domainPricing table tbody tr:nth-child(even) td {
+    background-color: #fff;
+  }
+  #domainPricing table tr {
+    margin-bottom: 30px;
+    display: block;
+    border-bottom: 2px solid #ddd;
+    background-color: #fff;
+  }
+  #domainPricing table td span.labelText {
+    display: block;
+    float: left;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .vps-pricing--tag {
+    height: auto !important;
+  }
+  .vps-pricing--tag-content {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .faq-categories {
+    margin-bottom: 50px;
+  }
+  .post-comments ul {
+    padding-left: 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .banner-item {
+    padding: 40px 0!important;
+  }
+  #promo button.close {
+    top: 5px;
+    right: 10px;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    margin-top: 0;
+  }
+  #secondaryMenu .navbar-header {
+    margin: 0;
+  }
+  .secondary-menu-links {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .secondary-menu-links li.open .dropdown-menu li a {
+    padding: 10px 15px;
+    line-height: 20px;
+  }
+  .banner-item .row {
+    display: block;
+    width: auto;
+  }
+  .banner-item .row > div,
+  .services-tab--nav ul li {
+    display: block;
+  }
+  #domainSearchForm .select-box select,
+  #domainSearchForm input[type=text].form-control {
+    margin-bottom: 15px;
+    border-radius: 30px;
+  }
+  #domainSearchForm select.form-control {
+    border-left: none;
+    border-top: 1px solid #e9e9e9;
+  }
+  #domainSearchForm button[type=submit],
+  .services-tab--nav ul li a {
+    border-radius: 30px;
+  }
+  .gallery--filter-menu ul li:first-child a,
+  .gallery--filter-menu ul li:last-child a,
+  .services-tab--nav ul li:first-child a,
+  .services-tab--nav ul li:last-child a {
+    border-radius: 30px;
+  }
+  .services-tab--item > .container {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  #copyright p.left,
+  #copyright p.right {
+    float: none;
+    text-align: center;
+  }
+  #copyright p.left {
+    margin: 0 0 20px;
+  }
+  .pricing--slider .owl-buttons,
+  .testimonial-slider .owl-buttons {
+    left: 0;
+    right: 0;
+  }
+  #domainPricing > .container {
+    padding: 0 15px;
+  }
+  ul.timeline > li {
+    margin-bottom: 0;
+    position: relative;
+    width: 100%;
+    float: left;
+    clear: left;
+  }
+  ul.timeline > li > .timeline-badge {
+    left: 28px;
+    margin-left: 0;
+    top: 16px;
+  }
+  ul.timeline > li > .timeline-panel {
+    float: right;
+    width: 100%;
+    overflow: hidden;
+  }
+  .timeline > li:nth-child(even) > .timeline-panel,
+  .timeline > li:nth-child(odd) > .timeline-panel {
+    margin: 0;
+  }
+  ul.timeline > li > .timeline-panel:before {
+    border-left-width: 0;
+    border-right-width: 15px;
+    left: -15px;
+    right: auto;
+  }
+  ul.timeline > li > .timeline-panel:after {
+    border-left-width: 0;
+    border-right-width: 14px;
+    left: -14px;
+    right: auto;
+  }
+  .timeline > li.timeline-inverted {
+    float: left;
+    clear: left;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .timeline > li.timeline-inverted > .timeline-badge {
+    left: 28px;
+  }
+  .testimonial-slider.overload .owl-controls {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .testimonial-slider.overload .owl-page {
+    width: auto;
+    height: auto;
+    margin: 0 16px;
+    padding: 0;
+    border: 0;
+  }
+  .testimonial-slider.overload .owl-page:before {
+    bottom: 0;
+  }
+  .testimonial-slider.overload .recommender-info {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .faq-content {
+    margin-top: 30px;
+  }
+  .faq-categories ul li a {
+    overflow: hidden;
+  }
+  #contact.page {
+    padding-bottom: 0;
+  }
+  .contact-form {
+    background-color: #f0f0f0;
+    border-top: 1px solid #e9e9e9;
+    margin-top: 80px;
+    padding: 80px 0;
+  }
+  #contactForm {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #contactActions > .container > .row > div {
+    margin-bottom: 60px;
+  }
+  #contactActions > .container > .row > div:last-child {
+    margin-bottom: 0;
+  }
+  .post-social-links ul {
+    text-align: left;
+  }
+  .counter > .container > .row > div {
+    margin-bottom: 70px;
+  }
+  .counter > .container > .row > div:last-child,
+  .counter > .container > .row > div:nth-last-child(2) {
+    margin-bottom: 0;
+  }
+  .gallery--filter-menu ul li {
+    display: block;
+  }
+  .gallery--filter-menu ul li a {
+    width: 100%;
+    border-radius: 30px;
+  }
+  .features-tab--content ul li {
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 480px) {
+  #services {
+    padding-bottom: 80px;
+  }
+  #services .container > .row > div {
+    display: block;
+  }
+  #subscribeForm .input-box,
+  .contact-info--item {
+    width: 100%;
+  }
+  #copyright img {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+  }
+  .counter > .container > .row > div,
+  .service-item-content ul li {
+    width: 100%;
+    float: none;
+  }
+  .counter > .container > .row > div:nth-last-child(2) {
+    margin-bottom: 70px;
+  }
+  #loginForm p.help-block a {
+    float: none !important;
+    display: block;
+  }
+}

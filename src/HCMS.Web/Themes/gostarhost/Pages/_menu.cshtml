@@ -1,0 +1,226 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Data
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+    var services = DDB.GetTable("cms", "services").DRows;
+    var serviceTypes = DDB.GetTable("cms", "serviceTypes").DRows;
+    var plans = DDB.GetTable("cms", "plans").DRows;
+
+
+}
+<div id='menu'>
+
+    <!-- Primary Menu End -->
+    <!-- Secondary Menu Start -->
+
+    <nav id="secondaryMenu" class="navbar" data-sticky="secondaryMenu">
+
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#secondaryNavbar">
+
+                    <span class="sr-only">
+                        باز کردن منو
+                    </span>
+
+                    <span class="icon-bar">
+                    </span>
+
+                    <span class="icon-bar">
+                    </span>
+
+                    <span class="icon-bar">
+                    </span>
+
+                </button>
+
+                <!-- Logo Start -->
+
+                <a class="navbar-brand" href="/">
+                    <div class="vc-parent">
+                        <div class="vc-child">
+                            <span>
+                                <i class="fa fa-server">
+                                </i>
+                                گستر
+                            </span>
+                            هاست
+                        </div>
+                    </div>
+                </a>
+                <!-- Logo End -->
+
+            </div>
+
+            <div id="secondaryNavbar" class="navbar-collapse collapse navbar-right reset-padding">
+
+                <!-- Secondary Menu Links Start -->
+
+
+                <ul id="menu-menu-1" class="secondary-menu-links default nav navbar-nav">
+
+                    <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1819" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-1819 dropdown">
+
+                        <a title="fa-home" href="~/" aria-haspopup="true">
+
+                            <i class="fa fa-fw fa-home" aria-hidden="true">
+                            </i>
+                            خانه
+
+                        </a>
+
+                    </li>
+                    @foreach (var stype in serviceTypes)
+                    {
+
+
+                        <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1693 dropdown">
+
+                            <a title="fa-server" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+                                <i class="@stype.GetValue("icon")" aria-hidden="true">
+                                </i>
+                                @stype.GetValue("name") <span class="caret">
+                                </span>
+                            </a>
+
+                            <ul role="menu" class="dropdown-menu">
+
+                                @foreach (var item in services.Where(p => p.GetValue("typeId").Value == stype.RowID.ToString()))
+                                {
+                                    <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1806" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1806">
+                                        <a title="Shared" href="/service?id=@item.RowID">
+                                            @item.GetValue("name")
+                                        </a>
+                                    </li>
+
+                                }
+
+
+
+
+                            </ul>
+
+                        </li>
+                    }
+                    <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1839" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1839">
+                        <a title="fa-at" href="/domains/">
+                            <i class="fa fa-fw fa-at" aria-hidden="true">
+                            </i>
+                            دامنه ها
+                        </a>
+                    </li>
+
+
+
+                    <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1843" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1843">
+                        <a title="fa-newspaper-o" href="/blog/">
+                            <i class="fa fa-fw fa-newspaper-o" aria-hidden="true">
+                            </i>
+                            بلاگ
+                        </a>
+                    </li>
+
+                    <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1816" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1816 dropdown">
+
+                        <a title="fa-shopping-cart" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+                            <i class="fa fa-fw fa-shopping-cart" aria-hidden="true">
+                            </i>
+                            ناحیه کاربری <span class="caret">
+                            </span>
+                        </a>
+
+                        <ul role="menu" class="dropdown-menu">
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1846">
+                                <a title="Checkout" href="http://support.gostarhost.net/clientarea.php">
+                                    صفحه اصلی
+                                </a>
+                            </li>
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1845" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1845">
+                                <a title="Cart" href="http://support.gostarhost.net/cart.php">
+                                    سبد خرید
+                                </a>
+                            </li>
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1846">
+                                <a title="Checkout" href="http://support.gostarhost.net/clientarea.php?action=invoices">
+                                    صورت حساب ها
+                                </a>
+                            </li>
+
+
+
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1817">
+                                <a title="My account" href="http://support.gostarhost.net/clientarea.php?action=details">
+                                    پروفایل من
+                                </a>
+                            </li>
+
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1817">
+                                <a title="My Domain" href="http://support.gostarhost.net/clientarea.php?action=domains">
+                                    دامنه های من
+                                </a>
+                            </li>
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1817">
+                                <a title="My Services" href="http://support.gostarhost.net/clientarea.php?action=services">
+                                    سرویس های من
+                                </a>
+                            </li>
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1817">
+                                <a title="My Tickets" href="http://support.gostarhost.net/supporttickets.php">
+                                    تیکت های پشتیبانی
+                                </a>
+                            </li>
+
+                            <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1817">
+                                <a title="My Tickets" href="http://support.gostarhost.net/submitticket.php">
+                                    تیکت جدید
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+
+                    <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1832" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1832">
+                        <a title="fa-envelope-o" href="http://support.gostarhost.net/submitticket.php">
+                            <i class="fa fa-fw fa-envelope-o" aria-hidden="true">
+                            </i>
+                            تماس
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Secondary Menu Links End -->
+
+                <div class="registration-links">
+
+                    <a href="http://support.gostarhost.net/register.php" class="login btn btn-custom-reverse" role="button">
+                        <i class="fa fa-user ">
+                        </i>
+                        ثبت نام
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Secondary Menu End -->
+
+</div>

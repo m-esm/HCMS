@@ -1,0 +1,134 @@
+﻿@{
+    Layout = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@phrases.Get("Title")</title>
+    <link href="~/Themes/Toranj/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Themes/Toranj/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Themes/Toranj/Content/camera.min.css" rel="stylesheet" />
+    <link href="~/Themes/Toranj/Content/Toranj.min.css" rel="stylesheet" />
+    @if (phrases.CurrentCulture.RTL)
+    {
+        <link href="~/Themes/Toranj/Content/Toranj-RTL.min.css" rel="stylesheet" />
+    }
+    <link href="~/Themes/Toranj/Images/favicon-32x32.png" rel="icon" type="image/png" />
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img img-responsive logo" src="~/Themes/Toranj/Images/logo.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="/@(cc)/Home">@phrases.Get("Home")</a>
+                            </li>
+                            <li>
+                                @phrases.Get("Products")
+                                <ul>
+
+                                    @foreach (var cat in HCMS.Dynamics.Data.DDB.GetTable("products", "category", phrases.CurrentCulture.ID).DRows)
+                                    {
+                                        <li>
+                                            <a href="/@(cc)/products?cat=@cat.RowID">@cat.GetValue("name")</a>
+                                        </li>
+                                    }
+
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="/@(cc)/About">@phrases.Get("About")</a>
+                            </li>
+                            <li>
+                                <a href="/@(cc)/Contact">@phrases.Get("Contact")</a>
+                            </li>
+                            <li>
+                                <a href="#">@phrases.Get("Catalog")</a>
+                            </li>
+                            <li>
+                                @if (cc == "en-us")
+                                {
+                                    <a href="@Request.Url.ToString().Replace(cc,"fa-ir")">فارســـی</a>
+                                }
+                                else
+                                {
+                                    <a href="@Request.Url.ToString().Replace(cc,"en-us")">English</a>
+
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+
+
+
+
+    <div id="content">
+        @RenderSection("slider", false)
+        @RenderBody()
+    </div>
+
+    <div class="clearfix"></div>
+    <footer>
+        <div class="container">
+            <div class="row blocks">
+                <div class="col-sm-12">
+                    <div class="block">
+                        <ul>
+                            <li>
+                                @phrases.Get("footer_tel")
+                            </li>
+                            <li>
+                                @phrases.Get("footer_address")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        &copy; Masghati Larestan Co. @DateTime.Now.Year
+                        @*<span class="pull-right">
+                                Privacy Policies | Site Map | Report
+                            </span>*@
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </footer>
+
+    <script src="~/Themes/Toranj/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Themes/Toranj/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Themes/Toranj/Scripts/tinynav.min.js"></script>
+    <script src="~/Themes/Toranj/Scripts/Toranj.min.js"></script>
+    <script src="/Scripts/dstats.js"></script>
+
+</body>
+</html>

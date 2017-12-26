@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    @{
+       
+        var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+        var cn = phrases.CurrentCulture.CultureName();
+    }
+    <title>  @ViewBag.Title | @phrases.Get("site_title")</title>
+    <link href="~/Themes/Hannan/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Themes/Hannan/Content/bootstrap-theme.css" rel="stylesheet" />
+    @if (phrases.CurrentCulture.RTL)
+    {
+        <link href="~/Themes/Hannan/Content/bootstrap-rtl.css" rel="stylesheet" />
+    }
+    <link href="~/Themes/Hannan/Content/camera.css" rel="stylesheet" />
+    <link href="~/Themes/Hannan/Content/style.css" rel="stylesheet" />
+    @if (phrases.CurrentCulture.RTL)
+    {
+        <link href="~/Themes/Hannan/Content/style-rtl.css" rel="stylesheet" />
+    }
+    <link rel="shortcut icon" type="image/x-icon" href="~/Themes/Hannan/Images/fav.ico" />
+
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="container">
+                <div class="pull-@(phrases.CurrentCulture.RTL ? "right" :"left")">
+                    <img class="logo" src="~/Themes/Hannan/Images/Hannan 85.png" />
+
+                    @if (phrases.CurrentCulture.RTL)
+                    {
+                        <img class="logo" src="~/Themes/Hannan/Images/logo.png" />
+
+                    }
+                    else
+                    {
+                        <h1 class="logo">Hanan Sanat Pouya</h1>
+                    }
+                </div>
+                <div class="pull-@(phrases.CurrentCulture.RTL ? "left" :"right")">
+                    <div class="cultures">
+                        @{
+                            string currentURL = Request.Url.ToString();
+                            if (Request.Url.ToString().ToLower().Contains("en-us") == false && Request.Url.ToString().ToLower().Contains("fa-ir") == false)
+                            {
+                                currentURL += "/" + cn;
+                            }
+                        }
+                        <a href="@currentURL.Replace(cn, "en-us")"><img src="~/Content/Flags/GB.png" />  </a>
+                        <a href="@currentURL.Replace(cn, "fa-ir")"><img src="~/Content/Flags/IR.png" />  </a>
+                    </div>
+                    <div class="contact-info">
+                        <div class="icons">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <i class="glyphicon glyphicon-phone"></i>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                        </div>
+                        <ul class="details">
+                            <li>
+                                @phrases.Get("Email") :
+                                <span class="en">
+                                    @phrases.Get("Email_value")
+                                </span>
+                            </li>
+                            <li>
+                                @phrases.Get("Tel") :
+                                <span>
+                                    @phrases.Get("Tel_Value")
+                                </span>
+                            </li>
+                            <li>
+                                @phrases.Get("Address") :
+                                <p>
+                                    @phrases.Get("Address_Value")
+                                </p>
+                            </li>
+                            <li>
+                                @phrases.Get("Get_Contact_Details") :
+                                <form id="contact-details" method="post">
+                                    <input type="text" placeholder="@phrases.Get("Mobile_Number")" />
+                                    <a class="submit" onclick="document.getElementById('contact-details').submit();">
+                                        <i class="glyphicon glyphicon-ok-circle"></i>
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="head-nav">
+                    <li>
+                        <a href="/@cn/Home">
+                            <i class="glyphicon glyphicon-home"></i>
+                            @phrases.Get("Home")
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/@cn/Products">@phrases.Get("Products")</a>
+                    </li>
+                    <li>
+                        <a href="/@cn/News">@phrases.Get("News")</a>
+                    </li>
+                    <li>
+                        <a href="/@cn/page?name=about">@phrases.Get("About")</a>
+                    </li>
+                
+                    <li>
+                        <a href="/@cn/ProductionLine">@phrases.Get("Virtual  production line arrangement")</a>
+                    </li>
+
+
+
+                    <li class="">
+                        <a href="/@cn/Login" class="login">
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            @phrases.Get("login")
+                        </a>
+                    </li>
+
+                </ul>
+             
+            </div>
+        </nav>
+    </header>
+
+    <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
+
+    <div class="clearfix"></div>
+
+    <div id="content">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-3 contact-info qr">
+                    <h1>
+                        @phrases.Get("on_other_devices")
+                    </h1>
+                    <img src="~/Themes/Hannan/Images/qr.jpg" />
+                </div>
+
+                <div class="col-sm-2 contact-info about-us">
+                    <h1>
+                        @phrases.Get("about_us")
+                    </h1>
+                    <ul>
+                        <li>
+                            <p>
+                                @phrases.Get("footer_about_us_value")
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="col-sm-3 contact-info">
+                    <h1>
+                        @phrases.Get("contact_details")
+                    </h1>
+                    <ul>
+                        <li>
+                            <i class="glyphicon glyphicon-earphone"></i>    @phrases.Get("tel") :
+                            <span class="en">
+                                @phrases.Get("tel_value")
+                            </span>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-print"></i>    @phrases.Get("fax") :
+                            <span class="en">
+                                @phrases.Get("fax_value")
+                            </span>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-map-marker"></i>    @phrases.Get("address") :
+                            <span class="addr">
+                                @phrases.Get("address_value")
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-4">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <span class="pull-right">@phrases.Get("copyright_value")</span>
+                <span class="en">
+                    &copy; hannan-sanat.com @DateTime.Now.Year | Developed by <a href="http://happyspider.org"> HappySpider.org</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Themes/Hannan/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/bootstrap.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/jquery.easing.1.3.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/camera.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/jquery.als-1.7.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/jquery.pline.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/tinynav.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="~/Themes/Hannan/Scripts/html2canvas.min.js"></script>
+    <script src="~/Themes/Hannan/Scripts/hanan.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.dstats.min.js"></script>
+  
+
+</body>
+
+
+
+</html>

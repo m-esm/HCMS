@@ -1,0 +1,70 @@
+﻿@using HCMS.Dynamics;
+@using HCMS.Dynamics.Data;
+
+@{
+    string lang = ViewContext.RouteData.Values["lang"].ToString().ToLower();
+
+    DRow contact = DDB.GetTable("content", "pages").DRows
+    .First(p => p.GetValue("language.name").ToString().ToLower() == lang.ToLower() && p.GetValue("name").ToString().Contains("contact"));
+
+    string msg = "";
+
+    if (IsPost)
+    {
+        if(string.IsNullOrWhiteSpace(Request.Form["email"].ToString()) ||
+            string.IsNullOrWhiteSpace(Request.Form["subject"].ToString()) ||
+            string.IsNullOrWhiteSpace(Request.Form["msg"].ToString()))
+        {
+            msg = GetWord("Please fill the form !");
+        }
+        else
+        {
+            var db = new DynamicDB();
+            db.Create("content", "contacts", Request.Form);
+        }
+    }
+
+
+}
+
+
+@functions{
+
+    public string GetWord(string name)
+    {
+
+        try
+        {
+            return HCMS.Dynamics.Data.DDB.GetTable("content", "Phrases").DRows.Where(p => p.GetValue("language.name").Value == ViewBag.lang).FirstOrDefault(p => p.GetValue("name").ToString().ToLower().Trim() == name.ToLower().Trim()).GetValue("value").Value;
+
+        }
+        catch
+        {
+            return name;
+        }
+    }
+}
+
+<div class="contact-page">
+    <div class="row">
+        <div class="col-sm-6">
+            <p class="contact-info">
+                <h3>   @GetWord("Contact") </h3>
+                @Html.Raw( contact.GetValue("content"))
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <form method="post" id="contact">
+                <span class="text-danger">@msg</span>
+                <input type="email" name="email" class="email" required placeholder="Your Email Address" />
+                <input type="text" name="subject" class="subject" required placeholder="Subject" />
+                <textarea class="msg" name="msg" required placeholder="Text ..."></textarea>
+
+
+                <input type="submit" class="pull-right submit" value="@GetWord("Submit")" />
+
+            </form>
+        </div>
+
+    </div>
+</div>

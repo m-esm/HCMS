@@ -1,0 +1,62 @@
+﻿@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var degrees = HCMS.Dynamics.Data.DDB.GetTable("cms", "degrees").DRows;
+    int rid = 0;
+    HCMS.Dynamics.Data.DRow degree = null;
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out rid);
+    }
+    if (degrees.Any(p => p.RowID == rid))
+    {
+
+        degree = degrees.FirstOrDefault(p => p.RowID == rid);
+
+    }
+    else
+    {
+        Response.Redirect("/404");
+    }
+
+    ViewBag.title = degree.GetValue("title").Value;
+}
+<section class="section  section-degree section-tertiary  mt-none mb-none">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+
+                <h2  class="mb-xl mt-xl font-weight-semibold text-dark title">
+                    <img src="@degree.GetValue("icon")" />       @degree.GetValue("title")
+
+
+                </h2>
+
+                <div class="content">
+
+                    @Html.Raw(degree.GetValue("content"))
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+@section scripts{
+ <script>
+
+     $(function () {
+
+         $(".section-degree .content table").attr("class","table table-bordered table-responsive table-hover");
+
+     });
+
+    </script>
+}

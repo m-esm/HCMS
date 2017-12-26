@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Themes/Bauxite/_SecondPage.cshtml";
+    var journals = HCMS.Dynamics.Data.DDB.GetTable("cms", "journal").DRows.OrderByDescending(p => p.RowID);
+
+}
+
+
+<div id="journals">
+    <div class="inner">
+    
+        <div class="journals">
+
+            <div class="row">
+                @foreach (var item in journals)
+                {
+                    <div class="journal-wrapper width-@item.GetValue("width") height-@item.GetValue("height")">
+                        <a href="/journal?rid=@item.RowID" class="journal">
+                            <div class="image" style="background-image:url('@item.GetValue("thumbnail")')"></div>
+                            <h3>@item.GetValue("title")</h3>
+                        </a>
+                    </div>
+                }
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

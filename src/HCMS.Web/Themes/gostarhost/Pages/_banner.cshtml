@@ -1,0 +1,55 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Data
+@{
+     
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+
+    var banners = DDB.GetTable("cms", "banners").DRows;
+
+
+}
+
+<div id="banner">
+    <div class="banner-slider">
+
+        @foreach (var item in banners)
+        {
+            <div class="banner-item" data-bg-src="@item.GetValue("background")?width=1200">
+                <div class="vc-parent">
+                    <div class="vc-child">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <section class="banner-item-content text-left">
+                                        <h1>
+                                            <span>
+                                                @item.GetValue("title")
+                                            </span>
+
+                                        </h1>
+                                        <p>
+                                            @item.GetValue("desc")
+                                        </p>
+                                        <a href="@item.GetValue("link")" class="btn btn-lg btn-custom-reverse">
+                                    @item.GetValue("linkText")
+                                        </a>
+                                    </section>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="banner-item-img">
+                                        <img src="@item.GetValue("image")"  class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+  
+    </div>
+</div>

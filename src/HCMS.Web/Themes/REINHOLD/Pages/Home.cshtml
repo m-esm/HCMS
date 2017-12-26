@@ -1,0 +1,79 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var last_slide = DDB.GetTable("CMS", "Slider").DRows.OrderBy(p=>p.GetValue("year").Value).LastOrDefault();
+    var sliderImages = last_slide.GetGroup("img").OrderBy(p => p.GetValue("ImageOrder").Value);
+    var last_news = DDB.GetTable("CMS", "News").DRows.LastOrDefault();
+
+}
+<div class="slidebox">
+    <div class="slidephotobox">
+        <ul class="rslides">
+            @foreach (var img in sliderImages)
+            {
+                <li><img src="@img.GetValue("image")" alt="Not Loaded"></li>
+            }
+        </ul>
+    </div>
+    <div class="slidetextbox1">
+        <p>@last_slide.GetValue("Title")</p>
+    </div>
+    <div class="slidetextbox2">
+        <p>
+            @Html.Raw(last_slide.GetValue("Text").Value.Replace(Environment.NewLine, "<br />"))
+        </p>
+    </div>
+</div>
+<div class="outerbox home-page">
+    <div class="innerbox">
+
+        <a class="blacklink" href="~/Galerie_News">
+            <div class="firstbox1">
+                <div class="photobox1">
+                    <img class="photobox1" src="@last_news.GetValue("tumb")" alt="Not Loaded" />
+                </div>
+                <div class="textbox1">
+                    <p>
+                        @Html.Raw(last_news.GetValue("Content").Value.Replace(Environment.NewLine, "<br />"))
+                    </p>
+                </div>
+                <div class="textbox2">
+                    <p>NEWS</p>
+                </div>
+            </div>
+        </a>
+        <a class="blacklink" href="/kuenstler">
+            <div class="firstbox2">
+                <div class="photobox">
+                    <img class="photobox" src="~/Themes/REINHOLD/img/reinhard.gif" alt="Not Loaded" />
+                </div>
+                <div class="textbox2">
+                    <p>Künstler</p>
+                </div>
+            </div>
+        </a>
+        <a class="blacklink" href="/aktaus">
+            <div class="firstbox3">
+                <div class="photobox">
+                    <img class="photobox" src="~/Themes/REINHOLD/img/03.jpg" alt="Not Loaded" />
+                </div>
+                <div class="textbox3">
+                    <p> ARCHIV </p>
+                </div>
+            </div>
+        </a>
+        <a class="blacklink" href="/messen">
+            <div class="firstbox4">
+                <div class="photobox">
+                    <img class="photobox" src="~/Themes/REINHOLD/img/02.jpg" alt="Not Loaded" />
+                </div>
+                <div class="textbox3">
+                    <p>MESSEN</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

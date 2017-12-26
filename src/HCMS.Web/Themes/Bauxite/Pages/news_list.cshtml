@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Themes/Bauxite/_SecondPage.cshtml";
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news").DRows.OrderByDescending(p => p.RowID).AsEnumerable();
+
+    var slider_news = news.Take(10);
+}
+
+<div class="news_list">
+
+    <div class="list">
+
+        <ul>
+            @foreach (var item in news.Skip(2).Take(20))
+            {
+                <li>
+                    <a href="/news?rid=@item.RowID">
+                        <span>
+                            @item.GetValue("title")
+                        </span>
+                    </a>
+                </li>
+            }
+
+
+
+        </ul>
+    </div>
+
+    <div class="boxes">
+
+
+        <div id="news_list_slider" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < 10; i++)
+                {
+                    <li data-target="#news_list_slider" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+
+                }
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                @{
+                    int slider_i = 0;
+                }
+                @foreach (var item in slider_news)
+                {
+                    <div class="item @(slider_i == 0 ? "active" : "")">
+                        <img src="@item.GetValue("image")" alt="">
+                        <div class="carousel-caption">
+                            @item.GetValue("title")
+                        </div>
+                    </div>
+                    slider_i++;
+                }
+
+
+
+            </div>
+
+            <a class="left carousel-control" href="#news_list_slider" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#news_list_slider" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+
+        </div>
+
+        <div class="others">
+            @foreach (var item in news.Take(2))
+            {
+                <a href="/news?rid=@item.RowID" class="box">
+                    <div class="bg" style="background-image:url('@item.GetValue("image")')"></div>
+                    <span class="title">@item.GetValue("title")</span>
+                </a>
+            }
+
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+            <div class="clearfix"></div>
+
+
+</div>

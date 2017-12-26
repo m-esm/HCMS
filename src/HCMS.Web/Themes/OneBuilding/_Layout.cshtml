@@ -1,0 +1,232 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var cn = phrases.CurrentCulture.CultureName();
+}
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>OneBuilding | Building & Architecture HTML Template</title>
+    <link href="~/Themes/OneBuilding/css/bootstrap.min.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/font-awesome.min.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/animate.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/lightbox.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/owl.carousel.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/owl.transitions.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/owl.theme.css" rel="stylesheet" defer>
+    <link href="~/Themes/OneBuilding/css/theme.css" rel="stylesheet" defer>
+    @if (cc.RTL)
+    {
+        <link href="~/Packages/bootstrap-rtl/css/bootstrap-flipped.min.css" rel="stylesheet" />
+        <link href="~/Packages/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
+        <link href="~/Themes/OneBuilding/css/rtl.css" rel="stylesheet">
+    }
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&subset=latin,latin-ext' rel=stylesheet type=text/css>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:700,800,600,500' rel=stylesheet type=text/css>
+    <!--[if lt IE 9]>
+    <script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+    <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="tm-resnavbar hidden-lg hidden-md hidden-sm">
+        <div class=tm-resnavbar-inner>
+            <form class=navbar-form role=search>
+                <div class=input-group>
+                    <input type=text class=form-control placeholder=Search name=q>
+                    <div class=input-group-btn>
+                        <button class=btn type=submit><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <ul class="nav navbar-nav uppercase">
+                <li><a href="~/@cn/home">@phrases.Get("HOME")</a></li>
+                <li><a href="~/@cn/products">@phrases.Get("PRODUCTS")</a></li>
+                <li><a href="~/@cn/news">@phrases.Get("NEWS")</a></li>
+                <li><a href="~/@cn/contact">@phrases.Get("CONTACT")</a></li>
+                <li><a href="~/@cn/about">@phrases.Get("ABOUT")</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class=tm-resnavbar-background-overlay></div>
+    <header id=tm-header class=tm-shadow>
+        <div class="tm-searchbar hidden-xs">
+            <div class=container>
+                <div class=row>
+                    <div class=col-xs-12>
+                        <form><input type=text placeholder="@phrases.Get("Press enter to search ...")"></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=tm-header-topbar>
+            <div class=container>
+                <div class=row>
+                    <div class="col-lg-6 col-md-6 col-sm-8 hidden-xs">
+                        <div class=box>
+                            <span>@phrases.Get("header_top_little_box")</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-4 hidden-xs text-right">
+                        <div class=box-list>
+                            <div class="box hidden-sm pull-right">
+                                <span class="glyphicon glyphicon-send icon" aria-hidden=true></span>
+                                <span>INFO@COMPANY.COM</span>
+                            </div>
+                            <div class="box hidden-sm pull-right">
+                                <span class="glyphicon glyphicon-earphone icon" aria-hidden=true></span>
+                                <span class=box-text>@phrases.Get("company_tel_number")</span>
+                            </div>
+                            <div class="box pull-right">
+                                <span class="glyphicon glyphicon-globe icon" aria-hidden=true></span>
+                                <a href="/en-us" data-toggle=tooltip data-placement=bottom data-original-title="English">EN</a>
+                                <a href="/fa-ir" data-toggle=tooltip data-placement=bottom data-original-title="فارسی">FA</a>
+                                <a href="/ru-ru" data-toggle=tooltip data-placement=bottom data-original-title="Russian">RU</a>
+                                <a href="/de-DE" data-toggle=tooltip data-placement=bottom data-original-title="Deutsch">DE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=tm-header-logobar>
+            <div class=container>
+                <div class=row>
+                    <div class="col-md-6 col-sm-4 col-xs-10">
+                        <a href=index.html title="OneBuilding | Building &amp; Architecture HTML Template" class=logo>
+                            <img src="~/Themes/OneBuilding/img/logo.svg" alt=OneBuilding>
+                        </a>
+                        <div class="slogan-box hidden-sm hidden-xs">
+                            <span class=slogan-box-text>@phrases.Get("company_slogan")</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-8 col-xs-2 text-right">
+                        <div class="tm-resnav-btn-wrapper pull-right hidden-lg hidden-md hidden-sm">
+                            <div class=tm-resnav-btn>
+                                <div class=tm-resnav-btn-middle></div>
+                            </div>
+                        </div>
+                        <div class="tm-search-btn pull-right hidden-xs">
+                            <span class="glyphicon glyphicon-search" aria-hidden=true></span>
+                        </div>
+                        <ul class="nav nav-pills pull-right tm-topnav hidden-xs">
+                            @*<li><a href="">Quick Link</a></li>
+                                <li><a href="">Other</a></li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tm-navbar-wrapper hidden-xs">
+            <nav class="navbar navbar-default tm-navbar hidden-xs">
+                <div class=container>
+                    <ul class="nav navbar-nav">
+                        <li><a href="~/@cn/home">@phrases.Get("HOME")</a></li>
+                        <li><a href="~/@cn/products">@phrases.Get("PRODUCTS")</a></li>
+                        <li><a href="~/@cn/news">@phrases.Get("NEWS")</a></li>
+                        <li><a href="~/@cn/contact">@phrases.Get("CONTACT")</a></li>
+                        <li><a href="~/@cn/about">@phrases.Get("ABOUT")</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main id=tm-main>
+        @RenderBody()
+
+    </main>
+    <footer id=tm-footer>
+        <div class=tm-footer-top>
+            <div class=container>
+                <div class=row>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div class=inner>
+                            <h6 class=tm-footer-heading>@phrases.Get("footer_about_title")</h6>
+                            <p>@phrases.Get("footer_about_text")</p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                        <div class=inner>
+                            <h6 class=tm-footer-heading>@phrases.Get("footer_map_title")</h6>
+                            <div id="map"></div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class=inner>
+                            <h6 class=tm-footer-heading>@phrases.Get("footer_address_title")</h6>
+                            <address>
+                                @phrases.Get("footer_address_text")
+                            </address>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=tm-footer-bottom>
+            <div class=container>
+                <div class=row>
+                    <div class="col-sm-12">
+                        <p>@phrases.Get("footer_copyright_text")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id=scrollTop></div>
+    <script src="~/Themes/OneBuilding/js/jquery.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/bootstrap.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/wow.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/owl.carousel.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/waypoints.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/jquery.counterup.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/SmoothScroll.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/lightbox.min.js" defer></script>
+    <script src="~/Themes/OneBuilding/js/main.js" defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPn7RryQPKJRNNiyXHRocipH2R19SMFEE"></script>
+
+    <script type="text/javascript">
+        // When the window has finished loading create our google map below
+        google.maps.event.addDomListener(window, 'load', init);
+
+        function init() {
+            // Basic options for a simple Google Map
+            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+            var mapOptions = {
+                // How zoomed in you want the map to start at (always required)
+                zoom: 14,
+
+                // The latitude and longitude to center the map (always required)
+                center: new google.maps.LatLng(35.760543, 51.362720), // New York
+
+                // How you would like to style the map.
+                // This is where you would paste any style found on Snazzy Maps.
+                styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#193341" }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#2c5a71" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#29768a" }, { "lightness": -37 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#406d80" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#406d80" }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#3e606f" }, { "weight": 2 }, { "gamma": 0.84 }] }, { "elementType": "labels.text.fill", "stylers": [{ "color": "#ffffff" }] }, { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "weight": 0.6 }, { "color": "#1a3541" }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#2c5a71" }] }]
+            };
+
+            // Get the HTML DOM element that will contain your map
+            // We are using a div with id="map" seen below in the <body>
+            var mapElement = document.getElementById('map');
+
+            // Create the Google Map using our element and options defined above
+            var map = new google.maps.Map(mapElement, mapOptions);
+
+            // Let's also add a marker while we're at it
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(35.760543, 51.362720),
+                map: map,
+                title: 'Snazzy!'
+            });
+        }
+    </script>
+
+
+</body>
+</html>

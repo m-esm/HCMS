@@ -1,0 +1,61 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cn = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("Signup .");
+
+}
+
+<div class="login-page">
+
+    <div class="container">
+
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <form class="login-form" method="post">
+
+
+                @Html.AntiForgeryToken()
+                <h1>
+                    <i class="fa fa-user-plus"></i>
+                  @phrases.Get("Signup .")
+                </h1>
+
+                <a class="text-danger">@Html.ValidationMessage("")</a>
+                <div class="clearfix"></div>
+                <div>
+                    <label for="email">
+                        <i class="fa fa-at"></i>
+                    @phrases.Get("Email")
+                    </label><input id="email" required name="email" placeholder="example@site.com" type="email" />
+                </div>
+
+                <div>
+                    <label for="password">
+                        @phrases.Get("Password")     
+                    </label><input id="password" required  name="password" type="password" />
+                </div>
+
+                <div>
+                    <label for="ConfirmPassword">
+                        @phrases.Get("Password Confirm")       
+                    </label><input id="ConfirmPassword" required  name="ConfirmPassword" type="password" />
+                </div>
+
+                <div class="captcha">
+
+                    <img src="/Account/Captcha/msdn" id="captcha-image" />
+                    <span class="refresh"><i class="fa fa-refresh "></i>  </span>
+                    <input id="captcha" required type="text" name="captcha" placeholder="" />
+                </div>
+
+                <div class="clearfix">
+                    <input type="submit" class="btn btn-success" value="@phrases.Get("Register")" />
+                </div>
+
+                @Html.ValidationSummary()
+
+            </form>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <title>ترمیم مو, کاشت مو, تقویت مو, روش های ترمیم مو | الگانت مو - @ViewBag.title</title>
+    @{
+        ViewBag.title = "خانه";
+        var root = "http://elegantmoo.com";
+        if (Request.Url.ToString().StartsWith("https://"))
+        {
+            root = root.Replace("http://", "https://");
+        }
+    }
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="الگانت مو ارائه دهنده خدمات کاشت , ترمیم مو و تقویت مو">
+
+    <meta charset="UTF-8">
+    <meta name="keywords" content="ترمیم مو, کاشت مو, تقویت مو, روش های ترمیم مو">
+    <meta name="author" content="Mohsen Esmaeli - http://happyspider.org">
+
+    <!-- CSS Files -->
+    <link href="@root/Packages/fullpage.js/jquery.fullPage.min.css" rel="stylesheet" />
+    <link href="@root/Packages/vegas/vegas.min.css" rel="stylesheet" />
+    <link href="@root/Packages/reset.css/reset.min.css" rel="stylesheet" />
+    <link href="@root/Packages/Magnific-Popup/magnific-popup.min.css" rel="stylesheet" />
+    <link href="@root/Themes/Elegantmoo/Css/Elegant.min.css" rel="stylesheet" />
+    <!-- // CSS Files -->
+</head>
+<body>
+
+    <h1 style="background:#fff;color:#000">
+    </h1>
+
+   @Html.Partial("home")
+
+
+    <!-- JavaScript Files -->
+    <script src="@root/Packages/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="@root/Packages/fullpage.js/vendors/jquery.easings.min.js"></script>
+    <script src="@root/Packages/fullpage.js/vendors/scrolloverflow.min.js"></script>
+    <script src="@root/Packages/fullpage.js/jquery.fullPage.min.js"></script>
+    <script src="@root/Packages/vegas/vegas.min.js"></script>
+    <script src="@root/Packages/mixitup/jquery.mixitup.min.js"></script>
+    <script src="@root/Packages/tinynav/tinynav.min.js"></script>
+    <script src="@root/Packages/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+    <script src="@root/Themes/Elegantmoo/Scripts/Elegant.min.js"></script>
+    <script src="@root/Packages/HCMS/js/DStats.min.js"></script>
+    <!--// JavaScript Files -->
+
+
+</body>
+</html>

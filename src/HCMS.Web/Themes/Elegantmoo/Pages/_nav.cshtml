@@ -1,0 +1,63 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+    Layout = null;
+    var services = DDB.GetTable("CMS", "Services").DRows;
+
+    var galleryCats = DDB.GetTable("CMS", "GalleryCategory").DRows;
+
+}
+<nav>
+    <ul>
+        <li>
+            <a href="/#Home">خانه</a>
+        </li>
+        <li>
+            <a href="/#Gallery">گالری</a>
+            <ul>
+                @foreach (var item in galleryCats)
+                {
+                    <li>
+                        <a href="/gallery/@item.RowID/لیست_نمونه_کارهای_@item.GetValue("name").Value.Replace(" ", "_")">
+
+                            @item.GetValue("name")
+                        </a>
+                    </li>
+                }
+            </ul>
+
+
+        </li>
+        <li>
+            <a href="/#Services">خدمات</a>
+            <ul>
+                @foreach (var item in services)
+                {
+                    <li>
+                        <a href="/services/@item.RowID/@item.GetValue("name").Value.Replace(" ", "_")">
+
+                            @item.GetValue("name")
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <li>
+            <a href="/#Articles">مقالات</a>
+        </li>
+
+        <li>
+            <a href="/Videos">ویدیو ها</a>
+        </li>
+
+        <li>
+            <a href="/FAQ">پرسش و پاسخ</a>
+        </li>
+        <li>
+            <a href="/#About">درباره ما</a>
+        </li>
+        <li>
+            <a href="/#Contact">تماس با ما</a>
+        </li>
+    </ul>
+</nav>
