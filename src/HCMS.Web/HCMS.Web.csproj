@@ -2162,6 +2162,28 @@
     <Content Include="Themes\hayat1\css\slider.min.css" />
     <Content Include="Themes\hayat1\css\style.css" />
     <Content Include="Themes\hayat1\css\style.min.css" />
+    <Content Include="Themes\hayat1\img\Blocks\Block A.png" />
+    <Content Include="Themes\hayat1\img\Blocks\Block B.png" />
+    <Content Include="Themes\hayat1\img\Blocks\Block C.png" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane A\A-01.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane A\A-02.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane A\A-03.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane A\A-04.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane B\B - 01.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane B\B - 02.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane B\B - 03.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane B\B - 04.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane B\B - 05.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane C\C - 01.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane C\C - 02.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane C\C - 03.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane C\C - 04.jpg" />
+    <Content Include="Themes\hayat1\img\Blocks\Plane C\C - 05.jpg" />
+    <Content Include="Themes\hayat1\img\brand\httpwww.kwc.com.png" />
+    <Content Include="Themes\hayat1\img\brand\httpwww.venusglass.net.jpg" />
+    <Content Include="Themes\hayat1\img\brand\logo httpitc.co.ir.jpg" />
+    <Content Include="Themes\hayat1\img\brand\www.kwciran.com.png" />
+    <Content Include="Themes\hayat1\img\brand\سنچوری-225x168.jpg" />
     <Content Include="Themes\hayat1\img\courses.png" />
     <Content Include="Themes\hayat1\img\defaultIcon.png" />
     <Content Include="Themes\hayat1\img\header_bg.png" />
@@ -2213,6 +2235,12 @@
     <Content Include="Themes\hayat1\img\telegram.png" />
     <Content Include="Themes\hayat1\js\hayat.js" />
     <Content Include="Themes\hayat1\js\hayat.min.js" />
+    <Content Include="Themes\hayat1\js\imageMapper.es5.js">
+      <DependentUpon>imageMapper.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\js\imageMapper.es5.min.js">
+      <DependentUpon>imageMapper.es5.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat1\js\imageMapper.js" />
     <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.css" />
     <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.extensions.min.js" />
@@ -2467,6 +2495,7 @@
     <Content Include="Themes\hayat1\node_modules\fullpage.js\vendors\scrolloverflow.min.js.map" />
     <Content Include="Themes\hayat1\Pages\Home.cshtml" />
     <Content Include="Themes\hayat1\_Layout.cshtml" />
+    <Content Include="Themes\hayat1\Pages\block.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

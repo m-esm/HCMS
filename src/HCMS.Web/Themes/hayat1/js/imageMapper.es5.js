@@ -1,4 +1,6 @@
-﻿$(document).on('mouseenter', '#coordBlockA', function () {
+﻿'use strict';
+
+$(document).on('mouseenter', '#coordBlockA', function () {
     if (!$('.map #a').hasClass('active')) {
         $('.map #a').addClass('active');
     }
@@ -19,8 +21,6 @@ $(document).on('mouseleave', '#coordBlockA', function () {
     if ($('.map #a').hasClass('active')) {
         $('.map #a').removeClass('active');
     }
-
-
 });
 
 $(document).on('mouseenter', '#coordBlockB', function () {
@@ -77,25 +77,23 @@ $(document).on('mouseleave', '#coordBlockM', function () {
     }
 });
 
-var removeBlockA = function (className) {
+var removeBlockA = function removeBlockA(className) {
     $('.' + className).removeClass('bounceInLeft animated');
     $('.' + className).addClass('bounceOutRight animated');
     setTimeout(function () {
         $('.' + className).removeClass('active');
-    }, 500)
-}
+    }, 500);
+};
 
-var addClass = function (className) {
+var addClass = function addClass(className) {
     $('.' + className).addClass('active');
     $('.' + className).removeClass('bounceOutRight animated');
 
-    if (!$('.' + className).hasClass('bounceInLeft animated'))
-        $('.' + className).addClass('bounceInLeft animated');
-}
-
+    if (!$('.' + className).hasClass('bounceInLeft animated')) $('.' + className).addClass('bounceInLeft animated');
+};
 
 $(document).on('click', '#coordBlockA', function () {
-    window.location.href = "/block?type=a"
+    window.location.href = "/block?type=a";
 });
 
 $(document).on('click', '#coordBlockB', function () {
@@ -103,10 +101,7 @@ $(document).on('click', '#coordBlockB', function () {
     removeBlockA('block-c');
     removeBlockA('block-m');
 
-    if ($('.block-b').hasClass('active'))
-        removeBlockA('block-b');
-    else
-        addClass('block-b');
+    if ($('.block-b').hasClass('active')) removeBlockA('block-b');else addClass('block-b');
 });
 
 $(document).on('click', '#coordBlockC', function () {
@@ -114,22 +109,15 @@ $(document).on('click', '#coordBlockC', function () {
     removeBlockA('block-b');
     removeBlockA('block-m');
 
-    if ($('.block-c').hasClass('active'))
-        removeBlockA('block-c');
-    else
-        addClass('block-c');
-})
+    if ($('.block-c').hasClass('active')) removeBlockA('block-c');else addClass('block-c');
+});
 
 $(document).on('click', '#coordBlockM', function () {
     removeBlockA('block-b');
     removeBlockA('block-c');
     removeBlockA('block-a');
 
-    if ($('.block-m').hasClass('active'))
-        removeBlockA('block-m');
-    else
-        addClass('block-m');
-
+    if ($('.block-m').hasClass('active')) removeBlockA('block-m');else addClass('block-m');
 });
 
 function testAnim(x) {
@@ -150,3 +138,4 @@ $(document).ready(function () {
         testAnim(anim);
     });
 });
+
