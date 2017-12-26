@@ -1,0 +1,47 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var rid = 0;
+    var services = DDB.GetTable("CMS", "Services").DRows;
+
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out rid);
+        if (rid == 0)
+        {
+            Response.Redirect("/404");
+        }
+    }
+    else
+    {
+        int.TryParse(ViewContext.RouteData.Values["rid"].ToString(), out rid);
+    }
+
+    var service = services.FirstOrDefault(p => p.RowID == rid);
+    if (service == null)
+    {
+        Response.Redirect("/404");
+    }
+
+    ViewBag.title = service.GetValue("Name").Value;
+}
+
+
+
+<div class="section service-page">
+    <div class="bg-overlay">
+        @Html.Partial("_header", "سرویس")
+
+        <div itemscope itemtype="http://schema.org/Service" class="page">
+            <meta itemprop="serviceType" content="@service.GetValue("Name")" />
+            <h2>
+                خدمات - @service.GetValue("Name")
+            </h2>
+            <div class="content">
+                @Html.Raw(service.GetValue("FullDesc"))
+            </div>
+        </div>
+    </div>
+
+</div>

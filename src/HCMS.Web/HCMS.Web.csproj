@@ -26,7 +26,7 @@
     <SccProvider>SAK</SccProvider>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <UseGlobalApplicationHostFile />
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -2158,131 +2158,6 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Content\ARXE.ASC.css" />
-    <Content Include="Themes\ARXE_ASC\Content\ARXE.ASC.min.css" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap-theme.css" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap-theme.min.css" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap.css" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap.min.css" />
-    <Content Include="Themes\ARXE_ASC\Content\jquery.mCustomScrollbar.css" />
-    <Content Include="Themes\ARXE_ASC\Content\jquery.mCustomScrollbar.min.css" />
-    <Content Include="Themes\ARXE_ASC\Content\lightslider.css" />
-    <Content Include="Themes\ARXE_ASC\Content\lightslider.min.css" />
-    <Content Include="Themes\ARXE_ASC\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Themes\ARXE_ASC\Images\Arch_Projects\Dirisha\tumb.jpg" />
-    <Content Include="Themes\ARXE_ASC\Images\Arch_Projects\Donholm\tumb.jpg" />
-    <Content Include="Themes\ARXE_ASC\Images\Arch_Projects\Limono\tumb.jpg" />
-    <Content Include="Themes\ARXE_ASC\Images\Arch_Projects\Mofid\tumb.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Arch_Projects\Roanda\tumb.jpg" />
-    <Content Include="Themes\ARXE_ASC\Images\arrows-help.gif" />
-    <Content Include="Themes\ARXE_ASC\Images\arrows-help.png" />
-    <Content Include="Themes\ARXE_ASC\Images\grid-bg.png" />
-    <Content Include="Themes\ARXE_ASC\Images\logo.jpg" />
-    <Content Include="Themes\ARXE_ASC\Images\logo.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Logo\1.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Logo\2.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Logo\3.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Logo\4.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Logo\5.png" />
-    <Content Include="Themes\ARXE_ASC\Images\Logo\6.png" />
-    <Content Include="Themes\ARXE_ASC\Images\post2.jpg" />
-    <Content Include="Themes\ARXE_ASC\preview.png" />
-    <Content Include="Themes\ARXE_ASC\Scripts\ARXE.ASC.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\ARXE.ASC.min.js">
-      <DependentUpon>ARXE.ASC.js</DependentUpon>
-    </Content>
-    <Content Include="Themes\ARXE_ASC\Scripts\bootstrap.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\bootstrap.min.js" />
-    <None Include="Themes\ARXE_ASC\Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery-1.9.1.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery.ascensor.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery.ascensor.min.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery.ba-hashchange.min.js" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery.mCustomScrollbar.concat.min.js" />
-    <Content Include="Themes\ARXE_ASC\theme.xml" />
-    <Content Include="Themes\bestmehr.ir\css\site.css" />
-    <Content Include="Themes\bestmehr.ir\css\site.less" />
-    <Content Include="Themes\bestmehr.ir\css\site.min.css" />
-    <Content Include="Themes\bestmehr.ir\fonts\bbc.ttf" />
-    <Content Include="Themes\bestmehr.ir\fonts\bbc.woff" />
-    <Content Include="Themes\bestmehr.ir\img\courses.png" />
-    <Content Include="Themes\bestmehr.ir\img\header_bg.png" />
-    <Content Include="Themes\bestmehr.ir\img\icon.png" />
-    <Content Include="Themes\bestmehr.ir\img\image.png" />
-    <Content Include="Themes\bestmehr.ir\img\instagram.png" />
-    <Content Include="Themes\bestmehr.ir\img\layer_1.svg" />
-    <Content Include="Themes\bestmehr.ir\img\layer_2.svg" />
-    <Content Include="Themes\bestmehr.ir\img\layer_3.svg" />
-    <Content Include="Themes\bestmehr.ir\img\logo.png" />
-    <Content Include="Themes\bestmehr.ir\img\page1-img1.png" />
-    <Content Include="Themes\bestmehr.ir\img\page1-img2.png" />
-    <Content Include="Themes\bestmehr.ir\img\telegram.png" />
-    <Content Include="Themes\bestmehr.ir\js\fn.js" />
-    <Content Include="Themes\bestmehr.ir\Pages\panel.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\Home.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\_nav.cshtml" />
-    <Content Include="Themes\bestmehr.ir\preview.jpg" />
-    <Content Include="Themes\bestmehr.ir\theme.xml" />
-    <Content Include="Themes\bestmehr.ir\_Layout.cshtml" />
-    <Content Include="Themes\gostarhost\css\animate.min.css" />
-    <Content Include="Themes\gostarhost\css\bootstrap.min.css" />
-    <Content Include="Themes\gostarhost\css\font-awesome.min.css" />
-    <Content Include="Themes\gostarhost\css\header-style-1.css" />
-    <Content Include="Themes\gostarhost\css\jquery-ui-custom.min.css" />
-    <None Include="Themes\gostarhost\css\lilyhost.less" />
-    <Content Include="Themes\gostarhost\css\lilyhost.css">
-      <DependentUpon>lilyhost.less</DependentUpon>
-    </Content>
-    <Content Include="Themes\gostarhost\css\lilyhost.min.css">
-      <DependentUpon>lilyhost.css</DependentUpon>
-    </Content>
-    <Content Include="Themes\gostarhost\css\magnific-popup.css" />
-    <Content Include="Themes\gostarhost\css\owl.carousel.css" />
-    <Content Include="Themes\gostarhost\css\responsive-style.css" />
-    <Content Include="Themes\gostarhost\css\styles.css" />
-    <Content Include="Themes\gostarhost\favicon.png" />
-    <Content Include="Themes\gostarhost\js\bootstrap.min.js" />
-    <Content Include="Themes\gostarhost\js\cart-fragments.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery-migrate.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery-ui-custom.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery.counterup.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery.js" />
-    <Content Include="Themes\gostarhost\js\jquery.magnific-popup.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery.sticky.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery.ui.touch-punch.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery.validate.min.js" />
-    <Content Include="Themes\gostarhost\js\jquery.waypoints.min.js" />
-    <Content Include="Themes\gostarhost\js\main.js" />
-    <Content Include="Themes\gostarhost\js\main.min.js" />
-    <Content Include="Themes\gostarhost\js\owl.carousel.min.js" />
-    <Content Include="Themes\gostarhost\Pages\blog.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Content\ARXE.ASC.css.map" />
-    <Content Include="Themes\ARXE_ASC\Content\ARXE.ASC.less" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap-theme.css.map" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap-theme.min.css.map" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap.css.map" />
-    <Content Include="Themes\ARXE_ASC\Content\bootstrap.min.css.map" />
-    <Content Include="Themes\ARXE_ASC\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Themes\ARXE_ASC\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Themes\ARXE_ASC\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Themes\ARXE_ASC\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Themes\ARXE_ASC\packages.config" />
-    <Content Include="Themes\ARXE_ASC\Pages\bootstrap.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Pages\graphic_ajax.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Pages\home.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Pages\projects_ajax.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Pages\projects_filter.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Pages\project_gallery_ajax.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Pages\staff_ajax.cshtml" />
-    <Content Include="Themes\ARXE_ASC\Scripts\ARXE.ASC.min.js.map" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Themes\ARXE_ASC\Scripts\jquery.ascensor.min.js.map" />
-    <Content Include="Themes\ARXE_ASC\_Layout.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\service.cshtml" />
-    <None Include="Themes\gostarhost\Pages\_services.cshtml" />
-    <Content Include="Themes\gostarhost\preview.jpg" />
-    <Content Include="Themes\gostarhost\theme.xml" />
     <Content Include="Themes\HappySpider\theme.xml" />
     <Content Include="Themes\happy\css\animate.min.css" />
     <Content Include="Themes\happy\css\bootstrap.min.css" />
@@ -2462,24 +2337,6 @@
     <Content Include="SharedViews\404.cshtml" />
     <Content Include="Themes\web.config" />
     <Content Include="Themes\_ViewStart.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\courses.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\_completeProfile.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\message.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\ResetPassword.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\invoice.cshtml" />
-    <Content Include="Themes\bestmehr.ir\Pages\payback.cshtml" />
-    <None Include="Themes\bestmehr.ir\Pages\pay.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\Home.cshtml" />
-    <Content Include="Themes\gostarhost\_Layout.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_banner.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_blog.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_brands.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_footer.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_menu.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_domainSearch.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_features.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_vpsPricing.cshtml" />
-    <Content Include="Themes\gostarhost\Pages\_pricing.cshtml" />
     <Content Include="Themes\HappySpider\Pages\Home.cshtml" />
     <Content Include="Themes\HappySpider\_Layout.cshtml" />
     <Content Include="Themes\happy\css\style.less" />
@@ -2529,7 +2386,6 @@
     <Folder Include="Areas\Manage\Views\Stats\" />
     <Folder Include="Content\FileManager\userfiles\" />
     <Folder Include="Scripts\vjs-lang\" />
-    <Folder Include="Themes\gostarhost\img\" />
     <Folder Include="Themes\HappySpider\fonts\" />
   </ItemGroup>
   <ItemGroup>

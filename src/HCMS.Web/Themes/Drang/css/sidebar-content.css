@@ -1,0 +1,12 @@
+/*
+Theme Name: Temptation
+Layout: Sidebar-Content
+*/
+@media screen and (min-width: 992px) {
+	#primary, #primary-home {
+		float: right;
+	}
+	#secondary, #secondary-home {
+		float: left;
+	}
+}

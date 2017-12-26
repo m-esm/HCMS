@@ -1,0 +1,47 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var rid = 0;
+    var articles = DDB.GetTable("CMS", "Articles").DRows;
+
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out rid);
+        if (rid == 0)
+        {
+            Response.Redirect("/404");
+        }
+    }
+    else
+    {
+        int.TryParse(ViewContext.RouteData.Values["rid"].ToString(), out rid);
+    }
+
+
+    var article = articles.FirstOrDefault(p => p.RowID == rid);
+    if (article == null)
+    {
+        Response.Redirect("/404");
+    }
+
+    ViewBag.title = article.GetValue("Title").Value;
+}
+
+
+
+<div class="section service-page">
+    <div class="bg-overlay">
+        @Html.Partial("_header", "سرویس")
+
+        <div class="page" itemscope itemtype="http://schema.org/Article">
+            <h2 itemprop="name">
+                مقالات - @article.GetValue("Title")
+            </h2>
+            <div itemprop="articleBody" class="content">
+                @Html.Raw(article.GetValue("content"))
+            </div>
+        </div>
+    </div>
+
+</div>

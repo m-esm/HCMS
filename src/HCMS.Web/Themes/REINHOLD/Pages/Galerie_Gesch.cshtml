@@ -1,0 +1,54 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var about_us = DDB.GetTable("CMS", "Page").DRows.FirstOrDefault(p => p.GetValue("access").Value == "about-us");
+    if (about_us == null)
+    {
+         Response.Redirect("404");
+    }
+}
+
+<div class="gtitle-box">
+    <div class="gtitle">
+        <ul>
+            <li>
+                <a href="~/Galerie_News">Galerie News</a>
+            </li>
+            <li>
+                <a class="active" href="~/Galerie_Gesch">Galerie Geschichte</a>
+            </li>
+            <li>
+                <a href="">Kunst erleben</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="outerbox">
+    <div class="innerbox">
+        <div class="about-text-box">
+            <div class="Galery-textbox2">
+                <p>@about_us.GetValue("title")</p>
+            </div>
+            <div class="about-text">
+                <p>
+                    @Html.Raw(about_us.GetValue("content").Value.Replace(Environment.NewLine, "<br />"))
+
+
+                </p>
+            </div>
+        </div>
+        <div class="about-photos-box">
+            @foreach (var img in about_us.GetGroup("img").OrderBy(p => p.GetValue("imageOrder").Value))
+            {
+                <img class="about-photos" src="@img.GetValue("image")">
+            }
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+

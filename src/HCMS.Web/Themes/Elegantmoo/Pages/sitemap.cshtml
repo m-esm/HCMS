@@ -1,0 +1,76 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+    Layout = null;
+    Response.ClearContent();
+    Response.ClearHeaders();
+    Response.ContentType = "text/xml";
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var pages = DDB.GetTable("CMS", "Pages").DRows;
+    var services = DDB.GetTable("CMS", "Services").DRows;
+    var gallery = DDB.GetTable("CMS", "Gallery").DRows;
+    var galleryCats = DDB.GetTable("CMS", "GalleryCategory").DRows;
+    var articles = DDB.GetTable("CMS", "articles").DRows;
+    HCMS.Business.GenericRepository<HCMS.Dynamics.Forms.Models.FormFieldValue> db = new HCMS.Business.GenericRepository<HCMS.Dynamics.Forms.Models.FormFieldValue>();
+
+}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url>
+        <loc>http://elegantmoo.com/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.00</priority>
+    </url>
+
+    <url>
+        <loc>http://elegantmoo.com/FAQ</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.00</priority>
+    </url>
+
+    <url>
+        <loc>http://elegantmoo.com/Videos</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.00</priority>
+    </url>
+
+
+    @foreach (var art in articles)
+    {
+        <url>
+            <loc>http://elegantmoo.com/Articles/@art.RowID/@art.GetValue("title").Value.Trim().Replace(" ", "_")</loc>
+            <changefreq>monthly</changefreq>
+            <priority>1.00</priority>
+            <lastmod>
+                @db.Find(art.RowID).ChangeDate.ToString("yyyy-MM-dd")
+            </lastmod>
+        </url>
+    }
+
+    @foreach (var cat in galleryCats)
+    {
+        <url>
+            <loc>http://elegantmoo.com/gallery/@cat.RowID/لیست_نمونه_کارهای_@cat.GetValue("name").Value.Trim().Replace(" ", "_")</loc>
+            <changefreq>monthly</changefreq>
+            <priority>1.00</priority>
+            <lastmod>
+                @db.Find(cat.RowID).ChangeDate.ToString("yyyy-MM-dd")
+            </lastmod>
+        </url>
+    }
+
+    @foreach (var item in services)
+    {
+
+        <url>
+            <loc>http://elegantmoo.com/services/@item.RowID/@item.GetValue("name").Value.Trim().Replace(" ", "_")</loc>
+            <changefreq>monthly</changefreq>
+            <priority>1.00</priority>
+            <lastmod>
+                @db.Find(item.RowID).ChangeDate.ToString("yyyy-MM-dd")
+            </lastmod>
+        </url>
+
+    }
+
+</urlset>

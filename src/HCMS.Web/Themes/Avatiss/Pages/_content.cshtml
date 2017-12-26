@@ -1,0 +1,15 @@
+﻿@model string
+
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    string result = Model;
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents", cc.ID).DRows;
+
+    if (contents.Any(p => p.GetValue("accessName").Value.Trim().ToLower() == Model.Trim().ToLower()))
+    {
+        result = contents.FirstOrDefault(p => p.GetValue("accessName").Value == Model.Trim().ToLower()).GetValue("content").Value;
+    }
+}
+
+@Html.Raw(result)

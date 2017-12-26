@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Name>happy</Name>
+  <Developer>Mohsen Esmaeli</Developer>
+  <DeveloperLink>http://happyspider.org/</DeveloperLink>
+  <Version>1.0</Version>
+  <ImageURL>/preview.jpg</ImageURL>
+  <Description></Description>
+  <Caching>
+ 
+  </Caching>
+</root>

@@ -1,0 +1,93 @@
+﻿@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using Microsoft.AspNet.Identity
+@using System.Collections.Specialized
+@{
+
+
+
+    var cuserId = User.Identity.GetUserId();
+    var messages = DDB.GetTable("cms", "messages").DRows.Where(p => p.GetValue("customer").Value == User.Identity.GetUserId()).OrderByDescending(p => p.RowID);
+    var mid = 0;
+
+    if (Request.QueryString["id"] != null) {
+
+        int.TryParse(Request.QueryString["id"].ToString(), out mid);
+    }
+
+    var item = messages.FirstOrDefault(p => p.RowID == mid);
+
+    if (item == null)
+    {
+
+
+        Response.StatusCode = 404;
+        Response.End();
+    }
+   
+        item.changeValue("status", "خوانده شده", cuserId);
+}
+
+<div class="container">
+    <div class="signout">
+        <a class="btn btn-sm btn-info" href="/panel">
+            <i class="glyphicon glyphicon-menu-right"></i>
+            <span>صفحه قبل</span>
+
+        </a>
+        <a class="btn btn-sm pull-left" href="/manage/Auth/logoff">
+            <i class="glyphicon glyphicon-log-out"></i>
+            <span>برای خروج کلیک کنید .</span>
+
+        </a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        شماره پیام
+                    </th>
+
+                    <th>موضوع</th>
+                    <th>تاریخ ارسال</th>
+                    <th>وضعیت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>
+                        @item.RowID
+                    </td>
+
+                    <td>
+                        @item.GetValue("subject")
+
+                    </td>
+
+                    <td>
+                        @(m2s.m2sMMWithHours(item.getChangeDate()))
+                    </td>
+
+                    <td>
+                        @(string.IsNullOrWhiteSpace(item.GetValue("status").Value) ? "خوانده نشده" : item.GetValue("status").Value)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="4">
+
+                        @Html.Raw(item.GetValue("content").Value)
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

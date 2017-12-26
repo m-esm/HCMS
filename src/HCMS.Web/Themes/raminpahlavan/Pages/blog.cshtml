@@ -1,0 +1,239 @@
+﻿@using HCMS.Dynamics.Data
+@using MoreLinq
+@using HCMS.Dynamics.Tools
+
+@{
+
+
+
+
+
+
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var modelList = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog", cc.ID).DRows.OrderByDescending(p=>p.RowID).AsEnumerable();
+    var orginalModelList = modelList.AsEnumerable();
+    var porjectUrl = ViewContext.RouteData.Values["url"];
+    DRow foundModel = null;
+
+    int cid = 0;
+
+    if (Request.QueryString["cid"] != null)
+    {
+        int.TryParse(Request.QueryString["cid"].ToString(), out cid);
+    }
+
+    if (Request.QueryString["tag"] != null)
+    {
+        var tag = Request.QueryString["tag"].ToString().Trim();
+        modelList = modelList.Where(p => p.GetValue("tags").Value.Contains(tag));
+    }
+
+
+    if (cid != 0)
+    {
+        modelList = modelList.Where(p => p.GetValue("categoryId").Value == cid.ToString());
+    }
+
+    if (porjectUrl != null)
+    {
+        if (modelList.Any(p => p.GetValue("url").Value == porjectUrl.ToString()))
+        {
+            foundModel = modelList.FirstOrDefault(p => p.GetValue("url").Value == porjectUrl.ToString());
+        }
+        else
+        {
+            Response.Redirect("/404");
+        }
+
+    }
+
+    var shamsiMonths = ("فروردین_اردیبهشت_خرداد_تیر_مرداد_شهریور_مهر_آبان_آذر_دی_بهمن_اسفند").Split('_').ToArray();
+
+
+    var archive = shamsiMonths.Select(p => new
+    {
+        month = p,
+        count = orginalModelList.Count(d => m2s.miladi2shamsiObject(DateTime.Parse(d.GetValue("date").Value)).month == Array.IndexOf(shamsiMonths, p) + 1)
+    });
+
+
+}
+
+
+
+<div class="blog">
+
+    @if (foundModel != null)
+    {
+
+        <div class="model">
+
+            <div class="post-side">
+                <div class="box related-posts">
+                    <h2>
+                        مطالب مرتبط
+                    </h2>
+
+                    <ul>
+                        @foreach (var item in orginalModelList.Where(p => p.RowID != foundModel.RowID))
+                        {
+
+                            <li>
+                                <a href="">
+                                    <img src="@item.GetValue("thumb")" />
+                                    <span>
+                                        @item.GetValue("title").Value.ToPersianNumber()
+                                    </span>
+                                </a>
+                            </li>
+                        }
+
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="content">
+
+                <div class="info">
+                    <h1>
+                        <strong> @foundModel.GetValue("title").Value.ToPersianNumber() </strong>
+                    </h1>
+                    <div class="content-inner">
+                        @Html.Raw(foundModel.GetValue("content").Value)
+                    </div>
+
+                    <div style="margin-top:20px">
+                        @Html.Partial("_comment")
+                    </div>
+
+                    <div style="margin-top:0!important">
+                        @Html.Partial("_register")
+                    </div>
+
+
+                </div>
+
+                
+               
+
+            </div>
+            <div class="clear">
+
+            </div>
+
+
+          
+
+
+        </div>
+        <aside class="side">
+            <div class="box tags">
+                <h2>
+                    <i class="fa fa-tags"></i>    برچسب ها
+                </h2>
+                <ul class="categories">
+
+
+
+                    @{
+                        var tags = orginalModelList.SelectMany(p => p.GetValue("tags").Value.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries)).DistinctBy(p => p);
+                    }
+
+
+                    @foreach (var tag in tags)
+                    {
+                        <li>
+                            <a href="/blog?tag=@tag"> @tag.Replace("_", " ").ToPersianNumber() </a>
+                        </li>
+                    }
+
+
+
+                </ul>
+
+            </div>
+
+            </aside>
+
+            }
+            else
+            {
+            <div class="list">
+                @foreach (var item in modelList)
+                {
+
+                    <div class="post">
+
+                        <a class="thumb" href="/blog/@item.GetValue("url")" style="background-image:url('@item.GetValue("thumb")')"></a>
+                        <div class="info">
+                            <a href="/blog/@item.GetValue("url")">
+                                <h2>
+                                    <strong>
+                                        @item.GetValue("title").Value.ToPersianNumber()
+                                    </strong>
+                                </h2>
+                            </a>
+                            <div class="content">
+                                @Html.Raw(item.GetValue("content").Value.ToPersianNumber())
+                            </div>
+                            <div class="buttons">
+                                <a href="/blog/@item.GetValue("url")" class="more">ادامه مطلب</a>
+                            </div>
+
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                }
+
+            </div>
+            <aside class="side">
+
+                <div class="box archive">
+
+
+
+                    <h2>
+                        آرشیو
+                    </h2>
+
+                    <ul>
+
+
+                        <li>
+                            <label>
+                                @("1396".ToPersianNumber())
+                            </label>
+
+
+                            <ul>
+                                @foreach (var item in archive)
+                                {
+                                    <li ng-repeat="month in  getArchiveMonths(year)" ng-click="setYearMonth(year+'_'+month)">
+                                        @item.month (@item.count.ToPersianNumber())
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+
+            </aside>
+
+            }
+
+
+
+
+
+            <div class="clear"></div>
+
+</div>

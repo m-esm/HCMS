@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+
+
+
+
+    object al_price = Cache["bauxit_al_price"];
+    
+    int price = 0;
+
+    if (al_price == null)
+    {
+        price = getPrice();
+        var alPriceCache = new KeyValuePair<DateTime, int>
+      (DateTime.Now, getPrice());
+        Cache.Add("bauxit_al_price", alPriceCache, null, DateTime.Now.AddHours(6), System.Web.Caching.Cache.NoSlidingExpiration, System.Web.Caching.CacheItemPriority.NotRemovable, null);
+
+    }
+    else
+    {
+        var lastalPriceCache = (KeyValuePair<DateTime, int>)al_price;
+        price = lastalPriceCache.Value;
+    }
+
+
+
+
+}
+@functions {
+    public int getPrice()
+    {
+        WebClient wc = new WebClient();
+        var jsonStr = wc.DownloadString("https://www.quandl.com/api/v3/datasets/LME/PR_AL.json?api_key=49xWHNn_ZpfMbqw3-syY");
+        dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonStr);
+        List<dynamic> datas = new List<dynamic>(obj.dataset.data);
+        int alPrice = datas.First()[1];
+        wc.Dispose();
+        return alPrice;
+    }
+}
+
+@price

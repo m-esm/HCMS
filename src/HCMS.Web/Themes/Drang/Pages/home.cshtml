@@ -1,0 +1,53 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var slides = DDB.GetTable("CMS", "slider").DRows;
+    var cats = DDB.GetTable("CMS", "category").DRows;
+
+}
+
+<div class="slider-wrapper">
+    <ul id="slider">
+        @foreach (var item in slides.OrderBy(p => p.GetValue("order").Value))
+        {
+            <li>
+                <a href='' title='Responsive Wordpress Theme'><img src='@item.GetValue("picture")'></a>
+            </li>
+        }
+
+
+    </ul>
+</div>
+
+
+
+
+<div class="container">
+    <div id="content" class="site-content row">
+
+        <div class="cats">
+
+            @foreach (var item in cats)
+            {
+                <div class="col-md-4">
+
+                    <a style="background-image:url('@item.GetValue("picture")')" href='#'>
+                        <span>
+                            @item.GetValue("name")
+                        </span>
+                    </a>
+
+                </div>
+            }
+
+
+
+        </div>
+
+    </div>
+
+
+</div><!-- #content -->

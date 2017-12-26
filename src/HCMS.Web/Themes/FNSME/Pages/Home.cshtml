@@ -1,0 +1,58 @@
+@using HCMS.Dynamics.Data
+@{
+    string lang = ViewContext.RouteData.Values["lang"].ToString().ToLower();
+    var lastNews = DDB.GetTable("content", "news").DRows
+        .Where(p => p.GetValue("language.name").ToString().ToLower() == lang.ToLower())
+        .LastOrDefault();
+}
+@functions{
+
+    public string GetWord(string name)
+    {
+
+        try
+        {
+            return HCMS.Dynamics.Data.DDB.GetTable("content", "Phrases").DRows.Where(p => p.GetValue("language.name").Value == ViewBag.lang).FirstOrDefault(p => p.GetValue("name").ToString().ToLower().Trim() == name.ToLower().Trim()).GetValue("value").Value;
+
+        }
+        catch
+        {
+            return name;
+        }
+    }
+}
+@section slider{
+    <div class="camera_wrap camera_magenta_skin" id="slider">
+        @foreach (var item in DDB.GetTable("content", "slider").DRows.OrderBy(p => int.Parse(p.GetValue("pictureSortID").ToString())))
+        {
+            <div data-src="@item.GetValue("pictureURL")">
+            </div>
+        }
+    </div>
+}
+@if (lastNews != null)
+{
+    <div class="news">
+        <div class="row">
+            <h2 class="col-xs-12">@GetWord("News")</h2>
+            <div class="col-xs-12">
+                <div class="box">
+                    <h3>
+                        @lastNews.GetValue("subject")
+                    </h3>
+                    <div class="img">
+                        <img src="@lastNews.GetValue("imageURL")" />
+                    </div>
+                    <div class="content">
+                        @Html.Raw(lastNews.GetValue("content"))
+                    </div>
+                    <a href="/@lang/News?rid=@lastNews.RowID" class="more">
+                        @GetWord("Continue ...")
+                    </a>
+        
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

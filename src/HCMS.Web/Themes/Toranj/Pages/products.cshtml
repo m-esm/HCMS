@@ -1,0 +1,85 @@
+﻿@{
+    
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    
+    int cat = -1;
+    if (Request.QueryString["cat"] != null)
+    {
+        int.TryParse(Request.QueryString["cat"].ToString(), out cat);
+    }
+
+    var products = HCMS.Dynamics.Data.DDB.GetTable("products", "product", phrases.CurrentCulture.ID).DRows;
+    var catName= HCMS.Dynamics.Data.DDB.GetTable("products", "category", phrases.CurrentCulture.ID).DRows.First(p=>p.RowID == cat).GetValue("name").Value.ToString();
+    
+    if (cat != -1)
+    {
+        products = products.Where(p => p.GetValue("categoryID").Value == cat.ToString());
+    }
+
+}
+<div class="products-page">
+
+    <div class="container">
+
+        <div class="row">
+            <h1>
+                @if (phrases.CurrentCulture.RTL)
+                {
+                    <span>@phrases.Get("Products") @catName</span>
+                }
+                else
+                {
+                    <span>@catName @phrases.Get("Products") </span>
+                }
+
+            </h1>
+        </div>
+    </div>
+
+    <ul class="products-list">
+        @foreach (var product in products)
+        {
+            <li>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info">
+                                <h1 class="name">@product.GetValue("name") </h1>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3> @phrases.Get("Description")  </h3>
+                                        @Html.Raw(product.GetValue("description"))
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>@phrases.Get("Weight")  : </h3>
+                                        @product.GetValue("weight") @phrases.Get("gr")
+                                        <h3>@phrases.Get("Compounds")  :</h3>
+                                        @Html.Raw(product.GetValue("Compounds"))
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="images">
+                                @foreach (var img in product.GetGroup("image"))
+                                {
+                                    <img src="@img.GetValue("imageURL")" />
+
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </li>
+        }
+    </ul>
+
+
+</div>

@@ -1,0 +1,119 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("contents", "ProductCategories", phrases.CurrentCulture.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("contents", "products", phrases.CurrentCulture.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("contents", "news", phrases.CurrentCulture.ID).DRows;
+    var slider = HCMS.Dynamics.Data.DDB.GetTable("contents", "slider").DRows;
+    var cn = phrases.CurrentCulture.CultureName();
+    ViewBag.Title = phrases.Get("Home");
+}
+
+<div class="camera_wrap camera_magenta_skin" id="slider">
+    @foreach (var item in slider)
+    {
+        <div data-src="@item.GetValue("picture")">
+        </div>
+    }
+ 
+</div>
+<div class="clearfix"></div>
+
+<div id="item-slider" class="home-products-slider">
+    <div class="container">
+
+        <div class="next">
+            <i class="glyphicon glyphicon-menu-right"></i>
+        </div>
+        <div class="prev">
+            <i class="glyphicon glyphicon-menu-left"></i>
+        </div>
+
+        <div class="item-slider">
+
+            <ul data-dir="@(phrases.CurrentCulture.RTL ? "right":"left")">
+
+                @foreach (var product in products)
+                {
+                    <li>
+                        <a href="/@cn/product?rid=@product.RowID">
+                            <img src="@product.GetValue("pic")" /><span>@product.GetValue("name")</span>
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="home-products-categories">
+    @Html.Partial("_products")
+</div>
+
+<div class="home-news">
+    <div class="container">
+        <div class="row">
+            <h1 class="col-xs-12">@phrases.Get("last_news")</h1>
+            <div class="col-sm-6">
+                <div class="top-news">
+                    @{
+                        var topnews = news.Where(p => string.IsNullOrWhiteSpace(p.GetValue("pic").Value.ToString()) == false).OrderByDescending(p => p.RowID).First();
+                    }
+                    <img src="@topnews.GetValue("pic")" />
+                    <h5>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        @topnews.GetValue("subject")
+                    </h5>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+
+                <ul class="news-list">
+                    @{
+                        var newsList = news.Where(p => p.RowID != topnews.RowID).OrderByDescending(p => p.RowID).Take(5);
+                    }
+                    @foreach (var n in newsList)
+                    {
+                        <li>
+                            <a href="#">
+                                @n.GetValue("subject")
+                                <small>@n.GetValue("date")</small>
+                            </a>
+                        </li>
+                    }
+                    @if (news.Count() > 6)
+                    {
+                        <li>
+                            <a class="archive">
+                                <i class="glyphicon glyphicon-menu-left"></i>
+
+                                @phrases.Get("News_Archive")
+                                <i class="glyphicon glyphicon-menu-right"></i>
+
+                            </a>
+                        </li>
+                    }
+
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="customers-logo">
+    <img src="~/Themes/Hannan/Images/customer_logos/ashimashi.png" />
+    <img src="~/Themes/Hannan/Images/customer_logos/behnoosh.png" />
+    <img src="~/Themes/Hannan/Images/customer_logos/bijan.png" />
+    <img src="~/Themes/Hannan/Images/customer_logos/delpazir.png" />
+    <img src="~/Themes/Hannan/Images/customer_logos/mahram.jpg" />
+    <img src="~/Themes/Hannan/Images/customer_logos/pakdis.jpg" />
+    <img src="~/Themes/Hannan/Images/customer_logos/shana.png" />
+</div>

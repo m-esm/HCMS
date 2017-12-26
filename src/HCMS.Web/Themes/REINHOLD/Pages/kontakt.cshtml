@@ -1,0 +1,58 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+    string subject = "";
+    if (Request.QueryString["subject"] != null)
+    {
+        subject = Request.QueryString["subject"];
+    }
+
+    var contact = DDB.GetTable("CMS", "Page").DRows.FirstOrDefault(p => p.GetValue("access").Value == "contact");
+    if (contact == null)
+    {
+        Response.Redirect("404");
+    }
+
+
+}
+<div class="contact-info">
+    <p class="info">
+        @Html.Raw(contact.GetValue("content").Value.Replace(Environment.NewLine, "<br />"))
+    </p>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1322.0996158105982!2d9.2154424!3d48.4910715!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x962a4cc7d5cb03f9!2sGalerie+Reinhold+Maas!5e0!3m2!1sen!2sde!4v1473613653412"
+              frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<form method="post" class="contact">
+
+    <div class="input-field">
+        <label>Name</label>
+        <input placeholder="Your name ..." type="text" />
+    </div>
+
+    <div class="input-field">
+        <label>Email</label>
+        <input placeholder="Your Email ..." type="text" />
+    </div>
+
+
+    <div class="input-field">
+        <label>Betreff</label>
+        <input placeholder="Betreff ..." value="@subject" type="text" />
+    </div>
+
+    <div class="input-field">
+        <label>Nachricht</label>
+        <textarea placeholder="Nachricht ..." type="text"></textarea>
+    </div>
+
+    <div class="input-field submit-field">
+        <input type="submit" value="Abschicken" />
+    </div>
+
+    <div class="clearfix"></div>
+
+
+</form>

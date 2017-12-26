@@ -1,0 +1,15 @@
+{
+  "name": "moment-jalaali",
+  "homepage": "https://github.com/behrang/moment-jalaali",
+  "version": "0.7.0",
+  "_release": "0.7.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.0",
+    "commit": "9acc34add93d1c25b427d20d9ef5ecd574a954ed"
+  },
+  "_source": "https://github.com/behrang/moment-jalaali.git",
+  "_target": "^0.7.0",
+  "_originalSource": "moment-jalaali",
+  "_direct": true
+}

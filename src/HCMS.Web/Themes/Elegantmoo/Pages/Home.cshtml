@@ -1,0 +1,154 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var pages = DDB.GetTable("CMS", "Pages").DRows;
+    var services = DDB.GetTable("CMS", "Services").DRows;
+    var gallery = DDB.GetTable("CMS", "Gallery").DRows;
+    var galleryCats = DDB.GetTable("CMS", "GalleryCategory").DRows;
+    var articles = DDB.GetTable("CMS", "articles").DRows;
+}
+
+<div id="fullpage">
+    <div class="section first">
+        @Html.Partial("_logo","first")
+        @Html.Partial("_nav")
+       
+    </div>
+    <div class="section gallery">
+
+        @Html.Partial("_header", "گالــری")
+
+
+        <div class="gallery-items">
+            @foreach (var cat in galleryCats)
+            {
+                int i = 0;
+                <div class="category">
+                    <a href="/gallery/@cat.RowID/لیست_نمونه_کارهای_@cat.GetValue("name").Value.Replace(" ", "_")" class="inner">
+                        <h1>
+                            @cat.GetValue("name")
+                        </h1>
+                        @foreach (var img in gallery.Where(p => p.GetValue("CategoryId").Value == cat.RowID.ToString() && p.GetValue("OrderId").Value == "0").Take(1))
+                        {
+                            <img alt="نمونه کار  @cat.GetValue("name")" src="@img.GetValue("image")?width=250" />
+                        }
+                    </a>
+                </div>
+
+            }
+
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="section services">
+        <div class="bg-overlay">
+            @Html.Partial("_header", "خدمات")
+
+
+            <div class="service-boxes">
+
+                @foreach (var item in services)
+                {
+                    <div class="box">
+                        <h1>
+                            @item.GetValue("Name")
+                        </h1>
+                        <p>
+                            @item.GetValue("ShortDesc")
+                        </p>
+                        <a href="/services/@item.RowID/@item.GetValue("name").Value.Replace(" ", "_")" class="more">بیشتر بدانید ...</a>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section articles">
+
+        @Html.Partial("_header", "مقالات")
+        <h2>
+            لیست مقالات
+        </h2>
+        @foreach (var art in articles)
+        {
+            <div class="box">
+                <div class="inner">
+                    <a href="/Articles/@art.RowID/@art.GetValue("title").Value.Replace(" ","_")">
+                        <h4>
+                            @art.GetValue("title")
+                        </h4>
+                    </a>
+                </div>
+
+            </div>
+        }
+
+
+
+    </div>
+
+
+    <div class="section about">
+        <div class="bg-overlay">
+            @Html.Partial("_header", "ذرباره ما")
+            @{
+                var about = pages.FirstOrDefault(p => p.GetValue("access").Value == "about");
+            }
+            <div class="page">
+                <div class="inner">
+                    <h1>درباره ما</h1>
+                    <p>
+                        @Html.Raw(about.GetValue("content").Value.Replace(Environment.NewLine, "<br />"))
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+
+    <div class="section contact">
+        <div class="bg-overlay">
+            @Html.Partial("_header", "تماس با ما")
+            <div class="contact-box">
+
+                <div class="info">
+                    <div class="inner">
+                        <h4>
+                            آدرس :
+                        </h4>
+                        <p>
+                            بلوار کشاورز ابتدای خیابان 16  اذر پلاک74 طبقه چهارم واحد 8
+                        </p>
+
+                        <h4>
+                            تلفن های تماس :
+                        </h4>
+
+                        <p>
+                            تلفن تماس: 02188962259<br />
+                            تلفن همراه: 09123248155<br />
+                            فکس: 02188971403<br />
+                            ایمیل: info@elegantmoo.com
+                            <br />
+                            نام مدیریت موسسه : لطفی
+                        </p>
+                    </div>
+                </div>
+
+             
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

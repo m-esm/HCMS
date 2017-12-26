@@ -1,0 +1,129 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var cn = phrases.CurrentCulture.CultureName();
+}
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>AVATISS Pharmed</title>
+    <link href="~/Themes/Avatiss/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Themes/Avatiss/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Packages/reset.css/reset.css" rel="stylesheet" />
+    <link href="~/Packages/fullpage.js/jquery.fullPage.css" rel="stylesheet" />
+
+    <link href="~/Themes/Avatiss/css/style.min.css?v=4" rel="stylesheet">
+    <link rel="shortcut icon" href="~/Themes/Avatiss/images/logo-1.png" type="image/png" />
+    <link href="~/Themes/Avatiss/css/aos.css" rel="stylesheet" />
+    <meta property="og:site_name" content="AVATISS Pharmed">
+    <meta property="og:title" content="Availing life quality" />
+
+</head>
+<body>
+
+    <div id="loader">
+        <img src="~/Themes/Avatiss/images/logo.png" />
+    </div>
+
+    <div id="wrapper">
+
+
+        <div class="section heading">
+            <header data-aos="fade-down">
+                <div class="logo">
+                    <a href="/"> <img src="~/Themes/Avatiss/images/logo.png" /></a>
+                </div>
+                <nav>
+                    <ul>
+                        @*<li><a href="/Home">Home</a></li>*@
+                        <li><a href="/About">About</a></li>
+                        <li><a href="/News">News</a></li>
+                        <li><a href="/Products">Products</a></li>
+                        <li><a href="/Partners">Partners</a></li>
+                        <li><a href="/Career">Career</a></li>
+                        <li><a href="/Contact">Contact</a></li>
+                        <li><a href="/Login">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="clearfix"></div>
+            </header>
+
+            <div id="video">
+            </div>
+
+            <div id="pageHeading">
+
+            </div>
+
+            <a href="#pageContent" id="scroll-down">
+                @*<span>Scroll</span>*@
+                <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+
+            </a>
+        </div>
+        <div class="section" id="contentSection">
+
+            <div id="pageContent">
+
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <footer>
+            <div class="container">
+
+                <ul class="socials">
+                    <li>
+                        Follow us
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="copyright">
+                    COPYRIGHT &copy; @DateTime.Now.Year AVATISS PHARMED
+                </div>
+
+            </div>
+        </footer>
+    </div>
+
+
+
+    <script src="~/Themes/Avatiss/js/jquery.min.js"></script>
+    <script src="~/Themes/Avatiss/js/jquery.history.js"></script>
+    <script src="~/Themes/Avatiss/js/bootstrap.min.js"></script>
+    @*<script src="~/Themes/Avatiss/js/jquery.vide.min.js"></script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPn7RryQPKJRNNiyXHRocipH2R19SMFEE"></script>
+    <script src="~/Themes/Avatiss/js/aos.js"></script>
+    <script src="~/Themes/Avatiss/js/main.js?v=4"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+    var reports = DDB.GetTable("CMS", "Reports").DRows;
+}
+
+<div class="outerbox">
+    <div class="innerbox">
+        @foreach (var item in reports)
+        {
+            <div class="aktausslidebox">
+                <div class="slidephotobox2">
+                    <ul class="rslides">
+                        <li><img src="@item.GetValue("image")" alt="Not Loaded"></li>
+                    </ul>
+                </div>
+                <div class="aktaustextbox-parent">
+                    <div class="aktaustextbox1">
+                        <p>@item.GetValue("title")</p>
+                    </div>
+                    <div class="aktaustextbox2">
+                        <p>@item.GetValue("date")</p>
+                    </div>
+                    <div class="aktaustextbox3">
+                        <p>
+                            @Html.Raw(item.GetValue("desc").Value.Replace(Environment.NewLine, "<br />"))
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

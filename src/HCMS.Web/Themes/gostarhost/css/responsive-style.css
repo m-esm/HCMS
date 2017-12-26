@@ -1,0 +1,525 @@
+/*
+
+[Responsive Stylesheet]
+
+Project: lilyHost - Responsive Hosting WordPress Theme
+Version: 1.0.0
+Author : themelooks.com
+
+[Table of contents]
+
+X. MEDIA QUERIES
+	- X-1 LARGE DEVICES, WIDE SCREENS
+	- X-2 MEDIUM DEVICES, DESKTOPS
+	- X-3 SMALL DEVICES, TABLETS
+	- X-4 SMALL DEVICES, SMARTPHONES
+	- X-5 CUSTOM, IPHONE RETINA
+
+*/
+
+/*------------------------------------*\
+    X. MEDIA QUERIES
+\*------------------------------------*/
+/* X-1 LARGE DEVICES, WIDE SCREENS */
+@media screen and (max-width: 1199px) {
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .secondary-menu-links.default > li > a {
+		padding-left: 10px;
+		padding-right: 10px;
+    }
+}
+
+/* X-2 MEDIUM DEVICES, DESKTOPS */
+@media screen and (max-width: 991px) {
+	#promo {
+		text-align: center;
+	}
+	#promo .promo--btn {
+		display: block;
+	}
+	#promo a.btn {
+		float: none !important;
+		margin-top: 5px;
+	}
+	
+    .banner-slider .owl-buttons {
+        display: none;
+    }
+	
+    #header {
+		padding-top: 110px;
+	}
+	
+    #offer2 {
+        margin-top: 94px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    #offer .left-content,
+    #offer2 .left-content {
+        text-align: center;
+    }
+    #offer .right-content {
+        padding-left: 15px;
+    }
+    #offer2 .right-content {
+        padding-left: 0;
+    }
+    
+    #pricing {
+        padding-bottom: 80px;
+    }
+    .pricing-table-item {
+        margin-bottom: 30px;
+    }
+    
+    #blog {
+        padding-bottom: 60px;
+    }
+	.blog-page-content {
+		float: none !important;
+	}
+	.blog-page-content + .blog-page-sidebar {
+		margin-top: 100px;
+	}
+    
+    #team > .container > .row > div {
+        margin-bottom: 50px;
+    }
+    #team > .container > .row > div:last-child {
+        margin-bottom: 0;
+    }
+    
+    #footer {
+        padding-bottom: 0;
+    }
+    .contact-info a {
+        margin-bottom: 50px;
+        display: inline-block;
+    }
+
+    #aCounter {
+        padding-bottom: 50px;
+    }
+    .aCounter > .container > .row > div {
+        margin-bottom: 50px;
+    }
+    .aCounter > .container > .row > div:last-child {
+        margin-bottom: 0;
+    }
+    
+    #features hr {
+        display: none;
+    }
+    .feature-item {
+        border-bottom: 1px solid #e9e9e9;
+        margin-bottom: 30px;
+        padding-bottom: 50px;
+    }
+	
+    #compare table {
+      border: 0;
+    }
+    #compare table thead {
+      display: none;
+    }
+    #compare table tr {
+      margin-bottom: 10px;
+      display: block;
+      border-bottom: 2px solid #ddd;
+    }
+    #compare table td {
+      display: block;
+      text-align: right;
+      font-size: 13px;
+      border-bottom: 1px dotted #ccc;
+    }
+    #compare table td:last-child {
+      border-bottom: 0;
+    }
+    #compare table td span.labelText {
+      float: left;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+	#compare table tbody tr:nth-child(even) td {
+		background-color: #fff;
+	}
+	
+
+	#pricingTable2 table {
+		border: 0;
+	}
+	#pricingTable2 table thead {
+		display: none;
+	}
+	#pricingTable2 table tr {
+		margin-bottom: 10px;
+		display: block;
+		border-bottom: 2px solid #ddd;
+		background-color: #fff;
+	}
+	#pricingTable2 table tbody tr:nth-child(even) td {
+		background-color: #fff;
+	}
+	#pricingTable2 table td {
+		display: block;
+		text-align: right;
+		font-size: 13px;
+		border-bottom: 1px dotted #ccc;
+	}
+	#pricingTable2 table td:last-child {
+		border-bottom: 0;
+	}
+	#pricingTable2 table td span.labelText {
+		float: left;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	
+	.post-comments ul ul {
+		padding-left: 0;
+	}
+}
+@media screen and (min-width: 767px) and (max-width: 991px) {
+    .primary-menu-links li a {
+        padding: 15px 12px;
+    }
+    .primary-social-menu-links li a {
+        padding: 15px 8px;
+    }
+    
+    .registration-links {
+        margin-left: 10px;
+    }
+    
+    #features .row:last-child .feature-item:last-child,
+    #features .row:last-child .feature-item:nth-last-child(2) {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+/* X-3 SMALL DEVICES, TABLETS */
+@media screen and (max-width: 767px) {
+    /* Menu Area */
+    #primaryNavbar {
+        padding: 0 15px;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+	.style-1 .primary-menu-links > li:first-child > a,
+	.style-1 .primary-menu-links > li > a {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	
+	.style-1 .primary-social-menu-links {
+		margin-left: -9px;
+	}
+    .style-1 .primary-social-menu-links li {
+        float: left;
+    }
+	.style-1 .primary-social-menu-links > li:last-child > a {
+		padding-right: 8px;
+	}
+	
+	.style-2 #primaryNavbar {
+		border-top-width: 0;
+	}
+	
+	.style-2 .primary-menu-links {
+		float: left;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.style-2 .primary-menu-links > li {
+		float: left;
+	}
+	
+	.style-2 .primary-social-menu-links {
+		float: right;
+		margin: 0 -24px;
+	}
+	.style-2 .primary-social-menu-links > li {
+		float: left;
+	}
+	.style-2 .primary-social-menu-links > li > a {
+		padding: 14px 8px;
+	}
+	.style-2 .primary-social-menu-links > li:last-child > a {
+		padding-right: 8px;
+	}
+    
+    #secondaryMenu a.navbar-brand {
+        margin-top: 0;
+        padding-left: 15px;
+    }
+    .secondary-menu-links {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+        height: 320px;
+        overflow-y: auto;
+    }
+    .secondary-menu-links > li:hover > .dropdown-menu {
+        display: none;
+    }
+    .secondary-menu-links > li.open > .dropdown-menu {
+        display: block;
+        text-align: center;
+    }
+    .secondary-menu-links .open .dropdown-menu>li>a {
+        padding: 12px 15px;
+    }
+	.secondary-menu-links .open .dropdown-menu>li>a:hover,
+	.secondary-menu-links .open .dropdown-menu>li>a:focus,
+	.secondary-menu-links .open .dropdown-menu>li.active>a {
+		background-color: #D86139;
+	}
+    .registration-links {
+        margin: 15px;
+        float: none;
+        display: block;
+        text-align: center;
+    }
+	
+	.banner-item .row {
+		display: block;
+		width: auto;
+	}
+	.banner-item .row > div {
+		display: block;
+	}
+	.banner-item-img {
+		display: none;
+	}
+	.banner-item-content {
+		text-align: center;
+	}
+	
+	#header {
+		height: auto;
+		min-height: auto;
+		padding-top: 155px;
+	}
+	.header-item-content-holder + .header-item-img-holder,
+	.header-item-img-holder + .header-item-content-holder {
+		margin: 45px auto 50px;
+	}
+    
+    #domainSearchForm select.form-control {
+        border-left: none;
+        border-top: 1px solid #e9e9e9;
+    }
+    #offer2 .content.reset-margin {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    
+    #copyright p.left, #copyright p.right {
+        float: none;
+        text-align: center;
+    }
+    #copyright p.left {
+        margin: 0 0 20px;
+    }
+    
+    #pricingTable .pricing-table-item.mt-md {
+        margin-top: 0;
+    }
+
+    #pricingTable2 > .container {
+        padding: 0 15px;
+    }
+    
+
+	ul.timeline:before {
+        display: none;
+	}
+	ul.timeline > li {
+		margin-bottom: 0px;
+		position: relative;
+		width: 100%;
+		float: left;
+		clear: left;
+	}
+	ul.timeline > li > .timeline-badge {
+		left: 28px;
+		margin-left: 0;
+		top: 16px;
+	}
+	ul.timeline > li > .timeline-panel {
+		float: right;
+        width: 100%;
+        overflow: hidden;
+	}
+    .timeline > li:nth-child(odd) > .timeline-panel,
+    .timeline > li:nth-child(even) > .timeline-panel {
+        margin: 0;
+    }
+	ul.timeline > li > .timeline-panel:before {
+		border-left-width: 0;
+		border-right-width: 15px;
+		left: -15px;
+		right: auto;
+	}
+	ul.timeline > li > .timeline-panel:after {
+		border-left-width: 0;
+		border-right-width: 14px;
+		left: -14px;
+		right: auto;
+	}
+	.timeline > li.timeline-inverted {
+		float: left;
+		clear: left;
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.timeline > li.timeline-inverted > .timeline-badge {
+		left: 28px;
+	}
+    
+    .testimonial-slider.overload .owl-controls {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .testimonial-slider.overload .owl-page {
+        width: auto;
+        height: auto;
+        margin: 0px 16px;
+        padding: 0;
+        border: 0;
+    }
+    .testimonial-slider.overload .owl-page:before {
+        bottom: 0;
+    }
+    .testimonial-slider.overload .owl-page span {
+        display: none;
+    }
+    .testimonial-slider.overload .recommender-info {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+    
+    .faq-content {
+        margin-top: 30px;
+    }
+    .faq-categories ul li a {
+        overflow: hidden;
+    }
+    .footer-about {
+        margin-bottom: 50px;
+    }
+    
+    #contact.page {
+        padding-bottom: 0;
+    }
+    #contact:before {
+        display: none;
+    }
+    .contact-form {
+        background-color: #f0f0f0;
+        border-top: 1px solid #e9e9e9;
+        margin-top: 80px;
+        padding: 80px 0;
+    }
+    #contactForm {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    #contactActions > .container > .row > div {
+        margin-bottom: 60px;
+    }
+    #contactActions > .container > .row > div:last-child {
+        margin-bottom: 0;
+    }
+    
+    .post-social-links ul {
+        text-align: left;
+    }
+    
+    #features .row:last-child .feature-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+	
+	.contact-form .wpcf7-response-output {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+}
+
+/* X-4 SMALL DEVICES, SMARTPHONES */
+@media screen and (max-width: 480px) {
+    #vpsPricing .action a.deatils-link {
+        margin-top: 20px;
+    }
+    
+    #services {
+        padding-bottom: 80px;
+    }
+    #services .container > .row > div {
+        display: block;
+    }
+	#services .service-item-content {
+		padding-right: 0;
+		padding-bottom: 20px;
+	}
+	#services .even .service-item-content {
+		padding-top: 20px;
+		padding-left: 0;
+		padding-bottom: 0;
+	}
+    
+    #subscribeForm .input-box {
+        width: 100%;
+    }
+    
+    .contact-info > .container > .row > .col-xs-6 {
+        width: 100%;
+        float: none;
+    }
+    
+    /* Copyright Area */
+    #copyright img {
+        display: block;
+        margin: 10px auto;
+        max-width: 100%;
+    }
+    
+    .counter > .container > .row > div {
+        width: 100%;
+        float: none;
+        margin-bottom: 30px;
+    }
+    .counter > .container > .row > div:last-child {
+        margin-bottom: 0;
+    }
+
+    #loginForm p.help-block a {
+        float: none !important;
+        display: block;
+    }
+	
+	.hidden--xxs {
+		display: none !important;
+	}
+	
+	.woocommerce-cart table.cart td.actions .coupon .input-text,
+	.woocommerce-cart table.cart td.actions .coupon .button{
+		width: 100%;
+	}
+	.woocommerce-cart table.cart td.actions .coupon .button{
+		margin-top: 10px;
+	}
+
+	
+}
+
+/* X-5 CUSTOM, IPHONE RETINA */
+@media screen and (max-width: 320px) {
+}

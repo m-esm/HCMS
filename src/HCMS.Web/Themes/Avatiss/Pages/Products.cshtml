@@ -1,0 +1,38 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+
+<div id="pageHeading">
+    <h1 data-aos="fade-right" class="page-heading">
+
+        Products
+    </h1>
+</div>
+<div id="pageContent">
+    <div class="products-page">
+
+        <div class="products-intro">
+            <div class="inner">
+                <h2>Product categories</h2>
+                <ul>
+                    <li>
+                        Nutraceuticals
+                    </li>
+                    <li>
+                        Biopharmaceuticals
+                    </li>
+                    <li>
+                        Nanopharmaceuticals
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+

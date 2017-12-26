@@ -1,0 +1,71 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var news = DDB.GetTable("CMS", "News").DRows.OrderByDescending(p => p.RowID).AsEnumerable();
+    var last_news = news.FirstOrDefault();
+    news = news.Skip(1);
+
+}
+
+<div class="gtitle-box">
+    <div class="gtitle">
+        <ul>
+            <li>
+                <a class="active" href="~/Galerie_News">Galerie News</a>
+            </li>
+            <li>
+                <a href="~/Galerie_Gesch">Galerie Geschichte</a>
+            </li>
+            <li>
+                <a href="">Kunst erleben</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="outerbox">
+    <div class="innerbox">
+        <a class="blacklink" href="">
+            <div class="news-firstbox1">
+                <div class="news-photobox1">
+                    <img class="news-photobox1" src="@last_news.GetValue("tumb")" alt="Not Loaded" />
+                </div>
+                <div class="news-photo-text">
+                    <div class="news-textbox2">
+                        <p>
+                            @last_news.GetValue("title")
+                        </p>
+                    </div>
+                    <div class="news-textbox1">
+                        <p>
+                            @Html.Raw(last_news.GetValue("Content").Value.Replace(Environment.NewLine, "<br />"))
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        @foreach (var item in news)
+        {
+            <a class="blacklink" href="">
+                <div class="news-firstbox2">
+                    <div class="news-textbox2">
+                        <p>
+                            @item.GetValue("title")
+                        </p>
+                    </div>
+                    <div class="news-textbox3">
+                        <p>
+                            @Html.Raw(item.GetValue("Content").Value.Replace(Environment.NewLine, "<br />"))
+                        </p>
+                    </div>
+                </div>
+            </a>
+        }
+
+       
+        <div class="clearfix"></div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@font-face {
+  font-family: 'bbc';
+  src: url('../Fonts/bbc.ttf') format('truetype'), url('../Fonts/bbc.woff') format('woff');
+}
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: 'bbc';
+  font-size: 20px;
+}
+footer .copyright {
+  direction: ltr;
+  text-align: left;
+  font-family: Calibri,Tahoma;
+  font-size: 16px;
+}
+/*# sourceMappingURL=Toranj-RTL.css.map */

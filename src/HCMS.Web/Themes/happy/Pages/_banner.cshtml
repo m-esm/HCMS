@@ -1,0 +1,70 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Data
+@{
+    IEnumerable<HCMS.Dynamics.Data.DRow> Model = null;
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+
+    Model = DDB.GetTable("cms", "banners").DRows.OrderBy(p=>p.getChangeDate());
+}
+
+@if (Model != null)
+{
+    <div id="banner">
+        <div class="banner-slider" data-navigation="true">
+
+            @foreach (var item in Model)
+            {
+                <div class="banner-item bg--overlay" data-bg-img="@item.GetValue("background")">
+                    <div class="container">
+                        <div class="row">
+
+                            @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
+                            {
+                                <div class="col-md-4">
+                                    <div class="vc-parent">
+                                        <div class="vc-child">
+                                            <div class="banner-item-img">
+                                                <img src="@item.GetValue("image")" alt="" class="img-responsive" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="col-md-8 @(!string.IsNullOrWhiteSpace(item.GetValue("image").Value) ? "" : "col-md-offset-2")">
+                                <div class="vc-parent">
+                                    <div class="vc-child">
+                                        <section class="banner-item-content">
+                                            <h1>
+                                                <span>
+                                                    @item.GetValue("title")
+
+                                                </span>
+
+                                            </h1>
+                                            <p>
+                                                @Html.Raw(item.GetValue("desc").Value)
+                                            </p>
+
+                                            @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
+                                            {
+                                                <a href="@item.GetValue("link")" class="btn btn-custom">
+                                                    @item.GetValue("linkText")
+                                                </a>
+                                            }
+
+
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+}

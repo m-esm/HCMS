@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Themes/Bauxite/_SecondPage.cshtml";
+    var articles = HCMS.Dynamics.Data.DDB.GetTable("cms", "articles").DRows.OrderByDescending(p => p.RowID).AsEnumerable();
+    var latest = articles.FirstOrDefault();
+    articles = articles.Skip(1);
+
+}
+
+<div class="news_list">
+
+    <a href="/articles?rid=@latest.RowID" class="latest">
+        <div class="bg" style="background-image:url('@latest.GetValue("thumbnail")')"></div>
+        <span class="title">@latest.GetValue("title")</span>
+    </a>
+
+    <div class="others">
+        @foreach (var item in articles)
+        {
+            <a href="/news?rid=@item.RowID" class="box">
+                <div class="bg" style="background-image:url('@item.GetValue("thumbnail")')"></div>
+                <span class="title">@item.GetValue("title")</span>
+            </a>
+        }
+
+        <div class="clearfix"></div>
+    </div>
+
+
+</div>

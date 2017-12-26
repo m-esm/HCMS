@@ -1,0 +1,209 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var degrees = HCMS.Dynamics.Data.DDB.GetTable("cms", "degrees").DRows.OrderBy(p=>p.GetValue("orderId").Value).AsEnumerable();
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var blog = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog").DRows;
+    var awards = HCMS.Dynamics.Data.DDB.GetTable("cms", "awards").DRows;
+    ViewBag.title = "آموزش و آزمون آنلاین";
+
+}
+
+@functions{
+
+
+    public string getContent(string accessName)
+    {
+        var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+
+        return contents.FirstOrDefault(p => p.GetValue("accessName").Value.ToLower().Trim() == accessName.ToLower().Trim()).GetValue("content").Value;
+    }
+}
+
+<div  class="container">
+    <div class="row mt-xl">
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="tabs tabs-degrees tabs-bottom tabs-center tabs-simple mt-sm mb-xl">
+                <ul class="nav nav-tabs">
+
+                    @for (int i = 0; i < degrees.Count(); i++)
+                    {
+                        var d = degrees.ToArray()[i];
+                        <li class="@(i == 0 ? "active" : "")">
+                            <a href="#tab@(i)" data-toggle="tab">
+                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
+                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+                                        <span class="box-content degree-icon p-none m-none">
+                                            <img src="@d.GetValue("icon")" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <p class="mb-none pb-none">@d.GetValue("title")</p>
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+                <div class="tab-content">
+
+                    @for (int i = 0; i < degrees.Count(); i++)
+                    {
+                        var d = degrees.ToArray()[i];
+
+                        <div class="tab-pane @(i == 0 ? "active" : "")" id="tab@(i)">
+                            <div class="center">
+                                <p>
+                                    @Html.Raw(d.GetValue("description"))
+                                </p>
+                                <p class="center">
+                                    <a class="btn btn-default mt-md" href="/degrees?rid=@d.RowID">
+                                        می‌خوام بیشتر بدونم <i class="fa fa-angle-left pr-xs"></i>
+                                    </a>
+                                </p>
+
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<section class="section section-default section-default-scale-8 mb-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 center">
+                <h2 class="mb-none mt-none font-weight-semibold text-light">چرا آزمون‌های آنزیم؟</h2>
+                <small class="lead mb-xlg">
+                    بدون آنزیم مثل لاک‌پشت؛ با آنزیم مثل بنز!
+                </small>
+                <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                    <hr>
+                </div>
+                <p class="mb-none text-light">
+                    @Html.Raw(getContent("homepage_whyus"))
+                </p>
+
+                <a class="btn btn-primary mt-xl mb-sm" href="/whyus">
+                    معرفی  آنزیم و کادر آموزشی ما
+                    <i class="fa fa-angle-left pr-xs"></i>
+
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-tertiary section-front mt-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 center">
+                <div class="row">
+                    <div class="col-md-12 center">
+                        <h2 class="mb-none mt-xl font-weight-semibold text-dark">جوایز آنزیم</h2>
+                        <p class="lead mb-xlg">
+                            درس بخون، ‌موفق شو، ‌آینده‌ت رو بساز، کنارش جایزه هم ببر. چی از این بهتر؟
+                        </p>
+                        <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in awards)
+                    {
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="@item.GetValue("appear")" data-appear-animation-delay="300">
+                                <blockquote>
+                                    <p>
+                                        @Html.Raw(item.GetValue("text"))
+                                    </p>
+                                </blockquote>
+                                <div class="testimonial-arrow-down"></div>
+                                <div class="testimonial-author">
+                                    <div class="award-icon" style="background:url('@item.GetValue("image")')">
+                                  
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            @item.GetValue("title")
+                                        </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section  class="mt-xl mb-none pb-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 center">
+                <h2 class="mb-none mt-xl  font-weight-semibold">اخبار آنزیم</h2>
+                <p class="lead mb-xlg">
+                    می‌تونی آخرین اخبار سایت آنزیم شامل مصاحبه‌ها، معرفی نفرات برتر، اطلاعیه‌ها و... رو از این‌جا دنبال کنی.
+                </p>
+                <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="news-box">
+
+                    @foreach (var news in blog.Where(p => p.GetValue("cat.name").Value == "اخبار").OrderByDescending(p => p.RowID).Take(5))
+                    {
+
+                        <div class="title">
+                            <a href="/post?rid=@news.RowID">
+                                <span>@news.GetValue("title")</span>
+                            </a>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section  class="section section-default section-default-scale-8 pb-8 mb-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 center">
+                <h2 class="mb-none mt-none font-weight-semibold text-light">همکاری با آنزیم</h2>
+                <small class="lead mb-xlg">
+                    ما مشتاق به همکاری با دبیران، ‌مشاوران، مدارس و آموزشگاه‌ها در سراسر کشور هستیم.
+                </small>
+                <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                    <hr>
+                </div>
+                <p class="mb-none text-light">
+                    @Html.Raw(getContent("homepage_coop"))
+                </p>
+
+                <a class="btn btn-primary mt-xl mb-sm" href="/coop">
+                    شرایط همکاری با ما
+                    <i class="fa fa-angle-left pr-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

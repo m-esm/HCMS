@@ -1,0 +1,106 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+
+<section id="tm-page-heading" style="background-image: url(/Themes/OneBuilding/demo-images/page-heading-bg.jpg);">
+    <div class="container">
+        <div class="row v-align-children">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="tm-section-heading tsh-light no-margin ">
+                            <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">@phrases.Get("News")</h1>
+                        </div><!--//tm-section-heading-->
+                    </div>
+                    <div class="col-xs-12">
+                        <ol class="breadcrumb wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                            <li><a href="#">@phrases.Get("Home")</a></li>
+                            <li><a href="#">@phrases.Get("News")</a></li>
+
+                        </ol>
+                    </div>
+                </div><!--//row-->
+            </div>
+            @Html.Partial("_socials")
+        </div><!--//row-->
+    </div><!--//container-->
+</section><!--//tm-page-heading-->
+
+<div id="tm-page-main">
+
+    <section class="news-page bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9">
+                    @foreach (var item in news)
+                    {
+
+                        <div class="news-page-item news-page-item-sticky tm-hover-up">
+                            <div class="images">
+                                <img src="@item.GetValue("image")" alt="...">
+                            </div><!--//images-->
+                            <div class="content">
+                                <div class="inner">
+                                    @*<span class="date">11 Nov 2015</span>*@
+                                    <a href="/news_item?rid=@item.RowID" title="...">
+                                        <h2>
+                                            @item.GetValue("title")
+                                        </h2>
+                                    </a>
+                                    <p>
+                                        @item.GetValue("desc")
+                                    </p>
+                                    <a href="/news_item?rid=@item.RowID" class="btn btn-primary">@phrases.Get("READ MORE")</a>
+
+                                </div><!--//inner-->
+                            </div><!--//content-->
+                        </div><!--//news-page-item-->
+                    }
+
+
+
+                    <nav class="tm-page-pagination">
+                        <ul class="pagination pagination-lg">
+                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                        </ul>
+                    </nav><!--//tm-page-pagination-->
+
+                </div><!--//col-lg-9-->
+
+                <div class="col-lg-3 col-md-3">
+                    <div class="tm-page-sidebar sidebar-right">
+                        <div class="widget widget-recent-news">
+                            <h4 class="widget-heading">@phrases.Get("Recent News")</h4><!--//widget-heading-->
+                            <div class="widget-content clearfix">
+                                <ul>
+                                    @foreach (var item in news)
+                                    {
+                                        <li>
+                                            <a href="/news_item?rid=@item.RowID" title="...">
+                                               @item.GetValue("title")
+                                            </a>
+                                        </li>
+                                    }
+
+
+                                </ul>
+                            </div><!--//widget-content-->
+                        </div><!--//widget-recent-news-->
+
+                      
+                    </div><!--//tm-page-sidebar sidebar-right-->
+                </div>
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//news-page-->
+
+</div><!--//tm-page-main-->

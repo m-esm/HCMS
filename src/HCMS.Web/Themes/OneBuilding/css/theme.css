@@ -1,0 +1,8 @@
+@import url('tm-main.css');
+@import url('tm-header.css');
+@import url('tm-main-section.css');
+@import url('tm-footer.css');
+        #map {
+                width: 100%;
+                height: 200px;
+            }

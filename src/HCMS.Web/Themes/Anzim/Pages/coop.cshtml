@@ -1,0 +1,147 @@
+﻿@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    ViewBag.title = "همکاری با ما";
+
+    var pageRow = contents.FirstOrDefault(p => p.GetValue("accessName").Value == "coop");
+
+
+    HCMS.Dynamics.DynamicDB db = new HCMS.Dynamics.DynamicDB();
+    var error = false;
+    if (IsPost)
+    {
+        System.Collections.Specialized.NameValueCollection valueToSend = new System.Collections.Specialized.NameValueCollection();
+
+        string[] inputs = { "name", "phone", "email", "description" };
+
+        foreach (var inp in inputs)
+        {
+            if (Request.Form[inp] != null)
+            {
+                if (string.IsNullOrWhiteSpace(Request.Form[inp].ToString()))
+                {
+                    error = true;
+                }
+                else
+                {
+                    valueToSend.Add(inp, Request.Form[inp]);
+                }
+            }
+            else
+            {
+                error = true;
+            }
+
+        }
+
+        if (!error)
+        {
+            db.Create("cms", "coop", valueToSend);
+
+            string mailBody = "";
+            foreach (string item in valueToSend)
+            {
+                mailBody += string.Format("<h4>{0} : </h4><textarea style='width:100%;height:100px;' dir='auto'>{1}</textarea><br />", item, valueToSend[item]);
+
+            }
+
+            HCMS.Dynamics.Tools.EmailSender.send("info@onanzim.ir", mailBody, string.Format("new coop request from ") + valueToSend["name"]);
+
+            Cache.Remove("dynamics_table_rowids_cms_coop_");
+
+            Response.Redirect(Request.Url + "&status=done");
+
+        }
+
+
+    }
+
+
+
+
+}
+<section class="section section-coop section-tertiary  mt-none mb-none">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+
+                <h2  class="mb-none mt-xl font-weight-semibold text-dark">همکاری با ما</h2>
+                <p class="p-xl" >
+                   @Html.Raw( pageRow.GetValue("content"))
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row p-xl ">
+            <div class="col-md-8 col-md-offset-2">
+
+               @if (Request.QueryString["status"] != null)
+               {
+                   if (Request.QueryString["status"].ToString() == "done")
+                   {
+                    <div class="alert alert-success mt-lg" id="contactSuccess">
+                        <strong> ارسال شد !</strong> درخواست همکاری شما با موفقیت ارسال شد .
+                    </div>
+                   }
+               }
+
+
+                @if (error)
+                {
+                    <div class="alert alert-danger hidden mt-lg" id="contactError">
+                        <strong>خطا !</strong> لطفا فیلد های را مورد بازبینی قراردهید .
+                        <span class="font-size-xs mt-sm display-block" id="mailErrorMessage"></span>
+                    </div>
+                }
+
+                <form method="POST" >
+                    <div  class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" placeholder="نام و نام خانوادگی" value="" data-msg-required="لطفا نام خود را وارد کنید ." maxlength="100" class="form-control input-lg" name="name" id="name" required="" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" placeholder="شماره تماس" value="" data-msg-required="لطفا شماره تماس خود را وارد کنید ."  maxlength="100" class="form-control input-lg" name="phone" id="tel" required="" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div  class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="email" placeholder="ایمیل" value="" data-msg-required="لطفا شماره ایمیل خود را وارد کنید ."  maxlength="100" class="form-control input-lg" name="email" id="email" required="" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea maxlength="5000" placeholder="توضیحات" data-msg-required="لطفا شماره توضیحات خود را وارد کنید ." rows="10" class="form-control input-lg" name="description" id="message" required="" aria-required="true"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div  class="row">
+                        <div class="col-md-4">
+                            <input type="submit" value="ثبت درخواست" class="btn btn-block btn-primary btn-lg mb-xs" data-loading-text="Loading...">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>

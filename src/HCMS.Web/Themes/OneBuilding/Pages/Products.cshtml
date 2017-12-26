@@ -1,0 +1,59 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+
+<section id="tm-page-heading" style="background-image: url(/Themes/OneBuilding/demo-images/page-heading-bg.jpg);">
+    <div class="container">
+        <div class="row v-align-children">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="tm-section-heading tsh-light no-margin ">
+                            <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">@phrases.Get("Products")</h1>
+                        </div><!--//tm-section-heading-->
+                    </div>
+                    <div class="col-xs-12">
+                        <ol class="breadcrumb wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                            <li><a href="#">@phrases.Get("Home")</a></li>
+                            <li><a href="#">@phrases.Get("Products")</a></li>
+                        </ol>
+                    </div>
+                </div><!--//row-->
+            </div>
+
+            @Html.Partial("_socials")
+        </div><!--//row-->
+    </div><!--//container-->
+</section>
+<div id="tm-page-main">
+
+    <section class="all-services-page">
+        <div class="container">
+            <div class="row">
+            @foreach (var item in products)
+            {
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="tm-section-box tm-hover-up space-bottom-large wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                        <div class="images"><img src="@item.GetValue("image")" alt="..."></div><!--//images-->
+                        <div class="content text-center">
+                            <div class="inner">
+                                <a href="/product?rid=@item.RowID" title="..."><h2 class="text-primary">@item.GetValue("title")</h2></a>
+                                <p>@item.GetValue("desc")</p>
+                                <a href="/product?rid=@item.RowID" class="btn-text-only">@phrases.Get("READ MORE")</a>
+                            </div><!--//inner-->
+                        </div><!--//content-->
+                    </div><!--//tm-section-box-->
+                </div>
+            }
+
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//all-services-page-->
+
+</div><!--//tm-page-main-->

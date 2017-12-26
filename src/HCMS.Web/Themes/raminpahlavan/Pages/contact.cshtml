@@ -1,0 +1,48 @@
+﻿@using HCMS.Dynamics.Data
+@using MoreLinq
+@using HCMS.Dynamics.Tools
+<div class="contact">
+
+    <div class="inner">
+
+        <ul class="info">
+            <li>
+                <label>آدرس :</label>
+                <span>
+                    سعادت آباد ، خیابان 37 ، پلاک 48 ، طبقه 2 ، واحد 2
+                </span>
+            </li>
+
+            <li>
+                <label>تلفن :</label>
+                <span class="ltr" style="display:inline-block">
+                  @("+98 21 8856 6470".ToPersianNumber())
+                </span>
+            </li>
+
+            <li>
+                <label>ایمیل :</label>
+                <span>
+                    info@raminpahlavan.com
+                </span>
+            </li>
+        </ul>
+        <div class="block">
+            <h2>ارسال پیام</h2>
+            <form>
+                <input type="text" placeholder="نام و نام خانوادگی (اختیاری)" />
+                <input type="email" placeholder="ایمیل" />
+                <input type="text" placeholder="موضوع" />
+                <textarea placeholder="متن پیام"></textarea>
+                <div class="buttons">
+                    <button>ارسال</button>
+                </div>
+            </form>
+        </div>
+
+       <ng-include src="'views/register.html'"></ng-include>
+
+
+    </div>
+
+</div>

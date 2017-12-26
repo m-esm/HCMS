@@ -1,0 +1,1001 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_project").DRows.Where(p => p.GetValue("Confirmed").Value == "true");
+    var programs = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_program").DRows;
+    var staff = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_people", phrases.CurrentCulture.ID).DRows;
+    var status = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_status").DRows;
+    var collabs = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "Collaborators").DRows;
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "Contents", phrases.CurrentCulture.ID).DRows;
+    var interventions = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "Intervention", phrases.CurrentCulture.ID).DRows;
+
+    var graphic_cats = HCMS.Dynamics.Data.DDB.GetTable("arxe_graphic", "categories_graphic").DRows.ToArray();
+    var graphic_projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_graphic", "Projects_graphic").DRows.ToArray();
+    var graphic_portfolio = HCMS.Dynamics.Data.DDB.GetTable("arxe_graphic", "Portfolio").DRows.ToArray();
+
+
+    var cc = phrases.CurrentCulture.CultureName();
+    var default_label = "name";
+    if (cc == "en-us")
+    {
+        default_label += "En";
+    }
+
+    int[] logos = { 1, 2, 3, 4, 5, 6 };
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>ARXE</title>
+    <link href="~/Themes/ARXE_ASC/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Themes/ARXE_ASC/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Themes/ARXE_ASC/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <link href="~/Themes/ARXE_ASC/Content/ARXE.ASC.css" rel="stylesheet" />
+    <link href="~/Themes/ARXE_ASC/Content/lightslider.min.css" rel="stylesheet" />
+
+    <link href="~/Packages/miniTip-master/miniTip.min.css" rel="stylesheet" />
+    <meta name="keywords" content="استودیو معماری آرخه,استودیو گرافیک آرخه,آرخه,arxe,طراحی و گرافیک">
+    <meta name="author" content="محسن اسماعیلی - Mohsen Esmaeli <m-esm@hotmail.com>" />
+    <meta name="description" content="استودیو گرافیک و معماری آرخه" />
+    <meta property="og:title" content="استودیو گرافیک و معماری آرخه" />
+    <meta property="og:site_name" content="استودیو آرخه" />
+    <meta property="og:description" content="Arxe considers design a creative, cooperative procedureand intends to try a collaborative design process with shared benefit and intellectual property and a spirit of cooperation ona free and flexible platform." />
+    <meta property="og:image" content="/Themes/ARXE_ASC/Images/Logo/@(logos.OrderBy(p=>Guid.NewGuid()).First()).png" />
+
+</head>
+<body>
+    <div id="loader">
+        @*<img src="~/Themes/ARXE_ASC/Images/arrows-help.png" />
+            <h1>You can use your arrow keys to explore our website</h1>*@
+    </div>
+
+
+    <div id="ascensor">
+
+        <div class="first level">
+            <div class="members">
+
+                <a href="#Home" title="Click to enter ." class="box random-logo ">
+                    <div class="inner">
+                        <img src="~/Themes/ARXE_ASC/Images/Logo/@(logos.OrderBy(p=>Guid.NewGuid()).First()).png" />
+                    </div>
+                </a>
+
+                <div class="icons width-100 height-100 pos-top-300 pos-left-400">
+
+                    <a class="box back" title="Back to architecture projects ." href="#Architecture_Projects">
+                        <div class="inner trans icon-center">
+                            <i class="glyphicon glyphicon-chevron-right large"></i>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="home level" data-ascensor-down="">
+
+
+            <div class="members">
+                <div class="icons">
+                    <a href="#Architecture" title="Click to visit Architecture studio home page" class="box">
+                        <div class="inner">
+                            Architecture
+
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a href="#Graphic" title="Click to visit Graphic studio home page" class="box">
+                        <div class="inner">
+
+                            Graphic Design
+
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>
+                    </a>
+                    <a href="#Manifest" title="Click to visit ARXE manifest page" class="box">
+                        <div class="inner">
+
+                            About
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+
+        <div class="manifest level">
+            <div class="members">
+
+                <div class="icons pos-top-100 pos-left-100 width-200">
+                    <div class="box width-200 height-200">
+                        <div class="inner">
+                            <img src="~/Themes/ARXE_ASC/Images/Logo/3.png" />
+                        </div>
+                    </div>
+                    <a href="#Home" class="box width-100">
+                        <div class="inner icon-center">
+                            <i class="glyphicon glyphicon-home big"></i>
+                        </div>
+                    </a>
+
+                    <div class="box  width-100 height-100">
+                        <div class="inner text-center">
+
+                            Manifest
+                        </div>
+                    </div>
+
+                    <div class="box   width-200 height-100">
+                        <div class="inner">
+
+                            Contact
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="icons pos-top-200 pos-left-300 width-600">
+
+                    <div class="box text height-300 width-600">
+                        <div class="inner">
+                            <div class="content">
+                                @Html.Raw(contents.First(p => p.GetValue("name").Value == "manifest").GetValue("content"))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="contact level">
+
+            <div class="members">
+                <div class="box logo">
+                    <img src="~/Themes/ARXE_ASC/Images/Logo/1.png" />
+                </div>
+                <div class="box title">
+                    Contact
+                </div>
+
+                <a href="#Home" class="box home">
+                    <i class="glyphicon glyphicon-home"></i>
+                </a>
+
+                <div class="box text">
+                    <div class="content">
+                        @Html.Raw(contents.First(p => p.GetValue("name").Value == "contact").GetValue("content"))
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="arch level">
+            <div class="members">
+
+                <div class="icons">
+
+                    <a href="#Home" class="box">
+                        <div class="inner">
+                            Back
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                        </div>
+                    </a>
+                    <a href="#Architecture_Manifest" class="box">
+                        <div class="inner">
+                            Manifest
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </div>
+                    </a>
+                    <a href="#Architecture_Staff" class="box">
+                        <div class="inner">
+
+                            Staff
+
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+
+                        </div>
+                    </a>
+
+                    <a href="#Architecture_Projects" class="box">
+                        <div class="inner">
+                            Projects<i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>
+                    </a>
+
+                    <a href="#Architecture_Staff" class="box">
+                        <div class="inner">
+                            Collaborators<i class="glyphicon glyphicon-chevron-right"></i>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="arch-manifest level">
+            <div class="members">
+                <div class="box logo">
+                    <img src="~/Themes/ARXE_ASC/Images/Logo/5.png" />
+                </div>
+                <div class="box title">
+                    Architecture  Manifest
+                </div>
+                <a href="#Architecture" class="box back">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+                <a href="#Architecture" class="box home">
+                    <i class="glyphicon glyphicon-home"></i>
+                </a>
+
+                <div class="box text">
+                    <div class="content">
+                        @Html.Raw(contents.First(p => p.GetValue("name").Value == "arch_manifest").GetValue("content"))
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="arch-staff level" data-ascensor-down="999">
+            <div class="members">
+
+                <div class="icons pos-top-100 pos-left-100">
+                    <a class="box back">
+                        <div class="inner icon-center  text-center">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                        </div>
+                    </a>
+                    <div class="box title">
+                        <div class="inner text-center">
+
+                            <h1>Staff</h1>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="icons pos-top-200 pos-left-200">
+                    @foreach (var s in staff)
+                    {
+                        <a data-bg="@s.GetValue(" image")" title="Click to see @s.GetValue(" name") profile ." href="#@s.GetValue(" name").Value.ToLower().Replace(" "," _")" class="box">
+                            <div class="inner no-bg text-center">
+                                <small class="bottom">@s.GetValue("name")</small>
+                            </div>
+                        </a>
+                    }
+                    <div class="clearfix"></div>
+                </div>
+
+                @*<div class="box coll-title">
+                        <h1>Collaborators</h1>
+                    </div>
+                    <div class="box collabs">
+                        @foreach (var s in collabs)
+                        {
+                        <a data-bg="@s.GetValue(" logo")" href="@s.GetValue(" link")" class="collab box">
+                            <span>@s.GetValue("name")</span>
+                        </a>
+                        }
+                        <div class="clearfix"></div>
+                    </div>*@
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="arch-projects level">
+
+            <div class="members">
+
+                <div class="box arch">
+                    <h1>Architecture Projects</h1>
+                </div>
+
+                <div class="box projects content-scroll">
+                    @foreach (var item in projects)
+                    {
+                        <a title="Click to see project details ." data-bg="@item.GetValue(" picture")" href="#@item.GetValue(" nameEn").Value.Trim().Replace(" ", " _")" data-rid="@item.RowID" class="project">
+                            @*<img src="@item.GetValue(" picture")" />*@
+                            <h2>@item.GetValue("nameEn")</h2>
+                        </a>
+                    }
+                </div>
+
+                <div class="box clear-form">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+
+                <form id="projects-filter" title="You can search in our projects trough this filters ." class="filters">
+                    <div class="filter">
+                        <label title="@phrases.Get(" Year")">Y</label>
+                        <div class="input">
+                            <input placeholder="@phrases.Get(" Year")" name="year" type="number" />
+
+                            <select name="program">
+                                <option value="">@phrases.Get("Program")</option>
+                                @foreach (var item in programs)
+                                {
+
+                                    <option value="@item.RowID">
+                                        @item.GetValue(default_label)
+                                    </option>
+
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label title="@phrases.Get(" Area")">A</label>
+                        <div class="input">
+                            <select name="size">
+                                <option value="">@phrases.Get("Area")</option>
+                                <option value="500">@phrases.Get("Small")</option>
+                                <option value="1000">@phrases.Get("Medium")</option>
+                                <option value="100000">@phrases.Get("Large")</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label title="@phrases.Get(" Program")">P</label>
+                        <div class="input">
+                            <select name="program">
+                                <option value="">@phrases.Get("Program")</option>
+                                @foreach (var item in programs)
+                                {
+
+                                    <option value="@item.RowID">
+                                        @item.GetValue(default_label)
+                                    </option>
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label title="@phrases.Get(" Intervention")">I</label>
+                        <div class="input">
+
+                            <select name="Intervention">
+                                <option value="">@phrases.Get("Intervention")</option>
+
+                                @foreach (var item in interventions)
+                                {
+                                    <option value="@item.RowID">
+                                        @item.GetValue("name")
+                                    </option>
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="filter">
+                        <label title="@phrases.Get(" Status")">S</label>
+                        <div class="input">
+                            <select name="status">
+                                <option value="">@phrases.Get("Status")</option>
+
+                                @foreach (var item in status)
+                                {
+                                    <option value="@item.RowID">
+                                        @item.GetValue(default_label)
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter">
+                        <label title="@phrases.Get(" Search")">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </label>
+                        <div class="input">
+                            <input placeholder="@phrases.Get(" Search")" name="term" type="text" />
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+        @foreach (var item in projects)
+        {
+            <div class="project level" data-ascensor-up="999" data-name="@item.GetValue(" nameEn").ToString().Trim().Replace(" "," _")" data-background="@item.GetValue(" picture")">
+                <div class="level-content">
+                    <div class="members">
+
+                        @*<div class="box arch">
+                                <h1>Architecture Projects</h1>
+                            </div>*@
+                        <div class="icons width-300 pos-top-100 pos-left-200">
+
+                            <div class="box width-300">
+                                <div class="inner trans text-center">
+                                    <h1>@item.GetValue("nameEn")</h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="icons width-300 pos-top-200 pos-left-100">
+
+                            <div class="box width-100">
+                            </div>
+                            <div class="box width-200">
+                                <div class="inner trans text-center">
+
+                                    <h2>Tehran @item.GetValue("year") </h2>
+                                </div>
+                            </div>
+                            <div class="box width-100">
+                            </div>
+                            <div class="box width-200 height-200 details">
+                                <div class="inner trans">
+                                    <div class="content">
+                                        <ul>
+                                            <li>
+                                                @if (!string.IsNullOrWhiteSpace(item.GetValue("programId").Value))
+                                                {
+                                                    foreach (var pid in item.GetValue("programId").Value.Split(','))
+                                                    {
+                                                        if (programs.Any(p => p.RowID.ToString() == pid))
+                                                        {
+                                                            <span>@programs.FirstOrDefault(p => p.RowID.ToString() == pid).GetValue(default_label) </span>
+                                                        }
+                                                    }
+                                                }
+                                            </li>
+                                            @if (!string.IsNullOrWhiteSpace(item.GetValue("size").Value))
+                                            {
+                                                <li>
+                                                    @item.GetValue("size") m<span class="power">2</span>
+                                                </li>
+                                            }
+
+                                            @foreach (var det in item.GetGroup("other"))
+                                            {
+                                                if (cc == "fa-ir")
+                                                {
+                                                    <li>
+                                                        @det.GetValue("other")
+                                                    </li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        @det.GetValue("otherEn")
+                                                    </li>
+                                                }
+
+                                            }
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <a class="box back" title="Back to architecture projects ." href="#Architecture_Projects">
+                                <div class="inner trans icon-center">
+                                    <i class="glyphicon glyphicon-chevron-left large"></i>
+                                </div>
+                            </a>
+                            <a class="box home" title="Back to architecture home page ." href="#Architecture">
+                                <div class="inner trans icon-center">
+
+                                    <i class="glyphicon glyphicon-home large"></i>
+                                </div>
+
+                            </a>
+
+                            <a class="box gallery" title="Press this or click [g] for gallery .">
+                                <div class="inner trans icon-center">
+
+                                    <i class="glyphicon glyphicon glyphicon-picture large"></i>
+                                </div>
+                            </a>
+                        </div>
+                        @*<div class="box slider">
+                                <img src="@item.GetValue(" picture")" />
+                            </div>*@
+                        <div class="icons width-400 pos-top-200 pos-left-400">
+                            <div class="box width-400 height-400">
+                                <div class="inner trans">
+                                    <div class="content">
+                                        @if (cc == "fa-ir")
+                                        {
+                                            <p>
+                                                @Html.Raw(item.GetValue("description"))
+                                            </p>
+
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @Html.Raw(item.GetValue("descriptionEn"))
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        @foreach (var people in staff)
+        {
+
+            <div class="people level" data-ascensor-down="999">
+
+                <div class="members">
+                    <div class="icons width-100 pos-top-100 pos-left-300">
+
+                        <div class="box width-100 height-100">
+                            <div class="inner">
+                                <img data-src="@people.GetValue("image")" alt="@people.GetValue("name")" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="icons width-300 pos-top-200 pos-left-100">
+
+
+                        <div class="box width-300">
+                            <div class="inner text-center">
+                                <h1>@people.GetValue("name")</h1>
+                            </div>
+                        </div>
+
+                        <div class="box width-300">
+                            <div class="inner">
+                                <ul class="content">
+                                    @foreach (var item in people.GetGroup("title"))
+                                    {
+
+                                        if (string.IsNullOrWhiteSpace(item.GetValue("titleLink").Value))
+                                        {
+                                            <li>
+                                                @if (cc == "fa-ir")
+                                                {
+                                                    <span>
+                                                        @item.GetValue("title")
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>
+                                                        @item.GetValue("titleEn")
+                                                    </span>
+                                                }
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@item.GetValue(" titleLink")">
+                                                    @if (cc == "fa-ir")
+                                                    {
+                                                        <span>
+                                                            @item.GetValue("title")
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>
+                                                            @item.GetValue("titleEn")
+                                                        </span>
+                                                    }
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a class="box" title="Back to staff list ." href="#Architecture_Staff">
+                            <div class="inner icon-center">
+                                <i class="glyphicon glyphicon-chevron-left large"></i>
+                            </div>
+                        </a>
+                        <a class="box" title="Back to architecture home page ." href="#Architecture">
+                            <div class="inner  icon-center">
+                                <i class="glyphicon glyphicon-home large"></i>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="icons width-300 pos-top-200 pos-left-400">
+
+                        <div class="box width-400 height-300">
+                            <div class="inner">
+                                <div class="content">
+                                    @Html.Raw(people.GetValue("bio"))
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        }
+
+        @for (int i = 0; i < 100; i++)
+        {
+            <div class="gap level">
+                <div class="members">
+
+                </div>
+            </div>
+        }
+
+
+        <div class="graphic level" data-ascensor-up="1" data-ascensor-right="99999">
+
+            <div class="members">
+
+                <div class="icons pos-top-100 pos-left-100 width-200">
+                    <a href="#Architecture" title="Back" class="box width-200">
+                        <div class="inner">
+                            Back
+
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+
+                        </div>
+                    </a>
+                    <a href="#Graphic" title="Click to visit Graphic Staff  page" class="box  width-200">
+                        <div class="inner">
+
+                            Staff
+
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                        </div>
+                    </a>
+                    <a href="#Manifest" title="Click to visit Graphic Portfolio page" class="box  width-200">
+                        <div class="inner">
+                            Portfolio
+
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+
+        <div class="graphic level">
+
+            <div class="members">
+
+                <div class="icons pos-top-100 pos-left-100 width-200">
+
+
+                    <a href="#Graphic" title="Click to visit Architecture studio home page" class="box width-200 ">
+                        <div class="inner">
+                            Back
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </div>
+
+                    </a>
+                    <a href="#Graphic" title="Click to visit Graphic studio home page" class="box width-200 ">
+                        <div class="inner">
+
+                            Categories
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a href="#Manifest" title="Click to visit ARXE manifest page" class="box width-200 ">
+                        <div class="inner">
+
+                            Projects
+
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>
+
+                    </a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        @for (int i = 0; i < graphic_cats.Length; i++)
+        {
+
+            <div class="graphic level">
+
+                <div class="members">
+
+
+
+                    @if (i > 0)
+                    {
+                        <a href="#Graphic" title="Click to visit Architecture studio home page" class="box arch ">
+                            <h1>
+
+
+                                <text> to @graphic_cats[i - 1].GetValue("name") </text>
+
+                            </h1>
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#Graphic" title="Click to visit Architecture studio home page" class="box arch ">
+
+                        </a>                    }
+                    @if (i + 1 < graphic_cats.Count())
+                    {
+
+                        <a href="#Graphic" title="Click to visit Graphic studio home page" class="box graphic ">
+                            <h1 class="graphic">
+                                <text> @graphic_cats[i + 1].GetValue("name") </text>
+                            </h1>
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <a href="#Manifest" title="Click to visit ARXE manifest page" class="box manifest ">
+                            <h1 class="graphic">
+                                Browse
+                                @graphic_cats[i].GetValue("name")
+                            </h1>
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#Manifest" title="Click to visit ARXE manifest page" class="box graphic ">
+                            <h1 class="graphic">
+                                Browse
+                                @graphic_cats[i].GetValue("name")
+                            </h1>
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </a>
+                    }
+
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+
+            <div class="graphicCatWorks level" data-ascensor-right="99999" data-ascensor-left="99999">
+                <div class="members">
+                    <div class="box-title">
+                    </div>
+
+                    <div class="box-text">
+                    </div>
+
+                    <div class="box-pic">
+
+
+                    </div>
+
+                    <a class="box-back" title="Back" href="#Graphic_Categories_@i">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                    </a>
+                    <a class="box-home" title="Back to graphic home page ." href="#Architecture">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a>
+
+                    <div class="icons">
+                        @foreach (var work in graphic_portfolio.Where(d => d.GetValue("categoryid").Value.ToString() == graphic_cats[i].RowID.ToString()))
+                        {
+
+                            foreach (var item in work.GetGroup("image"))
+                            {
+
+                                <div class="icon" data-title="@work.GetValue("title")" data-text="@work.GetValue("text")" data-src="@item.GetValue("image")?width=1600">
+
+                                    <div class="bg" style="background-image:url('@item.GetValue("image")?width=100')">
+
+                                    </div>
+                                </div>
+
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+
+
+
+
+
+        <div class="arch-projects level">
+
+            <div class="members">
+
+                <div class="box arch">
+                    <h1>Graphic Projects</h1>
+                </div>
+
+                <div class="box projects content-scroll">
+                    @foreach (var item in graphic_projects)
+                    {
+                        <a title="Click to see project details ." data-bg="@item.GetValue("background")?width=100" href="#@item.GetValue("name").Value" data-rid="@item.RowID" class="project">
+                            @*<img src="@item.GetValue(" picture")" />*@
+                            <h2>@item.GetValue("name")</h2>
+                        </a>
+                    }
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        @for (int i = 0; i < graphic_projects.Length; i++)
+        {
+            var project = graphic_projects[i];
+
+            <div class="graphic-project level" data-name="graphic_project_@project.GetValue("name").ToString().Trim().Replace(" "," _")" data-background="@project.GetValue("background")?width=1200">
+                <div class="members">
+
+
+                    <div class="box-title">
+                        @project.GetValue("name")
+                    </div>
+
+
+
+
+                    <a class="box-back" title="Back to architecture projects ." href="#Architecture_Projects">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                    </a>
+                    <a class="box-home" title="Back to architecture home page ." href="#Architecture">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a>
+
+
+
+                    <div class="box-text">
+                        <div class="content-scroll">
+                            <div class="content-padding">
+
+                                <p>
+                                    @Html.Raw(project.GetValue("text"))
+                                </p>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="works">
+                        <div class="content-scroll">
+                            @foreach (var group in graphic_portfolio.GroupBy(p => p.GetValue("categoryId").Value))
+                            {
+                                <div class="cat">
+                                    @foreach (var work in graphic_portfolio.Where(d => d.GetValue("projectId").Value.ToString() == project.RowID.ToString()))
+                                    {
+
+                                        <a title="Click to see details ." data-bg="@work.GetValue("background")?width=100" href="#@work.GetValue("name").Value" data-rid="@work.RowID" class="project">
+
+                                            <h2>@work.GetValue("name")</h2>
+                                        </a>
+
+                                    }
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            foreach (var work in graphic_portfolio.Where(d => d.GetValue("projectId").Value.ToString() == project.RowID.ToString()))
+            {
+                <div class="work level">
+
+                    <div class="members">
+                        <h1>
+                            @work.GetValue("title")
+                        </h1>
+
+                        @foreach (var item in work.GetGroup("image"))
+                        {
+                            <img src="@item.GetValue("image")?width=400" />
+
+                        }
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            }
+
+
+        }
+    </div>
+
+    <div title="Use this buttons to navigate our site ." id="arrow">
+        <div class="commands">
+            <div class="up">
+                <i class="glyphicon glyphicon-menu-up"></i>
+            </div>
+            <div class="down">
+                <i class="glyphicon glyphicon-menu-down"></i>
+            </div>
+            <div class="left">
+                <i class="glyphicon glyphicon-menu-left"></i>
+            </div>
+            <div class="right">
+                <i class="glyphicon glyphicon-menu-right"></i>
+            </div>
+            @*<div class="en">
+                    English
+                </div>
+                <div class="fa">
+                    فارســی
+                </div>*@
+        </div>
+    </div>
+
+    <script src="~/Themes/ARXE_ASC/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/bootstrap.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/jquery.ascensor.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/lightslider.min.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/ARXE.ASC.js"></script>
+    <script src="~/Packages/miniTip-master/jquery.miniTip.min.js"></script>
+
+</body>
+</html>

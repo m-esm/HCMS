@@ -1,0 +1,30 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    string lang = ViewContext.RouteData.Values["lang"].ToString().ToLower();
+}
+@functions{
+
+    public string GetWord(string name)
+    {
+
+        try
+        {
+            return HCMS.Dynamics.Data.DDB.GetTable("content", "Phrases").DRows.Where(p => p.GetValue("language.name").Value == ViewBag.lang).FirstOrDefault(p => p.GetValue("name").ToString().ToLower().Trim() == name.ToLower().Trim()).GetValue("value").Value;
+
+        }
+        catch
+        {
+            return name;
+        }
+    }
+}
+
+<div class="sparepart-page">
+    <form id="sparepart">
+        <label>
+       @GetWord("Please enter your Customer Number")      :
+        </label>
+        <input type="text" placeholder="@GetWord("Customer Code") ..." />
+        <input type="submit" value="@GetWord("Enter")" />
+    </form>
+</div>

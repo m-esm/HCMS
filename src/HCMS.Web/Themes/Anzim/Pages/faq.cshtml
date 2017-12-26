@@ -1,0 +1,46 @@
+﻿@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var faq = contents.FirstOrDefault(p => p.GetValue("accessName").Value == "faq");
+
+    ViewBag.title = "سوالات متداول";
+}
+<section class="section  section-faq section-tertiary  mt-none mb-none">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+
+                <h2  class="mb-xl mt-xl font-weight-semibold text-dark title">
+                         @faq.GetValue("title")
+
+
+                </h2>
+
+                <div  class="content">
+
+                    @Html.Raw(faq.GetValue("content"))
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+@section scripts{
+ <script>
+
+     $(function () {
+
+         $(".section-degree .content table").attr("class","table table-bordered table-responsive table-hover");
+
+     });
+
+    </script>
+}

@@ -1,0 +1,21 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+}
+
+<div data-aos="fade-left" id="pageHeading">
+    <h1 class="page-heading">
+        PARTNERS
+    </h1>
+</div>
+<div id="pageContent">
+
+    <div class="home-page">
+
+        @Html.Partial("_content", "partners")
+
+    </div>
+
+</div>
+

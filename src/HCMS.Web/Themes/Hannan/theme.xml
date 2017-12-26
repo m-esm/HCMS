@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Name>Hannan-Sanat.com</Name>
+  <Developer>Mohsen Esmaeli</Developer>
+  <DeveloperLink>http://happyspider.org/</DeveloperLink>
+  <Version>1.0</Version>
+  <ImageURL>/preview.png</ImageURL>
+  <Description></Description>
+  <Caching>
+<!--      <Page  name="home" params="rid,lang,viewname" />
+	 <Page  name="packages" params="loc_cat,packageType,lang,viewname" /> -->
+  </Caching>
+</root>

@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Galerie Reinhold Maas</title>
+
+    <link href="~/Packages/Magnific-Popup/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Themes/REINHOLD/doc/style.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/Themes/REINHOLD/img/monogram.png" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="parent">
+                <div class="logo">
+                    <a href="/home">
+                        <img class="logo" src="~/Themes/REINHOLD/img/logo.png" alt="Not loaded">
+                    </a>
+                </div>
+                <nav id="nav" role="navigation">
+                    <ul>
+                        <li class="dropdown">
+                            <a class="dropdown" href="/Home">Home</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown" href="/aktaus">Aktuelle Ausstellung</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown" href="/Galerie_News">Galerie</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown" href="/kuenstler">Künstler</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown" href="/messen">Messen</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown" href="/kontakt">Kontakt</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        @RenderBody()
+
+        <footer>
+            <div class="copyright">
+                <p class="copyright">
+                    Galerie Reinhold Maas<br>
+                    Gartenstraße 49<br>
+                    D-72764 Reutlingen<br>
+                    Tel: 0049 (0) 7121-367506<br>
+                    Öffnungszeiten: Di-Fr 11-18 Uhr, Sa 11-14 Uhrtakt<br>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/Themes/REINHOLD/scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Themes/REINHOLD/scripts/tinynav.min.js"></script>
+    <script>
+        $(function () {
+            $("#nav > ul").tinyNav();
+        });
+    </script>
+
+    <script src="~/Themes/REINHOLD/scripts/responsiveslides.js"></script>
+    <script src="responsiveslides.min.js"></script>
+
+    <script>
+        $(function () {
+            $(".rslides").responsiveSlides();
+        });
+    </script>
+
+    <script src="~/Themes/REINHOLD/scripts/simpleexpand.js"></script>
+    <script src="~/Themes/REINHOLD/scripts/simpleexpand.min.js"></script>
+
+    <script>
+        $('.expander').simpleexpand();
+
+        $(function () {
+            setNavigation();
+        });
+
+        function setNavigation() {
+            var path = window.location.pathname;
+            path = path.replace(/\/$/, "");
+            path = decodeURIComponent(path);
+
+            $("nav a").each(function () {
+                var href = $(this).attr('href');
+                if (path.substring(0, href.length) === href) {
+                    $(this).closest('li').addClass('active');
+                }
+            });
+        }
+
+    </script>
+
+    <script src="~/Packages/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+
+    @RenderSection("scripts", false)
+
+
+
+</body>
+</html>

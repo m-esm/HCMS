@@ -1,0 +1,88 @@
+﻿@{
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog_category").DRows;
+    var comments = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog_comments").DRows;
+    var blog = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog").DRows;
+}
+
+<aside class="sidebar">
+
+    <form method="get">
+        <div class="input-group input-group-lg">
+            <input class="form-control" placeholder="جست و جو ..." name="s" value="@Request.QueryString["s"]" id="s" type="text">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+
+    <hr>
+
+    <h4 class="heading-primary">دسته بندی&zwnj;ها</h4>
+    <ul class="nav nav-list mb-xlg">
+
+        @foreach (var item in cats)
+        {
+            <li>
+                <a href="/weblog?cat=@item.RowID">
+                    @item.GetValue("name") (@(blog.Count(p => p.GetValue("catId").Value == item.RowID.ToString())))
+                                                                     
+                </a>
+            </li>
+        }
+
+
+    </ul>
+    <div class="tabs mb-xlg">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> محبوب&zwnj;ها</a></li>
+            <li><a href="#recentPosts" data-toggle="tab">آخرین&zwnj;ها</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="popularPosts">
+
+                <ul class="simple-post-list">
+                    @foreach (var pp in blog.OrderBy(p => Guid.NewGuid()).AsEnumerable())
+                    {
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="~/post?rid=@pp.RowID">
+                                        <img src="@pp.GetValue("image")?width=100" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="~/post?rid=@pp.RowID">@pp.GetValue("title")</a>
+
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+            <div class="tab-pane" id="recentPosts">
+                <ul class="simple-post-list">
+                    @foreach (var pp in blog.OrderByDescending(p => p.RowID))
+                    {
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="~/post?rid=@pp.RowID">
+                                        <img src="@pp.GetValue("image")?width=100" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="~/post?rid=@pp.RowID">@pp.GetValue("title")</a>
+
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</aside>

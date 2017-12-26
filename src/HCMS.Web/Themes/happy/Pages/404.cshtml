@@ -1,0 +1,50 @@
+﻿@using HCMS.Business
+@using HCMS.Business.Auth
+@using HCMS.Dynamics.Forms.Models
+@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using MoreLinq
+@using PagedList
+
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+    Response.StatusCode = 404;
+}
+<div id="f0f" class="bg--overlay bg--img" style="background-image: url(&quot;img/404-img/bg.jpg&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="vc-parent">
+                    <div class="vc-child">
+                        <div class="section-title">
+                            <h2>@( (404).ToPersianNumber()) </h2>
+                        </div>
+                        <div class="description">
+                            <p>
+
+                              صفحه مورد نظر یافت نشد !
+                            </p>
+                            <div class="widget search">
+                                <div data-form-validation="true">
+                                    <form action="/search" method="get" novalidate="novalidate">
+                                        <div class="input-group">
+                                            <input type="text" name="q" placeholder="جست و جو ..." class="form-control" required="" aria-required="true">
+                                            <span class="input-group-addon">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <a href="~/" class="btn btn-lg btn-custom">
+بازگشت به خانه
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

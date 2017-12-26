@@ -1,0 +1,62 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var Phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = Phrases.CurrentCulture.CultureName();
+    var slides = DDB.GetTable("CMS", "Slider").DRows;
+    var years = slides.GroupBy(p => p.GetValue("year").Value).Select(p => p.First().GetValue("year").Value).ToArray();
+    var activeYear = DateTime.Now.Year;
+    if (Request.QueryString["year"] != null)
+    {
+        int.TryParse(Request.QueryString["year"].ToString(), out activeYear);
+    }
+
+    slides = slides.Where(p => p.GetValue("Year").Value == activeYear.ToString());
+
+
+
+}
+
+<div class="year-nummbers-box">
+    <ul>
+        @foreach (var year in years)
+        {
+            <li class="year-nummbers">
+                <a class="@(year == activeYear.ToString() ? "active" : "" ) blacklink2" href="/aktaus?year=@year">@year</a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="outerbox">
+    <div class="innerbox">
+
+        @foreach (var item in slides)
+        {
+            <div class="aktausslidebox">
+                <div class="slidephotobox2">
+                    <ul class="rslides">
+                        <li><img src="@item.GetValue("image")" alt="Not Loaded"></li>
+                    </ul>
+                </div>
+                <div class="aktaustextbox-parent">
+                    <div class="aktaustextbox1">
+                        <p>
+                            @item.GetValue("title")
+                        </p>
+                    </div>
+                    <div class="aktaustextbox2">
+                        <p>Eröffnung: @item.GetValue("date")</p>
+                    </div>
+                    <div class="aktaustextbox3">
+                        <p>
+                            @item.GetValue("Desc")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

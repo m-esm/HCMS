@@ -1,0 +1,166 @@
+﻿@{
+
+    ViewBag.title = "تماس";
+
+    var error = false;
+
+
+    if (IsPost)
+    {
+        Response.Write("git it");
+        if (Request.Form["captcha"] != null)
+        {
+            if (Request.Form["captcha"].ToString() != Session["captcha"].ToString())
+            {
+                error = true;
+            }
+            else
+            {
+
+                System.Collections.Specialized.NameValueCollection valueToSend = new System.Collections.Specialized.NameValueCollection();
+
+                string[] inputs = { "name", "subject", "email", "text" };
+
+
+                foreach (var inp in inputs)
+                {
+                    if (Request.Form[inp] != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(Request.Form[inp].ToString()))
+                        {
+                            error = true;
+                        }
+                        else
+                        {
+                            valueToSend.Add(inp, Request.Form[inp]);
+                        }
+                    }
+                    else
+                    {
+                        error = true;
+                    }
+
+                }
+
+                if (!error)
+                {
+
+                    string mailBody = "";
+                    foreach (string item in valueToSend)
+                    {
+                        mailBody += string.Format("<h4>{0} : </h4><textarea style='width:100%;height:100px;' dir='auto'>{1}</textarea><br />", item, valueToSend[item]);
+
+                    }
+                    HCMS.Dynamics.Tools.EmailSender.send("info@happyspider.org", mailBody, string.Format("تماس جدید از ") + valueToSend["name"]);
+
+
+                    Response.Redirect(Request.Url + "?status=done");
+
+
+                }
+            }
+
+        }
+        else
+        {
+            error = true;
+        }
+
+
+
+
+    }
+
+
+
+}
+<div id="contact" class="page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="contact-address">
+                    <h2>اطلاعات تماس</h2>
+                    <address class="ltr">
+                        <p>
+                            <i class="fa fa-envelope"></i> info@happyspider.org
+                        </p>
+                        <p>
+                            <i class="fa fa-skype"></i> happyspider.org
+                        </p>
+                        <p>
+                            <i class="fa fa-paper-plane"></i> @@happyspider.org
+                        </p>
+                        <p>
+                            <i class="fa fa-mobile"></i> +98 (912) 891 7370
+                            <span>
+                                محسن اسماعیلی
+                            </span>
+                        </p>
+
+                        <p>
+                            <i class="fa fa-mobile"></i> +98 (912) 026 3847
+                            <span>
+                                هادی جهانگیری
+                            </span>
+                        </p>
+
+
+                    </address>
+                    <div class="contact-social-links text-center">
+                        @Html.Partial("_socials")
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 contact-form">
+
+                @if (Request.QueryString["status"] != null)
+                {
+                    if (Request.QueryString["status"].ToString() == "done")
+                    {
+                        <div class="alert alert-success" id="contactSuccess">
+                            <strong> ارسال شد !</strong> درخواست تماس شما با موفقیت ارسال شد .
+                        </div>
+                    }
+                }
+                @if (error)
+                {
+                    <div class="alert alert-danger" id="contactError">
+                        <strong>خطا !</strong> لطفا فیلد های را مورد بازبینی قراردهید و مجددا تلاش کنید .
+                        <span class="font-size-xs mt-sm display-block" id="mailErrorMessage"></span>
+                    </div>
+                }
+
+                <form method="post" id="contactForm">
+                    <div class="contact-form-status"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" required name="email" class="form-control" placeholder="آدرس ایمیل">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required name="subject" class="form-control" placeholder="موضوع">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="text" required class="form-control" cols="30" rows="10" placeholder="پیام شما ..."></textarea>
+                    </div>
+
+                    <div class="input-field captcha-field">
+                        <i class="fa fa-refresh refresh"></i>
+                        <img src="~/manage/Captcha/msdn" id="captcha-image" />
+                        <input id="captcha" class="form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+
+                    <button type="submit" class="btn submit-button">ارسال</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

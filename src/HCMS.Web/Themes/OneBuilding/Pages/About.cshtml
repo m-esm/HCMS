@@ -1,0 +1,142 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var persons = HCMS.Dynamics.Data.DDB.GetTable("cms", "persons", cc.ID).DRows;
+}
+
+<section id="tm-page-heading" style="background-image: url(/Themes/OneBuilding/demo-images/page-heading-bg.jpg);">
+    <div class="container">
+        <div class="row v-align-children">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="tm-section-heading tsh-light no-margin ">
+                            <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                                @phrases.Get("About Us")
+                            </h1>
+                        </div><!--//tm-section-heading-->
+                    </div>
+                    <div class="col-xs-12">
+                        <ol class="breadcrumb wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                            <li><a href="#">@phrases.Get("Home")</a></li>
+                            <li><a href="#">@phrases.Get("About")</a></li>
+
+                        </ol>
+                    </div>
+                </div><!--//row-->
+            </div>
+            @Html.Partial("_socials")
+        </div><!--//row-->
+    </div><!--//container-->
+</section>
+
+<div id="tm-page-main">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="tm-page-image-box background-image-fixed tm-hover-up" style="background-image: url(/Themes/OneBuilding/demo-images/about-l.jpg);">
+                        <div class="title title-center page-section-shadow wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                            <h4 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                              @phrases.Get("about_page_slogan")
+                            </h4>
+                        </div><!--//title-->
+                    </div><!--//tm-page-image-box-->
+                </div>
+            </div><!--//row-->
+        </div><!--//container-->
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel-group tm-collapse" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default panel-shadow">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                       @phrases.Get("OUR VALUES") 
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    @phrases.Get("OUR VALUES text")
+     </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-shadow">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      @phrases.Get("OUR VISION")    
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                      @phrases.Get("OUR VISION text")    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-shadow">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    @phrases.Get("OUR MISSION")      
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    @phrases.Get("OUR MISSION text")      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--//row-->
+        </div><!--//container-->
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                    <div class="tm-section-heading tsh-dark text-center">
+                        <h1 class="wow fadeInDown" style="visibility: hidden; animation-name: none;">@phrases.Get("Our team")</h1>
+                        <p class="wow fadeInDown" style="visibility: hidden; animation-name: none;">@phrases.Get("Our team title text")</p>
+                    </div><!--//tm-section-heading-->
+                </div>
+            </div><!--//row-->
+            <div class="row">
+                @foreach (var item in persons)
+                {
+                    <div class="col-md-4">
+                        <div class="person-profile tm-hover-up tm-shadow-lg wow fadeInDown" style="visibility: hidden; animation-name: none;">
+                            <div class="person-profile-image">
+                                <img src="@item.GetValue("image")" alt="...">
+                            </div><!--//person-profile-image-->
+                            <div class="person-profile-content">
+                                <span class="person-profile-tag">@item.GetValue("title")</span>
+                                <h4 class="person-profile-name">@item.GetValue("name")</h4>
+                                <p class="person-profile-description">
+                                    @Html.Raw(item.GetValue("desc"))
+                                </p>
+                                <div class="person-profile-social">
+                                    <a href="@item.GetValue("fb")" title="..."><i class="fa fa-facebook"></i></a>
+                                    <a href="@item.GetValue("twitter")" title="..."><i class="fa fa-twitter"></i></a>
+                                    <a href="@item.GetValue("linkedin")" title="..."><i class="fa fa-linkedin"></i></a>
+                                </div><!--//person-profile-social-->
+                            </div><!--//person-profile-content-->
+                        </div><!--//person-profile-->
+                    </div>
+                }
+
+            </div><!--//row-->
+        </div><!--//row-->
+    </section>
+</div><!--//tm-page-main-->

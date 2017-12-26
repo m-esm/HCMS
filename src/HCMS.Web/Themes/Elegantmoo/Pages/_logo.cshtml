@@ -1,0 +1,21 @@
+﻿@model string
+@{
+    Layout = null;
+}
+
+<div class="logo">
+    <img alt="لوگو موسسه الگانت مو ارائه دهنده خدمات کاشت مو, تقویت مو,روش های ترمیم مو" src="~/Themes/Elegantmoo/Images/Elegant.png" />
+    @if (Model == "first")
+    {
+        <h2>
+            کاشت و ترمیم مو |  مناسب برای آقایان و خانم ها
+        </h2>
+    }
+    else
+    {
+        <span>
+            کاشت و ترمیم مو |  مناسب برای آقایان و خانم ها
+        </span>
+    }
+  
+</div>

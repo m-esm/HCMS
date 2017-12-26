@@ -1,0 +1,169 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+    var blogCategory = HCMS.Dynamics.Data.DDB.GetTable("cms", "blogCategory").DRows;
+    var projectCategory = HCMS.Dynamics.Data.DDB.GetTable("cms", "projectCategory").DRows;
+    var articleCategory = HCMS.Dynamics.Data.DDB.GetTable("cms", "articleCategory").DRows;
+    string currentView = ViewContext.RouteData.Values["viewname"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="تایپوخط ,فونت فارسی,تایپ فیس فارسی,طراحی فونت,طراحی تایپ فیس,تایپوگرافی,آموزش,خط فارسی,خوشنویسی فارسی,typokhat,typography,arabic typeface,type design,arabic script">
+
+    <meta name="google-site-verification" content="RV6BgY_lx47sFTrmq0tPf3p4gq3jD_vkPDUnoJGzHaM" />
+
+    <title>Typokhat</title>
+    <base href="/" />
+    <link href="~/themes/raminpahlavan/vendors/bower_components/angular/angular-csp.css" rel="stylesheet" />
+    <link href="~/themes/raminpahlavan/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/themes/raminpahlavan/vendors/bower_components/aos/dist/aos.css" rel="stylesheet" />
+    <link href="~/themes/raminpahlavan/vendors/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/themes/raminpahlavan/vendors/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/themes/raminpahlavan/styles/site.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+</head>
+<body style="display:none;">
+    <header>
+
+        <div class="container">
+
+            <div class="logo">
+                لوگو
+            </div>
+            <nav>
+                <ul class="menu">
+
+                    <li>
+                        <a data-filter="all" href="/projects#">تایپ فیس ها</a>
+                        <ul>
+                            @foreach (var item in projectCategory)
+                            {
+                            <li>
+                                <a href="/projects#c-@item.RowID">
+                                    @item.GetValue("name")
+                                </a>
+                            </li>
+
+                            }
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/articles">مقالات</a>
+                        <ul>
+                            @foreach (var item in articleCategory)
+                            {
+                            <li>
+                                <a href="/articles?cid=@item.RowID">
+                                    @item.GetValue("name")
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/blog">بلاگ</a>
+                        <ul>
+                            @foreach (var item in blogCategory)
+                            {
+                            <li>
+                                <a href="/blog?cid=@item.RowID">
+
+                                    @item.GetValue("name")
+                                </a>
+
+                            </li>
+
+                            }
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/about">درباره ما</a>
+                    </li>
+
+
+                    <li>
+                        <a href="/contact">تماس</a>
+                    </li>
+                </ul>
+
+            </nav>
+            @*<form class="search">
+                <i class="fa fa-search"></i>
+                <input type="text" name="q" ng-model="searchTerm" />
+                <div class="clear"></div>
+            </form>*@
+            <div class="navToggle">
+                <i class="fa fa-bars">
+                </i>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </header>
+
+    <section id="content">
+        <div class="page">
+            <div class="container">
+                @RenderBody()
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer>
+
+        <div class="container">
+
+            <ul class="pages">
+
+                <li>
+                    <a href="/">پروژه ها</a>
+                </li>
+
+                <li>
+                    <a href="/articles">مقالات</a>
+                </li>
+                <li>
+                    <a href="/blog">بلاگ</a>
+                </li>
+
+                <li>
+                    <a href="/about">درباره ما</a>
+                </li>
+
+
+                <li>
+                    <a href="/contact">تماس</a>
+                </li>
+
+            </ul>
+
+            <div class="copyright">
+                <span>
+                    تمام حقوق محفوظ بوده و استفاده از مطالب سایت با ذکر منبع بلامانع است.
+                </span>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Packages/HCMS/js/DStats.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/aos/dist/aos.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/angular/angular.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/angular-socket-io/socket.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/underscore/underscore-min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/moment-jalaali/build/moment-jalaali.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/socket.io-client/dist/socket.io.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/mixitup/dist/mixitup.min.js"></script>
+    <script src="~/themes/raminpahlavan/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/themes/raminpahlavan/js/webapp.js?v=@DateTime.Now.Ticks"></script>
+</body>
+</html>

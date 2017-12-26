@@ -1,0 +1,93 @@
+﻿@using HCMS.Business
+@using HCMS.Dynamics.Data
+@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture.CultureName();
+
+    var services = DDB.GetTable("cms", "services").DRows;
+    var serviceTypes = DDB.GetTable("cms", "serviceTypes").DRows;
+
+    string viewName = ViewContext.RouteData.Values["viewName"].ToString().ToLower();
+    var urlPath = Request.Url.AbsolutePath.ToLower().Replace("/","");
+}
+
+<div id="menu" class="@(viewName == "home" ? "nextBanner" :"")">
+
+    <nav id="secondaryMenu" class="navbar" data-sticky="true">
+        <div class="container">
+            <div class="navbar-header pull-right">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#secondaryNavbar">
+                    <span class="sr-only">
+                    منو
+                    </span>
+                    <span class="icon-bar">
+                    </span>
+                    <span class="icon-bar">
+                    </span>
+                    <span class="icon-bar">
+                    </span>
+                </button>
+                <a href="~/" class="navbar-brand">
+
+                    <img src="/Themes/happy/img/brand/logotype2.png" />
+                </a>
+            </div>
+
+            <div class="secondary-menu--custom-btn">
+                <a href="~/panel" class="btn btn-custom-reverse">
+                    ناحیه کاربری
+                </a>
+            </div>
+            <div id="secondaryNavbar" class="navbar-left reset-padding collapse">
+                <ul class="secondary-menu-links nav navbar-nav">
+                    <li class="@(urlPath == "" ? "active" : "")">
+                        <a href="~/">
+
+                        خانه
+                        </a>
+                    </li>
+
+                    @foreach (var itemP in serviceTypes)
+                    {
+                        var subServices = services.Where(p => p.GetValue("typeId").Value == itemP.RowID.ToString());
+                        <li class="@(subServices.Any(p=> urlPath.EndsWith(p.RowID.ToString())) ? "active": "")">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                                @itemP.GetValue("name")
+                                <span class="caret">
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach (var item in subServices)
+                                {
+                                    <li>
+                                        <a href="~/service?id=@item.RowID">
+                                            @item.GetValue("name")
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+                    }
+                    
+
+                
+                    <li class="@(urlPath.StartsWith("blog") ? "active" : "")">
+                        <a href="~/blog">
+                          وبلاگ
+                        </a>
+
+                    </li>
+                    <li  class="@(urlPath.StartsWith("contact") ? "active" : "")">
+                        <a href="~/contact">
+                           تماس
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>

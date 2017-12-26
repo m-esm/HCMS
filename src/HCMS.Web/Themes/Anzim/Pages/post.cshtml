@@ -1,0 +1,259 @@
+﻿@{
+
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+
+
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("cms", "contents").DRows;
+    var cats = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog_category").DRows;
+    var blog = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog").DRows;
+
+    int authorId = 0;
+    int rid = 0;
+    HCMS.Dynamics.Data.DRow post = null;
+    if (Request.QueryString["rid"] != null)
+    {
+        int.TryParse(Request.QueryString["rid"].ToString(), out rid);
+    }
+    if (blog.Any(p => p.RowID == rid))
+    {
+
+        post = blog.FirstOrDefault(p => p.RowID == rid);
+
+    }
+    else
+    {
+        Response.Redirect("/404");
+    }
+
+    var comments = HCMS.Dynamics.Data.DDB.GetTable("cms", "blog_comments").DRows.Where(p => p.GetValue("postId").Value == post.RowID.ToString()).Where(p => p.GetValue("confirmed").Value.ToLower() == "true");
+
+    ViewBag.title = post.GetValue("title").Value;
+
+    HCMS.Dynamics.DynamicDB db = new HCMS.Dynamics.DynamicDB();
+    var error = false;
+    if (IsPost)
+    {
+        System.Collections.Specialized.NameValueCollection valueToSend = new System.Collections.Specialized.NameValueCollection();
+
+        string[] inputs = { "name", "comment", "email", "postId", "postTitle" };
+
+        foreach (var inp in inputs)
+        {
+            if (Request.Form[inp] != null)
+            {
+                if (string.IsNullOrWhiteSpace(Request.Form[inp].ToString()))
+                {
+                    error = true;
+                }
+                else
+                {
+                    valueToSend.Add(inp, Request.Form[inp]);
+                }
+            }
+            else
+            {
+                error = true;
+            }
+
+        }
+
+        if (!error)
+        {
+            db.Create("cms", "blog_comments", valueToSend);
+
+            string mailBody = "";
+            foreach (string item in valueToSend)
+            {
+                mailBody += string.Format("<h4>{0} : </h4><textarea style='width:100%;height:100px;' dir='auto'>{1}</textarea><br />", item, valueToSend[item]);
+
+            }
+
+            HCMS.Dynamics.Tools.EmailSender.send("info@onanzim.ir", mailBody, string.Format("new comment from ") + valueToSend["name"]);
+
+            Cache.Remove("dynamics_table_rowids_cms_blog_comments_");
+
+            Response.Redirect(Request.Url + "&status=done");
+        }
+
+
+    }
+
+
+
+}
+
+
+<div class="container pt-xl">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-posts">
+                @if (!string.IsNullOrWhiteSpace(post.GetValue("image").Value))
+                {
+
+                    <div class="post-image">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <img class="img img-responsive img-thumbnail" src="@post.GetValue("image")" />
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+
+                <article class="post post-medium">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="post-content">
+
+                                <h2>
+                                    <a href="/post?rid=@post.RowID">@post.GetValue("title")</a>
+                                </h2>
+
+                                <p>
+                                    @Html.Raw(post.GetValue("Content"))
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="post-meta">
+                                <span>
+                                    <i class="fa fa-calendar"></i>
+                                    @post.GetValue("date")
+                                </span>
+                                <span><i class="fa fa-user"></i> توسط <a href="#">مدیریت سایت</a> </span>
+                                <span><i class="fa fa-tag"></i>  @post.GetValue("cat.name") </span>
+                                <span>
+                                    <i class="fa fa-comments"></i>
+                                    <a href="#">
+                                        @comments.Count(p => p.GetValue("postId").Value == post.RowID.ToString()) نظر
+                                    </a>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+
+
+            </div>
+            @if (int.TryParse(post.GetValue("authorId").Value, out authorId))
+            {
+                <div class="post-block post-author clearfix">
+                    <h3 class="heading-primary"><i class="fa fa-user"></i>نویسنده</h3>
+                    <div class="img-thumbnail">
+                        <img class="img-responsive img img-thumbnail" src="@post.GetValue("author.image")" alt="">
+                    </div>
+                    <p><strong class="name"><a href="#">@post.GetValue("author.name")</a></strong></p>
+                    <p> @Html.Raw(post.GetValue("author.title").Value.Replace(Environment.NewLine, "<br />"))</p>
+                </div>
+            }
+
+
+            <div class="post-block post-comments clearfix">
+                <h3 class="heading-primary">
+                    <i class="fa fa-comments"></i>نظرات
+                    (@comments.Count())
+                </h3>
+
+                <ul class="comments">
+                    @foreach (var cm in comments)
+                    {
+                        <li>
+                            <div class="comment">
+
+                                <div class="comment-block">
+                                    <div class="comment-arrow"></div>
+                                    <span class="comment-by">
+                                        <strong>@cm.GetValue("name")</strong>
+
+                                    </span>
+                                    <p>@cm.GetValue("comment")</p>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+
+                </ul>
+
+            </div>
+
+
+            <div class="post-block post-leave-comment">
+                <h3 class="heading-primary">@phrases.Get("Leave a comment") </h3>
+
+                @if (Request.QueryString["status"] != null)
+                {
+                    if (Request.QueryString["status"].ToString() == "done")
+                    {
+                        <div class="alert alert-success mt-lg" id="contactSuccess">
+                            <strong> ارسال شد !</strong>  نظر شما با موفقیت ارسال شد و پس از تایید مدیر نمایش داده خواهد شد .
+                        </div>
+                    }
+
+                }
+
+
+                @if (error)
+                {
+                    <div class="alert alert-danger hidden mt-lg" id="contactError">
+                        <strong>خطا !</strong> لطفا فیلد های را مورد بازبینی قراردهید .
+                        <span class="font-size-xs mt-sm display-block" id="mailErrorMessage"></span>
+                    </div>
+                }
+
+
+                <form method="post">
+
+                    <input type="hidden" name="postId" value="@post.RowID" />
+                    <input type="hidden" name="postTitle" value="@post.GetValue("title")" />
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label>نام شما *</label>
+                                <input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
+                            </div>
+                            <div class="col-md-6">
+                                <label>آدرس ایمیل *</label>
+                                <input type="email" value="" maxlength="100" class="form-control" name="email" id="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>نظر *</label>
+                                <textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="submit" value="ارسال نظر" class="btn btn-primary" data-loading-text="Loading...">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            @Html.Partial("_blog_sidebar")
+        </div>
+    </div>
+
+</div>

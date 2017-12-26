@@ -1,0 +1,6 @@
+﻿@{  
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cn = phrases.CurrentCulture.CultureName();
+  
+    ViewBag.Title = phrases.Get("Contact");
+}

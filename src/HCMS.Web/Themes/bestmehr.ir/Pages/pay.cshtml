@@ -1,0 +1,78 @@
+﻿@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@using Microsoft.AspNet.Identity
+@using System.Collections.Specialized
+@using System.Net
+@using Newtonsoft.Json
+@using RestSharp
+@using System.Configuration
+@{
+
+
+    var api = ConfigurationManager.AppSettings["api_payir"];
+
+    var cuserId = User.Identity.GetUserId();
+    var invoicesDb = DDB.GetTable("cms", "invoices").DRows.Where(p => p.GetValue("customer").Value == User.Identity.GetUserId()).OrderByDescending(p => p.RowID);
+    var mid = 0;
+
+    if (Request.QueryString["invoiceId"] != null)
+    {
+        int.TryParse(Request.QueryString["invoiceId"].ToString(), out mid);
+    }
+
+    var invoice = invoicesDb.FirstOrDefault(p => p.RowID == mid);
+
+    if (invoice == null)
+    {
+
+        Response.Write("invoice not found");
+        Response.StatusCode = 404;
+        Response.End();
+    }
+
+    var toPay = invoice.GetGroup("items").Sum(p => int.Parse(p.GetValue("itemPrice").Value.Replace(",", "").Replace(".", "")));
+
+
+    var client = new RestClient("https://pay.ir");
+    // client.Authenticator = new HttpBasicAuthenticator(username, password);
+
+    var request = new RestRequest("/payment/send", Method.POST);
+
+    request.AddParameter("api", api);
+    request.AddParameter("amount",toPay);
+    request.AddParameter("redirect", Request.Url.GetLeftPart(UriPartial.Authority) + "/payback");
+    request.AddParameter("factorNumber", invoice.RowID);
+
+
+    IRestResponse payres = client.Execute(request);
+
+    dynamic payresjson = JsonConvert.DeserializeObject(payres.Content);
+
+    if (!string.IsNullOrWhiteSpace((string)payresjson.transId))
+    {
+        string transid = (string)payresjson.transId;
+
+        invoice.changeValue("transid", transid,cuserId);
+
+        Response.Redirect("https://pay.ir/payment/gateway/" + transid);
+
+        Response.ClearHeaders();
+        Response.ClearContent();
+        Response.ContentType = payres.ContentType;
+
+        Response.Write(payres.Content);
+        Response.End();
+    }
+
+}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <h1>خطا در ارتباط با درگاه</h1>
+
+        </div>
+    </div>
+</div>

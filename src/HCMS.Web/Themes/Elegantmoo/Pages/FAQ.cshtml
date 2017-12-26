@@ -1,0 +1,30 @@
+﻿@using MoreLinq
+@using HCMS.Dynamics.Data
+@{
+
+    var rid = 0;
+    var faq = DDB.GetTable("CMS", "Pages").DRows.FirstOrDefault(p => p.GetValue("access").Value == "faq");
+
+    if (faq == null)
+    {
+        Response.Redirect("/404");
+    }
+
+}
+
+
+
+<div class="section service-page">
+    <div class="bg-overlay">
+        @Html.Partial("_header", "پرسش و پاسخ")
+
+        <div class="page">
+            <h2>
+              پرسش و پاسخ های متداول
+            </h2>
+            <div class="content">
+                @Html.Raw(faq.GetValue("content").Value.Replace(Environment.NewLine, "<br />"))
+            </div>
+        </div>
+    </div>
+</div>

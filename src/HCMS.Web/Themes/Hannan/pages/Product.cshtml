@@ -1,0 +1,57 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var product = HCMS.Dynamics.Data.DDB.GetTable("contents", "products", phrases.CurrentCulture.ID).DRows.First(p => p.RowID.ToString() == Request.QueryString["rid"].ToString());
+    ViewBag.Title = product.GetValue("name");
+}
+<div class="product-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 pics">
+                @foreach (var pic in product.GetGroup("pics"))
+                {
+                    <img class="img-responsive img-thumbnail" src="@pic.GetValue("pic")" />
+                }
+            </div>
+            <div class="col-md-12">
+
+                <h1>
+                    @product.GetValue("name")
+                </h1>
+
+
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                @Html.Raw(product.GetValue("description"))
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 sub-products">
+                <h1>
+                @phrases.Get("Sub Products")
+                </h1>
+                @foreach (var sp in product.GetGroup("sp"))
+                {
+                    <div class="sub-product">
+                        <div class="image">  <img src="@sp.GetValue("spPic")" /></div>
+                        <span>@sp.GetValue("spName")</span>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <a class="btn btn-primary" href="/@phrases.CurrentCulture.CultureName()/Products">
+                    <i class="glyphicon glyphicon-menu-left"></i> @phrases.Get("Back to products list")
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

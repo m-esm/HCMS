@@ -1,0 +1,62 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var page = HCMS.Dynamics.Data.DDB.GetTable("cms", "pages", cc.ID).DRows
+        .FirstOrDefault(p => p.GetValue("name").Value == "about");
+}
+
+<div id="pageHeading">
+    <h1 data-aos="fade-left" class="page-heading">
+        ABOUT US
+    </h1>
+</div>
+<div id="pageContent">
+    <div class="home-page">
+
+        <div class="box">
+            <h1>
+                About Us
+            </h1>
+            <p>
+                @Html.Partial("_content", "aboutus_aboutus")
+            </p>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+        <div class="bg-about"></div>
+
+        <div class="box">
+
+            <h1>
+                Vision
+            </h1>
+            <p>
+                To be positioned in the list of high ranked international health product suppliers
+            </p>
+            <div class="clearfix"></div>
+
+        </div>
+
+        <div class="bg-about"></div>
+
+
+        <div class="box">
+
+            <h1>
+                Mission
+            </h1>
+            <p>
+                Ensuring the interests of our stake holder’s (patients, physicians, pharmacists, employees, shareholders and business partners) through the supply of high quality, trustable and knowledge-based products to improve the quality of life and health by considering and implementing sustainable development principles.
+            </p>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="bg-about"></div>
+
+
+
+    </div>
+</div>
+

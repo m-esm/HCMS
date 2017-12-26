@@ -1,0 +1,120 @@
+﻿@using HCMS.Dynamics.Data
+@using HCMS.Dynamics.Tools
+@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("cms", "project", cc.ID).DRows.OrderByDescending(p => p.RowID).AsEnumerable();
+
+    var porjectUrl = ViewContext.RouteData.Values["url"];
+    DRow projectModel = null;
+
+    if (porjectUrl != null)
+    {
+        if (projects.Any(p => p.GetValue("url").Value == porjectUrl.ToString()))
+        {
+            projectModel = projects.FirstOrDefault(p => p.GetValue("url").Value == porjectUrl.ToString());
+        }
+        else
+        {
+            Response.Redirect("/404");
+        }
+
+    }
+
+}
+@if (projectModel != null)
+{
+
+    <div class="projectModel">
+
+        <div class="title">
+            @projectModel.GetValue("title")
+        </div>
+        <div class="details">
+
+
+            <div class="pictures">
+                @foreach (var item in projectModel.GetGroup("images").OrderBy(p => p.GetValue("order").Value))
+                {
+
+
+                    <div class="pic   @(item.GetValue("portrait").Value == "true" ? "portrait" : "")">
+                        <img src="@item.GetValue("image")" />
+                    </div>
+                }
+
+            </div>
+
+            <div class="title">
+              درباره  @projectModel.GetValue("title").Value.ToPersianNumber()
+            </div>
+
+            <div class="info">
+
+                <p>
+                    @Html.Raw(projectModel.GetValue("content").Value.ToPersianNumber())
+                </p>
+
+            </div>
+
+
+            <div class="otherProjects block">
+                <div>
+
+                    <h2>
+                        سایر پروژه ها
+                    </h2>
+
+                </div>
+                @foreach (var item in projects.Where(p=>p.RowID != projectModel.RowID))
+                {
+                    <div class="project">
+                        <div class="inner" style="background-image:url('@item.GetValue("banner")')">
+                            <a href="/projects/@item.GetValue("url")" class="info">
+
+                                @item.GetValue("title").Value.ToPersianNumber()
+
+                            </a>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+
+            @Html.Partial("_comment")
+
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+
+}
+else
+{
+
+    <div class="projects">
+
+        @foreach (var item in projects)
+        {
+
+            <div class="project c-@item.GetValue("categoryId").Value">
+                <div class="inner" style="background-image:url('@item.GetValue("banner")')">
+                    <a href="/projects/@item.GetValue("url")" class="info">
+                        <ul>
+                            <li>
+                                @item.GetValue("title")
+                            </li>
+
+                        </ul>
+                    </a>
+                </div>
+            </div>
+
+        }
+    </div>
+
+}
+<div class="clear"></div>
+

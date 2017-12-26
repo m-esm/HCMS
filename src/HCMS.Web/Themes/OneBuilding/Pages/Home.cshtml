@@ -1,0 +1,129 @@
+﻿@{
+    var phrases = (HCMS.Dynamics.Localization.Phrases)ViewBag.Phrases;
+    var cc = phrases.CurrentCulture;
+    var slides = HCMS.Dynamics.Data.DDB.GetTable("cms", "slider", cc.ID).DRows;
+    var products = HCMS.Dynamics.Data.DDB.GetTable("cms", "products", cc.ID).DRows;
+    var news = HCMS.Dynamics.Data.DDB.GetTable("cms", "news", cc.ID).DRows;
+    var partners = HCMS.Dynamics.Data.DDB.GetTable("cms", "partners", cc.ID).DRows;
+}
+
+<section id=tm-slider class="owl-carousel owl-theme no-pad">
+    @foreach (var item in slides)
+    {
+        <div class=item data-hash="slide-@item.RowID" style=background-image:url('@item.GetValue("image")')>
+            <div class=container>
+                <div class=row>
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                        <div class="tm-section-heading tsh-light no-margin text-center">
+                            <h1 class=animated>@item.GetValue("title")</h1>
+                            @if (string.IsNullOrWhiteSpace(item.GetValue("link").Value) == false)
+                            {
+                                <a href="@item.GetValue(" link")" class="btn btn-primary space-top-small animated">@phrases.Get("READ MORE")</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</section>
+<section id=section-call-to-action class=bg-white>
+    <div class=container>
+        <div class=row>
+            <div class="col-sm-12 hidden-xs">
+                <div class=tm-slider-button-box>
+                    <div class=row>
+                        @foreach (var item in products.OrderByDescending(p => p.RowID).Take(2))
+                        {
+                            <div class=col-sm-6>
+                                <div class="tm-section-box tm-hover-up tm-slider-change wow fadeInDown" data-id=0>
+                                    <div class=images><img src="@item.GetValue("image")" alt="@item.GetValue("title")"></div>
+                                    <div class="content text-center">
+                                        <div class=inner>
+                                            <a href="/product?rid=@item.RowID"><h2 class=text-primary>@item.GetValue("title")</h2></a>
+                                            <p>@item.GetValue("desc")</p>
+                                            <a href="/product?rid=@item.RowID" class=btn-text-only>@phrases.Get("READ MORE")</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                <div class="tm-section-heading tsh-dark no-margin text-center">
+                    <h1 class="wow fadeInDown">@phrases.Get("first_block_title")</h1>
+                    <a href="@cc.CultureName()/contact" class="btn btn-primary space-top-small wow fadeInUp">@phrases.Get("CONTACT US")</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id=section-services class="tm-primary section-bg-image" style=background-image:url('~/Themes/OneBuilding/demo-images/services-bg.png')>
+    <div class=container>
+        <div class=row>
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                <div class="tm-section-heading tsh-light text-center">
+                    <h1 class="wow fadeInDown">@phrases.Get("Latest news")</h1>
+                    <p class="wow fadeInDown">@phrases.Get("latest_news_description") </p>
+                </div>
+            </div>
+        </div>
+        <div class=row>
+            <div class=col-xs-12>
+                <div id=section-services-carousel class="owl-carousel owl-theme tm-section-carousel">
+
+                    @foreach (var item in news.OrderByDescending(p => p.RowID).Take(10))
+                    {
+                        <div class="item">
+                            <div class="tm-section-box tm-hover-up">
+                                <div class=images><img src="@item.GetValue("image")" alt="Our Services"></div>
+                                <div class="content ">
+                                    <div class=inner>
+                                        <a href="/news_item?rid=@item.RowID" title=...>
+                                            <h2 class=text-primary>@item.GetValue("title")</h2>
+                                        </a>
+                                        <p>
+                                            @Html.Raw(item.GetValue("Desc"))
+                                        </p>
+                                        <a href="/news_item?rid=@item.RowID" class=btn-text-only>@phrases.Get("READ MORE")</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id=section-partners class=bg-secondary-3>
+    <div class=container>
+        <div class=row>
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                <div class="tm-section-heading tsh-dark text-center">
+                    <h1 class="wow fadeInDown">@phrases.Get("clients & partners")</h1>
+                    <p class="wow fadeInDown">@phrases.Get("home_partners_text")</p>
+                </div>
+            </div>
+        </div>
+        <div class=row>
+            @foreach (var item in partners)
+            {
+                <div class="col-sm-2 col-xs-4">
+                    <img src="@item.GetValue(" image")" data-toggle=tooltip data-placement=top title data-original-title="@item.GetValue(" title")" alt=... class="tm-hover-up wow fadeInDown">
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

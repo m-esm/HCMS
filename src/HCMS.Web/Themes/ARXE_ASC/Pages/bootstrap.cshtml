@@ -1,0 +1,29 @@
+﻿@{
+    var projects = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "arch_project").DRows;
+    var contents = HCMS.Dynamics.Data.DDB.GetTable("arxe_arch", "Contents").DRows;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ARXE</title>
+    <link href="~/Themes/ARXE_ASC/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Themes/ARXE_ASC/Content/bootstrap-theme.css" rel="stylesheet" />
+
+</head>
+<body>
+ <div class="container">
+     <div class="row">
+         <div style="height:80px;background:#333;color:#fff;font-size:30px;" class="col-md-12">
+             Col md 12
+         </div>
+     </div>
+ </div>
+  
+
+    <script src="~/Themes/ARXE_ASC/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/bootstrap.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/jquery.ascensor.js"></script>
+    <script src="~/Themes/ARXE_ASC/Scripts/ARXE.ASC.js"></script>
+
+</body>
+</html>
