@@ -26,7 +26,7 @@
     <SccProvider>SAK</SccProvider>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <UseGlobalApplicationHostFile />
-    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ElFinder.Net">
-      <HintPath>..\..\! DLL References\ElFinder.Net.dll</HintPath>
+      <HintPath>C:\Users\hadi\Downloads\Telegram Desktop\ElFinder.Net.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -70,7 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\..\! DLL References\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -2158,249 +2158,6 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Themes\HappySpider\theme.xml" />
-    <Content Include="Themes\happy\css\animate.min.css" />
-    <Content Include="Themes\happy\css\bootstrap.min.css" />
-    <Content Include="Themes\happy\css\fakeLoader.css" />
-    <Content Include="Themes\happy\css\font-awesome.min.css" />
-    <Content Include="Themes\happy\css\jquery-ui.min.css" />
-    <Content Include="Themes\happy\css\magnific-popup.css" />
-    <Content Include="Themes\happy\css\owl.carousel.css" />
-    <None Include="Themes\happy\css\responsive-style.less" />
-    <Content Include="Themes\happy\css\responsive-style.css">
-      <DependentUpon>responsive-style.less</DependentUpon>
-    </Content>
-    <Content Include="Themes\happy\css\responsive-style.min.css">
-      <DependentUpon>responsive-style.css</DependentUpon>
-    </Content>
-    <Content Include="Themes\happy\css\style.css" />
-    <Content Include="Themes\happy\css\style.min.css" />
-    <Content Include="Themes\happy\css\theme-color-1.css" />
-    <Content Include="Themes\happy\css\theme-color-10.css" />
-    <Content Include="Themes\happy\css\theme-color-2.css" />
-    <Content Include="Themes\happy\css\theme-color-3.css" />
-    <Content Include="Themes\happy\css\theme-color-4.css" />
-    <Content Include="Themes\happy\css\theme-color-5.css" />
-    <Content Include="Themes\happy\css\theme-color-6.css" />
-    <Content Include="Themes\happy\css\theme-color-7.css" />
-    <Content Include="Themes\happy\css\theme-color-8.css" />
-    <Content Include="Themes\happy\css\theme-color-9.css" />
-    <Content Include="Themes\happy\favicon.png" />
-    <Content Include="Themes\happy\img\brand\final2.png" />
-    <Content Include="Themes\happy\img\brand\final.png" />
-    <Content Include="Themes\happy\img\brand\logotype1.png" />
-    <Content Include="Themes\happy\img\brand\logotype2%402x.png" />
-    <Content Include="Themes\happy\img\brand\logotype2.png" />
-    <Content Include="Themes\happy\img\features-img\icon-01.png" />
-    <Content Include="Themes\happy\img\features-img\icon-02.png" />
-    <Content Include="Themes\happy\img\features-img\icon-03.png" />
-    <Content Include="Themes\happy\img\features-img\icon-04.png" />
-    <Content Include="Themes\happy\img\home-slider-img\slider-bg-01.jpg" />
-    <Content Include="Themes\happy\img\home-slider-img\slider-item-01.png" />
-    <Content Include="Themes\happy\img\home-slider-img\slider-item-02.png" />
-    <Content Include="Themes\happy\img\home-slider-img\slider-item-03.png" />
-    <Content Include="Themes\happy\img\payment-methods.png" />
-    <Content Include="Themes\happy\img\server.png" />
-    <Content Include="Themes\happy\img\services-img\01.png" />
-    <Content Include="Themes\happy\img\services-img\02.png" />
-    <Content Include="Themes\happy\img\services-img\03.png" />
-    <Content Include="Themes\happy\img\testimonial-img\01.jpg" />
-    <Content Include="Themes\happy\img\testimonial-img\02.jpg" />
-    <Content Include="Themes\happy\img\testimonial-img\03.jpg" />
-    <Content Include="Themes\happy\img\windowshosting.png" />
-    <Content Include="Themes\happy\js\animatescroll.min.js" />
-    <Content Include="Themes\happy\js\bootstrap.min.js" />
-    <Content Include="Themes\happy\js\custom-color-switcher.js" />
-    <Content Include="Themes\happy\js\fakeLoader.min.js" />
-    <Content Include="Themes\happy\js\fn.js" />
-    <Content Include="Themes\happy\js\isotope.min.js" />
-    <Content Include="Themes\happy\js\jquery-3.1.0.min.js" />
-    <Content Include="Themes\happy\js\jquery-ui.min.js" />
-    <Content Include="Themes\happy\js\jquery.countdown.min.js" />
-    <Content Include="Themes\happy\js\jquery.counterup.min.js" />
-    <Content Include="Themes\happy\js\jquery.magnific-popup.min.js" />
-    <Content Include="Themes\happy\js\jquery.sticky.js" />
-    <Content Include="Themes\happy\js\jquery.ui.touch-punch.min.js" />
-    <Content Include="Themes\happy\js\jquery.validate.min.js" />
-    <Content Include="Themes\happy\js\jquery.waypoints.min.js" />
-    <Content Include="Themes\happy\js\jquery.youtubebackground.js" />
-    <Content Include="Themes\happy\js\main.js" />
-    <Content Include="Themes\happy\js\owl.carousel.min.js" />
-    <Content Include="Themes\happy\js\retina.min.js" />
-    <Content Include="Themes\happy\preview.jpg" />
-    <Content Include="Themes\happy\theme.xml" />
-    <Content Include="Themes\hayat1\css\slider.css">
-      <DependentUpon>slider.less</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat1\css\slider.min.css">
-      <DependentUpon>slider.css</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat1\css\style.css">
-      <DependentUpon>style.less</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat1\css\style.min.css">
-      <DependentUpon>style.css</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat1\img\courses.png" />
-    <Content Include="Themes\hayat1\img\defaultIcon.png" />
-    <Content Include="Themes\hayat1\img\header_bg.png" />
-    <Content Include="Themes\hayat1\img\icon.png" />
-    <Content Include="Themes\hayat1\img\image.png" />
-    <Content Include="Themes\hayat1\img\instagram.png" />
-    <Content Include="Themes\hayat1\img\layer_1.svg" />
-    <Content Include="Themes\hayat1\img\layer_2.svg" />
-    <Content Include="Themes\hayat1\img\layer_3.svg" />
-    <Content Include="Themes\hayat1\img\logo.png" />
-    <Content Include="Themes\hayat1\img\logo\Chat Icon-Syan.png" />
-    <Content Include="Themes\hayat1\img\logo\Ebtekar Saze Samle Logo.png" />
-    <Content Include="Themes\hayat1\img\logo\Hayate no Logo black.png" />
-    <Content Include="Themes\hayat1\img\logo\Hayate no Logo white.png" />
-    <Content Include="Themes\hayat1\img\logo\Icon 02.png" />
-    <Content Include="Themes\hayat1\img\logo\Icon.png" />
-    <Content Include="Themes\hayat1\img\map\Blocks A Maps-Lins .png" />
-    <Content Include="Themes\hayat1\img\map\Blocks B Maps Lins.png" />
-    <Content Include="Themes\hayat1\img\map\Blocks C Maps .png" />
-    <Content Include="Themes\hayat1\img\map\Blocks C Maps Lins.png" />
-    <Content Include="Themes\hayat1\img\map\Blocks M Maps Lins .png" />
-    <Content Include="Themes\hayat1\img\map\Blocks Maps.png" />
-    <Content Include="Themes\hayat1\img\map\box\Blocks A Maps Icon-box .png" />
-    <Content Include="Themes\hayat1\img\map\box\Blocks B Maps Icon-box .png" />
-    <Content Include="Themes\hayat1\img\map\box\Blocks C Maps Icon-box .png" />
-    <Content Include="Themes\hayat1\img\map\box\Blocks M Maps Icon-box .png" />
-    <Content Include="Themes\hayat1\img\page1-img1.png" />
-    <Content Include="Themes\hayat1\img\page1-img2.png" />
-    <Content Include="Themes\hayat1\img\slider\1.jpg" />
-    <Content Include="Themes\hayat1\img\slider\2.jpg" />
-    <Content Include="Themes\hayat1\img\slider\3.jpg" />
-    <Content Include="Themes\hayat1\img\telegram.png" />
-    <Content Include="Themes\hayat1\js\hayat.js" />
-    <Content Include="Themes\hayat1\js\hayat.min.js">
-      <DependentUpon>hayat.js</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat1\js\imageMapper.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.css" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.extensions.min.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.min.css" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.min.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\AUTHORS.txt" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\core.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\jquery.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\jquery.min.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\jquery.slim.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\jquery.slim.min.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\external\sizzle\dist\sizzle.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\external\sizzle\dist\sizzle.min.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\external\sizzle\LICENSE.txt" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\LICENSE.txt" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\jsonp.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\load.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\parseXML.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\script.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\var\location.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\var\nonce.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\var\rquery.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\ajax\xhr.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\attributes.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\attributes\attr.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\attributes\classes.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\attributes\prop.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\attributes\support.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\attributes\val.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\callbacks.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\access.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\DOMEval.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\init.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\nodeName.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\parseHTML.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\ready-no-deferred.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\ready.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\readyException.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\stripAndCollapse.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\support.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\core\var\rsingleTag.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\addGetHookIf.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\adjustCSS.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\curCSS.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\hiddenVisibleSelectors.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\showHide.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\support.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\var\cssExpand.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\var\getStyles.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\var\isHiddenWithinTree.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\var\rmargin.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\var\rnumnonpx.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\css\var\swap.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\data.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\data\Data.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\data\var\acceptData.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\data\var\dataPriv.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\data\var\dataUser.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\deferred.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\deferred\exceptionHook.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\deprecated.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\dimensions.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\effects.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\effects\animatedSelector.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\effects\Tween.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\event.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\event\ajax.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\event\alias.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\event\focusin.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\event\support.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\event\trigger.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\exports\amd.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\exports\global.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\jquery.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\buildFragment.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\getAll.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\setGlobalEval.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\support.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\var\rcheckableType.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\var\rscriptType.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\var\rtagName.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\wrapMap.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\manipulation\_evalUrl.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\offset.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\queue.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\queue\delay.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\selector-native.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\selector-sizzle.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\selector.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\serialize.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\traversing.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\traversing\findFilter.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\traversing\var\dir.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\traversing\var\rneedsContext.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\traversing\var\siblings.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\arr.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\class2type.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\concat.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\document.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\documentElement.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\fnToString.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\getProto.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\hasOwn.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\indexOf.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\ObjectFunctionString.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\pnum.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\push.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\rcssNum.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\rnothtmlwhite.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\slice.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\support.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\var\toString.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\wrap.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\vendors\examples.css" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\vendors\jquery.easings.min.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\vendors\scrolloverflow.js" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\vendors\scrolloverflow.min.js" />
-    <Content Include="Themes\hayat1\preview.jpg" />
-    <Content Include="Themes\hayat1\theme.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2509,59 +2266,6 @@
     <Content Include="SharedViews\404.cshtml" />
     <Content Include="Themes\web.config" />
     <Content Include="Themes\_ViewStart.cshtml" />
-    <Content Include="Themes\HappySpider\Pages\Home.cshtml" />
-    <Content Include="Themes\HappySpider\_Layout.cshtml" />
-    <Content Include="Themes\happy\css\style.less" />
-    <Content Include="Themes\happy\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Themes\happy\Pages\404.cshtml" />
-    <Content Include="Themes\happy\Pages\blog.cshtml" />
-    <Content Include="Themes\happy\Pages\contact.cshtml" />
-    <Content Include="Themes\happy\Pages\Home.cshtml" />
-    <Content Include="Themes\happy\Pages\_banner.cshtml" />
-    <Content Include="Themes\happy\Pages\_counter.cshtml" />
-    <Content Include="Themes\happy\Pages\_domainFeatures.cshtml" />
-    <Content Include="Themes\happy\Pages\_domainSearch.cshtml" />
-    <Content Include="Themes\happy\Pages\_faq.cshtml" />
-    <Content Include="Themes\happy\Pages\_featuresVTab.cshtml" />
-    <Content Include="Themes\happy\Pages\_footer.cshtml" />
-    <Content Include="Themes\happy\Pages\_footerContactInfo.cshtml" />
-    <Content Include="Themes\happy\Pages\_menu.cshtml" />
-    <Content Include="Themes\happy\Pages\_pageTitle.cshtml" />
-    <Content Include="Themes\happy\Pages\_pricing.cshtml" />
-    <Content Include="Themes\happy\Pages\_promo.cshtml" />
-    <Content Include="Themes\happy\Pages\_socials.cshtml" />
-    <Content Include="Themes\happy\Pages\_subscribe.cshtml" />
-    <Content Include="Themes\happy\Pages\_testimonial.cshtml" />
-    <Content Include="Themes\happy\_Layout.cshtml" />
-    <Content Include="Themes\happy\fonts\IRANSansWeb.eot" />
-    <Content Include="Themes\happy\fonts\IRANSansWeb.ttf" />
-    <Content Include="Themes\happy\fonts\IRANSansWeb.woff" />
-    <Content Include="Themes\happy\fonts\IRANSansWeb.woff2" />
-    <Content Include="Themes\happy\Pages\service.cshtml" />
-    <Content Include="Themes\happy\Pages\panel.cshtml" />
-    <Content Include="Themes\happy\Pages\_completeProfile.cshtml" />
-    <Content Include="Themes\hayat1\Pages\Home.cshtml" />
-    <Content Include="Themes\hayat1\_Layout.cshtml" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.min.css.map" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\dist\jquery.fullpage.min.js.map" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\LICENSE" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\bower.json" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\jquery.min.map" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\dist\jquery.slim.min.map" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\external\sizzle\dist\sizzle.min.map" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\package.json" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\README.md" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\node_modules\jquery\src\.eslintrc.json" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\package.json" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\README.md" />
-    <Content Include="Themes\hayat1\node_modules\fullpage.js\vendors\scrolloverflow.min.js.map" />
-    <Content Include="Themes\hayat1\css\slider.less" />
-    <Content Include="Themes\hayat1\css\style.less" />
-    <Content Include="Themes\hayat1\fonts\IRANSansWeb.eot" />
-    <Content Include="Themes\hayat1\fonts\IRANSansWeb.ttf" />
-    <Content Include="Themes\hayat1\fonts\IRANSansWeb.woff" />
-    <Content Include="Themes\hayat1\fonts\IRANSansWeb.woff2" />
-    <Content Include="Themes\hayat1\img\map\map.zip" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2580,8 +2284,6 @@
     <Folder Include="Areas\Manage\Views\Stats\" />
     <Folder Include="Content\FileManager\userfiles\" />
     <Folder Include="Scripts\vjs-lang\" />
-    <Folder Include="Themes\HappySpider\fonts\" />
-    <Folder Include="Themes\hayat1\img\slider\numbers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">
