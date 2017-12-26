@@ -29,11 +29,79 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+                sectionsColor: ['whitesmoke', 'whitesmoke', 'whitesmoke', 'whitesmoke', '#ccddff', 'whitesmoke', 'whitesmoke'],
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', '5thpage', '6thpage', '7thpage', 'lastPage'],
                 menu: '#menu',
                 continuousVertical: false,
                 scrollingSpeed: 1000
+            });
+        });
+    </script>
+
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+
+    </script>
+
+    <script>
+
+        var map;
+
+        function initMap() {
+            var uluru = { lat: 35.789581, lng: 51.495528 };
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+
+
+        $(document).on('click', '#tabs-rest', function () {
+            //رستوران
+            var points = [
+                 {
+                     position: new google.maps.LatLng(35.788718, 51.497732),
+                     title: 'رستوران نوبهار',
+                 }, {
+                     position: new google.maps.LatLng(35.788688, 51.496523),
+                     title: 'کترینگ عارف',
+                 }, {
+                     position: new google.maps.LatLng(35.790298, 51.495021),
+                     title: 'بامزی فست فود',
+                 }
+            ];
+            // Create markers.
+            points.forEach(function (point) {
+                var marker = new google.maps.Marker({
+                    position: point.position,
+                    title: point.title,
+                    //icon: icons[feature.type].icon,
+                    map: map
+                });
+            });
+        });
+
+        $(document).on('click', '#tabs-bred', function () {
+            //نانوایی
+            var points = [
+                {
+                    position: new google.maps.LatLng(35.790198, 51.495022),
+                    title: 'نانوایی سنگکی',
+                }
+            ];
+            // Create markers.
+            points.forEach(function (point) {
+                var marker = new google.maps.Marker({
+                    position: point.position,
+                    title: point.title,
+                    //icon: icons[feature.type].icon,
+                    map: map
+                });
             });
         });
     </script>

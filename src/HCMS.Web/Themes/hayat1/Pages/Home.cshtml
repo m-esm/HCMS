@@ -8,13 +8,13 @@
     <div class="section slider" id="section0">
         <img class="main" src="~/Themes/hayat1/img/courses.png" />
         @*<div class="my-slider">
-                <ul>
-                    <li ng-repeat="item in images" ng-class="item.className">
-                        <img ng-src="{{item.url}}" alt="1" title="" />
-                    </li>
+            <ul>
+                <li ng-repeat="item in images" ng-class="item.className">
+                    <img ng-src="{{item.url}}" alt="1" title="" />
+                </li>
 
-                </ul>
-            </div>*@
+            </ul>
+        </div>*@
 
         <ul class="page">
             <li>
@@ -275,6 +275,7 @@
             <h5>سوتیتر برای تصویر، سوتیتر برای تصویر، سوتیتر برای تصویر</h5>
         </div>
     </div>
+
     <div class="section map-section" id="section1">
         <div class="row">
             <div class="col-md-12 main-block">
@@ -459,21 +460,285 @@
             </div>
         </div>
     </div>
+
     <div class="section" id="section2">
-        <div class="intro">
-            <h1>Example</h1>
-            <p>HTML markup example to define 4 sections.</p>
-            <img src="~/Themes/hayat1/imgs/example2.png" alt="example" />
+        <div class="video-slider">
+            <div class="main">
+                <img src="~/Themes/hayat1/img/slider/1.jpg" />
+
+                <i class="fa fa-play-circle-o"></i>
+            </div>
+
+            <div class="child">
+                <ul>
+                    <li>
+                        <img src="~/Themes/hayat1/img/slider/1.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Themes/hayat1/img/slider/2.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Themes/hayat1/img/slider/3.jpg" />
+                    </li>
+
+                </ul>
+            </div>
         </div>
     </div>
+
     <div class="section" id="section3">
-        <div class="intro">
-            <h1>Working On Tablets</h1>
-            <p>
-                Designed to fit to different screen sizes as well as tablet and mobile devices.
-                <br /><br /><br /><br /><br /><br />
-            </p>
+        <div class="row">
+            <div class="col-md-12 brands">
+                <a href="http://www.venusglass.net">
+                    <img src="~/Themes/hayat1/img/brand/httpwww.venusglass.net.jpg" />
+                </a>
+
+                <a href="http://itc.co.ir">
+                    <img src="~/Themes/hayat1/img/brand/logo httpitc.co.ir.jpg" />
+                </a>
+
+                <a data-aos="fade-up-right" data-aos-delay="3000">
+                    <img src="~/Themes/hayat1/img/brand/سنچوری-225x168.jpg" />
+                </a>
+
+                <a href="http://www.kwc.com">
+                    <img src="~/Themes/hayat1/img/brand/httpwww.kwc.com.png" />
+                </a>
+
+                <a href="http://www.kwciran.com">
+                    <img src="~/Themes/hayat1/img/brand/www.kwciran.com.png" />
+                </a>
+            </div>
         </div>
-        <img src="~/Themes/hayat1/imgs/tablets.png" alt="tablets" />
+    </div>
+
+    <div class="section" id="section4">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="map" style="height: 600px; width: 100%;">
+                </div>
+                <div class="tabs">
+                    <ul>
+                        <li style="background-color:green;">مراکز خرید</li>
+                        <li style="background-color:cyan;">مراکز درمانی</li>
+                        <li style="background-color:greenyellow;">میوه و تره بار</li>
+                        <li style="background-color:yellow;" id="tabs-bred">نانوایی</li>
+                        <li style="background-color:blue;">کارواش</li>
+                        <li style="background-color:red;">فروشگاه شهروند</li>
+                        <li style="background-color:orange;">فست فودها</li>
+                        <li style="background-color:aliceblue;" id="tabs-rest">رستوران ها</li>
+                        <li style="background-color:rebeccapurple;">کترینگ</li>
+                        <li style="background-color:peru;">مداری</li>
+                        <li style="background-color:mistyrose;">مراکز دولتی</li>
+                        <li style="background-color:saddlebrown;">آموزشگاه ها</li>
+                        <li style="background-color:salmon;">حمل و نقل عمومی</li>
+                        <li style="background-color:paleturquoise;">تاسیسات</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section5">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form">
+
+                    <h5 class="section-title">فرم ثبت نام خریدار</h5>
+                    <div class="section-title-divider"></div>
+
+                    <form action="" method="post" role="form" class="contactForm">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option>بازدید</option>
+                                    <option>مذاکره</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام خانوادگی شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="آدرس پست الکترونیکی" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>
+                                    <i class="fa fa-phone"></i>
+                                    شماره همراه
+                                </label>
+                                <br />
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="phone" id="email" placeholder="شماره همراه" data-rule="email" data-msg="Please enter a valid phone" />
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" dir="ltr" value="+98" disabled="disabled" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                </div>
+                                <div class="col-md-5" style="padding:0;">
+                                    <select class="form-control">
+                                        <option>ایران</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <label>محل سکونت فعلی</label>
+
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>کشور</label>
+                                    <select class="form-control">
+                                        <option>ایران</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>استان / ایالت</label>
+                                    <select class="form-control">
+                                        <option>تهران</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>شهر</label>
+                                    <select class="form-control">
+                                        <option>تهران</option>
+                                        <option>اسلامشهر</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>منطقه</label>
+
+                                    <select class="form-control">
+                                        <option>ناحیه 1</option>
+                                        <option>ناحیه 2</option>
+                                    </select>
+                                </div>
+
+                                <!--<div class="col-md-8">
+                                <label>منطقه</label>
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="متراژ" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>-->
+                            </div>
+
+
+                        </div>
+
+                        <div class="text-center"><button type="submit">ثبت نام</button></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="border-right: 3px solid #03C4EB;">
+
+                <div class="form">
+                    <h5 class="section-title">فرم ثبت نام همکاری</h5>
+                    <div class="section-title-divider"></div>
+                    <form action="" method="post" role="form" class="contactForm">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option>نوع همکاری</option>
+                                    <option>استخدام</option>
+                                    <option>همراهان (تامین کنندگان و پیمانکاران)</option>
+                                    <option>سرمایه گذاران</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام خانوادگی شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="آدرس پست الکترونیکی" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>
+                                    <i class="fa fa-phone"></i>
+                                    شماره همراه
+                                </label>
+                                <br />
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="phone" id="email" placeholder="شماره همراه" data-rule="email" data-msg="Please enter a valid phone" />
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input type="text" dir="ltr" value="+98" disabled="disabled" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                </div>
+                                <div class="col-md-5" style="padding:0;">
+                                    <select class="form-control">
+                                        <option>ایران</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="text-center"><button type="submit">ثبت نام</button></div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="section" id="section6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    &copy; تمامی حقوق برای شرکت <strong>ابتکار سازه</strong> محفوظ می باشد
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+

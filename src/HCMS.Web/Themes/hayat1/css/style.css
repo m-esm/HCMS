@@ -910,3 +910,76 @@ body {
   width: 100%;
   font-size: 11px;
 }
+.video-slider {
+  width: 100%;
+}
+.video-slider .main {
+  height: 90%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+.video-slider .main img {
+  height: 500px;
+  width: 100%;
+}
+.video-slider .main i {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  font-size: 53px;
+  color: #000;
+  cursor: pointer;
+}
+.video-slider .child {
+  background-color: #222;
+  text-align: center;
+  padding: 10px;
+}
+.video-slider .child ul {
+  display: inline-block;
+  list-style-type: none;
+}
+.video-slider .child ul li {
+  float: right;
+  margin: 0 10px;
+}
+.video-slider .child ul li img {
+  height: 100px;
+  width: 120px;
+  cursor: pointer;
+}
+.brands {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}
+.brands img {
+  height: 100px;
+  padding: 10px;
+}
+.tabs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(2, 2, 2, 0.7);
+  height: 100%;
+  padding: 0 10px;
+}
+.tabs ul {
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+}
+.tabs ul li {
+  padding: 10px;
+  background-color: #808080;
+  margin: 3px 0;
+  color: #000;
+  cursor: pointer;
+}
+.tabs ul li:hover {
+  background-color: #4e1c1b;
+  color: #fff;
+}

@@ -1068,3 +1068,92 @@ body {
         font-size: 11px;
     }
 }
+
+.video-slider {
+    width: 100%;
+
+    .main {
+        height: 90%;
+        width: 100%;
+        margin: 0;
+        position: relative;
+
+
+        img {
+            height: 500px;
+            width: 100%;
+        }
+
+        i {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            font-size: 53px;
+            color: #000;
+            cursor: pointer;
+        }
+    }
+
+    .child {
+        background-color: #222;
+        text-align: center;
+        padding: 10px;
+
+        ul {
+            display: inline-block;
+            list-style-type: none;
+
+            li {
+                float: right;
+                margin: 0 10px;
+
+                img {
+                    height: 100px;
+                    width: 120px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.brands {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+
+    img {
+        height: 100px;
+        padding: 10px;
+    }
+}
+
+
+.tabs {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(2,2,2, 0.7);
+    height: 100%;
+    padding: 0 10px;
+
+    ul {
+        list-style-type: none;
+        width: 100%;
+        padding: 0;
+
+        li {
+            padding: 10px;
+            background-color: @baseColor3;
+            margin: 3px 0;
+            color: #000;
+            cursor: pointer;
+
+            &:hover {
+                background-color: @baseColor1;
+                color: #fff;
+            }
+        }
+    }
+}
