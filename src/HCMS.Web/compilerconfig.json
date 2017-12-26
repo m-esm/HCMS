@@ -58,5 +58,17 @@
   {
     "outputFile": "Themes/happy/css/responsive-style.css",
     "inputFile": "Themes/happy/css/responsive-style.less"
+  },
+  {
+    "outputFile": "Themes/hayat1/css/slider.css",
+    "inputFile": "Themes/hayat1/css/slider.less"
+  },
+  {
+    "outputFile": "Themes/hayat1/css/style.css",
+    "inputFile": "Themes/hayat1/css/style.less"
+  },
+  {
+    "outputFile": "Themes/hayat1/js/imageMapper.es5.js",
+    "inputFile": "Themes/hayat1/js/imageMapper.js"
   }
 ]

@@ -52,5 +52,11 @@
     "inputFiles": [
       "Themes/gostarhost/js/main.js"
     ]
+  },
+  {
+    "outputFileName": "Themes/hayat1/js/hayat.min.js",
+    "inputFiles": [
+      "Themes/hayat1/js/hayat.js"
+    ]
   }
 ]
