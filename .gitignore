@@ -10,7 +10,6 @@ src/packages/*
 src/*/obj/*
 src/*/obj/Debug/
 src/HCMS.Web/Files/*
-src/HCMS.Web/Themes/*
 src/HCMS.Web/App_Data/*
 src/HCMS.Web/Plugins/*
 
