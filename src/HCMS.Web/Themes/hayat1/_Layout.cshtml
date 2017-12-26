@@ -1,44 +1,131 @@
 ﻿
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Continuous scrolling - fullPage.js</title>
+    <title>حیات نو</title>
     <meta name="author" content="Matthew Howell" />
     <meta name="description" content="fullPage continuous scrolling demo." />
     <meta name="keywords" content="fullpage,jquery,demo,scroll,loop,continuous" />
     <meta name="Resource-type" content="Document" />
-
+    <link href="~/Themes/hayat1/node_modules/resetcss/reset.min.css" rel="stylesheet" />
     <link href="~/Packages/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Packages/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
-
     <link href="~/Themes/hayat1/node_modules/fullpage.js/dist/jquery.fullpage.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat1/css/slider.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat1/css/style.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat1/css/site.css" rel="stylesheet" />
+    <link href="~/Themes/hayat1/css/logo.css" rel="stylesheet" />
+
+
 </head>
 <body>
 
+
+    <img class="chat-logo" src="~/Themes/hayat1/img/logo/Chat Icon-Syan.png" />
+    <header>
+
+        <div class="logo">
+            <img src="~/Themes/hayat1/img/Ebtekar Saze Samle Logo.png" />
+        </div>
+
+        <div class="links">
+            <ul>
+                <li>
+                    <span>
+                        رزرو بازدید
+                    </span>
+                    <i class="fa fa-calendar"></i>
+                </li>
+
+                <li>
+                    <span class="ltr email">
+                        info@hayat-no.com
+                    </span>
+                    <i class="fa fa-envelope"></i>
+                </li>
+
+
+                <li>
+                    <span class="ltr phone">
+                        021 2290 4055
+                    </span>
+                    <i class="fa fa-phone-square"></i>
+                </li>
+            </ul>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#!/hayat">حیات</a>
+
+                    <div class="child-menu">
+                        برند چیست؟ برند نام تجاری، لوگوی شرکت و یا محصول و خدمات یک سازمان نیست! برند به صورت عمومی تعریف یا تصویری از هویت یک محصول،
+                        خدمت (سرویس)، سازمان و یا شرکت است که در طول زمان در ذهن مصرف&zwnj;کننده، کاربر یا مخاطب رسوب می&zwnj;کند.
+                        این ذهنیت شامل احساس، قضاوت&zwnj; و تعریف مخاطب از میزان کیفیت ارائه&zwnj;شده&zwnj;، ماهیت، روحیه
+                        و شخصیت برند است.
+
+                    </div>
+
+                </li>
+                <li>
+                    <a href="#!/hayatNo">حیات نو</a>
+                    <div class="child-menu">
+                        چرا برند؟ هدف ساخت برند به عنوان یک هویت مستقل، متمایزسازی یک محصول یا خدمت از سایر رقبای برند است. متمایزسازی برگ برنده&zwnj;ی
+                        افزایش فروش و موفقیت در بازار پرتنوع امروزِ ماست. اهمیت ساخت برند در دنیای امروز بر دو اصل ساده اما
+                        اساسیِ یک معادله&zwnj;ی معکوس استوار است: • کاهش زمان تصمیم&zwnj;گیری مخاطب برای خرید یا بهره&zwnj;مندی
+                        از خدمات • افزایش گسترده&zwnj;ی تعداد رقبا در بازار پرماجرای امروزی
+                    </div>
+                </li>
+                <li>
+                    <a href="#services">اخبار</a>
+                    <div class="child-menu">
+                        چرا برند؟ هدف ساخت برند به عنوان یک هویت مستقل، متمایزسازی یک محصول یا خدمت از سایر رقبای برند است. متمایزسازی برگ برنده&zwnj;ی
+                        افزایش فروش و موفقیت در بازار پرتنوع امروزِ ماست. اهمیت ساخت برند در دنیای امروز بر دو اصل ساده اما
+                        اساسیِ یک معادله&zwnj;ی معکوس استوار است: • کاهش زمان تصمیم&zwnj;گیری مخاطب برای خرید یا بهره&zwnj;مندی
+                        از خدمات • افزایش گسترده&zwnj;ی تعداد رقبا در بازار پرماجرای امروزی
+                    </div>
+                </li>
+                <li>
+                    <a href="#!/cell/cellDetail">گالری</a>
+                </li>
+                <li>
+                    <a href="#testimonials">اپلیکیشن حیات</a>
+                </li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <div id="loader">
+        <div class="logo-wrapper">
+            <div class="logobox">
+            </div>
+        </div>
+    </div>
+    
+
+
     @RenderBody()
 
+    <script src="~/Themes/hayat1/node_modules/underscore/underscore-min.js"></script>
+    <script src="~/Themes/hayat1/node_modules/async/dist/async.min.js"></script>
     <script src="~/Packages/jquery-2.1.4/jquery-2.1.4.min.js"></script>
     <script src="~/Packages/jquery.ui.1.9.0/jquery-ui.min.js"></script>
     <script src="~/Themes/hayat1/node_modules/fullpage.js/vendors/scrolloverflow.min.js"></script>
     <script src="~/Themes/hayat1/node_modules/fullpage.js/dist/jquery.fullpage.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#fullpage').fullpage({
-                sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-                menu: '#menu',
-                continuousVertical: false,
-                scrollingSpeed: 1000
-            });
-        });
-    </script>
 
     <script src="~/Themes/hayat1/js/imageMapper.js"></script>
     <script src="~/Themes/hayat1/js/hayat.min.js"></script>
+    <script src="~/Themes/hayat1/js/slider.js"></script>
+    <script src="~/Themes/hayat1/js/logo.js"></script>
+
+
+    @RenderSection("scripts", false)
+
+
 </body>
 </html>

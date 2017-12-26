@@ -2158,6 +2158,88 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Themes\hayat1\css\logo.css">
+      <DependentUpon>logo.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\css\logo.min.css">
+      <DependentUpon>logo.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\css\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\css\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\css\style.css" />
+    <Content Include="Themes\hayat1\css\style.min.css" />
+    <Content Include="Themes\hayat1\img\1.jpg" />
+    <Content Include="Themes\hayat1\img\2.jpg" />
+    <Content Include="Themes\hayat1\img\3.jpg" />
+    <Content Include="Themes\hayat1\img\courses.png" />
+    <Content Include="Themes\hayat1\img\defaultIcon.png" />
+    <Content Include="Themes\hayat1\img\Ebtekar Saze Samle Logo.png" />
+    <Content Include="Themes\hayat1\img\header_bg.png" />
+    <Content Include="Themes\hayat1\img\icon.png" />
+    <Content Include="Themes\hayat1\img\image.png" />
+    <Content Include="Themes\hayat1\img\instagram.png" />
+    <Content Include="Themes\hayat1\img\layer_1.svg" />
+    <Content Include="Themes\hayat1\img\layer_2.svg" />
+    <Content Include="Themes\hayat1\img\layer_3.svg" />
+    <Content Include="Themes\hayat1\img\logo.png" />
+    <Content Include="Themes\hayat1\img\logo\Chat Icon-Syan.png" />
+    <Content Include="Themes\hayat1\img\logo\Ebtekar Saze Samle Logo.png" />
+    <Content Include="Themes\hayat1\img\logo\Hayate no Logo black.png" />
+    <Content Include="Themes\hayat1\img\logo\Hayate no Logo white.png" />
+    <Content Include="Themes\hayat1\img\logo\Icon 02.png" />
+    <Content Include="Themes\hayat1\img\logo\Icon.png" />
+    <Content Include="Themes\hayat1\img\map\Blocks A Maps-Lins .png" />
+    <Content Include="Themes\hayat1\img\map\Blocks B Maps Lins.png" />
+    <Content Include="Themes\hayat1\img\map\Blocks C Maps .png" />
+    <Content Include="Themes\hayat1\img\map\Blocks C Maps Lins.png" />
+    <Content Include="Themes\hayat1\img\map\Blocks M Maps Lins .png" />
+    <Content Include="Themes\hayat1\img\map\Blocks Maps.png" />
+    <Content Include="Themes\hayat1\img\map\box\Blocks A Maps Icon-box .png" />
+    <Content Include="Themes\hayat1\img\map\box\Blocks B Maps Icon-box .png" />
+    <Content Include="Themes\hayat1\img\map\box\Blocks C Maps Icon-box .png" />
+    <Content Include="Themes\hayat1\img\map\box\Blocks M Maps Icon-box .png" />
+    <Content Include="Themes\hayat1\img\page1-img1.png" />
+    <Content Include="Themes\hayat1\img\page1-img2.png" />
+    <Content Include="Themes\hayat1\img\slider\1.jpg" />
+    <Content Include="Themes\hayat1\img\slider\2.jpg" />
+    <Content Include="Themes\hayat1\img\slider\3.jpg" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber 1.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber 2.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber 3.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber 4.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Grey 1.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Grey 2.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Grey 3.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Grey 4.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Grey left.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Grey right.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Note.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Of slider 2.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Of slider Grey 2.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Of slider Grey.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber Of slider.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber right.png" />
+    <Content Include="Themes\hayat1\img\slider\numbers\Nomber-Left.png" />
+    <Content Include="Themes\hayat1\img\telegram.png" />
+    <Content Include="Themes\hayat1\js\hayat.js" />
+    <Content Include="Themes\hayat1\js\hayat.min.js">
+      <DependentUpon>hayat.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\js\imageMapper.es5.js">
+      <DependentUpon>imageMapper.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\js\imageMapper.es5.min.js">
+      <DependentUpon>imageMapper.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\js\imageMapper.js" />
+    <Content Include="Themes\hayat1\js\logo.js" />
+    <Content Include="Themes\hayat1\js\slider.js" />
+    <Content Include="Themes\hayat1\preview.jpg" />
+    <Content Include="Themes\hayat1\theme.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2266,6 +2348,15 @@
     <Content Include="SharedViews\404.cshtml" />
     <Content Include="Themes\web.config" />
     <Content Include="Themes\_ViewStart.cshtml" />
+    <Content Include="Themes\hayat1\css\style.less" />
+    <Content Include="Themes\hayat1\font\IRANSansWeb.eot" />
+    <Content Include="Themes\hayat1\font\IRANSansWeb.ttf" />
+    <Content Include="Themes\hayat1\font\IRANSansWeb.woff" />
+    <Content Include="Themes\hayat1\font\IRANSansWeb.woff2" />
+    <Content Include="Themes\hayat1\Pages\Home.cshtml" />
+    <Content Include="Themes\hayat1\_Layout.cshtml" />
+    <Content Include="Themes\hayat1\css\logo.less" />
+    <Content Include="Themes\hayat1\css\site.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2284,6 +2375,7 @@
     <Folder Include="Areas\Manage\Views\Stats\" />
     <Folder Include="Content\FileManager\userfiles\" />
     <Folder Include="Scripts\vjs-lang\" />
+    <Folder Include="Themes\hayat1\node_modules\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">

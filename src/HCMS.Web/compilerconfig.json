@@ -70,5 +70,13 @@
   {
     "outputFile": "Themes/hayat1/js/imageMapper.es5.js",
     "inputFile": "Themes/hayat1/js/imageMapper.js"
+  },
+  {
+    "outputFile": "Themes/hayat1/css/site.css",
+    "inputFile": "Themes/hayat1/css/site.less"
+  },
+  {
+    "outputFile": "Themes/hayat1/css/logo.css",
+    "inputFile": "Themes/hayat1/css/logo.less"
   }
 ]

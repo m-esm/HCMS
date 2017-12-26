@@ -58,9 +58,11 @@ var toggleSearchBar = function () {
     $('.search-bar').toggleClass('open');
 }
 
+
+
 $(document).ready(function () {
-    //toggle search bar
-  
+
+    $('#loader').fadeOut();
 
     //click on right menu
     $('.right-icons ul li').click(function () {
