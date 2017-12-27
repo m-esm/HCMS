@@ -2514,7 +2514,7 @@
     <Folder Include="Areas\Manage\Views\Stats\" />
     <Folder Include="Content\FileManager\userfiles\" />
     <Folder Include="Scripts\vjs-lang\" />
-    <Folder Include="Themes\hayat1\etc\" />
+    <Folder Include="Themes\hayat1\node_modules\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">

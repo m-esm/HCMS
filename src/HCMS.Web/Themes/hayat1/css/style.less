@@ -1,8 +1,4 @@
 ﻿
-@font-face {
-    font-family: 'IRANSansWeb';
-    src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
-}
 
 @blackColor: #222;
 @blackColor2: #1e1e1e;
@@ -14,7 +10,6 @@
 body {
     background: #fff;
     color: #666666;
-    font-family: "IRANSansWeb", sans-serif;
     overflow-x: hidden;
 }
 
@@ -27,245 +22,53 @@ body {
     height: 100% !important;
 }
 
-.slider {
-    .page {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-        padding: 10px;
-        width: 166px;
-        display: inline-block;
+.fp-tableCell {
+    height: 100% !important;
+}
+
+.chat-logo {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 60px;
+    cursor: pointer;
+    animation: shake 0.8s infinite;
+    transform: translate3d(0, 0, 0);
+    z-index: 9;
+}
+
+
+
+.search-bar {
+    position: absolute;
+    left: -690px;
+    top: 41px;
+    width: 724px;
+    display: inline-block;
+    transition: all 1s;
+
+    &.open {
+        left: -41px;
+    }
+
+    input, select {
+        float: right;
+        width: 30%;
+        border-radius: 0;
+        background-color: rgba(2,2,2, 0.5);
         color: #fff;
-        list-style-type: none;
-
-        li {
-            float: right;
-            border-radius: 3px;
-            padding: 3px 5px;
-            margin: 0 2px;
-            cursor: pointer;
-
-            &.one {
-                img {
-                    width: 5px;
-                }
-            }
-
-            img {
-                width: 10px;
-                height: 14px;
-            }
-
-            &.active {
-            }
-
-            &.next {
-                margin-left: 5px;
-            }
-
-            &.prev {
-                margin-right: 5px;
-            }
-        }
     }
 
-    .chat-logo {
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        font-size: 60px;
-        cursor: pointer;
-        animation: shake 0.8s infinite;
-        transform: translate3d(0, 0, 0);
-        z-index: 9;
-    }
-
-    .row {
+    i {
+        background-color: @baseColor1;
+        color: #fff;
         padding: 10px;
-        padding-top: 15px;
-        position: absolute;
-        top: 0;
-        width: 100%;
-
-        .top {
-
-            &:hover {
-                background-color: @blackColor;
-                opacity: 0.7;
-            }
-
-            ul {
-
-                li {
-                    display: inline-block;
-                    vertical-align: top;
-                    height: 30px;
-                    line-height: 30px;
-                    overflow: hidden;
-                    margin-left: 0;
-                    font-size: 16px;
-                    color: #fff;
-                    transition: color ease 0.5s;
-                    opacity: 1 !important;
-                    cursor: pointer;
-
-
-                    i {
-                        display: inline-block;
-                        vertical-align: middle;
-                        width: 20px;
-                        text-align: center;
-                        height: 30px;
-                        line-height: 30px;
-                        box-sizing: border-box;
-                        color: #fff;
-                        transition: color ease 0.5s;
-                        opacity: 1;
-                    }
-
-                    span.ltr {
-                        font-size: 12px;
-                    }
-
-                    span {
-                        display: inline-block;
-                        overflow: hidden;
-                        transition: all ease .5s;
-                        vertical-align: middle;
-                        font-size: 13px;
-                        font-style: italic;
-                        white-space: nowrap;
-                        width: 0;
-                        font-weight: bold;
-                    }
-
-                    &:hover {
-                        color: #fff;
-
-
-                        i {
-                            color: #fff;
-                        }
-
-                        span {
-                            width: 60px;
-                        }
-
-                        span.phone {
-                            width: 100px;
-                        }
-
-                        span.social {
-                            width: 70px;
-                        }
-
-                        span.email {
-                            width: 120px;
-                        }
-                    }
-                }
-            }
-        }
-
-        .ebtekar-logo {
-            img {
-                width: 80px;
-            }
-
-            &:hover {
-                background-color: @blackColor;
-                opacity: 0.7;
-                padding: 10px 5px 70px 5px;
-            }
-        }
-
-        .action {
-            width: 300px;
-            text-align: right;
-            padding: 5px;
-            direction: rtl;
-
-            &:hover {
-                background-color: @blackColor;
-                opacity: 0.7;
-            }
-
-            a {
-                display: inline-block;
-
-                i {
-                    color: #fff;
-                    font-size: 18px;
-                    padding: 5px;
-                    float: right;
-                }
-
-                label {
-                    display: none;
-                    float: right;
-
-                    &.active {
-                        display: block;
-                    }
-                }
-            }
-        }
+        float: right;
+        cursor: pointer;
     }
-
-    #header {
-        /*background-color: @blackColor;*/
-        padding: 0;
-        height: 33px;
-        /*margin-right: 40px;*/
-        position: absolute;
-        top: 100px;
-        right: 0;
-        width: 100%;
-        background-color: unset;
+}
 
 
-        .container {
-            background-color: rgba(2, 2, 2, 0.5);
-            width: 98.8%;
-            margin-right: 16px;
-            //search bar
-            .search-bar {
-                position: absolute;
-                left: -690px;
-                top: 41px;
-                width: 724px;
-                display: inline-block;
-                transition: all 1s;
-
-                &.open {
-                    left: -41px;
-                }
-
-                input, select {
-                    float: right;
-                    width: 30%;
-                    border-radius: 0;
-                    background-color: rgba(2,2,2, 0.5);
-                    color: #fff;
-                }
-
-                i {
-                    background-color: @baseColor1;
-                    color: #fff;
-                    padding: 10px;
-                    float: right;
-                    cursor: pointer;
-                }
-            }
-
-
-            img {
-                position: absolute;
-                right: 0;
-                top: -1px;
-                height: 32px;
-            }
-        }
 
         .menu-icon {
             background: url('../img/logo/Icon.png');
