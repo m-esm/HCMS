@@ -93,22 +93,9 @@ var addClass = function (className) {
         $('.' + className).addClass('bounceInLeft animated');
 }
 
-//var addClass = function (className) {
-//    $('.' + className).addClass('active');
-//    $('.' + className).removeClass('bounceOutRight animated');
-//    $('.' + className).addClass('bounceInLeft animated');
-//}
 
 $(document).on('click', '#coordBlockA', function () {
-
-    //removeBlockA('block-b');
-    //removeBlockA('block-c');
-    //removeBlockA('block-m');
-
-    //if ($('.block-a').hasClass('active'))
-    //    removeBlockA('block-a');
-    //else 
-    //    addClass('block-a');
+    window.location.href = "/block?type=a"
 });
 
 $(document).on('click', '#coordBlockB', function () {

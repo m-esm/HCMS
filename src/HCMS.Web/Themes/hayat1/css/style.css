@@ -479,3 +479,506 @@
   width: 100%;
   font-size: 11px;
 }
+.video-slider {
+  width: 100%;
+}
+.video-slider .main {
+  height: 90%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+.video-slider .main img {
+  height: 500px;
+  width: 100%;
+}
+.video-slider .main i {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  font-size: 53px;
+  color: #000;
+  cursor: pointer;
+}
+.video-slider .child {
+  background-color: #222;
+  text-align: center;
+  padding: 10px;
+}
+.video-slider .child ul {
+  display: inline-block;
+  list-style-type: none;
+}
+.video-slider .child ul li {
+  float: right;
+  margin: 0 10px;
+}
+.video-slider .child ul li img {
+  height: 100px;
+  width: 120px;
+  cursor: pointer;
+}
+.brands {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}
+.brands img {
+  height: 100px;
+  padding: 10px;
+}
+.tabs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(2, 2, 2, 0.7);
+  height: 100%;
+  padding: 0 10px;
+}
+.tabs ul {
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+}
+.tabs ul li {
+  padding: 10px;
+  background-color: #808080;
+  margin: 3px 0;
+  color: #000;
+  cursor: pointer;
+}
+.tabs ul li:hover {
+  background-color: #4e1c1b;
+  color: #fff;
+}
+.about {
+  /*background-image: url(../img/نمای_سه_بعدی_ساختمان_حیات_نو_copy.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;*/
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.about .main-image {
+  height: 100%;
+  width: 100%;
+}
+.about .background {
+  /*background: #4f1c1c;*/
+  background: radial-gradient(rgba(79, 28, 28, 0.9), rgba(79, 28, 28, 0.95), #3c0f0f);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.about .detail {
+  position: absolute;
+  left: 60%;
+  top: 200px;
+  width: 400px;
+  padding: 10px;
+  direction: rtl;
+}
+.about .detail .table {
+  width: 100%;
+}
+.about .detail .close {
+  position: absolute;
+  left: calc(50%-56px);
+  top: -49px;
+  color: #fff;
+  font-size: 21px;
+  opacity: 1;
+}
+.about .detail .close img {
+  width: 112px;
+  height: 40px;
+}
+.about .detail h2,
+.about .detail p {
+  color: #fff;
+}
+.about .detail h2 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+.about .detail p {
+  text-align: justify;
+  word-break: break-word;
+  line-height: 25px;
+}
+.about.block {
+  position: relative;
+}
+.about.block .background {
+  /*background: #4f1c1c;*/
+  /*background: radial-gradient(rgba(79, 28, 28, 0.70), rgba(79, 28, 28, 0.85), rgb(60, 15, 15) );*/
+  background: linear-gradient(to right, rgba(79, 28, 28, 0.7), #4f1c1c);
+}
+.about.block .main-image {
+  position: absolute;
+  left: 0;
+  height: 657px;
+  width: 913px;
+}
+.about.block .detail {
+  position: absolute;
+  left: 60%;
+  top: 200px;
+  width: 400px;
+  padding: 10px;
+  direction: rtl;
+}
+.about.block .detail .forward i {
+  font-size: 30px;
+  color: #fff;
+  margin-left: 10px;
+}
+.about.block .detail .forward label {
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.about.block .detail .down,
+.about.block .detail .up {
+  float: left;
+}
+.about.block .detail .down i,
+.about.block .detail .up i {
+  font-size: 30px;
+  color: #fff;
+  margin-left: 10px;
+}
+.about.block .detail .down label,
+.about.block .detail .up label {
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.about.block .detail .up {
+  position: absolute;
+  left: 0;
+  top: -40px;
+}
+.about.block .cell {
+  position: absolute;
+}
+.about.block .cell .plan {
+  width: 20%;
+  height: 300px;
+  float: left;
+  position: relative;
+  perspective: 1000px;
+  transform: rotateX(45deg);
+  left: -31px;
+}
+.about.block .cell .plan img {
+  border: 1px solid;
+  height: 160px;
+  width: 160px;
+  transform: rotate3d(0, 0, 1, 45deg);
+  position: absolute;
+  box-shadow: 1px 1px 2px 1px #ddd;
+}
+.about.block .cell .plan img:hover {
+  box-shadow: 1px 1px 2px 1px #4f1c1c;
+  /*transform: translateX(20px);
+                transition: all linear 1s;
+                z-index: 10;*/
+}
+.about.block .cell .plan img.active {
+  box-shadow: 1px 1px 2px 1px #4f1c1c;
+}
+.about.block .cell .plan img:nth-child(0) {
+  top: 100px;
+}
+.about.block .cell .plan img:nth-child(1) {
+  top: 80px;
+  /*-webkit-transform-origin: 50% 50% 50%;
+                transform-origin: 50% 50% 50%;
+                -webkit-transform: perspective(0) translate3d(50px, 40px, 80px) scale3d(1, 2, 0) rotate3d(0, 1, 0, 45deg);
+                transform: perspective(0) translate3d(50px, 40px, 80px) scale3d(1, 2, 0) rotate3d(0, 1, 0, 45deg);
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;*/
+}
+.about.block .cell .plan img:nth-child(2) {
+  top: 60px;
+}
+.about.block .cell .plan img:nth-child(3) {
+  top: 40px;
+}
+.about.block .cell .plan img:nth-child(4) {
+  top: 20px;
+}
+.about.block .cell .plan img:nth-child(5) {
+  top: 0;
+}
+.about.block .cell .preview {
+  width: 29%;
+  height: 600px;
+  float: left;
+  padding: 20px;
+}
+.about.block .cell .preview img {
+  width: 100%;
+}
+.table {
+  width: 50%;
+  height: 492px;
+  overflow: auto;
+}
+.table table {
+  width: 100%;
+  direction: rtl;
+  background-color: #eee;
+  color: #999;
+}
+.table table td,
+.table table th {
+  text-align: center;
+  /*border: 1px solid #999;*/
+}
+.table table thead {
+  background-color: #808080;
+  color: #000;
+}
+.table table tbody {
+  height: 400px;
+  overflow: auto;
+}
+.table table tbody tr {
+  cursor: pointer;
+}
+.table table tbody tr:hover td {
+  background-color: #ddd;
+  color: #000;
+}
+.table table tbody tr.active td {
+  background-color: #4e1c1b;
+  color: #fff;
+  opacity: 0.7;
+}
+.table table tbody tr.select td {
+  background-color: #4e1c1b;
+  color: #fff;
+  opacity: 1;
+}
+.table table tbody .btn {
+  padding: 2px 5px;
+  font-size: 12px;
+}
+.cellDetail {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.cellDetail .img {
+  /*.pov {
+            position: absolute;
+            height: 300px;
+            left: 0;
+            top: ~"calc(50% - 150px)";
+            cursor: pointer;
+
+            &:hover {
+                height: 400px;
+                top: ~"calc(50% - 200px)";
+                padding: 20px;
+                transition: all 0.5s;
+            }
+
+            img {
+                height: 100%;
+            }
+        }*/
+}
+.cellDetail .img .item {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.cellDetail .img .item.active {
+  display: block;
+}
+.cellDetail .img .pov {
+  transition: all 0.5s;
+}
+.cellDetail .img .pov i {
+  position: absolute;
+  left: 10px;
+  top: 47%;
+  font-size: 32px;
+  color: #000;
+  cursor: pointer;
+}
+.cellDetail .img .pov i:hover {
+  left: unset;
+}
+.cellDetail .img .pov img {
+  position: absolute;
+  left: 10px;
+  top: calc(50%-150px);
+  height: 300px;
+  display: none;
+}
+.cellDetail .img .pov:hover i {
+  display: none;
+  left: unset;
+}
+.cellDetail .img .pov:hover img {
+  display: block;
+}
+.cellDetail .footer {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(3, 3, 3, 0.5);
+  padding: 5px 120px;
+}
+.cellDetail .footer:hover {
+  opacity: 1;
+  transition: all ease-in-out 0.5s;
+}
+.cellDetail .footer i {
+  color: #fff;
+  font-size: 30px;
+}
+.cellDetail .footer .share ul {
+  display: inline-block;
+  width: 400px;
+  list-style-type: none;
+}
+.cellDetail .footer .share ul li {
+  float: right;
+  padding: 5px 10px;
+}
+.cellDetail .footer .share ul li i {
+  font-size: 25px;
+}
+.cellDetail .arrow {
+  position: absolute;
+  left: calc(50% - 100px);
+  bottom: 62px;
+  width: 200px;
+  /*animation: shake 0.8s infinite;
+        transform: translate3d(0, 0, 0);*/
+  cursor: pointer;
+}
+.cellDetail .arrow:hover {
+  animation: unset;
+  transform: unset;
+}
+.cellDetail .arrow .right {
+  float: right;
+  cursor: pointer;
+}
+.cellDetail .arrow .right:hover {
+  transform: scale(1.2);
+}
+.cellDetail .arrow .left {
+  float: right;
+  cursor: pointer;
+}
+.cellDetail .arrow .left:hover {
+  transform: scale(1.2);
+}
+.cellDetail .comments {
+  height: 100%;
+  padding: 85px 100px;
+  position: relative;
+  overflow: auto;
+  display: block;
+}
+.cellDetail .comments header {
+  display: inline-block;
+  background-color: #eee;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  direction: rtl;
+}
+.cellDetail .comments header h3 {
+  float: right;
+  margin: 0;
+}
+.cellDetail .comments header .btn {
+  float: left;
+}
+.cellDetail .comments .body {
+  padding-bottom: 20px;
+}
+.cellDetail .comments .body .item {
+  padding: 0;
+}
+.cellDetail .comments .body .rate {
+  list-style-type: none;
+  background-color: #eee;
+  padding: 20px;
+  padding-bottom: 5px;
+  margin-right: 5px;
+  height: 415px;
+}
+.cellDetail .comments .body .rate ul {
+  padding: 0 200px 0 20px;
+  list-style-type: none;
+}
+.cellDetail .comments .body .rate span {
+  float: left;
+}
+.cellDetail .comments .body .rate .register .btn {
+  float: left;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.cellDetail .comments .body .prof-comment {
+  height: 415px;
+  background-color: #eee;
+  padding: 20px;
+  margin-left: 5px;
+}
+.cellDetail .comments .body .prof-comment ul {
+  padding: 20px 210px 20px 20px;
+}
+.cellDetail .comments .user-comment {
+  display: inline-block;
+}
+.cellDetail .comments .user-comment .msg {
+  float: right;
+  width: 30%;
+  padding: 5px;
+  text-align: justify;
+  word-break: break-word;
+}
+.cellDetail .comments .user-comment .rate {
+  width: 70%;
+  float: right;
+  list-style-type: none;
+  padding: 20px;
+  padding-bottom: 5px;
+  margin-right: 5px;
+  border-bottom: 2px solid #eee;
+  direction: rtl;
+}
+.cellDetail .comments .user-comment .rate ul {
+  list-style-type: none;
+  padding: 0 253px;
+}
+.cellDetail .comments .user-comment .rate span {
+  float: left;
+}
+.cellDetail .comments .user-comment .rate .register .btn {
+  float: left;
+  margin-top: 10px;
+  margin-left: 15px;
+}
