@@ -2158,8 +2158,12 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Themes\hayat1\css\slider.css" />
-    <Content Include="Themes\hayat1\css\slider.min.css" />
+    <Content Include="Themes\hayat1\css\map.css">
+      <DependentUpon>map.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat1\css\map.min.css">
+      <DependentUpon>map.css</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat1\css\style.css" />
     <Content Include="Themes\hayat1\css\style.min.css" />
     <Content Include="Themes\hayat1\img\Blocks\Block A.png" />
@@ -2473,7 +2477,6 @@
     <Content Include="SharedViews\404.cshtml" />
     <Content Include="Themes\web.config" />
     <Content Include="Themes\_ViewStart.cshtml" />
-    <Content Include="Themes\hayat1\css\slider.less" />
     <Content Include="Themes\hayat1\css\style.less" />
     <Content Include="Themes\hayat1\fonts\IRANSansWeb.eot" />
     <Content Include="Themes\hayat1\fonts\IRANSansWeb.ttf" />
@@ -2496,6 +2499,7 @@
     <Content Include="Themes\hayat1\Pages\Home.cshtml" />
     <Content Include="Themes\hayat1\_Layout.cshtml" />
     <Content Include="Themes\hayat1\Pages\block.cshtml" />
+    <Content Include="Themes\hayat1\css\map.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2514,7 +2518,6 @@
     <Folder Include="Areas\Manage\Views\Stats\" />
     <Folder Include="Content\FileManager\userfiles\" />
     <Folder Include="Scripts\vjs-lang\" />
-    <Folder Include="Themes\hayat1\node_modules\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">

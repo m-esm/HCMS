@@ -9,6 +9,7 @@
 }
 .fp-tableCell {
   height: 100% !important;
+  display: block !important;
 }
 .chat-logo {
   position: fixed;
@@ -45,6 +46,278 @@
   padding: 10px;
   float: right;
   cursor: pointer;
+}
+.menu-icon {
+  background: url('../img/logo/Icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: unset;
+  right: 0;
+  top: -1px;
+  text-align: right;
+  height: 32px;
+  float: right;
+  width: 80px;
+}
+.menu-icon:hover {
+  background: url('../img/logo/Icon 02.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+.line {
+  position: absolute;
+  height: 26px;
+  width: 15px;
+  right: 1px;
+  background-color: #222;
+  opacity: 0.5;
+}
+#nav-menu-container {
+  text-align: center;
+  padding-top: 5px;
+}
+#nav-menu-container .nav-menu {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#nav-menu-container .nav-menu li {
+  float: right;
+  white-space: unset;
+  position: relative;
+  /*list-style-type: square;*/
+}
+#nav-menu-container .nav-menu li:hover .child-menu {
+  display: block;
+}
+#nav-menu-container .nav-menu li .child-menu {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: -22px;
+  background-color: rgba(2, 2, 2, 0.7);
+  padding: 10px;
+  padding-right: 20px;
+  padding-top: 50px;
+  border-radius: 2px;
+  width: 300px;
+  height: 246px;
+  color: #efefef;
+  transition: all ease-in-out 0.8s;
+  text-align: justify;
+  word-break: break-word;
+  direction: rtl;
+}
+#nav-menu-container .nav-menu li .child-menu:first-child:befor {
+  position: absolute;
+  content: ' ';
+  top: -20px;
+  right: 6px;
+  width: 0;
+  height: 0;
+  border-left: 0px solid #fff;
+  border-right: 6px solid #222;
+  border-bottom: 20px solid #222;
+  border-top: 245px solid #222;
+  clear: both;
+  opacity: 0.7;
+}
+#nav-menu-container .nav-menu li .child-menu:after {
+  position: absolute;
+  content: ' ';
+  top: -20px;
+  right: 6px;
+  width: 0;
+  height: 0;
+  border-left: 0px solid #fff;
+  border-right: 6px solid #222;
+  border-bottom: 20px solid #222;
+  border-top: 245px solid #222;
+  clear: both;
+  opacity: 0.7;
+}
+#nav-menu-container .nav-menu li a {
+  font-weight: 100;
+}
+#nav-menu-container .nav-menu li a:hover {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px 5px #fff;
+  text-decoration: none;
+  /*font-size: 15px;*/
+}
+#nav-menu-container .nav-menu li a:hover .child-menu {
+  display: block;
+}
+#nav-menu-container .nav-menu li:after {
+  display: inline-block;
+  content: ' ';
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  margin: 0 10px;
+  border-radius: 0 2px 0 0;
+}
+#nav-menu-container .nav-menu li.menu-active a {
+  color: #fff;
+  font-weight: bold;
+}
+#nav-menu-container .nav-menu a {
+  padding: 0 30px;
+  color: #fff;
+}
+.my-slider .left-icons {
+  position: fixed;
+  left: 0;
+  top: calc(50% - 100px);
+  height: 200px;
+}
+.my-slider .left-icons ul {
+  list-style-type: none;
+}
+.my-slider .left-icons ul li {
+  width: 40px;
+  margin: 10px 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+.my-slider .left-icons ul li i {
+  font-size: 20px;
+}
+.my-slider .left-icons ul li:hover {
+  color: #4e1c1b;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.my-slider .right-icons {
+  position: fixed;
+  right: 0;
+  top: calc(50% - 100px);
+  height: 200px;
+}
+.my-slider .right-icons ul {
+  list-style-type: none;
+  padding: 10px;
+  color: #fff;
+}
+.my-slider .right-icons ul li {
+  position: absolute;
+  padding: 5px;
+  margin: 10px 0;
+  cursor: pointer;
+  text-align: left;
+  width: 110px;
+  transition: all 0.5s;
+  right: -75px;
+}
+.my-slider .right-icons ul li:hover {
+  right: 0;
+  background-color: rgba(2, 2, 2, 0.5);
+}
+.my-slider .right-icons ul li:hover i {
+  color: #4e1c1b;
+}
+.my-slider .right-icons ul li .descrp {
+  background-color: rgba(2, 2, 2, 0.5);
+  position: absolute;
+  left: 150px;
+  top: 0;
+  padding: 10px;
+  height: 200px;
+  width: 200px;
+  transition: all 1s;
+  text-align: justify;
+  word-break: break-word;
+}
+.my-slider .right-icons ul li .descrp ul li {
+  text-align: right;
+  margin: 3px;
+  padding: 0;
+  position: unset;
+}
+.my-slider .right-icons ul li .descrp ul li a {
+  color: #fff;
+}
+.my-slider .right-icons ul li.open {
+  right: 0;
+  background-color: rgba(2, 2, 2, 0.5);
+}
+.my-slider .right-icons ul li.open i {
+  color: #4e1c1b;
+}
+.my-slider .right-icons ul li.open .descrp {
+  left: -200px;
+}
+.my-slider .right-icons ul li.gallery {
+  top: 0;
+}
+.my-slider .right-icons ul li.catalog {
+  top: 40px;
+}
+.my-slider .right-icons ul li.register {
+  top: 80px;
+}
+.my-slider .right-icons ul li.location {
+  top: 120px;
+}
+.my-slider .right-icons ul li i {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #808080;
+}
+.my-slider .logo-hayat-no {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 110px);
+  width: 220px;
+  padding: 10px;
+}
+.my-slider .logo-hayat-no:hover {
+  background-color: #222;
+  opacity: 0.8;
+}
+.my-slider .logo-hayat-no img {
+  width: 180px;
+  margin-bottom: 10px;
+}
+.my-slider .logo-hayat-no img.back {
+  position: absolute;
+  left: 28px;
+  top: 13px;
+  z-index: -1;
+}
+.my-slider .logo-hayat-no h4,
+.my-slider .logo-hayat-no h5 {
+  text-align: center;
+  color: #fff;
+}
+.my-slider .mobile-menu {
+  display: none;
+}
+.my-slider .mobile-menu .menu-icon {
+  background: url('../img/logo/Icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: unset;
+  right: 0;
+  top: -1px;
+  text-align: right;
+  height: 32px;
+  float: right;
+  width: 80px;
+}
+.my-slider .mobile-menu .menu-icon:hover {
+  background: url('../img/logo/Icon 02.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+.my-slider .show-mobile {
+  display: none;
 }
 .map-section .map {
   width: 100%;

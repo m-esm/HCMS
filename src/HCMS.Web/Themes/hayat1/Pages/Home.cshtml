@@ -4,10 +4,79 @@
 
 @section scripts{
 
-     <script type="text/javascript">
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+
+    </script>
+
+    <script>
+
+        var map;
+
+        function initMap() {
+            var uluru = { lat: 35.789581, lng: 51.495528 };
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+
+
+        $(document).on('click', '#tabs-rest', function () {
+            //رستوران
+            var points = [
+                 {
+                     position: new google.maps.LatLng(35.788718, 51.497732),
+                     title: 'رستوران نوبهار',
+                 }, {
+                     position: new google.maps.LatLng(35.788688, 51.496523),
+                     title: 'کترینگ عارف',
+                 }, {
+                     position: new google.maps.LatLng(35.790298, 51.495021),
+                     title: 'بامزی فست فود',
+                 }
+            ];
+            // Create markers.
+            points.forEach(function (point) {
+                var marker = new google.maps.Marker({
+                    position: point.position,
+                    title: point.title,
+                    //icon: icons[feature.type].icon,
+                    map: map
+                });
+            });
+        });
+
+        $(document).on('click', '#tabs-bred', function () {
+            //نانوایی
+            var points = [
+                {
+                    position: new google.maps.LatLng(35.790198, 51.495022),
+                    title: 'نانوایی سنگکی',
+                }
+            ];
+            // Create markers.
+            points.forEach(function (point) {
+                var marker = new google.maps.Marker({
+                    position: point.position,
+                    title: point.title,
+                    //icon: icons[feature.type].icon,
+                    map: map
+                });
+            });
+        });
+    </script>
+
+    <script>
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                anchors: ['home', 'map'],
+                anchors: ['home', 'blocks', 'videos', 'brands', 'maps', 'register', 'footer'],
+                sectionsColor: ['whitesmoke', 'whitesmoke', 'whitesmoke', 'whitesmoke', 'whitesmoke'],
                 //menu: '#menu',
                 continuousVertical: false,
                 scrollingSpeed: 1000
@@ -17,7 +86,7 @@
 }
 <div id="fullpage">
 
-    <section>
+    <section class="section my-slider">
 
         <div class="right-icons">
             <ul>
@@ -75,7 +144,7 @@
                 </li>
             </ul>
         </div>
- 
+
         <div class="left-icons">
             <ul>
                 <li>
@@ -87,7 +156,7 @@
                 <li>
                     <i class="fa fa-instagram"></i>
                 </li>
-              
+
                 <li>
                     <i class="fa fa-linkedin"></i>
                 </li>
@@ -109,9 +178,10 @@
 
         </div>
 
-   
+
     </section>
-    <section class="map-section">
+
+    <section class="section map-section">
         <div class="row">
             <div class="col-md-12 main-block">
                 <div class="row">
@@ -296,6 +366,284 @@
         </div>
     </section>
 
+    <section class="section">
+        <div class="video-slider">
+            <div class="main">
+                <img src="~/Themes/hayat1/img/1.jpg" />
+
+                <i class="fa fa-play-circle-o"></i>
+            </div>
+
+            <div class="child">
+                <ul>
+                    <li>
+                        <img src="~/Themes/hayat1/img/1.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Themes/hayat1/img/2.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Themes/hayat1/img/3.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Themes/hayat1/img/1.jpg" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12 brands">
+                <a href="http://www.venusglass.net">
+                    <img src="~/Themes/hayat1/img/brand/httpwww.venusglass.net.jpg" />
+                </a>
+
+                <a href="http://itc.co.ir">
+                    <img src="~/Themes/hayat1/img/brand/logo httpitc.co.ir.jpg" />
+                </a>
+
+                <a data-aos="fade-up-right" data-aos-delay="3000">
+                    <img src="~/Themes/hayat1/img/brand/سنچوری-225x168.jpg" />
+                </a>
+
+                <a href="http://www.kwc.com">
+                    <img src="~/Themes/hayat1/img/brand/httpwww.kwc.com.png" />
+                </a>
+
+                <a href="http://www.kwciran.com">
+                    <img src="~/Themes/hayat1/img/brand/www.kwciran.com.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="map" style="height: 600px; width: 100%;">
+                </div>
+                <div class="tabs">
+                    <ul>
+                        <li style="background-color:green;">مراکز خرید</li>
+                        <li style="background-color:cyan;">مراکز درمانی</li>
+                        <li style="background-color:greenyellow;">میوه و تره بار</li>
+                        <li style="background-color:yellow;" id="tabs-bred">نانوایی</li>
+                        <li style="background-color:blue;">کارواش</li>
+                        <li style="background-color:red;">فروشگاه شهروند</li>
+                        <li style="background-color:orange;">فست فودها</li>
+                        <li style="background-color:aliceblue;" id="tabs-rest">رستوران ها</li>
+                        <li style="background-color:rebeccapurple;">کترینگ</li>
+                        <li style="background-color:peru;">مداری</li>
+                        <li style="background-color:mistyrose;">مراکز دولتی</li>
+                        <li style="background-color:saddlebrown;">آموزشگاه ها</li>
+                        <li style="background-color:salmon;">حمل و نقل عمومی</li>
+                        <li style="background-color:paleturquoise;">تاسیسات</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+
+            <div class="col-md-6">
+
+
+
+                <div class="form">
+
+                    <h5 class="section-title">فرم ثبت نام خریدار</h5>
+                    <div class="section-title-divider"></div>
+
+                    <form action="" method="post" role="form" class="contactForm">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option>بازدید</option>
+                                    <option>مذاکره</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام خانوادگی شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="آدرس پست الکترونیکی" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>
+                                    <i class="fa fa-phone"></i>
+                                    شماره همراه
+                                </label>
+                                <br />
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="phone" id="email" placeholder="شماره همراه" data-rule="email" data-msg="Please enter a valid phone" />
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" dir="ltr" value="+98" disabled="disabled" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                </div>
+                                <div class="col-md-5" style="padding:0;">
+                                    <select class="form-control">
+                                        <option>ایران</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <label>محل سکونت فعلی</label>
+
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>کشور</label>
+                                    <select class="form-control">
+                                        <option>ایران</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>استان / ایالت</label>
+                                    <select class="form-control">
+                                        <option>تهران</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>شهر</label>
+                                    <select class="form-control">
+                                        <option>تهران</option>
+                                        <option>اسلامشهر</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>منطقه</label>
+
+                                    <select class="form-control">
+                                        <option>ناحیه 1</option>
+                                        <option>ناحیه 2</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-success" type="submit">ثبت نام</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="border-right: 3px solid #03C4EB;">
+
+                <div class="form">
+                    <h5 class="section-title">فرم ثبت نام همکاری</h5>
+                    <div class="section-title-divider"></div>
+                    <form action="" method="post" role="form" class="contactForm">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option>نوع همکاری</option>
+                                    <option>استخدام</option>
+                                    <option>همراهان (تامین کنندگان و پیمانکاران)</option>
+                                    <option>سرمایه گذاران</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام خانوادگی شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="آدرس پست الکترونیکی" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>
+                                    <i class="fa fa-phone"></i>
+                                    شماره همراه
+                                </label>
+                                <br />
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="phone" id="email" placeholder="شماره همراه" data-rule="email" data-msg="Please enter a valid phone" />
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input type="text" dir="ltr" value="+98" disabled="disabled" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                </div>
+                                <div class="col-md-5" style="padding:0;">
+                                    <select class="form-control">
+                                        <option>ایران</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="text-center"><button class="btn btn-success" type="submit">ثبت نام</button></div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    &copy; تمامی حقوق برای شرکت <strong>ابتکار سازه</strong> محفوظ می باشد
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 
