@@ -1,0 +1,29 @@
+﻿<div class="about block">
+    <img class="main-image" ng-src="{{activeBlock.imageUrl}}"/>
+    <div class="background">
+    </div>
+
+    <div class="detail animated {{animateName}}">
+        <a class="up" ng-show="activeBlock.btnUp != ''" ng-click="prevBlock(activeBlock.id)">
+            <i class="fa fa-arrow-up"></i>
+            <label>{{activeBlock.btnUp}}</label>
+        </a>
+        <h2>
+            {{activeBlock.title}}
+        </h2>
+        <p>
+                {{activeBlock.descrp}}
+        </p>
+
+        <a class="forward" ng-click="gotoCell(activeBlock)">
+            <i class="fa fa-arrow-right"></i>
+            <label>به سمت واحدها</label>
+        </a>
+
+        <a class="down" ng-show="activeBlock.btnDown != ''" ng-click="nextBlock(activeBlock.id)">
+            <i class="fa fa-arrow-down"></i>
+            <label>{{activeBlock.btnDown}}</label>
+        </a>
+    </div>
+
+</div>

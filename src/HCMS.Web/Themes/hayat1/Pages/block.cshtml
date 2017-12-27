@@ -2,13 +2,29 @@
     Layout = "~/Themes/hayat1/_Layout.cshtml";
 }
 
-<div id="blocks" class="about block">
 
-    <div class="section" id="section01">
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#blocks').fullpage({
+                anchors: ['block-a', 'block-b'],
+                sectionsColor: ['whitesmoke', 'whitesmoke', 'whitesmoke', 'whitesmoke', 'whitesmoke'],
+                //menu: '#menu',
+                continuousVertical: false,
+                scrollingSpeed: 1000
+            });
+        });
+    </script>
+}
+<div id="blocks" class="block">
+
+ 
+
+    <div class="section" id="block-a-sec">
         <img class="main-image" src="~/Themes/hayat1/img/Blocks/Block A.png" />
         <div class="background">
         </div>
-        <div class="slide">
+        <div class="slide" id="a-slide1">
 
             <div class="detail">
                 <a class="up">
@@ -37,7 +53,7 @@
 
 
         </div>
-        <div class="slide">
+        <div class="slide" id="a-slide2">
 
             <div class="cell">
                 <div class="plan">
@@ -45,7 +61,7 @@
                     <img src="/img/Blocks/Plane A/A-02.jpg" />
                     <img src="/img/Blocks/Plane A/A-03.jpg" />
                     <img src="/img/Blocks/Plane A/A-04.jpg" />
-                    
+
                 </div>
 
                 <div class="preview">
@@ -85,6 +101,87 @@
         </div>
     </div>
 
+
+    <div class="section"  id="block-b-sec">
+        <img class="main-image" src="~/Themes/hayat1/img/Blocks/Block A.png" />
+        <div class="background">
+        </div>
+        <div class="slide">
+
+            <div class="detail">
+                <a class="up">
+                    <i class="fa fa-arrow-up"></i>
+                    <label>رفتن به بلوک بالاتر</label>
+                </a>
+                <h2>
+                    بلوک b
+                </h2>
+                <p>
+                    بلکوک A مجموعه حیات نو در ضلع شرقی و و رودی اصلی
+                    شامل 100 واحد مسکونی با 5 تیپ پلان مختلف و ... بلکوک A مجموعه حیات نو در ضلع شرقی و و رودی اصلی شامل 100 واحد مسکونی با 5 تیپ پلان مختلف و ...
+                    بلکوک A مجموعه حیات نو در ضلع شرقی و و رودی اصلی شامل 100 واحد مسکونی با 5 تیپ پلان مختلف و ... بلکوک A مجموعه حیات نو در ضلع شرقی و و رودی اصلی شامل 100 واحد مسکونی با 5 تیپ پلان مختلف و ... بلکوک A مجموعه حیات نو در ضلع شرقی و و رودی اصلی شامل 100 واحد مسکونی با 5 تیپ پلان مختلف و ... بلکوک A مجموعه حیات نو در ضلع شرقی و و رودی اصلی شامل 100 واحد مسکونی با 5 تیپ پلان مختلف و ...
+                </p>
+
+                <a class="forward">
+                    <i class="fa fa-arrow-right"></i>
+                    <label>به سمت واحدها</label>
+                </a>
+
+                <a class="down">
+                    <i class="fa fa-arrow-down"></i>
+                    <label>برو به بلوک پایین</label>
+                </a>
+            </div>
+
+
+        </div>
+        <div class="slide">
+
+            <div class="cell">
+                <div class="plan">
+                    <img src="/img/Blocks/Plane A/A-01.jpg" />
+                    <img src="/img/Blocks/Plane A/A-02.jpg" />
+                    <img src="/img/Blocks/Plane A/A-03.jpg" />
+                    <img src="/img/Blocks/Plane A/A-04.jpg" />
+
+                </div>
+
+                <div class="preview">
+                    <img src="~/Themes/hayat1/img/Blocks/Plane A/A-01.jpg" />
+                </div>
+
+                <div class="table">
+                    <table class="table table-responsive">
+
+                        <thead>
+                            <tr>
+                                <th>طبقه</th>
+                                <th>کد</th>
+                                <th>نام واحد</th>
+                                <th>متراژ</th>
+                                <th>نوع پلان</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>14A</td>
+                                <td>116B</td>
+                                <td>110</td>
+                                <td>Plan A</td>
+                                <td>
+                                    <a class="btn btn-success" href="#!/register">مشاهده</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 </div>

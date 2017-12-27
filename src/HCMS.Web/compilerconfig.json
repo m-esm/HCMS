@@ -82,5 +82,9 @@
   {
     "outputFile": "Themes/hayat1/css/map.css",
     "inputFile": "Themes/hayat1/css/map.less"
+  },
+  {
+    "outputFile": "Themes/hayat1/css/blocks.css",
+    "inputFile": "Themes/hayat1/css/blocks.less"
   }
 ]
