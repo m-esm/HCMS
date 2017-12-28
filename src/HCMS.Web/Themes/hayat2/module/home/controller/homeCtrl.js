@@ -1,14 +1,12 @@
 ﻿'use strict';
 
 app.controller('homeCtrl', function ($scope, $location) {
-    $('#slider').addClass('active');
-    $('.show-other-page-menu').removeClass('active');
-    $('#portfolio').removeClass('hidden');
-    $('#contact').removeClass('hidden');
-    $('#footer').removeClass('hidden');
+    //$('#slider').addClass('active');
+    //$('.show-other-page-menu').removeClass('active');
+    //$('#portfolio').removeClass('hidden');
+    //$('#contact').removeClass('hidden');
+    //$('#footer').removeClass('hidden');
     
-    //$('html, body').animate({ scrollTop: 0 }, 0, 'easeInOutExpo');
-    $(window).scrollTop(0)
 
     $scope.table = [
     {O : 1, R : 1, id: 0, J : 'شمالی', N: 'BH1', className: '', T: 'همکف', M: 95, C: 'Code 1', Type: 'A-01' },

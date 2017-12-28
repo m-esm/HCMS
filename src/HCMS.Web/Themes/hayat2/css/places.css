@@ -1,0 +1,39 @@
+﻿section.page-places {
+  padding: 70px;
+  padding-bottom: 0;
+}
+section.page-places .map {
+  width: calc(100% - 160px);
+  height: calc(100vh - 100px);
+  display: inline-block;
+}
+section.page-places .map-wrapper {
+  position: relative;
+  text-align: left;
+}
+section.page-places .tabs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  text-align: right;
+  font-weight: bold;
+  font-size: 13px;
+  width: 160px;
+  height: calc(100vh - 100px);
+}
+section.page-places .tabs ul {
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+}
+section.page-places .tabs ul li {
+  padding: 5px;
+  margin: 10px;
+  color: #000;
+  cursor: pointer;
+}
+section.page-places .tabs ul li:hover {
+  color: #fff;
+}

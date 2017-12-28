@@ -2,6 +2,7 @@
 var px = 80;
 
 $(window).scroll(function (e) {
+
     var body = $("html, body");
 
     var st = $(this).scrollTop();

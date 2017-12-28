@@ -6,34 +6,38 @@
     opacity: 1;
   }
 }
-#loader {
-  position: relative;
-  height: 100vh;
-  min-height: 100%;
-  min-width: 100%;
-  z-index: 999;
-}
-.logo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 999;
-  background-color: #fff;
-  display: none;
-}
 .logoboxR > div,
 .logobox.solid > div {
   background: #4e1c1b !important;
+}
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #fff;
+  z-index: 9999;
+}
+.logo-wrapper {
+  overflow: hidden;
+  position: absolute;
+  left: calc(50% - 160px);
+  top: calc(50% - 130px);
+  height: 230px;
+  background: #fff;
+  width: 320px;
+  border-radius: 5px;
+  transform: scale(0.6);
+  transform-origin: center center;
 }
 .logobox,
 .logoboxR {
   height: 200px;
   width: 300px;
   position: absolute;
-  bottom: 40px;
-  left: calc(50% - 150px);
+  top: 20px;
+  left: 10px;
   z-index: 1;
   transform: rotate(0.1deg);
 }
@@ -307,7 +311,7 @@
 .logoboxR .o27 {
   background: #4e1c1b;
   top: 156px;
-  right: 52px;
+  right: 51px;
   height: 10px;
   width: 88px;
   width: 0;
@@ -393,7 +397,7 @@
   top: 151px;
   right: 2px;
   height: 4px;
-  width: 55px;
+  width: 50.5px;
   transform: rotate(-2.29deg);
   z-index: 11;
 }
