@@ -58,5 +58,26 @@
     "inputFiles": [
       "Themes/hayat1/js/hayat.js"
     ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/module/controllers.js",
+    "inputFiles": [
+      "Themes/hayat2/module/about/controller/aboutCtrl.js",
+      "Themes/hayat2/module/block/controller/blockCtrl.js",
+      "Themes/hayat2/module/public/controller/sliderCtrl.js",
+      "Themes/hayat2/module/home/controller/homeCtrl.js",
+      "Themes/hayat2/module/hayat/controller/hayatCtrl.js",
+      "Themes/hayat2/module/about/controller/aboutCtrl.js",
+      "Themes/hayat2/module/team/controller/teamCtrl.js",
+      "Themes/hayat2/module/ebtekarSaze/controller/ebtekarSazeCtrl.js",
+      "Themes/hayat2/module/hamkaran/controller/hamkaranCtrl.js",
+      "Themes/hayat2/module/hayatProject/controller/hayatProjectCtrl.js",
+      "Themes/hayat2/module/gallery/controller/galleryCtrl.js",
+      "Themes/hayat2/module/hayatno/controller/hayatNoCtrl.js",
+      "Themes/hayat2/module/block/controller/blockCtrl.js",
+      "Themes/hayat2/module/cell/controller/cellCtrl.js",
+      "Themes/hayat2/module/cellDetail/controller/cellDetailCtrl.js",
+      "Themes/hayat2/module/register/controller/registerCtrl.js"
+    ]
   }
 ]
