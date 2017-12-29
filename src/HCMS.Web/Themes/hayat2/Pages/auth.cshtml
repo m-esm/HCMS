@@ -1,0 +1,93 @@
+﻿<section class="page page-horizontal page-login" id="login">
+    <div class="inner">
+        <h2>ورود به اکانت</h2>
+        <form method="post" id="login-form" action="/fa-ir/manage/Auth/Login">
+
+            @{
+                string login_c_guid = Guid.NewGuid().ToString();
+            }
+
+            @Html.Hidden("captcha_guid", login_c_guid)
+            @Html.AntiForgeryToken()
+
+
+            <input type="hidden" name="isAjax" value="true" />
+            <input type="hidden" name="ReturnUrl" value="/" />
+            <input type="email" style="display: none;" />
+            <input type="password" style="display: none;" />
+
+
+
+            <div class="input-field">
+                <label>
+                    آدرس ایمیل
+                </label> <input name="UserName" type="text" placeholder="ایمیل " />
+            </div>
+
+            <div class="input-field">
+                <label>رمز عبور</label> <input name="password" type="password" />
+            </div>
+            <div class="input-field captcha-field">
+                <img src="~/manage/Captcha/msdn?prefix=_login&guid=@login_c_guid" id="captcha-image" />
+                <input class="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+            </div>
+            <div class="input-field">
+                <input type="submit" value="تایید" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="links" style="text-align:center;">
+
+
+                <a id="fgpassword"> فراموشی رمز عبور ؟</a>
+
+                <a id="confirmPassword"> فعال سازی اکانت</a>
+
+
+
+            </div>
+            @*<div class="links">
+                </div>*@
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+</section>
+<section class="page page-horizontal page-register"  id="register">
+
+    <div class="inner">
+        <h2>ثبت نام</h2>
+
+        <form method="post" id="register-form" action="/fa-ir/manage/Auth/register">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="isAjax" value="true" />
+            <input type="hidden" name="ReturnUrl" value="/" />
+            <input type="email" style="display: none;" />
+            <input type="password" style="display: none;" />
+            <div class="input-field">
+                <label>نام کاربری</label> <input name="Username" type="text" placeholder="ایمیل" />
+            </div>
+
+            <div class="input-field">
+                <label>رمز عبور</label> <input name="password" type="password" />
+            </div>
+            <div class="input-field">
+                <label>تکرار رمز عبور</label> <input name="ConfirmPassword" type="password" />
+            </div>
+            <div class="input-field captcha-field">
+                <img src="~/manage/Captcha/msdn?prefix=_register" id="captcha-image" />
+                <input class="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+            </div>
+            <div class="input-field">
+                <input type="submit" value="تایید" />
+            </div>
+        </form>
+
+    </div>
+
+</section>

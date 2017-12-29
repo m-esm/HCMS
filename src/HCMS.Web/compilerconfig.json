@@ -1,18 +1,22 @@
 ﻿[
   {
-    "outputFile": "Themes/hayat2/css/logo.css",
-    "inputFile": "Themes/hayat2/css/logo.less"
+    "outputFile": "Themes/hayat2/css/all.css",
+    "inputFile": "Themes/hayat2/css/all.less"
   },
   {
     "outputFile": "Themes/hayat2/css/hayat.css",
     "inputFile": "Themes/hayat2/css/hayat.less"
   },
   {
-    "outputFile": "Themes/hayat2/css/slider.css",
-    "inputFile": "Themes/hayat2/css/slider.less"
+    "outputFile": "Themes/hayat2/css/logo.css",
+    "inputFile": "Themes/hayat2/css/logo.less"
   },
   {
     "outputFile": "Themes/hayat2/css/places.css",
     "inputFile": "Themes/hayat2/css/places.less"
+  },
+  {
+    "outputFile": "Themes/hayat2/css/slider.css",
+    "inputFile": "Themes/hayat2/css/slider.less"
   }
 ]

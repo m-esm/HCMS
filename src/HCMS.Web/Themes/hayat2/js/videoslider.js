@@ -7,6 +7,9 @@ $(function () {
 
         var video = $('#video')[0];
 
+        if (!video)
+            return;
+
         if (video.paused) {
 
             $(this).addClass('play');
@@ -26,11 +29,14 @@ $(function () {
     });
     var playVideo = function (src, play) {
 
-        console.log(src);
+        if (!$('#video')[0])
+            return;
 
         var video = $('#video')
             .html('')
              .append($("<source type='video/webm' />").attr('src', src))[0];
+
+
 
         if (play) 
             $('#videos .tv').addClass('play');

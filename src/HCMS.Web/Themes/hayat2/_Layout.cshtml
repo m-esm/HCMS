@@ -4,53 +4,47 @@
 <head>
 
     <base href="~/" />
-    <meta charset="utf-8">
-    <title>حیات نو | {{title}}</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta charset="utf-8" />
+    <title>حیات نو | @ViewBag.title </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
     <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
-    <meta property="og:title" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
-    <meta property="og:site_name" content="">
-    <meta property="og:description" content="">
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
 
     <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="">
-    <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
 
     <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
     <link href="favicon.ico" rel="shortcut icon">
 
+
+    <!-- reset css defaults -->
     <link href="~/Themes/hayat2/lib/resetcss/reset.min.css" rel="stylesheet" />
 
+
     <!-- Bootstrap CSS File -->
-    <link href="~/Themes/hayat2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Themes/hayat2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
 
 
     <!-- Libraries CSS Files -->
-    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/Themes/hayat2/lib/animate-css/animate.min.css" rel="stylesheet">
-    <!-- Main Stylesheet File -->
-    <link href="~/Themes/hayat2/css/style.css" rel="stylesheet">
+    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/lib/animate-css/animate.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/lib/aos/aos.min.css" rel="stylesheet" />
 
 
-    <link href="~/Themes/hayat2/lib/aos/aos.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/logo.min.css" rel="stylesheet" />
-
-
-    <link href="~/Themes/hayat2/css/hayat.min.css" rel="stylesheet" />
-
-    <link href="~/Themes/hayat2/css/slider.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/logo.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/places.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/lib/aos/aos.css" rel="stylesheet" />
+    <!-- hayat styles -->
+    <link href="~/Themes/hayat2/css/all.css" rel="stylesheet" />
 
 
 
@@ -144,23 +138,8 @@
 
 
 
-   @RenderBody()
+    @RenderBody()
 
-    <!--==========================
-      Footer
-    ============================-->
-    @*<footer id="footer" class="hidden">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="copyright">
-                            &copy; تمامی حقوق برای شرکت <strong>ابتکار سازه</strong> محفوظ می باشد
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>*@
-    <!-- #footer -->
 
 
 
@@ -170,112 +149,34 @@
 
 
     <!--angularJs-->
-    <script src="~/Themes/hayat2/Scripts/angular.min.js"></script>
-    <script src="~/Themes/hayat2/Scripts/angular-route.min.js"></script>
+    <script src="~/Themes/hayat2/lib/angular/angular.min.js"></script>
+    <script src="~/Themes/hayat2/lib/angular/angular-route.min.js"></script>
+
 
     <!-- Required JavaScript Libraries -->
-    <script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>
-    <script src="~/Themes/hayat2/lib/jquery/3.1.1/jquery3-1-1.js"></script>
-    <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Themes/hayat2/lib/superfish/hoverIntent.js"></script>
-    <script src="~/Themes/hayat2/lib/superfish/superfish.min.js"></script>
-    <script src="~/Themes/hayat2/lib/easing/easing.js"></script>
 
-    <script src="~/Themes/hayat2/lib/aos/aos.js"></script>
 
-    <!-- Template Specisifc Custom Javascript File -->
-    <script src="~/Themes/hayat2/js/custom.js"></script>
-
-    <!--scroll animate-->
-    <!--<script src="node_modules/scroll-animated/js/css3-animate-it.js"></script>-->
-
-    <script src="~/Themes/hayat2/lib/underscore/underscore-min.js"></script>
+    <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
     <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
+    <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
+
+    <script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>
+    <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
 
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
-
-    </script>
-
-    <script>
-
-        var map;
-
-        function initMap() {
-            var uluru = { lat: 35.789581, lng: 51.495528 };
-            map = new google.maps.Map($('.page-places .map')[0], {
-                zoom: 16,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-
-
-        $(document).on('click', '#tabs-rest', function () {
-            //رستوران
-            var points = [
-                 {
-                     position: new google.maps.LatLng(35.788718, 51.497732),
-                     title: 'رستوران نوبهار',
-                 }, {
-                     position: new google.maps.LatLng(35.788688, 51.496523),
-                     title: 'کترینگ عارف',
-                 }, {
-                     position: new google.maps.LatLng(35.790298, 51.495021),
-                     title: 'بامزی فست فود',
-                 }
-            ];
-            // Create markers.
-            points.forEach(function (point) {
-                var marker = new google.maps.Marker({
-                    position: point.position,
-                    title: point.title,
-                    icon: '/Themes/hayat2/img/Icon.png',
-                    map: map
-                });
-            });
-
-
-        });
-
-        $(document).on('click', '#tabs-bred', function () {
-            //نانوایی
-            var points = [
-                {
-                    position: new google.maps.LatLng(35.790198, 51.495022),
-                    title: 'نانوایی سنگکی',
-                }
-            ];
-            // Create markers.
-            points.forEach(function (point) {
-                var marker = new google.maps.Marker({
-                    position: point.position,
-                    title: point.title,
-                    //icon: icons[feature.type].icon,
-                    map: map
-                });
-            });
-        });
-
     </script>
 
 
-    <script src="~/Themes/hayat2/js/imageMapper.min.js"></script>
 
-    <script src="~/Themes/hayat2/js/lhome-animate.min.js"></script>
+    <!-- hayat JS Bundle -->
 
-    <script src="~/Themes/hayat2/js/logo.js"></script>
-    <script src="~/Themes/hayat2/js/slider.js"></script>
-    <script src="~/Themes/hayat2/js/scroll.js"></script>
-    <script src="~/Themes/hayat2/js/videoslider.js"></script>
+    <script src="~/Themes/hayat2/js/hayat.js"></script>
 
-    <!--angular library-->
+    <!-- hayat angular library-->
+
     <script src="~/Themes/hayat2/module/app.js"></script>
-
     <script src="~/Themes/hayat2/module/controllers.js"></script>
 
 

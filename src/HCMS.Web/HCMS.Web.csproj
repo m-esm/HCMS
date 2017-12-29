@@ -2158,31 +2158,42 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Themes\hayat2\css\hayat.css">
+    <Content Include="Themes\hayat2\css\all.css" />
+    <Content Include="Themes\hayat2\css\hayat.css" />
+    <Content Include="Themes\hayat2\css\logo.css" />
+    <Content Include="Themes\hayat2\css\places.css" />
+    <Content Include="Themes\hayat2\css\slider.css" />
+    <Content Include="Themes\hayat2\less\all.css">
+      <DependentUpon>all.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\less\all.min.css">
+      <DependentUpon>all.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\less\hayat.css">
       <DependentUpon>hayat.less</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\hayat.min.css">
+    <Content Include="Themes\hayat2\less\hayat.min.css">
       <DependentUpon>hayat.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\logo.css">
+    <Content Include="Themes\hayat2\less\logo.css">
       <DependentUpon>logo.less</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\logo.min.css">
+    <Content Include="Themes\hayat2\less\logo.min.css">
       <DependentUpon>logo.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\places.css">
+    <Content Include="Themes\hayat2\less\places.css">
       <DependentUpon>places.less</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\places.min.css">
+    <Content Include="Themes\hayat2\less\places.min.css">
       <DependentUpon>places.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\slider.css">
+    <Content Include="Themes\hayat2\less\slider.css">
       <DependentUpon>slider.less</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\slider.min.css">
+    <Content Include="Themes\hayat2\less\slider.min.css">
       <DependentUpon>slider.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\style.css" />
+    <Content Include="Themes\hayat2\gulpfile.js" />
     <Content Include="Themes\hayat2\img\Blocks\Block A.png" />
     <Content Include="Themes\hayat2\img\Blocks\Block B.png" />
     <Content Include="Themes\hayat2\img\Blocks\Block C.png" />
@@ -2231,42 +2242,51 @@
     <Content Include="Themes\hayat2\img\team\دکتررامتین خلعتبری.jpg" />
     <Content Include="Themes\hayat2\img\team\مهندس بابک ترک نژاد.jpg" />
     <Content Include="Themes\hayat2\js\custom.js" />
-    <Content Include="Themes\hayat2\js\imageMapper.js" />
-    <Content Include="Themes\hayat2\js\imageMapper.min.js" />
-    <Content Include="Themes\hayat2\js\lhome-animate.js" />
-    <Content Include="Themes\hayat2\js\lhome-animate.min.js" />
+    <Content Include="Themes\hayat2\js\blocks.js" />
+    <Content Include="Themes\hayat2\js\hayat.js" />
+    <Content Include="Themes\hayat2\js\hayat.min.js">
+      <DependentUpon>hayat.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\js\logo.js" />
+    <Content Include="Themes\hayat2\js\places.js" />
     <Content Include="Themes\hayat2\js\scroll.js" />
     <Content Include="Themes\hayat2\js\slider.js" />
     <Content Include="Themes\hayat2\js\videoslider.js" />
     <Content Include="Themes\hayat2\lib\animate-css\animate.min.css" />
     <Content Include="Themes\hayat2\lib\aos\aos.css" />
     <Content Include="Themes\hayat2\lib\aos\aos.js" />
+    <Content Include="Themes\hayat2\lib\aos\aos.min.css">
+      <DependentUpon>aos.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\lib\aos\aos.min.js">
+      <DependentUpon>aos.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\lib\async\async.js" />
     <Content Include="Themes\hayat2\lib\async\async.min.js" />
     <Content Include="Themes\hayat2\lib\bootstrap-rtl\css\bootstrap-rtl.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap-rtl\css\bootstrap-rtl.min.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Themes\hayat2\lib\bootstrap-rtl\css\bootstrap-rtl.min.css">
+      <DependentUpon>bootstrap-rtl.css</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Themes\hayat2\lib\bootstrap\js\bootstrap.js" />
     <Content Include="Themes\hayat2\lib\bootstrap\js\bootstrap.min.js" />
     <Content Include="Themes\hayat2\lib\bootstrap\js\npm.js" />
-    <Content Include="Themes\hayat2\lib\easing\easing.js" />
-    <Content Include="Themes\hayat2\lib\easing\easing.min.js" />
     <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.css" />
-    <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Themes\hayat2\lib\jquery\3.1.1\jquery3-1-1.js" />
     <Content Include="Themes\hayat2\lib\jquery\jquery.min.js" />
     <Content Include="Themes\hayat2\lib\resetcss\reset.min.css" />
-    <Content Include="Themes\hayat2\lib\superfish\hoverIntent.js" />
-    <Content Include="Themes\hayat2\lib\superfish\superfish.js" />
-    <Content Include="Themes\hayat2\lib\superfish\superfish.min.js" />
-    <Content Include="Themes\hayat2\lib\underscore\underscore-min.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.js" />
+    <Content Include="Themes\hayat2\lib\underscore\underscore.min.js">
+      <DependentUpon>underscore.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\module\about\controller\aboutCtrl.js" />
     <Content Include="Themes\hayat2\module\about\view\about.html" />
     <Content Include="Themes\hayat2\module\app.js" />
@@ -2303,10 +2323,10 @@
     <Content Include="Themes\hayat2\module\team\controller\teamCtrl.js" />
     <Content Include="Themes\hayat2\module\team\view\team.html" />
     <Content Include="Themes\hayat2\preview.jpg" />
-    <Content Include="Themes\hayat2\Scripts\angular-route.js" />
-    <Content Include="Themes\hayat2\Scripts\angular-route.min.js" />
-    <Content Include="Themes\hayat2\Scripts\angular.js" />
-    <Content Include="Themes\hayat2\Scripts\angular.min.js" />
+    <Content Include="Themes\hayat2\lib\angular\angular-route.js" />
+    <Content Include="Themes\hayat2\lib\angular\angular-route.min.js" />
+    <Content Include="Themes\hayat2\lib\angular\angular.js" />
+    <Content Include="Themes\hayat2\lib\angular\angular.min.js" />
     <Content Include="Themes\hayat2\sliders\data1\images\1.jpg" />
     <Content Include="Themes\hayat2\sliders\data1\images\2.jpg" />
     <Content Include="Themes\hayat2\sliders\data1\images\3.jpg" />
@@ -2435,18 +2455,14 @@
     <Content Include="SharedViews\404.cshtml" />
     <Content Include="Themes\web.config" />
     <Content Include="Themes\_ViewStart.cshtml" />
-    <Content Include="Themes\hayat2\css\hayat.less" />
-    <Content Include="Themes\hayat2\css\logo.less" />
+    <Content Include="Themes\hayat2\less\hayat.less" />
+    <Content Include="Themes\hayat2\less\logo.less" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.eot" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.ttf" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.woff" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.woff2" />
     <Content Include="Themes\hayat2\img\pdf\ازگل_کاتالوگ.pdf" />
     <Content Include="Themes\hayat2\lib\async\async.min.map" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.css.map" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -2456,19 +2472,20 @@
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Themes\hayat2\lib\lib.zip" />
-    <Content Include="Themes\hayat2\lib\underscore\underscore-min.map" />
     <Content Include="Themes\hayat2\Pages\home.cshtml" />
-    <Content Include="Themes\hayat2\Scripts\angular-route.min.js.map" />
-    <Content Include="Themes\hayat2\Scripts\angular.min.js.map" />
+    <Content Include="Themes\hayat2\lib\angular\angular-route.min.js.map" />
+    <Content Include="Themes\hayat2\lib\angular\angular.min.js.map" />
     <Content Include="Themes\hayat2\_Layout.cshtml" />
-    <Content Include="Themes\hayat2\css\slider.less" />
-    <Content Include="Themes\hayat2\css\places.less" />
+    <Content Include="Themes\hayat2\less\slider.less" />
+    <Content Include="Themes\hayat2\less\places.less" />
     <Content Include="Themes\hayat2\Pages\home\places.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\blocks.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\forms.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\slider.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\partners.cshtml" />
+    <Content Include="Themes\hayat2\less\all.less" />
+    <Content Include="Themes\hayat2\package.json" />
+    <Content Include="Themes\hayat2\Pages\auth.cshtml" />
     <None Include="Themes\hayat2\Pages\home\videos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

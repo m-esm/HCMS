@@ -1,9 +1,14 @@
-@font-face {
+﻿@font-face {
   font-family: 'IRANSansWeb';
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
 [data-aos] {
   transition: all ease 1s;
+}
+a:hover,
+a:visited {
+  color: inherit;
+  text-decoration: inherit;
 }
 body {
   background: #fff;
@@ -28,18 +33,6 @@ body::-webkit-scrollbar {
 .cscroll::-webkit-scrollbar-thumb,
 .cscroll::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 0, 0, 0.1);
-}
-a.back-to-top {
-  position: fixed;
-  z-index: 400;
-  bottom: 10px;
-  right: 10px;
-  width: 30px;
-  line-height: 30px;
-  height: 30px;
-  background: rgba(0, 0, 0, 0.2);
-  color: #fff;
-  text-align: center;
 }
 .ltr {
   display: inline-block;
@@ -295,9 +288,8 @@ header nav ul li > a {
   font-weight: bold;
   font-size: 14px;
 }
-header nav ul li > a:hover,
-header nav ul li > a:visited {
-  color: #fff;
+header nav ul li > a:hover {
+  color: #ddd;
 }
 header nav ul li:before,
 header nav ul li:last-child:after {
@@ -410,23 +402,11 @@ section.page {
   top: 0;
   left: 0;
   width: 100%;
-  transition: all ease 1.3s;
   transform: translateY(100%);
-}
-section.page.page-horizontal {
-  transform: translateY(0) translateX(100%);
+  transition: all ease 1.3s;
 }
 section.page.page-active {
-  transform: translateY(0);
-}
-section.page.page-active.page-horizontal {
   transform: translateX(0);
-}
-section.page.page-horizontal.page-deactive-down {
-  transform: translateX(-100%);
-}
-section.page.page-horizontal.page-deactive-top {
-  transform: translateX(100%);
 }
 section.page.page-deactive-down {
   transform: translateY(-100%);

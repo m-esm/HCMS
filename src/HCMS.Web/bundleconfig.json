@@ -54,12 +54,6 @@
     ]
   },
   {
-    "outputFileName": "Themes/hayat1/js/hayat.min.js",
-    "inputFiles": [
-      "Themes/hayat1/js/hayat.js"
-    ]
-  },
-  {
     "outputFileName": "Themes/hayat2/module/controllers.js",
     "inputFiles": [
       "Themes/hayat2/module/about/controller/aboutCtrl.js",
@@ -78,6 +72,54 @@
       "Themes/hayat2/module/cell/controller/cellCtrl.js",
       "Themes/hayat2/module/cellDetail/controller/cellDetailCtrl.js",
       "Themes/hayat2/module/register/controller/registerCtrl.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/js/hayat.js",
+    "inputFiles": [
+      "Themes/hayat2/js/blocks.js",
+      "Themes/hayat2/js/custom.js",
+      "Themes/hayat2/js/logo.js",
+      "Themes/hayat2/js/places.js",
+      "Themes/hayat2/js/scroll.js",
+      "Themes/hayat2/js/slider.js",
+      "Themes/hayat2/js/videoslider.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/lib/bootstrap/css/bootstrap.min.css",
+    "inputFiles": [
+      "Themes/hayat2/lib/bootstrap/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/lib/underscore/underscore.min.js",
+    "inputFiles": [
+      "Themes/hayat2/lib/underscore/underscore.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/lib/bootstrap-rtl/css/bootstrap-rtl.min.css",
+    "inputFiles": [
+      "Themes/hayat2/lib/bootstrap-rtl/css/bootstrap-rtl.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/lib/font-awesome/css/font-awesome.min.css",
+    "inputFiles": [
+      "Themes/hayat2/lib/font-awesome/css/font-awesome.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/lib/aos/aos.min.js",
+    "inputFiles": [
+      "Themes/hayat2/lib/aos/aos.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/lib/aos/aos.min.css",
+    "inputFiles": [
+      "Themes/hayat2/lib/aos/aos.css"
     ]
   }
 ]

@@ -24,6 +24,7 @@
 }
 
 
+
 body {
     background: #fff;
     color: #666666;
@@ -55,7 +56,18 @@ body::-webkit-scrollbar {
     background: rgba(0,0,0,0.1);
 }
 
-
+a.back-to-top {
+    position: fixed;
+    z-index: 400;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    line-height: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+}
 
 .ltr {
     display: inline-block;
@@ -358,6 +370,10 @@ header {
                     color: @foreColor1;
                     font-weight: bold;
                     font-size: @menuFontSize;
+
+                    &:hover, &:visited {
+                        color: #fff;
+                    }
                 }
 
                 &:before, &:last-child:after {
@@ -457,29 +473,27 @@ section.page-partners {
             width: 100px;
             display: inline-block;
             margin: 0 30px;
-
         }
 
         a {
             width: 100%;
             display: inline-block;
             border: 3px solid #575757;
-            box-sizing:border-box;
+            box-sizing: border-box;
             padding: 0 10px;
             height: 60px;
             vertical-align: top;
             line-height: 60px;
             margin: 10px 0;
-            overflow:hidden;
+            overflow: hidden;
             background: #fff;
 
 
             img {
-
                 display: inline-block;
                 width: auto;
-                max-width:100%;
-                max-height:100%;
+                max-width: 100%;
+                max-height: 100%;
                 vertical-align: middle;
             }
         }
@@ -494,12 +508,35 @@ section.page {
     top: 0;
     left: 0;
     width: 100%;
-    transform: translateY(100%);
     transition: all ease 1.3s;
+    transform: translateY(100%);
+
+    &.page-horizontal {
+
+    transform: translateY(0) translateX(100%);
+
+
+    }
 
     &.page-active {
+        transform: translateY(0);
+    }
+
+    &.page-active.page-horizontal {
         transform: translateX(0);
     }
+
+
+    &.page-horizontal.page-deactive-down {
+        transform: translateX(-100%);
+    }
+
+
+    &.page-horizontal.page-deactive-top {
+        transform: translateX(100%);
+    }
+
+
 
     &.page-deactive-down {
         transform: translateY(-100%);

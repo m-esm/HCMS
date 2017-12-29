@@ -38,8 +38,8 @@ $(function () {
 
         setTimeout(function () {
 
-                $('[data-aos]', nextPage)
-     .addClass('aos-animate');
+            $('[data-aos]', nextPage)
+ .addClass('aos-animate');
 
 
             $('[data-aos]', prevPage)
@@ -51,9 +51,9 @@ $(function () {
 
         // $('[data-aos]', currentPage).removeClass('aos-animate');
 
-      
 
-        if (currentPage.attr('id') == nextPage.attr('id'))
+
+        if (currentPage.attr('id') === nextPage.attr('id'))
             return;
 
 
@@ -83,7 +83,7 @@ $(function () {
 
 
         }
-        if (mode == "down") {
+        if (mode === "down") {
 
 
 
@@ -143,15 +143,14 @@ $(function () {
     });
 
 
-
-
-    setTimeout(function () {
         $(window).scrollTop(0);
-        $(window).bind('hashchange', onHashChange);
+    $(window).bind('hashchange', onHashChange);
 
-    }, 1500);
+    if (window.location.hash.length > 2)
+        changePage($(window.location.hash.toLowerCase()), "down");
+    else
+        window.location.hash = $('section.page').first().attr('id');
 
-    changePage($(window.location.hash.toLowerCase()), "down");
 
     console.log('going to ' + window.location.hash);
 

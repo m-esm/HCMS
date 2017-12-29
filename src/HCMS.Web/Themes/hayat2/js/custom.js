@@ -11,8 +11,6 @@
 
 $(document).ready(function () {
 
-
-
     $('#loader').fadeOut();
 
     $('.right-icons li').click(function () {
