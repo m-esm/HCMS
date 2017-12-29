@@ -30,13 +30,14 @@
 }
 #slider .slide .slice.in,
 #slider .slide .slice.out {
-  transition: all ease 1s;
+  transition: all ease 3s;
 }
 #slider .slide .slice.in {
   transform: translateX(0);
 }
 #slider .slide .slice.out {
   transform: translateX(100%);
+  transition: all ease 6s;
 }
 #slider .slide img {
   width: 100%;
@@ -50,4 +51,97 @@
 }
 #slider .slide:hover {
   -webkit-filter: none;
+}
+#videos {
+  text-align: center;
+}
+#videos .tv {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  height: calc(100vh - 200px);
+  width: auto;
+  position: relative;
+  border: 5px solid rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s, border-color ease 2s, box-shadow ease 2s, transform ease 0.3s;
+  transform: scale(0.95);
+  overflow: hidden;
+  cursor: pointer;
+}
+#videos .tv:after {
+  box-sizing: border-box;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: #ddd;
+  content: "\f04b";
+  font: normal normal normal 14px/1 FontAwesome;
+  vertical-align: middle;
+  z-index: 2;
+  line-height: calc(100vh - 200px);
+  font-size: 60px;
+  text-shadow: 0 0 20px #000;
+  transition: all ease 0.5s;
+}
+#videos .tv.play {
+  border-color: #000000;
+  box-shadow: 0 10px 40px #000;
+  transform: none;
+}
+#videos .tv.play:after {
+  content: "\f04c";
+  opacity: 0;
+}
+#videos .tv.play:hover:after {
+  opacity: 1;
+}
+#videos .tv #video {
+  height: 100%;
+  position: relative;
+  display: block;
+  width: auto;
+  outline: none;
+  border: none;
+  margin-right: -1px;
+}
+#videos .thumbnails {
+  text-align: center;
+  direction: ltr;
+}
+#videos .thumbnails > div {
+  width: 140px;
+  height: 80px;
+  line-height: 80px;
+  vertical-align: top;
+  display: inline-block;
+  background: #ddd;
+  margin: 0 5px;
+  border: 1px solid #bbb;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+#videos .thumbnails > div:before {
+  border: 5px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: #ddd;
+  content: "\f04b";
+  font: normal normal normal 14px/1 FontAwesome;
+  line-height: 80px;
+  vertical-align: middle;
+}
+#videos .thumbnails > div img {
+  width: 100%;
+  vertical-align: middle;
+  display: inline-block;
 }

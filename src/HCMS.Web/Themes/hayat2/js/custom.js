@@ -1,6 +1,17 @@
+/// <reference path="../lib/aos/aos.js" />
+
+
+//AOS.init({
+//    offset: 200,
+//    duration: 600,
+//    easing: 'ease-in-sine',
+//    delay: 500,
+//});
 
 
 $(document).ready(function () {
+
+
 
     $('#loader').fadeOut();
 

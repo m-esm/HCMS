@@ -4,10 +4,11 @@
 var slider = {
     timer: 0,
     sliderSelector: $('#slider'),
-    interval: 3000,
+    interval: 8000,
+    outTimeout: 500,
     sliceHeight: $(document).innerHeight(),
     sliceTimeout: 100,
-    sliceOut: false,
+    sliceOut: true,
     oneSlice: true,
     next: function (nextIndex) {
 
@@ -59,8 +60,13 @@ var slider = {
 
                 var nextSlices = $($('.slice', nextSlide)[sliceIndex]).addClass('in');
 
-                if (nextSlide.index() !== currentSlide.index() && slider.sliceOut)
-                    var prevSlices = $($('.slice', currentSlide)[sliceIndex]).addClass('out');
+
+                setTimeout(function () {
+                    if (nextSlide.index() !== currentSlide.index() && slider.sliceOut)
+                        var prevSlices = $($('.slice', currentSlide)[sliceIndex]).addClass('out');
+
+                }, slider.outTimeout);
+
 
                 callback();
 
@@ -103,8 +109,11 @@ var slider = {
                     .height(slider.sliceHeight)
                         .css('backgroundPosition', '0 ' + i * -1 * slider.sliceHeight + 'px');
 
+
                 if (slider.oneSlice)
                     slice.addClass('one');
+
+
 
                 slide.append(slice);
 

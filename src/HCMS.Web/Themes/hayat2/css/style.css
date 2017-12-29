@@ -522,49 +522,6 @@ body.mobile-nav-active {
         line-height: 24px;
     }
 
-/* Subscribe Section
---------------------------------*/
-#subscribe {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/25-02.jpg) fixed center center;
-    background-size: cover;
-    padding: 80px 0;
-}
-
-    #subscribe .subscribe-title {
-        color: #fff;
-        font-size: 28px;
-        font-weight: 700;
-    }
-
-    #subscribe .subscribe-text {
-        color: #fff;
-    }
-
-    #subscribe .subscribe-btn-container {
-        text-align: center;
-        padding-top: 20px;
-    }
-
-    #subscribe .subscribe-btn {
-        font-family: "IRANSansWeb", sans-serif;
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: 1px;
-        display: inline-block;
-        padding: 8px 20px;
-        border-radius: 2px;
-        transition: 0.5s;
-        margin: 10px;
-        border: 2px solid #fff;
-        color: #fff;
-    }
-
-        #subscribe .subscribe-btn:hover {
-            background: #03C4EB;
-            border: 2px solid #03C4EB;
-        }
-
 /* Portfolio Section
 --------------------------------*/
 

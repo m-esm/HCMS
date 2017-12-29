@@ -1,7 +1,8 @@
-﻿var app = angular.module('myApp', ['ngRoute']);
+﻿app = angular.module('myApp',['ngRoute']);
+app.config(function ($routeProvider, $locationProvider) {
 
-app.config(function ($routeProvider) {
 
+    $locationProvider.html5Mode(true)
 
     //$routeProvider.when("/home", {
     //    controller: "homeCtrl",
@@ -74,9 +75,9 @@ app.config(function ($routeProvider) {
     //});
     
     
-    //$routeProvider.otherwise({ redirectTo: "/home" });
+   // $routeProvider.otherwise({ redirectTo: "/home" });
 
-
+   
 });
 
 app.run(function ($rootScope) {

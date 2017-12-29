@@ -2,6 +2,8 @@
 <html lang="fa" ng-app="myApp">
 
 <head>
+
+    <base href="~/" />
     <meta charset="utf-8">
     <title>حیات نو | {{title}}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -48,6 +50,8 @@
     <link href="~/Themes/hayat2/css/slider.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/logo.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/places.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/lib/aos/aos.css" rel="stylesheet" />
+
 
 
 </head>
@@ -177,12 +181,11 @@
     <script src="~/Themes/hayat2/lib/superfish/superfish.min.js"></script>
     <script src="~/Themes/hayat2/lib/easing/easing.js"></script>
 
+    <script src="~/Themes/hayat2/lib/aos/aos.js"></script>
+
     <!-- Template Specisifc Custom Javascript File -->
     <script src="~/Themes/hayat2/js/custom.js"></script>
 
-
-
-    <script src="~/Themes/hayat2/lib/aos/aos.js"></script>
     <!--scroll animate-->
     <!--<script src="node_modules/scroll-animated/js/css3-animate-it.js"></script>-->
 
@@ -231,10 +234,12 @@
                 var marker = new google.maps.Marker({
                     position: point.position,
                     title: point.title,
-                    //icon: icons[feature.type].icon,
+                    icon: '/Themes/hayat2/img/Icon.png',
                     map: map
                 });
             });
+
+
         });
 
         $(document).on('click', '#tabs-bred', function () {
@@ -266,6 +271,7 @@
     <script src="~/Themes/hayat2/js/logo.js"></script>
     <script src="~/Themes/hayat2/js/slider.js"></script>
     <script src="~/Themes/hayat2/js/scroll.js"></script>
+    <script src="~/Themes/hayat2/js/videoslider.js"></script>
 
     <!--angular library-->
     <script src="~/Themes/hayat2/module/app.js"></script>

@@ -6,13 +6,9 @@ section.page-places {
 
     .map {
         width: calc(~'100% - 160px');
-        height: calc(~'100vh - 100px');
+        height: calc(~'100vh - 180px');
         display: inline-block;
-
     }
-
-
-
 
     .map-wrapper {
         position: relative;
@@ -29,21 +25,54 @@ section.page-places {
         font-weight: bold;
         font-size: 13px;
         width: 160px;
-        height: calc(~'100vh - 100px');
+        height: calc(~'100vh - 180px');
+        overflow-y: scroll;
+
+
+        .generate-libgColors(@color,@n, @i: 1) when (@i =< @n) {
+
+            li:nth-child(@{i}) {
+                background: darken(@color, (@i * 5%));
+            }
+
+            .generate-libgColors(@color,@n, (@i + 1));
+        }
+
+        ul:nth-child(1) {
+            .generate-libgColors(#34495e,10);
+        }
+
+        ul:nth-child(2) {
+            .generate-libgColors(#8e44ad,10);
+        }
 
 
         ul {
             list-style-type: none;
             width: 100%;
             padding: 0;
+            margin-bottom: 0;
 
             li {
                 padding: 5px;
-                margin: 10px;
-                color: #000;
+                color: #fff;
                 cursor: pointer;
+                font-size: 11px;
+                line-height: 30px;
+                font-weight: normal;
+
+                &:before{
+
+
+                    }
+
+                &.active{
+                    font-weight: bold;
+
+                    }
 
                 &:hover {
+                    font-weight: bold;
                     color: #fff;
                 }
             }

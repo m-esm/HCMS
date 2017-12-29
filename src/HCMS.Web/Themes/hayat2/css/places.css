@@ -4,7 +4,7 @@
 }
 section.page-places .map {
   width: calc(100% - 160px);
-  height: calc(100vh - 100px);
+  height: calc(100vh - 180px);
   display: inline-block;
 }
 section.page-places .map-wrapper {
@@ -21,19 +21,87 @@ section.page-places .tabs {
   font-weight: bold;
   font-size: 13px;
   width: 160px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 180px);
+  overflow-y: scroll;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(1) {
+  background: #2b3c4e;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(2) {
+  background: #222f3d;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(3) {
+  background: #19232d;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(4) {
+  background: #10161c;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(5) {
+  background: #07090c;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(6) {
+  background: #000000;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(7) {
+  background: #000000;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(8) {
+  background: #000000;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(9) {
+  background: #000000;
+}
+section.page-places .tabs ul:nth-child(1) li:nth-child(10) {
+  background: #000000;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(1) {
+  background: #7f3d9b;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(2) {
+  background: #703688;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(3) {
+  background: #612e76;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(4) {
+  background: #522764;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(5) {
+  background: #432051;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(6) {
+  background: #34193f;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(7) {
+  background: #25122d;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(8) {
+  background: #160a1b;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(9) {
+  background: #070308;
+}
+section.page-places .tabs ul:nth-child(2) li:nth-child(10) {
+  background: #000000;
 }
 section.page-places .tabs ul {
   list-style-type: none;
   width: 100%;
   padding: 0;
+  margin-bottom: 0;
 }
 section.page-places .tabs ul li {
   padding: 5px;
-  margin: 10px;
-  color: #000;
+  color: #fff;
   cursor: pointer;
+  font-size: 11px;
+  line-height: 30px;
+  font-weight: normal;
+}
+section.page-places .tabs ul li.active {
+  font-weight: bold;
 }
 section.page-places .tabs ul li:hover {
+  font-weight: bold;
   color: #fff;
 }

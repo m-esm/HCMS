@@ -2,12 +2,17 @@
   font-family: 'IRANSansWeb';
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
+[data-aos] {
+  transition: all ease 1s;
+}
 body {
   background: #fff;
   color: #666666;
   font-family: "IRANSansWeb", sans-serif;
   height: 100vh;
   overflow: hidden;
+  direction: rtl;
+  text-align: right;
 }
 body::-webkit-scrollbar {
   display: none !important;
@@ -183,7 +188,7 @@ header .logo {
   transition: all ease 0.5s;
 }
 header .logo img {
-  height: 80px;
+  height: 60px;
 }
 header .logo:hover {
   background: rgba(0, 0, 0, 0.8);
@@ -240,7 +245,7 @@ header .links ul li:hover span.phone {
 }
 header nav {
   position: fixed;
-  top: 120px;
+  top: 100px;
   left: 0;
   width: 100%;
   padding: 0 20px 0 10px;
@@ -250,10 +255,10 @@ header nav {
 }
 header nav:before {
   position: absolute;
-  top: 0;
-  right: -20px;
+  top: 0px;
+  right: -45px;
   width: 120px;
-  height: 40px;
+  height: 30px;
   background-image: url('../img/Icon.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -263,14 +268,14 @@ header nav:before {
 header nav ul {
   width: 100%;
   background: rgba(0, 0, 0, 0.7);
-  line-height: 40px;
+  line-height: 30px;
   text-align: center;
   direction: rtl;
 }
 header nav ul li {
   display: inline-block;
   position: relative;
-  height: 40px;
+  height: 30px;
 }
 header nav ul li > a {
   font-family: 'IRANSansWeb';
@@ -322,6 +327,65 @@ header nav ul li:hover > div {
   padding: 10px;
   transform: rotateX(0);
 }
+section.page-partners {
+  padding-top: 45px;
+}
+section.page-partners .inner {
+  background: url(../img/my-slider/2.jpg) no-repeat;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  height: calc(100vh - 100px);
+  position: relative;
+}
+section.page-partners .inner:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+  background: rgba(0, 0, 0, 0.7);
+}
+section.page-partners h2 {
+  color: #fff;
+  padding: 20px 0;
+  line-height: 40px;
+  font-style: italic;
+  text-shadow: 0 0 3px #000;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+section.page-partners .items {
+  max-width: 700px;
+  margin: 0 auto;
+}
+section.page-partners .items .col {
+  width: 100px;
+  display: inline-block;
+  margin: 0 30px;
+}
+section.page-partners .items a {
+  width: 100%;
+  display: inline-block;
+  border: 3px solid #575757;
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 60px;
+  vertical-align: top;
+  line-height: 60px;
+  margin: 10px 0;
+  overflow: hidden;
+  background: #fff;
+}
+section.page-partners .items a img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
 section.page {
   height: 100vh;
   overflow-x: hidden;
@@ -337,11 +401,11 @@ section.page.page-active {
   transform: translateX(0);
 }
 section.page.page-deactive-down {
-  transform: translateY(-100%) scale(0.8);
+  transform: translateY(-100%);
   transition: all ease 1s;
 }
 section.page.page-deactive-top {
-  transform: translateY(100%) scale(0.8);
+  transform: translateY(100%);
   transition: all ease 1s;
 }
 .logo-hayat-no {
@@ -434,7 +498,7 @@ section.page.page-deactive-top {
   width: 100%;
 }
 section.page-blocks {
-  padding-top: 200px;
+  padding-top: 100px;
   min-height: 800px;
 }
 section.page-blocks .table {
@@ -492,8 +556,8 @@ section.page-blocks .map img.main-block {
   position: absolute;
   top: 0;
   left: calc(50% - 314px);
-  height: 604px;
-  width: 628px;
+  height: calc(100vh - 150px);
+  width: auto;
   float: right;
 }
 section.page-blocks .map img.main-block.block {
@@ -1514,10 +1578,7 @@ body .main .new-block.block .detail .up label {
   width: 100%;
 }
 #contact {
-  direction: rtl;
-}
-#contact .col-md-5 {
-  padding: 0;
+  margin-top: 40px;
 }
 @media (max-width: 768px) {
   .map {

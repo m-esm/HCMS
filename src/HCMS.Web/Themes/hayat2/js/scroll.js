@@ -2,22 +2,23 @@
 $(function () {
 
 
+
     var busy = false;
 
+    var onHashChange = function () {
+
+        if (!busy)
+            changePage($(window.location.hash.toLowerCase()), "down");
 
 
-    $('body').bind('mousewheel', function (e) {
+    };
+
+    var changePage = function (nextPage, mode) {
 
         if (busy)
             return;
 
-
-        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-            return;
-
-        var currentPage = $('section.page.page-active');
-        var nextPage = currentPage.next('section');
-        var prevPage = currentPage.prev('section');
+        busy = true;
 
         setTimeout(function () {
 
@@ -26,10 +27,41 @@ $(function () {
         }, 500);
 
 
-        if (e.originalEvent.wheelDelta / 120 > 0) {
-            console.log('scrolling up !');
+        console.log(nextPage);
+
+        var currentPage = $('section.page.page-active');
+
+        if (!nextPage)
+            nextPage = currentPage.next('section');
+
+        var prevPage = currentPage.prev('section');
+
+        setTimeout(function () {
+
+                $('[data-aos]', nextPage)
+     .addClass('aos-animate');
+
+
+            $('[data-aos]', prevPage)
+.addClass('aos-animate');
+
+        }, 1000);
+
+
+
+        // $('[data-aos]', currentPage).removeClass('aos-animate');
+
+      
+
+        if (currentPage.attr('id') == nextPage.attr('id'))
+            return;
+
+
+
+        if (mode === "up") {
 
             if (prevPage.length > 0) {
+
 
                 prevPage.addClass('page-active')
                     .removeClass('page-deactive-top')
@@ -42,14 +74,18 @@ $(function () {
                 if (prevPage.hasClass('page-slider'))
                     $('header').removeClass('stick');
 
-                busy = true;
+
+                if (prevPage.attr('id'))
+                    window.location.hash = prevPage.attr('id');
+
+
             }
 
 
         }
-        else {
+        if (mode == "down") {
 
-            console.log('scrolling down !');
+
 
             if (nextPage.length > 0) {
                 nextPage.addClass('page-active')
@@ -62,14 +98,63 @@ $(function () {
 
                 $('header').addClass('stick');
 
-                busy = true;
+
+                if (nextPage.attr('id'))
+                    window.location.hash = nextPage.attr('id');
+
 
 
             }
 
 
         }
+
+        //   $(window).bind('hashchange', onHashChange);
+
+
+    };
+
+
+    $('body').bind('mousewheel', function (e) {
+
+
+        if (busy)
+            return;
+
+
+        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+            return;
+        if (e.originalEvent.wheelDelta / 120 > 0) {
+
+            console.log('scrolling up !');
+
+            changePage(false, 'up');
+
+        } else {
+
+            console.log('scrolling down !');
+            changePage(false, 'down');
+
+
+        }
+
+        changePage();
+
     });
 
 
+
+
+    setTimeout(function () {
+        $(window).scrollTop(0);
+        $(window).bind('hashchange', onHashChange);
+
+    }, 1500);
+
+    changePage($(window.location.hash.toLowerCase()), "down");
+
+    console.log('going to ' + window.location.hash);
+
+
 });
+

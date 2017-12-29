@@ -2238,6 +2238,7 @@
     <Content Include="Themes\hayat2\js\logo.js" />
     <Content Include="Themes\hayat2\js\scroll.js" />
     <Content Include="Themes\hayat2\js\slider.js" />
+    <Content Include="Themes\hayat2\js\videoslider.js" />
     <Content Include="Themes\hayat2\lib\animate-css\animate.min.css" />
     <Content Include="Themes\hayat2\lib\aos\aos.css" />
     <Content Include="Themes\hayat2\lib\aos\aos.js" />
@@ -2258,11 +2259,6 @@
     <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.css" />
     <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.min.css" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Themes\hayat2\lib\fullPage\css\jquery.fullpage.css" />
-    <Content Include="Themes\hayat2\lib\fullPage\css\jquery.fullpage.min.css" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.extensions.min.js" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.js" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.js" />
     <Content Include="Themes\hayat2\lib\jquery\3.1.1\jquery3-1-1.js" />
     <Content Include="Themes\hayat2\lib\jquery\jquery.min.js" />
     <Content Include="Themes\hayat2\lib\resetcss\reset.min.css" />
@@ -2460,8 +2456,6 @@
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.css.map" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.js.map" />
     <Content Include="Themes\hayat2\lib\lib.zip" />
     <Content Include="Themes\hayat2\lib\underscore\underscore-min.map" />
     <Content Include="Themes\hayat2\Pages\home.cshtml" />
@@ -2474,6 +2468,7 @@
     <Content Include="Themes\hayat2\Pages\home\blocks.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\forms.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\slider.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\partners.cshtml" />
     <None Include="Themes\hayat2\Pages\home\videos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
