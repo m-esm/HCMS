@@ -6,6 +6,9 @@ src/*
 !src/HCMS.Security
 !src/HCMS.Web
 
+*/**/node_modules
+
+
 src/packages/*
 src/*/obj/*
 src/*/obj/Debug/

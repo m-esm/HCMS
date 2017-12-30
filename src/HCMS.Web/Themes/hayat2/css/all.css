@@ -1,4 +1,4 @@
-﻿@font-face {
+@font-face {
   font-family: 'IRANSansWeb';
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
@@ -1707,6 +1707,97 @@ body .main .new-block.block .detail .up label {
   width: 100%;
   z-index: -1;
 }
+section.page-login .inner,
+section.page-register .inner {
+  padding-top: 140px;
+  max-width: 600px;
+  width: auto;
+  margin: 0 auto;
+}
+section.page-login form,
+section.page-register form {
+  background: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 20px;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+section.page-login form .input-field,
+section.page-register form .input-field {
+  margin: 0 0 10px 0;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+section.page-login form .input-field label,
+section.page-register form .input-field label {
+  width: 35%;
+  text-align: left;
+  float: right;
+  vertical-align: top;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  margin: 0;
+  box-sizing: border-box;
+}
+section.page-login form .input-field input,
+section.page-register form .input-field input,
+section.page-login form .input-field select,
+section.page-register form .input-field select {
+  height: 30px;
+  float: right;
+  width: 65%;
+  vertical-align: top;
+  padding: 0 3px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+section.page-login form .input-field input[type=submit],
+section.page-register form .input-field input[type=submit] {
+  width: 100%;
+  border-radius: 5px;
+  float: left;
+}
+section.page-login form .input-field input[type=email],
+section.page-register form .input-field input[type=email],
+section.page-login form .input-field input[type=password],
+section.page-register form .input-field input[type=password] {
+  text-align: left;
+  font-size: 12px;
+  direction: ltr;
+}
+section.page-login form .captcha-field,
+section.page-register form .captcha-field {
+  text-align: center;
+}
+section.page-login form .captcha-field img,
+section.page-register form .captcha-field img {
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+section.page-login form .captcha-field input,
+section.page-register form .captcha-field input {
+  float: none;
+  text-align: center;
+}
+section.page-login form .links,
+section.page-register form .links {
+  text-align: center;
+  line-height: 40px;
+}
+section.page-login form .links a,
+section.page-register form .links a {
+  background: #ccc;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 0 10px;
+}
 @keyframes blink {
   from {
     opacity: 0;
@@ -1759,7 +1850,7 @@ body .main .new-block.block .detail .up label {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(../less/logo.png);
+  background: url(logo.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2417,94 +2508,418 @@ section.page-places .tabs ul li:hover {
   vertical-align: middle;
   display: inline-block;
 }
-section.page-login .inner,
-section.page-register .inner {
-  padding-top: 140px;
-  max-width: 600px;
-  width: auto;
-  margin: 0 auto;
-}
-section.page-login form,
-section.page-register form {
-  background: rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
+.block-detail {
+  display: inline-block;
+  position: relative;
+  float: left;
   padding: 20px;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
-section.page-login form .input-field,
-section.page-register form .input-field {
-  margin: 0 0 10px 0;
-  border: 1px solid #d8d8d8;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
-}
-section.page-login form .input-field label,
-section.page-register form .input-field label {
-  width: 35%;
-  text-align: left;
-  float: right;
-  vertical-align: top;
-  line-height: 30px;
-  padding: 0 0 0 10px;
-  margin: 0;
-  box-sizing: border-box;
-}
-section.page-login form .input-field input,
-section.page-register form .input-field input,
-section.page-login form .input-field select,
-section.page-register form .input-field select {
-  height: 30px;
-  float: right;
-  width: 65%;
-  vertical-align: top;
-  padding: 0 3px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-section.page-login form .input-field input[type=submit],
-section.page-register form .input-field input[type=submit] {
-  width: 100%;
-  border-radius: 5px;
+.block-detail .block {
+  width: 500px;
   float: left;
 }
-section.page-login form .input-field input[type=email],
-section.page-register form .input-field input[type=email],
-section.page-login form .input-field input[type=password],
-section.page-register form .input-field input[type=password] {
-  text-align: left;
-  font-size: 12px;
-  direction: ltr;
+.block-detail .block .back {
+  width: 500px;
 }
-section.page-login form .captcha-field,
-section.page-register form .captcha-field {
-  text-align: center;
+/*.block-detail .block .back.close{
+    width:200px;
 }
-section.page-login form .captcha-field img,
-section.page-register form .captcha-field img {
-  border: 1px solid #ccc;
-  border-bottom: none;
+
+.block-detail .plan{
+    position:absolute;
+    left:200px;
+    bottom:0;
+
+    height:200px;
+    width:200px;
 }
-section.page-login form .captcha-field input,
-section.page-register form .captcha-field input {
-  float: none;
-  text-align: center;
+
+.block-detail .plan .back{
+    width:200px;
+}*/
+svg,
+defs,
+clipPath {
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-section.page-login form .links,
-section.page-register form .links {
-  text-align: center;
-  line-height: 40px;
+#figur-main {
+  position: relative;
+  border-radius: 20px;
+  width: 600px;
+  height: 500px;
 }
-section.page-login form .links a,
-section.page-register form .links a {
-  background: #ccc;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-  padding: 0 10px;
+#capaRecorte-main {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+  width: 100%;
+  height: 100%;
+}
+#figur-main area {
+  display: block;
+}
+#figur-main area:nth-of-type(1):hover ~ #capaRecorte-main {
+  clip-path: url(#block-A);
+  display: block;
+}
+#figur-main area:nth-of-type(2):hover ~ #capaRecorte-main {
+  clip-path: url(#block-B);
+  display: block;
+}
+#figur-main area:nth-of-type(3):hover ~ #capaRecorte-main {
+  clip-path: url(#block-C);
+  display: block;
+}
+#figur-main area:nth-of-type(4):hover ~ #capaRecorte-main {
+  display: block;
+  clip-path: url(#block-M);
+}
+#figur-a {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  left: 63px;
+}
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#capaRecorte-a {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+#figur-a area {
+  display: block;
+}
+#figur-a area:nth-of-type(1):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F1-a);
+}
+#figur-a area:nth-of-type(2):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F2-a);
+}
+#figur-a area:nth-of-type(3):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F3-a);
+}
+#figur-a area:nth-of-type(4):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F4-a);
+}
+#figur-a area:nth-of-type(5):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F5-a);
+}
+#figur-a area:nth-of-type(6):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F6-a);
+}
+#figur-a area:nth-of-type(7):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F7-a);
+}
+#figur-a area:nth-of-type(8):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F8-a);
+}
+#figur-a area:nth-of-type(9):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F9-a);
+}
+#figur-a area:nth-of-type(10):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F10-a);
+}
+#figur-a area:nth-of-type(11):hover ~ #capaRecorte-a {
+  display: block;
+  clip-path: url(#F11-a);
+}
+#figur-b {
+  position: relative;
+  border-radius: 20px;
+  width: 500px;
+  height: 500px;
+}
+#capaRecorte-b {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+#figur-b area {
+  display: block;
+}
+#figur-b area:nth-of-type(1):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F1-b);
+}
+#figur-b area:nth-of-type(2):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F2-b);
+}
+#figur-b area:nth-of-type(3):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F3-b);
+}
+#figur-b area:nth-of-type(4):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F4-b);
+}
+#figur-b area:nth-of-type(5):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F5-b);
+}
+#figur-b area:nth-of-type(6):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F6-b);
+}
+#figur-b area:nth-of-type(7):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F7-b);
+}
+#figur-b area:nth-of-type(8):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F8-b);
+}
+#figur-b area:nth-of-type(9):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F9-b);
+}
+#figur-b area:nth-of-type(10):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F10-b);
+}
+#figur-b area:nth-of-type(11):hover ~ #capaRecorte-b {
+  display: block;
+  clip-path: url(#F11-b);
+}
+#figur-c {
+  position: relative;
+  border-radius: 20px;
+  width: 500px;
+  height: 500px;
+}
+#capaRecorte-c {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+#figur-c area {
+  display: block;
+}
+#figur-c area:nth-of-type(1):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F1-c);
+}
+#figur-c area:nth-of-type(2):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F2-c);
+}
+#figur-c area:nth-of-type(3):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F3-c);
+}
+#figur-c area:nth-of-type(4):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F4-c);
+}
+#figur-c area:nth-of-type(5):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F5-c);
+}
+#figur-c area:nth-of-type(6):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F6-c);
+}
+#figur-c area:nth-of-type(7):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F7-c);
+}
+#figur-c area:nth-of-type(8):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F8-c);
+}
+#figur-c area:nth-of-type(9):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F9-c);
+}
+#figur-c area:nth-of-type(10):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F10-c);
+}
+#figur-c area:nth-of-type(11):hover ~ #capaRecorte-c {
+  display: block;
+  clip-path: url(#F11-c);
+}
+#figur-plan-a {
+  position: absolute;
+  border-radius: 20px;
+  width: 600px;
+  height: 427px;
+  left: 103px;
+  bottom: 0;
+}
+#capaRecorte-plan-a {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-plan-a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+  width: 100%;
+  height: 100%;
+}
+#figur-plan-a area {
+  display: block;
+}
+#figur-plan-a area:nth-of-type(1):hover ~ #capaRecorte-plan-a {
+  clip-path: url(#PA1);
+  display: block;
+}
+#figur-plan-a area:nth-of-type(2):hover ~ #capaRecorte-plan-a {
+  clip-path: url(#PA2);
+  display: block;
+}
+#figur-plan-a area:nth-of-type(3):hover ~ #capaRecorte-plan-a {
+  clip-path: url(#PA3);
+  display: block;
+}
+#figur-plan-a area:nth-of-type(4):hover ~ #capaRecorte-plan-a {
+  display: block;
+  clip-path: url(#PA4);
+}
+#figur-plan-a area:nth-of-type(5):hover ~ #capaRecorte-plan-a {
+  display: block;
+  clip-path: url(#PA5);
+}
+#figur-plan-b {
+  position: absolute;
+  border-radius: 20px;
+  width: 600px;
+  height: 427px;
+  left: 103px;
+  bottom: 0;
+}
+#capaRecorte-plan-b {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-plan-b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+  width: 100%;
+  height: 100%;
+}
+#figur-plan-b area {
+  display: block;
+}
+#figur-plan-b area:nth-of-type(1):hover ~ #capaRecorte-plan-b {
+  clip-path: url(#PB1);
+  display: block;
+}
+#figur-plan-b area:nth-of-type(2):hover ~ #capaRecorte-plan-b {
+  clip-path: url(#PB2);
+  display: block;
+}
+#figur-plan-b area:nth-of-type(3):hover ~ #capaRecorte-plan-b {
+  clip-path: url(#PB3);
+  display: block;
+}
+#figur-plan-b area:nth-of-type(4):hover ~ #capaRecorte-plan-b {
+  display: block;
+  clip-path: url(#PB4);
+}
+#figur-plan-b area:nth-of-type(5):hover ~ #capaRecorte-plan-b {
+  display: block;
+  clip-path: url(#PB5);
+}
+#figur-plan-c {
+  position: relative;
+  border-radius: 20px;
+  width: 600px;
+  height: 500px;
+}
+#capaRecorte-plan-c {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#imagen-plan-c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+#figur-plan-c area {
+  display: block;
+}
+#figur-plan-c area:nth-of-type(1):hover ~ #capaRecorte-plan-c {
+  clip-path: url(#PC1);
+  display: block;
+}
+#figur-plan-c area:nth-of-type(2):hover ~ #capaRecorte-plan-c {
+  clip-path: url(#PC2);
+  display: block;
+}
+#figur-plan-c area:nth-of-type(3):hover ~ #capaRecorte-plan-c {
+  clip-path: url(#PC3);
+  display: block;
+}
+#figur-plan-c area:nth-of-type(4):hover ~ #capaRecorte-plan-c {
+  display: block;
+  clip-path: url(#PC4);
+}
+#figur-plan-c area:nth-of-type(5):hover ~ #capaRecorte-plan-c {
+  display: block;
+  clip-path: url(#PC5);
 }
