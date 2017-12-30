@@ -121,5 +121,11 @@
     "inputFiles": [
       "Themes/hayat2/lib/aos/aos.css"
     ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/css/blocks.min.css",
+    "inputFiles": [
+      "Themes/hayat2/css/blocks.css"
+    ]
   }
 ]

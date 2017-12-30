@@ -1,0 +1,27 @@
+{
+  "name": "devops",
+  "version": "1.0.0",
+  "description": "devops utility for full stack developers",
+  "main": "dist/run.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohsen Esmaeli <m-esm@hotmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/archiver": "^2.0.1",
+    "@types/async": "^2.0.45",
+    "@types/express": "^4.0.39",
+    "@types/fs-extra": "^5.0.0",
+    "@types/ftp": "^0.3.29",
+    "@types/moment": "^2.13.0",
+    "@types/underscore": "^1.8.6",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-less": "^3.4.0",
+    "gulp-typescript": "^3.2.3",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {}
+}
