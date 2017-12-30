@@ -11,7 +11,11 @@
 
 $(document).ready(function () {
 
-    $('#loader').fadeOut();
+    setTimeout(function () {
+
+        $('#loader').fadeOut();
+
+    }, 1000);
 
     $('.right-icons li').click(function () {
 

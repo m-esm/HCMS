@@ -20,7 +20,7 @@
 @headerLinksFontSize: 13px;
 
 
-a.hayatbtn {
+.hayatbtn {
     display: inline-block;
     line-height: 30px;
     text-align: center;
@@ -30,12 +30,21 @@ a.hayatbtn {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     text-shadow: 0 0 1px #000;
     font-weight: bold;
+    margin:10px 0;
 }
 
 [data-aos] {
     transition: all ease 1s;
 }
 
+
+section.page-homeforms {
+    padding-top: 40px;
+
+    form {
+        padding: 10px;
+    }
+}
 
 .homelogo {
     position: fixed;
@@ -46,6 +55,11 @@ a.hayatbtn {
     padding: 10px;
     width: 90px;
     display: none;
+
+    &:hover {
+        -webkit-filter: invert();
+        background: #000;
+    }
 
     img {
         width: 100%;
@@ -604,6 +618,11 @@ section.page-custom {
         padding-top: 120px;
         max-width: 1100px;
         margin: 0 auto;
+
+        .fulltext {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
         .text {
             width: calc(~"100% - 380px");

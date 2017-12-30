@@ -21,6 +21,7 @@
 
     var i = 0;
 
+    ViewBag.title = page.GetValue("name").Value;
 
 
     var horizontal = false;
@@ -47,27 +48,41 @@
 
             <div class="row">
 
-                <div class="text @(i % 2 == 0 ? "pull-left" : "pull-right")">
-                    @Html.Raw(item.GetValue("content").Value)
+              
+
+                @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
+                {
+                    <div class="text @(i % 2 == 0 ? "pull-left" : "pull-right")">
+                        @Html.Raw(item.GetValue("content").Value)
 
 
-                    <div class="buttons">
+                        <div class="buttons">
 
-                        @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
-                        {
-                            <a class="hayatbtn" href="@item.GetValue("link")">
-                                @item.GetValue("linkText")
-                            </a>
-                        }
+                            @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
+                            {
+                                <a class="hayatbtn" href="@item.GetValue("link")">
+                                    @item.GetValue("linkText")
+                                </a>
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class="pic @(i % 2 != 0 ? "pull-left" : "pull-right")">
+                        <img class="img img-responsive" src="@item.GetValue("image")" />
+                    </div>
+                }
+                else
+                {
+                    <div class="fulltext">
+
+                        @Html.Raw(item.GetValue("content").Value)
 
                     </div>
 
-                </div>
+                }
 
 
-                <div class="pic @(i % 2 != 0 ? "pull-left" : "pull-right")">
-                    <img class="img img-responsive" src="@item.GetValue("image")" />
-                </div>
 
             </div>
 

@@ -2487,7 +2487,10 @@
     <Content Include="Themes\hayat2\package.json" />
     <Content Include="Themes\hayat2\Pages\auth.cshtml" />
     <Content Include="Themes\hayat2\less\auth.less" />
+    <Content Include="Themes\hayat2\Pages\blocks.cshtml" />
     <None Include="Themes\hayat2\Pages\home\videos.cshtml" />
+    <Content Include="Themes\hayat2\Pages\units.cshtml" />
+    <Content Include="Themes\hayat2\Pages\page.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="fa" ng-app="myApp">
+﻿@using HCMS.Dynamics.Data
+@{
+    var menu = DDB.GetTable("cms", "menu").DRows;
+
+}
+<!DOCTYPE html>
+<html lang="fa">
 
 <head>
 
@@ -38,7 +43,6 @@
 
 
     <!-- Libraries CSS Files -->
-    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/animate-css/animate.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/aos/aos.min.css" rel="stylesheet" />
 
@@ -46,6 +50,14 @@
     <!-- hayat styles -->
     <link href="~/Themes/hayat2/css/all.css" rel="stylesheet" />
 
+    <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
+    <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
+    <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
+
+    <script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>
+    <script src="~/Themes/hayat2/js/logo.js"></script>
+
+    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 </head>
 
@@ -96,42 +108,29 @@
         </div>
         <nav>
             <ul>
-                <li>
-                    <a href="#!/hayat">حیات</a>
 
-                    <div class="child-menu">
-                        برند چیست؟ برند نام تجاری، لوگوی شرکت و یا محصول و خدمات یک سازمان نیست! برند به صورت عمومی تعریف یا تصویری از هویت یک محصول،
-                        خدمت (سرویس)، سازمان و یا شرکت است که در طول زمان در ذهن مصرف&zwnj;کننده، کاربر یا مخاطب رسوب می&zwnj;کند.
-                        این ذهنیت شامل احساس، قضاوت&zwnj; و تعریف مخاطب از میزان کیفیت ارائه&zwnj;شده&zwnj;، ماهیت، روحیه
-                        و شخصیت برند است.
+                @foreach (var item in menu)
+                {
 
-                    </div>
+                    <li>
+                        <a href="@item.GetValue("url")">
+                            @item.GetValue("name")
 
-                </li>
-                <li>
-                    <a href="#!/hayatNo">حیات نو</a>
-                    <div class="child-menu">
-                        چرا برند؟ هدف ساخت برند به عنوان یک هویت مستقل، متمایزسازی یک محصول یا خدمت از سایر رقبای برند است. متمایزسازی برگ برنده&zwnj;ی
-                        افزایش فروش و موفقیت در بازار پرتنوع امروزِ ماست. اهمیت ساخت برند در دنیای امروز بر دو اصل ساده اما
-                        اساسیِ یک معادله&zwnj;ی معکوس استوار است: • کاهش زمان تصمیم&zwnj;گیری مخاطب برای خرید یا بهره&zwnj;مندی
-                        از خدمات • افزایش گسترده&zwnj;ی تعداد رقبا در بازار پرماجرای امروزی
-                    </div>
-                </li>
-                <li>
-                    <a href="#services">اخبار</a>
-                    <div class="child-menu">
-                        چرا برند؟ هدف ساخت برند به عنوان یک هویت مستقل، متمایزسازی یک محصول یا خدمت از سایر رقبای برند است. متمایزسازی برگ برنده&zwnj;ی
-                        افزایش فروش و موفقیت در بازار پرتنوع امروزِ ماست. اهمیت ساخت برند در دنیای امروز بر دو اصل ساده اما
-                        اساسیِ یک معادله&zwnj;ی معکوس استوار است: • کاهش زمان تصمیم&zwnj;گیری مخاطب برای خرید یا بهره&zwnj;مندی
-                        از خدمات • افزایش گسترده&zwnj;ی تعداد رقبا در بازار پرماجرای امروزی
-                    </div>
-                </li>
-                <li>
-                    <a href="#!/cell/cellDetail">گالری</a>
-                </li>
-                <li>
-                    <a href="#testimonials">اپلیکیشن حیات</a>
-                </li>
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        {
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+
+                            </div>
+
+                        }
+
+                    </li>
+
+                }
+
             </ul>
 
         </nav>
@@ -151,19 +150,10 @@
 
 
 
-    <!--angularJs-->
-    @*<script src="~/Themes/hayat2/lib/angular/angular.min.js"></script>
-    <script src="~/Themes/hayat2/lib/angular/angular-route.min.js"></script>*@
-
-
     <!-- Required JavaScript Libraries -->
 
 
-    <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
-    <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
-    <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
-
-    <script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>
+  
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
 
 
@@ -171,16 +161,11 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
     </script>
 
+    <script src="~/Themes/hayat2/js/hayat.js"></script>
 
 
     <!-- hayat JS Bundle -->
 
-    <script src="~/Themes/hayat2/js/hayat.js"></script>
-
-    <!-- hayat angular library-->
-
-    @*<script src="~/Themes/hayat2/module/app.js"></script>
-    <script src="~/Themes/hayat2/module/controllers.js"></script>*@
 
 
 

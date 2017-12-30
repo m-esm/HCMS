@@ -23,7 +23,7 @@ $(function () {
 
     });
 
-   
+
     var changePage = function (nextPage, mode) {
 
 
@@ -55,12 +55,10 @@ $(function () {
 
         setTimeout(function () {
 
-            $('[data-aos]', nextPage)
- .addClass('aos-animate');
+            $('[data-aos]', nextPage).addClass('aos-animate');
 
 
-            $('[data-aos]', prevPage)
-.addClass('aos-animate');
+            $('[data-aos]', prevPage).addClass('aos-animate');
 
         }, 1000);
 
@@ -161,7 +159,7 @@ $(function () {
     };
 
 
-    var mousewheel =function (e) {
+    var mousewheel = function (e) {
 
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
             return;
@@ -225,7 +223,7 @@ $(function () {
         window.location.hash = $('section.page').first().attr('id');
 
     $(window).bind('hashchange', onHashChange);
-  
+
 
 
     console.log('going to ' + window.location.hash);
