@@ -7,13 +7,26 @@ $(function () {
 
     var onHashChange = function () {
 
-        if (!busy)
-            changePage($(window.location.hash.toLowerCase()), "down");
+        console.log('hashchange', window.location.hash.toLowerCase());
 
+        changePage($(window.location.hash.toLowerCase()), "down");
 
     };
 
+    $('.back-to-top').click(function () {
+
+        var btn = $(this);
+
+
+        window.location.hash = $('section.page').first().attr('id');
+
+
+    });
+
+   
     var changePage = function (nextPage, mode) {
+
+
 
         if (busy)
             return;
@@ -36,6 +49,10 @@ $(function () {
 
         var prevPage = currentPage.prev('section');
 
+
+        console.log('next page', nextPage);
+
+
         setTimeout(function () {
 
             $('[data-aos]', nextPage)
@@ -47,7 +64,8 @@ $(function () {
 
         }, 1000);
 
-
+        if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
+            $('.back-to-top').addClass('horizontal');
 
         // $('[data-aos]', currentPage).removeClass('aos-animate');
 
@@ -56,7 +74,11 @@ $(function () {
         if (currentPage.attr('id') === nextPage.attr('id'))
             return;
 
+        if (window.location.pathname !== "/") {
 
+            $('header').addClass('navhide');
+            $('.homelogo').fadeIn();
+        }
 
         if (mode === "up") {
 
@@ -75,6 +97,18 @@ $(function () {
                     $('header').removeClass('stick');
 
 
+                if (prevPage.prev('section.page').length == 0)
+                    $('.back-to-top').fadeOut();
+                else {
+                    $('.back-to-top').fadeIn();
+                }
+
+
+                if (window.location.pathname === "/")
+                    if (!prevPage.hasClass('page-slider'))
+                        $('header').addClass('stick');
+
+
                 if (prevPage.attr('id'))
                     window.location.hash = prevPage.attr('id');
 
@@ -88,15 +122,27 @@ $(function () {
 
 
             if (nextPage.length > 0) {
-                nextPage.addClass('page-active')
-                    .removeClass('page-deactive-top')
-                .removeClass('page-deactive-down');
 
-                currentPage.addClass('page-deactive-down')
+                nextPage
+                    .addClass('page-active')
+                    .removeClass('page-deactive-top')
+                    .removeClass('page-deactive-down');
+
+                currentPage
+                    .addClass('page-deactive-down')
                     .removeClass('page-active');
 
 
-                $('header').addClass('stick');
+                if (nextPage.prev('section.page').length == 0)
+                    $('.back-to-top').fadeOut();
+                else {
+                    $('.back-to-top').fadeIn();
+                }
+
+
+                if (window.location.pathname === "/")
+                    if (!nextPage.hasClass('page-slider'))
+                        $('header').addClass('stick');
 
 
                 if (nextPage.attr('id'))
@@ -115,16 +161,13 @@ $(function () {
     };
 
 
-    $('body').bind('mousewheel', function (e) {
-
-
-        if (busy)
-            return;
-
+    var mousewheel =function (e) {
 
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
             return;
-        if (e.originalEvent.wheelDelta / 120 > 0) {
+        var wheelDelta = e.wheelDelta ? e.wheelDelta : -e.detail;
+
+        if (wheelDelta / 120 > 0) {
 
             console.log('scrolling up !');
 
@@ -140,16 +183,49 @@ $(function () {
 
         changePage();
 
+    };
+
+
+    $(document).keydown(function (e) {
+        switch (e.which) {
+            case 37:
+                changePage(false, 'up');
+
+                break;
+            case 38:
+                changePage(false, 'up');
+                break;
+            case 39:
+                changePage(false, 'down');
+                break;
+            case 40:
+                changePage(false, 'down');
+                break;
+
+            default: return; // exit this handler for other keys
+        }
+        e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
 
-        $(window).scrollTop(0);
-    $(window).bind('hashchange', onHashChange);
+
+
+    // For Chrome
+    window.addEventListener('mousewheel', mousewheel);
+
+    // For Firefox
+    window.addEventListener('DOMMouseScroll', mousewheel);
+
+
+    $(window).scrollTop(0);
 
     if (window.location.hash.length > 2)
         changePage($(window.location.hash.toLowerCase()), "down");
     else
         window.location.hash = $('section.page').first().attr('id');
+
+    $(window).bind('hashchange', onHashChange);
+  
 
 
     console.log('going to ' + window.location.hash);

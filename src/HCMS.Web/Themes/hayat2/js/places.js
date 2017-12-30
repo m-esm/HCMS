@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
+
 var map;
 
 function initMap() {
@@ -11,55 +12,48 @@ function initMap() {
         zoom: 16,
         center: uluru
     });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
+
 }
 
 
-$(document).on('click', '#tabs-rest', function () {
-    //رستوران
-    var points = [
-         {
-             position: new google.maps.LatLng(35.788718, 51.497732),
-             title: 'رستوران نوبهار',
-         }, {
-             position: new google.maps.LatLng(35.788688, 51.496523),
-             title: 'کترینگ عارف',
-         }, {
-             position: new google.maps.LatLng(35.790298, 51.495021),
-             title: 'بامزی فست فود',
-         }
-    ];
-    // Create markers.
-    points.forEach(function (point) {
-        var marker = new google.maps.Marker({
-            position: point.position,
-            title: point.title,
-            icon: '/Themes/hayat2/img/Icon.png',
-            map: map
-        });
-    });
+$(document).on('click', '#places .tabs li', function () {
 
+    var li = $(this),
+        positions = _.map(li.attr("data-latlng").split('|'), function (item) {
 
-});
+            if (!item)
+                return;
 
-$(document).on('click', '#tabs-bred', function () {
+            return new google.maps.LatLng(parseFloat(item.split(',')[0]), parseFloat(item.split(',')[1]))
+
+        }),
+        icon = li.attr("data-icon"),
+        title = li.attr("data-title");
+
     //نانوایی
-    var points = [
-        {
-            position: new google.maps.LatLng(35.790198, 51.495022),
-            title: 'نانوایی سنگکی',
-        }
-    ];
-    // Create markers.
-    points.forEach(function (point) {
-        var marker = new google.maps.Marker({
-            position: point.position,
-            title: point.title,
-            //icon: icons[feature.type].icon,
+    //var points = [
+    //    {
+    //        position: new google.maps.LatLng(35.790198, 51.495022),
+    //        title: title
+    //    }
+    //];
+
+    positions.forEach(function (latlng) {
+
+        new google.maps.Marker({
+            position: latlng,
+            title: title,
+            icon: icon,
             map: map
         });
+
     });
+
+
 });
+
+setTimeout(function () {
+
+    $('#places .tabs li').click();
+
+}, 1000);

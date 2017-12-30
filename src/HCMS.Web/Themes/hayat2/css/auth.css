@@ -7,7 +7,7 @@ section.page-register .inner {
 }
 section.page-login form,
 section.page-register form {
-  background: #f1f1f1;
+  background: rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   padding: 20px;
   -moz-user-select: none;

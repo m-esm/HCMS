@@ -19,10 +19,38 @@
 @menuFontSize: 14px;
 @headerLinksFontSize: 13px;
 
+
+a.hayatbtn {
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    padding: 0 15px;
+    background: @BgColor2;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 1px #000;
+    font-weight: bold;
+}
+
 [data-aos] {
     transition: all ease 1s;
 }
 
+
+.homelogo {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.1);
+    bottom: 10px;
+    left: 10px;
+    z-index: 300;
+    padding: 10px;
+    width: 90px;
+    display: none;
+
+    img {
+        width: 100%;
+    }
+}
 
 
 body {
@@ -56,7 +84,7 @@ body::-webkit-scrollbar {
     background: rgba(0,0,0,0.1);
 }
 
-a.back-to-top {
+div.back-to-top {
     position: fixed;
     z-index: 400;
     bottom: 10px;
@@ -67,6 +95,12 @@ a.back-to-top {
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
     text-align: center;
+    transition: all ease .5s;
+    display: none;
+
+    &.horizontal {
+        transform: rotate(-90deg);
+    }
 }
 
 .ltr {
@@ -163,6 +197,11 @@ a.back-to-top {
                 overflow: hidden;
                 text-overflow: ellipsis;
 
+                a {
+                    font-weight: bold;
+                    color: #fff;
+                }
+
                 ul {
                     li {
                         text-align: right;
@@ -210,6 +249,11 @@ a.back-to-top {
             background: rgba(0, 0, 0, 0.1);
             transition: all ease 0.5s;
 
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+
             &:hover {
                 background: @BgColor1;
             }
@@ -231,6 +275,12 @@ header {
     width: 100%;
     z-index: 100;
 
+    &.navhide {
+
+        nav {
+            display: none;
+        }
+    }
 
     &.stick {
 
@@ -469,14 +519,9 @@ section.page-partners {
         max-width: 700px;
         margin: 0 auto;
 
-        .col {
-            width: 100px;
-            display: inline-block;
-            margin: 0 30px;
-        }
 
         a {
-            width: 100%;
+            width: 100px;
             display: inline-block;
             border: 3px solid #575757;
             box-sizing: border-box;
@@ -484,7 +529,7 @@ section.page-partners {
             height: 60px;
             vertical-align: top;
             line-height: 60px;
-            margin: 10px 0;
+            margin: 10px;
             overflow: hidden;
             background: #fff;
 
@@ -500,6 +545,7 @@ section.page-partners {
     }
 }
 
+
 section.page {
     height: 100vh;
     overflow-x: hidden;
@@ -512,10 +558,7 @@ section.page {
     transform: translateY(100%);
 
     &.page-horizontal {
-
-    transform: translateY(0) translateX(100%);
-
-
+        transform: translateY(0) translateX(100%);
     }
 
     &.page-active {
@@ -550,7 +593,35 @@ section.page {
 }
 
 
+section.page-custom {
 
+    .buttons {
+        text-align: left;
+    }
+
+    .inner {
+        padding: 40px;
+        padding-top: 120px;
+        max-width: 1100px;
+        margin: 0 auto;
+
+        .text {
+            width: calc(~"100% - 380px");
+            padding: 0 40px;
+            text-align: justify;
+        }
+
+        .pic {
+            width: 380px;
+            vertical-align: bottom;
+            padding-top: 40px;
+
+            img {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}
 
 
 .logo-hayat-no {

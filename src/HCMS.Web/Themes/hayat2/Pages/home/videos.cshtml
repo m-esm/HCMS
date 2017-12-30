@@ -1,30 +1,31 @@
-﻿<section class="page page-videos" id="videos">
+﻿@using HCMS.Dynamics.Data
+@{
+    var videos = DDB.GetTable("cms", "videos").DRows;
+
+
+
+}
+
+<section class="page page-videos" id="videos">
 
     <div class="inner">
 
         <div class="tv" data-aos="fade-up">
-            <video id="video">
+            <video id="video"></video>
 
-            </video>
-         
         </div>
 
         <div class="thumbnails">
 
+            @foreach (var item in videos)
+            {
 
-            <div data-aos="fade-right" data-src="http://127.0.0.1:9292/Heaven-From-Top.webm">
-                <img src="http://127.0.0.1:9292/Heaven-From-Top.jpg" />
-            </div>
+                <div data-aos="fade-right" data-type="@item.GetValue("type.name")" data-src="@item.GetValue("source")">
+                    <img src="@item.GetValue("thumbnail")" />
+                </div>
 
-            <div data-aos="fade-right" data-src="http://127.0.0.1:9292/UN_building.webm">
-
-                <img src="http://127.0.0.1:9292/UN_building.jpg" />
-
-            </div>
-
-            <div data-aos="fade-right" data-src="http://127.0.0.1:9292/Latino_Clock.webm">
-                <img src="http://127.0.0.1:9292/Latino_Clock.jpg" />
-            </div>
+            }
+          
 
         </div>
 

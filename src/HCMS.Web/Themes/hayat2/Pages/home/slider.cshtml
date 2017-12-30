@@ -1,94 +1,61 @@
-﻿
-<section id="home" class="page page-active page-slider">
+﻿@using HCMS.Dynamics.Data
+@{
+    var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
+    var socials = DDB.GetTable("cms", "socials").DRows;
+    var sliders = DDB.GetTable("cms", "slider").DRows;
+
+
+}
+<section id="home" class="page page-slider">
 
     <div class="right-icons">
         <ul>
-            <li class="gallery">
-                <span>گالری</span>
-                <i class="fa fa-image"></i>
-                <div class="descrp">
-                    شما می توانید از تصاویر و ویدوهای وقایع و اخبار حیات
-                    استفاده کنید
-                </div>
-            </li>
-            <li class="catalog">
-                <span>کاتالوگ</span>
-                <i class="fa fa-newspaper-o"></i>
-                <div class="descrp">
-                    <ul>
-                        <li>
-                            <a href="../../../img/pdf/ازگل_کاتالوگ.pdf" download>
-                                کاتالوگ فنی
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" download>
-                                کاتالوگ واحد های بر اساس متراژ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" download>
-                                کاتالوگ واحد ها بر اساس طبقه
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" download>
-                                کاتالوگ واحد ها بر اساس ویو
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="register">
-                <span>ثبت نام</span>
-                <i class="fa fa-user"></i>
-                <div class="descrp">
-                    برای بازدید از تمام بخش های اصلی وب سایت
-                    <a href="#contact">ثبت نام</a> کنید. این سایت و شرکت ابتکار سازه
-                    محافظ حریم شخصی شماست.
-                </div>
-            </li>
-            <li class="location">
-                <span>موقعیت</span>
-                <i class="fa fa-map-marker"></i>
-                <div class="descrp">
-                    تهران - ازگل - <a href="#portfolio">برج حیات</a>
-                </div>
-            </li>
+            @foreach (var item in quickLinks)
+            {
+                <li>
+                    <span>@item.GetValue("title")</span>
+                    <i class="@item.GetValue("icon")"></i>
+                    <div class="descrp">
+                        @Html.Raw(item.GetValue("text"))
+                        <ul>
+                            @foreach (var subitem in item.GetGroup("links"))
+                            {
+
+                                <li>
+                                    <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </li>
+            }
         </ul>
     </div>
 
     <div class="left-icons">
         <ul>
-            <li>
-                <i class="fa fa-telegram"></i>
-            </li>
-            <li>
-                <i class="fa fa-facebook"></i>
-            </li>
-            <li>
-                <i class="fa fa-instagram"></i>
-            </li>
 
-            <li>
-                <i class="fa fa-linkedin"></i>
-            </li>
+            @foreach (var item in socials)
+            {
+                <li>
+                    <a href="@item.GetValue("url")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+                </li>
+
+            }
+
         </ul>
     </div>
 
 
     <div id="slider">
-        <div class="slide">
-            <img src="~/Themes/hayat2/img/my-slider/1.jpg" />
-        </div>
-        <div class="slide">
-            <img src="~/Themes/hayat2/img/my-slider/2.jpg" />
 
-        </div>
-        <div class="slide">
-            <img src="~/Themes/hayat2/img/my-slider/3.jpg" />
+        @foreach (var item in sliders)
+        {
+            <div class="slide">
+                <img src="@item.GetValue("image")" />
+            </div>
+        }
 
-        </div>
     </div>
 
 

@@ -1,0 +1,81 @@
+﻿
+@using HCMS.Dynamics.Data
+@{
+    var pages = DDB.GetTable("cms", "pages").DRows;
+
+    var pageName = ViewContext.RequestContext.RouteData.Values["pageName"];
+
+    if (pageName == null)
+    {
+        Response.Redirect("/404");
+    }
+
+    var page = pages.FirstOrDefault(p => p.GetValue("slug").ToString().ToLower() == pageName.ToString().ToLower());
+
+    if (page == null)
+    {
+        Response.Redirect("/404");
+    }
+
+    var pageSections = DDB.GetTable("cms", "pageSections").DRows.Where(p => p.GetValue("pageId").Value == page.RowID.ToString());
+
+    var i = 0;
+
+
+
+    var horizontal = false;
+    if (page.GetValue("horizontal") != null) {
+
+        bool.TryParse(page.GetValue("horizontal").Value, out horizontal);
+
+    }
+
+
+
+}
+
+
+
+@foreach (var item in pageSections)
+{
+    i++;
+
+    <section id="section-@i" class="page page-custom @(horizontal ? "page-horizontal" :"" )">
+
+
+        <div class="inner">
+
+            <div class="row">
+
+                <div class="text @(i % 2 == 0 ? "pull-left" : "pull-right")">
+                    @Html.Raw(item.GetValue("content").Value)
+
+
+                    <div class="buttons">
+
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
+                        {
+                            <a class="hayatbtn" href="@item.GetValue("link")">
+                                @item.GetValue("linkText")
+                            </a>
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="pic @(i % 2 != 0 ? "pull-left" : "pull-right")">
+                    <img class="img img-responsive" src="@item.GetValue("image")" />
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+
+}

@@ -1,4 +1,8 @@
-﻿<section id="partners" class="page page-partners">
+﻿@using HCMS.Dynamics.Data
+@{
+    var partners = DDB.GetTable("cms", "partners").DRows;
+}
+<section id="partners" class="page page-partners">
   
     <div class="inner">
 
@@ -7,29 +11,11 @@
         </h2>
         <div class="items">
 
-            @for (int i = 0; i < 4; i++)
+            @foreach (var item in partners)
             {
-                <div class="col" data-aos="fade-down" data-aos-delay="@(i * 300)">
-                    <a  href="http://www.venusglass.net">
-                        <img src="/Themes/hayat2/img/brand/httpwww.venusglass.net.jpg" />
-                    </a>
-
-                    <a href="http://itc.co.ir">
-                        <img src="/Themes/hayat2/img/brand/logo httpitc.co.ir.jpg" />
-                    </a>
-
-                    <a>
-                        <img src="/Themes/hayat2/img/brand/سنچوری-225x168.jpg" />
-                    </a>
-
-                    <a  href="http://www.kwc.com">
-                        <img src="/Themes/hayat2/img/brand/httpwww.kwc.com.png" />
-                    </a>
-
-                    <a href="http://www.kwciran.com">
-                        <img src="/Themes/hayat2/img/brand/www.kwciran.com.png" />
-                    </a>
-                </div>
+                <a target="_blank" href="@item.GetValue("url")">
+                    <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
+                </a>
             }
 
         </div>

@@ -50,6 +50,8 @@ namespace HCMS.Web.Serivces
                 mail.To.Add(new MailAddress(recipient));
                 mail.BodyEncoding = Encoding.UTF8;
                 mail.Subject = subject;
+                //mail.From = new MailAddress(emailAddress);
+                //
                 mail.From = new MailAddress(emailAddress);
 
                 mail.IsBodyHtml = true;

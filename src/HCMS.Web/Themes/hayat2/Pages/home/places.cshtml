@@ -1,32 +1,32 @@
-﻿<section class="page page-places" id="places">
+﻿@using HCMS.Dynamics.Data
+@{
+    var places = DDB.GetTable("cms", "places").DRows;
 
 
+}
+
+<section class="page page-places" id="places">
     <div class="map-wrapper">
         <div class="map" data-aos="fade-right" style="">
         </div>
-        <div class="tabs cscroll"  data-aos="fade-left">
+        <div class="tabs cscroll" data-aos="fade-left">
             <ul>
-                <li>
-                    مراکز خرید
-                </li>
-                <li>مراکز درمانی</li>
-                <li>میوه و تره بار</li>
-                <li id="tabs-bred">نانوایی</li>
-                <li>کارواش</li>
-                <li>فروشگاه شهروند</li>
-                <li>فست فودها</li>
+                @foreach (var item in places)
+                {
+                    var positions = "";
 
-            </ul>
-            <ul>
-                <li id="tabs-rest">رستوران ها</li>
-                <li>کترینگ</li>
-                <li>مداری</li>
-                <li>مراکز دولتی</li>
-                <li>آموزشگاه ها</li>
-                <li>حمل و نقل عمومی</li>
-                <li>تاسیسات</li>
+                    foreach (var pos in item.GetGroup("positions"))
+                    {
+                        positions += "|" + pos.GetValue("latlng");
+                    }
+
+                    <li style="background:@item.GetValue("color")" data-title="@item.GetValue("name")" data-icon="@item.GetValue("icon")" data-latlng="@positions">
+
+                        @item.GetValue("name")
+
+                    </li>
+                }
             </ul>
         </div>
-
     </div>
 </section>
