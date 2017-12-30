@@ -1,4 +1,4 @@
-@font-face {
+﻿@font-face {
   font-family: 'IRANSansWeb';
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
@@ -673,28 +673,16 @@ section.page-blocks .map .block-a {
   border: 1px solid #ccc;
   border-radius: 3px;
   box-shadow: 1px 1px 3px 1px #ccc;
+  height: 80px;
+  width: 80px;
   display: none;
 }
 section.page-blocks .map .block-a.active {
   display: block;
 }
 section.page-blocks .map .block-a.first {
-  height: 120px;
-  width: 160px;
-  left: 63px;
-  bottom: -373px;
-  /*&:after {
-                    position: absolute;
-                    content: ' ';
-                    bottom: 38px;
-                    right: -31px;
-                    width: 0;
-                    height: 0;
-                    border-left: 0px solid transparent;
-                    border-right: 30px solid transparent;
-                    border-top: 20px solid #ddd;
-                    clear: both;
-                }*/
+  right: 300px;
+  top: -59px;
 }
 section.page-blocks .map .block-a.first img {
   float: right;
@@ -709,22 +697,8 @@ section.page-blocks .map .block-a.first label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-a.seconde {
-  height: 120px;
-  width: 160px;
-  left: 40%;
-  bottom: -539px;
-  /*&:after {
-                    content: '';
-                    position: absolute;
-                    left: 83px;
-                    top: -41px;
-                    width: 0;
-                    height: 0;
-                    border-left: 0 solid transparent;
-                    border-right: 20px solid transparent;
-                    border-bottom: 40px solid #ddd;
-                    clear: both;
-                }*/
+  right: 135px;
+  top: 7px;
 }
 section.page-blocks .map .block-a.seconde img {
   float: right;
@@ -739,22 +713,8 @@ section.page-blocks .map .block-a.seconde label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-a.third {
-  height: 120px;
-  width: 160px;
-  left: 31%;
-  bottom: -185px;
-  /*&:after {
-                    content: '';
-                    position: absolute;
-                    left: -50px;
-                    top: 50%;
-                    width: 0;
-                    height: 0;
-                    border-left: 50px solid transparent;
-                    border-right: 0px solid transparent;
-                    border-top: 15px solid #ddd;
-                    clear: both;
-                }*/
+  left: 73%;
+  top: 164px;
 }
 section.page-blocks .map .block-a.third img {
   float: right;
@@ -775,16 +735,18 @@ section.page-blocks .map .block-b {
   border: 1px solid #ccc;
   border-radius: 3px;
   box-shadow: 1px 1px 3px 1px #ccc;
+  height: 80px;
+  width: 80px;
   display: none;
 }
 section.page-blocks .map .block-b.active {
   display: block;
 }
 section.page-blocks .map .block-b.first {
-  height: 120px;
-  width: 160px;
-  left: 0;
-  bottom: -236px;
+  height: 80px;
+  width: 80px;
+  left: 179px;
+  top: -44px;
   /*&:after {
                     position: absolute;
                     content: ' ';
@@ -811,10 +773,8 @@ section.page-blocks .map .block-b.first label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-b.seconde {
-  height: 120px;
-  width: 160px;
-  left: 6%;
-  bottom: -15px;
+  left: 73px;
+  bottom: 303px;
   /*&:after {
                     content: '';
                     position: absolute;
@@ -841,10 +801,8 @@ section.page-blocks .map .block-b.seconde label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-b.third {
-  height: 120px;
-  width: 160px;
-  left: 36%;
-  bottom: -109px;
+  left: 47%;
+  bottom: 400px;
   /*&:after {
                     content: '';
                     position: absolute;
@@ -877,28 +835,16 @@ section.page-blocks .map .block-c {
   border: 1px solid #ccc;
   border-radius: 3px;
   box-shadow: 1px 1px 3px 1px #ccc;
+  height: 80px;
+  width: 80px;
   display: none;
 }
 section.page-blocks .map .block-c.active {
   display: block;
 }
 section.page-blocks .map .block-c.first {
-  height: 120px;
-  width: 160px;
-  right: 48%;
-  top: -109px;
-  /*&:after {
-                    position: absolute;
-                    content: ' ';
-                    bottom: -18px;
-                    left: 50%;
-                    width: 0;
-                    height: 0;
-                    border-left: 20px solid transparent;
-                    border-right: 20px solid transparent;
-                    border-top: 20px solid #ddd;
-                    clear: both;
-                }*/
+  right: 422px;
+  top: 32px;
 }
 section.page-blocks .map .block-c.first img {
   float: right;
@@ -913,22 +859,8 @@ section.page-blocks .map .block-c.first label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-c.seconde {
-  height: 120px;
-  width: 160px;
-  right: 23%;
-  top: -70px;
-  /*&:after {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 100%;
-                    width: 0;
-                    height: 0;
-                    border-left: 0 solid transparent;
-                    border-right: 20px solid transparent;
-                    border-top: 50px solid #ddd;
-                    clear: both;
-                }*/
+  left: 22%;
+  top: 200px;
 }
 section.page-blocks .map .block-c.seconde img {
   float: right;
@@ -943,22 +875,8 @@ section.page-blocks .map .block-c.seconde label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-c.third {
-  height: 120px;
-  width: 160px;
-  right: 18%;
-  bottom: -254px;
-  /*&:after {
-                    content: '';
-                    position: absolute;
-                    left: -50px;
-                    top: 50%;
-                    width: 0;
-                    height: 0;
-                    border-left: 50px solid transparent;
-                    border-right: 0px solid transparent;
-                    border-top: 15px solid #ddd;
-                    clear: both;
-                }*/
+  right: 46%;
+  bottom: 0;
 }
 section.page-blocks .map .block-c.third img {
   float: right;
@@ -980,28 +898,15 @@ section.page-blocks .map .block-m {
   border-radius: 3px;
   box-shadow: 1px 1px 3px 1px #ccc;
   display: none;
+  height: 80px;
+  width: 80px;
 }
 section.page-blocks .map .block-m.active {
   display: block;
 }
 section.page-blocks .map .block-m.first {
-  height: 120px;
-  width: 160px;
-  right: 48%;
-  bottom: -715px;
-  /*transform: rotate(12deg);*/
-  /*&:after {
-                    position: absolute;
-                    content: ' ';
-                    top: -22px;
-                    left: 50%;
-                    width: 0;
-                    height: 0;
-                    border-left: 20px solid transparent;
-                    border-right: 20px solid transparent;
-                    border-bottom: 20px solid #ddd;
-                    clear: both;
-                }*/
+  right: 9%;
+  bottom: 218px;
 }
 section.page-blocks .map .block-m.first img {
   float: right;
@@ -1016,23 +921,8 @@ section.page-blocks .map .block-m.first label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-m.seconde {
-  height: 120px;
-  width: 160px;
-  right: 21%;
-  bottom: -653px;
-  /*transform: rotate(20deg);*/
-  /*&:after {
-                    content: '';
-                    position: absolute;
-                    left: -31px;
-                    top: 41px;
-                    width: 0;
-                    height: 0;
-                    border-left: 30px solid transparent;
-                    border-right: 0px solid transparent;
-                    border-top: 15px solid #ddd;
-                    clear: both;
-                }*/
+  right: 18%;
+  bottom: 43px;
 }
 section.page-blocks .map .block-m.seconde img {
   float: right;
@@ -1047,22 +937,8 @@ section.page-blocks .map .block-m.seconde label {
   border-top: 1px solid;
 }
 section.page-blocks .map .block-m.third {
-  height: 120px;
-  width: 160px;
-  right: 9%;
-  bottom: -443px;
-  /*&:after {
-                    content: '';
-                    position: absolute;
-                    left: -50px;
-                    top: 50%;
-                    width: 0;
-                    height: 0;
-                    border-left: 50px solid transparent;
-                    border-right: 0px solid transparent;
-                    border-top: 15px solid #ddd;
-                    clear: both;
-                }*/
+  right: 39%;
+  bottom: -29px;
 }
 section.page-blocks .map .block-m.third img {
   float: right;

@@ -54,49 +54,20 @@
 
                     <div class="col-md-8 col-sm-12" data-aos="fade-right" >
                         <div class="map">
-                            @*<img class="main-block" src="/Themes/hayat2/img/map/Blocks Maps.png" usemap="#main" />*@
+                            <img class="main-block" src="/Themes/hayat2/img/map/Blocks Maps.png" usemap="#main" />
 
+                            <map name="main">
+                                <area id="coordBlockA" href="/blocks#block-a" coords="344,477,308,507,250,550,229,512,203,463,131,367,117,163,217,123,216,100,239,119,238,148,278,192,286,185,309,212,318,232,331,232,345,253,321,478" shape="poly">
+                                <area id="coordBlockB" href="/blocks#block-b" coords="274,69,228,21,207,24,155,25,100,38,66,41,5,61,22,190,27,252,70,301,89,286,105,311,129,346,119,161,190,130,193,105" shape="poly">
+                                <area id="coordBlockC" href="/blocks#block-c" coords="504,124,477,100,389,31,391,9,380,0,347,16,342,26,330,15,311,22,300,11,269,22,268,52,288,71,284,181,302,174,328,197,327,228,347,247,344,349,362,378,458,332,466,315" shape="poly">
+                                <area id="coordBlockM" href="/blocks#block-m" coords="481,304,627,380,623,394,528,435,485,466,452,549,449,600,289,565,234,557,148,485,7,256,19,240,59,296,101,346,147,394,190,470,226,512,256,552,313,536,316,508,356,478,337,440,344,364,366,385" shape="poly">
+                            </map>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                <defs>
-                                    <clipPath id=block-A>
-                                        <polygon points="400, 99,378, 81,375, 82,309, 28,311, 7,296, 5,274, 13,274, 21,262, 13,247, 19,239, 12,213, 18,211, 41,227, 56,228, 136,240, 141,260, 159,261, 185,278, 202,273, 274,294, 298,371, 259"></polygon>
-                                    </clipPath>
+                            <img id="a" usemap="#main" src="/Themes/hayat2/img/map/box/Blocks A Maps Icon-box .png" class="main-block block" />
+                            <img id="b" usemap="#main" src="/Themes/hayat2/img/map/box/Blocks B Maps Icon-box .png" class="main-block block" />
+                            <img id="c" usemap="#main" src="/Themes/hayat2/img/map/box/Blocks C Maps Icon-box .png" class="main-block block" />
+                            <img id="m" usemap="#main" src="/Themes/hayat2/img/map/box/Blocks M Maps Icon-box .png" class="main-block block" />
 
-                                    <clipPath id=block-B>
-                                        <polygon points="224, 55,204, 35,204, 29,193, 21,192, 23,178, 14,168, 20,159, 16,140, 20,137, 17,121, 20,90, 31,84, 27,74, 27,74, 32,58, 37,54, 32,2, 49,22, 204,55, 245,59, 245,60, 234,74, 228,79, 234,82, 250,103, 281,91, 130,170, 97,170, 77"></polygon>
-                                    </clipPath>
-
-                                    <clipPath id=block-C>
-                                        <polygon points="172, 80,172, 98,93, 129,104, 296,167, 379,165, 391,189, 422,189, 426,196, 433,197, 442,199, 445,240, 425,242, 410,278, 388,277, 380,263, 386,278, 203,259, 184,254, 187,244, 177,244, 167,229, 151,223, 153,189, 118,189, 97"></polygon>
-                                    </clipPath>
-
-                                    <clipPath id=block-M>
-                                        <polygon points="377, 242,499, 305,496, 318,420, 352,385, 377,359, 441,316, 476, 354, 473,311, 468,302, 473,188, 449,118, 391,84, 335,83, 329,2, 207,1, 194,17, 188,21, 207,55, 246,61, 234,72, 229,78, 236,79, 246,103, 285,103, 294,163, 380,165, 390,188, 420,190, 426,196, 434,196, 445,242, 424,245, 409,280, 387,277, 377,265, 384,273, 286,290, 302,367, 264,372, 257"></polygon>
-                                    </clipPath>
-
-                                </defs>
-                            </svg>
-
-                            <figure id=figur-main title="بلاک های اصلی">
-
-                                <img class="back" src="/Themes/hayat2/img/map/Blocks Maps 72.png" />
-
-                                <map name=recortes-main id=recortes-main>
-                                    <area shape="poly" id="coordBlockA" href="/blocks#block-a" title="واحد" coords="400, 99,378, 81,375, 82,309, 28,311, 7,296, 5,274, 13,274, 21,262, 13,247, 19,239, 12,213, 18,211, 41,227, 56,228, 136,240, 141,260, 159,261, 185,278, 202,273, 274,294, 298,371, 259" />
-                                    <area shape="poly" id="coordBlockB" href="/blocks#block-b" title="واحد" coords="224, 55,204, 35,204, 29,193, 21,192, 23,178, 14,168, 20,159, 16,140, 20,137, 17,121, 20,90, 31,84, 27,74, 27,74, 32,58, 37,54, 32,2, 49,22, 204,55, 245,59, 245,60, 234,74, 228,79, 234,82, 250,103, 281,91, 130,170, 97,170, 77" />
-                                    <area shape="poly" id="coordBlockC" href="/blocks#block-c" title="واحد" coords="172, 80,172, 98,93, 129,104, 296,167, 379,165, 391,189, 422,189, 426,196, 433,197, 442,199, 445,240, 425,242, 410,278, 388,277, 380,263, 386,278, 203,259, 184,254, 187,244, 177,244, 167,229, 151,223, 153,189, 118,189, 97" />
-                                    <area shape="poly" id="coordBlockM" href="/blocks#block-m" title="واحد" coords="377, 242,499, 305,496, 318,420, 352,385, 377,359, 441,316, 476, 354, 473,311, 468,302, 473,188, 449,118, 391,84, 335,83, 329,2, 207,1, 194,17, 188,21, 207,55, 246,61, 234,72, 229,78, 236,79, 246,103, 285,103, 294,163, 380,165, 390,188, 420,190, 426,196, 434,196, 445,242, 424,245, 409,280, 387,277, 377,265, 384,273, 286,290, 302,367, 264,372, 257" />
-
-                                    <img id="capaRecorte-main" src="/Themes/hayat2/img/map/Block Hover.png" />
-                                </map>
-
-                                <img src="/Themes/hayat2/img/transparente.gif"
-                                     id=imagen-main alt="" usemap=#recortes-main>
-
-                            </figure>
-
-                          
                             <div>
                                 <div class="block-a first">
                                     <img src="/Themes/hayat2/img/3.jpg" />
