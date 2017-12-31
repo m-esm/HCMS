@@ -2227,8 +2227,8 @@
     <Content Include="Themes\hayat2\img\logo\Hayate no Logo white.png" />
     <Content Include="Themes\hayat2\img\logo\Icon 02.png" />
     <Content Include="Themes\hayat2\img\logo\Icon.png" />
+    <Content Include="Themes\hayat2\img\map\Block Hover.png" />
     <Content Include="Themes\hayat2\img\map\block-map\b\Block B.png" />
-    <Content Include="Themes\hayat2\img\map\Blocks Maps 72 color.png" />
     <Content Include="Themes\hayat2\img\map\Blocks Maps 72.png" />
     <Content Include="Themes\hayat2\img\map\box\Blocks A Maps Icon-box .png" />
     <Content Include="Themes\hayat2\img\map\box\Blocks B Maps Icon-box .png" />
