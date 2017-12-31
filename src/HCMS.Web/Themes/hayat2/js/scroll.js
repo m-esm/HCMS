@@ -198,7 +198,17 @@ $(function () {
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
+    $("body").swipe({
 
+        //Generic swipe handler for all directions
+        swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
+            if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+                return;
+
+            changePage(false, direction == "up" ? "down" : "up");
+
+        }
+    });
 
 
     // For Chrome

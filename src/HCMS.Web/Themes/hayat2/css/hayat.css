@@ -434,7 +434,8 @@ section.page-partners .inner {
   text-align: center;
   width: 90%;
   margin: 0 auto;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
+  height: auto;
   position: relative;
 }
 section.page-partners .inner:before {
@@ -522,6 +523,9 @@ section.page {
   width: 100%;
   transition: all ease 1.3s;
   transform: translateY(100%);
+}
+section.page .inner {
+  position: relative;
 }
 section.page.page-horizontal {
   transform: translateY(0) translateX(100%);
@@ -1684,4 +1688,40 @@ section.page-register form .links a {
   margin: 5px;
   border-radius: 5px;
   padding: 0 10px;
+}
+@media (max-width: 600px) {
+  section.page-homeforms h2,
+  section.page-homeforms form {
+    padding: 0 50px;
+  }
+  section.page-custom .inner {
+    padding: 0 30px;
+    padding-top: 80px;
+  }
+  section.page-custom .inner .text {
+    width: 100%;
+    float: none;
+    padding: 0;
+  }
+  section.page-custom .inner .pic {
+    width: 100%;
+    padding: 0;
+    float: none;
+  }
+  div.back-to-top {
+    right: calc(50% - 15px);
+    bottom: 0;
+  }
+  header nav {
+    padding: 0;
+  }
+  header nav ul li a {
+    font-size: 12px;
+  }
+  header nav ul li:before,
+  header nav ul li:last-child:after {
+    margin: 0 5px;
+    height: 4px;
+    width: 4px;
+  }
 }

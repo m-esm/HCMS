@@ -64,7 +64,7 @@
   margin: 0 auto;
   margin-top: 80px;
   margin-bottom: 20px;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 170px);
   width: auto;
   position: relative;
   border: 5px solid rgba(0, 0, 0, 0.3);
@@ -148,4 +148,12 @@
   width: 100%;
   vertical-align: middle;
   display: inline-block;
+}
+@media (max-width: 600px) {
+  #videos .inner {
+    padding: 0!important;
+  }
+  #videos .tv {
+    margin-top: 40px!important;
+  }
 }

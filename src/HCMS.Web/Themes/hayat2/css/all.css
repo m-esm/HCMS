@@ -434,7 +434,8 @@ section.page-partners .inner {
   text-align: center;
   width: 90%;
   margin: 0 auto;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
+  height: auto;
   position: relative;
 }
 section.page-partners .inner:before {
@@ -522,6 +523,9 @@ section.page {
   width: 100%;
   transition: all ease 1.3s;
   transform: translateY(100%);
+}
+section.page .inner {
+  position: relative;
 }
 section.page.page-horizontal {
   transform: translateY(0) translateX(100%);
@@ -1685,6 +1689,42 @@ section.page-register form .links a {
   border-radius: 5px;
   padding: 0 10px;
 }
+@media (max-width: 600px) {
+  section.page-homeforms h2,
+  section.page-homeforms form {
+    padding: 0 50px;
+  }
+  section.page-custom .inner {
+    padding: 0 30px;
+    padding-top: 80px;
+  }
+  section.page-custom .inner .text {
+    width: 100%;
+    float: none;
+    padding: 0;
+  }
+  section.page-custom .inner .pic {
+    width: 100%;
+    padding: 0;
+    float: none;
+  }
+  div.back-to-top {
+    right: calc(50% - 15px);
+    bottom: 0;
+  }
+  header nav {
+    padding: 0;
+  }
+  header nav ul li a {
+    font-size: 12px;
+  }
+  header nav ul li:before,
+  header nav ul li:last-child:after {
+    margin: 0 5px;
+    height: 4px;
+    width: 4px;
+  }
+}
 @keyframes blink {
   from {
     opacity: 0;
@@ -2248,6 +2288,22 @@ section.page-places .tabs ul li:hover {
   font-weight: bold;
   color: #fff;
 }
+@media (max-width: 600px) {
+  section.page-places {
+    padding: 0;
+  }
+  section.page-places .map {
+    width: 100%;
+    height: 100vh;
+  }
+  section.page-places .map-wrapper {
+    position: relative;
+    text-align: left;
+  }
+  section.page-places .tabs {
+    display: none;
+  }
+}
 #slider {
   height: 100vh;
   width: 100%;
@@ -2314,7 +2370,7 @@ section.page-places .tabs ul li:hover {
   margin: 0 auto;
   margin-top: 80px;
   margin-bottom: 20px;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 170px);
   width: auto;
   position: relative;
   border: 5px solid rgba(0, 0, 0, 0.3);
@@ -2399,6 +2455,14 @@ section.page-places .tabs ul li:hover {
   vertical-align: middle;
   display: inline-block;
 }
+@media (max-width: 600px) {
+  #videos .inner {
+    padding: 0!important;
+  }
+  #videos .tv {
+    margin-top: 40px!important;
+  }
+}
 .block-detail {
   display: inline-block;
   position: relative;
@@ -2437,6 +2501,65 @@ section.page-places .tabs ul li:hover {
   float: right;
   vertical-align: top;
   left: 840px;
+}
+@media (max-width: 1270px) {
+  .block-detail .inner {
+    top: unset;
+    transform: unset;
+  }
+  .block-detail .block {
+    transform: scale(0.4);
+  }
+  .block-detail .plan {
+    transform: scale(0.3);
+    transform-origin: top left;
+    position: absolute;
+    top: 240px;
+    left: 20px;
+  }
+  .block-detail .data {
+    left: 220px;
+    width: calc(100% - 220px);
+  }
+}
+@media (max-width: 600px) {
+  .block-detail .inner {
+    top: unset;
+    transform: unset;
+    margin-top: -40px;
+  }
+  .block-detail .block {
+    transform: scale(0.2);
+    transform-origin: top left;
+  }
+  .block-detail .plan {
+    transform: scale(0.2);
+    transform-origin: top left;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+  }
+  .block-detail .data {
+    left: 0;
+    top: 140px;
+    width: calc(100%);
+  }
+}
+@media (min-width: 1800px) {
+  .block-detail .inner {
+    top: unset;
+    transform: unset;
+  }
+  .block-detail .block {
+    transform: scale(1.5);
+    margin-right: 300px;
+  }
+  .block-detail .plan {
+    transform: scale(0.8);
+  }
+  .block-detail .data {
+    left: 1400px;
+  }
 }
 #figur-plan-c,
 #figur-plan-b,
