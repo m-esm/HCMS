@@ -1,4 +1,4 @@
-﻿section.page-places {
+section.page-places {
   padding: 70px;
   padding-bottom: 0;
 }
@@ -104,4 +104,20 @@ section.page-places .tabs ul li.active {
 section.page-places .tabs ul li:hover {
   font-weight: bold;
   color: #fff;
+}
+@media (max-width: 600px) {
+  section.page-places {
+    padding: 0;
+  }
+  section.page-places .map {
+    width: 100%;
+    height: 100vh;
+  }
+  section.page-places .map-wrapper {
+    position: relative;
+    text-align: left;
+  }
+  section.page-places .tabs {
+    display: none;
+  }
 }

@@ -61,21 +61,38 @@ section.page-places {
                 line-height: 30px;
                 font-weight: normal;
 
-                &:before{
+                &:before {
+                }
 
-
-                    }
-
-                &.active{
+                &.active {
                     font-weight: bold;
-
-                    }
+                }
 
                 &:hover {
                     font-weight: bold;
                     color: #fff;
                 }
             }
+        }
+    }
+}
+
+@media(max-width:600px) {
+    section.page-places {
+        padding: 0;
+
+        .map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .map-wrapper {
+            position: relative;
+            text-align: left;
+        }
+
+        .tabs {
+            display: none;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿#slider {
+#slider {
   height: 100vh;
   width: 100%;
   content: ' ';
@@ -55,12 +55,16 @@
 #videos {
   text-align: center;
 }
+#videos .inner {
+  padding: 0 40px;
+  overflow: hidden;
+}
 #videos .tv {
-  display: inline-block;
+  display: block;
   margin: 0 auto;
   margin-top: 80px;
   margin-bottom: 20px;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 170px);
   width: auto;
   position: relative;
   border: 5px solid rgba(0, 0, 0, 0.3);
@@ -72,7 +76,7 @@
 #videos .tv:after {
   box-sizing: border-box;
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
   height: 100%;
@@ -144,4 +148,12 @@
   width: 100%;
   vertical-align: middle;
   display: inline-block;
+}
+@media (max-width: 600px) {
+  #videos .inner {
+    padding: 0!important;
+  }
+  #videos .tv {
+    margin-top: 40px!important;
+  }
 }

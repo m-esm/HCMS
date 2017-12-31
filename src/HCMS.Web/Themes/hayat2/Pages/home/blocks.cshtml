@@ -24,7 +24,6 @@
                                         <th>جهت</th>
                                         <th>اتاق</th>
                                         <th>امتیاز</th>
-                                        <th>واحد مشابه</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -32,15 +31,18 @@
                                 <tbody class="">
                                     @foreach (var item in models)
                                     {
+                                        var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
+
                                         <tr>
-                                            <td>@item.GetValue("name")</td>
+                                            <td>@unitName</td>
                                             <td> @item.GetValue("area")</td>
-                                            <td> @item.GetValue("direction")</td>
+                                            <td> @item.GetValue("direction.name")</td>
                                             <td> @item.GetValue("rooms")</td>
-                                            <td> 2</td>
-                                            <td></td>
+                                            <td> - </td>
                                             <td>
-                                                <a class="btn btn-success" href="/register">مشاهده</a>
+                                                <a class="hayatbtn hayatbtn-sm" href="/units/#@item.GetValue("name").Value.Replace("-","_")">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     }
@@ -83,10 +85,10 @@
                                 <img class="back" src="/Themes/hayat2/img/map/Blocks Maps 72.png" />
 
                                 <map name=recortes-main id=recortes-main>
-                                    <area shape="poly" id="coordBlockA" href="/blocks#block-a" title="واحد" coords="400, 99,378, 81,375, 82,309, 28,311, 7,296, 5,274, 13,274, 21,262, 13,247, 19,239, 12,213, 18,211, 41,227, 56,228, 136,240, 141,260, 159,261, 185,278, 202,273, 274,294, 298,371, 259" />
-                                    <area shape="poly" id="coordBlockB" href="/blocks#block-b" title="واحد" coords="224, 55,204, 35,204, 29,193, 21,192, 23,178, 14,168, 20,159, 16,140, 20,137, 17,121, 20,90, 31,84, 27,74, 27,74, 32,58, 37,54, 32,2, 49,22, 204,55, 245,59, 245,60, 234,74, 228,79, 234,82, 250,103, 281,91, 130,170, 97,170, 77" />
-                                    <area shape="poly" id="coordBlockC" href="/blocks#block-c" title="واحد" coords="172, 80,172, 98,93, 129,104, 296,167, 379,165, 391,189, 422,189, 426,196, 433,197, 442,199, 445,240, 425,242, 410,278, 388,277, 380,263, 386,278, 203,259, 184,254, 187,244, 177,244, 167,229, 151,223, 153,189, 118,189, 97" />
-                                    <area shape="poly" id="coordBlockM" href="/blocks#block-m" title="واحد" coords="377, 242,499, 305,496, 318,420, 352,385, 377,359, 441,316, 476, 354, 473,311, 468,302, 473,188, 449,118, 391,84, 335,83, 329,2, 207,1, 194,17, 188,21, 207,55, 246,61, 234,72, 229,78, 236,79, 246,103, 285,103, 294,163, 380,165, 390,188, 420,190, 426,196, 434,196, 445,242, 424,245, 409,280, 387,277, 377,265, 384,273, 286,290, 302,367, 264,372, 257" />
+                                    <area shape="poly" data-block=".block-a" id="coordBlockA" href="/blocks#block-a" title="واحد" coords="400, 99,378, 81,375, 82,309, 28,311, 7,296, 5,274, 13,274, 21,262, 13,247, 19,239, 12,213, 18,211, 41,227, 56,228, 136,240, 141,260, 159,261, 185,278, 202,273, 274,294, 298,371, 259" />
+                                    <area shape="poly" data-block=".block-b" id="coordBlockB" href="/blocks#block-b" title="واحد" coords="224, 55,204, 35,204, 29,193, 21,192, 23,178, 14,168, 20,159, 16,140, 20,137, 17,121, 20,90, 31,84, 27,74, 27,74, 32,58, 37,54, 32,2, 49,22, 204,55, 245,59, 245,60, 234,74, 228,79, 234,82, 250,103, 281,91, 130,170, 97,170, 77" />
+                                    <area shape="poly" data-block=".block-c" id="coordBlockC" href="/blocks#block-c" title="واحد" coords="172, 80,172, 98,93, 129,104, 296,167, 379,165, 391,189, 422,189, 426,196, 433,197, 442,199, 445,240, 425,242, 410,278, 388,277, 380,263, 386,278, 203,259, 184,254, 187,244, 177,244, 167,229, 151,223, 153,189, 118,189, 97" />
+                                    <area shape="poly" data-block=".block-m" id="coordBlockM" href="/blocks#block-m" title="واحد" coords="377, 242,499, 305,496, 318,420, 352,385, 377,359, 441,316, 476, 354, 473,311, 468,302, 473,188, 449,118, 391,84, 335,83, 329,2, 207,1, 194,17, 188,21, 207,55, 246,61, 234,72, 229,78, 236,79, 246,103, 285,103, 294,163, 380,165, 390,188, 420,190, 426,196, 434,196, 445,242, 424,245, 409,280, 387,277, 377,265, 384,273, 286,290, 302,367, 264,372, 257" />
 
                                     <img id="capaRecorte-main" src="/Themes/hayat2/img/map/Block Hover.png" />
                                 </map>
@@ -99,51 +101,51 @@
                           
                             <div>
                                 <div class="block-a first">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شمالی</label>
                                 </div>
 
                                 <div class="block-a seconde">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شرقی</label>
                                 </div>
 
                                 <div class="block-a third">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع جنوبی</label>
                                 </div>
                             </div>
 
                             <div>
                                 <div class="block-b first">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شمالی</label>
                                 </div>
 
                                 <div class="block-b seconde">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شرقی</label>
                                 </div>
 
                                 <div class="block-b third">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع جنوبی</label>
                                 </div>
                             </div>
 
                             <div>
                                 <div class="block-c first">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شمالی</label>
                                 </div>
 
                                 <div class="block-c seconde">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شرقی</label>
                                 </div>
 
                                 <div class="block-c third">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع جنوبی</label>
                                 </div>
                             </div>
@@ -151,17 +153,17 @@
 
                             <div>
                                 <div class="block-m first">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شمالی</label>
                                 </div>
 
                                 <div class="block-m seconde">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع شرقی</label>
                                 </div>
 
                                 <div class="block-m third">
-                                    <img src="/Themes/hayat2/img/3.jpg" />
+                                    <img src="~/Themes/hayat2/img/No_Image_Available.jpg" />
                                     <label>ضلع جنوبی</label>
                                 </div>
                             </div>
@@ -175,34 +177,7 @@
 
                 </div>
 
-                <div class="mobile-box row">
-
-
-                    <div class="sol-md-6 col-sm-6 col-xs-6">
-                        <div class="hadi-box">
-                            بلوک A
-                        </div>
-                    </div>
-
-                    <div class="sol-md-6 col-sm-6 col-xs-6">
-                        <div class="hadi-box">
-                            بلوک B
-                        </div>
-                    </div>
-
-                    <div class="sol-md-6 col-sm-6 col-xs-6">
-                        <div class="hadi-box">
-                            بلوک C
-                        </div>
-                    </div>
-
-                    <div class="sol-md-6 col-sm-6 col-xs-6">
-                        <div class="hadi-box">
-                            بلوک M
-                        </div>
-                    </div>
-
-                </div>
+              
 
 
             </div>

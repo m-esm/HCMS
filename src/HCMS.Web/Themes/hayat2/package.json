@@ -19,6 +19,7 @@
     "@types/underscore": "^1.8.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
+    "gulp-imagemin": "^4.1.0",
     "gulp-less": "^3.4.0",
     "gulp-typescript": "^3.2.3",
     "typescript": "^2.6.2"

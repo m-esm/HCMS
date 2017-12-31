@@ -7,8 +7,14 @@ $(function () {
 
         var video = $('#video')[0];
 
+
+
         if (!video)
             return;
+
+
+        if ($('source', video).length == 0)
+            playVideo($('#videos .thumbnails div').attr('data-src'),false);
 
         if (video.paused) {
 
@@ -65,7 +71,7 @@ $(function () {
     });
 
 
-    playVideo($('#videos .thumbnails div').attr('data-src'),false);
+
 
 
 

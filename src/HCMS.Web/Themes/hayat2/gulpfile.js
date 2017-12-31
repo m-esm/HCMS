@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var child = require('child_process');
 var fs = require('fs');
+const imagemin = require('gulp-imagemin');
 
 gulp.task('less', function () {
     return gulp.src('./less/**/*.less')
@@ -24,7 +25,11 @@ gulp.watch('./less/**/*.less', function () {
 
 });
 
-
+gulp.task('min', () =>
+    gulp.src('./img/**/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./img'))
+);
 
 gulp.task('default',
     [

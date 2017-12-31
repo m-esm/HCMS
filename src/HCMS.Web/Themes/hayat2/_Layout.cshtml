@@ -1,12 +1,23 @@
-﻿<!DOCTYPE html>
-<html lang="fa" ng-app="myApp">
+﻿@using HCMS.Dynamics.Data
+@{
+    var menu = DDB.GetTable("cms", "menu").DRows;
+ 
+        var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
+        var socials = DDB.GetTable("cms", "socials").DRows;
+        var sliders = DDB.GetTable("cms", "slider").DRows;
+
+
+}
+<!DOCTYPE html>
+<html lang="fa">
 
 <head>
 
     <base href="~/" />
     <meta charset="utf-8" />
     <title>حیات نو | @ViewBag.title </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+
     <meta content="" name="keywords" />
     <meta content="" name="description" />
 
@@ -28,6 +39,7 @@
     <link href="favicon.ico" rel="shortcut icon">
 
 
+
     <!-- reset css defaults -->
     <link href="~/Themes/hayat2/lib/resetcss/reset.min.css" rel="stylesheet" />
 
@@ -38,20 +50,26 @@
 
 
     <!-- Libraries CSS Files -->
-    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/animate-css/animate.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/aos/aos.min.css" rel="stylesheet" />
 
 
     <!-- hayat styles -->
-    <link href="~/Themes/hayat2/css/all.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/all.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
+    <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
+    <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
 
-    <link href="~/Themes/hayat2/less/blocks.css" rel="stylesheet" />
+    <script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>
+    <script src="~/Themes/hayat2/js/logo.js"></script>
 
+    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Themes/hayat2/lib/jquery/jquery.touchSwipe.min.js"></script>
 
 </head>
 
 <body>
+
 
     <div id="loader">
         <div class="logo-wrapper">
@@ -74,10 +92,12 @@
         <div class="links">
             <ul>
                 <li>
-                    <span>
-                        رزرو بازدید
-                    </span>
-                    <i class="fa fa-calendar"></i>
+                    <a href="/visit">
+                        <span>
+                            رزرو بازدید
+                        </span>
+                        <i class="fa fa-calendar"></i>
+                    </a>
                 </li>
 
                 <li>
@@ -98,42 +118,29 @@
         </div>
         <nav>
             <ul>
-                <li>
-                    <a href="#!/hayat">حیات</a>
 
-                    <div class="child-menu">
-                        برند چیست؟ برند نام تجاری، لوگوی شرکت و یا محصول و خدمات یک سازمان نیست! برند به صورت عمومی تعریف یا تصویری از هویت یک محصول،
-                        خدمت (سرویس)، سازمان و یا شرکت است که در طول زمان در ذهن مصرف&zwnj;کننده، کاربر یا مخاطب رسوب می&zwnj;کند.
-                        این ذهنیت شامل احساس، قضاوت&zwnj; و تعریف مخاطب از میزان کیفیت ارائه&zwnj;شده&zwnj;، ماهیت، روحیه
-                        و شخصیت برند است.
+                @foreach (var item in menu)
+                {
 
-                    </div>
+                    <li>
+                        <a href="@item.GetValue("url")">
+                            @item.GetValue("name")
 
-                </li>
-                <li>
-                    <a href="/blocks">حیات نو</a>
-                    <div class="child-menu">
-                        چرا برند؟ هدف ساخت برند به عنوان یک هویت مستقل، متمایزسازی یک محصول یا خدمت از سایر رقبای برند است. متمایزسازی برگ برنده&zwnj;ی
-                        افزایش فروش و موفقیت در بازار پرتنوع امروزِ ماست. اهمیت ساخت برند در دنیای امروز بر دو اصل ساده اما
-                        اساسیِ یک معادله&zwnj;ی معکوس استوار است: • کاهش زمان تصمیم&zwnj;گیری مخاطب برای خرید یا بهره&zwnj;مندی
-                        از خدمات • افزایش گسترده&zwnj;ی تعداد رقبا در بازار پرماجرای امروزی
-                    </div>
-                </li>
-                <li>
-                    <a href="#services">اخبار</a>
-                    <div class="child-menu">
-                        چرا برند؟ هدف ساخت برند به عنوان یک هویت مستقل، متمایزسازی یک محصول یا خدمت از سایر رقبای برند است. متمایزسازی برگ برنده&zwnj;ی
-                        افزایش فروش و موفقیت در بازار پرتنوع امروزِ ماست. اهمیت ساخت برند در دنیای امروز بر دو اصل ساده اما
-                        اساسیِ یک معادله&zwnj;ی معکوس استوار است: • کاهش زمان تصمیم&zwnj;گیری مخاطب برای خرید یا بهره&zwnj;مندی
-                        از خدمات • افزایش گسترده&zwnj;ی تعداد رقبا در بازار پرماجرای امروزی
-                    </div>
-                </li>
-                <li>
-                    <a href="#!/cell/cellDetail">گالری</a>
-                </li>
-                <li>
-                    <a href="#testimonials">اپلیکیشن حیات</a>
-                </li>
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        {
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+
+                            </div>
+
+                        }
+
+                    </li>
+
+                }
+
             </ul>
 
         </nav>
@@ -153,38 +160,25 @@
 
 
 
-    <!--angularJs-->
-    @*<script src="~/Themes/hayat2/lib/angular/angular.min.js"></script>
-    <script src="~/Themes/hayat2/lib/angular/angular-route.min.js"></script>*@
-
-
     <!-- Required JavaScript Libraries -->
 
 
-    <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
-    <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
-    <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
 
-    <script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
 
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
-    </script>
-
+   
+    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
 
 
     <!-- hayat JS Bundle -->
 
-    <script src="~/Themes/hayat2/js/hayat.js"></script>
+    @if (Request.Url.ToString().Contains("hayat-no"))
+    {
+        <script type="text/javascript">!function () { function t() { var t = document.createElement("script"); t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o; var e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(t, e) } var e = document, a = window, o = "6ac9b849-cb3a-448c-9ebc-274e235e2753"; "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1) }();</script>
 
-    <!-- hayat angular library-->
+    }
 
-    @*<script src="~/Themes/hayat2/module/app.js"></script>
-    <script src="~/Themes/hayat2/module/controllers.js"></script>*@
-
-
+    @RenderSection("scripts",false)
 
 
 

@@ -1,168 +1,22 @@
-$(document).on('mouseenter', '#coordBlockA', function () {
-    if (!$('.map #a').hasClass('active')) {
-        $('.map #a').addClass('active');
-    }
+/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
 
-    removeBlockA('block-b');
-    removeBlockA('block-c');
-    removeBlockA('block-m');
+$(document).on('mouseenter mouseleave', 'section.page-blocks area', function (event) {
 
-    addClass('block-a');
+    var wrapper = $('section.page-blocks');
 
-    //if ($('.block-a').hasClass('active'))
-    //    removeBlockA('block-a');
-    //else
-    //    addClass('block-a');
-});
+    var target = $(event.target);
 
-$(document).on('mouseleave', '#coordBlockA', function () {
-    if ($('.map #a').hasClass('active')) {
-        $('.map #a').removeClass('active');
-    }
+
+    if (event.type == "mouseenter")
+        $(target.attr('data-block'), wrapper).addClass('in');
+
+
+    if (event.type == "mouseleave")
+        $(target.attr('data-block'), wrapper).removeClass('in');
 
 
 });
 
-$(document).on('mouseenter', '#coordBlockB', function () {
-    if (!$('.map #b').hasClass('active')) {
-        $('.map #b').addClass('active');
-    }
-
-    removeBlockA('block-a');
-    removeBlockA('block-c');
-    removeBlockA('block-m');
-
-    addClass('block-b');
-});
-
-$(document).on('mouseleave', '#coordBlockB', function () {
-    if ($('.map #b').hasClass('active')) {
-        $('.map #b').removeClass('active');
-    }
-});
-
-$(document).on('mouseenter', '#coordBlockC', function () {
-    if (!$('.map #c').hasClass('active')) {
-        $('.map #c').addClass('active');
-    }
-
-    removeBlockA('block-b');
-    removeBlockA('block-a');
-    removeBlockA('block-m');
-
-    addClass('block-c');
-});
-
-$(document).on('mouseleave', '#coordBlockC', function () {
-    if ($('.map #c').hasClass('active')) {
-        $('.map #c').removeClass('active');
-    }
-});
-
-$(document).on('mouseenter', '#coordBlockM', function () {
-    if (!$('.map #m').hasClass('active')) {
-        $('.map #m').addClass('active');
-    }
-
-    removeBlockA('block-b');
-    removeBlockA('block-c');
-    removeBlockA('block-a');
-
-    addClass('block-m');
-});
-
-$(document).on('mouseleave', '#coordBlockM', function () {
-    if ($('.map #m').hasClass('active')) {
-        $('.map #m').removeClass('active');
-    }
-});
-
-var removeBlockA = function (className) {
-    $('.' + className).removeClass('bounceInLeft animated');
-    $('.' + className).addClass('bounceOutRight animated');
-    setTimeout(function () {
-        $('.' + className).removeClass('active');
-    }, 500)
-}
-
-var addClass = function (className) {
-    $('.' + className).addClass('active');
-    $('.' + className).removeClass('bounceOutRight animated');
-
-    if (!$('.' + className).hasClass('bounceInLeft animated'))
-        $('.' + className).addClass('bounceInLeft animated');
-}
-
-//var addClass = function (className) {
-//    $('.' + className).addClass('active');
-//    $('.' + className).removeClass('bounceOutRight animated');
-//    $('.' + className).addClass('bounceInLeft animated');
-//}
-
-$(document).on('click', '#coordBlockA', function () {
-
-    //removeBlockA('block-b');
-    //removeBlockA('block-c');
-    //removeBlockA('block-m');
-
-    //if ($('.block-a').hasClass('active'))
-    //    removeBlockA('block-a');
-    //else 
-    //    addClass('block-a');
-});
-
-$(document).on('click', '#coordBlockB', function () {
-    removeBlockA('block-a');
-    removeBlockA('block-c');
-    removeBlockA('block-m');
-
-    if ($('.block-b').hasClass('active'))
-        removeBlockA('block-b');
-    else
-        addClass('block-b');
-});
-
-$(document).on('click', '#coordBlockC', function () {
-    removeBlockA('block-a');
-    removeBlockA('block-b');
-    removeBlockA('block-m');
-
-    if ($('.block-c').hasClass('active'))
-        removeBlockA('block-c');
-    else
-        addClass('block-c');
-})
-
-$(document).on('click', '#coordBlockM', function () {
-    removeBlockA('block-b');
-    removeBlockA('block-c');
-    removeBlockA('block-a');
-
-    if ($('.block-m').hasClass('active'))
-        removeBlockA('block-m');
-    else
-        addClass('block-m');
-
-});
-
-function testAnim(x) {
-    $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-        $(this).removeClass();
-    });
-};
-
-$(document).ready(function () {
-    $('.js--triggerAnimation').click(function (e) {
-        e.preventDefault();
-        var anim = $('.js--animations').val();
-        testAnim(anim);
-    });
-
-    $('.js--animations').change(function () {
-        var anim = $(this).val();
-        testAnim(anim);
-    });
-});
 /// <reference path="../lib/aos/aos.js" />
 
 
@@ -176,7 +30,11 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-    $('#loader').fadeOut();
+    setTimeout(function () {
+
+        $('#loader').fadeOut();
+
+    }, 1000);
 
     $('.right-icons li').click(function () {
 
@@ -221,272 +79,6 @@ $(document).ready(function () {
 
    
 });
-$(function () {
-
-
-    var logoBoxSelect = ".logobox";
-    var logoBox = $(logoBoxSelect).html('');
-
-    for (var i = 1; i <= 50; i++) {
-        logoBox.append('<div class="o' + i + ' start"></div>');
-    }
-
-
-    function doLogoAnim(reverse) {
-
-        logoBox = $(logoBoxSelect);
-
-        var transforms = [
-            [2, { height: 45 }],
-            [3, { height: 10 }],
-            [4, { height: 28 }],
-            [5, { width: 27 }],
-            [6, { width: 78 }],
-            [7, { width: 57.5 }],
-            [10, { height: 44 }],
-            [11, { width: 22.5 }],
-            [12, { width: 78 }],
-            [13, { width: 40 }],
-            [9, { height: 10 }],
-            [8, { height: 10 }],
-            [17, { width: 42 }, ],
-            [16, { height: 45 }, ],
-            [15, { width: 26 }, ],
-            [14, { height: 55 }, ],
-            [18, { height: 10 }, ],
-            [19, { height: 90 }],
-            [20, { height: 70 }],
-            [21, { height: 140 }],
-            [22, { height: 133 }, 300],
-            [23, { width: 198 }, 300],
-            [24, { height: 144 }, 300],
-            [25, { width: 154 }, 300],
-            [26, { width: 50 }, 300],
-            [27, { width: 88 }, 300],
-            [30, { width: 43 }, 100],
-            [28, { width: 102 }, 100],
-            [29, { width: 35 }, 100],
-            [31, { width: 71 }, 100]
-        ];
-
-        if (reverse)
-            transforms = transforms.reverse();
-
-
-
-        var transformSeries = [];
-
-        transforms.forEach(function (item) {
-
-            var reverseDuration = 5000;
-
-            if (reverse)
-                if ([23, 24, 29, 15, 16, 14].indexOf(item[0]) !== -1)
-                    return;
-
-            var resFn = function (callback) {
-
-                if (reverse) {
-
-                    if (item[1].width)
-                        item[1].width = 0;
-
-                    if (item[1].height)
-                        item[1].height = 0;
-
-
-                    var mainDuration = reverseDuration;
-                    if ([22, 25, 31].indexOf(item[0]) !== -1)
-                        mainDuration = reverseDuration / 2;
-
-                    if ([17].indexOf(item[0]) !== -1)
-                        mainDuration = reverseDuration / 4;
-
-                    $('.o' + item[0], logoBox).animate(item[1], mainDuration, function () {
-
-
-                        if (item[0] === 22)
-                            $('.o23', logoBox).animate({ width: 0 }, reverseDuration / 2);
-
-
-                        if (item[0] === 25)
-                            $('.o24', logoBox).animate({ height: 0 }, reverseDuration / 2);
-
-
-                        if (item[0] === 31)
-                            $('.o29', logoBox).animate({ width: 0 }, reverseDuration / 2);
-
-
-                        if (item[0] === 17)
-                            $('.o16', logoBox).animate({ height: 0 }, reverseDuration / 4, function () {
-                                $('.o15', logoBox).animate({ width: 0 }, reverseDuration / 4, function () {
-                                    $('.o14', logoBox).animate({ height: 0 }, reverseDuration / 4, function () {
-
-                                    });
-                                });
-                            });
-
-
-                       return callback(null, item);
-
-
-
-                    });
-
-
-                } else {
-
-                    $('.o' + item[0], logoBox).animate(item[1], item[2] || 200, function () {
-                       return callback(null, item);
-
-                    });
-
-                }
-
-
-            }
-
-            transformSeries.push(resFn);
-
-        });
-
-        $('> div', logoBox).removeClass('start');
-
-        if (reverse) {
-
-            async.parallel(transformSeries, function () {
-
-                setTimeout(function () {
-                    $('.logobox').addClass('solid');
-                }, 3000);
-
-
-            });
-
-        } else
-            async.series(transformSeries,
-                    function (err, results) {
-
-                        setTimeout(function () {
-
-                            var logoBoxR = $('.logoboxR');
-                            logoBoxR = $($('<div class="logoboxR done loaded"></div>').append(logoBox.html()));
-                            logoBox.parent().append(logoBoxR);
-                            logoBoxSelect = '.logoboxR';
-
-                            var toReversPos = {
-                                "o20": ["bottom", "left"],
-                                "o22": ["bottom", "left"],
-                                "o23": ["bottom", "left"],
-                                "o17": ["top", "right"],
-                                "o16": ["bottom", "left"],
-                                "o15": ["bottom", "left"],
-                                "o14": ["top", "left"],
-
-                                // "o24": ["top", "left"],
-                                // "o25": ["top", "right"]
-                            };
-
-                            _.each(_.keys(toReversPos), function (key) {
-
-                                var ro = toReversPos[key];
-                                var o = $('div.' + key, logoBoxR);
-
-                                if (ro.indexOf("bottom") !== -1)
-                                    o.css("top", o.css("top")).css("bottom", "unset");
-
-                                if (ro.indexOf("top") !== -1)
-                                    o.css("bottom", o.css("bottom")).css("top", "unset");
-
-                                if (ro.indexOf("left") !== -1)
-                                    o.css("right", o.css("right")).css("left", "unset");
-
-                                if (ro.indexOf("right") !== -1)
-                                    o.css("left", o.css("left")).css("right", "unset");
-
-                            });
-
-
-                            setTimeout(function () {
-                                doLogoAnim(true);
-                            }, 5000);
-
-                        }, 3000);
-
-
-                    });
-    };
-
-    setTimeout(function () {
-
-        doLogoAnim(false);
-
-    }, 1000);
-
-
-
-
-});
-
-/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
-
-var map;
-
-function initMap() {
-
-    if (!$('.page-places .map')[0])
-        return;
-
-    var uluru = { lat: 35.789581, lng: 51.495528 };
-    map = new google.maps.Map($('.page-places .map')[0], {
-        zoom: 16,
-        center: uluru
-    });
-
-}
-
-
-$(document).on('click', '#places .tabs li', function () {
-
-    var li = $(this),
-        positions = _.map(li.attr("data-latlng").split('|'), function (item) {
-
-            if (!item)
-                return;
-
-            return new google.maps.LatLng(parseFloat(item.split(',')[0]), parseFloat(item.split(',')[1]))
-
-        }),
-        icon = li.attr("data-icon"),
-        title = li.attr("data-title");
-
-    //نانوایی
-    //var points = [
-    //    {
-    //        position: new google.maps.LatLng(35.790198, 51.495022),
-    //        title: title
-    //    }
-    //];
-
-    positions.forEach(function (latlng) {
-
-        new google.maps.Marker({
-            position: latlng,
-            title: title,
-            icon: icon,
-            map: map
-        });
-
-    });
-
-
-});
-
-setTimeout(function () {
-
-    $('#places .tabs li').click();
-
-}, 1000);
 /// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
 $(function () {
 
@@ -496,9 +88,8 @@ $(function () {
 
     var onHashChange = function () {
 
-        console.log('hashchange', window.location.hash.toLowerCase());
-
-        changePage($(window.location.hash.toLowerCase()), "down");
+        if (!busy)
+            changePage($(window.location.hash.toLowerCase()), "down");
 
     };
 
@@ -512,7 +103,7 @@ $(function () {
 
     });
 
-   
+
     var changePage = function (nextPage, mode) {
 
 
@@ -526,30 +117,27 @@ $(function () {
 
             busy = false;
 
-        }, 500);
+        }, 1000);
 
 
-        console.log(nextPage);
+
 
         var currentPage = $('section.page.page-active');
 
         if (!nextPage)
-            nextPage = currentPage.next('section');
+            nextPage = currentPage.next('section.page');
+        else
+            if (currentPage.attr('id') === nextPage.attr('id'))
+                return;
 
-        var prevPage = currentPage.prev('section');
-
-
-        console.log('next page', nextPage);
-
+        var prevPage = currentPage.prev('section.page');
 
         setTimeout(function () {
 
-            $('[data-aos]', nextPage)
- .addClass('aos-animate');
+            $('[data-aos]', nextPage).addClass('aos-animate');
 
 
-            $('[data-aos]', prevPage)
-.addClass('aos-animate');
+            $('[data-aos]', prevPage).addClass('aos-animate');
 
         }, 1000);
 
@@ -560,13 +148,16 @@ $(function () {
 
 
 
-        if (currentPage.attr('id') === nextPage.attr('id'))
-            return;
+
+
+        console.log(mode);
+
 
         if (window.location.pathname !== "/") {
 
             $('header').addClass('navhide');
             $('.homelogo').fadeIn();
+
         }
 
         if (mode === "up") {
@@ -650,27 +241,20 @@ $(function () {
     };
 
 
-    var mousewheel =function (e) {
+    var mousewheel = function (e) {
 
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
             return;
+
+
         var wheelDelta = e.wheelDelta ? e.wheelDelta : -e.detail;
 
         if (wheelDelta / 120 > 0) {
-
-            console.log('scrolling up !');
-
             changePage(false, 'up');
-
         } else {
-
-            console.log('scrolling down !');
             changePage(false, 'down');
-
-
         }
 
-        changePage();
 
     };
 
@@ -679,7 +263,6 @@ $(function () {
         switch (e.which) {
             case 37:
                 changePage(false, 'up');
-
                 break;
             case 38:
                 changePage(false, 'up');
@@ -696,7 +279,17 @@ $(function () {
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
+    $("body").swipe({
 
+        //Generic swipe handler for all directions
+        swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
+            if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+                return;
+
+            changePage(false, direction == "up" ? "down" : "up");
+
+        }
+    });
 
 
     // For Chrome
@@ -714,11 +307,6 @@ $(function () {
         window.location.hash = $('section.page').first().attr('id');
 
     $(window).bind('hashchange', onHashChange);
-  
-
-
-    console.log('going to ' + window.location.hash);
-
 
 });
 
@@ -873,8 +461,14 @@ $(function () {
 
         var video = $('#video')[0];
 
+
+
         if (!video)
             return;
+
+
+        if ($('source', video).length == 0)
+            playVideo($('#videos .thumbnails div').attr('data-src'),false);
 
         if (video.paused) {
 
@@ -931,7 +525,7 @@ $(function () {
     });
 
 
-    playVideo($('#videos .thumbnails div').attr('data-src'),false);
+
 
 
 

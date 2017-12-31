@@ -1,10 +1,59 @@
-﻿@{
+﻿@using HCMS.Dynamics.Data
+@{
+    var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
+    var socials = DDB.GetTable("cms", "socials").DRows;
+
 
     ViewBag.title = "خانه";
 
 
 }
 
+@section scripts {
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+</script>
+<script src="~/Themes/hayat2/js/places.min.js"></script>
+
+}
+<div class="right-icons">
+    <ul>
+        @foreach (var item in quickLinks)
+            {
+            <li>
+                <span>@item.GetValue("title")</span>
+                <i class="@item.GetValue("icon")"></i>
+                <div class="descrp">
+                    @Html.Raw(item.GetValue("text"))
+                    <ul>
+                        @foreach (var subitem in item.GetGroup("links"))
+                        {
+
+                            <li>
+                                <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="left-icons">
+    <ul>
+
+        @foreach (var item in socials)
+            {
+            <li>
+                <a href="@item.GetValue("url")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+            </li>
+
+        }
+
+    </ul>
+</div>
 
 @Html.Partial("home/slider")
 

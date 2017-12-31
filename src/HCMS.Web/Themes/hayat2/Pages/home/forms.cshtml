@@ -1,200 +1,149 @@
-﻿<section id="contact" class="page">
+﻿<section id="signup" class="page page-homeforms">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
 
-                <!--<p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>-->
+        <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+                <h3 data-aos="fade-down">
+                    ثبت نام
+                    خریدار
+                </h3>
+
+                <form method="post" id="register-form" action="/fa-ir/manage/Auth/register">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+                    <input type="email" style="display: none;" />
+                    <input type="password" style="display: none;" />
+                    <div data-aos="fade-left" class="form-group">
+                        <label>
+                            نام کاربری
+                            (
+                            <i class="fa fa-at"></i>
+                            ایمیل
+                            <i class="fa fa-mobile-phone"></i>
+
+                            یا شماره همراه
+                            )
+
+                        </label>
+
+                        <input required name="Username" class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
+                    </div>
+
+                    <div data-aos="fade-left" class="form-group">
+                        <label>
+                            <i class="fa fa-key"></i>
+                            رمز عبور
+                        </label>
+                        <input required name="password" class="form-control" type="password" />
+                    </div>
+                    <div data-aos="fade-left" class="form-group">
+                        <label>
+                            <i class="fa fa-key"></i>
+                            تکرار رمز عبور
+
+                        </label>
+                        <input name="ConfirmPassword" required class="form-control" type="password" />
+                    </div>
+                    <div data-aos="fade-left" class="form-group captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=_register" id="captcha-image" />
+                        <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                    <div data-aos="fade-left" class="form-group">
+                        <button class="hayatbtn" type="submit">
+                            <i class="fa fa-check">
+                            </i>
+                            ثبت نام
+                        </button>
+                    </div>
+                </form>
 
             </div>
+
+
+
+
         </div>
+    </div>
+</section>
+
+<section id="cooprate" class="page page-homeforms">
+    <div class="container">
 
         <div class="row">
 
-            <div class="col-md-6" style="border-left: 3px solid #03C4EB;">
 
-                <div class="form" data-aos="fade-left">
-                    <h5 class="section-title">
-                        فرم ثبت نام خریدار
-                    </h5>
-                    <div class="section-title-divider"></div>
+            <div class="col-md-6 col-md-offset-3">
 
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
-                    <div id="errormessage"></div>
-                    <form action="" method="post" role="form" class="contactForm">
+                <h3 data-aos="fade-down">فرم ثبت نام همکاری</h3>
+
+                <div class="form">
+                    <form action="/submit_cooprate" method="post" role="form" class="contactForm">
 
                         <div class="row">
 
-                            <div class="col-md-6">
-                                <select class="form-control">
-                                    <option>بازدید</option>
-                                    <option>مذاکره</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام خانوادگی شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="آدرس پست الکترونیکی" data-rule="email" data-msg="Please enter a valid email" />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
+                            <div data-aos="fade-left" class="form-group">
+
                                 <label>
-                                    <i class="fa fa-phone"></i>
-                                    شماره همراه
+                                    <i class="fa fa-cube"></i>
+                                    نوع همکاری
                                 </label>
-                                <br />
-
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="phone" id="email" placeholder="شماره همراه" data-rule="email" data-msg="Please enter a valid phone" />
-                                        <div class="validation"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" dir="ltr" value="+98" disabled="disabled" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                </div>
-                                <div class="col-md-5" style="padding:0;">
-                                    <select class="form-control">
-                                        <option>ایران</option>
-                                    </select>
-                                </div>
-
-
-                            </div>
-
-                            <div class="col-md-12">
-
-                                <label>محل سکونت فعلی</label>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>کشور</label>
-                                        <select class="form-control">
-                                            <option>ایران</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label>استان / ایالت</label>
-                                        <select class="form-control">
-                                            <option>تهران</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label>شهر</label>
-                                        <select class="form-control">
-                                            <option>تهران</option>
-                                            <option>اسلامشهر</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="col-md-4">
-                                    <label>منطقه</label>
-
-                                    <select class="form-control">
-                                        <option>ناحیه 1</option>
-                                        <option>ناحیه 2</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="text-center">
-                            <button class="btn btn-success" type="submit">ثبت نام</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-6" >
-
-                <div class="form"  data-aos="fade-right">
-                    <h5 class="section-title">فرم ثبت نام همکاری</h5>
-                    <div class="section-title-divider"></div>
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
-                    <div id="errormessage"></div>
-                    <form action="" method="post" role="form" class="contactForm">
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <select class="form-control">
-                                    <option>نوع همکاری</option>
+                                <select required name="type" class="form-control">
+                                    <option></option>
                                     <option>استخدام</option>
                                     <option>همراهان (تامین کنندگان و پیمانکاران)</option>
                                     <option>سرمایه گذاران</option>
 
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="نام خانوادگی شما" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="آدرس پست الکترونیکی" data-rule="email" data-msg="Please enter a valid email" />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
+
+                            <div data-aos="fade-left" class="form-group">
+
                                 <label>
-                                    <i class="fa fa-phone"></i>
+                                    <i class="fa fa-user"></i>
+                                    نام و نام خانوادگی
+                                </label>
+                                <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
+
+                            </div>
+
+                            <div data-aos="fade-left" class="form-group">
+
+                                <label>
+                                    <i class="fa fa-at"></i>
+                                    آدرس پست الکترونیکی
+                                </label>
+                                <input type="email" required class="form-control" name="email" placeholder="آدرس پست الکترونیکی" />
+
+                            </div>
+
+
+                            <div data-aos="fade-left" class="form-group">
+
+                                <label>
+                                    <i class="fa fa-mobile-phone"></i>
                                     شماره همراه
                                 </label>
-                                <br />
-
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="phone" id="email" placeholder="شماره همراه" data-rule="email" data-msg="Please enter a valid phone" />
-                                        <div class="validation"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <input type="text" dir="ltr" value="+98" disabled="disabled" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                </div>
-                                <div class="col-md-5" style="padding:0;">
-                                    <select class="form-control">
-                                        <option>ایران</option>
-                                    </select>
-                                </div>
-
+                                <input type="text" required class="form-control" name="phone" placeholder="شماره همراه"  />
 
                             </div>
-                        </div>
+                            <div data-aos="fade-left" class="form-group captcha-field">
+                                <img src="~/manage/Captcha/msdn?prefix=_cooprate" id="captcha-image" />
+                                <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                            </div>
 
-                        <div class="text-center"><button class="btn btn-success" type="submit">ثبت نام</button></div>
+                        </div>
+                        <button data-aos="fade-left" class="hayatbtn" type="submit">
+                            <i class="fa fa-send">
+                            </i>
+                            ارسال
+                        </button>
                     </form>
                 </div>
             </div>
+
+
 
 
         </div>
