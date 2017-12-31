@@ -79,8 +79,6 @@
     "inputFiles": [
       "Themes/hayat2/js/blocks.js",
       "Themes/hayat2/js/custom.js",
-    
-      "Themes/hayat2/js/places.js",
       "Themes/hayat2/js/scroll.js",
       "Themes/hayat2/js/slider.js",
       "Themes/hayat2/js/videoslider.js"
@@ -126,6 +124,12 @@
     "outputFileName": "Themes/hayat2/css/blocks.min.css",
     "inputFiles": [
       "Themes/hayat2/css/blocks.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/js/places.min.js",
+    "inputFiles": [
+      "Themes/hayat2/js/places.js"
     ]
   }
 ]

@@ -1,11 +1,45 @@
 .block-detail {
   display: inline-block;
   position: relative;
-  float: left;
   padding: 20px;
+  padding-top: 100px;
+  padding-bottom: 90px;
+}
+.block-detail .inner {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 500px;
 }
 .block-detail .block {
   width: 500px;
+  float: left;
+  overflow: hidden;
+  margin-right: 40px;
+  transform-origin: top left;
+  margin-top: 40px;
+}
+.block-detail .plan {
+  transform: scale(0.4);
+  transform-origin: bottom left;
+  overflow: hidden;
+  height: 500px;
+}
+.block-detail .data {
+  position: absolute;
+  top: 0;
+  width: 400px;
+  height: calc(100vh - 300px);
+  overflow: scroll;
+  float: right;
+  vertical-align: top;
+  left: 840px;
+}
+#figur-plan-c,
+#figur-plan-b,
+#figur-plan-a {
   float: left;
 }
 .block-detail .block .back {
@@ -281,12 +315,9 @@ clipPath {
   clip-path: url(#F11-c);
 }
 #figur-plan-a {
-  position: absolute;
   border-radius: 20px;
   width: 600px;
   height: 427px;
-  left: 103px;
-  bottom: 0;
 }
 #capaRecorte-plan-a {
   display: none;
@@ -326,12 +357,9 @@ clipPath {
   clip-path: url(#PA5);
 }
 #figur-plan-b {
-  position: absolute;
   border-radius: 20px;
   width: 600px;
   height: 427px;
-  left: 103px;
-  bottom: 0;
 }
 #capaRecorte-plan-b {
   display: none;

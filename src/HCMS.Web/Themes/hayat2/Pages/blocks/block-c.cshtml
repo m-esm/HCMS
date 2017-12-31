@@ -86,4 +86,9 @@
 
     </div>
 
+    @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(p => p.GetValue("block.name").Value == "block-c"))
+
+
+
+
 </section>

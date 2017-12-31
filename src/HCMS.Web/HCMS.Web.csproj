@@ -2236,6 +2236,7 @@
     <Content Include="Themes\hayat2\img\my-slider\1.jpg" />
     <Content Include="Themes\hayat2\img\my-slider\2.jpg" />
     <Content Include="Themes\hayat2\img\my-slider\3.jpg" />
+    <Content Include="Themes\hayat2\img\No_Image_Available.jpg" />
     <Content Include="Themes\hayat2\img\pdf\ازگل_کاتالوگ.pdf" />
     <Content Include="Themes\hayat2\img\plan\A\F2\B A-F02- KeyPlan Hover.png" />
     <Content Include="Themes\hayat2\img\plan\A\F2\B A-F02- KeyPlan.png" />
@@ -2253,13 +2254,14 @@
     <Content Include="Themes\hayat2\js\blocks.js" />
     <Content Include="Themes\hayat2\js\custom.js" />
     <Content Include="Themes\hayat2\js\hayat.js" />
-    <Content Include="Themes\hayat2\js\hayat.min.js" />
-    <Content Include="Themes\hayat2\js\imageMapper.js" />
-    <Content Include="Themes\hayat2\js\imageMapper.min.js" />
-    <Content Include="Themes\hayat2\js\lhome-animate.js" />
-    <Content Include="Themes\hayat2\js\lhome-animate.min.js" />
+    <Content Include="Themes\hayat2\js\hayat.min.js">
+      <DependentUpon>hayat.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\js\logo.js" />
     <Content Include="Themes\hayat2\js\places.js" />
+    <Content Include="Themes\hayat2\js\places.min.js">
+      <DependentUpon>places.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\js\scroll.js" />
     <Content Include="Themes\hayat2\js\slider.js" />
     <Content Include="Themes\hayat2\js\videoslider.js" />
@@ -2296,8 +2298,6 @@
     <Content Include="Themes\hayat2\lib\bootstrap\js\bootstrap.js" />
     <Content Include="Themes\hayat2\lib\bootstrap\js\bootstrap.min.js" />
     <Content Include="Themes\hayat2\lib\bootstrap\js\npm.js" />
-    <Content Include="Themes\hayat2\lib\easing\easing.js" />
-    <Content Include="Themes\hayat2\lib\easing\easing.min.js" />
     <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.css" />
     <Content Include="Themes\hayat2\lib\font-awesome\css\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
@@ -2317,104 +2317,11 @@
     <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.js.map" />
     <Content Include="Themes\hayat2\lib\jquery\3.1.1\jquery3-1-1.js" />
     <Content Include="Themes\hayat2\lib\jquery\jquery.min.js" />
-    <Content Include="Themes\hayat2\lib\lib.zip" />
     <Content Include="Themes\hayat2\lib\resetcss\reset.min.css" />
-    <Content Include="Themes\hayat2\lib\superfish\hoverIntent.js" />
-    <Content Include="Themes\hayat2\lib\superfish\superfish.js" />
-    <Content Include="Themes\hayat2\lib\superfish\superfish.min.js" />
-    <Content Include="Themes\hayat2\lib\underscore\underscore-min.js" />
-    <Content Include="Themes\hayat2\lib\underscore\underscore-min.map" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
-    <Content Include="Themes\hayat2\module\about\about.html" />
-    <Content Include="Themes\hayat2\module\about\aboutCtrl.js" />
-    <Content Include="Themes\hayat2\module\about\controller\aboutCtrl.js" />
-    <Content Include="Themes\hayat2\module\about\view\about.html" />
-    <Content Include="Themes\hayat2\module\app.js" />
-    <Content Include="Themes\hayat2\module\block\block.html" />
-    <Content Include="Themes\hayat2\module\block\blockCtrl.js" />
-    <Content Include="Themes\hayat2\module\block\controller\blockCtrl.js" />
-    <Content Include="Themes\hayat2\module\block\view\block.html" />
-    <Content Include="Themes\hayat2\module\cellDetail\cellDetail.html" />
-    <Content Include="Themes\hayat2\module\cellDetail\cellDetailCtrl.js" />
-    <Content Include="Themes\hayat2\module\cellDetail\controller\cellDetailCtrl.js" />
-    <Content Include="Themes\hayat2\module\cellDetail\view\cellDetail.html" />
-    <Content Include="Themes\hayat2\module\cell\cell.html" />
-    <Content Include="Themes\hayat2\module\cell\cellCtrl.js" />
-    <Content Include="Themes\hayat2\module\cell\controller\cellCtrl.js" />
-    <Content Include="Themes\hayat2\module\cell\view\cell.html" />
-    <Content Include="Themes\hayat2\module\comment\comment.html" />
-    <Content Include="Themes\hayat2\module\comment\commentCtrl.js" />
-    <Content Include="Themes\hayat2\module\comment\controller\commentCtrl.js" />
-    <Content Include="Themes\hayat2\module\comment\view\comment.html" />
     <Content Include="Themes\hayat2\module\controllers.js" />
-    <Content Include="Themes\hayat2\module\controllers.min.js">
-      <DependentUpon>controllers.js</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat2\module\ebtekarSaze\controller\ebtekarSazeCtrl.js" />
-    <Content Include="Themes\hayat2\module\ebtekarSaze\ebtekarSaze.html" />
-    <Content Include="Themes\hayat2\module\ebtekarSaze\ebtekarSazeCtrl.js" />
-    <Content Include="Themes\hayat2\module\ebtekarSaze\view\ebtekarSaze.html" />
-    <Content Include="Themes\hayat2\module\gallery\controller\galleryCtrl.js" />
-    <Content Include="Themes\hayat2\module\gallery\gallery.html" />
-    <Content Include="Themes\hayat2\module\gallery\galleryCtrl.js" />
-    <Content Include="Themes\hayat2\module\gallery\view\gallery.html" />
-    <Content Include="Themes\hayat2\module\hamkaran\controller\hamkaranCtrl.js" />
-    <Content Include="Themes\hayat2\module\hamkaran\hamkaran.html" />
-    <Content Include="Themes\hayat2\module\hamkaran\hamkaranCtrl.js" />
-    <Content Include="Themes\hayat2\module\hamkaran\view\hamkaran.html" />
-    <Content Include="Themes\hayat2\module\hayatno\controller\hayatNoCtrl.js" />
-    <Content Include="Themes\hayat2\module\hayatno\hayatno.html" />
-    <Content Include="Themes\hayat2\module\hayatno\hayatNoCtrl.js" />
-    <Content Include="Themes\hayat2\module\hayatno\view\hayatno.html" />
-    <Content Include="Themes\hayat2\module\hayatProject\controller\hayatProjectCtrl.js" />
-    <Content Include="Themes\hayat2\module\hayatProject\hayatProject.html" />
-    <Content Include="Themes\hayat2\module\hayatProject\hayatProjectCtrl.js" />
-    <Content Include="Themes\hayat2\module\hayatProject\view\hayatProject.html" />
-    <Content Include="Themes\hayat2\module\hayat\controller\hayatCtrl.js" />
-    <Content Include="Themes\hayat2\module\hayat\hayat.html" />
-    <Content Include="Themes\hayat2\module\hayat\hayatCtrl.js" />
-    <Content Include="Themes\hayat2\module\hayat\view\hayat.html" />
-    <Content Include="Themes\hayat2\module\home\controller\homeCtrl.js" />
-    <Content Include="Themes\hayat2\module\home\home.html" />
-    <Content Include="Themes\hayat2\module\home\homeCtrl.js" />
-    <Content Include="Themes\hayat2\module\home\view\home.html" />
-    <Content Include="Themes\hayat2\module\public\controller\sliderCtrl.js" />
-    <Content Include="Themes\hayat2\module\public\sliderCtrl.js" />
-    <Content Include="Themes\hayat2\module\register\controller\registerCtrl.js" />
-    <Content Include="Themes\hayat2\module\register\register.html" />
-    <Content Include="Themes\hayat2\module\register\registerCtrl.js" />
-    <Content Include="Themes\hayat2\module\register\view\register.html" />
-    <Content Include="Themes\hayat2\module\services\authInterceptorProvider.js" />
-    <Content Include="Themes\hayat2\module\services\authService.js" />
-    <Content Include="Themes\hayat2\module\services\repoService.js" />
-    <Content Include="Themes\hayat2\module\services\routeService.js" />
-    <Content Include="Themes\hayat2\module\team\controller\teamCtrl.js" />
-    <Content Include="Themes\hayat2\module\team\team.html" />
-    <Content Include="Themes\hayat2\module\team\teamCtrl.js" />
-    <Content Include="Themes\hayat2\module\team\view\team.html" />
-    <Content Include="Themes\hayat2\Pages\auth.cshtml" />
-    <Content Include="Themes\hayat2\Pages\blocks.cshtml" />
-    <Content Include="Themes\hayat2\Pages\blocks\block-b.cshtml" />
-    <None Include="Themes\hayat2\Pages\blocks\block-a.cshtml" />
-    <Content Include="Themes\hayat2\Pages\blocks\plans\plan-b.cshtml" />
-    <None Include="Themes\hayat2\Pages\blocks\plans\plan-a.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\blocks.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\forms.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\partners.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\places.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\slider.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\videos.cshtml" />
-    <Content Include="Themes\hayat2\Pages\page.cshtml" />
-    <Content Include="Themes\hayat2\Pages\units.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
-    <Content Include="Themes\hayat2\Scripts\angular-route.js" />
-    <Content Include="Themes\hayat2\Scripts\angular-route.min.js" />
-    <Content Include="Themes\hayat2\Scripts\angular-route.min.js.map" />
-    <Content Include="Themes\hayat2\Scripts\angular.js" />
-    <Content Include="Themes\hayat2\Scripts\angular.min.js" />
-    <Content Include="Themes\hayat2\Scripts\angular.min.js.map" />
     <Content Include="Themes\hayat2\sliders\data1\images\1.jpg" />
     <Content Include="Themes\hayat2\sliders\data1\images\2.jpg" />
     <Content Include="Themes\hayat2\sliders\data1\images\3.jpg" />
@@ -2555,12 +2462,23 @@
     <Content Include="Themes\hayat2\package.json" />
     <Content Include="Themes\hayat2\Pages\auth.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks.cshtml" />
-    <None Include="Themes\hayat2\Pages\home\videos.cshtml" />
-    <Content Include="Themes\hayat2\Pages\units.cshtml" />
-    <Content Include="Themes\hayat2\Pages\page.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\block-a.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\block-b.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-c.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\plans\plan-a.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\plans\plan-b.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\plans\plan-c.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\blocks.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\forms.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\partners.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\places.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\slider.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\videos.cshtml" />
+    <Content Include="Themes\hayat2\Pages\page.cshtml" />
+    <Content Include="Themes\hayat2\Pages\units.cshtml" />
+    <Content Include="Themes\hayat2\Pages\importUnits.cshtml" />
+    <Content Include="Themes\hayat2\Pages\visit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2580,7 +2498,6 @@
     <Folder Include="Content\FileManager\userfiles\" />
     <Folder Include="Scripts\vjs-lang\" />
     <Folder Include="Themes\hayat2\etc\" />
-    <Folder Include="Themes\hayat2\module\public\view\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">

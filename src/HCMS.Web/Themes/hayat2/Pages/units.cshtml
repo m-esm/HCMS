@@ -1,1 +1,45 @@
-﻿
+﻿@using HCMS.Dynamics.Data
+
+@{
+
+    var units = DDB.GetTable("cms", "units").DRows.OrderBy(p => p.GetValue("block.name").Value).ThenBy(p => p.GetValue("block.level").Value);
+    var unitpictures = DDB.GetTable("cms", "unitpictures").DRows;
+
+}
+
+@foreach (var item in units)
+{
+    var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
+
+    var blockName = item.GetValue("block.name").Value;
+    var planNumber = ((blockName == "block-a" ? 4 : 5) *
+        (blockName == "block-a" ? 0 : 1) *
+        (blockName == "block-b" ? 2 : 1) *
+        (blockName == "block-c" ? 3 : 1)) +
+        (blockName == "block-c" ? -1 : 0) +
+        int.Parse(item.GetValue("name").Value.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries).Last());
+
+    <section class="page page-unit" id="@item.GetValue("name").Value.Replace("-","_")">
+        <div class="inner">
+
+            @if (!unitpictures.Any(p => p.GetValue("planNumber").Value == planNumber.ToString()))
+            {
+
+                <div class="notfound">
+
+                    <u>واحد @unitName </u>
+
+                    <img class="img img-responsive" src="~/Themes/hayat2/img/No_Image_Available.jpg" />
+                </div>
+
+            }
+
+
+          
+        </div>
+
+
+    </section>
+
+
+}

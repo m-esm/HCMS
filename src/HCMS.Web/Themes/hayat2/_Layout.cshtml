@@ -1,6 +1,11 @@
 ﻿@using HCMS.Dynamics.Data
 @{
     var menu = DDB.GetTable("cms", "menu").DRows;
+ 
+        var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
+        var socials = DDB.GetTable("cms", "socials").DRows;
+        var sliders = DDB.GetTable("cms", "slider").DRows;
+
 
 }
 <!DOCTYPE html>
@@ -49,7 +54,7 @@
 
 
     <!-- hayat styles -->
-    <link href="~/Themes/hayat2/css/all.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/all.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
     <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
     <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
     <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
@@ -59,9 +64,11 @@
 
     <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
+
 </head>
 
 <body>
+
 
     <div id="loader">
         <div class="logo-wrapper">
@@ -84,10 +91,12 @@
         <div class="links">
             <ul>
                 <li>
-                    <span>
-                        رزرو بازدید
-                    </span>
-                    <i class="fa fa-calendar"></i>
+                    <a href="/visit">
+                        <span>
+                            رزرو بازدید
+                        </span>
+                        <i class="fa fa-calendar"></i>
+                    </a>
                 </li>
 
                 <li>
@@ -153,21 +162,22 @@
     <!-- Required JavaScript Libraries -->
 
 
-  
+
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
 
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
-    </script>
-
-    <script src="~/Themes/hayat2/js/hayat.js"></script>
+   
+    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
 
 
     <!-- hayat JS Bundle -->
 
+    @if (Request.Url.ToString().Contains("hayat-no"))
+    {
+        <script type="text/javascript">!function () { function t() { var t = document.createElement("script"); t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o; var e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(t, e) } var e = document, a = window, o = "6ac9b849-cb3a-448c-9ebc-274e235e2753"; "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1) }();</script>
 
+    }
 
+    @RenderSection("scripts",false)
 
 
 

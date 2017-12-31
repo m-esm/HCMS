@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HCMS.Dynamics.Data.DRow>
+
+    <div class="data cscroll">
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>نام واحد</th>
+                    <th>متراژ</th>
+                    <th>جهت</th>
+                    <th>اتاق</th>
+                    <th>امتیاز</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody class="">
+                @foreach (var item in Model)
+                {
+                    var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
+
+                    <tr>
+                        <td>@unitName</td>
+                        <td> @item.GetValue("area")</td>
+                        <td> @item.GetValue("direction.name")</td>
+                        <td> @item.GetValue("rooms")</td>
+                        <td> - </td>
+                        <td>
+                            <a class="hayatbtn hayatbtn-sm" href="/units/#@item.GetValue("name").Value.Replace("-","_")">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+
+        </table>
+    </div>

@@ -1,0 +1,169 @@
+﻿@using HCMS.Dynamics.Data
+@using HCMS.Business.Auth
+@using HCMS.Dynamics.Tools
+@using MoreLinq;
+
+@{
+
+    Layout = null;
+
+    var blocksDb = DDB.GetTable("cms", "blocks");
+    var unitsTaDb = DDB.GetTable("cms", "units");
+    var directionDb = DDB.GetTable("cms", "directions");
+
+
+    int[] block_areas = new int[] {
+        160, 137, 162, 160,
+        106, 143, 102, 145,110,
+        114, 129, 130, 160, 151 };
+
+    int[] block_units = new int[] { 4, 5, 5 };
+
+    string[] blocks = new string[] { "block-a", "block-b", "block-c" };
+
+
+    string[] block_directions = new string[] {
+        "شمال غربی",
+        "شمال شرقی",
+        "جنوب شرقی",
+        "جنوب غربی",
+        "شمالی",
+        "شرقی",
+        "جنوب شرقی",
+        "جنوب غربی",
+        "شرقی",
+        "شمالی",
+        "شرقی",
+        "جنوب شرقی",
+        "جنوب غربی",
+        "غربی"
+    };
+
+    string[] block_rooms = new string[] {
+        "3",
+        "3",
+        "3",
+        "3",
+        "2",
+        "3",
+        "2",
+        "3",
+        "2",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+    };
+
+    foreach (var item in block_directions.DistinctBy(p => p))
+    {
+        var direct = directionDb.DRows.FirstOrDefault(p => p.GetValue("name").Value == item);
+        if (direct == null)
+        {
+            var toadd = new System.Collections.Specialized.NameValueCollection();
+            toadd.Add("name", item);
+
+            directionDb.add(toadd, "");
+
+        }
+    }
+
+
+    foreach (var item in blocks)
+    {
+
+        var blockRow = blocksDb.DRows.FirstOrDefault(p => p.GetValue("name").Value.ToLower() == item);
+
+        if (blockRow == null)
+        {
+            var blockToAdd = new System.Collections.Specialized.NameValueCollection();
+            blockToAdd.Add("name", item);
+
+            blocksDb.add(blockToAdd, "");
+
+        }
+
+    }
+
+
+
+    var unitsToAdd = new List<System.Collections.Specialized.NameValueCollection>();
+
+    for (int b = 0; b < 3; b++)
+    {
+        var blockName = blocks[b];
+
+        var blockRow = blocksDb.DRows.FirstOrDefault(p => p.GetValue("name").Value.ToLower() == blockName);
+
+        for (int u = 0; u < block_units[b]; u++)
+        {
+
+            int planNumber = 0;
+
+            if (b == 2)
+            {
+                planNumber = u + 9;
+
+            }
+            else
+            {
+                planNumber = u + (b * block_units[b]);
+            }
+
+            int area = block_areas[planNumber];
+
+            string dir = block_directions[planNumber];
+            string room = block_rooms[planNumber];
+
+            var direct = directionDb.DRows.FirstOrDefault(p => p.GetValue("name").Value == dir);
+
+
+
+            for (int l = 1; l <= 11; l++)
+            {
+
+                var unitToAdd = new System.Collections.Specialized.NameValueCollection();
+
+
+                unitToAdd.Add("blockId", blockRow.RowID.ToString());
+                unitToAdd.Add("directionId", direct.RowID.ToString());
+
+
+                unitToAdd.Add("level", l.ToString());
+                unitToAdd.Add("area", area.ToString());
+                unitToAdd.Add("rooms", room);
+
+                unitToAdd.Add("name", string.Format("{0}-{1}-{2}", blockName.Split('-')[0], l, u + 1));
+
+                unitsToAdd.Add(unitToAdd);
+
+
+                unitsTaDb.add(unitToAdd,"");
+
+            }
+
+
+        }
+
+
+    }
+
+
+    Response.ClearHeaders();
+
+    Response.ContentType = "text/json";
+
+    Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(unitsToAdd.Select(p => new
+    {
+        name = p["name"],
+        level = p["level"],
+        area = p["area"],
+        rooms = p["rooms"],
+        directionId = p["directionId"],
+        blockId = p["blockId"]
+    })));
+
+
+
+}

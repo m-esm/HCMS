@@ -7,9 +7,8 @@ $(function () {
 
     var onHashChange = function () {
 
-        console.log('hashchange', window.location.hash.toLowerCase());
-
-        changePage($(window.location.hash.toLowerCase()), "down");
+        if (!busy)
+            changePage($(window.location.hash.toLowerCase()), "down");
 
     };
 
@@ -37,21 +36,20 @@ $(function () {
 
             busy = false;
 
-        }, 500);
+        }, 1000);
 
 
-        console.log(nextPage);
+
 
         var currentPage = $('section.page.page-active');
 
         if (!nextPage)
-            nextPage = currentPage.next('section');
+            nextPage = currentPage.next('section.page');
+        else
+            if (currentPage.attr('id') === nextPage.attr('id'))
+                return;
 
-        var prevPage = currentPage.prev('section');
-
-
-        console.log('next page', nextPage);
-
+        var prevPage = currentPage.prev('section.page');
 
         setTimeout(function () {
 
@@ -69,13 +67,16 @@ $(function () {
 
 
 
-        if (currentPage.attr('id') === nextPage.attr('id'))
-            return;
+
+
+        console.log(mode);
+
 
         if (window.location.pathname !== "/") {
 
             $('header').addClass('navhide');
             $('.homelogo').fadeIn();
+
         }
 
         if (mode === "up") {
@@ -163,23 +164,16 @@ $(function () {
 
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
             return;
+
+
         var wheelDelta = e.wheelDelta ? e.wheelDelta : -e.detail;
 
         if (wheelDelta / 120 > 0) {
-
-            console.log('scrolling up !');
-
             changePage(false, 'up');
-
         } else {
-
-            console.log('scrolling down !');
             changePage(false, 'down');
-
-
         }
 
-        changePage();
 
     };
 
@@ -188,7 +182,6 @@ $(function () {
         switch (e.which) {
             case 37:
                 changePage(false, 'up');
-
                 break;
             case 38:
                 changePage(false, 'up');
@@ -223,11 +216,6 @@ $(function () {
         window.location.hash = $('section.page').first().attr('id');
 
     $(window).bind('hashchange', onHashChange);
-
-
-
-    console.log('going to ' + window.location.hash);
-
 
 });
 

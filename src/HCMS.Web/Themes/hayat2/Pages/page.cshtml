@@ -1,7 +1,7 @@
 ﻿
 @using HCMS.Dynamics.Data
 @{
-    var pages = DDB.GetTable("cms", "pages").DRows;
+    var pages = DDB.GetTable("cms", "pages").DRows.OrderBy(p => p.GetValue("order").Value);
 
     var pageName = ViewContext.RequestContext.RouteData.Values["pageName"];
 
@@ -25,13 +25,12 @@
 
 
     var horizontal = false;
-    if (page.GetValue("horizontal") != null) {
+    if (page.GetValue("horizontal") != null)
+    {
 
         bool.TryParse(page.GetValue("horizontal").Value, out horizontal);
 
     }
-
-
 
 }
 
@@ -48,7 +47,7 @@
 
             <div class="row">
 
-              
+
 
                 @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
                 {
