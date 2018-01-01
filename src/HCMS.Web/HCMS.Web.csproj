@@ -2186,6 +2186,12 @@
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.ttf" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.woff" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.woff2" />
+    <Content Include="Themes\hayat2\gulpfile.es5.js">
+      <DependentUpon>gulpfile.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\gulpfile.es5.min.js">
+      <DependentUpon>gulpfile.es5.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\gulpfile.js" />
     <Content Include="Themes\hayat2\img\A\Block A.png" />
     <Content Include="Themes\hayat2\img\A\New Plan Site slection A.png" />
@@ -2266,6 +2272,7 @@
     <Content Include="Themes\hayat2\js\slider.js" />
     <Content Include="Themes\hayat2\js\videoslider.js" />
     <None Include="Themes\hayat2\less\blocks.less" />
+    <Content Include="Themes\hayat2\less\block-main.css" />
     <Content Include="Themes\hayat2\lib\angular\angular-route.js" />
     <Content Include="Themes\hayat2\lib\angular\angular-route.min.js" />
     <Content Include="Themes\hayat2\lib\angular\angular.js" />
@@ -2308,13 +2315,6 @@
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Themes\hayat2\lib\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Themes\hayat2\lib\fullPage\css\jquery.fullpage.css" />
-    <Content Include="Themes\hayat2\lib\fullPage\css\jquery.fullpage.min.css" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.extensions.min.js" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.js" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.css.map" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.js" />
-    <Content Include="Themes\hayat2\lib\fullPage\js\jquery.fullpage.min.js.map" />
     <Content Include="Themes\hayat2\lib\jquery\3.1.1\jquery3-1-1.js" />
     <Content Include="Themes\hayat2\lib\jquery\jquery.min.js" />
     <Content Include="Themes\hayat2\lib\resetcss\reset.min.css" />
@@ -2322,25 +2322,6 @@
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
     <Content Include="Themes\hayat2\module\controllers.js" />
     <Content Include="Themes\hayat2\preview.jpg" />
-    <Content Include="Themes\hayat2\sliders\data1\images\1.jpg" />
-    <Content Include="Themes\hayat2\sliders\data1\images\2.jpg" />
-    <Content Include="Themes\hayat2\sliders\data1\images\3.jpg" />
-    <Content Include="Themes\hayat2\sliders\data1\tooltips\1.jpg" />
-    <Content Include="Themes\hayat2\sliders\data1\tooltips\2.jpg" />
-    <Content Include="Themes\hayat2\sliders\data1\tooltips\3.jpg" />
-    <Content Include="Themes\hayat2\sliders\engine1\bg.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\bullet.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\jquery.js" />
-    <Content Include="Themes\hayat2\sliders\engine1\next_photo.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\pause.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\play.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\prev_photo.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\script.js" />
-    <Content Include="Themes\hayat2\sliders\engine1\style.css" />
-    <Content Include="Themes\hayat2\sliders\engine1\style.mod.css" />
-    <Content Include="Themes\hayat2\sliders\engine1\triangle.png" />
-    <Content Include="Themes\hayat2\sliders\engine1\wowslider.js" />
-    <Content Include="Themes\hayat2\sliders\engine1\wowslider.mod.js" />
     <Content Include="Themes\hayat2\theme.xml" />
     <Content Include="Themes\hayat2\_Layout.cshtml" />
     <Content Include="Web.config">
@@ -2479,6 +2460,7 @@
     <Content Include="Themes\hayat2\Pages\units.cshtml" />
     <Content Include="Themes\hayat2\Pages\importUnits.cshtml" />
     <Content Include="Themes\hayat2\Pages\visit.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

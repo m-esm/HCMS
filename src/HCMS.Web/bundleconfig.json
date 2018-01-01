@@ -131,5 +131,11 @@
     "inputFiles": [
       "Themes/hayat2/js/places.js"
     ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/gulpfile.min.js",
+    "inputFiles": [
+      "Themes/hayat2/gulpfile.js"
+    ]
   }
 ]

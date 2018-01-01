@@ -141,16 +141,14 @@ $(function () {
 
         }, 1000);
 
-        if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
-            $('.back-to-top').addClass('horizontal');
+            if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
+                $('.back-to-top').addClass('horizontal');
 
         // $('[data-aos]', currentPage).removeClass('aos-animate');
 
 
 
 
-
-        console.log(mode);
 
 
         if (window.location.pathname !== "/") {

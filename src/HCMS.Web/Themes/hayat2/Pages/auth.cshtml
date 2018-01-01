@@ -1,58 +1,104 @@
 ﻿<section class="page page-horizontal page-login" id="login">
     <div class="inner">
-        <h2>ورود به اکانت</h2>
-        <form method="post" id="login-form" action="/fa-ir/manage/Auth/Login">
 
-            @{
-                string login_c_guid = Guid.NewGuid().ToString();
-            }
+        <div class="login-form">
+            <h2>ورود به اکانت</h2>
+            <form method="post" id="login-form" action="/fa-ir/manage/Auth/Login">
 
-            @Html.Hidden("captcha_guid", login_c_guid)
-            @Html.AntiForgeryToken()
+                @{
+                    string login_c_guid = Guid.NewGuid().ToString();
+                }
 
-
-            <input type="hidden" name="isAjax" value="true" />
-            <input type="hidden" name="ReturnUrl" value="/" />
-            <input type="email" style="display: none;" />
-            <input type="password" style="display: none;" />
+                @Html.Hidden("captcha_guid", login_c_guid)
+                @Html.AntiForgeryToken()
 
 
+                <input type="hidden" name="isAjax" value="true" />
+                <input type="hidden" name="ReturnUrl" value="/" />
 
-            <div class="input-field">
-                <label>
-                    آدرس ایمیل
-                </label> <input name="UserName" type="text" placeholder="ایمیل " />
-            </div>
+                <div id="err" class="alert alert-info" style="display:none;">
 
-            <div class="input-field">
-                <label>رمز عبور</label> <input name="password" type="password" />
-            </div>
-            <div class="input-field captcha-field">
-                <img src="~/manage/Captcha/msdn?prefix=_login&guid=@login_c_guid" id="captcha-image" />
-                <input class="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
-            </div>
-            <div class="input-field">
-                <input type="submit" value="تایید" />
-            </div>
-            <div class="clearfix"></div>
-            <div class="links" style="text-align:center;">
+                </div>
 
 
-                <a id="fgpassword"> فراموشی رمز عبور ؟</a>
+                <div class="input-field">
+                    <label>
+                        آدرس ایمیل
+                    </label> <input name="UserName" type="text" placeholder="ایمیل " />
+                </div>
 
-                <a id="confirmPassword"> فعال سازی اکانت</a>
+                <div class="input-field">
+                    <label>رمز عبور</label> <input name="password" type="password" />
+                </div>
+                <div class="input-field captcha-field">
+                    <img src="~/manage/Captcha/msdn?prefix=_login&guid=@login_c_guid" id="captcha-image" />
+                    <input class="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                </div>
+                <div class="input-field">
+                    @*<input type="submit" value="تایید" />*@
+                    <input type="button" id="submit" value="تایید" />
+                </div>
+                <div class="clearfix"></div>
+                <div class="links" style="text-align:center;">
+
+
+                    <a id="fgpassword"> فراموشی رمز عبور ؟</a>
+
+                    <a id="confirmPassword"> فعال سازی اکانت</a>
 
 
 
-            </div>
-            @*<div class="links">
-                </div>*@
+                </div>
+                @*<div class="links">
+                    </div>*@
 
 
-        </form>
+            </form>
+        </div>
+
 
 
     </div>
 
 </section>
+
+@section scripts{
+
+    <script>
+        $(document).on('click', '#submit', function () {
+
+            var model = {};
+            model.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+            model.captcha_guid = $('input[name="captcha_guid"]').val();
+            model.isAjax = true;
+
+            model.Email = $('input[name="UserName"]').val();
+            model.UserName = $('input[name="UserName"]').val();
+            model.password = $('input[name="password"]').val();
+            model.ConfirmPassword = $('input[name="ConfirmPassword"]').val();
+            model.captcha = $('input[name="captcha"]').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/Login',
+                data: model
+            }).success(function (res) {
+                console.log(res);
+                if (res.lenght > 0) {
+                    $('#err').css('display', 'block');
+                    var html = '<ul><li>' + res + '</li></ul>';
+                    $('#err').html(res);
+                } else {
+                    $('#err').css('display', 'none');
+                    location.href = "/";
+                }
+            }).error(function (err) {
+                console.log(err);
+            })
+        })
+
+    </script>
+
+
+}
 

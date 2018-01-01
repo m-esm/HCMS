@@ -4,25 +4,26 @@
 
     var units = DDB.GetTable("cms", "units").DRows.OrderBy(p => p.GetValue("block.name").Value).ThenBy(p => p.GetValue("block.level").Value);
     var unitpictures = DDB.GetTable("cms", "unitpictures").DRows;
-
+     
 }
+
 
 @foreach (var item in units)
 {
     var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
 
     var blockName = item.GetValue("block.name").Value;
-    var planNumber = ((blockName == "block-a" ? 4 : 5) *
-        (blockName == "block-a" ? 0 : 1) *
-        (blockName == "block-b" ? 2 : 1) *
-        (blockName == "block-c" ? 3 : 1)) +
-        (blockName == "block-c" ? -1 : 0) +
-        int.Parse(item.GetValue("name").Value.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries).Last());
+    //var planNumber = ((blockName == "block-a" ? 4 : 5) *
+    //    (blockName == "block-a" ? 0 : 1) *
+    //    (blockName == "block-b" ? 2 : 1) *
+    //    (blockName == "block-c" ? 3 : 1)) +
+    //    (blockName == "block-c" ? -1 : 0) +
+    //    int.Parse(item.GetValue("name").Value.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries).Last());
 
-    <section class="page page-unit" id="@item.GetValue("name").Value.Replace("-","_")">
+    <section class="page page-horizontal page-unit" id="@item.GetValue("name").Value.Replace("-","_")">
         <div class="inner">
-
-            @if (!unitpictures.Any(p => p.GetValue("planNumber").Value == planNumber.ToString()))
+                
+            @if (!unitpictures.Any(p => p.GetValue("planNumber").Value == item.GetValue("planNumber").Value))
             {
 
                 <div class="notfound">
@@ -33,9 +34,71 @@
                 </div>
 
             }
+            else
+            {
+                <div class="full-image" >
+
+                    <div class="pov">
+                        <i class="fa fa-video-camera" aria-hidden="true"></i>
+                        <img src="@unitpictures.First(p => p.GetValue("planNumber").Value == item.GetValue("planNumber").Value).GetValue("pov").Value" />
+                    </div>
+                   
+                    <u>واحد @unitName </u>
+                    <img class="img img-responsive main-image" src="@unitpictures.First(p => p.GetValue("planNumber").Value == item.GetValue("planNumber").Value).GetValue("image").Value" />
+
+                    <div class="footer">
+                        <div class="pull-right">
+                            <div class="share">
+                                <ul>
+                                    <li>
+                                        <a href="https://t.me/share/url?url=">
+                                            <i class="fa fa-telegram"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pull-left">
+                            <a class="starts">
+                                <i class="fa fa-star-o" data-item="1"></i>
+                                <i class="fa fa-star-o" data-item="2"></i>
+                                <i class="fa fa-star-o" data-item="3"></i>
+                                <i class="fa fa-star-o" data-item="4"></i>
+                                <i class="fa fa-star-o" data-item="5"></i>
+                                
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            }
 
 
-          
+
         </div>
 
 
@@ -43,3 +106,513 @@
 
 
 }
+
+
+<section class="page page-unit" id="comments">
+    <div class="comments">
+        <div>
+            <div class="header">
+                <h3>نام واحد : 1 بلوک A</h3>
+                <button class="btn btn-success">مقایسه کن</button>
+            </div>
+            <div class="body">
+
+                <div class="row">
+                    <div class="item col-md-6 col-sm-6 col-xs-12">
+                        <div class="prof-comment">
+                            <h4>نظرات خبرگان و متخصصین</h4>
+                            <ul>
+                                <li>
+                                    این واحد از نظر کیفیت فضاهای مفید شرایط ایده آلی دارد
+                                </li>
+                                <li>
+                                    این واحد از نظر کیفیت فضاهای مفید شرایط ایده آلی دارد
+                                </li>
+                                <li>
+                                    این واحد از نظر کیفیت فضاهای مفید شرایط ایده آلی دارد
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="item col-md-6 col-sm-6 col-xs-12">
+                        <div class="rate">
+                            <h4>امتیازهای شما</h4>
+                            <ul>
+                                <li>
+                                    <label>آشپزخونه</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <label>اتاق خواب</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <label>سرویس بهداشتی</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <label>حال و پذیرایی</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <label>حال و پذیرایی</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <label>حال و پذیرایی</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <label>حال و پذیرایی</label>
+                                    <span>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </li>
+
+
+                            </ul>
+
+                            <hr />
+
+                            <form class="register">
+                                <div class="col-md-6 col-sm-12">
+                                    <input type="text" class="form-control" placeholder="نام و نام خانوادگی" />
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <input type="text" class="form-control" placeholder="شماره تماس / ایمیل" />
+                                </div>
+                                <div class="col-md-12">
+                                    <label>نظر خود را بنویسید</label>
+                                    <textarea class="form-control" placeholder="نظر شما"></textarea>
+                                </div>
+                                <button class="btn btn-success">ارسال نظر</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<section class="page page-unit" id="user-comments">
+    <div class="comments">
+        <div>
+           
+
+            <div class="user-comment">
+                <div class="rate">
+                    <h4>امتیازهای کاربر شماره 1</h4>
+                    <div class="msg">
+                        بدنه ی لپ تاپ با اینکه از پلاستیک هست باید بگم خیلی خوبه و اصلا انتظار چنین کیفیت بالایی رو نداشتم.
+                        تو این قیمت رقیب دیگه ای با این مشخصات سخت افزاری حداقل تو دیجی کالا (به تاریخ درج کامنت توجه کنید) موجود نیست.
+                        برای کاربری مولتی مدیا شامل فیلم دیدن و گوش دادن به موسیقی این لپ تاپ رو پیشنهاد میدم بلندگو های بسیار خوب و قوی داره که با تکنولوژی Acer TrueHarmony پشتیبانی میشه.
+                    </div>
+                    <ul>
+                        <li>
+                            <label>آشپزخونه</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>اتاق خواب</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>سرویس بهداشتی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                <div class="rate">
+                    <h4>امتیازهای کاربر شماره 1</h4>
+                    <div class="msg">
+                        برای مثال هم میتونم بگم بازی Assassins creed : Syndicate رو میتونیدفقط با پایین ترین تنظیمات گرافیکی به صورت 1920*1080 میتونید اجرا کنید که البته پایین آوردن رزولوشن تصویر هم فرجه زیادی برای استفاده از تنظیمات بهتری به شما نمیده.
+                        اگر نگاهی به اجرای بازی های روز دارید باید حداقل لپ تاپ های گیمینگ 4 ملیونی رو بگیرید در غیر اینصورت با حرید لپ تاپ هایی تو این رنج قیمت پول خودتون رو هدر میدید.
+                    </div>
+                    <ul>
+                        <li>
+                            <label>آشپزخونه</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>اتاق خواب</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>سرویس بهداشتی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                <div class="rate">
+                    <h4>امتیازهای کاربر شماره 1</h4>
+                    <div class="msg">
+                        در نهایت من خرید این محصول رو اگر نمیخواید بیشتر از این خرج کنید پیشنهاد میکنم.
+                    </div>
+                    <ul>
+                        <li>
+                            <label>آشپزخونه</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>اتاق خواب</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>سرویس بهداشتی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                <div class="rate">
+                    <h4>امتیازهای کاربر شماره 1</h4>
+                    <div class="msg">
+                        سلام دوستان من تا قیمت ۹۰ میلیون قصد خرید مزدا نیو کارکرد مدل ۹۰ رو دارم. هر ماشینی رو که میبینم همشون میگن فنی سالم و خودرو بدون خرج و حدود ۱۰۰ هزارتا کارکرده. از دوستان خواهش دارم راهنمایی کنن خرید همچین ماشینی درسته یا اشتباه. لوازم مصرفی و سرویس دوره ای به ه صورته؟
+                    </div>
+                    <ul>
+                        <li>
+                            <label>آشپزخونه</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>اتاق خواب</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>سرویس بهداشتی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+                        <li>
+                            <label>حال و پذیرایی</label>
+                            <span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+

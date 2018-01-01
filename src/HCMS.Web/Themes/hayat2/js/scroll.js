@@ -60,8 +60,8 @@ $(function () {
 
         }, 1000);
 
-        if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
-            $('.back-to-top').addClass('horizontal');
+            if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
+                $('.back-to-top').addClass('horizontal');
 
         // $('[data-aos]', currentPage).removeClass('aos-animate');
 
@@ -179,6 +179,7 @@ $(function () {
 
 
     $(document).keydown(function (e) {
+        console.log(e.which);
         switch (e.which) {
             case 37:
                 changePage(false, 'up');

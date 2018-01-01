@@ -312,7 +312,6 @@ namespace HCMS.Web.Areas.Manage.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        //[AuditLogActionFilter(ActionType = "User Register")]
         public async Task<ActionResult> Register(RegisterViewModel model, bool inapp = false)
         {
             if (!inapp)
@@ -447,6 +446,143 @@ namespace HCMS.Web.Areas.Manage.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> RegisterByRole(RegisterViewModel model, bool inapp = false, string role = "User")
+        {
+            if (!inapp)
+                if (Session["captcha_register"] == null)
+                {
+                    ModelState.AddModelError("", @"کد امنیتی وارد شده منقضی شده است .");
+                }
+                else if (model.Captcha != (int)Session["captcha_register"])
+                {
+                    ModelState.AddModelError("", @"جواب معادله اشتباه می باشد");
+                }
+
+
+            if (!model.Username.Contains("@"))
+                if (!Regex.IsMatch(model.Username, @"^\d+$"))
+                    ModelState.AddModelError("", @"نام کاربری  باید ایمیل یا شماره موبایل باشد !");
+
+
+
+            var user = new ApplicationUser { UserName = model.Username };
+
+            if (model.Username.Contains("@"))
+            {
+                user.Email = model.Username;
+
+
+                if (UserRepository.GetUserByEmail(model.Username) != null)
+                    ModelState.AddModelError("", @"ایمیل وارد شده قبلا استفاده شده است");
+            }
+            else
+            {
+
+                user.Mobile = model.Username;
+
+                if (UserRepository.GetUserByMobile(model.Username) != null)
+                    ModelState.AddModelError("", @"شماره موبایل وارد شده قبلا استفاده شده است");
+            }
+
+            if (!UserManager.PasswordValidator.ValidateAsync(model.Password).Result.Succeeded)
+            {
+                ModelState.AddModelError("", @"رمز عبور شما معتبر نمی باشد");
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                if (model.isAjax)
+                {
+                    return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
+                                 .Select(e => e.ErrorMessage)
+                                 .ToArray()));
+                }
+                return View(model);
+            }
+
+
+
+
+
+
+            if (!ModelState.IsValid)
+            {
+                if (model.isAjax)
+                {
+                    return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
+                                 .Select(e => e.ErrorMessage)
+                                 .ToArray()));
+                }
+                return View(model);
+            }
+            //var result = await UserManager.CreateAsync(user, model.Password);
+            var result = UserManager.Create(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                result = UserManager.AddToRole(user.Id, role);
+                if (result.Succeeded)
+                {
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+                    if (!string.IsNullOrWhiteSpace(user.Email))
+                        if (Request.Url != null)
+                        {
+
+
+                            var callbackUrl = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, code = code },
+                                protocol: Request.Url.Scheme);
+
+                            EmailService.Send(user.Email, "تایید حساب کاربری", EmailService.MailTemplate("verify_email").Replace("#link#", callbackUrl)
+                                );
+
+
+                            ViewBag.Link = callbackUrl;
+                        }
+
+                    if (!string.IsNullOrWhiteSpace(user.Mobile))
+                    {
+                        user.MobileConfirmCode = GetRandomNumber(10000, 99999).ToString();
+
+                        UserRepository.SetMobileConfirmCode(user.Mobile, user.MobileConfirmCode);
+
+                        SmsService.Send(user.Mobile, "کد فعال سازی شما : " + user.MobileConfirmCode);
+
+                    }
+
+
+
+                    if (model.isAjax)
+                    {
+                        return Json(new string[] { });
+                    }
+                    return View("DisplayEmail");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                        ModelState.AddModelError("", item);
+                }
+            }
+
+
+
+            if (model.isAjax)
+            {
+                return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
+                          .Select(e => e.ErrorMessage)
+                          .ToArray()));
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult> VerifyEmail(string email)
