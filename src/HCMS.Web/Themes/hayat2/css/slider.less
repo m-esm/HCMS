@@ -71,7 +71,6 @@
 
 #videos {
     text-align: center;
-    margin:0 auto;
 
     .inner {
         padding: 0 40px;
@@ -81,8 +80,7 @@
     .tv {
         display: block;
         margin: 0 auto;
-        margin-top: 80px;
-        margin-bottom: 20px;
+        margin-top: 46px;
         height: calc(~"100vh - 170px");
         overflow: hidden;
         width: auto;
@@ -114,6 +112,9 @@
         }
 
         &.play {
+            border:none;
+            border-left:solid 3px;
+            border-bottom:solid 3px;
             border-color: rgba(0, 0, 0, 1);
             box-shadow: 0 10px 40px #000;
             transform: none;
@@ -136,6 +137,7 @@
             outline: none;
             border: none;
             margin-right: -1px;
+            margin:0 auto;
         }
     }
 

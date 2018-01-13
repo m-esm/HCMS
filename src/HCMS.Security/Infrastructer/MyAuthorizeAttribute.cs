@@ -62,7 +62,7 @@ namespace HCMS.Security.Infrastructer
 
             if (!roles.Any(item => filterContext.HttpContext.User.IsInRole(item)))
             {
-                filterContext.Result = new RedirectResult(logonUrl);
+                filterContext.Result = new RedirectResult(logonUrl ?? "/manage/Auth/Login");
                 filterContext.RequestContext.HttpContext.Response.Redirect(logonUrl);
             }
 

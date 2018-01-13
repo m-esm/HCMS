@@ -2305,10 +2305,6 @@
     <Content Include="Themes\hayat2\img\transparente.gif" />
     <Content Include="Themes\hayat2\js\blocks.js" />
     <Content Include="Themes\hayat2\js\custom.js" />
-    <Content Include="Themes\hayat2\js\hayat.js" />
-    <Content Include="Themes\hayat2\js\hayat.min.js">
-      <DependentUpon>hayat.js</DependentUpon>
-    </Content>
     <Content Include="Themes\hayat2\js\logo.js" />
     <Content Include="Themes\hayat2\js\places.js" />
     <Content Include="Themes\hayat2\js\places.min.js">

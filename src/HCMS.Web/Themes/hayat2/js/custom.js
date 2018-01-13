@@ -215,11 +215,13 @@ $(document).ready(function () {
     $('#menu-bar').click(function () {
         $('header.show-mobile').addClass('open');
         $(this).addClass('deactive');
+        $('body').addClass('cscroll');
     })
   
     $('header.show-mobile .fa-close').click(function () {
         $('header.show-mobile').removeClass('open');
         $('#menu-bar').removeClass('deactive');
+        $('body').removeClass('cscroll');
     })
 
     $('.left-icons-mobile').click(function () {
