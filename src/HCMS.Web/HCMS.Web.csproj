@@ -2371,6 +2371,7 @@
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
     <Content Include="Themes\hayat2\module\controllers.js" />
     <Content Include="Themes\hayat2\Pages\blocks\plans\plan-c - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
@@ -2511,9 +2512,7 @@
     <Content Include="Themes\hayat2\Pages\units.cshtml" />
     <Content Include="Themes\hayat2\Pages\importUnits.cshtml" />
     <Content Include="Themes\hayat2\Pages\visit.cshtml" />
-    <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\data.cshtml" />
-    <Content Include="Themes\hayat2\Pages\units - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1897,6 +1897,10 @@ section.page-register form .links a {
 .page-slider {
   overflow: hidden !important;
 }
+.right-icons-mobile,
+.left-icons-mobile {
+  display: none;
+}
 @media (max-width: 2560px) {
   header .links ul li i {
     width: 50px;
@@ -2369,6 +2373,7 @@ section.page-register form .links a {
     height: 40px;
     text-align: center;
     z-index: 11;
+    cursor: pointer;
   }
   .right-icons-mobile i {
     margin: 0 auto;
@@ -2383,7 +2388,11 @@ section.page-register form .links a {
     height: 126px;
   }
   .raychat_main_button {
-    margin-right: 126px !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: unset !important;
+    height: 40px !important;
+    width: 40px !important;
   }
 }
 @media (max-width: 390px) {

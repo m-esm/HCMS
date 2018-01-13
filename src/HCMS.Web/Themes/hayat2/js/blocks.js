@@ -6,13 +6,13 @@ $(document).on('mouseenter mouseleave', 'section.page-blocks area', function (ev
 
     var target = $(event.target);
 
-
+    console.log(target.attr('data-block'));
     if (event.type == "mouseenter")
-        $(target.attr('data-block'), wrapper).addClass('in');
+        $('.' + target.attr('data-block'), wrapper).addClass('in');
 
 
     if (event.type == "mouseleave")
-        $(target.attr('data-block'), wrapper).removeClass('in');
+        $('.' + target.attr('data-block'), wrapper).removeClass('in');
 
 });
 
