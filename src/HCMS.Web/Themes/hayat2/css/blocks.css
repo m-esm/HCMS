@@ -25,6 +25,22 @@
         left: 840px;
     }*/
 }
+.block-detail .title {
+  text-align: center;
+}
+.block-detail .arrow {
+  width: 200px;
+  text-align: center;
+  position: absolute;
+  left: calc(50% - 100px);
+  bottom: 0;
+}
+.block-detail .arrow i {
+  cursor: pointer;
+}
+.block-detail .arrow i:hover {
+  transform: scale(1.2);
+}
 .block-detail .inner {
   position: relative;
   top: 50%;

@@ -1,7 +1,21 @@
 ﻿
 
 <section id="block-b" class="page block-detail">
+
+    <div class="arrow">
+        <div class="up">
+            <i class="fa fa-arrow-up"></i>
+            <label> بلوک A</label>
+        </div>
+
+        <div class="down">
+            <i class="fa fa-arrow-down"></i>
+            <label> بلوک C</label>
+        </div>
+    </div>
+
     <div class="inner">
+        <h3 class="title">بلوک B</h3>
         <div class="row">
             <div class="col-md-5">
                 @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows)

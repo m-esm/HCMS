@@ -159,3 +159,11 @@ $(document).on('click', '#recortes-plan-c area', function () {
 var toggleSearchBar = function () {
     $('.search-bar').toggleClass('open');
 }
+
+$('section.page .arrow .up').click(function () {
+    changePage(false, 'up');
+})
+
+$('section.page .arrow .down').click(function () {
+    changePage(false, 'down');
+})

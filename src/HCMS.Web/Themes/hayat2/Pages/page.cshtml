@@ -17,7 +17,7 @@
         Response.Redirect("/404");
     }
 
-    var pageSections = DDB.GetTable("cms", "pageSections").DRows.Where(p => p.GetValue("pageId").Value == page.RowID.ToString());
+    var pageSections = DDB.GetTable("cms", "pageSections").DRows.Where(p => p.GetValue("pageId").Value == page.RowID.ToString()).OrderBy(p=>p.GetValue("order"));
 
     var i = 0;
 

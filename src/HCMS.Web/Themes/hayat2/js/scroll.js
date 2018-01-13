@@ -1,10 +1,11 @@
 ﻿/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
 var keyLeftRight = false;
+var busy = false;
+
 
 $(function () {
 
 
-    var busy = false;
 
     var onHashChange = function () {
         if (!busy && !keyLeftRight)
@@ -23,137 +24,6 @@ $(function () {
     });
 
 
-    var changePage = function (nextPage, mode) {
-        if (busy)
-            return;
-
-        busy = true;
-
-        setTimeout(function () {
-
-            busy = false;
-
-        }, 1000);
-
-
-
-
-        var currentPage = $('section.page.page-active');
-
-        if (!nextPage)
-            nextPage = currentPage.next('section.page');
-        else
-            if (currentPage.attr('id') === nextPage.attr('id'))
-                return;
-
-        var prevPage = currentPage.prev('section.page');
-
-        setTimeout(function () {
-
-            $('[data-aos]', nextPage).addClass('aos-animate');
-
-
-            $('[data-aos]', prevPage).addClass('aos-animate');
-
-        }, 1000);
-
-            if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
-                $('.back-to-top').addClass('horizontal');
-
-        // $('[data-aos]', currentPage).removeClass('aos-animate');
-
-
-
-
-
-
-
-        if (window.location.pathname !== "/") {
-
-            $('header').addClass('navhide');
-            $('.homelogo').fadeIn();
-
-        }
-
-        if (mode === "up") {
-
-            if (prevPage.length > 0) {
-
-
-                prevPage.addClass('page-active')
-                    .removeClass('page-deactive-top')
-                .removeClass('page-deactive-down');
-
-                currentPage.addClass('page-deactive-top')
-                    .removeClass('page-active');
-
-
-                if (prevPage.hasClass('page-slider'))
-                    $('header').removeClass('stick');
-
-
-                if (prevPage.prev('section.page').length == 0)
-                    $('.back-to-top').fadeOut();
-                else {
-                    $('.back-to-top').fadeIn();
-                }
-
-
-                if (window.location.pathname === "/")
-                    if (!prevPage.hasClass('page-slider'))
-                        $('header').addClass('stick');
-
-
-                if (prevPage.attr('id'))
-                    window.location.hash = prevPage.attr('id');
-
-
-            }
-
-
-        }
-        if (mode === "down") {
-
-
-
-            if (nextPage.length > 0) {
-
-                nextPage
-                    .addClass('page-active')
-                    .removeClass('page-deactive-top')
-                    .removeClass('page-deactive-down');
-
-                currentPage
-                    .addClass('page-deactive-down')
-                    .removeClass('page-active');
-
-
-                if (nextPage.prev('section.page').length == 0)
-                    $('.back-to-top').fadeOut();
-                else {
-                    $('.back-to-top').fadeIn();
-                }
-
-
-                if (window.location.pathname === "/")
-                    if (!nextPage.hasClass('page-slider'))
-                        $('header').addClass('stick');
-
-
-                if (nextPage.attr('id'))
-                    window.location.hash = nextPage.attr('id');
-
-
-
-            }
-
-
-        }
-
-        //   $(window).bind('hashchange', onHashChange);
-
-
-    };
 
 
     var mousewheel = function (e) {
@@ -238,4 +108,137 @@ $(function () {
     $(window).bind('hashchange', onHashChange);
 
 });
+
+
+var changePage = function (nextPage, mode) {
+    if (busy)
+        return;
+
+    busy = true;
+
+    setTimeout(function () {
+
+        busy = false;
+
+    }, 1000);
+
+
+
+
+    var currentPage = $('section.page.page-active');
+
+    if (!nextPage)
+        nextPage = currentPage.next('section.page');
+    else
+        if (currentPage.attr('id') === nextPage.attr('id'))
+            return;
+
+    var prevPage = currentPage.prev('section.page');
+
+    setTimeout(function () {
+
+        $('[data-aos]', nextPage).addClass('aos-animate');
+
+
+        $('[data-aos]', prevPage).addClass('aos-animate');
+
+    }, 1000);
+
+    if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
+        $('.back-to-top').addClass('horizontal');
+
+    // $('[data-aos]', currentPage).removeClass('aos-animate');
+
+
+
+
+
+
+
+    if (window.location.pathname !== "/") {
+
+        $('header').addClass('navhide');
+        $('.homelogo').fadeIn();
+
+    }
+
+    if (mode === "up") {
+
+        if (prevPage.length > 0) {
+
+
+            prevPage.addClass('page-active')
+                .removeClass('page-deactive-top')
+            .removeClass('page-deactive-down');
+
+            currentPage.addClass('page-deactive-top')
+                .removeClass('page-active');
+
+
+            if (prevPage.hasClass('page-slider'))
+                $('header').removeClass('stick');
+
+
+            if (prevPage.prev('section.page').length == 0)
+                $('.back-to-top').fadeOut();
+            else {
+                $('.back-to-top').fadeIn();
+            }
+
+
+            if (window.location.pathname === "/")
+                if (!prevPage.hasClass('page-slider'))
+                    $('header').addClass('stick');
+
+
+            if (prevPage.attr('id'))
+                window.location.hash = prevPage.attr('id');
+
+
+        }
+
+
+    }
+    if (mode === "down") {
+
+
+
+        if (nextPage.length > 0) {
+
+            nextPage
+                .addClass('page-active')
+                .removeClass('page-deactive-top')
+                .removeClass('page-deactive-down');
+
+            currentPage
+                .addClass('page-deactive-down')
+                .removeClass('page-active');
+
+
+            if (nextPage.prev('section.page').length == 0)
+                $('.back-to-top').fadeOut();
+            else {
+                $('.back-to-top').fadeIn();
+            }
+
+
+            if (window.location.pathname === "/")
+                if (!nextPage.hasClass('page-slider'))
+                    $('header').addClass('stick');
+
+
+            if (nextPage.attr('id'))
+                window.location.hash = nextPage.attr('id');
+
+
+
+        }
+
+
+    }
+
+    //   $(window).bind('hashchange', onHashChange);
+
+
+};
 

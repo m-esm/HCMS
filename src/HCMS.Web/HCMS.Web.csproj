@@ -2305,6 +2305,10 @@
     <Content Include="Themes\hayat2\img\transparente.gif" />
     <Content Include="Themes\hayat2\js\blocks.js" />
     <Content Include="Themes\hayat2\js\custom.js" />
+    <Content Include="Themes\hayat2\js\hayat.js" />
+    <Content Include="Themes\hayat2\js\hayat.min.js">
+      <DependentUpon>hayat.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\js\logo.js" />
     <Content Include="Themes\hayat2\js\places.js" />
     <Content Include="Themes\hayat2\js\places.min.js">
@@ -2368,6 +2372,8 @@
     <Content Include="Themes\hayat2\module\controllers.js" />
     <Content Include="Themes\hayat2\Pages\blocks\plans\plan-c - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\block-m.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\catalog.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
