@@ -44,15 +44,35 @@ $(document).on('click', '#places .tabs li', function () {
 
     //    }),
 
+   
+
     var images = li.attr("data-image").split('|');
     var titles = li.attr("data-title").split('|');
     var descrps = li.attr("data-descrp").split('|');
+    var isMain = li.attr("data-isMain");
     var _count = 0;
 
     if (isFirst)
         for (i = 0; i < markers.length; i++) {
+           if(!markers[i].isMain)
             markers[i].setMap(null);
         }
+
+   
+    //var hayatLangLat = hayat.attr('data-latlng').split('|')[1];
+
+    //var latlng = new google.maps.LatLng(parseFloat(hayatLangLat.split(',')[0]), parseFloat(hayatLangLat.split(',')[1]));
+    
+    //var marker = new google.maps.Marker({
+    //    position: latlng,
+    //    title: hayat.attr('data-title').split('|')[1],
+    //    descrp: hayat.attr('data-descrp').split('|')[1],
+    //    image: hayat.attr('data-image').split('|')[1],
+    //    icon: hayat.attr('data-icon').split('|')[1],
+    //    map: map
+    //});
+    //markers.push(marker);
+
 
 
     _.map(li.attr("data-latlng").split('|'), function (item) {
@@ -67,6 +87,7 @@ $(document).on('click', '#places .tabs li', function () {
             descrp : descrps[_count],
             image: images[_count],
             icon: icon,
+            isMain :isMain, 
             map: map
         });
         markers.push(marker);
@@ -84,15 +105,6 @@ $(document).on('click', '#places .tabs li', function () {
 
 
     })
-     
-
-    //نانوایی
-    //var points = [
-    //    {
-    //        position: new google.maps.LatLng(35.790198, 51.495022),
-    //        title: title
-    //    }
-    //];
 
     
    
@@ -104,7 +116,7 @@ $(document).on('click', '#places .tabs li', function () {
 });
 
 setTimeout(function () {
-    $('#places .tabs li').click();
+    $('#places .tabs li[data-isMain="true"]').click();
     isFirst = true;
 }, 1000);
 
