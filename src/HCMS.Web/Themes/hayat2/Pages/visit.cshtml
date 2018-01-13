@@ -275,6 +275,7 @@
                         $('#loader').show();
                     },
                     success: function (data) {
+                        console.log(data);
                         $('#resultInfo').show();
                         if (data.result) {
                             $('#resultInfo').addClass('alert-success').html(data.msg);

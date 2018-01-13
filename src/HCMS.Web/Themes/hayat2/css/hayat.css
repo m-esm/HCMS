@@ -2382,6 +2382,9 @@ section.page-register form .links a {
   .footer .line .box {
     height: 126px;
   }
+  .raychat_main_button {
+    margin-right: 126px !important;
+  }
 }
 @media (max-width: 390px) {
   .container {

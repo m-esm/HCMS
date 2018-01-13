@@ -164,12 +164,12 @@ $(document).on('click', '.register .submit', function () {
 
 
 
-    var url = '@Url.Action("Post", "Comment", new {plugin = "Hayat" })';
     $.ajax({
         method: 'POST',
-        url: url,
+        url: '/Hayat/Comment/Post',
         data: model
     }).success(function (res) {
+        console.log(res);
         $('#resultInfo').show();
         if (res.IsSuccess) {
             $('#resultInfo').addClass('alert-success').html('نظر شما با موفقیت ثبت شد. با تشکر');
