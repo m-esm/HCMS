@@ -90,7 +90,8 @@ $('.stars i').click(function () {
         $('.stars i[data-item=' + i + ']').removeClass('fa-star-o').addClass('fa-star');
     }
 
-    var id = $(this).parents('article').attr('id').split('_')[1];
+    var id = $(this).parents('article').attr('id');
+    console.log(id);
     var title = $(this).parents('article').attr('data-title');
     var _exist = rank.find(a=>a.unitPicId == id)
     if (_exist === undefined)
@@ -99,7 +100,7 @@ $('.stars i').click(function () {
         var index = rank.indexOf(_exist);
         rank[index].score = item;
     }
-
+    console.log(rank);
     //find section
     var _secId = $(this).parents('section.hasChild').attr('id');
     var _com = $('#comments_' + _secId).find('.rate ul');

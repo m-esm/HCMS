@@ -23,6 +23,7 @@
     var province = DDB.GetTable("cms", "Province").DRows.OrderBy(p => p.GetValue("Name").Value);
     var city = DDB.GetTable("cms", "City").DRows.OrderBy(p => p.GetValue("Name").Value);
 
+    ViewBag.title = "رزرو باردید";
 }
 
 <section id="submit" class="page page-homeforms">
@@ -265,27 +266,28 @@
 
                 var model = $('#visit-form').serialize();
                 model += "&captcha_guid=" + _captchaDate;
-                console.log(model);
                 $.ajax({
-                    type: "post",
-                    url: url,
+                    method: "post",
+                    url: 'Hayat/visit/Post',
                     data: model,
                     contentType: "application/x-www-form-urlencoded",
                     beforeSend: function () {
                         $('#loader').show();
+                        _captchaDate = Date.now();
+                        $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit&guid=' + _captchaDate);
                     },
-                    success: function (data) {
-                        console.log(data);
+                    success: function (res) {
+                        console.log(res);
                         $('#resultInfo').show();
-                        if (data.result) {
-                            $('#resultInfo').addClass('alert-success').html(data.msg);
+                        if (res.IsSuccess) {
+                            $('#resultInfo').removeClass('alert-danger').addClass('alert-success').html('ثبت نام رزرو بازدید برای شما انجام شد. منتظر تماس از طرف مدیران حیات نو باشید.');
                         } else {
                             var html = '<ul>';
-                            $.each(data.msg, function (index, item) {
+                            $.each(res.msg, function (index, item) {
                                 html += "<li>" + item + "</li>";
                             })
                             html += '</ul>';
-                            $('#resultInfo').addClass('alert-danger').html(html);
+                            $('#resultInfo').removeClass('alert-success').addClass('alert-danger').html(html);
                         }
                     },
                     error: function (jqXhr, textStatus, errorThrown) {
@@ -295,6 +297,8 @@
                         $('#loader').css('display', 'none');
                     }
                 });
+
+              
             }
             e.preventDefault();
 
