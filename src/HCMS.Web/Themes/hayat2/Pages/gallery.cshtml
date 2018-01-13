@@ -1,0 +1,120 @@
+﻿
+@using HCMS.Dynamics.Data
+@{
+    var gallery = DDB.GetTable("cms", "gallery").DRows;
+
+    ViewBag.title = "گالری";
+int i =0;
+
+}
+
+<section id="gallery" class="page gallery">
+    <div class="container">
+        <div class="row">
+            @foreach(var item in gallery)
+            {
+            i++;
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <img class="thumnail" data-item="@i" src="@item.GetValue("image")" />
+            </div>
+            }
+           
+        </div>
+
+        <div class="full-image">
+            <i class="fa fa-close"></i>
+
+            <i class="fa fa-chevron-left" id="prev" aria-hidden="true"></i>
+
+            <i class="fa fa-chevron-right" id="next"></i>
+
+            <div class="preview">
+                <img src="" data-item="" />
+            </div>
+
+            <!--<div class="thum">
+                <ul>
+                    <li>
+                        <a>
+                            <img src="~/Themes/hayat2/img/my-slider/3.jpg" />
+                        </a>
+                    </li>
+
+                    <li>
+                        <a>
+                            <img src="~/Themes/hayat2/img/my-slider/3.jpg" />
+                        </a>
+                    </li>
+
+                    <li>
+                        <a>
+                            <img src="~/Themes/hayat2/img/my-slider/3.jpg" />
+                        </a>
+                    </li>
+
+                    <li>
+                        <a>
+                            <img src="~/Themes/hayat2/img/my-slider/3.jpg" />
+                        </a>
+                    </li>
+                </ul>
+            </div>-->
+
+        </div>
+    </div>
+</section>
+
+@section scripts{
+<script>
+
+    var maximum = null;
+
+    $('.thumnail').each(function () {
+        var value = parseFloat($(this).attr('data-item'));
+        maximum = (value > maximum) ? value : maximum;
+    });
+
+    $(document).on('mouseover', '.thumnail', function () {
+        $(this).parent().find('.back').addClass('active');
+    })
+
+    $(document).on('click', '.thumnail', function () {
+        $('.full-image').addClass('open');
+        $('.preview img').attr('src', $(this).attr('src'));
+        $('.preview img').attr('data-item', $(this).attr('data-item'));
+
+    });
+
+    $(document).on('click', '.full-image .fa-close', function () {
+        $('.full-image').removeClass('open');
+    });
+
+    $(document).on('click', '#prev', function () {
+        var attr = parseInt($('.preview img').attr('data-item'));
+        var prevItem = $('.thumnail[data-item=' + (attr + 1) + ']');
+        if (prevItem.length > 0) {
+            $('.preview img').attr('src', prevItem.attr('src'));
+            $('.preview img').attr('data-item', attr + 1);
+        } else {
+            $('.preview img').attr('src', $('.thumnail[data-item=1]').attr('src'));
+            $('.preview img').attr('data-item', 1);
+        }
+    })
+
+    $(document).on('click', '#next', function () {
+        var attr = parseInt($('.preview img').attr('data-item'));
+        var prevItem = $('.thumnail[data-item=' + (attr - 1) + ']');
+        if (prevItem.length > 0) {
+            $('.preview img').attr('src', prevItem.attr('src'));
+            $('.preview img').attr('data-item', attr - 1);
+        } else {
+            $('.preview img').attr('src', $('.thumnail[data-item=' + maximum + ']').attr('src'));
+            $('.preview img').attr('data-item', maximum);
+        }
+    })
+
+
+</script>
+}
+
+

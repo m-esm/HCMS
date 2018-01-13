@@ -593,6 +593,12 @@
     <Content Include="Packages\Magnific-Popup\magnific-popup.min.css">
       <DependentUpon>magnific-popup.css</DependentUpon>
     </Content>
+    <Content Include="Packages\melon\css\Dark.css">
+      <DependentUpon>Dark.less</DependentUpon>
+    </Content>
+    <Content Include="Packages\melon\css\Dark.min.css">
+      <DependentUpon>Dark.css</DependentUpon>
+    </Content>
     <Content Include="Packages\melon\css\HappyStyle-rtl.css" />
     <Content Include="Packages\melon\css\HappyStyle-rtl.min.css">
       <DependentUpon>HappyStyle-rtl.css</DependentUpon>
@@ -613,6 +619,7 @@
     <Content Include="Packages\melon\css\main-rtl.min.css">
       <DependentUpon>main-rtl.css</DependentUpon>
     </Content>
+    <Content Include="Packages\melon\css\Dark.less" />
     <None Include="Packages\melon\css\main.less" />
     <Content Include="Packages\melon\css\main.css">
       <DependentUpon>main.less</DependentUpon>
@@ -1236,7 +1243,6 @@
     <Content Include="Packages\flags\_united-nations.png" />
     <Content Include="Packages\flags\_unknown.png" />
     <Content Include="Packages\flags\_wales.png" />
-    <Content Include="Files\Uploads\index.html" />
     <Content Include="Packages\bootstrap-rtl\css\bootstrap-flipped.css" />
     <Content Include="Packages\bootstrap-rtl\css\bootstrap-flipped.min.css" />
     <Content Include="Packages\bootstrap-rtl\css\bootstrap-rtl.css" />
@@ -2079,6 +2085,19 @@
     <Content Include="Packages\Trumbowyg\Views\Vitrin\SelectBannerImage.cshtml" />
     <Content Include="Packages\Trumbowyg\Views\Ui\_favoriate.cshtml" />
     <Content Include="Packages\Trumbowyg\Views\Pages\Index.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\_Search.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\Delete.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\Details.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\Edit.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\New.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\Ix.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\SelectBannerImage.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\transactions.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\transactions_details.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Visit\Old.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Comment\New.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Comment\Old.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Comment\Create.cshtml" />
     <None Include="Properties\PublishProfiles\Publish_Local.pubxml" />
     <Content Include="Packages\HCMS\js\Base.DateHelper.min.js.map">
       <DependentUpon>Base.DateHelper.min.js</DependentUpon>
@@ -2158,27 +2177,46 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Themes\hayat2\css\all.css" />
-    <Content Include="Themes\hayat2\css\all.min.css">
-      <DependentUpon>all.css</DependentUpon>
+    <Content Include="Themes\hayat2\css\blocks\block-a.css" />
+    <Content Include="Themes\hayat2\css\blocks\block-b.css" />
+    <Content Include="Themes\hayat2\css\blocks.css">
+      <DependentUpon>blocks.less</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\blocks.css" />
     <Content Include="Themes\hayat2\css\blocks.min.css">
       <DependentUpon>blocks.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\hayat.css" />
+    <Content Include="Themes\hayat2\css\blocks\block-c.css" />
+    <Content Include="Themes\hayat2\css\blocks\block-main.css" />
+    <Content Include="Themes\hayat2\css\gallery.css">
+      <DependentUpon>gallery.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\css\gallery.min.css">
+      <DependentUpon>gallery.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\css\hayat.css">
+      <DependentUpon>hayat.less</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\css\hayat.min.css">
       <DependentUpon>hayat.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\logo.css" />
+    <Content Include="Themes\hayat2\css\logo.css">
+      <DependentUpon>logo.less</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\css\logo.min.css">
       <DependentUpon>logo.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\places.css" />
+    <Content Include="Themes\hayat2\css\places.css">
+      <DependentUpon>places.less</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\css\places.min.css">
       <DependentUpon>places.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\css\slider.css" />
+    <Content Include="Themes\hayat2\css\plan\plan-a.css" />
+    <Content Include="Themes\hayat2\css\plan\plan-c.css" />
+    <Content Include="Themes\hayat2\css\plan\plan-b.css" />
+    <Content Include="Themes\hayat2\css\slider.css">
+      <DependentUpon>slider.less</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\css\slider.min.css">
       <DependentUpon>slider.css</DependentUpon>
     </Content>
@@ -2186,13 +2224,8 @@
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.ttf" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.woff" />
     <Content Include="Themes\hayat2\fonts\IRANSansWeb.woff2" />
-    <Content Include="Themes\hayat2\gulpfile.es5.js">
-      <DependentUpon>gulpfile.js</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat2\gulpfile.es5.min.js">
-      <DependentUpon>gulpfile.es5.js</DependentUpon>
-    </Content>
-    <Content Include="Themes\hayat2\gulpfile.js" />
+    <Content Include="Themes\hayat2\img\Arrow Black-left.png" />
+    <Content Include="Themes\hayat2\img\Arrow Black-Right.png" />
     <Content Include="Themes\hayat2\img\A\Block A.png" />
     <Content Include="Themes\hayat2\img\A\New Plan Site slection A.png" />
     <Content Include="Themes\hayat2\img\Blocks\Block A.png" />
@@ -2233,7 +2266,6 @@
     <Content Include="Themes\hayat2\img\logo\Icon 02.png" />
     <Content Include="Themes\hayat2\img\logo\Icon.png" />
     <Content Include="Themes\hayat2\img\map\Block Hover.png" />
-    <Content Include="Themes\hayat2\img\map\block-map\b\Block B.png" />
     <Content Include="Themes\hayat2\img\map\Blocks Maps 72.png" />
     <Content Include="Themes\hayat2\img\map\box\Blocks A Maps Icon-box .png" />
     <Content Include="Themes\hayat2\img\map\box\Blocks B Maps Icon-box .png" />
@@ -2244,12 +2276,26 @@
     <Content Include="Themes\hayat2\img\my-slider\3.jpg" />
     <Content Include="Themes\hayat2\img\No_Image_Available.jpg" />
     <Content Include="Themes\hayat2\img\pdf\ازگل_کاتالوگ.pdf" />
-    <Content Include="Themes\hayat2\img\plan\A\F2\B A-F02- KeyPlan Hover.png" />
-    <Content Include="Themes\hayat2\img\plan\A\F2\B A-F02- KeyPlan.png" />
-    <Content Include="Themes\hayat2\img\plan\B\F1\B B-F1-Keyplan Hover All.png" />
-    <Content Include="Themes\hayat2\img\plan\B\F1\B B-F1-Keyplan.png" />
-    <Content Include="Themes\hayat2\img\plan\C\F1\B C-F01- KeyPlan Hover.png" />
-    <Content Include="Themes\hayat2\img\plan\C\F1\B C-F01- Plan.png" />
+    <Content Include="Themes\hayat2\img\plan\A\F2\Key Plan A-01 OK-250.png" />
+    <Content Include="Themes\hayat2\img\plan\A\F2\Key Plan Base A-01 OK-250.png" />
+    <Content Include="Themes\hayat2\img\plan\A\keys\Block A Plan 001.png" />
+    <Content Include="Themes\hayat2\img\plan\A\keys\Block A Plan 002.png" />
+    <Content Include="Themes\hayat2\img\plan\A\keys\Block A Plan 003.png" />
+    <Content Include="Themes\hayat2\img\plan\A\keys\Block A Plan 004.png" />
+    <Content Include="Themes\hayat2\img\plan\B\Key Plan B-Ok-250.png" />
+    <Content Include="Themes\hayat2\img\plan\B\Key Plan Base B-Ok-250.png" />
+    <Content Include="Themes\hayat2\img\plan\B\keys\Block B Plan-01.png" />
+    <Content Include="Themes\hayat2\img\plan\B\keys\Block B Plan-02.png" />
+    <Content Include="Themes\hayat2\img\plan\B\keys\Block B Plan-03.png" />
+    <Content Include="Themes\hayat2\img\plan\B\keys\Block B Plan-04.png" />
+    <Content Include="Themes\hayat2\img\plan\B\keys\Block B Plan-05.png" />
+    <Content Include="Themes\hayat2\img\plan\C\Key Plan Base C-Ok 250.png" />
+    <Content Include="Themes\hayat2\img\plan\C\Key Plan C-Ok 250.png" />
+    <Content Include="Themes\hayat2\img\plan\C\keys\Block C Plan 01.png" />
+    <Content Include="Themes\hayat2\img\plan\C\keys\Block C Plan 02.png" />
+    <Content Include="Themes\hayat2\img\plan\C\keys\Block C Plan 03.png" />
+    <Content Include="Themes\hayat2\img\plan\C\keys\Block C Plan 04.png" />
+    <Content Include="Themes\hayat2\img\plan\C\keys\Block C Plan 05.png" />
     <Content Include="Themes\hayat2\img\pov\POV-01.png" />
     <Content Include="Themes\hayat2\img\pov\POV-02.png" />
     <Content Include="Themes\hayat2\img\pov\POV-03.png" />
@@ -2268,9 +2314,17 @@
     <Content Include="Themes\hayat2\js\places.min.js">
       <DependentUpon>places.js</DependentUpon>
     </Content>
+    <Content Include="Themes\hayat2\js\newScroll.js" />
     <Content Include="Themes\hayat2\js\scroll.js" />
     <Content Include="Themes\hayat2\js\slider.js" />
+    <Content Include="Themes\hayat2\js\unit.js" />
     <Content Include="Themes\hayat2\js\videoslider.js" />
+    <Content Include="Themes\hayat2\css\blocks.less" />
+    <Content Include="Themes\hayat2\css\hayat.less" />
+    <Content Include="Themes\hayat2\css\logo.less" />
+    <Content Include="Themes\hayat2\css\places.less" />
+    <Content Include="Themes\hayat2\css\slider.less" />
+    <Content Include="Themes\hayat2\css\gallery.less" />
     <None Include="Themes\hayat2\less\blocks.less" />
     <Content Include="Themes\hayat2\less\block-main.css" />
     <Content Include="Themes\hayat2\lib\angular\angular-route.js" />
@@ -2287,16 +2341,10 @@
     <Content Include="Themes\hayat2\lib\async\async.min.map" />
     <Content Include="Themes\hayat2\lib\bootstrap-rtl\css\bootstrap-rtl.css" />
     <Content Include="Themes\hayat2\lib\bootstrap-rtl\css\bootstrap-rtl.min.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.css" />
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.css.map" />
     <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
-    <Content Include="Themes\hayat2\lib\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Themes\hayat2\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -2318,9 +2366,13 @@
     <Content Include="Themes\hayat2\lib\jquery\3.1.1\jquery3-1-1.js" />
     <Content Include="Themes\hayat2\lib\jquery\jquery.min.js" />
     <Content Include="Themes\hayat2\lib\resetcss\reset.min.css" />
+    <Content Include="Themes\hayat2\lib\resize-image-map\resize-image-map.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
     <Content Include="Themes\hayat2\module\controllers.js" />
+    <Content Include="Themes\hayat2\Pages\blocks\plans\plan-c - Copy.cshtml" />
+    <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
+    <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
     <Content Include="Themes\hayat2\theme.xml" />
     <Content Include="Themes\hayat2\_Layout.cshtml" />
@@ -2432,7 +2484,6 @@
     <Content Include="SharedViews\404.cshtml" />
     <Content Include="Themes\web.config" />
     <Content Include="Themes\_ViewStart.cshtml" />
-    <Content Include="Themes\hayat2\less\all.less" />
     <Content Include="Themes\hayat2\less\hayat.less" />
     <Content Include="Themes\hayat2\less\logo.less" />
     <Content Include="Themes\hayat2\less\places.less" />
@@ -2461,6 +2512,8 @@
     <Content Include="Themes\hayat2\Pages\importUnits.cshtml" />
     <Content Include="Themes\hayat2\Pages\visit.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\data.cshtml" />
+    <Content Include="Themes\hayat2\Pages\units - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2478,8 +2531,11 @@
     <Folder Include="Areas\Manage\Views\Shared\" />
     <Folder Include="Areas\Manage\Views\Stats\" />
     <Folder Include="Content\FileManager\userfiles\" />
+    <Folder Include="Files\Uploads\" />
     <Folder Include="Scripts\vjs-lang\" />
     <Folder Include="Themes\hayat2\etc\" />
+    <Folder Include="Themes\hayat2\img\map\block-map\b\" />
+    <Folder Include="Themes\hayat2\Pages\gallery\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">
@@ -2494,6 +2550,10 @@
       <Project>{b911f8ab-1b84-471a-b447-a295a136c7ef}</Project>
       <Name>HCMS.Dynamics</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HCMS.Hayat\HCMS.Hayat.csproj">
+      <Project>{daa46123-ce1f-4133-b402-2938554ed1ed}</Project>
+      <Name>HCMS.Hayat</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HCMS.Security\HCMS.Security.csproj">
       <Project>{6e095d4b-1fcc-40ce-af65-ab3510a96123}</Project>
       <Name>HCMS.Security</Name>
@@ -2501,6 +2561,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

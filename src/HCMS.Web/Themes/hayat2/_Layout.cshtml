@@ -37,12 +37,12 @@
 
     <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
     <link href="favicon.ico" rel="shortcut icon">
+    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 
 
     <!-- reset css defaults -->
     <link href="~/Themes/hayat2/lib/resetcss/reset.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 
     <!-- Bootstrap CSS File -->
@@ -56,8 +56,25 @@
 
 
     <!-- hayat styles -->
-    <link href="~/Themes/hayat2/css/all.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
-    <link href="~/Themes/hayat2/less/block-main.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/hayat.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/logo.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/places.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/slider.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/gallery.min.css" rel="stylesheet" />
+
+    <!--Blocks Css-->
+    <link href="~/Themes/hayat2/css/blocks/block-a.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks/block-b.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks/block-c.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks/block-main.css" rel="stylesheet" />
+
+    <!--Plans css-->
+    <link href="~/Themes/hayat2/css/plan/plan-a.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/plan/plan-b.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/plan/plan-c.css" rel="stylesheet" />
+
+
 
     <script src="~/Themes/hayat2/lib/underscore/underscore.min.js"></script>
     <script src="~/Themes/hayat2/lib/async/async.min.js"></script>
@@ -81,13 +98,14 @@
     </div>
 
 
-    <header>
+
+    <header class="hidden-mobile">
 
         <div class="logo">
             <img src="~/Themes/hayat2/img/logo/Ebtekar Saze Samle Logo.png" />
         </div>
 
-        <a href="~/" class="homelogo">
+        <a href="~/" class="homelogo" title="بازگشت به صفحه اصلی">
             <img src="~/Themes/hayat2/img/logo/Hayate no Logo black.png" />
         </a>
 
@@ -95,26 +113,26 @@
             <ul>
                 <li>
                     <a href="/visit">
+                        <i class="fa fa-calendar"></i>
                         <span>
                             رزرو بازدید
                         </span>
-                        <i class="fa fa-calendar"></i>
                     </a>
                 </li>
 
                 <li>
+                    <i class="fa fa-envelope"></i>
                     <span class="ltr email">
                         info@hayat-no.com
                     </span>
-                    <i class="fa fa-envelope"></i>
                 </li>
 
 
                 <li>
+                    <i class="fa fa-phone-square"></i>
                     <span class="ltr phone">
                         021 2290 4055
                     </span>
-                    <i class="fa fa-phone-square"></i>
                 </li>
             </ul>
         </div>
@@ -160,7 +178,7 @@
                 }
                 else
                 {
-                  <li class="pull-left">
+                    <li class="pull-left">
                         <a href="/auth">
                             <i class="fa fa-user"></i>
                             ورود
@@ -172,12 +190,154 @@
 
         </nav>
 
+        <div class="search-bar">
+            <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+
+
+            <input class="form-control" placeholder="طبقه را وارد کنید" />
+            <select class="form-control">
+                <option>تعداد اتاق را انتخاب کنید</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+
+            <select class="form-control">
+                <option>متراژ </option>
+                <option>80 - 100</option>
+                <option>100 - 120</option>
+                <option>120 - 140</option>
+                <option>140 - 180</option>
+            </select>
+
+        </div>
+    </header>
+
+    <div class="show-mobile bar" id="menu-bar">
+    </div>
+    <header class="show-mobile">
+        <div class="close">
+            <i class="fa fa-close"></i>
+        </div>
+
+        <div class="logo">
+            <img src="~/Themes/hayat2/img/logo/Ebtekar Saze Samle Logo.png" />
+        </div>
+
+        <a href="~/" class="homelogo">
+            <img src="~/Themes/hayat2/img/logo/Hayate no Logo black.png" />
+        </a>
+
+        <div class="links">
+            <ul>
+                <li>
+                    <a href="/visit">
+                        <i class="fa fa-calendar"></i>
+                        <span>
+                            رزرو بازدید
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <span class="ltr email">
+                        info@hayat-no.com
+                    </span>
+                </li>
+
+
+                <li>
+                    <i class="fa fa-phone-square"></i>
+                    <span class="ltr phone">
+                        021 2290 4055
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <nav>
+            <ul>
+
+                @foreach (var item in menu)
+                {
+
+                    <li>
+                        <a href="@item.GetValue("url")" class="under-line-animate">
+                            @item.GetValue("name")
+
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        {
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+
+                            </div>
+
+                        }
+
+                    </li>
+
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="pull-left">
+                        <a href="">
+                            <i class="fa fa-user"></i>
+                            @User.Identity.Name
+                        </a>
+
+                        <div class="child-menu">
+                            <form action="/fa-ir/manage/auth/LogOff" method="post">
+                                <button type="submit" class="btn btn-block hayatbtn">
+                                    <i class="fa fa-lock"></i>
+                                    خروج
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="pull-left">
+                        <a href="/auth">
+                            <i class="fa fa-user"></i>
+                            ورود
+                        </a>
+                    </li>
+                }
+
+            </ul>
+
+        </nav>
+
+        <div class="search-bar">
+            <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+
+
+            <input class="form-control" placeholder="طبقه را وارد کنید" />
+            <select class="form-control">
+                <option>تعداد اتاق را انتخاب کنید</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+
+            <select class="form-control">
+                <option>متراژ </option>
+                <option>80 - 100</option>
+                <option>100 - 120</option>
+                <option>120 - 140</option>
+                <option>140 - 180</option>
+            </select>
+
+        </div>
     </header>
 
 
-
-
     @RenderBody()
+
+
+
 
 
 
@@ -192,11 +352,17 @@
 
 
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Themes/hayat2/js/scroll.js"></script>
+    <script src="~/Themes/hayat2/js/newScroll.js"></script>
+    <script src="~/Themes/hayat2/js/unit.js"></script>
 
+    <script src="~/Themes/hayat2/js/slider.js"></script>
+    <script src="~/Themes/hayat2/js/videoslider.js"></script>
+    <script src="~/Themes/hayat2/js/custom.js"></script>
+    <script src="~/Themes/hayat2/js/blocks.js"></script>
 
-    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
-
-
+    @*<script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>*@
+    <script src="~/Themes/hayat2/lib/resize-image-map/resize-image-map.js"></script>
     <!-- hayat JS Bundle -->
 
     @if (Request.Url.ToString().Contains("hayat-no"))
@@ -207,9 +373,7 @@
 
     @RenderSection("scripts", false)
 
-   
-
-
 </body>
 
 </html>
+

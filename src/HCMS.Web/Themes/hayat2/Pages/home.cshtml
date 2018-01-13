@@ -2,6 +2,7 @@
 @{
     var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
     var socials = DDB.GetTable("cms", "socials").DRows;
+   
 
 
     ViewBag.title = "خانه";
@@ -9,14 +10,7 @@
 
 }
 
-@section scripts {
 
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
-</script>
-<script src="~/Themes/hayat2/js/places.min.js"></script>
-
-}
 <div class="right-icons">
     <ul>
         @foreach (var item in quickLinks)
@@ -53,6 +47,16 @@
         }
 
     </ul>
+
+   
+</div>
+
+<div class="left-icons-mobile">
+    <i class="fa fa-share-alt"></i>
+</div>
+
+<div class="right-icons-mobile">
+    <i class="fa fa-map"></i>
 </div>
 
 @Html.Partial("home/slider")
@@ -67,3 +71,16 @@
 
 @Html.Partial("home/forms")
 
+@Html.Partial("home/footer")
+
+@section scripts {
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+    </script>
+    <script src="~/Themes/hayat2/js/places.js"></script>
+    <script>
+        $('img#img-back-main').rwdImageMaps();
+    </script>
+
+}

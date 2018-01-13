@@ -17,115 +17,226 @@
 
     var user = new HCMS.Data.Identity.ApplicationDbContext().Users.FirstOrDefault(p => p.UserName == User.Identity.Name);
 
-    var types = DDB.GetTable("cms", "units").DRows.Select(p => p.GetValue("area").Value).DistinctBy(p => p).OrderBy(p=>p);
-
+    var types = DDB.GetTable("cms", "units").DRows.Select(p => p.GetValue("area").Value).DistinctBy(p => p).OrderBy(p => p);
+    var price = DDB.GetTable("cms", "UnitsPrice").DRows.OrderBy(p => p.GetValue("Order").Value);
+    var country = DDB.GetTable("cms", "Country").DRows.OrderBy(p => p.GetValue("Name").Value);
+    var province = DDB.GetTable("cms", "Province").DRows.OrderBy(p => p.GetValue("Name").Value);
+    var city = DDB.GetTable("cms", "City").DRows.OrderBy(p => p.GetValue("Name").Value);
 
 }
-
 
 <section id="submit" class="page page-homeforms">
     <div class="container">
 
         <div class="row">
 
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-9 col-md-offset-2">
 
                 <h3 data-aos="fade-down">فرم ثبت نام رزرو بازدید</h3>
 
+                <div class="alert alert-info">
+                    <i class="fa fa-exclamation-circle"></i>
+                    این سایت و شرکت ابتکار سازه
+                    محافظ حریم شخصی شماست
+                </div>
+
                 <div class="form">
-                    <form action="/submit_cooprate" method="post" role="form" class="contactForm">
+                    <form id="visit-form" method="post" role="form" class="contactForm">
 
                         <div class="row">
 
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
 
-                                <label>
-                                    <i class="fa fa-cubes"></i>
-                                    نوع واحد
-                                </label>
-                                <select required name="type" class="form-control">
-                                    <option></option>
-                                   @foreach (var item in types)
-                                   {
-                                    <option value="@item">
-                                        واحد @item
-                                        متری
-                                    </option>
-                                   }
+                                    <label class="required">
+                                        <i class="fa fa-user"></i>
+                                        نام و نام خانوادگی
+                                    </label>
+                                    <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
 
-                                </select>
+                                </div>
                             </div>
 
 
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
 
-                                <label>
-                                    <i class="fa fa-question"></i>
-                                    قیمت مورد نظر
-                                </label>
+                                    <label class="required">
+                                        <i class="fa fa-user-circle"></i>
+                                        تعداد خانوار
+                                    </label>
+                                    <input type="number" required name="familyCount" class="form-control" placeholder="تعداد خانوار" />
 
-                                <select required name="type" class="form-control">
-                                    <option></option>
-                                    <option>
-                                        از متری 9  تا 9.5
-                                        میلیون تومان
-
-                                    </option>
-                                    <option>
-                                        
-                                        از متری 9.5  تا 10
-                                        میلیون تومان
-
-                                    </option>
-                                    <option>
-                                        از متری 10  تا 10.5
-                                        میلیون تومان
-                                    </option>
-
-                                </select>
+                                </div>
                             </div>
 
 
-                            <div data-aos="fade-left" class="form-group">
-
-                                <label>
-                                    <i class="fa fa-user"></i>
-                                    نام و نام خانوادگی
-                                </label>
-                                <input type="text" required name="name" class="form-control" value="@user.FirstName @user.LastName" placeholder="نام و نام خانوادگی" />
-
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label>
+                                        <i class="fa fa-university"></i>
+                                        تحصیلات
+                                    </label>
+                                    <input type="text" name="academic" class="form-control" placeholder="تحصیلات" />
+                                </div>
                             </div>
 
-                            <div data-aos="fade-left" class="form-group">
-
-                                <label>
-                                    <i class="fa fa-mobile-phone"></i>
-                                    شماره همراه
-                                </label>
-                                <input type="text" required class="form-control" name="phone" value="@user.Mobile" placeholder="شماره همراه" />
-
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label>
+                                        <i class="fa fa-handshake-o"></i>
+                                        شغل
+                                    </label>
+                                    <input type="text" name="job" class="form-control" placeholder="شغل" />
+                                </div>
                             </div>
 
-                            <div data-aos="fade-left" class="form-group">
-
-                                <label>
-                                    <i class="fa fa-at"></i>
-                                   ایمیل
-                                </label>
-                                <input type="text" required class="form-control" name="email" value="@user.Email" placeholder="شماره همراه" />
-
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-mobile-phone"></i>
+                                        شماره همراه
+                                    </label>
+                                    <input type="text" required class="form-control" name="phone" placeholder="شماره همراه" />
+                                </div>
                             </div>
 
-                            <div data-aos="fade-left" class="form-group captcha-field">
-                                <img src="~/manage/Captcha/msdn?prefix=_cooprate" id="captcha-image" />
-                                <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-cc-discover"></i>
+                                        مساحت ( متراژ)
+                                    </label>
+                                    <select required name="type" class="form-control">
+                                        @foreach (var item in types)
+                                        {
+                                            <option value="@item">
+                                                واحد @item
+                                                متری
+                                            </option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-cc-discover"></i>
+                                        تعداد اتاق
+                                    </label>
+                                    <select required name="RoomCount" class="form-control">
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+
+                                    <label>
+                                        <i class="fa fa-dollar"></i>
+                                        قیمت مورد نظر
+                                    </label>
+
+                                    <select name="PriceType" class="form-control">
+                                        <option value="0">انتخاب کنید</option>
+                                        @foreach (var item in price)
+                                        {
+                                            <option value="@item.RowID">
+                                                از @item.GetValue("From").Value تا @item.GetValue("To").Value میلیون تومان
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-md-12 col-sm-12 ">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label>
+                                        <i class="fa fa-location-arrow"></i>
+                                        آدرس سکونت فعلی
+                                    </label>
+
+                                    <div class="col-md-12 unpadding">
+                                        <div class="col-md-4 unpadding-right">
+                                            <label>کشور</label>
+                                            <select class="form-control" name="CountryId">
+                                                <option value="0">انتخاب کنید</option>
+                                                @foreach(var item in country)
+                                                {
+                                                    <option value="@item.RowID">@item.GetValue("Name")</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4 unpadding-right">
+                                            <label>استان / ایالت</label>
+                                            <select class="form-control" name="ProvinceId">
+                                                <option value="0">انتخاب کنید</option>
+                                                @foreach (var item in province)
+                                                {
+                                                    <option value="@item.RowID">@item.GetValue("Name")</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4 unpadding">
+                                            <label>شهر</label>
+                                            <select class="form-control" name="CityId">
+                                                <option value="0">انتخاب کنید</option>
+                                                @foreach (var item in city)
+                                                {
+                                                    <option value="@item.RowID">@item.GetValue("Name")</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-12 unpadding">
+                                            <label>ادامه آدرس</label>
+                                            <textarea class="form-control" name="Address"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
 
+                        <hr />
+                        <h3>نظر شما</h3>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label>
+                                        <i class="fa fa-comment"></i>
+                                        نظر شما در مورد این واحد
+                                    </label>
+                                    <textarea class="form-control" name="comment"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div data-aos="fade-left" class="form-group captcha-field">
+                                    <img src="~/manage/Captcha/msdn?prefix=_visits" id="captcha-image" />
+                                    <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                                </div>
+                            </div>
+                        </div>
 
 
-                        <button data-aos="fade-left" class="hayatbtn" type="submit">
+                        <div class="alert" id="resultInfo" style="display:none">
+
+                        </div>
+
+                        <button data-aos="fade-left" id="submit-btn" class="hayatbtn" type="button">
                             <i class="fa fa-send">
                             </i>
                             ارسال
@@ -140,3 +251,70 @@
         </div>
     </div>
 </section>
+
+@section scripts{
+
+    <script>
+        var _captchaDate = Date.now();
+        $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit&guid=' + _captchaDate);
+        $(document).on('click', '#submit-btn', function (e) {
+            console.log
+           // $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit');
+            if (IsValid() === true) {
+                var url = '@Url.Action("Post", "Visit", new {plugin = "Hayat" })';
+
+                var model = $('#visit-form').serialize();
+                model += "&captcha_guid=" + _captchaDate;
+                console.log(model);
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: model,
+                    contentType: "application/x-www-form-urlencoded",
+                    beforeSend: function () {
+                        $('#loader').show();
+                    },
+                    success: function (data) {
+                        $('#resultInfo').show();
+                        if (data.result) {
+                            $('#resultInfo').addClass('alert-success').html(data.msg);
+                        } else {
+                            var html = '<ul>';
+                            $.each(data.msg, function (index, item) {
+                                html += "<li>" + item + "</li>";
+                            })
+                            html += '</ul>';
+                            $('#resultInfo').addClass('alert-danger').html(html);
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    },
+                    complete: function () {
+                        $('#loader').css('display', 'none');
+                    }
+                });
+            }
+            e.preventDefault();
+
+        })
+
+        var IsValid = function () {
+            var isValid = true;
+            var form = $('#visit-form');
+            var inputs = $(form).find('input:required');
+            $.each(inputs, function (index, item) {
+                if ($(item).val() === '')
+                {
+                    isValid = true;
+                    $(item).addClass('has-error');
+                }
+                else
+                    $(item).removeClass('has-error');
+            })
+            console.log(isValid);
+            return isValid;
+        }
+    </script>
+
+}

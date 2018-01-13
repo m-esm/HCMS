@@ -137,5 +137,11 @@
     "inputFiles": [
       "Themes/hayat2/gulpfile.js"
     ]
+  },
+  {
+    "outputFileName": "Themes/hayat2/css/block-main.min.css",
+    "inputFiles": [
+      "Themes/hayat2/css/block-main.css"
+    ]
   }
 ]

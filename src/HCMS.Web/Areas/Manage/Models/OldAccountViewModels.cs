@@ -73,25 +73,27 @@ namespace HCMS.Web.Areas.Manage.Models
 
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "{0} required")]
+        [Required(ErrorMessage = "{0} را وارد کنید")]
         //  [EmailAddress(ErrorMessage = "{0} not valid")]
         [Display(Name = "Username")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
-        [StringLength(100, ErrorMessage = "Password Minimum Length is {0}.", MinimumLength = 6)]
+        [Required(ErrorMessage = "{0} را وارد کنید")]
+        [StringLength(100, ErrorMessage = "رمز عبور حداقل باید 6 کارکتر باشد", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords doesnt match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "رمز ها یکی نیستند")]
         public string ConfirmPassword { get; set; }
 
         public SelectList RoleList { get; set; }
         public int Captcha { get; set; }
         public bool isAjax { get; set; }
+        public string captcha_guid { get; set; }
+        public string role { get; set; }
     }
 
     public class ChangeUserPasswordViewModel

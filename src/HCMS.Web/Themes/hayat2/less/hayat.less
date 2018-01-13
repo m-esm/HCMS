@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5 {
 }
 
 body {
-    background: #fdfdfd;
+    background: #FBFAF9;
     color: #666666;
     font-family: "IRANSansWeb", sans-serif;
     height: 100vh;
@@ -409,7 +409,7 @@ header {
                     span {
                         padding-left: 1px;
                         width: 60px;
-                        text-align: left;
+                        text-align: right;
 
                         &.email {
                             width: 125px;
@@ -429,7 +429,7 @@ header {
         top: 100px;
         left: 0;
         width: 100%;
-        padding: 0 20px 0 10px;
+        padding: 0 20px 0 0;
         box-sizing: border-box;
         z-index: 300;
         transition: all ease 0.5s;
@@ -526,6 +526,35 @@ header {
             }
         }
     }
+
+      .search-bar {
+                position: absolute;
+                left: -690px;
+                top: 141px;
+                width: 724px;
+                display: inline-block;
+                transition: all 1s;
+
+                &.open {
+                    left: -41px;
+                }
+
+                input, select {
+                    float: right;
+                    width: 30%;
+                    border-radius: 0;
+                    background-color: rgba(2,2,2, 0.5);
+                    color: #fff;
+                }
+
+                i {
+                    background-color: @baseColor1;
+                    color: #fff;
+                    padding: 10px;
+                    float: right;
+                    cursor: pointer;
+                }
+            }
 }
 
 

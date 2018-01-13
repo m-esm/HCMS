@@ -1,0 +1,72 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    var setting = DDB.GetTable("cms", "Setting").DRows.FirstOrDefault();
+}
+<section class="page footer padding-top-100px" id="footer">
+    <div class="line">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="box">
+                    <h4 class="title">شماره های تماس</h4>
+                    <ul>
+                        @foreach (var phone in setting.GetGroup("phone"))
+                        {
+                            <li>
+                                <i class="fa fa-phone rotat-180deg"></i>
+
+                                <a>
+                                    @phone.GetValue("phone")
+                                </a>
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="box">
+                    <h4 class="title">آدرس</h4>
+                    @foreach (var address in setting.GetGroup("address"))
+                    {
+                        <address>
+                            <i class="fa fa-map-marker"></i>
+                            @address.GetValue("address")
+                        </address>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="box">
+                    <h4 class="title">لینک ها</h4>
+                    <ul>
+                        @foreach (var link in setting.GetGroup("link"))
+                        {
+                            <li>
+                                <i class="fa fa-link"></i>
+                                <a href="@link.GetValue("url")">@link.GetValue("title")</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+        
+        <footer>
+            <p>
+                کلیه حقوق وب سایت متعلق به شرکت حیات نو می باشد
+                <span>
+                    © @DateTime.Now.Year
+                </span>
+            </p>
+        </footer>
+
+    </div>
+   
+
+</section>

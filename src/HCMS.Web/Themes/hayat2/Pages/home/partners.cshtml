@@ -1,6 +1,10 @@
 ﻿@using HCMS.Dynamics.Data
 @{
     var partners = DDB.GetTable("cms", "partners").DRows;
+
+    var first = partners.Where(a => a.GetValue("groupId").Value == "1");
+    var seconde = partners.Where(a => a.GetValue("groupId").Value == "2");
+    var third = partners.Where(a => a.GetValue("groupId").Value == "3");
 }
 <section id="partners" class="page page-partners">
 
@@ -11,16 +15,48 @@
         </h2>
         <div class="items">
 
-            @foreach (var item in partners)
+            <div class="row">
+                <div class="col-md-4 col-sm-12" data-aos="fade-down" data-aos-delay="500">
+                    @foreach (var item in first)
             {
 
                 var url = item.GetValue("url").ToString().StartsWith("http") ? item.GetValue("url").ToString() : "http://" + item.GetValue("url").ToString();
 
-                <a target="_blank" href="@url">
-                    <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
-                </a>
+                        <a target="_blank" href="@url">
+                            <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
+                        </a>
 
-            }
+                    }
+                </div>
+
+                <div class="col-md-4 col-sm-12" data-aos="fade-down" data-aos-delay="1000">
+                    @foreach (var item in seconde)
+            {
+
+                var url = item.GetValue("url").ToString().StartsWith("http") ? item.GetValue("url").ToString() : "http://" + item.GetValue("url").ToString();
+
+                        <a target="_blank" href="@url">
+                            <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
+                        </a>
+
+                    }
+                </div>
+
+                <div class="col-md-4 col-sm-12" data-aos="fade-down" data-aos-delay="1500">
+                    @foreach (var item in third)
+            {
+
+                var url = item.GetValue("url").ToString().StartsWith("http") ? item.GetValue("url").ToString() : "http://" + item.GetValue("url").ToString();
+
+                        <a target="_blank" href="@url">
+                            <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
+                        </a>
+
+                    }
+                </div>
+            </div>
+
+
 
         </div>
     </div>

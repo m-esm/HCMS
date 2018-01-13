@@ -1,13 +1,13 @@
 ﻿/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
-$(function () {
+var keyLeftRight = false;
 
+$(function () {
 
 
     var busy = false;
 
     var onHashChange = function () {
-
-        if (!busy)
+        if (!busy && !keyLeftRight)
             changePage($(window.location.hash.toLowerCase()), "down");
 
     };
@@ -24,9 +24,6 @@ $(function () {
 
 
     var changePage = function (nextPage, mode) {
-
-
-
         if (busy)
             return;
 
@@ -69,7 +66,6 @@ $(function () {
 
 
 
-        console.log(mode);
 
 
         if (window.location.pathname !== "/") {
@@ -179,16 +175,15 @@ $(function () {
 
 
     $(document).keydown(function (e) {
-        console.log(e.which);
         switch (e.which) {
             case 37:
-                changePage(false, 'up');
+                keyLeftRight = true;
                 break;
             case 38:
                 changePage(false, 'up');
                 break;
             case 39:
-                changePage(false, 'down');
+                keyLeftRight = true;
                 break;
             case 40:
                 changePage(false, 'down');
@@ -200,15 +195,30 @@ $(function () {
     });
 
     $("body").swipe({
-
         //Generic swipe handler for all directions
-        swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
-            if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-                return;
+        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+            if ( phase == "move" || phase == "start" ) {
+                var $target = e.target.nodeName;
+                if( $target.toLowerCase() === 'input' ) {
+                    return false;
+                } else {
+                    if (duration > 30) {
+                        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+                            return;
+                        changePage(false, direction == "up" ? "down" : "up");
+                    }
+                  
+                }
+            }
+        },
+        excludedElements: "label, button, input, select, textarea, .noSwipe"
+        //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
+        //    console.log(e);
+        //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+        //        return;
+        //    changePage(false, direction == "up" ? "down" : "up");
 
-            changePage(false, direction == "up" ? "down" : "up");
-
-        }
+        //}
     });
 
 
@@ -220,7 +230,6 @@ $(function () {
 
 
     $(window).scrollTop(0);
-
     if (window.location.hash.length > 2)
         changePage($(window.location.hash.toLowerCase()), "down");
     else

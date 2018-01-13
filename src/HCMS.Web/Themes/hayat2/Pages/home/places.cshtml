@@ -14,13 +14,23 @@
                 @foreach (var item in places)
                 {
                     var positions = "";
-
+                    var images = "";
+                    var titles = "";
+                    var descrps = "";
                     foreach (var pos in item.GetGroup("positions"))
                     {
                         positions += "|" + pos.GetValue("latlng");
+                        images += "|" + pos.GetValue("Image");
+                        titles += "|" + pos.GetValue("title");
+                        descrps += "|" + pos.GetValue("descrp");
                     }
 
-                    <li style="background:@item.GetValue("color")" data-title="@item.GetValue("name")" data-icon="@item.GetValue("icon")" data-latlng="@positions">
+                    <li style="background:@item.GetValue("color")" 
+                        data-title="@titles" 
+                        data-descrp="@descrps" 
+                        data-image="@images" 
+                        data-icon="@item.GetValue("icon")" 
+                        data-latlng="@positions">
 
                         @item.GetValue("name")
 

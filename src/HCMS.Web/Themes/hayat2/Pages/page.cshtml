@@ -51,29 +51,32 @@
 
                 @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
                 {
-                    <div class="text @(i % 2 == 0 ? "pull-left" : "pull-right")">
-                        @Html.Raw(item.GetValue("content").Value)
+                    <div class="col-lg-6 col-md-6 col-xs-12 @(i % 2 == 0 ? "pull-left" : "pull-right")">
+                        <div class="text cscroll">
+                            @Html.Raw(item.GetValue("content").Value)
 
 
-                        <div class="buttons">
+                            <div class="buttons">
 
-                            @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
-                            {
-                                <a class="hayatbtn" href="@item.GetValue("link")">
-                                    @item.GetValue("linkText")
-                                </a>
-                            }
+                                @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
+                                {
+                                    <a class="hayatbtn" href="@item.GetValue("link")">
+                                        @item.GetValue("linkText")
+                                    </a>
+                                }
+
+                            </div>
 
                         </div>
-
                     </div>
-                    <div class="pic @(i % 2 != 0 ? "pull-left" : "pull-right")">
-                        <img class="img img-responsive" src="@item.GetValue("image")" />
+
+                    <div style="overflow:hidden;" class="col-lg-6 col-md-6 col-xs-12 @(i % 2 != 0 ? "pull-left" : "pull-right")">
+                            <img class="pic" src="@item.GetValue("image")" />
                     </div>
                 }
                 else
                 {
-                    <div class="fulltext">
+                    <div class="fulltext cscroll">
 
                         @Html.Raw(item.GetValue("content").Value)
 

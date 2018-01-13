@@ -1,0 +1,195 @@
+﻿#slider {
+    height: 100vh;
+    width: 100%;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+
+
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        content: ' ';
+        width: 100%;
+        background-position: center center;
+        -webkit-filter: brightness(0.9);
+        overflow: hidden;
+        transition: filter ease 0.5s;
+
+        .slice {
+            background-size: 100%;
+            transform: translateX(-100%);
+
+
+            &.one {
+                background-size: cover;
+                background-position: center center;
+                height: 100vh;
+            }
+
+            &.in, &.out {
+                transition: all ease 5s;
+            }
+
+            &.in {
+                transform: translateX(0);
+            }
+
+            &.out {
+                transform: translateX(100%);
+                transition: all ease 10s;
+            }
+        }
+
+        img {
+            width: 100%;
+            display: none;
+        }
+
+        &.deactive {
+            z-index: 98;
+        }
+
+        &.active {
+            z-index: 99;
+        }
+
+        &:nth-child(1) {
+        }
+
+        &:hover {
+            -webkit-filter: none;
+        }
+    }
+}
+
+
+#videos {
+    text-align: center;
+    margin:0 auto;
+
+    .inner {
+        padding: 0 40px;
+        overflow: hidden;
+    }
+
+    .tv {
+        display: block;
+        margin: 0 auto;
+        margin-top: 80px;
+        margin-bottom: 20px;
+        height: calc(~"100vh - 170px");
+        overflow: hidden;
+        width: auto;
+        position: relative;
+        border: 5px solid rgba(0, 0, 0, 0.3);
+        transition: all ease 0.5s,border-color ease 2s,box-shadow ease 2s,transform ease 0.3s;
+        transform: scale(0.95);
+        overflow: hidden;
+        cursor: pointer;
+
+
+        &:after {
+            box-sizing: border-box;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            color: #ddd;
+            content: "\f04b";
+            font: normal normal normal 14px/1 FontAwesome;
+            vertical-align: middle;
+            z-index: 2;
+            line-height: calc(~"100vh - 200px");
+            font-size: 60px;
+            text-shadow: 0 0 20px #000;
+            transition: all ease 0.5s;
+        }
+
+        &.play {
+            border-color: rgba(0, 0, 0, 1);
+            box-shadow: 0 10px 40px #000;
+            transform: none;
+
+            &:after {
+                content: "\f04c";
+                opacity: 0;
+            }
+
+            &:hover:after {
+                opacity: 1;
+            }
+        }
+
+        #video {
+            height: 100%;
+            position: relative;
+            display: block;
+            width: auto;
+            outline: none;
+            border: none;
+            margin-right: -1px;
+        }
+    }
+
+    .thumbnails {
+        text-align: center;
+        direction: ltr;
+
+
+        > div {
+            width: 140px;
+            height: 80px;
+            line-height: 80px;
+            vertical-align: top;
+            display: inline-block;
+            background: #ddd;
+            margin: 0 5px;
+            border: 1px solid #bbb;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+
+
+            &:before {
+                border: 5px solid rgba(0, 0, 0, 0.3);
+                box-sizing: border-box;
+                position: absolute;
+                background: rgba(0, 0, 0, 0.2);
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                color: #ddd;
+                content: "\f04b";
+                font: normal normal normal 14px/1 FontAwesome;
+                line-height: 80px;
+                vertical-align: middle;
+            }
+
+
+            img {
+                width: 100%;
+                vertical-align: middle;
+                display: inline-block;
+            }
+        }
+    }
+}
+@media(max-width:600px) {
+
+    #videos .inner {
+        padding: 0!important;
+    }
+
+    #videos .tv {
+        margin-top: 40px!important;
+    }
+}

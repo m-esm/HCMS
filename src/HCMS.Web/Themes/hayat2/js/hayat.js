@@ -14,8 +14,151 @@ $(document).on('mouseenter mouseleave', 'section.page-blocks area', function (ev
     if (event.type == "mouseleave")
         $(target.attr('data-block'), wrapper).removeClass('in');
 
+});
+
+//
+
+
+var plan_a_keys = [
+    { unit: 1, url: '/Themes/hayat2/img/plan/A/keys/Block A Plan 001.png' },
+    { unit: 2, url: '/Themes/hayat2/img/plan/A/keys/Block A Plan 002.png' },
+    { unit: 3, url: '/Themes/hayat2/img/plan/A/keys/Block A Plan 003.png' },
+    { unit: 4, url: '/Themes/hayat2/img/plan/A/keys/Block A Plan 004.png' },
+];
+
+var plan_b_keys = [
+    { unit: 1, url: '/Themes/hayat2/img/plan/B/keys/Block B Plan-01.png' },
+    { unit: 2, url: '/Themes/hayat2/img/plan/B/keys/Block B Plan-02.png' },
+    { unit: 3, url: '/Themes/hayat2/img/plan/B/keys/Block B Plan-03.png' },
+    { unit: 4, url: '/Themes/hayat2/img/plan/B/keys/Block B Plan-04.png' },
+    { unit: 5, url: '/Themes/hayat2/img/plan/B/keys/Block B Plan-05.png' },
+];
+
+var plan_c_keys = [
+    { unit: 1, url: '/Themes/hayat2/img/plan/C/keys/Block C Plan 01.png' },
+    { unit: 2, url: '/Themes/hayat2/img/plan/C/keys/Block C Plan 02.png' },
+    { unit: 3, url: '/Themes/hayat2/img/plan/C/keys/Block C Plan 03.png' },
+    { unit: 4, url: '/Themes/hayat2/img/plan/C/keys/Block C Plan 04.png' },
+    { unit: 5, url: '/Themes/hayat2/img/plan/C/keys/Block C Plan 05.png' },
+];
+
+$('#recortes-plan-a area').click(function () {
+    var unit = $(this).attr('data-unit');
+    var find = plan_a_keys.find(a=>a.unit == unit);
+    $('#block-a .plan-unit img').attr('src', find.url);
+
+    $('#block-a .plan-unit').css('display', 'block');
+
+    //set data table select and active
+    var _id = '1-' + unit;
+    console.log(_id);
+    //remove class from another child
+    $('#block-a .table tr').removeClass('selected');
+    $('#block-a .table tr').removeClass('active');
+
+    //find plan number 
+    var _area = parseInt($('#block-a #' + _id).attr('data-area'));
+    for (var i = _area - 10; i < _area + 10; i++) {
+        $('#block-a .table tr[data-area=' + i + ']').addClass('active');
+    }
+    console.log(_area);
+    $('#block-a #' + _id).addClass('selected');
 
 });
+
+$('#recortes-plan-b area').click(function () {
+    var unit = $(this).attr('data-unit');
+    var find = plan_b_keys.find(a=>a.unit == unit);
+    $('#block-b .plan-unit img').attr('src', find.url);
+
+    $('#block-b .plan-unit').css('display', 'block');
+
+    //set data table select and active
+    var _id = '2-' + unit;
+    console.log(_id);
+    //remove class from another child
+    $('#block-b .table tr').removeClass('selected');
+    $('#block-b .table tr').removeClass('active');
+
+    //find plan number 
+    var _area = parseInt($('#block-b #' + _id).attr('data-area'));
+    for (var i = _area - 10; i < _area + 10; i++) {
+        $('#block-b .table tr[data-area=' + i + ']').addClass('active');
+    }
+    console.log(_area);
+    $('#block-b #' + _id).addClass('selected');
+
+});
+
+$('#recortes-plan-c area').click(function () {
+    var unit = $(this).attr('data-unit');
+    var find = plan_c_keys.find(a=>a.unit == unit);
+    $('#block-c .plan-unit img').attr('src', find.url);
+
+    $('#block-c .plan-unit').css('display', 'block');
+
+    //set data table select and active
+    var _id = '3-' + unit;
+    //remove class from another child
+    $('#block-c .table tr').removeClass('selected');
+    $('#block-c .table tr').removeClass('active');
+
+    //find plan number 
+    var _area = parseInt($('#block-c #' + _id).attr('data-area'));
+    for (var i = _area - 10; i < _area + 10; i++) {
+        $('#block-c .table tr[data-area=' + i + ']').addClass('active');
+    }
+    $('#block-c #' + _id).addClass('selected');
+
+});
+
+$('#recortes-a area').click(function () {
+    $('#block-a .plan-hover').css('display', 'block');
+});
+
+
+$('#recortes-b area').click(function () {
+    $('#block-b .plan-hover').css('display', 'block');
+});
+
+$('#recortes-c area').click(function () {
+    $('#block-c .plan-hover').css('display', 'block');
+});
+
+
+$(document).on('click', '#recortes-a area', function () {
+    var floor = $(this).attr('data-floor');
+    $('#figur-a area:nth-of-type(' + floor + ') ~ #capaRecorte-a').css('clip-path', 'url(#F' + floor + '-a)').css('display', 'block');
+});
+
+$(document).on('click', '#recortes-plan-a area', function () {
+    var plan = $(this).attr('data-unit');
+    $('#figur-plan-a area:nth-of-type(' + plan +'):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
+})
+
+$(document).on('click', '#recortes-b area', function () {
+    var floor = $(this).attr('data-floor');
+    $('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
+});
+
+$(document).on('click', '#recortes-plan-b area', function () {
+    var plan = $(this).attr('data-unit');
+    $('#figur-plan-b area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-b').css('clip-path', 'url(#PB' + plan + ')').css('display', 'block');
+})
+
+$(document).on('click', '#recortes-c area', function () {
+    var floor = $(this).attr('data-floor');
+    $('#figur-c area:nth-of-type(' + floor + ') ~ #capaRecorte-c').css('clip-path', 'url(#F' + floor + '-c)').css('display', 'block');
+});
+
+$(document).on('click', '#recortes-plan-c area', function () {
+    var plan = $(this).attr('data-unit');
+    $('#figur-plan-c area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-c').css('clip-path', 'url(#PC' + plan + ')').css('display', 'block');
+})
+
+var toggleSearchBar = function () {
+    $('.search-bar').toggleClass('open');
+}
 
 /// <reference path="../lib/aos/aos.js" />
 
@@ -27,6 +170,59 @@ $(document).on('mouseenter mouseleave', 'section.page-blocks area', function (ev
 //    delay: 500,
 //});
 
+
+var nVer = navigator.appVersion;
+var nAgt = navigator.userAgent;
+var browserName = navigator.appName;
+var fullVersion = '' + parseFloat(navigator.appVersion);
+var majorVersion = parseInt(navigator.appVersion, 10);
+var nameOffset, verOffset, ix;
+
+// In Opera 15+, the true version is after "OPR/"
+if ((verOffset = nAgt.indexOf("OPR/")) != -1) {
+    browserName = "Opera";
+    fullVersion = nAgt.substring(verOffset + 4);
+}
+    // In older Opera, the true version is after "Opera" or after "Version"
+else if ((verOffset = nAgt.indexOf("Opera")) != -1) {
+    browserName = "Opera";
+    fullVersion = nAgt.substring(verOffset + 6);
+    if ((verOffset = nAgt.indexOf("Version")) != -1)
+        fullVersion = nAgt.substring(verOffset + 8);
+}
+    // In MSIE, the true version is after "MSIE" in userAgent
+else if ((verOffset = nAgt.indexOf("MSIE")) != -1) {
+    browserName = "Microsoft Internet Explorer";
+    fullVersion = nAgt.substring(verOffset + 5);
+}
+    // In Chrome, the true version is after "Chrome"
+else if ((verOffset = nAgt.indexOf("Chrome")) != -1) {
+    browserName = "Chrome";
+    fullVersion = nAgt.substring(verOffset + 7);
+}
+    // In Safari, the true version is after "Safari" or after "Version"
+else if ((verOffset = nAgt.indexOf("Safari")) != -1) {
+    browserName = "Safari";
+    fullVersion = nAgt.substring(verOffset + 7);
+    if ((verOffset = nAgt.indexOf("Version")) != -1)
+        fullVersion = nAgt.substring(verOffset + 8);
+}
+    // In Firefox, the true version is after "Firefox"
+else if ((verOffset = nAgt.indexOf("Firefox")) != -1) {
+    browserName = "Firefox";
+    fullVersion = nAgt.substring(verOffset + 8);
+}
+    // In most other browsers, "name/version" is at the end of userAgent
+else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) <
+          (verOffset = nAgt.lastIndexOf('/'))) {
+    browserName = nAgt.substring(nameOffset, verOffset);
+    fullVersion = nAgt.substring(verOffset + 1);
+    if (browserName.toLowerCase() == browserName.toUpperCase()) {
+        browserName = navigator.appName;
+    }
+}
+if (browserName != "Firefox" && browserName != "Chrome")
+    alert("لطفا از یکی از مرورگرهای گوگل کروم و یا فایر فاکس استفاده کنید")
 
 $(document).ready(function () {
 
@@ -77,18 +273,138 @@ $(document).ready(function () {
         }
     });
 
-   
-});
-/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
-$(function () {
 
+    $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+    $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+
+    $(document).on('click', '#regUser', function () {
+
+        var buy = {};
+        buy.__RequestVerificationToken = $('#register-form input[name="__RequestVerificationToken"]').val();
+        buy.isAjax = true;
+
+        buy.Email = $('#register-form input[name="Username"]').val();
+        buy.UserName = $('#register-form input[name="Username"]').val();
+        buy.password = $('#register-form input[name="password"]').val();
+        buy.ConfirmPassword = $('#register-form input[name="ConfirmPassword"]').val();
+        buy.captcha = $('#register-form input[name="captcha"]').val();
+
+        var _captcha_guid = $('#_register-captcha-image').attr('src').split('guid=')[1];
+
+        buy.captcha_guid = '_register' + _captcha_guid;
+
+        console.log(buy);
+        $.ajax({
+            type: 'POST',
+            url: '/fa-ir/manage/Auth/register',
+            data: buy
+        }).success(function (res) {
+            $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+            if (res.length > 0) {
+                var html = '<ul>'
+                $.each(res, function (index, item) {
+                    html += '<li>' + item + '</li>';
+                })
+
+                html += '</ul>';
+                $('#reg-err').css('display', 'block');
+                $('#reg-done').css('display', 'none');
+                $('#reg-err').html(html);
+            } else {
+                $('#reg-err').css('display', 'none');
+                $('#reg-done').css('display', 'block');
+                $('#reg-done').html('ثبت نام شما با موفقیت انحام شد.');
+            }
+        }).error(function (err) {
+            $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+            $('#reg-err').css('display', 'block');
+            $('#reg-done').css('display', 'none');
+            $('#reg-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+        })
+    })
+
+    $(document).on('click', '#reg-spanser', function () {
+
+        var spanser = {};
+        spanser.__RequestVerificationToken = $('#colleagueForm input[name="__RequestVerificationToken"]').val();
+        spanser.isAjax = true;
+        spanser.role = $('#colleagueForm select[name="role"]').val();
+        spanser.Email = $('#colleagueForm input[name="username"]').val();
+        spanser.UserName = $('#colleagueForm input[name="username"]').val();
+        spanser.name = $('#colleagueForm input[name="name"]').val();
+        spanser.phone = $('#colleagueForm input[name="phone"]').val();
+        spanser.password = $('#colleagueForm input[name="Password"]').val();
+        spanser.ConfirmPassword = $('#colleagueForm input[name="ConfirmPassword"]').val();
+        spanser.captcha = $('#colleagueForm input[name="captcha"]').val();
+
+        var _captcha_guid = $('#_cooprate-captcha-image').attr('src').split('guid=')[1];
+
+        spanser.captcha_guid = '_cooprate' + _captcha_guid;
+
+        console.log(spanser);
+        $.ajax({
+            type: 'POST',
+            url: '/fa-ir/manage/Auth/RegisterByRole',
+            data: spanser
+        }).success(function (res) {
+            $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+            if (res.length > 0) {
+                var html = '<ul>'
+                $.each(res, function (index, item) {
+                    html += '<li>' + item + '</li>';
+                })
+
+                html += '</ul>';
+                $('#coll-err').css('display', 'block');
+                $('#coll-done').css('display', 'none');
+                $('#coll-err').html(html);
+            } else {
+                $('#coll-err').css('display', 'none');
+                $('#coll-done').css('display', 'block');
+                $('#coll-done').html('ثبت نام شما با موفقیت انجام شد.');
+            }
+        }).error(function (err) {
+            $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+            $('#coll-err').css('display', 'block');
+            $('#coll-done').css('display', 'none');
+            $('#coll-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+        })
+    })
+
+    $(document).on('click', '#menu-bar', function () {
+        $('header.show-mobile').addClass('open');
+        $(this).addClass('deactive');
+    });
+
+    $(document).on('click', 'header.show-mobile .fa-close', function () {
+        $('header.show-mobile').removeClass('open');
+        $('#menu-bar').removeClass('deactive');
+    })
+
+    $(document).on('click', '.left-icons-mobile', function () {
+        $('.left-icons').toggleClass('active');
+    })
+
+    $(document).on('click', '.right-icons-mobile', function () {
+        $('.right-icons').toggleClass('active');
+    })
+
+});
+
+
+
+
+
+/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
+var keyLeftRight = false;
+
+$(function () {
 
 
     var busy = false;
 
     var onHashChange = function () {
-
-        if (!busy)
+        if (!busy && !keyLeftRight)
             changePage($(window.location.hash.toLowerCase()), "down");
 
     };
@@ -105,9 +421,6 @@ $(function () {
 
 
     var changePage = function (nextPage, mode) {
-
-
-
         if (busy)
             return;
 
@@ -145,6 +458,7 @@ $(function () {
                 $('.back-to-top').addClass('horizontal');
 
         // $('[data-aos]', currentPage).removeClass('aos-animate');
+
 
 
 
@@ -260,13 +574,13 @@ $(function () {
     $(document).keydown(function (e) {
         switch (e.which) {
             case 37:
-                changePage(false, 'up');
+                keyLeftRight = true;
                 break;
             case 38:
                 changePage(false, 'up');
                 break;
             case 39:
-                changePage(false, 'down');
+                keyLeftRight = true;
                 break;
             case 40:
                 changePage(false, 'down');
@@ -278,15 +592,30 @@ $(function () {
     });
 
     $("body").swipe({
-
         //Generic swipe handler for all directions
-        swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
-            if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-                return;
+        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+            if ( phase == "move" || phase == "start" ) {
+                var $target = e.target.nodeName;
+                if( $target.toLowerCase() === 'input' ) {
+                    return false;
+                } else {
+                    if (duration > 30) {
+                        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+                            return;
+                        changePage(false, direction == "up" ? "down" : "up");
+                    }
+                  
+                }
+            }
+        },
+        excludedElements: "label, button, input, select, textarea, .noSwipe"
+        //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
+        //    console.log(e);
+        //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+        //        return;
+        //    changePage(false, direction == "up" ? "down" : "up");
 
-            changePage(false, direction == "up" ? "down" : "up");
-
-        }
+        //}
     });
 
 
@@ -298,7 +627,6 @@ $(function () {
 
 
     $(window).scrollTop(0);
-
     if (window.location.hash.length > 2)
         changePage($(window.location.hash.toLowerCase()), "down");
     else

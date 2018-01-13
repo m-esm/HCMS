@@ -30,14 +30,14 @@
 }
 #slider .slide .slice.in,
 #slider .slide .slice.out {
-  transition: all ease 3s;
+  transition: all ease 5s;
 }
 #slider .slide .slice.in {
   transform: translateX(0);
 }
 #slider .slide .slice.out {
   transform: translateX(100%);
-  transition: all ease 6s;
+  transition: all ease 10s;
 }
 #slider .slide img {
   width: 100%;
@@ -54,6 +54,7 @@
 }
 #videos {
   text-align: center;
+  margin: 0 auto;
 }
 #videos .inner {
   padding: 0 40px;

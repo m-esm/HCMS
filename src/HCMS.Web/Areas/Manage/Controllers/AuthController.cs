@@ -159,15 +159,13 @@ namespace HCMS.Web.Areas.Manage.Controllers
         {
             string captcha_session_key = "captcha_login" + captcha_guid;
 
-            //  Response.Write(Session[captcha_session_key].ToString() + " : " + model.Captcha + "<br />");
-
             if (Session[captcha_session_key] == null)
             {
-                ModelState.AddModelError("", @"Captcha code is expired .");
+                ModelState.AddModelError("", @"کد امنیتی منقضی شده است");
             }
             else if (model.Captcha != Session[captcha_session_key].ToString())
             {
-                ModelState.AddModelError("", @"Captcha code is wrong .");
+                ModelState.AddModelError("", @"کد امنیتی وارد شده اشتباه است.");
             }
 
 
@@ -218,18 +216,18 @@ namespace HCMS.Web.Areas.Manage.Controllers
             if (user != null)
             {
 
-                if (user.EmailConfirmed == false && user.MobileConfirmed == false)
-                {
-                    ModelState.AddModelError("", @"نام کاربری یا شماره موبایل شما فعال سازی نشده است !");
-                    if (model.isAjax)
-                    {
-                        return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
-                                     .Select(e => e.ErrorMessage)
-                                     .ToArray()));
-                    }
-                    return View("Account/Login", model);
+                //if (user.EmailConfirmed == false && user.MobileConfirmed == false)
+                //{
+                //    ModelState.AddModelError("", @"نام کاربری یا شماره موبایل شما فعال سازی نشده است !");
+                //    if (model.isAjax)
+                //    {
+                //        return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
+                //                     .Select(e => e.ErrorMessage)
+                //                     .ToArray()));
+                //    }
+                //    return View("Account/Login", model);
 
-                }
+                //}
 
                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
                   OAuthDefaults.AuthenticationType);
@@ -314,15 +312,17 @@ namespace HCMS.Web.Areas.Manage.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Register(RegisterViewModel model, bool inapp = false)
         {
+            string captcha_session_key = "captcha" + model.captcha_guid;
             if (!inapp)
-                if (Session["captcha_register"] == null)
+                if (Session[captcha_session_key] == null)
                 {
                     ModelState.AddModelError("", @"کد امنیتی وارد شده منقضی شده است .");
                 }
-                else if (model.Captcha != (int)Session["captcha_register"])
+                else if (model.Captcha != (int)Session[captcha_session_key])
                 {
                     ModelState.AddModelError("", @"جواب معادله اشتباه می باشد");
                 }
+        
 
 
             if (!model.Username.Contains("@"))
@@ -450,14 +450,18 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> RegisterByRole(RegisterViewModel model, bool inapp = false, string role = "User")
+        public async Task<ActionResult> RegisterByRole(RegisterViewModel model, bool inapp = false)
         {
+            if (string.IsNullOrWhiteSpace(model.role))
+                model.role = "User";
+
+            string captcha_session_key = "captcha" + model.captcha_guid;
             if (!inapp)
-                if (Session["captcha_register"] == null)
+                if (Session[captcha_session_key] == null)
                 {
                     ModelState.AddModelError("", @"کد امنیتی وارد شده منقضی شده است .");
                 }
-                else if (model.Captcha != (int)Session["captcha_register"])
+                else if (model.Captcha != (int)Session[captcha_session_key])
                 {
                     ModelState.AddModelError("", @"جواب معادله اشتباه می باشد");
                 }
@@ -507,9 +511,6 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
 
 
-
-
-
             if (!ModelState.IsValid)
             {
                 if (model.isAjax)
@@ -525,7 +526,12 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
             if (result.Succeeded)
             {
-                result = UserManager.AddToRole(user.Id, role);
+                if (!RoleManager.RoleExists(model.role))
+                    RoleManager.Create(new IdentityRole
+                    {
+                        Name = model.role
+                    });
+                result = UserManager.AddToRole(user.Id, model.role);
                 if (result.Succeeded)
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
