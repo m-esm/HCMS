@@ -64,7 +64,51 @@ $('#recortes-plan-a area').click(function () {
     console.log(_area);
     $('#block-a #' + _id).addClass('selected');
 
+    var plan = $(this).attr('data-unit');
+    $('#figur-plan-a area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
+
+    $('#block-a .hayatbtn').addClass('active');
+
+    //نشان دادن در حالت موبایلی
+    $('#block-a .block').addClass('mobile-min');
+    $('#block-a .plan-unit').addClass('mobile-max');
+
 });
+
+$(document).on('click', '.block-detail .mobile-min', function () {
+    $(this).removeClass('mobile-min');
+    $(this).parents('.block-detail').find('.plan-unit').removeClass('mobile-max');
+})
+
+
+$('.block-detail .hayatbtn').click(function () {
+
+    var elm = $(this).parents('.block-detail');
+
+    if ($(this).hasClass('prev')) {
+        //elm.find('.data').removeClass('active');
+        //elm.find('.plan').css('display', 'block');
+        //elm.find('.block').css('display', 'block');
+        //elm.find('.plan-unit').css('display', 'block');
+
+        elm.find('.data').removeClass('active');
+        elm.find('.plan').removeClass('prev');
+        elm.find('.block').removeClass('prev');
+        elm.find('.plan-unit').removeClass('prev');
+
+        $(this).removeClass('prev').find('label').html('برای مشاهده مشخصات کلی کلیک کنید');
+        $(this).find('i').removeClass('fa-arrow-up').addClass('fa-eye');
+    } else {
+        elm.find('.data').addClass('active');
+        elm.find('.plan').addClass('prev');
+        elm.find('.block').addClass('prev');
+        elm.find('.plan-unit').addClass('prev');
+
+        $(this).addClass('prev').find('label').html('برای بازگشت کلیک کنید');
+        $(this).find('i').removeClass('fa-eye').addClass('fa-arrow-up');
+    }
+   
+})
 
 $('#recortes-plan-b area').click(function () {
     var unit = $(this).attr('data-unit');
@@ -81,12 +125,21 @@ $('#recortes-plan-b area').click(function () {
     $('#block-b .table tr').removeClass('active');
 
     //find plan number 
-    var _area = parseInt($('#block-b #' + _id).attr('data-area'));
-    for (var i = _area - 10; i < _area + 10; i++) {
-        $('#block-b .table tr[data-area=' + i + ']').addClass('active');
-    }
-    console.log(_area);
-    $('#block-b #' + _id).addClass('selected');
+    //var _area = parseInt($('#block-b #' + _id).attr('data-area'));
+    //for (var i = _area - 10; i < _area + 10; i++) {
+    //    $('#block-b .table tr[data-area=' + i + ']').addClass('active');
+    //}
+    //console.log(_area);
+    //$('#block-b #' + _id).addClass('selected');
+
+    //var floor = $(this).attr('data-floor');
+    //$('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
+
+    $('#block-b .hayatbtn').addClass('active');
+
+    //نشان دادن در حالت موبایلی
+    $('#block-b .block').addClass('mobile-min');
+    $('#block-b .plan-unit').addClass('mobile-max');
 
 });
 
@@ -110,6 +163,12 @@ $('#recortes-plan-c area').click(function () {
     }
     $('#block-c #' + _id).addClass('selected');
 
+    $('#block-c .hayatbtn').addClass('active');
+
+    //نشان دادن در حالت موبایلی
+    $('#block-c .block').addClass('mobile-min');
+    $('#block-c .plan-unit').addClass('mobile-max');
+
 });
 
 $('#recortes-a area').click(function () {
@@ -126,32 +185,29 @@ $('#recortes-c area').click(function () {
 });
 
 
-$(document).on('click', '#recortes-a area', function () {
+$('#recortes-a area').click(function () {
     var floor = $(this).attr('data-floor');
     $('#figur-a area:nth-of-type(' + floor + ') ~ #capaRecorte-a').css('clip-path', 'url(#F' + floor + '-a)').css('display', 'block');
-});
-
-$(document).on('click', '#recortes-plan-a area', function () {
-    var plan = $(this).attr('data-unit');
-    $('#figur-plan-a area:nth-of-type(' + plan +'):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
 })
 
-$(document).on('click', '#recortes-b area', function () {
+$('#recortes-b area').click(function () {
     var floor = $(this).attr('data-floor');
     $('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
 });
 
-$(document).on('click', '#recortes-plan-b area', function () {
-    var plan = $(this).attr('data-unit');
-    $('#figur-plan-b area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-b').css('clip-path', 'url(#PB' + plan + ')').css('display', 'block');
-})
+//$('#recortes-plan-b area').click(function () {
+//    alert();
+//    var plan = $(this).attr('data-unit');
+//    $('#figur-plan-b area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-b').css('clip-path', 'url(#PB' + plan + ')').css('display', 'block');
+//})
 
-$(document).on('click', '#recortes-c area', function () {
+
+$('#recortes-c area').click(function () {
     var floor = $(this).attr('data-floor');
     $('#figur-c area:nth-of-type(' + floor + ') ~ #capaRecorte-c').css('clip-path', 'url(#F' + floor + '-c)').css('display', 'block');
 });
 
-$(document).on('click', '#recortes-plan-c area', function () {
+$('#recortes-plan-c area').click(function () {
     var plan = $(this).attr('data-unit');
     $('#figur-plan-c area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-c').css('clip-path', 'url(#PC' + plan + ')').css('display', 'block');
 })
@@ -166,6 +222,10 @@ $('section.page .arrow .up').click(function () {
 
 $('section.page .arrow .down').click(function () {
     changePage(false, 'down');
+})
+
+$('.plan-hover area').click(function () {
+
 })
 /// <reference path="../lib/aos/aos.js" />
 

@@ -1,10 +1,17 @@
-﻿@{
+﻿@using HCMS.Dynamics.Data;
+@{
     ViewBag.title = "بلاک ها";
+
+    var blocks = DDB.GetTable("cms", "blocks").DRows;
+
+    var blockAId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blocka").RowID;
+    var blockBId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blockb").RowID;
+    var blockCId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blockc").RowID;
 }
 
-@Html.Partial("blocks/block-a")
-@Html.Partial("blocks/block-b")
-@Html.Partial("blocks/block-c")
+@Html.Partial("blocks/block-a", blockAId)
+@Html.Partial("blocks/block-b", blockBId)
+@Html.Partial("blocks/block-c", blockCId)
 @Html.Partial("blocks/block-m")
 @Html.Partial("blocks/catalog")
 
@@ -16,6 +23,7 @@
         $('img#img-back-block-b').rwdImageMaps();
         $('img#img-back-block-c').rwdImageMaps();
         $('img#img-back-block-m').rwdImageMaps();
+        
     </script>
 
 }

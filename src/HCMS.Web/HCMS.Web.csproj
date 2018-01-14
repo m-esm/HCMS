@@ -2370,10 +2370,11 @@
     <Content Include="Themes\hayat2\lib\underscore\underscore.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
     <Content Include="Themes\hayat2\module\controllers.js" />
-    <Content Include="Themes\hayat2\Pages\blocks\plans\plan-c - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-m.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\catalog.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\block-a - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\block-b - Copy.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />

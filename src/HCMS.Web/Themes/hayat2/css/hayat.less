@@ -38,13 +38,14 @@ a {
     margin: 10px 0;
     border: none;
     outline: none;
-    text-decoration: none;
     transition: all ease 0.3s;
+    cursor:pointer;
 
     &:hover {
         background: #000;
         color: #fff;
-        box-shadow: 3px 3px 5px #000;
+        box-shadow: -4px 4px 0 #666;
+        text-decoration: none !important;
     }
 
     &.hayatbtn-sm {
@@ -1215,8 +1216,9 @@ section#signup {
 }
 
 .table {
-    width: 100%;
-    height: 500px;
+    width: 90%;
+    float: left;
+    max-height: 500px;
     overflow: auto;
 
 
@@ -2380,11 +2382,13 @@ section.page-login, section.page-register {
     display: none;
 }
 
+
+
 @media(max-width:2560px) {
     header .links ul li {
         i {
             font-size: 26px;
-            margin-left:10px;
+            margin-left: 10px;
         }
 
         span {
@@ -2430,6 +2434,12 @@ section.page-login, section.page-register {
 }
 
 @media(max-width: 990px) {
+
+    .table {
+        width: 100%;
+        padding: 0 35px;
+    }
+
     section#signup {
         form {
             height: 205px;
@@ -2598,6 +2608,11 @@ section.page-login, section.page-register {
 }
 
 @media(max-width:650px) {
+
+    .table {
+        padding: 0 10px;
+    }
+
     header.hidden-mobile {
         display: none;
     }
@@ -2637,7 +2652,7 @@ section.page-login, section.page-register {
         background-color: rgba(0,0,0, .9);
         z-index: 999;
         transition: all .5s;
-        overflow:auto;
+        overflow: auto;
 
         &.open {
             display: block;
@@ -2672,7 +2687,7 @@ section.page-login, section.page-register {
         }
 
         nav {
-            display:block;
+            display: block;
             position: relative;
             top: 186px;
 
@@ -2747,7 +2762,7 @@ section.page-login, section.page-register {
             left: 0;
             width: 93%;
             z-index: 998;
-            display:block;
+            display: block;
 
             input, select {
                 color: #666;
@@ -2789,11 +2804,11 @@ section.page-login, section.page-register {
 
     section.page-homeforms {
         padding-top: 55px;
-        font-size:12px;
+        font-size: 12px;
 
-        h3{
-            font-size:16px;
-            text-align:center;
+        h3 {
+            font-size: 16px;
+            text-align: center;
         }
     }
 
@@ -2810,9 +2825,10 @@ section.page-login, section.page-register {
             padding: 0;
         }
     }
-    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
-        padding-left:10px;
-        padding-right:10px;
+
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
 
@@ -3070,6 +3086,10 @@ section.page-login, section.page-register {
 
 
 @media(max-width:390px) {
+
+    .table {
+        padding: 0 5px;
+    }
 
     .container {
         width: 350px;

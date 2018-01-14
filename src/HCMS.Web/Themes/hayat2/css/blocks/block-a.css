@@ -96,14 +96,4 @@
     }
 
 
-@media(max-width:2560px) {
-    #figur-a {
-        left: 170px;
-    }
-}
 
-@media(max-width:1440px) {
-    #figur-a {
-        left: 89px;
-    }
-}

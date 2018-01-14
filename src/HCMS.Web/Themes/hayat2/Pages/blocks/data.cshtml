@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<HCMS.Dynamics.Data.DRow>
 
-    <div class="">
-        <div class="table cscroll">
+    <div class="data">
+        <div class="table">
             <table class="table table-bordered">
 
                 <thead>
                     <tr>
                         <th>نام واحد</th>
                         <th>متراژ</th>
-                        <th>طبقه</th>
-                        <th>واحد</th>
+                        @*<th>طبقه</th>*@
+                        @*<th>واحد</th>*@
                         <th>اتاق</th>
                         <th>امتیاز</th>
                         <th></th>
@@ -24,8 +24,8 @@
                         <tr class="" id="@_id" data-area="@item.GetValue("area")">
                             <td>@unitName</td>
                             <td> @item.GetValue("area")</td>
-                            <td> @item.GetValue("Floor")</td>
-                            <td> @item.GetValue("Unit")</td>
+                            @*<td> @item.GetValue("Floor")</td>*@
+                            @*<td> @item.GetValue("Unit")</td>*@
                             <td> @item.GetValue("rooms")</td>
                             <td> - </td>
                             <td>
