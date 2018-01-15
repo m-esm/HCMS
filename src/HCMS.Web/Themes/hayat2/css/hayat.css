@@ -2190,7 +2190,7 @@ section.page-register form .links a {
   header.show-mobile nav {
     display: block;
     position: relative;
-    top: 186px;
+    top: 86px;
   }
   header.show-mobile nav:before {
     background-image: unset;
@@ -2199,6 +2199,7 @@ section.page-register form .links a {
     width: 400px;
     height: 400px;
     margin: 0 auto;
+    background-color: unset;
   }
   header.show-mobile nav ul li {
     width: 100%;
@@ -2246,9 +2247,10 @@ section.page-register form .links a {
     z-index: 997;
   }
   header.show-mobile .search-bar {
-    top: 141px;
+    bottom: 10px;
     left: 0;
     width: 93%;
+    top: unset;
     z-index: 998;
     display: block;
   }
@@ -2552,9 +2554,6 @@ section.page-register form .links a {
   .col-xs-12 {
     padding: 0;
   }
-  header.show-mobile nav {
-    top: 293px;
-  }
   header.show-mobile nav ul {
     width: 100%;
   }
@@ -2563,6 +2562,8 @@ section.page-register form .links a {
   }
   header.show-mobile .search-bar {
     width: 100%;
+    transform: translateY(111px);
+    transition: all .3s;
   }
   header.show-mobile .search-bar i,
   header.show-mobile .search-bar input,
@@ -2570,6 +2571,9 @@ section.page-register form .links a {
     width: 100%;
     float: left;
     text-align: center;
+  }
+  header.show-mobile .search-bar.open {
+    transform: translateY(0);
   }
   section.footer {
     font-size: 1rem;

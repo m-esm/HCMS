@@ -1,4 +1,14 @@
-﻿
+﻿@font-face {
+    font-family: 'IRANSansWeb';
+    src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
+}
+
+
+body {
+    font-family: "IRANSansWeb", sans-serif !important;
+    direction: rtl;
+    text-align: right;
+}
 
 .validation-error-list {
     text-align: left;

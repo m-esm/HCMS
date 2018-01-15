@@ -949,8 +949,8 @@ section.page-end {
         }
     }
 
-    &.page-active{
-        .text{
+    &.page-active {
+        .text {
             transform: translateY(0);
         }
     }
@@ -2775,7 +2775,7 @@ section.page-login, section.page-register {
         nav {
             display: block;
             position: relative;
-            top: 186px;
+            top: 86px;
 
             &:before {
                 background-image: unset;
@@ -2785,6 +2785,7 @@ section.page-login, section.page-register {
                 width: 400px;
                 height: 400px;
                 margin: 0 auto;
+                background-color: unset;
 
                 li {
                     width: 100%;
@@ -2844,9 +2845,10 @@ section.page-login, section.page-register {
         }
 
         .search-bar {
-            top: 141px;
+            bottom: 10px;
             left: 0;
             width: 93%;
+            top: unset;
             z-index: 998;
             display: block;
 
@@ -3199,7 +3201,6 @@ section.page-login, section.page-register {
 
     header.show-mobile {
         nav {
-            top: 293px;
 
             ul {
                 width: 100%;
@@ -3214,11 +3215,17 @@ section.page-login, section.page-register {
 
         .search-bar {
             width: 100%;
+              transform: translateY(111px);
+            transition:all .3s;
 
             i, input, select {
                 width: 100%;
                 float: left;
                 text-align: center;
+            }
+
+            &.open {
+                transform: translateY(0);
             }
         }
     }
@@ -3278,5 +3285,3 @@ section.page-login, section.page-register {
         }
     }
 }
-
-

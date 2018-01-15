@@ -2098,6 +2098,10 @@
     <Content Include="Plugins\Hayat\Views\Comment\New.cshtml" />
     <Content Include="Plugins\Hayat\Views\Comment\Old.cshtml" />
     <Content Include="Plugins\Hayat\Views\Comment\Create.cshtml" />
+    <Content Include="Packages\melon\fonts\IRANSansWeb.eot" />
+    <Content Include="Packages\melon\fonts\IRANSansWeb.ttf" />
+    <Content Include="Packages\melon\fonts\IRANSansWeb.woff" />
+    <Content Include="Packages\melon\fonts\IRANSansWeb.woff2" />
     <None Include="Properties\PublishProfiles\Publish_Local.pubxml" />
     <Content Include="Packages\HCMS\js\Base.DateHelper.min.js.map">
       <DependentUpon>Base.DateHelper.min.js</DependentUpon>
@@ -2373,8 +2377,7 @@
     <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-m.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\catalog.cshtml" />
-    <Content Include="Themes\hayat2\Pages\blocks\block-a - Copy.cshtml" />
-    <Content Include="Themes\hayat2\Pages\blocks\block-b - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\block-a.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
@@ -2498,7 +2501,6 @@
     <Content Include="Themes\hayat2\package.json" />
     <Content Include="Themes\hayat2\Pages\auth.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks.cshtml" />
-    <Content Include="Themes\hayat2\Pages\blocks\block-a.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-b.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-c.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\plans\plan-a.cshtml" />
