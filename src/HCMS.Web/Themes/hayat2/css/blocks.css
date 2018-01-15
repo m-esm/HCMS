@@ -4,7 +4,12 @@
   overflow: hidden !important;
 }
 .block-detail .title {
+  position: absolute;
+  left: 0;
+  top: -50px;
+  width: 100%;
   text-align: center;
+  font-size: 1.8rem;
 }
 .block-detail .inner {
   height: 100%;
@@ -30,9 +35,12 @@
 .block-detail .inner .plan {
   position: absolute;
   left: 125px;
-  bottom: 0;
-  display: block;
-  height: 200px;
+  top: 64%;
+  width: 300px;
+  opacity: 0;
+}
+.block-detail .inner .plan.show {
+  opacity: 1;
 }
 .block-detail .inner .plan-unit {
   width: 400px;
@@ -45,7 +53,7 @@
 .block-detail .inner .block {
   position: absolute;
   left: 10px;
-  top: -10px;
+  top: -35px;
   width: 500px;
 }
 .block-detail .arrow {
@@ -187,8 +195,8 @@
     opacity: 0;
   }
   .block-detail .inner .plan {
-    left: 10px;
-    opacity: 1;
+    left: 125px;
+    width: 250px;
     transition: all .5s;
   }
   .block-detail .inner .plan.prev {
@@ -223,6 +231,7 @@
   }
   .block-detail .inner .block {
     width: 300px;
+    top: 10px;
   }
   .block-detail .inner .plan {
     left: 10px;
@@ -252,6 +261,7 @@
   }
   .block-detail .inner .plan {
     left: 10px;
+    width: 200px;
   }
   .block-detail .inner .plan-unit {
     width: 180px;
@@ -311,5 +321,121 @@
   }
   .block-detail .inner .plan-unit.mobile-max {
     width: 154px;
+  }
+}
+@media only screen and (max-width: 812px) and (orientation: landscape) {
+  header .logo {
+    padding: 0;
+    margin: 5px;
+  }
+  .block-detail {
+    padding: 65px;
+  }
+  .block-detail .inner .block {
+    width: 200px;
+  }
+  .block-detail .inner .plan {
+    left: 10px;
+    width: 123px;
+  }
+  .block-detail .inner .hayatbtn.mobile-show.active {
+    bottom: 0;
+  }
+  .block-detail .inner .plan-unit {
+    width: 30px;
+    transition: all 0.5s;
+    top: -20px;
+    right: 100px;
+    transform: rotate(90deg);
+    width: 164px;
+  }
+  .block-detail .inner .plan-unit img {
+    position: absolute;
+    right: calc(20% - 150px);
+    top: -182px;
+  }
+}
+@media only screen and (max-width: 736px) and (orientation: landscape) {
+  .block-detail {
+    padding: 65px;
+  }
+  .block-detail .inner .block {
+    top: -15px;
+  }
+  .block-detail .inner .hayatbtn.mobile-show {
+    display: block;
+  }
+  .block-detail .inner .hayatbtn.mobile-show.active {
+    right: 0;
+    left: unset;
+    bottom: 0;
+  }
+  .block-detail .inner .hayatbtn.mobile-show i {
+    display: none;
+  }
+}
+@media only screen and (max-width: 667px) and (orientation: landscape) {
+  .block-detail {
+    padding: 65px;
+  }
+  .block-detail .inner .plan-unit {
+    width: 136px;
+  }
+  .block-detail .inner .hayatbtn.mobile-show {
+    display: block;
+    font-size: 1.2rem;
+  }
+  .block-detail .inner .hayatbtn.mobile-show.active {
+    right: 0;
+    left: unset;
+  }
+  .block-detail .inner .hayatbtn.mobile-show i {
+    display: none;
+  }
+}
+@media only screen and (max-width: 568px) and (orientation: landscape) {
+  .block-detail {
+    padding: 60px 50px;
+  }
+  .block-detail .inner .block {
+    width: 166px;
+    left: 0;
+    top: -35px;
+  }
+  .block-detail .inner .plan {
+    top: 55%;
+  }
+  .block-detail .inner .plan-unit {
+    width: 136px;
+    left: 40px;
+  }
+  .block-detail .inner .hayatbtn.mobile-show.active {
+    font-size: 18px;
+    width: 42px;
+    height: 30px;
+    padding: 6px;
+    left: unset;
+    right: 0;
+    bottom: -64px;
+  }
+  .block-detail .inner .hayatbtn.mobile-show label {
+    display: none;
+  }
+  .block-detail .inner .hayatbtn.mobile-show i {
+    display: block;
+  }
+}
+@media only screen and (max-width: 480px) and (orientation: landscape) {
+  .block-detail .inner .block {
+    width: 166px;
+    left: 0;
+    top: -35px;
+  }
+  .block-detail .inner .plan {
+    top: 55%;
+  }
+  .block-detail .inner .plan-unit {
+    width: 100px;
+    left: 40px;
   }
 }

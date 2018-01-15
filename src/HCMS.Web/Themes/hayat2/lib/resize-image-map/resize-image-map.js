@@ -16,7 +16,6 @@
 						w = $that.attr(attrW),
 						h = $that.attr(attrH);
 
-                    console.log(h, w);
                     if (!w || !h) {
                         var temp = new Image();
                         temp.src = $that.attr('src');
@@ -25,6 +24,8 @@
                         if (!h)
                             h = temp.height;
                     }
+                    console.log($that.width(), $that.height());
+
 
                     var wPercent = $that.width() / 100,
 						hPercent = $that.height() / 100,
@@ -32,6 +33,7 @@
 						c = 'coords';
                     p = 'points';
 
+                    console.log(map, wPercent, hPercent);
                     $('map[name="' + map + '"]').find('area').each(function () {
                         var $this = $(this);
                         if (!$this.data(c))

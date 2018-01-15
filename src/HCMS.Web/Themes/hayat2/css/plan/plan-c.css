@@ -1,11 +1,10 @@
-﻿    .plan-hover {
-        display: none;
-    }
+﻿
 
-    #figur-plan-c {
-        border-radius: 20px;
-        width: 600px;
-        height: 427px;
+    .back, #capaRecorte-plan-c {
+        border: none;
+        height: auto;
+        max-width: 100%;
+        width: auto;
     }
 
 
@@ -20,7 +19,6 @@
         position: absolute;
         top: 0;
         left: 0;
-        cursor: crosshair;
         width: 100%;
         height: 100%;
     }
@@ -30,27 +28,24 @@
         display: block;
     }
 
+
         #figur-plan-c area:nth-of-type(1):hover ~ #capaRecorte-plan-c {
-            clip-path: url(#PC1);
             display: block;
+            clip-path: url(#PA1);
         }
 
         #figur-plan-c area:nth-of-type(2):hover ~ #capaRecorte-plan-c {
-            clip-path: url(#PC2);
             display: block;
+            clip-path: url(#PA2);
         }
 
         #figur-plan-c area:nth-of-type(3):hover ~ #capaRecorte-plan-c {
-            clip-path: url(#PC3);
             display: block;
+            clip-path: url(#PA3);
         }
 
         #figur-plan-c area:nth-of-type(4):hover ~ #capaRecorte-plan-c {
             display: block;
-            clip-path: url(#PC4);
+            clip-path: url(#PA4);
         }
 
-        #figur-plan-c area:nth-of-type(5):hover ~ #capaRecorte-plan-c {
-            display: block;
-            clip-path: url(#PC5);
-        }

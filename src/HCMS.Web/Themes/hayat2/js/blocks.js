@@ -172,16 +172,17 @@ $('#recortes-plan-c area').click(function () {
 });
 
 $('#recortes-a area').click(function () {
-    $('#block-a .plan-hover').css('display', 'block');
+    //$('#block-a .plan-hover').css('display', 'block');
+    $('#block-a .plan').addClass('show');
 });
 
 
 $('#recortes-b area').click(function () {
-    $('#block-b .plan-hover').css('display', 'block');
+    $('#block-b .plan').addClass('show');
 });
 
 $('#recortes-c area').click(function () {
-    $('#block-c .plan-hover').css('display', 'block');
+    $('#block-c .plan').addClass('show');
 });
 
 

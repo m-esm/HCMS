@@ -724,6 +724,50 @@ section.page-custom .inner .text {
 section.page-custom .inner .pic {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+section.page-end {
+  background: radial-gradient(rgba(79, 28, 28, 0.9), rgba(79, 28, 28, 0.95), #3c0f0f);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+section.page-end .buttons {
+  text-align: left;
+}
+section.page-end .inner {
+  padding-top: 120px;
+  width: 100%;
+  padding-left: 113px;
+  padding-right: 90px;
+  margin: 0 auto;
+  height: 90%;
+  overflow: hidden;
+}
+section.page-end .inner .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+section.page-end .inner .fulltext {
+  max-width: 800px;
+  margin: 0 auto;
+}
+section.page-end .inner .text {
+  padding: 0;
+  padding-left: 40px;
+  text-align: justify;
+  color: #fff;
+  line-height: 27px;
+  transition: all ease 2.3s;
+  transform: translateY(-500%);
+}
+section.page-end .inner .pic {
+  z-index: -1;
+  opacity: 0.5;
+}
+section.page-end.page-active .text {
+  transform: translateY(0);
+}
 form {
   box-shadow: -3px 3px #000;
 }
@@ -1972,6 +2016,15 @@ section.page-register form .links a {
   div.back-to-top {
     right: 10px;
   }
+  section.page-custom {
+    overflow: hidden;
+  }
+  section.page-custom .row .col-md-6 {
+    text-align: center;
+  }
+  section.page-custom .row .col-md-6 .pic {
+    height: 240px;
+  }
 }
 @media (max-width: 810px) {
   header nav ul {
@@ -1995,8 +2048,12 @@ section.page-register form .links a {
   section#signup form#colleagueForm {
     height: 215px;
   }
-  section .title {
+  section.page .title {
     font-size: 1.5rem;
+    text-align: center;
+  }
+  section.page .inner {
+    padding-top: 76px;
   }
   .hide-768px {
     display: none;
@@ -2043,6 +2100,16 @@ section.page-register form .links a {
   }
   section.page-partners .items a {
     width: 80px;
+  }
+  .logo-hayat-no {
+    text-align: center;
+  }
+  .logo-hayat-no:before {
+    width: 140px;
+    left: 38px;
+  }
+  .logo-hayat-no img {
+    width: 140px;
   }
 }
 @media (max-width: 710px) {
@@ -2281,7 +2348,9 @@ section.page-register form .links a {
   }
   section.page-custom .inner {
     padding: 0 30px;
-    padding-top: 80px;
+    padding-top: 22px;
+    height: 88%;
+    overflow: hidden;
   }
   section.page-custom .inner .text {
     width: 100%;
@@ -2294,7 +2363,7 @@ section.page-register form .links a {
     float: none;
   }
   div.back-to-top {
-    right: calc(50% - 15px);
+    right: 10px;
     bottom: 0;
   }
   header nav {
@@ -2463,6 +2532,14 @@ section.page-register form .links a {
     right: unset !important;
     height: 40px !important;
     width: 40px !important;
+  }
+  .logo-hayat-no:before {
+    width: 100px;
+    left: 58px;
+    top: 11px;
+  }
+  .logo-hayat-no img {
+    width: 100px;
   }
 }
 @media (max-width: 390px) {
