@@ -48,16 +48,22 @@
 
         <div class="inner">
 
-            <div class="row">
+            @if (theme.ToString() == "page-team")
+            {
+                @Html.Raw(item.GetValue("content").Value)
+            }
+            else
+            {
+                <div class="row">
 
-                @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
-                {
+                    @if (!string.IsNullOrWhiteSpace(item.GetValue("image").Value))
+                    {
 
-                    <div style="overflow:hidden;" class="col-lg-6 col-md-6 col-xs-12 @(i % 2 != 0 ? "pull-left" : "pull-right")">
-                        <img class="pic" src="@item.GetValue("image")" />
-                    </div>
+                        <div style="overflow:hidden;" class="col-lg-6 col-md-6 col-xs-12 @(i % 2 != 0 ? "pull-left" : "pull-right")">
+                            <img class="pic" src="@item.GetValue("image")" />
+                        </div>
 
-                    <div class="col-lg-6 col-md-6 col-xs-12 @(i % 2 == 0 ? "pull-left" : "pull-right")">
+                        <div class="col-lg-6 col-md-6 col-xs-12 @(i % 2 == 0 ? "pull-left" : "pull-right")">
                             <div class="text">
                                 @Html.Raw(item.GetValue("content").Value)
 
@@ -74,24 +80,26 @@
 
                             </div>
 
-                       
-                    </div>
+
+                        </div>
 
 
-                }
-                else
-                {
-                    <div class="fulltext">
+                    }
+                    else
+                    {
+                        <div class="fulltext">
 
-                        @Html.Raw(item.GetValue("content").Value)
+                            @Html.Raw(item.GetValue("content").Value)
 
-                    </div>
+                        </div>
 
-                }
+                    }
 
 
 
-            </div>
+                </div>
+
+            }
 
             @if (theme.ToString() == "page-map")
             {
@@ -136,9 +144,9 @@
             }
         })
 
-    
 
-       
+
+
 
 
     </script>

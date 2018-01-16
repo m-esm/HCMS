@@ -796,6 +796,21 @@ section.page-map .inner .map {
   bottom: 0;
   margin-right: 20px;
 }
+section.page-team .inner {
+  padding-top: 120px;
+  width: 100%;
+  padding-left: 90px;
+  padding-right: 90px;
+  margin: 0 auto;
+  height: 93%;
+}
+section.page-team .inner .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+section.page-team .inner .pic {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
 form {
   box-shadow: -3px 3px #000;
 }
