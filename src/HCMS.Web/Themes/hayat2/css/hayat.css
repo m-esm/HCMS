@@ -768,6 +768,34 @@ section.page-end .inner .pic {
 section.page-end.page-active .text {
   transform: translateY(0);
 }
+section.page-map {
+  position: relative;
+  padding: 110px;
+}
+section.page-map .inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+section.page-map .inner .row {
+  height: 100%;
+}
+section.page-map .inner .row .pic {
+  height: 100vh;
+}
+section.page-map .inner .row .text {
+  text-align: justify;
+  word-break: break-word;
+}
+section.page-map .inner .map {
+  position: absolute;
+  width: 45%;
+  height: 50%;
+  left: 0;
+  bottom: 0;
+  margin-right: 20px;
+}
 form {
   box-shadow: -3px 3px #000;
 }
@@ -1981,6 +2009,28 @@ section.page-register form .links a {
   }
 }
 @media (max-width: 990px) {
+  section.page-map {
+    padding: 50px;
+  }
+  section.page-map .inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  section.page-map .inner .row {
+    text-align: center;
+  }
+  section.page-map .inner .row .pic {
+    height: 40vh;
+  }
+  section.page-map .inner .row .text {
+    position: fixed;
+    width: 45%;
+    height: 50%;
+    right: 20px;
+    bottom: 0;
+  }
   .table {
     width: 100%;
     padding: 0 35px;
@@ -2111,6 +2161,31 @@ section.page-register form .links a {
   .logo-hayat-no img {
     width: 140px;
   }
+  section.page-map {
+    padding: 50px;
+  }
+  section.page-map .inner {
+    padding: 0;
+  }
+  section.page-map .inner .row .pic {
+    height: 40vh;
+  }
+  section.page-map .inner .row .text {
+    position: fixed;
+    width: 45%;
+    height: 50%;
+    right: 20px;
+    bottom: 0;
+  }
+  section.page-map .inner .map {
+    position: absolute;
+    width: 45%;
+    height: 50%;
+    left: 0;
+    bottom: 0;
+    margin-right: 20px;
+    display: block;
+  }
 }
 @media (max-width: 710px) {
   .row {
@@ -2121,6 +2196,19 @@ section.page-register form .links a {
 @media (max-width: 670px) {
   .container {
     width: 610px;
+  }
+  section.page-map {
+    padding: 50px;
+  }
+  section.page-map .inner {
+    padding: 0;
+  }
+  section.page-map .inner .row .pic {
+    height: 40vh;
+  }
+  section.page-map .inner .row .text {
+    font-size: 1.2rem;
+    padding-right: 50px;
   }
 }
 @media (max-width: 650px) {
@@ -2391,6 +2479,28 @@ section.page-register form .links a {
   }
 }
 @media (max-width: 550px) {
+  section.page-map {
+    padding: 50px;
+  }
+  section.page-map .inner {
+    padding: 0;
+  }
+  section.page-map .inner .row .pic {
+    height: 30vh;
+    width: 100%;
+  }
+  section.page-map .inner .row .text {
+    position: unset;
+    width: 100%;
+    height: 30vh;
+    padding: 10px 0;
+  }
+  section.page-map .inner .map {
+    position: absolute;
+    width: 100%;
+    height: 30vh;
+    display: block;
+  }
   .container {
     width: 500px;
     padding: 0;
@@ -2543,6 +2653,9 @@ section.page-register form .links a {
   .logo-hayat-no img {
     width: 100px;
   }
+  section.page-map {
+    padding: 50px 40px;
+  }
 }
 @media (max-width: 390px) {
   .table {
@@ -2585,6 +2698,9 @@ section.page-register form .links a {
     border-spacing: 4px;
     font-size: 9px;
   }
+  section.page-map {
+    padding: 40px 30px;
+  }
 }
 @media (max-width: 375px) {
   .table table {
@@ -2613,5 +2729,8 @@ section.page-register form .links a {
   }
   .container .form-control {
     height: 32px;
+  }
+  section.page-map {
+    padding: 50px 20px;
   }
 }

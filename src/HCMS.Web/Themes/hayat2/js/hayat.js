@@ -300,169 +300,194 @@ $(document).ready(function () {
 
     }, 1000);
 
-    $('.right-icons li').click(function () {
+    var refreshToken = function () {
+        $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=captcha&guid=' + Date.now());
+        $('#_cooprate-captcha-image').attr('src', $('#_register-captcha-image').attr('src'));
 
-        $('.right-icons li').not(this).removeClass('open');
+    }
 
-        $(this).toggleClass('open');
-
-
-    });
-
-    // Smoth scroll on page hash links
-    $('a[href*="#"]:not([href="#"])').on('click', function () {
-        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-            var target = $(this.hash);
-            if (target.length) {
-
-                var top_space = 0;
-
-                if ($('#header').length) {
-                    top_space = $('#header').outerHeight();
-                }
-
-                $('html, body').animate({
-                    scrollTop: target.offset().top - top_space
-                }, 1500, 'easeInOutExpo');
-
-                if ($(this).parents('.nav-menu').length) {
-                    $('.nav-menu .menu-active').removeClass('menu-active');
-                    $(this).closest('li').addClass('menu-active');
-                }
-
-                if ($('body').hasClass('mobile-nav-active')) {
-                    $('body').removeClass('mobile-nav-active');
-                    $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-                    $('#mobile-body-overly').fadeOut();
-                }
-
-                return false;
-            }
+    $('#submit').on('keypress', function (e) {
+        if ((e.charCode >= 97 && e.charCode <= 122) || (e.charCode >= 65 && e.charCode <= 90))
+        {
+            alert('لطفا فارسی تایپ کنید.')
+            e.preventDefault();
         }
+        else if (isPersian(e.key))
+            console.log('Persian');
+        else
+            console.log('Others')
     });
 
+    function isPersian(str) {
+        var p = /^[\u0600-\u06FF\s]+$/;
+        return p.test(str);
+    }
 
-    $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
-    $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
 
-   
+        $('.right-icons li').click(function () {
 
-    $('#regUser').click(function () {
+            $('.right-icons li').not(this).removeClass('open');
 
-        var buy = {};
-        buy.__RequestVerificationToken = $('#register-form input[name="__RequestVerificationToken"]').val();
-        buy.isAjax = true;
+            $(this).toggleClass('open');
 
-        buy.Email = $('#register-form input[name="Username"]').val();
-        buy.UserName = $('#register-form input[name="Username"]').val();
-        buy.password = $('#register-form input[name="password"]').val();
-        buy.ConfirmPassword = $('#register-form input[name="ConfirmPassword"]').val();
-        buy.captcha = $('#register-form input[name="captcha"]').val();
 
-        var _captcha_guid = $('#_register-captcha-image').attr('src').split('guid=')[1];
+        });
 
-        buy.captcha_guid = '_register' + _captcha_guid;
+        // Smoth scroll on page hash links
+        $('a[href*="#"]:not([href="#"])').on('click', function () {
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+                var target = $(this.hash);
+                if (target.length) {
 
-        console.log(buy);
-        $.ajax({
-            type: 'POST',
-            url: '/fa-ir/manage/Auth/register',
-            data: buy
-        }).success(function (res) {
-            $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
-            if (res.length > 0) {
-                var html = '<ul>'
-                $.each(res, function (index, item) {
-                    html += '<li>' + item + '</li>';
-                })
+                    var top_space = 0;
 
-                html += '</ul>';
+                    if ($('#header').length) {
+                        top_space = $('#header').outerHeight();
+                    }
+
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - top_space
+                    }, 1500, 'easeInOutExpo');
+
+                    if ($(this).parents('.nav-menu').length) {
+                        $('.nav-menu .menu-active').removeClass('menu-active');
+                        $(this).closest('li').addClass('menu-active');
+                    }
+
+                    if ($('body').hasClass('mobile-nav-active')) {
+                        $('body').removeClass('mobile-nav-active');
+                        $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
+                        $('#mobile-body-overly').fadeOut();
+                    }
+
+                    return false;
+                }
+            }
+        });
+
+
+    //$('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+        refreshToken();
+     
+
+        $('#regUser').click(function () {
+
+            var buy = {};
+            buy.__RequestVerificationToken = $('#register-form input[name="__RequestVerificationToken"]').val();
+            buy.isAjax = true;
+
+            buy.Email = $('#register-form input[name="Username"]').val();
+            buy.UserName = $('#register-form input[name="Username"]').val();
+            buy.password = $('#register-form input[name="password"]').val();
+            buy.ConfirmPassword = $('#register-form input[name="ConfirmPassword"]').val();
+            buy.captcha = $('#register-form input[name="captcha"]').val();
+
+            var _captcha_guid = $('#_register-captcha-image').attr('src').split('guid=')[1];
+            console.log(_captcha_guid);
+            buy.captcha_guid = 'captcha' + _captcha_guid;
+
+            console.log(buy);
+
+            refreshToken();
+
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/register',
+                data: buy
+            }).success(function (res) {
+                if (res.length > 0) {
+                    var html = '<ul>'
+                    $.each(res, function (index, item) {
+                        html += '<li>' + item + '</li>';
+                    })
+
+                    html += '</ul>';
+                    $('#reg-err').css('display', 'block');
+                    $('#reg-done').css('display', 'none');
+                    $('#reg-err').html(html);
+                } else {
+                    $('#reg-err').css('display', 'none');
+                    $('#reg-done').css('display', 'block');
+                    $('#reg-done').html('ثبت نام شما با موفقیت انحام شد.');
+                }
+            }).error(function (err) {
                 $('#reg-err').css('display', 'block');
                 $('#reg-done').css('display', 'none');
-                $('#reg-err').html(html);
-            } else {
-                $('#reg-err').css('display', 'none');
-                $('#reg-done').css('display', 'block');
-                $('#reg-done').html('ثبت نام شما با موفقیت انحام شد.');
-            }
-        }).error(function (err) {
-            $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
-            $('#reg-err').css('display', 'block');
-            $('#reg-done').css('display', 'none');
-            $('#reg-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+                $('#reg-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+            })
         })
-    })
    
+     
 
-    $('#reg-spanser').click(function () {
-        var spanser = {};
-        spanser.__RequestVerificationToken = $('#colleagueForm input[name="__RequestVerificationToken"]').val();
-        spanser.isAjax = true;
-        spanser.role = $('#colleagueForm select[name="role"]').val();
-        spanser.Email = $('#colleagueForm input[name="username"]').val();
-        spanser.UserName = $('#colleagueForm input[name="username"]').val();
-        spanser.name = $('#colleagueForm input[name="name"]').val();
-        spanser.phone = $('#colleagueForm input[name="phone"]').val();
-        spanser.password = $('#colleagueForm input[name="Password"]').val();
-        spanser.ConfirmPassword = $('#colleagueForm input[name="ConfirmPassword"]').val();
-        spanser.captcha = $('#colleagueForm input[name="captcha"]').val();
+        $('#reg-spanser').click(function () {
+            var spanser = {};
+            spanser.__RequestVerificationToken = $('#colleagueForm input[name="__RequestVerificationToken"]').val();
+            spanser.isAjax = true;
+            spanser.role = $('#colleagueForm select[name="role"]').val();
+            spanser.Email = $('#colleagueForm input[name="username"]').val();
+            spanser.UserName = $('#colleagueForm input[name="username"]').val();
+            spanser.name = $('#colleagueForm input[name="name"]').val();
+            spanser.phone = $('#colleagueForm input[name="phone"]').val();
+            spanser.password = $('#colleagueForm input[name="Password"]').val();
+            spanser.ConfirmPassword = $('#colleagueForm input[name="ConfirmPassword"]').val();
+            spanser.captcha = $('#colleagueForm input[name="captcha"]').val();
 
-        var _captcha_guid = $('#_cooprate-captcha-image').attr('src').split('guid=')[1];
+            var _captcha_guid = $('#_cooprate-captcha-image').attr('src').split('guid=')[1];
 
-        spanser.captcha_guid = '_cooprate' + _captcha_guid;
+            spanser.captcha_guid = '_cooprate' + _captcha_guid;
 
-        console.log(spanser);
-        $.ajax({
-            type: 'POST',
-            url: '/fa-ir/manage/Auth/RegisterByRole',
-            data: spanser
-        }).success(function (res) {
-            $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
-            if (res.length > 0) {
-                var html = '<ul>'
-                $.each(res, function (index, item) {
-                    html += '<li>' + item + '</li>';
-                })
+            console.log(spanser);
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/RegisterByRole',
+                data: spanser
+            }).success(function (res) {
+                $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+                if (res.length > 0) {
+                    var html = '<ul>'
+                    $.each(res, function (index, item) {
+                        html += '<li>' + item + '</li>';
+                    })
 
-                html += '</ul>';
+                    html += '</ul>';
+                    $('#coll-err').css('display', 'block');
+                    $('#coll-done').css('display', 'none');
+                    $('#coll-err').html(html);
+                } else {
+                    $('#coll-err').css('display', 'none');
+                    $('#coll-done').css('display', 'block');
+                    $('#coll-done').html('ثبت نام شما با موفقیت انجام شد.');
+                }
+            }).error(function (err) {
+                $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
                 $('#coll-err').css('display', 'block');
                 $('#coll-done').css('display', 'none');
-                $('#coll-err').html(html);
-            } else {
-                $('#coll-err').css('display', 'none');
-                $('#coll-done').css('display', 'block');
-                $('#coll-done').html('ثبت نام شما با موفقیت انجام شد.');
-            }
-        }).error(function (err) {
-            $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
-            $('#coll-err').css('display', 'block');
-            $('#coll-done').css('display', 'none');
-            $('#coll-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+                $('#coll-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+            })
         })
-    })
 
 
-    $('#menu-bar').click(function () {
-        $('header.show-mobile').addClass('open');
-        $(this).addClass('deactive');
-        $('body').addClass('cscroll');
-    })
+        $('#menu-bar').click(function () {
+            $('header.show-mobile').addClass('open');
+            $(this).addClass('deactive');
+            $('body').addClass('cscroll');
+        })
   
-    $('header.show-mobile .fa-close').click(function () {
-        $('header.show-mobile').removeClass('open');
-        $('#menu-bar').removeClass('deactive');
-        $('body').removeClass('cscroll');
-    })
+        $('header.show-mobile .fa-close').click(function () {
+            $('header.show-mobile').removeClass('open');
+            $('#menu-bar').removeClass('deactive');
+            $('body').removeClass('cscroll');
+        })
 
-    $('.left-icons-mobile').click(function () {
-        $('.left-icons').toggleClass('active');
-    })
+        $('.left-icons-mobile').click(function () {
+            $('.left-icons').toggleClass('active');
+        })
 
-    $('.right-icons-mobile').click(function () {
-        $('.right-icons').toggleClass('active');
-    })
+        $('.right-icons-mobile').click(function () {
+            $('.right-icons').toggleClass('active');
+        })
 
-});
+    });
 
 
 

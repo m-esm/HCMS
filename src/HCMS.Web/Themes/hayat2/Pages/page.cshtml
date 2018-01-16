@@ -17,7 +17,7 @@
         Response.Redirect("/404");
     }
 
-    var pageSections = DDB.GetTable("cms", "pageSections").DRows.Where(p => p.GetValue("pageId").Value == page.RowID.ToString()).OrderBy(p=>p.GetValue("order").Value);
+    var pageSections = DDB.GetTable("cms", "pageSections").DRows.Where(p => p.GetValue("pageId").Value == page.RowID.ToString()).OrderBy(p => p.GetValue("order").Value);
 
     var i = 0;
 
@@ -40,6 +40,7 @@
 @foreach (var item in pageSections)
 {
     var theme = item.GetValue("className");
+    var latlang = item.GetValue("latlang");
 
     i++;
     <section id="section-@i" class="page @theme @(horizontal ? "page-horizontal" :"" ) ">
@@ -57,24 +58,26 @@
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-xs-12 @(i % 2 == 0 ? "pull-left" : "pull-right")">
-                        <div class="text">
-                            @Html.Raw(item.GetValue("content").Value)
+                            <div class="text">
+                                @Html.Raw(item.GetValue("content").Value)
 
-                            <div class="buttons">
+                                <div class="buttons">
 
-                                @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
-                                {
-                                    <a class="hayatbtn" href="@item.GetValue("link")">
-                                        @item.GetValue("linkText")
-                                    </a>
-                                }
+                                    @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
+                                    {
+                                        <a class="hayatbtn" href="@item.GetValue("link")">
+                                            @item.GetValue("linkText")
+                                        </a>
+                                    }
+
+                                </div>
 
                             </div>
 
-                        </div>
+                       
                     </div>
 
-                   
+
                 }
                 else
                 {
@@ -90,11 +93,53 @@
 
             </div>
 
-
+            @if (theme.ToString() == "page-map")
+            {
+                <div class="map" id="map-@i" data-latlang="@latlang" data-aos="fade-right" style="">
+                </div>
+            }
 
         </div>
 
     </section>
 
 
+}
+
+@section scripts{
+
+
+    <script>
+        $(document).ready(function () {
+            $('.page-map').each(function (item) {
+                var elm = $(this);
+                var latlang = elm.find('.map').attr('data-latlang');
+                var id = elm.find('.map').attr('id').split('-')[1];
+
+                initMap(latlang.split(',')[0], latlang.split(',')[1], id)
+            });
+
+            function initMap(lat, lng, id) {
+                console.log(id);
+                if (id != undefined) {
+                    var uluru = { lat: parseFloat(lat), lng: parseFloat(lng) };
+                    var map = new google.maps.Map(document.getElementById('map-' + id), {
+                        zoom: 16,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
+                }
+
+            }
+        })
+
+    
+
+       
+
+
+    </script>
 }
