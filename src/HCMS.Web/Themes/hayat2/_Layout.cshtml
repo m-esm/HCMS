@@ -142,48 +142,48 @@
                 @foreach (var item in menu)
                 {
 
-                    <li>
-                        <a href="@item.GetValue("url")">
-                            @item.GetValue("name")
+                <li>
+                    <a href="@item.GetValue("url")">
+                        @item.GetValue("name")
 
-                        </a>
+                    </a>
 
-                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                    @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
                         {
-                            <div class="child-menu">
-                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+                        <div class="child-menu">
+                            @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
 
-                            </div>
+                        </div>
 
                         }
 
-                    </li>
+                </li>
 
                 }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="pull-left">
-                        <a href="">
-                            <i class="fa fa-user"></i>
-                            @User.Identity.Name
-                        </a>
+                <li class="pull-left">
+                    <a href="">
+                        <i class="fa fa-user"></i>
+                        @User.Identity.Name
+                    </a>
 
-                        <div class="child-menu">
-                            <form action="/fa-ir/manage/auth/LogOff" method="post">
-                                <button type="submit" class="btn btn-primary">خروج</button>
-                            </form>
-                        </div>
-                    </li>
+                    <div class="child-menu">
+                        <form action="/fa-ir/manage/auth/LogOff" method="post">
+                            <button type="submit" class="btn btn-primary">خروج</button>
+                        </form>
+                    </div>
+                </li>
                 }
                 else
                 {
-                    <li class="pull-left">
-                        <a href="/auth">
-                            <i class="fa fa-user"></i>
-                            ورود
-                        </a>
-                    </li>
+                <li class="pull-left">
+                    <a href="/auth">
+                        <i class="fa fa-user"></i>
+                        ورود
+                    </a>
+                </li>
                 }
 
             </ul>
@@ -212,8 +212,94 @@
         </div>
     </header>
 
-    <div class="show-mobile bar" id="menu-bar">
+    @*<div class="show-mobile bar" id="menu-bar">
+        </div>*@
+
+    <div class="show-mobile top-nav">
+        <div class="bar" id="menu-bar">
+            <img src="~/Themes/hayat2/img/icon.png" />
+        </div>
+
+        <a class="logo" href="/">
+            <img src="~/Themes/hayat2/img/logo/Ebtekar Saze Samle Logo.png" />
+        </a>
+        <div class="search">
+            <i class="fa fa-search" id="top-nav-search"></i>
+        </div>
     </div>
+
+    <div class="show-mobile bottom-nav">
+       <div class="main-icons">
+           <div class="left-icons-mobile child min">
+               <i class="fa fa-share-alt has-sub" id="share-icons"></i>
+
+
+               <ul>
+                   @foreach (var item in quickLinks)
+            {
+                       <li>
+                           <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                           <div class="descrp">
+                               @Html.Raw(item.GetValue("text"))
+                               <ul>
+                                   @foreach (var subitem in item.GetGroup("links"))
+                                   {
+
+                                       <li>
+                                           <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
+                                       </li>
+                                   }
+                               </ul>
+                           </div>
+                       </li>
+                   }
+               </ul>
+           </div>
+
+           <div class="right-icons-mobile child min">
+               <i class="fa fa-map has-sub" id="right-icon"></i>
+
+               <ul>
+
+                   @foreach (var item in socials)
+            {
+                       <li>
+                           <a href="@item.GetValue("url")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+                       </li>
+
+                   }
+
+               </ul>
+           </div>
+       </div>
+
+
+        <div class="back-to-top"><i class="fa fa-chevron-up"></i></div>
+    </div>
+
+    <div class="search-bar show-mobile">
+
+
+        <input class="form-control" placeholder="طبقه را وارد کنید" />
+        <select class="form-control">
+            <option>تعداد اتاق را انتخاب کنید</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+
+        <select class="form-control">
+            <option>متراژ </option>
+            <option>80 - 100</option>
+            <option>100 - 120</option>
+            <option>120 - 140</option>
+            <option>140 - 180</option>
+        </select>
+
+        <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+
+
+    </div>
+
     <header class="show-mobile noSwipe">
         <div class="close">
             <i class="fa fa-close"></i>
@@ -227,119 +313,92 @@
             <img src="~/Themes/hayat2/img/logo/Hayate no Logo black.png" />
         </a>
 
-        <div class="links">
-            <ul>
-                <li>
-                    <a href="/visit">
-                        <i class="fa fa-calendar"></i>
-                        <span>
-                            رزرو بازدید
-                        </span>
-                    </a>
-                </li>
-
-                <li>
-                    <i class="fa fa-envelope"></i>
-                    <span class="ltr email">
-                        info@hayat-no.com
-                    </span>
-                </li>
-
-
-                <li>
-                    <i class="fa fa-phone-square"></i>
-                    <span class="ltr phone">
-                        021 2290 4055
-                    </span>
-                </li>
-            </ul>
-        </div>
         <nav>
             <ul>
 
                 @foreach (var item in menu)
                 {
 
-                    <li>
-                        <a href="@item.GetValue("url")" class="under-line-animate">
-                            @item.GetValue("name")
+                <li>
+                    <a href="@item.GetValue("url")" class="under-line-animate">
+                        @item.GetValue("name")
 
-                        </a>
+                    </a>
 
-                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                    @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
                         {
-                            <div class="child-menu">
-                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+                    <div class="child-menu">
+                        @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
 
-                            </div>
+                    </div>
 
                         }
 
-                    </li>
+                </li>
 
                 }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="pull-left">
-                        <a href="">
-                            <i class="fa fa-user"></i>
-                            @User.Identity.Name
-                        </a>
+                <li class="pull-left">
+                    <a href="">
+                        <i class="fa fa-user"></i>
+                        @User.Identity.Name
+                    </a>
 
-                        <div class="child-menu">
-                            <form action="/fa-ir/manage/auth/LogOff" method="post">
-                                <button type="submit" class="btn btn-block hayatbtn">
-                                    <i class="fa fa-lock"></i>
-                                    خروج
-                                </button>
-                            </form>
-                        </div>
-                    </li>
+                    <div class="child-menu">
+                        <form action="/fa-ir/manage/auth/LogOff" method="post">
+                            <button type="submit" class="btn btn-block hayatbtn">
+                                <i class="fa fa-lock"></i>
+                                خروج
+                            </button>
+                        </form>
+                    </div>
+                </li>
                 }
                 else
                 {
-                    <li class="pull-left">
-                        <a href="/auth">
-                            <i class="fa fa-user"></i>
-                            ورود
-                        </a>
-                    </li>
+                <li class="pull-left">
+                    <a href="/auth">
+                        <i class="fa fa-user"></i>
+                        ورود
+                    </a>
+                </li>
                 }
 
             </ul>
 
         </nav>
 
-        <div class="search-bar">
-            <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+        @*<div class="search-bar">
+                <i class="fa fa-search" onclick="toggleSearchBar()"></i>
 
 
-            <input class="form-control" placeholder="طبقه را وارد کنید" />
-            <select class="form-control">
-                <option>تعداد اتاق را انتخاب کنید</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
+                <input class="form-control" placeholder="طبقه را وارد کنید" />
+                <select class="form-control">
+                    <option>تعداد اتاق را انتخاب کنید</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
 
-            <select class="form-control">
-                <option>متراژ </option>
-                <option>80 - 100</option>
-                <option>100 - 120</option>
-                <option>120 - 140</option>
-                <option>140 - 180</option>
-            </select>
+                <select class="form-control">
+                    <option>متراژ </option>
+                    <option>80 - 100</option>
+                    <option>100 - 120</option>
+                    <option>120 - 140</option>
+                    <option>140 - 180</option>
+                </select>
 
-        </div>
+            </div>*@
     </header>
 
 
-        @RenderBody()
+    @RenderBody()
 
 
 
 
-    <div class="back-to-top"><i class="fa fa-chevron-up"></i></div>
+    <div class="back-to-top hidden-mobile"><i class="fa fa-chevron-up"></i></div>
 
 
 

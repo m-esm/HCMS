@@ -158,6 +158,8 @@ var changePage = function (nextPage, mode) {
     if (window.location.pathname !== "/") {
 
         $('header').addClass('navhide');
+        $('.top-nav').addClass('navhide');
+        $('.bottom-nav').addClass('navhide');
         $('.homelogo').fadeIn();
 
     }

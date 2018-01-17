@@ -11,13 +11,13 @@
 }
 
 
-<div class="right-icons">
+<div class="right-icons hidden-mobile">
     <ul>
         @foreach (var item in quickLinks)
             {
             <li>
                 <span>@item.GetValue("title")</span>
-                <i class="@item.GetValue("icon")"></i>
+                <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
                 <div class="descrp">
                     @Html.Raw(item.GetValue("text"))
                     <ul>
@@ -35,7 +35,7 @@
     </ul>
 </div>
 
-<div class="left-icons">
+<div class="left-icons hidden-mobile">
     <ul>
 
         @foreach (var item in socials)
