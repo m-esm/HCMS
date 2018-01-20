@@ -39,6 +39,7 @@ $.ajax({
         }
     });
     //fill comment to
+ 
     $.each(userComments, function (index, item) {
         var _html = '';
         var _prof = '';
@@ -51,7 +52,7 @@ $.ajax({
                 $.each(obj.Ranks, function (j, rank) {
                     _html += '<li><label>' + rank.Title + '</label><span>';
                     for (var i = 1; i <= 5; i++) {
-                        if (i <= rank.score)
+                        if (i <= rank.Score)
                             _html += ' <i class="fa fa-star"></i>';
                         else
                             _html += ' <i class="fa fa-star-o"></i>';
@@ -81,13 +82,16 @@ $.ajax({
 
 var rank = [];
 $('.stars i').click(function () {
+
+    //find parent
+
     var item = parseInt($(this).attr('data-item'));
-    var elm = $('.stars i');
+    var elm = $(this).parents('article').find('stars i')
 
     if (elm.hasClass('fa-star'))
         elm.removeClass('fa-star-o').addClass('fa-star-o');
     for (var i = 1; i <= item; i++) {
-        $('.stars i[data-item=' + i + ']').removeClass('fa-star-o').addClass('fa-star');
+        $(this).parents('article').find('.stars i[data-item=' + i + ']').removeClass('fa-star-o').addClass('fa-star');
     }
 
     var id = $(this).parents('article').attr('id');
@@ -135,10 +139,12 @@ $(document).on('click', '.register .submit', function () {
     model.Name = $(this).parent('form').find('input[name="name"]').val();
     model.Email = $(this).parent('form').find('input[name="email"]').val();
     model.Text = $(this).parent('form').find('textarea[name="text"]').val();
-    model.UnitId = $(this).parents('article').attr('id').split('_')[1];
+    model.UnitId = $(this).parents('section').attr('id');
     model.IsUser = true;
     model.Ranks = rank;
     var hasError = false;
+
+    var _this = $(this);
     if (model.Name == "") {
         hasError = true;
         $(this).parent('form').find('input[name="name"]').addClass('has-error');
@@ -171,16 +177,18 @@ $(document).on('click', '.register .submit', function () {
         data: model
     }).success(function (res) {
         console.log(res);
-        $('#resultInfo').show();
+        var _alert = _this.parents('article').find('.alert');
+        _alert.show();
+        //$('#resultInfo').show();
         if (res.IsSuccess) {
-            $('#resultInfo').addClass('alert-success').html('نظر شما با موفقیت ثبت شد. با تشکر');
+            _alert.addClass('alert-success').html('نظر شما با موفقیت ثبت شد. با تشکر');
         } else {
             var html = '<ul>';
             $.each(res.msg, function (index, item) {
                 html += "<li>" + item + "</li>";
             })
             html += '</ul>';
-            $('#resultInfo').addClass('alert-danger').html(html);
+            _alert.addClass('alert-danger').html(html);
         }
     }).error(function (err) {
         console.log(err);

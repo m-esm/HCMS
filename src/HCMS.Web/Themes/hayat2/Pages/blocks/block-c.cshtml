@@ -19,13 +19,17 @@
     <div class="inner">
         <h3 class="title">بلوک C</h3>
 
-        @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(a => a.GetValue("blockId").ToString() == Model.ToString()))
+        @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(a => a.GetValue("blockId").ToString() == Model.ToString() && a.GetValue("Floor").ToString() == "1"))
+
+        <div class="alert alert-info">
+            این بلوک در 11 طبقه هر طبقه دارای 4 ,واحد و پلان ها به صورت تیپ می باشد.
+        </div>
 
         <div class="plan-unit">
             <img src="" />
         </div>
 
-        <div class="block">
+        <div class="block hidden-mobile">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" name=recortes-c>
                 <defs>
                     <clipPath id=F1-c>
@@ -100,9 +104,52 @@
             </figure>
         </div>
 
+        <div class="mobile-block show-mobile">
+            <ul class="floor">
+                <li>
+                    طبقه اول
+                </li>
+                <li>
+                    طبقه دوم
+                </li>
+                <li>
+                    طبقه سوم
+                </li>
+                <li>
+                    طبقه چهارم
+                </li>
+                <li>
+                    طبقه پنجم
+                </li>
+                <li>
+                    طبقه ششم
+                </li>
+                <li>
+                    طبقه هفتم
+                </li>
+                <li>
+                    طبقه هشتم
+                </li>
+                <li>
+                    طبقه نهم
+                </li>
+                <li>
+                    طبقه دهم
+                </li>
+                <li>
+                    طبقه یازدهم
+                </li>
+            </ul>
 
+            <ul class="unit">
+                <li data-unit="1">واحد 1</li>
+                <li data-unit="2">واحد 2</li>
+                <li data-unit="3">واحد 3</li>
+                <li data-unit="4">واحد 4</li>
+            </ul>
+        </div>
 
-        <div class="plan">
+        <div class="plan hidden-mobile">
 
             @Html.Partial("blocks/plans/plan-c")
 

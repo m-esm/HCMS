@@ -21,13 +21,13 @@
                     {
                         var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
                         var _id = item.GetValue("Floor") + "-" + item.GetValue("Unit");
-                        <tr class="" id="@_id" data-area="@item.GetValue("area")">
+                        <tr class="" id="blocks_@item.RowID" data-area="@item.GetValue("area")">
                             <td>@unitName</td>
                             <td> @item.GetValue("area")</td>
                             @*<td> @item.GetValue("Floor")</td>*@
                             @*<td> @item.GetValue("Unit")</td>*@
                             <td> @item.GetValue("rooms")</td>
-                            <td> - </td>
+                            <td class="score"> - </td>
                             <td>
                                 <a class="hayatbtn hayatbtn-sm" href="/units/#@item.GetValue("name").Value.Replace("-","_")">
                                     <i class="fa fa-eye"></i>

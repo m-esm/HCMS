@@ -5,6 +5,7 @@
     var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
     var socials = DDB.GetTable("cms", "socials").DRows;
     var sliders = DDB.GetTable("cms", "slider").DRows;
+    var setting = DDB.GetTable("cms", "setting").DRows.FirstOrDefault();
 
 
 }
@@ -48,7 +49,7 @@
     <!-- Bootstrap CSS File -->
     <link href="~/Themes/hayat2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
-
+    
 
     <!-- Libraries CSS Files -->
     <link href="~/Themes/hayat2/lib/animate-css/animate.min.css" rel="stylesheet" />
@@ -56,8 +57,8 @@
 
 
     <!-- hayat styles -->
-    <link href="~/Themes/hayat2/css/hayat.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/blocks.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/hayat.min.css?v=@DateTime.Now" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks.min.css?v=@DateTime.Now" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/logo.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/places.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/slider.min.css" rel="stylesheet" />
@@ -123,7 +124,7 @@
                 <li>
                     <i class="fa fa-envelope"></i>
                     <span class="ltr email">
-                        info@hayat-no.com
+                        @setting.GetValue("email")
                     </span>
                 </li>
 
@@ -131,7 +132,7 @@
                 <li>
                     <i class="fa fa-phone-square"></i>
                     <span class="ltr phone">
-                        021 2290 4055
+                        @setting.GetValue("mainPhone")
                     </span>
                 </li>
             </ul>
@@ -214,7 +215,6 @@
 
     @*<div class="show-mobile bar" id="menu-bar">
         </div>*@
-
     <div class="show-mobile top-nav">
         <div class="bar" id="menu-bar">
             <img src="~/Themes/hayat2/img/icon.png" />
@@ -409,16 +409,18 @@
     </script>
 
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Themes/hayat2/js/scroll.js"></script>
+   @* <script src="~/Themes/hayat2/js/scroll.js"></script>
     <script src="~/Themes/hayat2/js/newScroll.js"></script>
     <script src="~/Themes/hayat2/js/unit.js"></script>
 
     <script src="~/Themes/hayat2/js/slider.js"></script>
     <script src="~/Themes/hayat2/js/videoslider.js"></script>
     <script src="~/Themes/hayat2/js/custom.js"></script>
-    <script src="~/Themes/hayat2/js/blocks.js"></script>
+    <script src="~/Themes/hayat2/js/blocks.js"></script>*@
 
-    @*<script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>*@
+    <script src="~/Themes/hayat2/js/newScroll.js"></script>
+    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
+    <script src="~/Themes/hayat2/js/gallery.js"></script>
     <script src="~/Themes/hayat2/lib/resize-image-map/resize-image-map.js"></script>
     <!-- hayat JS Bundle -->
 

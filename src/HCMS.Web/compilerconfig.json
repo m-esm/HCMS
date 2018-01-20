@@ -50,5 +50,9 @@
   {
     "outputFile": "Themes/hayat2/css/gallery.css",
     "inputFile": "Themes/hayat2/css/gallery.less"
+  },
+  {
+    "outputFile": "Themes/hayat2/js/blocks.es5.js",
+    "inputFile": "Themes/hayat2/js/blocks.js"
   }
 ]

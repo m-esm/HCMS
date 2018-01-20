@@ -15,6 +15,11 @@
   height: 100%;
   position: relative;
 }
+.block-detail .inner .alert {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 .block-detail .inner .hayatbtn.mobile-show {
   position: absolute;
   right: -100%;
@@ -232,14 +237,62 @@
   .block-detail .inner .block {
     width: 300px;
     top: 10px;
+    display: none;
   }
   .block-detail .inner .plan {
     left: 10px;
   }
   .block-detail .inner .plan-unit {
-    width: 220px;
     left: unset;
-    right: 10px;
+    right: 0;
+    top: 0;
+    float: left;
+    width: 50%;
+  }
+  .block-detail .inner .plan-unit.show {
+    display: none;
+  }
+  .block-detail .inner .mobile-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    float: left;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .block-detail .inner .mobile-block.prev {
+    left: -100%;
+    opacity: 0;
+  }
+  .block-detail .inner .mobile-block ul {
+    float: left;
+    width: 50%;
+  }
+  .block-detail .inner .mobile-block ul li {
+    padding: 3px 5px;
+    margin: 1px 5px;
+    background-color: #4e1c1b;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: 2px solid;
+  }
+  .block-detail .inner .mobile-block ul li:hover {
+    background-color: unset;
+    color: #4e1c1b;
+  }
+  .block-detail .inner .mobile-block ul li.active {
+    background-color: unset;
+    color: #4e1c1b;
+  }
+  .block-detail .inner .mobile-block ul.unit {
+    display: none;
+  }
+  .block-detail .inner .mobile-block ul.unit.active {
+    display: block;
   }
   .block-detail .inner .hayatbtn.mobile-show {
     display: block;
@@ -256,16 +309,6 @@
   .block-detail {
     padding: 75px 10px;
   }
-  .block-detail .inner .block {
-    width: 250px;
-  }
-  .block-detail .inner .plan {
-    left: 10px;
-    width: 200px;
-  }
-  .block-detail .inner .plan-unit {
-    width: 180px;
-  }
 }
 @media (max-width: 450px) {
   .block-detail .inner .block {
@@ -277,13 +320,13 @@
     width: 50px;
   }
   .block-detail .inner .plan {
-    left: 50px;
+    left: 0;
     bottom: -40px;
+    width: 150px;
   }
   .block-detail .inner .plan-unit {
-    width: 30px;
     transition: all 0.5s;
-    display: block;
+    width: 150px;
   }
   .block-detail .inner .plan-unit img {
     max-height: 260px;
@@ -291,13 +334,22 @@
   .block-detail .inner .plan-unit.mobile-max {
     width: 164px;
   }
+  .block-detail .inner .mobile-block ul li {
+    font-size: 1rem;
+  }
+  .block-detail .inner .mobile-block ul.unit {
+    display: none;
+  }
+  .block-detail .inner .mobile-block ul.unit.active {
+    display: block;
+  }
   .block-detail .inner .hayatbtn.mobile-show.active {
     font-size: 18px;
     width: 42px;
     height: 30px;
     padding: 6px;
     left: unset;
-    right: 0;
+    right: 40px;
     bottom: -64px;
   }
   .block-detail .inner .hayatbtn.mobile-show label {
@@ -309,18 +361,20 @@
 }
 @media (max-width: 370px) {
   .block-detail {
-    padding: 65px 10px;
+    padding: 65px 3px;
   }
-  .block-detail .inner .plan {
-    left: 10px;
+  .block-detail .inner .plan-unit img {
+    width: 90%;
   }
-  .block-detail .inner .plan-unit {
-    width: 30px;
-    transition: all 0.5s;
+  .block-detail .inner .mobile-block ul li {
+    font-size: 1rem;
+    padding: 3px;
+  }
+  .block-detail .inner .mobile-block ul.unit {
+    display: none;
+  }
+  .block-detail .inner .mobile-block ul.unit.active {
     display: block;
-  }
-  .block-detail .inner .plan-unit.mobile-max {
-    width: 154px;
   }
 }
 @media only screen and (max-width: 812px) and (orientation: landscape) {
@@ -338,21 +392,27 @@
     left: 10px;
     width: 123px;
   }
+  .block-detail .inner .mobile-block ul li {
+    width: 50%;
+    float: left;
+    margin: 0;
+    font-size: 1rem;
+  }
   .block-detail .inner .hayatbtn.mobile-show.active {
-    bottom: 0;
+    bottom: -15px;
   }
   .block-detail .inner .plan-unit {
-    width: 30px;
+    position: absolute;
     transition: all 0.5s;
-    top: -20px;
+    top: -60px;
     right: 100px;
     transform: rotate(90deg);
     width: 164px;
-  }
-  .block-detail .inner .plan-unit img {
-    position: absolute;
-    right: calc(20% - 150px);
-    top: -182px;
+    /*img {
+                    position: absolute;
+                    right: ~"calc(20% - 150px)";
+                    top: -182px;
+                }*/
   }
 }
 @media only screen and (max-width: 736px) and (orientation: landscape) {
@@ -361,6 +421,14 @@
   }
   .block-detail .inner .block {
     top: -15px;
+  }
+  .block-detail .inner .plan-unit {
+    position: absolute;
+    transition: all 0.5s;
+    top: 0;
+    right: 50px;
+    transform: rotate(90deg);
+    width: 130px;
   }
   .block-detail .inner .hayatbtn.mobile-show {
     display: block;
@@ -402,11 +470,14 @@
     left: 0;
     top: -35px;
   }
+  .block-detail .inner .mobile-block ul li {
+    font-size: 0.9rem;
+  }
   .block-detail .inner .plan {
     top: 55%;
   }
   .block-detail .inner .plan-unit {
-    width: 136px;
+    width: 100px;
     left: 40px;
   }
   .block-detail .inner .hayatbtn.mobile-show.active {
@@ -430,6 +501,10 @@
     width: 166px;
     left: 0;
     top: -35px;
+  }
+  .block-detail .inner .mobile-block ul li {
+    font-size: 0.8rem;
+    padding: 1px;
   }
   .block-detail .inner .plan {
     top: 55%;

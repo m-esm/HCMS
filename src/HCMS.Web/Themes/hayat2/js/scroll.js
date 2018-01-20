@@ -173,6 +173,9 @@ var changePage = function (nextPage, mode) {
                 .removeClass('page-deactive-top')
             .removeClass('page-deactive-down');
 
+            if (prevPage.hasClass('hasChild'))
+                prevPage.find('article').first().addClass('page-active');
+
             currentPage.addClass('page-deactive-top')
                 .removeClass('page-active');
 
@@ -211,6 +214,9 @@ var changePage = function (nextPage, mode) {
                 .addClass('page-active')
                 .removeClass('page-deactive-top')
                 .removeClass('page-deactive-down');
+
+            if (nextPage.hasClass('hasChild'))
+                nextPage.find('article').first().addClass('page-active');
 
             currentPage
                 .addClass('page-deactive-down')

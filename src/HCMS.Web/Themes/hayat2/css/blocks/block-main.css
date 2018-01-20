@@ -1,38 +1,34 @@
-﻿    svg, defs, clipPath {
-        height: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+﻿
+#figur-main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
 
-    #figur-main {
-        position: relative;
-        border-radius: 20px;
-    }
-
-    .back, #capaRecorte-main {
-        border: none;
-        height: auto;
-        max-width: 100%;
-        width: auto;
-    }
+.back, #capaRecorte-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    max-width: 100%;
+    width: auto;
+}
 
 
-    #capaRecorte-main {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+#capaRecorte-main{
+    display: none;
+}
 
-    #imagen-main {
-        position: absolute;
-        top: 0;
-        left: 0;
-        cursor: crosshair;
-        width: 100%;
-        height: 100%;
-    }
+#imagen-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: crosshair;
+    width: 100%;
+    height: 100%;
+}
+
 
 
     #figur-main area {
@@ -47,7 +43,7 @@
 
         #figur-main area:nth-of-type(2):hover ~ #capaRecorte-main {
             display: block;
-            clip-path: url(#block-main);
+            clip-path: url(#block-B);
         }
 
         #figur-main area:nth-of-type(3):hover ~ #capaRecorte-main {

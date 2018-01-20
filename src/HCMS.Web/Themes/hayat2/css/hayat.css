@@ -44,7 +44,7 @@ section.page-homeforms form {
 }
 .homelogo {
   position: fixed;
-  bottom: 10px;
+  bottom: 45px;
   left: 10px;
   z-index: 300;
   padding: 10px;
@@ -600,104 +600,6 @@ article.page-child.page-horizontal.page-deactive-down {
 article.page-child.page-horizontal.page-deactive-top {
   transform: translateX(100%);
 }
-article.page-child .full-image {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
-article.page-child .full-image img.main-image {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-article.page-child .full-image .pov {
-  transition: all 0.5s;
-}
-article.page-child .full-image .pov i {
-  position: absolute;
-  left: 10px;
-  top: 47%;
-  font-size: 32px;
-  color: #000;
-  cursor: pointer;
-  z-index: 2;
-}
-article.page-child .full-image .pov img {
-  position: absolute;
-  left: 70px;
-  top: 26%;
-  height: 300px;
-  display: none;
-  z-index: 2;
-}
-article.page-child .full-image .pov:hover img {
-  display: block;
-}
-article.page-child .full-image .arrow {
-  width: 200px;
-  display: inline-block;
-  position: absolute;
-  bottom: 60px;
-  left: calc(50% - 100px);
-  text-align: center;
-}
-article.page-child .full-image .arrow .left,
-article.page-child .full-image .arrow .right {
-  width: 50%;
-  float: left;
-  cursor: pointer;
-}
-article.page-child .full-image .arrow .left:hover,
-article.page-child .full-image .arrow .right:hover {
-  transform: scale(1.2);
-}
-article.page-child .full-image .footer {
-  opacity: 0;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  background-color: rgba(3, 3, 3, 0.5);
-  padding: 5px 120px;
-}
-article.page-child .full-image .footer:hover {
-  opacity: 1;
-  transition: all ease-in-out 0.5s;
-}
-article.page-child .full-image .footer i {
-  color: #fff;
-  font-size: 30px;
-  cursor: pointer;
-  float: left;
-}
-article.page-child .full-image .footer .share ul {
-  display: inline-block;
-  width: 400px;
-  list-style-type: none;
-}
-article.page-child .full-image .footer .share ul li {
-  float: right;
-  padding: 5px 10px;
-}
-article.page-child .full-image .footer .share ul li i {
-  font-size: 25px;
-}
-article.page-child .full-image u {
-  position: absolute;
-  top: 12px;
-  left: calc(50% - 100px);
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-  color: #fff;
-  width: 200px;
-  text-align: center;
-}
 section.page-custom .buttons {
   text-align: left;
 }
@@ -708,6 +610,7 @@ section.page-custom .inner {
   padding-right: 90px;
   margin: 0 auto;
   height: 93%;
+  overflow: hidden;
 }
 section.page-custom .inner .row {
   margin-left: 0;
@@ -1036,9 +939,6 @@ section#signup form #register-form {
 .main-block {
   text-align: center;
 }
-.main-block img {
-  width: 500px;
-}
 .main-block .mobile-box {
   display: none;
 }
@@ -1114,7 +1014,7 @@ section#signup form #register-form {
 }
 section.page-blocks {
   padding-top: 100px;
-  min-height: 800px;
+  min-height: 80%;
 }
 section.page-blocks .row .col-md-6 {
   padding: 0;
@@ -1871,6 +1771,7 @@ section.page-register form .links a {
   padding: 85px 100px;
   position: relative;
   overflow: auto;
+  overflow-x: hidden;
   display: block;
 }
 .comments .header {
@@ -1935,6 +1836,7 @@ section.page-register form .links a {
 }
 .comments .user-comment {
   display: inline-block;
+  width: 100%;
 }
 .comments .user-comment .msg {
   float: right;
@@ -1957,6 +1859,9 @@ section.page-register form .links a {
 .comments .user-comment .rate ul {
   list-style-type: none;
   padding: 0 453px;
+}
+.comments .user-comment .rate ul li i {
+  color: #4e1c1b;
 }
 .comments .user-comment .rate span {
   float: left;
@@ -2021,6 +1926,25 @@ section.page-register form .links a {
   .table table {
     border-spacing: 8px;
     font-size: 11px;
+  }
+  .comments {
+    padding: 85px 90px;
+  }
+  .comments .body {
+    padding-bottom: 20px;
+  }
+  .comments .body .item {
+    padding: 0;
+  }
+  .comments .body .rate ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  .comments .body .prof-comment ul {
+    padding: 0;
+  }
+  .homelogo {
+    width: 88px;
   }
 }
 @media (max-width: 990px) {
@@ -2093,6 +2017,9 @@ section.page-register form .links a {
   section.page-block .main-block .map {
     display: none;
   }
+  .homelogo {
+    width: 86px;
+  }
 }
 @media (max-width: 810px) {
   header nav ul {
@@ -2101,11 +2028,85 @@ section.page-register form .links a {
   header nav ul li a {
     font-size: 1.2rem;
   }
+  .homelogo {
+    width: 84px;
+  }
 }
 .show-768px {
   display: none;
 }
 @media (max-width: 768px) {
+  show-mobile {
+    display: block;
+  }
+  section.page-blocks .main-block .map {
+    display: block;
+    width: 400px;
+    float: left;
+  }
+  section.page-blocks .main-block .map .child-block {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 90px;
+    display: inline-block;
+  }
+  section.page-blocks .main-block .map .child-block .block-a,
+  section.page-blocks .main-block .map .child-block .block-b,
+  section.page-blocks .main-block .map .child-block .block-c {
+    right: unset;
+    left: unset;
+    top: unset;
+    float: right;
+    position: unset;
+    margin: 2px 0;
+  }
+  section.page-blocks .main-block .map .child-block .block-a-btn,
+  section.page-blocks .main-block .map .child-block .block-b-btn,
+  section.page-blocks .main-block .map .child-block .block-c-btn,
+  section.page-blocks .main-block .map .child-block .block-m-btn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transform: scale(0.2);
+    opacity: 0;
+    transition: transform ease 0.5s, opacity ease .8s;
+    z-index: -100;
+    overflow: hidden;
+  }
+  section.page-blocks .main-block .map .child-block .block-a-btn.in,
+  section.page-blocks .main-block .map .child-block .block-b-btn.in,
+  section.page-blocks .main-block .map .child-block .block-c-btn.in,
+  section.page-blocks .main-block .map .child-block .block-m-btn.in {
+    transform: translate(0);
+    opacity: 1;
+    z-index: 2;
+  }
+  section.page-blocks .block-button {
+    position: fixed;
+    bottom: 115px;
+    left: 0;
+    width: 100%;
+  }
+  section.page-blocks .block-button li {
+    width: 24%;
+    float: left;
+    padding: 5px;
+    background-color: #4e1c1b;
+    margin: 0 2px;
+    text-align: center;
+    border: 2px solid;
+  }
+  section.page-blocks .block-button li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  section.page-blocks .block-button li:hover {
+    background-color: unset;
+  }
+  section.page-blocks .block-button li:hover a {
+    color: #4e1c1b;
+  }
   .container {
     width: 662px;
   }
@@ -2126,9 +2127,6 @@ section.page-register form .links a {
   .hide-768px {
     display: none;
   }
-  .map {
-    display: none;
-  }
   article.page-child .full-image .footer {
     padding: 5px 100px;
   }
@@ -2138,11 +2136,7 @@ section.page-register form .links a {
   article.page-child .full-image .footer .share ul li i {
     font-size: 20px;
   }
-  article.page-child .full-image .footer i {
-    font-size: 20px;
-  }
-  .main-block .table,
-  .main-block .map {
+  .main-block .table {
     display: none;
   }
   .main-block .show-768px {
@@ -2218,11 +2212,37 @@ section.page-register form .links a {
     bottom: 38px;
     font-size: 1.5rem;
   }
+  .comments {
+    padding: 85px 10px;
+    font-size: 1.2rem;
+  }
+  .comments .user-comment .rate ul {
+    padding: 0;
+  }
+  .comments .body {
+    padding-bottom: 20px;
+  }
+  .comments .body form {
+    box-shadow: unset;
+  }
+  .homelogo {
+    width: 82px;
+    left: 0;
+  }
 }
 @media (max-width: 710px) {
   .row {
     margin-right: 0;
     margin-left: 0;
+  }
+  .homelogo {
+    width: 80px;
+  }
+  section.page-block .main-block .map {
+    display: block;
+  }
+  section.page-blocks .main-block .map {
+    width: 350px;
   }
 }
 @media (max-width: 670px) {
@@ -2591,6 +2611,9 @@ section.page-register form .links a {
   header.show-mobile .search-bar select {
     color: #666;
   }
+  .homelogo {
+    width: 78px;
+  }
 }
 @media (max-width: 615px) {
   .container {
@@ -2770,6 +2793,42 @@ section.page-register form .links a {
   .show-mobile.top-nav .bar img {
     width: 60px;
   }
+  .homelogo {
+    width: 75px;
+  }
+  section.page-blocks .main-block .block-a,
+  section.page-blocks .main-block .block-b,
+  section.page-blocks .main-block .block-c,
+  section.page-blocks .main-block .block-m {
+    height: 60px;
+    width: 60px;
+  }
+  section.page-blocks .main-block .block-a img,
+  section.page-blocks .main-block .block-b img,
+  section.page-blocks .main-block .block-c img,
+  section.page-blocks .main-block .block-m img {
+    width: 60px;
+    height: 38px;
+  }
+  section.page-blocks .main-block .block-a label,
+  section.page-blocks .main-block .block-b label,
+  section.page-blocks .main-block .block-c label,
+  section.page-blocks .main-block .block-m label {
+    line-height: 22px;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000;
+  }
+  section.page-blocks .main-block .map {
+    width: 350px;
+  }
+  section.page-blocks .block-button li {
+    padding: 3px;
+    width: 23%;
+  }
+  section.page-blocks .block-button li a {
+    font-size: 1.2rem;
+  }
 }
 @media (max-width: 500px) {
   .container {
@@ -2798,6 +2857,13 @@ section.page-register form .links a {
     width: 100px !important;
     height: 100px !important;
   }
+  .comments {
+    padding: 60px 10px;
+    font-size: 1.1rem;
+  }
+  .homelogo {
+    width: 70px;
+  }
 }
 @media (max-width: 430px) {
   .container {
@@ -2808,7 +2874,6 @@ section.page-register form .links a {
   }
   article.page-child .full-image .footer {
     padding: 5px;
-    padding-left: 100px;
   }
   article.page-child .full-image .footer .share ul {
     width: 180px;
@@ -2816,14 +2881,7 @@ section.page-register form .links a {
   article.page-child .full-image .footer .share ul li {
     padding: 5px;
   }
-  article.page-child .full-image .footer .share ul li i {
-    font-size: 15px;
-  }
-  article.page-child .full-image .footer i {
-    font-size: 15px;
-  }
-  .main-block .table,
-  .main-block .map {
+  .main-block .table {
     display: none;
   }
   .main-block .show-768px {
@@ -2944,6 +3002,33 @@ section.page-register form .links a {
   .raychat_main_button {
     height: 35px !important;
     width: 35px !important;
+  }
+  section.page-blocks .main-block .map {
+    width: 300px;
+  }
+  section.page-blocks .main-block .map .child-block {
+    width: 75px;
+  }
+  section.page-blocks .main-block .map .child-block .block-a,
+  section.page-blocks .main-block .map .child-block .block-b,
+  section.page-blocks .main-block .map .child-block .block-c,
+  section.page-blocks .main-block .map .child-block .block-m {
+    height: 50px;
+    width: 50px;
+  }
+  section.page-blocks .main-block .map .child-block .block-a img,
+  section.page-blocks .main-block .map .child-block .block-b img,
+  section.page-blocks .main-block .map .child-block .block-c img,
+  section.page-blocks .main-block .map .child-block .block-m img {
+    width: 50px;
+    height: 35px;
+  }
+  section.page-blocks .main-block .map .child-block .block-a label,
+  section.page-blocks .main-block .map .child-block .block-b label,
+  section.page-blocks .main-block .map .child-block .block-c label,
+  section.page-blocks .main-block .map .child-block .block-m label {
+    line-height: 18px;
+    font-size: 10px;
   }
 }
 @media (max-width: 390px) {
@@ -3070,6 +3155,12 @@ section.page-register form .links a {
   section.page-map {
     padding: 40px 30px;
   }
+  .homelogo {
+    width: 65px;
+  }
+  section.page-blocks .main-block .map {
+    width: 250px;
+  }
 }
 @media (max-width: 375px) {
   .table table {
@@ -3092,6 +3183,12 @@ section.page-register form .links a {
   .show-768px {
     width: 91%;
   }
+  .homelogo {
+    width: 60px;
+  }
+  section.page-blocks .main-block .map {
+    width: 200px;
+  }
 }
 @media (max-width: 315px) {
   .container {
@@ -3105,5 +3202,62 @@ section.page-register form .links a {
   }
   section.page-map {
     padding: 50px 20px;
+  }
+}
+@media only screen and (max-width: 812px) and (orientation: landscape) {
+  section.page-blocks .main-block .map {
+    width: 300px;
+  }
+  section.page-blocks .main-block .map .hayatbtn {
+    display: block;
+  }
+}
+@media only screen and (max-width: 667px) and (orientation: landscape) {
+  section.page-blocks .main-block .map {
+    width: 250px;
+  }
+  section.page-blocks .main-block .map .hayatbtn {
+    display: block;
+  }
+}
+@media only screen and (max-width: 568px) and (orientation: landscape) {
+  section.page-blocks .main-block .block-a.first,
+  section.page-blocks .main-block .block-b.first,
+  section.page-blocks .main-block .block-c.first,
+  section.page-blocks .main-block .block-m.first,
+  section.page-blocks .main-block .block-a.seconde,
+  section.page-blocks .main-block .block-b.seconde,
+  section.page-blocks .main-block .block-c.seconde,
+  section.page-blocks .main-block .block-m.seconde,
+  section.page-blocks .main-block .block-a.third,
+  section.page-blocks .main-block .block-b.third,
+  section.page-blocks .main-block .block-c.third,
+  section.page-blocks .main-block .block-m.third {
+    height: 40px;
+    width: 40px;
+  }
+  section.page-blocks .main-block .block-a img,
+  section.page-blocks .main-block .block-b img,
+  section.page-blocks .main-block .block-c img,
+  section.page-blocks .main-block .block-m img {
+    width: 40px;
+    height: 18px;
+  }
+  section.page-blocks .main-block .block-a label,
+  section.page-blocks .main-block .block-b label,
+  section.page-blocks .main-block .block-c label,
+  section.page-blocks .main-block .block-m label {
+    line-height: 22px;
+    font-size: 11px;
+  }
+  section.page-blocks .main-block .map {
+    width: 100px;
+  }
+  section.page-blocks .block-button li {
+    padding: 3px;
+    width: 23%;
+  }
+  section.page-blocks .block-button li a {
+    font-size: 1.2rem;
   }
 }

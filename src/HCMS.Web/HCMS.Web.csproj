@@ -2102,6 +2102,7 @@
     <Content Include="Packages\melon\fonts\IRANSansWeb.ttf" />
     <Content Include="Packages\melon\fonts\IRANSansWeb.woff" />
     <Content Include="Packages\melon\fonts\IRANSansWeb.woff2" />
+    <Content Include="Plugins\Hayat\Views\Comment\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\Publish_Local.pubxml" />
     <Content Include="Packages\HCMS\js\Base.DateHelper.min.js.map">
       <DependentUpon>Base.DateHelper.min.js</DependentUpon>
@@ -2263,6 +2264,62 @@
     <Content Include="Themes\hayat2\img\chat-logo\Chat Icon.png" />
     <Content Include="Themes\hayat2\img\C\Block C.png" />
     <Content Include="Themes\hayat2\img\C\New Plan Site slection C.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F1.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F10.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F11.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F2.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F3.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F4.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F5.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F6.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F7.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F8.png" />
+    <Content Include="Themes\hayat2\img\hover\Block A-F selection\Block A-F9.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F1.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F10.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F11.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F2.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F3.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F4.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F5.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F6.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F7.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F8.png" />
+    <Content Include="Themes\hayat2\img\hover\Block B-F selection\Block B-F selection\Block B-F9.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C Plan\Block C Plan 01.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C Plan\Block C Plan 02.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C Plan\Block C Plan 03.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C Plan\Block C Plan 04.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C Plan\Block C Plan 05.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F1.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F10.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F11.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F2.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F3.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F4.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F5.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F6.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F7.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F8.png" />
+    <Content Include="Themes\hayat2\img\hover\Block C-F selection\Block C-F selection\Block C-F9.png" />
+    <Content Include="Themes\hayat2\img\hover\Blocks Selection\Block A-Hover.png" />
+    <Content Include="Themes\hayat2\img\hover\Blocks Selection\Block B-Hover.png" />
+    <Content Include="Themes\hayat2\img\hover\Blocks Selection\Block C-Hover.png" />
+    <Content Include="Themes\hayat2\img\hover\Blocks Selection\Block M-Hover.png" />
+    <Content Include="Themes\hayat2\img\hover\PlanA\Key Plan Block A_ P01.png" />
+    <Content Include="Themes\hayat2\img\hover\PlanA\Key Plan Block A_ P02.png" />
+    <Content Include="Themes\hayat2\img\hover\PlanA\Key Plan Block A_ P03.png" />
+    <Content Include="Themes\hayat2\img\hover\PlanA\Key Plan Block A_ P04.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block B\Key Plan Block B_ P01.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block B\Key Plan Block B_ P02.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block B\Key Plan Block B_ P03.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block B\Key Plan Block B_ P04.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block B\Key Plan Block B_ P05.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block C\Key Plan Block C_ P01.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block C\Key Plan Block C_ P02.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block C\Key Plan Block C_ P03.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block C\Key Plan Block C_ P04.png" />
+    <Content Include="Themes\hayat2\img\hover\Key Plan Block C\Key Plan Block C_ P05.png" />
     <Content Include="Themes\hayat2\img\icon.png" />
     <Content Include="Themes\hayat2\img\logo\Ebtekar Saze Samle Logo.png" />
     <Content Include="Themes\hayat2\img\logo\Hayate no Logo black.png" />
@@ -2303,12 +2360,16 @@
     <Content Include="Themes\hayat2\img\pov\POV-01.png" />
     <Content Include="Themes\hayat2\img\pov\POV-02.png" />
     <Content Include="Themes\hayat2\img\pov\POV-03.png" />
-    <Content Include="Themes\hayat2\img\team\photo_2017-12-16_01-29-07.jpg" />
-    <Content Include="Themes\hayat2\img\team\دکتررامتین خلعتبری.jpg" />
-    <Content Include="Themes\hayat2\img\team\مهندس بابک ترک نژاد.jpg" />
     <Content Include="Themes\hayat2\img\transparente.gif" />
+    <Content Include="Themes\hayat2\js\blocks.es5.js">
+      <DependentUpon>blocks.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\js\blocks.es5.min.js">
+      <DependentUpon>blocks.es5.js</DependentUpon>
+    </Content>
     <Content Include="Themes\hayat2\js\blocks.js" />
     <Content Include="Themes\hayat2\js\custom.js" />
+    <Content Include="Themes\hayat2\js\gallery.js" />
     <Content Include="Themes\hayat2\js\hayat.js" />
     <Content Include="Themes\hayat2\js\hayat.min.js">
       <DependentUpon>hayat.js</DependentUpon>

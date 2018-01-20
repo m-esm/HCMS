@@ -1,19 +1,19 @@
 ﻿/// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
 
 $(document).on('mouseenter mouseleave', 'section.page-blocks area', function (event) {
+    if ($(window).width() > 760) {
+        var wrapper = $('section.page-blocks');
 
-    var wrapper = $('section.page-blocks');
+        var target = $(event.target);
 
-    var target = $(event.target);
-
-    console.log(target.attr('data-block'));
-    if (event.type == "mouseenter")
-        $('.' + target.attr('data-block'), wrapper).addClass('in');
+        console.log(target.attr('data-block'));
+        if (event.type == "mouseenter")
+            $('.' + target.attr('data-block'), wrapper).addClass('in');
 
 
-    if (event.type == "mouseleave")
-        $('.' + target.attr('data-block'), wrapper).removeClass('in');
-
+        if (event.type == "mouseleave")
+            $('.' + target.attr('data-block'), wrapper).removeClass('in');
+    }
 });
 
 //
@@ -25,6 +25,7 @@ var plan_a_keys = [
     { unit: 3, url: '/Themes/hayat2/img/plan/A/keys/Block A Plan 003.png' },
     { unit: 4, url: '/Themes/hayat2/img/plan/A/keys/Block A Plan 004.png' },
 ];
+
 
 var plan_b_keys = [
     { unit: 1, url: '/Themes/hayat2/img/plan/B/keys/Block B Plan-01.png' },
@@ -42,7 +43,9 @@ var plan_c_keys = [
     { unit: 5, url: '/Themes/hayat2/img/plan/C/keys/Block C Plan 05.png' },
 ];
 
-$('#recortes-plan-a area').click(function () {
+
+$(document).on('tap click', '#recortes-plan-a area', function () {
+
     var unit = $(this).attr('data-unit');
     var find = plan_a_keys.find(a=>a.unit == unit);
     $('#block-a .plan-unit img').attr('src', find.url);
@@ -51,7 +54,6 @@ $('#recortes-plan-a area').click(function () {
 
     //set data table select and active
     var _id = '1-' + unit;
-    console.log(_id);
     //remove class from another child
     $('#block-a .table tr').removeClass('selected');
     $('#block-a .table tr').removeClass('active');
@@ -61,19 +63,53 @@ $('#recortes-plan-a area').click(function () {
     for (var i = _area - 10; i < _area + 10; i++) {
         $('#block-a .table tr[data-area=' + i + ']').addClass('active');
     }
-    console.log(_area);
     $('#block-a #' + _id).addClass('selected');
 
     var plan = $(this).attr('data-unit');
     $('#figur-plan-a area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
-
+    //var _hover = plan_a_keys_hover.find(a=>a.unit == plan);
+    //$('#figur-plan-img-a').attr('src', _hover.url);
     $('#block-a .hayatbtn').addClass('active');
 
-    //نشان دادن در حالت موبایلی
-    $('#block-a .block').addClass('mobile-min');
-    $('#block-a .plan-unit').addClass('mobile-max');
+    ////نشان دادن در حالت موبایلی
+    //$('#block-a .block').addClass('mobile-min');
+    //$('#block-a .plan-unit').addClass('mobile-max');
+    //$('#imagen-plan-a').css('display', 'none');
 
 });
+
+//$('#recortes-plan-a area').click(function () {
+//    var unit = $(this).attr('data-unit');
+//    var find = plan_a_keys.find(a=>a.unit == unit);
+//    $('#block-a .plan-unit img').attr('src', find.url);
+
+//    $('#block-a .plan-unit').css('display', 'block');
+
+//    //set data table select and active
+//    var _id = '1-' + unit;
+//    console.log(_id);
+//    //remove class from another child
+//    $('#block-a .table tr').removeClass('selected');
+//    $('#block-a .table tr').removeClass('active');
+
+//    //find plan number 
+//    var _area = parseInt($('#block-a #' + _id).attr('data-area'));
+//    for (var i = _area - 10; i < _area + 10; i++) {
+//        $('#block-a .table tr[data-area=' + i + ']').addClass('active');
+//    }
+//    console.log(_area);
+//    $('#block-a #' + _id).addClass('selected');
+
+//    var plan = $(this).attr('data-unit');
+//    $('#figur-plan-a area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
+
+//    $('#block-a .hayatbtn').addClass('active');
+
+//    //نشان دادن در حالت موبایلی
+//    $('#block-a .block').addClass('mobile-min');
+//    $('#block-a .plan-unit').addClass('mobile-max');
+
+//});
 
 $(document).on('click', '.block-detail .mobile-min', function () {
     $(this).removeClass('mobile-min');
@@ -95,6 +131,7 @@ $('.block-detail .hayatbtn').click(function () {
         elm.find('.plan').removeClass('prev');
         elm.find('.block').removeClass('prev');
         elm.find('.plan-unit').removeClass('prev');
+        elm.find('.mobile-block').removeClass('prev');
 
         $(this).removeClass('prev').find('label').html('برای مشاهده مشخصات کلی کلیک کنید');
         $(this).find('i').removeClass('fa-arrow-up').addClass('fa-eye');
@@ -103,6 +140,7 @@ $('.block-detail .hayatbtn').click(function () {
         elm.find('.plan').addClass('prev');
         elm.find('.block').addClass('prev');
         elm.find('.plan-unit').addClass('prev');
+        elm.find('.mobile-block').addClass('prev');
 
         $(this).addClass('prev').find('label').html('برای بازگشت کلیک کنید');
         $(this).find('i').removeClass('fa-eye').addClass('fa-arrow-up');
@@ -225,6 +263,65 @@ $('section.page .arrow .down').click(function () {
     changePage(false, 'down');
 })
 
-$('.plan-hover area').click(function () {
 
+$(document).on('tap click', '.mobile-block ul li', function () {
+    $(this).siblings('li').removeClass('active');
+    $(this).toggleClass('active');
+
+    //active unint
+    $(this).parent('ul').next('ul').addClass('active');
+})
+
+$(document).on('tap click', '.mobile-block .unit li', function () {
+    //show plan
+    var parent = $(this).parents('section')
+    console.log(parent.attr('id'));
+    var unit = $(this).attr('data-unit');
+    var find;
+    switch (parent.attr('id')) {
+        case 'block-a':
+            find = plan_a_keys.find(a=>a.unit == unit);
+            break;
+        case 'block-b':
+            find = plan_b_keys.find(a=>a.unit == unit);
+            break;
+        case 'block-c':
+            find = plan_c_keys.find(a=>a.unit == unit);
+            break;
+        default:
+
+    }
+    parent.find('.plan-unit img').attr('src', find.url);
+    parent.find('.plan-unit').addClass('show');
+    parent.find('.hayatbtn').addClass('active');
+
+    //$('#block-a .plan-unit img').attr('src', find.url);
+
+    //$('#block-a .plan-unit').css('display', 'block');
+
+})
+
+var main_block_hover = [
+    { block: 'a', url: '/Themes/hayat2/img/hover/Blocks Selection/Block A-Hover.png' },
+    { block: 'b', url: '/Themes/hayat2/img/hover/Blocks Selection/Block B-Hover.png' },
+    { block: 'c', url: '/Themes/hayat2/img/hover/Blocks Selection/Block C-Hover.png' },
+    { block: 'm', url: '/Themes/hayat2/img/hover/Blocks Selection/Block M-Hover.png' },
+];
+if ($(window).width() < 760) {
+    //show main mobile
+    $('#capaRecorte-main').attr('src', '');
+    $('#recortes-main area').attr('href', '#blocks');
+    $('#blocks map').addClass('show-mobile');
+}
+$(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
+    if ($(window).width() < 760) {
+        $('.' + $(this).attr('data-block')).parent('.child-block').siblings().find('.in').removeClass('in');
+        var elm = $(this).attr('data-block');
+        $('.' + elm).toggleClass('in');
+        $('.' + elm + '-btn').toggleClass('in');
+
+        var find = main_block_hover.find(a=>a.block == elm.split('-')[1]);
+        console.log(find);
+        $('#img-back-main').attr('src', find.url);
+    }
 })

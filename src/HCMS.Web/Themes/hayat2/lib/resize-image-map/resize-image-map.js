@@ -24,7 +24,6 @@
                         if (!h)
                             h = temp.height;
                     }
-                    console.log($that.width(), $that.height());
 
 
                     var wPercent = $that.width() / 100,
@@ -33,7 +32,6 @@
 						c = 'coords';
                     p = 'points';
 
-                    console.log(map, wPercent, hPercent);
                     $('map[name="' + map + '"]').find('area').each(function () {
                         var $this = $(this);
                         if (!$this.data(c))

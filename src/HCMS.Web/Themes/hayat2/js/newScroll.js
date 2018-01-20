@@ -12,7 +12,6 @@ $(function () {
     if ($('article.page-child').first().attr('id') == undefined)
         return;
 
-
     if (window.location.hash == undefined || $(window.location.hash).length == 0)
     {
         var _first = $('article.page-child').first();
@@ -21,8 +20,11 @@ $(function () {
 
 
         if (!$(_first).parent('section.page').hasClass('page-active'))
+        {
             $(_first).parent('section.page').addClass('page-active')
-
+            $(_first).addClass('page-active');
+        }
+        console.log($(_first).parent('section.page'));
 
     }
     else {

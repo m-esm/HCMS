@@ -1,4 +1,9 @@
 ﻿
+@blackColor: #222;
+@blackColor2: #1e1e1e;
+@baseColor1: #4e1c1b;
+@baseColor2: #ff0000;
+@baseColor3: #808080;
 
 .block-detail {
     padding: 100px;
@@ -19,6 +24,12 @@
     .inner {
         height: 100%;
         position: relative;
+
+        .alert{
+            position:absolute;
+            bottom:0;
+            right:0;
+        }
 
         .hayatbtn.mobile-show {
             position: absolute;
@@ -323,6 +334,7 @@
             .block {
                 width: 300px;
                 top: 10px;
+                display: none;
             }
 
             .plan {
@@ -330,9 +342,66 @@
             }
 
             .plan-unit {
-                width: 220px;
                 left: unset;
-                right: 10px;
+                right: 0;
+                top: 0;
+                float: left;
+                width: 50%;
+
+                &.show {
+                    display: none;
+                }
+            }
+
+
+            .mobile-block {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 50%;
+                float: left;
+                display: inline-block;
+                transition:all 0.3s;
+
+                &.prev {
+                    left: -100%;
+                    opacity: 0;
+                }
+
+                ul {
+                    float: left;
+                    width: 50%;
+
+                    li {
+                        padding: 3px 5px;
+                        margin: 1px 5px;
+                        background-color: @baseColor1;
+                        color: #fff;
+                        text-align: center;
+                        border-radius: 2px;
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                        border: 2px solid;
+
+                        &:hover {
+                            background-color: unset;
+                            color: @baseColor1;
+                        }
+
+                        &.active {
+                            background-color: unset;
+                            color: @baseColor1;
+                        }
+                    }
+                }
+
+                ul.unit {
+                    display: none;
+
+                    &.active {
+                        display: block;
+                    }
+                }
             }
 
             .hayatbtn.mobile-show {
@@ -355,22 +424,11 @@
 @media(max-width:670px) {
     .block-detail {
         padding: 75px 10px;
-
-        .inner {
-            .block {
-                width: 250px;
-            }
-
-            .plan {
-                left: 10px;
-                width: 200px;
-            }
-
-            .plan-unit {
-                width: 180px;
-            }
-        }
     }
+}
+
+@media(max-width:520px) {
+  
 }
 
 @media(max-width:450px) {
@@ -388,14 +446,14 @@
             }
 
             .plan {
-                left: 50px;
+                left: 0;
                 bottom: -40px;
+                width: 150px;
             }
 
             .plan-unit {
-                width: 30px;
                 transition: all 0.5s;
-                display: block;
+                width: 150px;
 
                 img {
                     max-height: 260px;
@@ -403,6 +461,24 @@
 
                 &.mobile-max {
                     width: 164px;
+                }
+            }
+
+            .mobile-block {
+
+                ul {
+
+                    li {
+                        font-size: 1rem;
+                    }
+                }
+
+                ul.unit {
+                    display: none;
+
+                    &.active {
+                        display: block;
+                    }
                 }
             }
 
@@ -414,7 +490,7 @@
                     height: 30px;
                     padding: 6px;
                     left: unset;
-                    right: 0;
+                    right: 40px;
                     bottom: -64px;
                 }
 
@@ -432,24 +508,32 @@
 
 @media(max-width:370px) {
     .block-detail {
-        padding: 65px 10px;
+        padding: 65px 3px;
 
         .inner {
 
-            .plan {
-                left: 10px;
+            .plan-unit {
+                img {
+                    width: 90%;
+                }
             }
 
-            .plan-unit {
-                width: 30px;
-                transition: all 0.5s;
-                display: block;
+            .mobile-block {
 
+                ul {
 
+                    li {
+                        font-size: 1rem;
+                        padding: 3px;
+                    }
+                }
 
+                ul.unit {
+                    display: none;
 
-                &.mobile-max {
-                    width: 154px;
+                    &.active {
+                        display: block;
+                    }
                 }
             }
         }
@@ -479,27 +563,39 @@
                 width: 123px;
             }
 
+
+            .mobile-block {
+
+                ul {
+
+                    li {
+                        width: 50%;
+                        float: left;
+                        margin: 0;
+                        font-size: 1rem;
+                    }
+                }
+            }
+
             .hayatbtn.mobile-show {
 
                 &.active {
-                    bottom: 0;
+                    bottom: -15px;
                 }
             }
 
             .plan-unit {
-                width: 30px;
+                position: absolute;
                 transition: all 0.5s;
-                top: -20px;
+                top: -60px;
                 right: 100px;
                 transform: rotate(90deg);
                 width: 164px;
-
-
-                img {
+                /*img {
                     position: absolute;
                     right: ~"calc(20% - 150px)";
                     top: -182px;
-                }
+                }*/
             }
         }
     }
@@ -514,6 +610,15 @@
 
             .block {
                 top: -15px;
+            }
+
+            .plan-unit {
+                position: absolute;
+                transition: all 0.5s;
+                top: 0;
+                right: 50px;
+                transform: rotate(90deg);
+                width: 130px;
             }
 
             .hayatbtn.mobile-show {
@@ -573,12 +678,20 @@
                 top: -35px;
             }
 
+            .mobile-block {
+                ul {
+                    li {
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+
             .plan {
                 top: 55%;
             }
 
             .plan-unit {
-                width: 136px;
+                width: 100px;
                 left: 40px;
             }
 
@@ -617,6 +730,16 @@
                 top: -35px;
             }
 
+
+            .mobile-block {
+                ul {
+                    li {
+                        font-size: 0.8rem;
+                        padding: 1px;
+                    }
+                }
+            }
+
             .plan {
                 top: 55%;
             }
@@ -625,8 +748,6 @@
                 width: 100px;
                 left: 40px;
             }
-
         }
     }
 }
-
