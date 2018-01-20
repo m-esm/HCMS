@@ -265,6 +265,73 @@ namespace HCMS.Web.Areas.Manage.Controllers
             return View("Account/Login", model);
         }
 
+        private async Task<ActionResult> loginUser(LoginViewModel model)
+        {
+            ApplicationUser user = UserRepository.GetUserByUsername(model.UserName);
+            if (user == null)
+                if (model.UserName.Contains("@"))
+                    user = UserRepository.GetUserByEmail(model.UserName);
+
+            if (user == null)
+                if (!model.UserName.Contains("@"))
+                    user = UserRepository.GetUserByMobile(model.UserName);
+
+            var request = HttpContext.Request;//.Current.Request;
+            var tokenServiceUrl = request.Url.GetLeftPart(UriPartial.Authority) + request.ApplicationPath + "/Token";
+
+            using (var client = new HttpClient())
+            {
+                var requestParams = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("grant_type", "password"),
+                new KeyValuePair<string, string>("username", user.UserName),
+                new KeyValuePair<string, string>("password", model.Password)
+            };
+                var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
+                var tokenServiceResponse = await client.PostAsync(tokenServiceUrl, requestParamsFormUrlEncoded);
+                var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
+                var responseCode = tokenServiceResponse.StatusCode;
+                var responseMsg = new HttpResponseMessage(responseCode)
+                {
+                    Content = new StringContent(responseString, Encoding.UTF8, "application/json")
+                };
+            }
+
+
+            if (user != null)
+            {
+
+                //if (user.EmailConfirmed == false && user.MobileConfirmed == false)
+                //{
+                //    ModelState.AddModelError("", @"نام کاربری یا شماره موبایل شما فعال سازی نشده است !");
+                //    if (model.isAjax)
+                //    {
+                //        return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
+                //                     .Select(e => e.ErrorMessage)
+                //                     .ToArray()));
+                //    }
+                //    return View("Account/Login", model);
+
+                //}
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                  OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                      CookieAuthenticationDefaults.AuthenticationType);
+
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationManager.SignIn(properties, oAuthIdentity, cookieIdentity);
+
+                FormsAuthentication.SetAuthCookie(user.UserName, true);
+
+                //When user is login we must update LastLoginDate
+                UpdateLogin(user.UserName);
+
+            }
+
+            return Redirect(HttpUtility.UrlDecode("/"));
+        }
+
         //
         // POST: /Account/LogOff
         public ActionResult LogOff()
@@ -310,7 +377,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(RegisterViewModel model, bool inapp = false)
+        public async Task<ActionResult> Register(RegisterViewModel model, bool inapp = false, bool loginAfterReg = false)
         {
             string captcha_session_key = "captcha" + model.captcha_guid;
             if (!inapp)
@@ -419,7 +486,8 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
                     }
 
-
+                    if (loginAfterReg)
+                        await loginUser(new LoginViewModel { UserName = model.Username, Password = model.Password});
 
                     if (model.isAjax)
                     {

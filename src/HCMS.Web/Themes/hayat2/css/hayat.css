@@ -334,14 +334,14 @@ header .links ul li:hover {
 }
 header .links ul li:hover span {
   padding-left: 1px;
-  width: 60px;
+  width: 150px;
   text-align: right;
 }
 header .links ul li:hover span.email {
-  width: 125px;
+  width: 150px;
 }
 header .links ul li:hover span.phone {
-  width: 95px;
+  width: 120px;
 }
 header nav {
   position: fixed;
@@ -606,7 +606,7 @@ section.page-custom .buttons {
 section.page-custom .inner {
   padding-top: 120px;
   width: 100%;
-  padding-left: 90px;
+  padding-left: 125px;
   padding-right: 90px;
   margin: 0 auto;
   height: 93%;
@@ -1506,26 +1506,6 @@ body .main .new-block.block .detail .up label {
   top: 0;
   left: 0;
 }
-.cellDetail .img {
-  /*.pov {
-            position: absolute;
-            height: 300px;
-            left: 0;
-            top: ~"calc(50% - 150px)";
-            cursor: pointer;
-
-            &:hover {
-                height: 400px;
-                top: ~"calc(50% - 200px)";
-                padding: 20px;
-                transition: all 0.5s;
-            }
-
-            img {
-                height: 100%;
-            }
-        }*/
-}
 .cellDetail .img .item {
   width: 100%;
   height: 100%;
@@ -1533,6 +1513,22 @@ body .main .new-block.block .detail .up label {
 }
 .cellDetail .img .item.active {
   display: block;
+}
+.cellDetail .img .pov {
+  position: absolute;
+  height: 300px;
+  left: 0;
+  top: calc(50% - 150px);
+  cursor: pointer;
+}
+.cellDetail .img .pov:hover {
+  height: 400px;
+  top: calc(50% - 200px);
+  padding: 20px;
+  transition: all 0.5s;
+}
+.cellDetail .img .pov img {
+  height: 100%;
 }
 .cellDetail .footer {
   opacity: 0;
@@ -1589,6 +1585,114 @@ body .main .new-block.block .detail .up label {
   cursor: pointer;
 }
 .cellDetail .arrow .left:hover {
+  transform: scale(1.2);
+}
+.hasChild {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.hasChild .full-image .main-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.hasChild .full-image .item {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.hasChild .full-image .item.active {
+  display: block;
+}
+.hasChild .pov {
+  position: absolute;
+  height: 300px;
+  left: 0;
+  top: calc(50% - 150px);
+  cursor: pointer;
+}
+.hasChild .pov:hover {
+  height: 300px;
+  top: calc(50% - 150px);
+  padding: 20px;
+  transition: all 0.5s;
+}
+.hasChild .pov:hover img {
+  z-index: 2;
+}
+.hasChild .pov i {
+  position: absolute;
+  left: 5px;
+  top: 40%;
+  z-index: 2;
+  color: #fff;
+  font-size: 30px;
+}
+.hasChild .pov img {
+  height: 100%;
+  position: absolute;
+  left: 40px;
+}
+.hasChild .footer {
+  opacity: 1;
+  /*&:hover {
+            opacity: 1;
+            transition: all ease-in-out 0.5s;
+        }*/
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(3, 3, 3, 0.5);
+  padding: 5px 120px;
+}
+.hasChild .footer i {
+  color: #fff;
+  font-size: 30px;
+}
+.hasChild .footer .share ul {
+  display: inline-block;
+  width: 400px;
+  list-style-type: none;
+}
+.hasChild .footer .share ul li {
+  float: right;
+  padding: 5px 10px;
+}
+.hasChild .footer .share ul li i {
+  font-size: 25px;
+}
+.hasChild .arrow {
+  position: absolute;
+  left: calc(50% - 100px);
+  bottom: 62px;
+  width: 200px;
+  /*animation: shake 0.8s infinite;
+        transform: translate3d(0, 0, 0);*/
+  cursor: pointer;
+}
+.hasChild .arrow:hover {
+  animation: unset;
+  transform: unset;
+}
+.hasChild .arrow .right {
+  float: right;
+  cursor: pointer;
+}
+.hasChild .arrow .right:hover {
+  transform: scale(1.2);
+}
+.hasChild .arrow .left {
+  float: right;
+  cursor: pointer;
+}
+.hasChild .arrow .left:hover {
   transform: scale(1.2);
 }
 .mobile-menu {
@@ -1695,7 +1799,6 @@ section.page-register form {
 section.page-login form .input-field,
 section.page-register form .input-field {
   margin: 0 0 10px 0;
-  border: 1px solid #d8d8d8;
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
@@ -1726,7 +1829,9 @@ section.page-register form .input-field select {
   box-sizing: border-box;
 }
 section.page-login form .input-field input[type=submit],
-section.page-register form .input-field input[type=submit] {
+section.page-register form .input-field input[type=submit],
+section.page-login form .input-field input[type=button],
+section.page-register form .input-field input[type=button] {
   width: 100%;
   border-radius: 5px;
   float: left;
@@ -1872,17 +1977,20 @@ section.page-register form .links a {
   margin-left: 15px;
 }
 .login-form {
-  background-color: #4e1c1b;
+  background-color: #f7f2ed;
   padding: 10px;
   color: #000;
   box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.4);
 }
 .login-form label {
-  color: #fff;
+  color: #000;
 }
 .login-form h2 {
   text-align: center;
-  color: #fff;
+  color: #000;
+}
+.login-form input[type=button] {
+  width: 100%;
 }
 .captcha-field img {
   border-left: 2px solid;
@@ -1904,10 +2012,17 @@ section.page-register form .links a {
     font-size: 14px;
   }
   .homelogo {
-    width: 150px;
+    width: 120px;
   }
 }
 @media (max-width: 1440px) {
+  section.page-custom .inner {
+    padding-top: 90px;
+    width: 100%;
+    padding-left: 90px;
+    padding-right: 90px;
+    height: 93%;
+  }
   header .links ul li i {
     font-size: 20px;
   }

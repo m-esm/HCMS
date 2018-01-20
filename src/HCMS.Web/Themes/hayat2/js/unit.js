@@ -1,12 +1,12 @@
 ﻿
 
 //click on next and prev button
-$(document).on('click', '.arrow .left', function (e) {
+$(document).on('tap click', '.arrow .left', function (e) {
     keyLeftRight = true;
     changeArticlePage(false, 'left');
 })
 
-$(document).on('click', '.arrow .right', function (e) {
+$(document).on('tap click', '.arrow .right', function (e) {
     keyLeftRight = true;
     changeArticlePage(false, 'right');
 })

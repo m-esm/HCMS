@@ -505,6 +505,30 @@ $(document).ready(function () {
                 $('#reg-err').css('display', 'none');
                 $('#reg-done').css('display', 'block');
                 $('#reg-done').html('ثبت نام شما با موفقیت انحام شد.');
+
+                //login user
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/fa-ir/manage/Auth/LoginAfterReg',
+                    data: model
+                }).success(function (res) {
+                    $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+                    // hideLoader();
+                    if (res.length > 0) {
+                        $('#err').css('display', 'block');
+                        var html = '<ul><li>' + res + '</li></ul>';
+                        $('#err').html(res);
+                    } else {
+                        $('#err').css('display', 'none');
+                        location.href = "/";
+                    }
+                }).error(function (err) {
+                    $('#err').css('display', 'block');
+                    $('#err').html("خطای ورود");
+                    $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+                    console.log(err);
+                })
             }
         }).error(function (err) {
             $('#reg-err').css('display', 'block');
@@ -571,7 +595,7 @@ $(document).ready(function () {
     $('#top-nav-search').click(function () {
         $('.search-bar.show-mobile').toggleClass('open');
     })
-
+    
     $(document).on('tap click', '.bottom-nav ul li', function () {
         $(this).parent('ul').find('li').removeClass('open');
         $(this).parent('ul').find('i').removeClass('active');

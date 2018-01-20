@@ -6,6 +6,7 @@
     var socials = DDB.GetTable("cms", "socials").DRows;
     var sliders = DDB.GetTable("cms", "slider").DRows;
     var setting = DDB.GetTable("cms", "setting").DRows.FirstOrDefault();
+    var meta = DDB.GetTable("cms", "meta").DRows.FirstOrDefault();
 
 
 }
@@ -19,22 +20,28 @@
     <title>حیات نو | @ViewBag.title </title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
+    @if (meta != null)
+    {
+        var label = "";
+        foreach (var item in meta.GetGroup("keywords"))
+        {
+            label += item.GetValue("label") + ", ";
+        }
 
-    <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
+    <meta name="description" content="@meta.GetValue("description")" >
+    <meta name="Keywords" content="@label">
 
-    <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="" />
+    <meta name="author" content="HappySpider">
+    <meta name="robots" content="nofollow">
+    @*<meta name="alexaVerifyID" content="zrJoKU2oucs-J6KcPl7fTZY_f-Q" />
+        <meta name="p:domain_verify" content="cc32b168bb374202b716b1056442e601" />*@
+    <meta property="title" content="@meta.GetValue("title")">
+    <meta property="site_name" content="hayat-no">
+    <meta property="url" content="http://hayat-no.com">
+    <meta property="description" content="@meta.GetValue("description2")">
+    <meta property="type" content="article">
+    }
+
 
     <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
     <link href="favicon.ico" rel="shortcut icon">
@@ -49,7 +56,7 @@
     <!-- Bootstrap CSS File -->
     <link href="~/Themes/hayat2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/lib/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
-    
+
 
     <!-- Libraries CSS Files -->
     <link href="~/Themes/hayat2/lib/animate-css/animate.min.css" rel="stylesheet" />
@@ -143,48 +150,48 @@
                 @foreach (var item in menu)
                 {
 
-                <li>
-                    <a href="@item.GetValue("url")">
-                        @item.GetValue("name")
+                    <li>
+                        <a href="@item.GetValue("url")">
+                            @item.GetValue("name")
 
-                    </a>
+                        </a>
 
-                    @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
                         {
-                        <div class="child-menu">
-                            @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
 
-                        </div>
+                            </div>
 
                         }
 
-                </li>
+                    </li>
 
                 }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                <li class="pull-left">
-                    <a href="">
-                        <i class="fa fa-user"></i>
-                        @User.Identity.Name
-                    </a>
+                    <li class="pull-left">
+                        <a href="">
+                            <i class="fa fa-user"></i>
+                            @User.Identity.Name
+                        </a>
 
-                    <div class="child-menu">
-                        <form action="/fa-ir/manage/auth/LogOff" method="post">
-                            <button type="submit" class="btn btn-primary">خروج</button>
-                        </form>
-                    </div>
-                </li>
+                        <div class="child-menu">
+                            <form action="/fa-ir/manage/auth/LogOff" method="post">
+                                <button type="submit" class="btn btn-primary">خروج</button>
+                            </form>
+                        </div>
+                    </li>
                 }
                 else
                 {
-                <li class="pull-left">
-                    <a href="/auth">
-                        <i class="fa fa-user"></i>
-                        ورود
-                    </a>
-                </li>
+                    <li class="pull-left">
+                        <a href="/auth">
+                            <i class="fa fa-user"></i>
+                            ورود
+                        </a>
+                    </li>
                 }
 
             </ul>
@@ -229,49 +236,49 @@
     </div>
 
     <div class="show-mobile bottom-nav">
-       <div class="main-icons">
-           <div class="left-icons-mobile child min">
-               <i class="fa fa-share-alt has-sub" id="share-icons"></i>
+        <div class="main-icons">
+            <div class="left-icons-mobile child min">
+                <i class="fa fa-share-alt has-sub" id="share-icons"></i>
 
 
-               <ul>
-                   @foreach (var item in quickLinks)
+                <ul>
+                    @foreach (var item in quickLinks)
             {
-                       <li>
-                           <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
-                           <div class="descrp">
-                               @Html.Raw(item.GetValue("text"))
-                               <ul>
-                                   @foreach (var subitem in item.GetGroup("links"))
-                                   {
+                        <li>
+                            <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                            <div class="descrp">
+                                @Html.Raw(item.GetValue("text"))
+                                <ul>
+                                    @foreach (var subitem in item.GetGroup("links"))
+                                    {
 
-                                       <li>
-                                           <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
-                                       </li>
-                                   }
-                               </ul>
-                           </div>
-                       </li>
-                   }
-               </ul>
-           </div>
+                                        <li>
+                                            <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
 
-           <div class="right-icons-mobile child min">
-               <i class="fa fa-map has-sub" id="right-icon"></i>
+            <div class="right-icons-mobile child min">
+                <i class="fa fa-map has-sub" id="right-icon"></i>
 
-               <ul>
+                <ul>
 
-                   @foreach (var item in socials)
+                    @foreach (var item in socials)
             {
-                       <li>
-                           <a href="@item.GetValue("url")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
-                       </li>
+                        <li>
+                            <a href="@item.GetValue("url")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+                        </li>
 
-                   }
+                    }
 
-               </ul>
-           </div>
-       </div>
+                </ul>
+            </div>
+        </div>
 
 
         <div class="back-to-top"><i class="fa fa-chevron-up"></i></div>
@@ -319,51 +326,51 @@
                 @foreach (var item in menu)
                 {
 
-                <li>
-                    <a href="@item.GetValue("url")" class="under-line-animate">
-                        @item.GetValue("name")
+                    <li>
+                        <a href="@item.GetValue("url")" class="under-line-animate">
+                            @item.GetValue("name")
 
-                    </a>
+                        </a>
 
-                    @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
                         {
-                    <div class="child-menu">
-                        @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
 
-                    </div>
+                            </div>
 
                         }
 
-                </li>
+                    </li>
 
                 }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                <li class="pull-left">
-                    <a href="">
-                        <i class="fa fa-user"></i>
-                        @User.Identity.Name
-                    </a>
+                    <li class="pull-left">
+                        <a href="">
+                            <i class="fa fa-user"></i>
+                            @User.Identity.Name
+                        </a>
 
-                    <div class="child-menu">
-                        <form action="/fa-ir/manage/auth/LogOff" method="post">
-                            <button type="submit" class="btn btn-block hayatbtn">
-                                <i class="fa fa-lock"></i>
-                                خروج
-                            </button>
-                        </form>
-                    </div>
-                </li>
+                        <div class="child-menu">
+                            <form action="/fa-ir/manage/auth/LogOff" method="post">
+                                <button type="submit" class="btn btn-block hayatbtn">
+                                    <i class="fa fa-lock"></i>
+                                    خروج
+                                </button>
+                            </form>
+                        </div>
+                    </li>
                 }
                 else
                 {
-                <li class="pull-left">
-                    <a href="/auth">
-                        <i class="fa fa-user"></i>
-                        ورود
-                    </a>
-                </li>
+                    <li class="pull-left">
+                        <a href="/auth">
+                            <i class="fa fa-user"></i>
+                            ورود
+                        </a>
+                    </li>
                 }
 
             </ul>
@@ -409,17 +416,19 @@
     </script>
 
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>
-   @* <script src="~/Themes/hayat2/js/scroll.js"></script>
+    @* <script src="~/Themes/hayat2/js/scroll.js"></script>
+        <script src="~/Themes/hayat2/js/newScroll.js"></script>
+        <script src="~/Themes/hayat2/js/unit.js"></script>
+
+        <script src="~/Themes/hayat2/js/slider.js"></script>
+        <script src="~/Themes/hayat2/js/videoslider.js"></script>
+        <script src="~/Themes/hayat2/js/custom.js"></script>
+        <script src="~/Themes/hayat2/js/blocks.js"></script>*@
+
+    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
     <script src="~/Themes/hayat2/js/newScroll.js"></script>
     <script src="~/Themes/hayat2/js/unit.js"></script>
 
-    <script src="~/Themes/hayat2/js/slider.js"></script>
-    <script src="~/Themes/hayat2/js/videoslider.js"></script>
-    <script src="~/Themes/hayat2/js/custom.js"></script>
-    <script src="~/Themes/hayat2/js/blocks.js"></script>*@
-
-    <script src="~/Themes/hayat2/js/newScroll.js"></script>
-    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
     <script src="~/Themes/hayat2/js/gallery.js"></script>
     <script src="~/Themes/hayat2/lib/resize-image-map/resize-image-map.js"></script>
     <!-- hayat JS Bundle -->
@@ -435,4 +444,3 @@
 </body>
 
 </html>
-
