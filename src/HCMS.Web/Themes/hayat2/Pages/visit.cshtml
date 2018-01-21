@@ -10,7 +10,7 @@
 @{
 
 
-    if (!User.Identity.IsAuthenticated)
+    if (!User.Identity.IsAuthenticated ||  !User.IsInRole("user"))
     {
         Response.Redirect("/auth");
     }
@@ -28,7 +28,7 @@
 
 <section id="submit" class="page page-homeforms">
     <div class="container">
-
+        @User.Identity.Name
         <div class="row">
 
             <div class="col-md-9 col-md-offset-2">
@@ -74,21 +74,21 @@
 
                             <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
-                                    <label>
+                                    <label class="required">
                                         <i class="fa fa-university"></i>
                                         تحصیلات
                                     </label>
-                                    <input type="text" name="academic" class="form-control" placeholder="تحصیلات" />
+                                    <input type="text" required name="academic" class="form-control" placeholder="تحصیلات" />
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
-                                    <label>
+                                    <label class="required">
                                         <i class="fa fa-handshake-o"></i>
                                         شغل
                                     </label>
-                                    <input type="text" name="job" class="form-control" placeholder="شغل" />
+                                    <input type="text" required name="job" class="form-control" placeholder="شغل" />
                                 </div>
                             </div>
 
@@ -137,12 +137,12 @@
                             <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
 
-                                    <label>
+                                    <label class="required">
                                         <i class="fa fa-dollar"></i>
                                         قیمت مورد نظر
                                     </label>
 
-                                    <select name="PriceType" class="form-control">
+                                    <select name="PriceType" class="form-control" required>
                                         <option value="0">انتخاب کنید</option>
                                         @foreach (var item in price)
                                         {
@@ -160,15 +160,15 @@
 
                             <div class="col-md-12 col-sm-12 ">
                                 <div data-aos="fade-left" class="form-group">
-                                    <label>
+                                    <label class="required">
                                         <i class="fa fa-location-arrow"></i>
                                         آدرس سکونت فعلی
                                     </label>
 
                                     <div class="col-md-12 unpadding">
                                         <div class="col-md-4 unpadding-right">
-                                            <label>کشور</label>
-                                            <select class="form-control" name="CountryId">
+                                            <label class="required">کشور</label>
+                                            <select class="form-control" name="CountryId" required>
                                                 <option value="0">انتخاب کنید</option>
                                                 @foreach(var item in country)
                                                 {
@@ -178,8 +178,8 @@
                                         </div>
 
                                         <div class="col-md-4 unpadding-right">
-                                            <label>استان / ایالت</label>
-                                            <select class="form-control" name="ProvinceId">
+                                            <label class="required">استان / ایالت</label>
+                                            <select class="form-control" name="ProvinceId" required>
                                                 <option value="0">انتخاب کنید</option>
                                                 @foreach (var item in province)
                                                 {
@@ -189,8 +189,8 @@
                                         </div>
 
                                         <div class="col-md-4 unpadding">
-                                            <label>شهر</label>
-                                            <select class="form-control" name="CityId">
+                                            <label class="required">شهر</label>
+                                            <select class="form-control" name="CityId" required>
                                                 <option value="0">انتخاب کنید</option>
                                                 @foreach (var item in city)
                                                 {
@@ -200,8 +200,8 @@
                                         </div>
 
                                         <div class="col-md-12 unpadding">
-                                            <label>ادامه آدرس</label>
-                                            <textarea class="form-control" name="Address"></textarea>
+                                            <label class="required">ادامه آدرس</label>
+                                            <textarea required class="form-control" name="Address"></textarea>
                                         </div>
 
                                     </div>
@@ -311,6 +311,25 @@
             $.each(inputs, function (index, item) {
                 if ($(item).val() === '')
                 {
+                    isValid = true;
+                    $(item).addClass('has-error');
+                }
+                else
+                    $(item).removeClass('has-error');
+            })
+            var select = $(form).find('select:required');
+            $.each(select, function (index, item) {
+                if ($(item).val() === '0') {
+                    isValid = true;
+                    $(item).addClass('has-error');
+                }
+                else
+                    $(item).removeClass('has-error');
+            })
+
+            var textarea = $(form).find('textarea:required');
+            $.each(textarea, function (index, item) {
+                if ($(item).val().trim() === '') {
                     isValid = true;
                     $(item).addClass('has-error');
                 }

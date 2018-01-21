@@ -9,6 +9,10 @@
 @baseColor2: #ff0000;
 @baseColor3: #808080;
 
+@blockA: #cc0099;
+@blockC: #29e41a;
+@blockB: #FF0000;
+
 @BgColor1: rgba(0, 0, 0, 0.8);
 @BgColor2: #86949f;
 @backgroundColor: #f7f2ed;
@@ -23,7 +27,7 @@
 
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .hayatbtn {
@@ -72,7 +76,7 @@ section.page-homeforms {
 
 .homelogo {
     position: fixed;
-    bottom: 45px;
+    bottom: 0;
     left: 10px;
     z-index: 300;
     padding: 10px;
@@ -758,17 +762,20 @@ section.page-custom {
     }
 
     .inner {
-        padding-top: 120px;
         width: 100%;
-        padding-left: 125px;
-        padding-right: 90px;
+        padding:90px;
         margin: 0 auto;
-        height: 93%;
+        height: 100%;
         overflow: hidden;
 
         .row {
             margin-left: 0;
             margin-right: 0;
+            height:100%;
+
+            div{
+                height:100%;
+            }
         }
 
         .fulltext {
@@ -783,6 +790,8 @@ section.page-custom {
 
         .pic {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            width:100%;
+            height:100%;
         }
     }
 }
@@ -1247,6 +1256,7 @@ section#signup {
 
             tr {
                 cursor: pointer;
+                transition:all 0.3s;
 
                 &:hover {
                     td {
@@ -1269,6 +1279,24 @@ section#signup {
                         color: #fff;
                         opacity: 1;
                     }
+                }
+
+                &.blockA {
+                    background-color: @blockA;
+                    color: #000;
+                    opacity: 1;
+                }
+
+                &.blockB {
+                    background-color: @blockB;
+                    color: #000;
+                    opacity: 1;
+                }
+
+                &.blockC {
+                    background-color: @blockC;
+                    color: #000;
+                    opacity: 1;
                 }
             }
 
@@ -1320,8 +1348,8 @@ section.page-blocks {
 
         .block-a, .block-b, .block-c, .block-m {
             position: absolute;
-            height: 80px;
-            width: 80px;
+            height: 90px;
+            width: 90px;
             transform: scale(0.2);
             opacity: 0;
             transition: transform ease 0.5s, opacity ease .8s;
@@ -1337,7 +1365,7 @@ section.page-blocks {
             }
 
             img {
-                width: 80px;
+                width: 90px;
                 height: 58px;
                 display: block;
                 background: #fff;
@@ -1378,8 +1406,6 @@ section.page-blocks {
         .block-b {
 
             &.first {
-                height: 80px;
-                width: 80px;
                 left: 179px;
                 top: -44px;
             }
@@ -1920,6 +1946,7 @@ body {
                 display: block;
             }
         }
+
         .pov {
             position: absolute;
             height: 300px;
@@ -1977,6 +2004,13 @@ body {
                 }
             }
         }
+
+        .stars{
+            i{
+                float:left;
+                cursor:pointer;
+            }
+        }
     }
 
     .arrow {
@@ -2013,7 +2047,7 @@ body {
     }
 }
 
-.hasChild  {
+.hasChild {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -2021,12 +2055,12 @@ body {
     left: 0;
 
     .full-image {
-        .main-image{
-            position:absolute;
-            left:0;
-            top:0;
-            width:100%;
-            height:100%;
+        .main-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .item {
@@ -2038,51 +2072,48 @@ body {
                 display: block;
             }
         }
-     
     }
 
-       .pov {
-            position: absolute;
+    .pov {
+        position: absolute;
+        height: 300px;
+        left: 0;
+        top: ~"calc(50% - 150px)";
+        cursor: pointer;
+
+        &:hover {
             height: 300px;
-            left: 0;
             top: ~"calc(50% - 150px)";
-            cursor: pointer;
-
-            &:hover {
-                height: 300px;
-                top: ~"calc(50% - 150px)";
-                padding: 20px;
-                transition: all 0.5s;
-
-                img{
-                    z-index:2;
-                }
-            }
-
-            i{
-                position:absolute;
-                left:5px;
-                top:40%;
-                z-index:2;
-                color:#fff;
-                font-size:30px;
-            }
+            padding: 20px;
+            transition: all 0.5s;
 
             img {
-                height: 100%;
-                position:absolute;
-                left:40px;
+                z-index: 2;
             }
         }
 
+        i {
+            position: absolute;
+            left: 5px;
+            top: 40%;
+            z-index: 2;
+            color: #fff;
+            font-size: 30px;
+        }
+
+        img {
+            height: 100%;
+            position: absolute;
+            left: 40px;
+        }
+    }
+
     .footer {
         opacity: 1;
-
         /*&:hover {
             opacity: 1;
             transition: all ease-in-out 0.5s;
         }*/
-
         position: absolute;
         left: 0;
         bottom: 0;
@@ -2505,6 +2536,10 @@ section.page-login, section.page-register {
     input[type=button] {
         width: 100%;
     }
+
+    form{
+        box-shadow:none !important;
+    }
 }
 
 .captcha-field {
@@ -2549,11 +2584,8 @@ section.page-login, section.page-register {
 
 
         .inner {
-            padding-top: 90px;
             width: 100%;
-            padding-left: 90px;
-            padding-right: 90px;
-            height: 93%;
+            padding:90px;
         }
     }
 

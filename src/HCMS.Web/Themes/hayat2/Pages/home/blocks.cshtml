@@ -3,7 +3,7 @@
 
 @using HCMS.Dynamics.Data
 @{
-    var models = DDB.GetTable("cms", "units").DRows;
+    var models = DDB.GetTable("cms", "units").DRows.Where(a=>a.GetValue("Floor").Value == "1");
     var blocks = DDB.GetTable("cms", "blocks").DRows.ToArray();
     var blockA = blocks.FirstOrDefault(a => a.GetValue("name").Value == "Blocka");
     var blockB = blocks.FirstOrDefault(a => a.GetValue("name").Value == "Blockb");
@@ -43,7 +43,7 @@
                     {
                         var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
 
-                                        <tr id="blocks_@item.RowID" data-planNum="@item.GetValue("planNumber")">
+                                        <tr id="blocks_@item.RowID" data-block-id="@item.GetValue("blockId")" data-planNum="@item.GetValue("planNumber")">
                                             <td>@unitName</td>
                                             <td> @item.GetValue("area")</td>
                                             <td> @item.GetValue("direction.name")</td>
@@ -95,10 +95,10 @@
                                 <img class="back" id="img-back-main" src="/Themes/hayat2/img/map/Blocks Maps 72.png" usemap=#recortes-main />
 
                                 <map name=recortes-main id=recortes-main>
-                                    <area shape="poly" data-block="block-a" id="coordBlockA" href="/blocks#block-a" title="بلوک A" coords="224, 55,204, 35,204, 29,193, 21,192, 23,178, 14,168, 20,159, 16,140, 20,137, 17,121, 20,90, 31,84, 27,74, 27,74, 32,58, 37,54, 32,2, 49,22, 204,55, 245,59, 245,60, 234,74, 228,79, 234,82, 250,103, 281,91, 130,170, 97,170, 77" />
-                                    <area shape="poly" data-block="block-b" id="coordBlockB" href="/blocks#block-b" title="بلوک B" coords="400, 99,378, 81,375, 82,309, 28,311, 7,296, 5,274, 13,274, 21,262, 13,247, 19,239, 12,213, 18,211, 41,227, 56,228, 136,240, 141,260, 159,261, 185,278, 202,273, 274,294, 298,371, 259" />
-                                    <area shape="poly" data-block="block-c" id="coordBlockC" href="/blocks#block-c" title="بلوک C" coords="172, 80,172, 98,93, 129,104, 296,167, 379,165, 391,189, 422,189, 426,196, 433,197, 442,199, 445,240, 425,242, 410,278, 388,277, 380,263, 386,278, 203,259, 184,254, 187,244, 177,244, 167,229, 151,223, 153,189, 118,189, 97" />
-                                    <area shape="poly" data-block="block-m" id="coordBlockM" href="/blocks#block-m" title="مشاعات" coords="18, 189,-1, 193,1, 205,118, 391,185, 449,355, 484,361, 442,385, 377,495, 319,498, 305,390, 251,375, 240,372, 253,366, 259,288, 302,273, 285,262, 385,278, 378,278, 389,246, 409,246, 432,212, 449,206, 445,196, 446,195, 435,188, 425,189, 422,183, 411,103, 295,104, 285,74, 241,62, 233,59, 236,60, 245,21, 207" />
+                                    <area shape="poly" data-block-id="@blockA.RowID" data-block="block-a" id="coordBlockA" href="/blocks#block-a" title="بلوک A" coords="224, 55,204, 35,204, 29,193, 21,192, 23,178, 14,168, 20,159, 16,140, 20,137, 17,121, 20,90, 31,84, 27,74, 27,74, 32,58, 37,54, 32,2, 49,22, 204,55, 245,59, 245,60, 234,74, 228,79, 234,82, 250,103, 281,91, 130,170, 97,170, 77" />
+                                    <area shape="poly" data-block-id="@blockB.RowID"  data-block="block-b" id="coordBlockB" href="/blocks#block-b" title="بلوک B" coords="400, 99,378, 81,375, 82,309, 28,311, 7,296, 5,274, 13,274, 21,262, 13,247, 19,239, 12,213, 18,211, 41,227, 56,228, 136,240, 141,260, 159,261, 185,278, 202,273, 274,294, 298,371, 259" />
+                                    <area shape="poly" data-block-id="@blockC.RowID"  data-block="block-c" id="coordBlockC" href="/blocks#block-c" title="بلوک C" coords="172, 80,172, 98,93, 129,104, 296,167, 379,165, 391,189, 422,189, 426,196, 433,197, 442,199, 445,240, 425,242, 410,278, 388,277, 380,263, 386,278, 203,259, 184,254, 187,244, 177,244, 167,229, 151,223, 153,189, 118,189, 97" />
+                                    <area shape="poly" data-block-id="@blockM.RowID"  data-block="block-m" id="coordBlockM" href="/blocks#block-m" title="مشاعات" coords="18, 189,-1, 193,1, 205,118, 391,185, 449,355, 484,361, 442,385, 377,495, 319,498, 305,390, 251,375, 240,372, 253,366, 259,288, 302,273, 285,262, 385,278, 378,278, 389,246, 409,246, 432,212, 449,206, 445,196, 446,195, 435,188, 425,189, 422,183, 411,103, 295,104, 285,74, 241,62, 233,59, 236,60, 245,21, 207" />
 
                                     <img id="capaRecorte-main" src="/Themes/hayat2/img/map/Block Hover.png" usemap=#recortes-main />
                                 </map>

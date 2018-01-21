@@ -22,7 +22,7 @@
         @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(a => a.GetValue("blockId").ToString() == Model.ToString() && a.GetValue("Floor").ToString() == "1"))
 
         <div class="alert alert-info">
-            این بلوک در 11 طبقه هر طبقه دارای 4 ,واحد و پلان ها به صورت تیپ می باشد.
+            این بلوک دارای 11 طبقه می باشد .هر طبقه دارای 5  واحد است .
         </div>
 
         <div class="plan-unit">

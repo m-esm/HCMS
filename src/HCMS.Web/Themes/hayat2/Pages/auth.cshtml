@@ -1,4 +1,11 @@
-﻿<section class="page page-login" id="login">
+﻿@{ 
+    if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+    {
+        Response.Redirect("/");
+    }
+}
+
+<section class="page page-login" id="login">
     <div class="inner">
         <div class="alert alert-info">
             برای پر کردن فرم رزرو بازدید باید در سایت ثبت نام کنید.
@@ -13,7 +20,7 @@
                 <input type="hidden" name="isAjax" value="true" />
                 <input type="hidden" name="ReturnUrl" value="/" />
 
-                <div id="err" class="alert alert-info" style="display:none;">
+                <div id="err" class="alert alert-danger" style="display:none;">
 
                 </div>
 
@@ -76,7 +83,27 @@
             model.captcha = $('input[name="captcha"]').val();
             model.captcha_guid = $('#captcha-image').attr('src').split('guid=')[1];
 
-           
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/Login',
+                data: model
+            }).success(function (res) {
+                $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+                // hideLoader();
+                if (res.length > 0) {
+                    $('#err').css('display', 'block');
+                    var html = '<ul><li>' + res + '</li></ul>';
+                    $('#err').html(res);
+                } else {
+                    $('#err').css('display', 'none');
+                    location.href = "/";
+                }
+            }).error(function (err) {
+                $('#err').css('display', 'block');
+                $('#err').html("خطای ورود");
+                $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+                console.log(err);
+            })
         })
 
     </script>

@@ -53,7 +53,7 @@ namespace HCMS.Security.Infrastructer
                 else if (filterContext.HttpContext.User.IsInRole("admin"))
                     logonUrl = url.Action("Index", "Dashboard", new { area = "manage" });
                 else if (filterContext.HttpContext.User.IsInRole("user"))
-                    logonUrl = url.Action("Index", "Dashboard", new { area = "user" });
+                    logonUrl = "/manage/Auth/Login";
                 else
                 {
                     logonUrl = url.Action("Index", "Home", new { area = "" });

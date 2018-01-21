@@ -32,6 +32,7 @@
 
     }
 
+    var pageClass = DDB.GetTable("cms", "pageClass").DRows;
 
 }
 
@@ -39,12 +40,11 @@
 
 @foreach (var item in pageSections)
 {
-    var theme = item.GetValue("className");
+     var theme = pageClass.FirstOrDefault(a => a.RowID.ToString() == item.GetValue("className").Value).GetValue("name");
     var latlang = item.GetValue("latlang");
 
     i++;
     <section id="section-@i" class="page @theme @(horizontal ? "page-horizontal" :"" ) ">
-
 
         <div class="inner">
 

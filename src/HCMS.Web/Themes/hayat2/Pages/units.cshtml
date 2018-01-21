@@ -15,7 +15,6 @@
     foreach (var unit in units)
     {
         var unitpictures = DDB.GetTable("cms", "unitpictures").DRows.Where(a => a.GetValue("planNumber").Value == unit.GetValue("planNumber").Value);
-        var unitId = unit.GetValue("name");
         var commentId = "comments_" + unit.RowID;
         var user_comments = "user_comments_" + unit.RowID;
         var unitName = unit.GetValue("name").Value.Replace("block", "b").ToUpper();
@@ -23,22 +22,21 @@
 
             @foreach (var pic in unitpictures)
                     {
-                        var picId = unitId + "_" + pic.RowID;
                 <article id="@pic.RowID" data-title="@pic.GetValue("title")" class="page-horizontal page-child">
                     <div class="full-image">
 
                         <div class="pov">
-                            <i class="fa fa-video-camera" aria-hidden="true"></i>
-                            <img src="@pic.GetValue("pov").Value" />
+                            <i class="fa fa-video-camera" aria-hidden="true" title="زاویه دید عکاس"></i>
+                            <img src="@pic.GetValue("pov").Value" alt="زاویه دید عکاس"/>
                         </div>
 
                         <u> @pic.GetValue("title")</u>
-                        <img class="main-image" src="@pic.GetValue("image").Value" />
+                        <img class="main-image" src="@pic.GetValue("image").Value" alt="@pic.GetValue("title")"/>
 
                         <div class="arrow">
-                            <img title="بعدی" class="right" src="~/Themes/hayat2/img/Arrow Black-Right.png" />
+                            <img title="بعدی" alt="بعدی" class="right" src="~/Themes/hayat2/img/Arrow Black-Right.png" />
 
-                            <img title="قبلی" class="left" src="~/Themes/hayat2/img/Arrow Black-left.png" />
+                            <img title="قبلی" alt="قبلی" class="left" src="~/Themes/hayat2/img/Arrow Black-left.png" />
                         </div>
                         <div class="footer">
                             <div class="pull-right">

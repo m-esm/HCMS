@@ -3,7 +3,7 @@
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .hayatbtn {
   display: inline-block;
@@ -44,7 +44,7 @@ section.page-homeforms form {
 }
 .homelogo {
   position: fixed;
-  bottom: 45px;
+  bottom: 0;
   left: 10px;
   z-index: 300;
   padding: 10px;
@@ -604,17 +604,19 @@ section.page-custom .buttons {
   text-align: left;
 }
 section.page-custom .inner {
-  padding-top: 120px;
   width: 100%;
-  padding-left: 125px;
-  padding-right: 90px;
+  padding: 90px;
   margin: 0 auto;
-  height: 93%;
+  height: 100%;
   overflow: hidden;
 }
 section.page-custom .inner .row {
   margin-left: 0;
   margin-right: 0;
+  height: 100%;
+}
+section.page-custom .inner .row div {
+  height: 100%;
 }
 section.page-custom .inner .fulltext {
   max-width: 800px;
@@ -626,6 +628,8 @@ section.page-custom .inner .text {
 }
 section.page-custom .inner .pic {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
 }
 section.page-end {
   background: radial-gradient(rgba(79, 28, 28, 0.9), rgba(79, 28, 28, 0.95), #3c0f0f);
@@ -993,6 +997,7 @@ section#signup form #register-form {
 }
 .table table tbody tr {
   cursor: pointer;
+  transition: all 0.3s;
 }
 .table table tbody tr:hover td {
   background-color: #ddd;
@@ -1006,6 +1011,21 @@ section#signup form #register-form {
 .table table tbody tr.selected td {
   background-color: #4e1c1b;
   color: #fff;
+  opacity: 1;
+}
+.table table tbody tr.blockA {
+  background-color: #cc0099;
+  color: #000;
+  opacity: 1;
+}
+.table table tbody tr.blockB {
+  background-color: #FF0000;
+  color: #000;
+  opacity: 1;
+}
+.table table tbody tr.blockC {
+  background-color: #29e41a;
+  color: #000;
   opacity: 1;
 }
 .table table tbody .btn {
@@ -1043,8 +1063,8 @@ section.page-blocks .map .block-b,
 section.page-blocks .map .block-c,
 section.page-blocks .map .block-m {
   position: absolute;
-  height: 80px;
-  width: 80px;
+  height: 90px;
+  width: 90px;
   transform: scale(0.2);
   opacity: 0;
   transition: transform ease 0.5s, opacity ease .8s;
@@ -1065,7 +1085,7 @@ section.page-blocks .map .block-a img,
 section.page-blocks .map .block-b img,
 section.page-blocks .map .block-c img,
 section.page-blocks .map .block-m img {
-  width: 80px;
+  width: 90px;
   height: 58px;
   display: block;
   background: #fff;
@@ -1100,8 +1120,6 @@ section.page-blocks .map .block-a.third {
   top: 164px;
 }
 section.page-blocks .map .block-b.first {
-  height: 80px;
-  width: 80px;
   left: 179px;
   top: -44px;
 }
@@ -1560,6 +1578,10 @@ body .main .new-block.block .detail .up label {
 .cellDetail .footer .share ul li i {
   font-size: 25px;
 }
+.cellDetail .footer .stars i {
+  float: left;
+  cursor: pointer;
+}
 .cellDetail .arrow {
   position: absolute;
   left: calc(50% - 100px);
@@ -1992,6 +2014,9 @@ section.page-register form .links a {
 .login-form input[type=button] {
   width: 100%;
 }
+.login-form form {
+  box-shadow: none !important;
+}
 .captcha-field img {
   border-left: 2px solid;
   border-bottom: 2px solid;
@@ -2017,11 +2042,8 @@ section.page-register form .links a {
 }
 @media (max-width: 1440px) {
   section.page-custom .inner {
-    padding-top: 90px;
     width: 100%;
-    padding-left: 90px;
-    padding-right: 90px;
-    height: 93%;
+    padding: 90px;
   }
   header .links ul li i {
     font-size: 20px;

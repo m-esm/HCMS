@@ -169,7 +169,7 @@
 
                 }
 
-                @if (User.Identity.IsAuthenticated)
+                @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
                 {
                     <li class="pull-left">
                         <a href="">
