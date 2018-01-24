@@ -18,9 +18,10 @@
 
         @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(a => a.GetValue("blockId").ToString() == Model.ToString() && a.GetValue("Floor").ToString() == "1"))
 
-        <div class="alert alert-info">
-            این بلوک دارای یازده طبقه می باشد .طبقات یک ،سه ،پنج ،هفت ،نه  4 واحد  و طبقات دو ،چهار،شش،هشت،ده  3 واحد دارند . طبقه 11 نیز 4 واحد دارد.
-        </div>
+            <div class="alert alert-info">
+                این بلوک دارای یازده طبقه می باشد .طبقات یک ،سه ،پنج ،هفت ،نه  4 واحد  و طبقات دو ،چهار،شش،هشت،ده  3 واحد دارند . طبقه 11 نیز 4 واحد دارد.
+            </div>
+      
 
         <div class="plan-unit img-responsive">
             <img src="~/Themes/hayat2/img/plan/A/keys/Block A Plan 001.png" />

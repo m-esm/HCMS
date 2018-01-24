@@ -5,6 +5,9 @@
 a {
   text-decoration: none !important;
 }
+.padding-20px {
+  padding: 20px !important;
+}
 .hayatbtn {
   display: inline-block;
   line-height: 30px;

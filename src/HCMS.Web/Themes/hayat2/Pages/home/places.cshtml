@@ -1,6 +1,6 @@
 ﻿@using HCMS.Dynamics.Data
 @{
-    var places = DDB.GetTable("cms", "places").DRows;
+    var places = DDB.GetTable("cms", "places").DRows.OrderBy(a=>a.GetValue("order").Value);
 
 
 }

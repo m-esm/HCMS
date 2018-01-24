@@ -1,0 +1,197 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    
+}
+<section id="contact" class="page page-homeforms">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-9 col-md-offset-2">
+
+             
+                <h3 data-aos="fade-down">فرم تماس با ما</h3>
+
+                <div class="form">
+                    <form id="contact-form" method="post" role="form" class="contactForm">
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+
+                                    <label class="required">
+                                        <i class="fa fa-user"></i>
+                                        نام و نام خانوادگی
+                                    </label>
+                                    <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+
+                                    <label>
+                                        <i class="fa fa-inbox"></i>
+                                        ایمیل
+                                    </label>
+                                    <input type="text" name="email" class="form-control" placeholder="ایمیل" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-phone"></i>
+                                        شماره همراه
+                                    </label>
+                                    <input required type="text" name="phone" class="form-control" placeholder="شماره همراه" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-comment"></i>
+                                        پیغام خود را بنویسید
+                                    </label>
+                                    <textarea required class="form-control" name="msg"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div data-aos="fade-left" class="form-group captcha-field">
+                                    <img src="" id="captcha-image" />
+                                    <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="alert" id="resultInfo" style="display:none">
+
+                        </div>
+
+                        <button data-aos="fade-left" id="submit-btn" class="hayatbtn" type="button">
+                            <i class="fa fa-send">
+                            </i>
+                            ارسال
+                        </button>
+                    </form>
+                </div>
+
+                <hr />
+
+                <div class="panel panel-success row padding-20px">
+                    <div class="col-md-12">
+                        شماره تماس دفتر فروش :02126456673
+                    </div>
+                    <div class="col-md-12">
+                        ایمیل : info@hayat-no.com
+                    </div>
+
+                    <div class="col-md-12">
+                        آدرس : تهران ،ازگل،خیابان گلشن،کوچه شاهعلیدوست،تقاطع خیابان قائم ،پلاک 12،مجتمع حیات نو
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+
+    <script>
+        var _captchaDate = Date.now();
+        $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_contact&guid=' + _captchaDate);
+        $(document).on('click', '#submit-btn', function (e) {
+            if (IsValid() === true) {
+                var url = '@Url.Action("Post", "Contact", new {plugin = "Hayat" })';
+
+                var model = $('#contact-form').serialize();
+                model += "&captcha_guid=" + _captchaDate;
+                $.ajax({
+                    method: "post",
+                    url: url,
+                    data: model,
+                    contentType: "application/x-www-form-urlencoded",
+                    beforeSend: function () {
+                        $('#loader').show();
+                        _captchaDate = Date.now();
+                        $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_contact&guid=' + _captchaDate);
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        $('#resultInfo').show();
+                        if (res.IsSuccess) {
+                            $('#resultInfo').removeClass('alert-danger').addClass('alert-success').html('پیام شما ارسال شد. منتظر تماس از طرف مدیران حیات نو باشید.');
+                            $('#contact-form').find("input, textarea").val("");
+                        } else {
+                            var html = '<ul>';
+                            $.each(res.msg, function (index, item) {
+                                html += "<li>" + item + "</li>";
+                            })
+                            html += '</ul>';
+                            $('#resultInfo').removeClass('alert-success').addClass('alert-danger').html(html);
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    },
+                    complete: function () {
+                        $('#loader').css('display', 'none');
+                    }
+                });
+
+
+            }
+            e.preventDefault();
+
+        })
+
+        var IsValid = function () {
+            var isValid = true;
+            var form = $('#contact-form');
+            var inputs = $(form).find('input:required');
+            $.each(inputs, function (index, item) {
+                if ($(item).val() === '')
+                {
+                    isValid = true;
+                    $(item).addClass('has-error');
+                }
+                else
+                    $(item).removeClass('has-error');
+            })
+            var select = $(form).find('select:required');
+            $.each(select, function (index, item) {
+                if ($(item).val() === '0') {
+                    isValid = true;
+                    $(item).addClass('has-error');
+                }
+                else
+                    $(item).removeClass('has-error');
+            })
+
+            var textarea = $(form).find('textarea:required');
+            $.each(textarea, function (index, item) {
+                if ($(item).val().trim() === '') {
+                    isValid = true;
+                    $(item).addClass('has-error');
+                }
+                else
+                    $(item).removeClass('has-error');
+            })
+            console.log(isValid);
+            return isValid;
+        }
+    </script>
+
+}
+
+

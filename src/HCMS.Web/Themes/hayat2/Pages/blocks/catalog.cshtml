@@ -11,18 +11,27 @@
 
     <div class="inner">
         <h3 class="title">کاتالوگ</h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="text-center">
+                <a class="hayatbtn" href="http://hayat-no.com/Files/Uploads/cat.pdf" download="">
+                    <i class="fa fa-download"></i>
+                    دانلود
+                </a>
 
-        <div class="text-center">
-            <a class="hayatbtn">
-                <i class="fa fa-download"></i>
-                دانلود
-            </a>
+                <button class="hayatbtn">
+                    <i class="fa fa-eye"></i>
+                    مشاهده
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="text-center">
+                برای مشاهده کاتالوگ وارد سایت شوید
+            </div>
+                }
 
-            <button class="hayatbtn">
-                <i class="fa fa-eye"></i>
-                مشاهده
-            </button>
-        </div>
-       
-    </div>
+
+            </div>
 </section>

@@ -35,7 +35,7 @@
 
                 var url = item.GetValue("url").ToString().StartsWith("http") ? item.GetValue("url").ToString() : "http://" + item.GetValue("url").ToString();
 
-                        <a target="_blank" href="@url">
+                        <a target="_blank" href="@url" title="@item.GetValue("title")">
                             <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
                         </a>
 
@@ -48,7 +48,7 @@
 
                 var url = item.GetValue("url").ToString().StartsWith("http") ? item.GetValue("url").ToString() : "http://" + item.GetValue("url").ToString();
 
-                        <a target="_blank" href="@url">
+                        <a target="_blank" href="@url" title="@item.GetValue("title")">
                             <img alt="@item.GetValue("name")" src="@item.GetValue("image")" />
                         </a>
 
