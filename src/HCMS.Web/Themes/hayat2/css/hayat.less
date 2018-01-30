@@ -31,8 +31,8 @@ a {
 }
 
 
-.padding-20px{
-    padding:20px !important;
+.padding-20px {
+    padding: 20px !important;
 }
 
 .hayatbtn {
@@ -768,7 +768,7 @@ section.page-custom {
 
     .inner {
         width: 100%;
-        padding:90px;
+        padding: 90px;
         margin: 0 auto;
         height: 100%;
         overflow: hidden;
@@ -776,10 +776,10 @@ section.page-custom {
         .row {
             margin-left: 0;
             margin-right: 0;
-            height:100%;
+            height: 100%;
 
-            div{
-                height:100%;
+            div {
+                height: 100%;
             }
         }
 
@@ -795,8 +795,8 @@ section.page-custom {
 
         .pic {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
         }
     }
 }
@@ -1261,7 +1261,7 @@ section#signup {
 
             tr {
                 cursor: pointer;
-                transition:all 0.3s;
+                transition: all 0.3s;
 
                 &:hover {
                     td {
@@ -2010,10 +2010,10 @@ body {
             }
         }
 
-        .stars{
-            i{
-                float:left;
-                cursor:pointer;
+        .stars {
+            i {
+                float: left;
+                cursor: pointer;
             }
         }
     }
@@ -2542,8 +2542,8 @@ section.page-login, section.page-register {
         width: 100%;
     }
 
-    form{
-        box-shadow:none !important;
+    form {
+        box-shadow: none !important;
     }
 }
 
@@ -2590,7 +2590,7 @@ section.page-login, section.page-register {
 
         .inner {
             width: 100%;
-            padding:90px;
+            padding: 90px;
         }
     }
 
@@ -3105,6 +3105,72 @@ section.page-login, section.page-register {
 
 @media(max-width:650px) {
 
+
+    section.page {
+        .inner {
+            padding: 60px 5px !important;
+
+            .tv {
+                padding: 60px 0 !important;
+                margin: 0;
+                height: 100vh;
+            }
+        }
+
+        #slider {
+            height: ~"calc(100vh - 100px)";
+            top: 50px;
+        }
+    }
+
+    section.page-blocks .block-button {
+        bottom: 60px;
+    }
+
+    #videos .tv {
+        margin: 0 !important;
+        height: ~"calc(100vh - 220px)" !important;
+    }
+
+    section.page-partners {
+        padding: 0 !important;
+        margin-left: 0 !important;
+
+        h2 {
+            padding: 0;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+    }
+
+    section.page-partners .items a {
+        padding: 2px;
+        margin: 0;
+        height: 40px;
+        width: 40px;
+        border: 1px solid;
+        line-height: unset;
+
+        img {
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+        }
+    }
+
+    section.page-custom .row .col-md-6 .pic {
+        height: auto;
+        width: 200px;
+    }
+
+    section.page-custom .inner .row {
+        height: unset;
+    }
+
+    section.page-homeforms {
+        padding: 60px 0;
+    }
+
     .table {
         padding: 0 10px;
     }
@@ -3114,7 +3180,7 @@ section.page-login, section.page-register {
     }
 
     .logo-hayat-no {
-        bottom: 50px;
+        bottom: 80px;
     }
 
     .raychat_main_button {
@@ -3145,7 +3211,7 @@ section.page-login, section.page-register {
             width: 100%;
             padding: 5px 10px;
             border-bottom: 2px solid @baseColor1;
-            background-color: rgba(255,255,255, 0.3);
+            background-color: #fff;
             z-index: 998;
 
             &.navhide {
@@ -3218,7 +3284,7 @@ section.page-login, section.page-register {
             width: 100%;
             height: 60px;
             z-index: 998;
-            background-color: rgba(255,255,255, 0.3);
+            background-color: #fff;
             color: @baseColor1;
             border-top: 2px solid @baseColor1;
             padding: 5px 10px;
@@ -3421,7 +3487,7 @@ section.page-login, section.page-register {
         nav {
             display: block;
             position: relative;
-            top: 86px;
+            top: 52px;
 
             &:before {
                 background-image: unset;
@@ -3511,6 +3577,11 @@ section.page-login, section.page-register {
 
     .homelogo {
         width: 78px;
+    }
+
+    section.page-blocks {
+        padding: 60px 0;
+        padding-top: 120px;
     }
 }
 
@@ -3816,8 +3887,41 @@ section.page-login, section.page-register {
     }
 }
 
-
 @media(max-width:430px) {
+
+    h2{
+        font-size:20px;
+    }
+
+    .page-login {
+        .alert {
+            margin: 0 !important;
+        }
+
+        .login-form {
+            box-shadow: unset;
+
+
+            h2 {
+                font-size: 1.5rem;
+                margin: 0;
+            }
+
+            .captcha {
+                float: left !important;
+            }
+
+            img {
+                float: left;
+            }
+
+            .links {
+                a {
+                    width: 100%;
+                }
+            }
+        }
+    }
 
     .container {
         width: 400px;
@@ -3882,68 +3986,6 @@ section.page-login, section.page-register {
         }
     }
 
-    /*.left-icons {
-        top: unset;
-        bottom: 60px;
-        left: -100px;
-        transition: all 0.3s;
-
-        &.active {
-            left: 10px;
-        }
-    }*/
-
-    /*.left-icons-mobile {
-        display: block;
-        position: fixed;
-        bottom: 20px;
-        left: 10px;
-        border-radius: 50%;
-        background-color: @baseColor1;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        z-index: 11;
-
-
-        i {
-            margin: 0 auto;
-            margin-top: 30%;
-            color: #fff;
-        }
-    }*/
-
-    /*.right-icons {
-        top: unset;
-        bottom: 60px;
-        height: unset;
-        right: -100px;
-        transition: all 0.3s;
-
-        &.active {
-            right: 10px;
-        }
-    }
-
-    .right-icons-mobile {
-        display: block;
-        position: fixed;
-        bottom: 20px;
-        right: 10px;
-        border-radius: 50%;
-        background-color: @baseColor1;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        z-index: 11;
-        cursor: pointer;
-
-        i {
-            margin: 0 auto;
-            margin-top: 30%;
-            color: #fff;
-        }
-    }*/
 
     .footer .line .box ul li {
         margin: 0;
@@ -3961,6 +4003,8 @@ section.page-login, section.page-register {
             left: 58px;
             top: 11px;
         }
+
+        bottom: 100px;
 
         img {
             width: 100px;
@@ -4038,7 +4082,31 @@ section.page-login, section.page-register {
                 }
             }
         }
+
+        .block-button {
+            bottom: 100px;
+        }
     }
+
+    #videos .tv {
+        height: ~"calc(100vh - 260px)" !important;
+    }
+
+
+     section#signup .buyer{
+         height:230px;
+
+            .col-xs-6 .captcha-field {
+            input {
+                width: 50%;
+                font-size: 1.2rem;
+            }
+
+            img {
+                width: 50%;
+            }
+        }
+     }
 }
 
 @media(max-width:390px) {
@@ -4240,6 +4308,14 @@ section.page-login, section.page-register {
 }
 
 @media(max-width:320px) {
+
+    .page-login {
+        .alert {
+            font-size: 1.2rem;
+            padding: 10px;
+        }
+    }
+
     .table table {
         border-spacing: 1px;
         font-size: 9px;
@@ -4266,8 +4342,17 @@ section.page-login, section.page-register {
 
             .map {
                 width: 200px;
+                left: 20px;
             }
         }
+
+        .block-button {
+            bottom: 100px;
+        }
+    }
+
+    #videos .tv {
+        height: ~"calc(100vh - 260px)" !important;
     }
 }
 

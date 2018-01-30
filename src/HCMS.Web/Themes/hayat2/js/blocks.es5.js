@@ -91,7 +91,7 @@ $(document).on('tap click', '#recortes-plan-a area', function () {
 
 //});
 
-$(document).on('click', '.block-detail .mobile-min', function () {
+$(document).on('tap click', '.block-detail .mobile-min', function () {
     $(this).removeClass('mobile-min');
     $(this).parents('.block-detail').find('.plan-unit').removeClass('mobile-max');
 });
@@ -288,6 +288,9 @@ if ($(window).width() < 760) {
     $('#capaRecorte-main').attr('src', '');
     $('#recortes-main area').attr('href', '#blocks');
     $('#blocks map').addClass('show-mobile');
+
+    //دو بخش کردن فرم های ثبت نام
+    $('#signup.first').addClass('hidden-mobile');
 }
 $(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
     if ($(window).width() < 760) {
@@ -299,7 +302,6 @@ $(document).on('tap click', '#recortes-main area', '.block-button li a', functio
         var find = main_block_hover.find(function (a) {
             return a.block == elm.split('-')[1];
         });
-        console.log(find);
         $('#img-back-main').attr('src', find.url);
     } else {
         //change a table color

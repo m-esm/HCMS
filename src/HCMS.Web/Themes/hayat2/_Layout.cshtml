@@ -42,9 +42,8 @@
     <meta property="type" content="article">
     }
 
-
     <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
-    <link href="favicon.ico" rel="shortcut icon">
+    <link href="/Themes/hayat2/img/Fave Icon Hayat No.png" rel="shortcut icon">
     <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -238,7 +237,7 @@
     <div class="show-mobile bottom-nav">
         <div class="main-icons">
             <div class="left-icons-mobile child min">
-                <i class="fa fa-share-alt has-sub" id="share-icons"></i>
+                <i class="fa fa-map has-sub" id="share-icons"></i>
 
 
                 <ul>
@@ -264,7 +263,7 @@
             </div>
 
             <div class="right-icons-mobile child min">
-                <i class="fa fa-map has-sub" id="right-icon"></i>
+                <i class="fa fa-share-alt has-sub" id="right-icon"></i>
 
                 <ul>
 
@@ -312,17 +311,21 @@
             <i class="fa fa-close"></i>
         </div>
 
-        <div class="logo">
+        @*<div class="logo">
             <img src="~/Themes/hayat2/img/logo/Ebtekar Saze Samle Logo.png" />
         </div>
 
         <a href="~/" class="homelogo">
             <img src="~/Themes/hayat2/img/logo/Hayate no Logo black.png" />
-        </a>
+        </a>*@
 
         <nav>
             <ul>
-
+                <li>
+                    <a href="/">
+                        صفحه اصلی
+                    </a>
+                </li>
                 @foreach (var item in menu)
                 {
 
@@ -372,7 +375,17 @@
                         </a>
                     </li>
                 }
+                <li>
+                    <a href="/Visit">
+                        رزرو بازدید
+                    </a>
+                </li>
 
+                <li>
+                    <a href="/blocks#catalog">
+                        کاتالوگ
+                    </a>
+                </li>
             </ul>
 
         </nav>

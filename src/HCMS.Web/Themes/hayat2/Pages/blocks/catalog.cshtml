@@ -11,7 +11,7 @@
 
     <div class="inner">
         <h3 class="title">کاتالوگ</h3>
-        @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <div class="text-center">
                 <a class="hayatbtn" href="http://hayat-no.com/Files/Uploads/cat.pdf" download="">
@@ -28,7 +28,7 @@
         else
         {
             <div class="text-center">
-                برای مشاهده کاتالوگ وارد سایت شوید
+                برای مشاهده کاتالوگ <a href="/auth">وارد سایت</a> شوید. یا <a href="/#signup">ثبت نام</a> کنید
             </div>
                 }
 

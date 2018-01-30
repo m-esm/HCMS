@@ -133,7 +133,10 @@ var changePage = function (nextPage, mode) {
         if (currentPage.attr('id') === nextPage.attr('id'))
             return;
 
-    var prevPage = currentPage.prev('section.page');
+    if (nextPage.hasClass('hidden-mobile'))
+        nextPage = nextPage.next('section.page');
+
+    var prevPage = currentPage.prev('section.page').not('.hidden-mobile');
 
     setTimeout(function () {
 
@@ -158,8 +161,8 @@ var changePage = function (nextPage, mode) {
     if (window.location.pathname !== "/") {
 
         $('header').addClass('navhide');
-        $('.top-nav').addClass('navhide');
-        $('.bottom-nav').addClass('navhide');
+        //$('.top-nav').addClass('navhide');
+        //$('.bottom-nav').addClass('navhide');
         $('.homelogo').fadeIn();
 
     }

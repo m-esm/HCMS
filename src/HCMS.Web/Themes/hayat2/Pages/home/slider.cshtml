@@ -1,7 +1,7 @@
 ﻿@using HCMS.Dynamics.Data
 @{
   var sliders = DDB.GetTable("cms", "slider").DRows;
-
+    var sotitr = DDB.GetTable("cms", "sotitr").DRows.FirstOrDefault();
 
 }
 <section id="home" class="page page-slider">
@@ -25,8 +25,8 @@
 
     <div class="logo-hayat-no">
         <img src="~/Themes/hayat2/img/logo/Hayate no Logo white.png" />
-        <h4>تکست روز یا سوتیتر برای تصویر</h4>
-        <h5>سوتیتر برای تصویر، سوتیتر برای تصویر، سوتیتر برای تصویر</h5>
+        <h4>@sotitr.GetValue("title")</h4>
+        <h5>@sotitr.GetValue("descrp")</h5>
     </div>
 
 

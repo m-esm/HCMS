@@ -153,11 +153,12 @@
   display: inline-block;
 }
 @media (max-width: 600px) {
-  #videos .inner {
-    padding: 0 !important;
-  }
-  #videos .tv {
-    margin-top: 40px !important;
-    height: calc(100vh - 210px);
-  }
+  /*#videos .inner {
+        padding: 0 !important;
+    }
+
+    #videos .tv {
+        margin-top: 40px !important;
+        height: calc(~"100vh - 210px");
+    }*/
 }

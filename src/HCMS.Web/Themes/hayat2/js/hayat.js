@@ -111,7 +111,7 @@ $(document).on('tap click', '#recortes-plan-a area', function () {
 
 //});
 
-$(document).on('click', '.block-detail .mobile-min', function () {
+$(document).on('tap click', '.block-detail .mobile-min', function () {
     $(this).removeClass('mobile-min');
     $(this).parents('.block-detail').find('.plan-unit').removeClass('mobile-max');
 })
@@ -312,6 +312,9 @@ if ($(window).width() < 760) {
     $('#capaRecorte-main').attr('src', '');
     $('#recortes-main area').attr('href', '#blocks');
     $('#blocks map').addClass('show-mobile');
+
+    //دو بخش کردن فرم های ثبت نام
+    $('#signup.first').addClass('hidden-mobile');
 }
 $(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
     if ($(window).width() < 760) {
@@ -321,12 +324,13 @@ $(document).on('tap click', '#recortes-main area', '.block-button li a', functio
         $('.' + elm + '-btn').toggleClass('in');
 
         var find = main_block_hover.find(a=>a.block == elm.split('-')[1]);
-        console.log(find);
         $('#img-back-main').attr('src', find.url);
+       
     } else {
         //change a table color
         var blockId = $(this).attr('data-block-id');
         var parent = $(this).parents('#blocks').find('.table tr[data-block-id=' + blockId + ']').addClass('green');
+
     }
 })
 
@@ -810,7 +814,10 @@ var changePage = function (nextPage, mode) {
         if (currentPage.attr('id') === nextPage.attr('id'))
             return;
 
-    var prevPage = currentPage.prev('section.page');
+    if (nextPage.hasClass('hidden-mobile'))
+        nextPage = nextPage.next('section.page');
+
+    var prevPage = currentPage.prev('section.page').not('.hidden-mobile');
 
     setTimeout(function () {
 
@@ -835,8 +842,8 @@ var changePage = function (nextPage, mode) {
     if (window.location.pathname !== "/") {
 
         $('header').addClass('navhide');
-        $('.top-nav').addClass('navhide');
-        $('.bottom-nav').addClass('navhide');
+        //$('.top-nav').addClass('navhide');
+        //$('.bottom-nav').addClass('navhide');
         $('.homelogo').fadeIn();
 
     }
