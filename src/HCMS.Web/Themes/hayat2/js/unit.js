@@ -176,19 +176,17 @@ $(document).on('click', '.register .submit', function () {
         url: '/Hayat/Comment/Post',
         data: model
     }).success(function (res) {
-        console.log(res);
-        var _alert = _this.parents('article').find('.alert');
-        _alert.show();
-        //$('#resultInfo').show();
+    
         if (res.IsSuccess) {
             _alert.addClass('alert-success').html('نظر شما با موفقیت ثبت شد. با تشکر');
+            swal("", 'نظر شما با موفقیت ثبت شد. با تشکر', "success");
         } else {
-            var html = '<ul>';
+            var html = '';
             $.each(res.msg, function (index, item) {
-                html += "<li>" + item + "</li>";
+                html +=  item + "/";
             })
-            html += '</ul>';
-            _alert.addClass('alert-danger').html(html);
+            html += '';
+            swal("", html, "error");
         }
     }).error(function (err) {
         console.log(err);

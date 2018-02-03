@@ -1,0 +1,161 @@
+﻿@{ 
+    if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+    {
+        Response.Redirect("/");
+    }
+}
+
+<section>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('/Themes/hayat2/img/my-slider/2.jpg');">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form">
+                    <span class="login100-form-logo">
+                        <i class="zmdi zmdi-landscape"></i>
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Log in
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="#">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<section id="login" class="page page-login cscroll noSwipe" >
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-9 col-md-offset-2">
+
+
+                <h3 data-aos="fade-down">ورود به حساب کاربری</h3>
+
+                <form method="post" action="/fa-ir/manage/Auth/Login">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+
+                    <div class="input-field">
+                        <label>
+                            آدرس ایمیل
+                        </label> <input name="UserName" type="text" placeholder="ایمیل " />
+                    </div>
+
+                    <div class="input-field">
+                        <label>رمز عبور</label> <input name="password" type="password" />
+                    </div>
+                    <div class="input-field captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=_login" id="captcha-image" />
+                        <input class="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                    <div class="input-field">
+
+                        <input type="button" id="submit" value="تایید" />
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="links" style="text-align:center;">
+
+
+                        @*<a id="fgpassword"> فراموشی رمز عبور ؟</a>
+
+                <a id="confirmPassword"> فعال سازی اکانت</a>*@
+
+                        <a href="/#signup"> ایجاد حساب کاربری</a>
+
+                    </div>
+                    @*<div class="links">
+            </div>*@
+
+
+                </form>
+
+
+                <hr />
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+
+    <script>
+        $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+        $(document).on('click', '#submit', function () {
+            var model = {};
+            model.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+            model.captcha_guid = $('input[name="captcha_guid"]').val();
+            model.isAjax = true;
+
+            model.Email = $('input[name="UserName"]').val();
+            model.UserName = $('input[name="UserName"]').val();
+            model.password = $('input[name="password"]').val();
+            model.ConfirmPassword = $('input[name="ConfirmPassword"]').val();
+            model.captcha = $('input[name="captcha"]').val();
+            model.captcha_guid = $('#captcha-image').attr('src').split('guid=')[1];
+
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/Login',
+                data: model
+            }).success(function (res) {
+                $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+                // hideLoader();
+                if (res.length > 0) {
+                    $.each(res, function (index, item) {
+                        html += item + "/";
+                    })
+                    swal("", html, "error");
+                } else {
+                    location.href = "/";
+                }
+            }).error(function (err) {
+                swal("", "خطای ورود", "error");
+                $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
+            })
+        })
+
+    </script>
+
+
+}
+

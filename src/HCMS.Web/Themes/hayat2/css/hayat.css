@@ -79,6 +79,9 @@ body {
 body::-webkit-scrollbar {
   display: none !important;
 }
+.cscroll {
+  overflow: auto !important;
+}
 .cscroll::-webkit-scrollbar,
 section.page::-webkit-scrollbar {
   width: 4px;
@@ -3208,6 +3211,21 @@ section.page-register form .links a {
   }
 }
 @media (max-width: 390px) {
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-top: 0;
+  }
+  #contact {
+    margin-top: 10px;
+  }
+  #contact .panel-success {
+    margin-bottom: 100px;
+  }
+  .logo-hayat-no {
+    bottom: calc(50%-110px);
+  }
   .show-mobile.top-nav {
     height: 50px;
     padding: 5px;
@@ -3337,6 +3355,12 @@ section.page-register form .links a {
   section.page-blocks .main-block .map {
     width: 250px;
   }
+  section.page-blocks .block-button {
+    bottom: 200px;
+  }
+  #videos .tv {
+    height: calc(100vh - 300px) !important;
+  }
 }
 @media (max-width: 375px) {
   .table table {
@@ -3370,22 +3394,16 @@ section.page-register form .links a {
     width: 200px;
     left: 20px;
   }
-  section.page-blocks .block-button {
-    bottom: 100px;
-  }
-  #videos .tv {
-    height: calc(100vh - 260px) !important;
-  }
 }
 @media (max-width: 315px) {
   .container {
     width: 310px;
+    /*.form-control {
+            height: 32px;
+        }*/
   }
   .container .form-group {
     margin-bottom: 5px;
-  }
-  .container .form-control {
-    height: 32px;
   }
   section.page-map {
     padding: 50px 20px;

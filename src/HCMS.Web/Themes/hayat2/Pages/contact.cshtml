@@ -2,7 +2,7 @@
 @{
     
 }
-<section id="contact" class="page page-homeforms">
+<section id="contact" class="page page-homeforms cscroll noSwipe">
     <div class="container">
         <div class="row">
 
@@ -11,8 +11,7 @@
              
                 <h3 data-aos="fade-down">فرم تماس با ما</h3>
 
-                <div class="form">
-                    <form id="contact-form" method="post" role="form" class="contactForm">
+                    <form id="contact-form" role="form" class="contact-form">
                         <div class="row">
 
                             <div class="col-md-4 col-sm-12">
@@ -65,23 +64,20 @@
                             <div class="col-md-12 col-sm-12">
                                 <div data-aos="fade-left" class="form-group captcha-field">
                                     <img src="" id="captcha-image" />
-                                    <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                                    <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="alert" id="resultInfo" style="display:none">
-
-                        </div>
-
+                       
                         <button data-aos="fade-left" id="submit-btn" class="hayatbtn" type="button">
                             <i class="fa fa-send">
                             </i>
                             ارسال
                         </button>
                     </form>
-                </div>
+             
 
                 <hr />
 
@@ -111,7 +107,8 @@
         var _captchaDate = Date.now();
         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_contact&guid=' + _captchaDate);
         $(document).on('click', '#submit-btn', function (e) {
-            if (IsValid() === true) {
+            var _isValid = IsValid();
+            if (_isValid) {
                 var url = '@Url.Action("Post", "Contact", new {plugin = "Hayat" })';
 
                 var model = $('#contact-form').serialize();
@@ -122,7 +119,6 @@
                     data: model,
                     contentType: "application/x-www-form-urlencoded",
                     beforeSend: function () {
-                        $('#loader').show();
                         _captchaDate = Date.now();
                         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_contact&guid=' + _captchaDate);
                     },
@@ -130,15 +126,14 @@
                         console.log(res);
                         $('#resultInfo').show();
                         if (res.IsSuccess) {
-                            $('#resultInfo').removeClass('alert-danger').addClass('alert-success').html('پیام شما ارسال شد. منتظر تماس از طرف مدیران حیات نو باشید.');
+                            swal("", 'پیام شما ارسال شد. منتظر تماس از طرف مدیران حیات نو باشید.', "success");
                             $('#contact-form').find("input, textarea").val("");
                         } else {
-                            var html = '<ul>';
+                            var html = '';
                             $.each(res.msg, function (index, item) {
-                                html += "<li>" + item + "</li>";
+                                html += item + "/";
                             })
-                            html += '</ul>';
-                            $('#resultInfo').removeClass('alert-success').addClass('alert-danger').html(html);
+                            swal("", html, "error");
                         }
                     },
                     error: function (jqXhr, textStatus, errorThrown) {
@@ -162,7 +157,7 @@
             $.each(inputs, function (index, item) {
                 if ($(item).val() === '')
                 {
-                    isValid = true;
+                    isValid = false;
                     $(item).addClass('has-error');
                 }
                 else
@@ -171,7 +166,7 @@
             var select = $(form).find('select:required');
             $.each(select, function (index, item) {
                 if ($(item).val() === '0') {
-                    isValid = true;
+                    isValid = false;
                     $(item).addClass('has-error');
                 }
                 else
@@ -181,13 +176,12 @@
             var textarea = $(form).find('textarea:required');
             $.each(textarea, function (index, item) {
                 if ($(item).val().trim() === '') {
-                    isValid = true;
+                    isValid = false;
                     $(item).addClass('has-error');
                 }
                 else
                     $(item).removeClass('has-error');
             })
-            console.log(isValid);
             return isValid;
         }
     </script>

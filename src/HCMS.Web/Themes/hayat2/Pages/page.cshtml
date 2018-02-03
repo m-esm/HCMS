@@ -40,13 +40,13 @@
 
 @foreach (var item in pageSections)
 {
-     var theme = pageClass.FirstOrDefault(a => a.RowID.ToString() == item.GetValue("className").Value).GetValue("name");
+    var theme = pageClass.FirstOrDefault(a => a.RowID.ToString() == item.GetValue("className").Value).GetValue("name");
     var latlang = item.GetValue("latlang");
+    var hasScroll = Convert.ToBoolean(item.GetValue("hasScroll").Value);
 
     i++;
     <section id="section-@i" class="page @theme @(horizontal ? "page-horizontal" :"" ) ">
-
-        <div class="inner">
+        <div class="inner  @(hasScroll ? "cscroll" : "")">
 
             @if (theme.ToString() == "page-team")
             {
@@ -87,7 +87,7 @@
                     }
                     else
                     {
-                        <div class="fulltext cscroll">
+                        <div class="fulltext">
 
                             @Html.Raw(item.GetValue("content").Value)
 

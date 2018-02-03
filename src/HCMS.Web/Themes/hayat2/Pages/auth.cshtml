@@ -5,66 +5,80 @@
     }
 }
 
-<section class="page page-login" id="login">
-    <div class="inner">
-        <div class="alert alert-info">
-            برای پر کردن فرم رزرو بازدید باید در سایت ثبت نام کنید.
+@section styles{
+    
+<link href="~/Themes/hayat2/css/login/main.css" rel="stylesheet" />
+    }
+
+<section id="login" class="page page-login cscroll noSwipe">
+   
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('/Themes/hayat2/img/my-slider/2.jpg');">
+
+            <div class="wrap-login100">
+                <div class="alert alert-info">
+                    برای پر کردن فرم رزرو بازدید باید در سایت ثبت نام کنید.
+                </div>
+                <form class="login100-form ">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="ReturnUrl" value="/" />
+
+                    <h2 class="title" data-aos="fade-down">
+                        ورود به حساب کاربری
+                    </h2>
+                    <hr />
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" required type="text" name="UserName" placeholder="ایمیل">
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" required type="password" name="password" placeholder="رمز عبور">
+                    </div>
+
+                    <div class="wrap-input100">
+                        <img src="~/manage/Captcha/msdn?prefix=_login" id="captcha-image" />
+                        <input class="input100" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                           مرا به خاطر بسپار
+                        </label>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="button" id="submit">
+                            ورود
+                        </button>
+                    </div>
+
+                    <hr />
+
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="#">
+                            فراموشی رمز عبور
+                        </a>
+                      
+                    </div>
+                    <br />
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="/#signup">
+                            ایجاد حساب کاربری
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="login-form">
-            <h2>ورود به اکانت</h2>
-            <form method="post" id="login-form" action="/fa-ir/manage/Auth/Login">
-
-                @Html.AntiForgeryToken()
-
-
-                <input type="hidden" name="isAjax" value="true" />
-                <input type="hidden" name="ReturnUrl" value="/" />
-
-                <div id="err" class="alert alert-danger" style="display:none;">
-
-                </div>
-
-
-                <div class="input-field">
-                    <label>
-                        آدرس ایمیل
-                    </label> <input name="UserName" type="text" placeholder="ایمیل " />
-                </div>
-
-                <div class="input-field">
-                    <label>رمز عبور</label> <input name="password" type="password" />
-                </div>
-                <div class="input-field captcha-field">
-                    <img src="~/manage/Captcha/msdn?prefix=_login" id="captcha-image" />
-                    <input class="captcha" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
-                </div>
-                <div class="input-field">
-                  
-                    <input type="button" id="submit" value="تایید" />
-                </div>
-                <div class="clearfix"></div>
-                <div class="links" style="text-align:center;">
-
-
-                    @*<a id="fgpassword"> فراموشی رمز عبور ؟</a>
-
-                    <a id="confirmPassword"> فعال سازی اکانت</a>*@
-
-                    <a href="/#signup"> ایجاد حساب کاربری</a>
-
-                </div>
-                @*<div class="links">
-                    </div>*@
-
-
-            </form>
-        </div>
-
-
-
     </div>
 
+
 </section>
+
+
+
 
 @section scripts{
 
@@ -75,11 +89,11 @@
             model.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
             model.captcha_guid = $('input[name="captcha_guid"]').val();
             model.isAjax = true;
+            model.ReturnUrl = "/";
 
             model.Email = $('input[name="UserName"]').val();
             model.UserName = $('input[name="UserName"]').val();
             model.password = $('input[name="password"]').val();
-            model.ConfirmPassword = $('input[name="ConfirmPassword"]').val();
             model.captcha = $('input[name="captcha"]').val();
             model.captcha_guid = $('#captcha-image').attr('src').split('guid=')[1];
 
@@ -90,19 +104,19 @@
             }).success(function (res) {
                 $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
                 // hideLoader();
+                var html = '';
                 if (res.length > 0) {
-                    $('#err').css('display', 'block');
-                    var html = '<ul><li>' + res + '</li></ul>';
-                    $('#err').html(res);
+                    $.each(res, function (index, item) {
+                        html += item + "/";
+                    })
+                    swal("", html, "error");
                 } else {
-                    $('#err').css('display', 'none');
                     location.href = "/";
                 }
             }).error(function (err) {
-                $('#err').css('display', 'block');
-                $('#err').html("خطای ورود");
+                console.log(err)
+                swal("", "خطای ورود", "error");
                 $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
-                console.log(err);
             })
         })
 

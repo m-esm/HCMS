@@ -117,6 +117,7 @@ body::-webkit-scrollbar {
 }
 
 .cscroll {
+    overflow:auto !important;
 }
 
 .cscroll::-webkit-scrollbar, section.page::-webkit-scrollbar {
@@ -4111,6 +4112,21 @@ section.page-login, section.page-register {
 
 @media(max-width:390px) {
 
+    h1,h2,h3,h4{
+        margin-top:0;
+    }
+
+    #contact{
+        margin-top:10px;
+
+        .panel-success{
+            margin-bottom:100px;
+        }
+    }
+
+     .logo-hayat-no {
+         bottom:~"calc(50%-110px)";
+     }
     .show-mobile {
 
 
@@ -4292,6 +4308,14 @@ section.page-login, section.page-register {
                 width: 250px;
             }
         }
+
+         .block-button {
+            bottom: 200px;
+        }
+    }
+
+     #videos .tv {
+        height: ~"calc(100vh - 300px)" !important;
     }
 }
 
@@ -4346,14 +4370,10 @@ section.page-login, section.page-register {
             }
         }
 
-        .block-button {
-            bottom: 100px;
-        }
+       
     }
 
-    #videos .tv {
-        height: ~"calc(100vh - 260px)" !important;
-    }
+   
 }
 
 @media(max-width:315px) {
@@ -4364,9 +4384,9 @@ section.page-login, section.page-register {
             margin-bottom: 5px;
         }
 
-        .form-control {
+        /*.form-control {
             height: 32px;
-        }
+        }*/
     }
 
     section.page-map {

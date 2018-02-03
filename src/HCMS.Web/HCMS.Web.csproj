@@ -2214,6 +2214,7 @@
     <Content Include="Themes\hayat2\css\hayat.min.css">
       <DependentUpon>hayat.css</DependentUpon>
     </Content>
+    <Content Include="Themes\hayat2\css\login\main.css" />
     <Content Include="Themes\hayat2\css\logo.css">
       <DependentUpon>logo.less</DependentUpon>
     </Content>
@@ -2451,6 +2452,7 @@
     <Content Include="Themes\hayat2\Pages\blocks\catalog.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-a.cshtml" />
     <Content Include="Themes\hayat2\Pages\contact.cshtml" />
+    <Content Include="Themes\hayat2\Pages\auth - Copy.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />

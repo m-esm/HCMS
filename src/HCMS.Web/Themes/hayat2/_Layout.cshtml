@@ -92,6 +92,8 @@
 
     <script src="~/Themes/hayat2/lib/jquery/jquery.touchSwipe.min.js"></script>
 
+    @RenderSection("styles", false)
+
 </head>
 
 <body>
@@ -425,7 +427,29 @@
 
     <!-- Required JavaScript Libraries -->
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks">
+    <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+        </script>
+
+    <script>
+        function initMap() {
+
+    if (!$('.page-places .map')[0])
+        return;
+
+    var uluru = { lat: 35.789581, lng: 51.495528 };
+    map = new google.maps.Map($('.page-places .map')[0], {
+        zoom: 16,
+        scrollwheel: false,
+        center: uluru
+    });
+
+    new google.maps.event.addListener(map, 'click', function (event) {
+        this.setOptions({ scrollwheel: true });
+    });
+
+
+}
     </script>
 
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>

@@ -3,24 +3,24 @@
 
 var map;
 
-function initMap() {
+//function initMap() {
 
-    if (!$('.page-places .map')[0])
-        return;
+//    if (!$('.page-places .map')[0])
+//        return;
 
-    var uluru = { lat: 35.789581, lng: 51.495528 };
-    map = new google.maps.Map($('.page-places .map')[0], {
-        zoom: 16,
-        scrollwheel: false,
-        center: uluru
-    });
+//    var uluru = { lat: 35.789581, lng: 51.495528 };
+//    map = new google.maps.Map($('.page-places .map')[0], {
+//        zoom: 16,
+//        scrollwheel: false,
+//        center: uluru
+//    });
 
-    new google.maps.event.addListener(map, 'click', function (event) {
-        this.setOptions({ scrollwheel: true });
-    });
+//    new google.maps.event.addListener(map, 'click', function (event) {
+//        this.setOptions({ scrollwheel: true });
+//    });
 
   
-}
+//}
 
 
 
@@ -51,11 +51,10 @@ $(document).on('click', '#places .tabs li', function () {
     var descrps = li.attr("data-descrp").split('|');
     var isMain = li.attr("data-isMain");
     var _count = 0;
-
     if (isFirst)
         for (i = 0; i < markers.length; i++) {
-           if(!markers[i].isMain)
-            markers[i].setMap(null);
+            if (markers[i].isMain == 'false')
+                markers[i].setMap(null);
         }
 
    
