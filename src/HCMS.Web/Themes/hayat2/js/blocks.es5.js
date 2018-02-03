@@ -291,7 +291,13 @@ if ($(window).width() < 760) {
 
     //دو بخش کردن فرم های ثبت نام
     $('#signup.first').addClass('hidden-mobile');
+    $('#signup2').removeClass('hidden-mobile');
+    $('#signup3').removeClass('hidden-mobile');
+} else {
+    $('#signup2').addClass('hidden-mobile');
+    $('#signup3').addClass('hidden-mobile');
 }
+
 $(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
     if ($(window).width() < 760) {
         $('.' + $(this).attr('data-block')).parent('.child-block').siblings().find('.in').removeClass('in');

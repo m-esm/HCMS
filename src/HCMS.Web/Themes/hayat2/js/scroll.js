@@ -133,10 +133,23 @@ var changePage = function (nextPage, mode) {
         if (currentPage.attr('id') === nextPage.attr('id'))
             return;
 
-    if (nextPage.hasClass('hidden-mobile'))
-        nextPage = nextPage.next('section.page');
+    var find = false;
+    while (!find) {
+        if (nextPage.hasClass('hidden-mobile'))
+            nextPage = nextPage.next('section.page');
+        else
+            find = true;
+    }
 
-    var prevPage = currentPage.prev('section.page').not('.hidden-mobile');
+    var prevPage = currentPage.prev('section.page');
+
+    find = false;
+    while (!find) {
+        if (prevPage.hasClass('hidden-mobile'))
+            prevPage = prevPage.prev('section.page');
+        else
+            find = true;
+    }
 
     setTimeout(function () {
 

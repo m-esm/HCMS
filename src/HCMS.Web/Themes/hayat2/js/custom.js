@@ -71,9 +71,8 @@ $(document).ready(function () {
     }, 1000);
 
     var refreshToken = function () {
-        $('#_register-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=captcha&guid=' + Date.now());
-        $('#_cooprate-captcha-image').attr('src', $('#_register-captcha-image').attr('src'));
-
+        $('form.register-form .captcha-field img').attr('src', 'manage/Captcha/msdn?prefix=captcha&guid=' + Date.now());
+        $('form.contactForm .captcha-field img').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
     }
 
     $('#submit').on('keypress', function (e) {
@@ -139,23 +138,25 @@ $(document).ready(function () {
     refreshToken();
 
 
-    $('#regUser').click(function () {
+    $('.register-form .hayatbtn').click(function () {
 
         var buy = {};
-        buy.__RequestVerificationToken = $('#register-form input[name="__RequestVerificationToken"]').val();
+        var parent = $(this).parent('form');
+        buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
         buy.isAjax = true;
 
-        buy.Email = $('#register-form input[name="Username"]').val();
-        buy.UserName = $('#register-form input[name="Username"]').val();
-        buy.password = $('#register-form input[name="password"]').val();
-        buy.ConfirmPassword = $('#register-form input[name="ConfirmPassword"]').val();
-        buy.captcha = $('#register-form input[name="captcha"]').val();
+        buy.Email = (parent).find('input[name="Username"]').val();
+        buy.UserName = $(parent).find('input[name="Username"]').val();
+        buy.password = $(parent).find('input[name="password"]').val();
+        buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
+        buy.captcha = $(parent).find('input[name="captcha"]').val();
 
-        var _captcha_guid = $('#_register-captcha-image').attr('src').split('guid=')[1];
+        var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
         console.log(_captcha_guid);
         buy.captcha_guid = 'captcha' + _captcha_guid;
 
         console.log(buy);
+        buy.loginAfterReg = true;
 
         refreshToken();
 
@@ -165,69 +166,48 @@ $(document).ready(function () {
             data: buy
         }).success(function (res) {
             if (res.length > 0) {
-                var html = '<ul>'
+                var html = ''
                 $.each(res, function (index, item) {
-                    html += '<li>' + item + '</li>';
+                    html +=  item + '/';
                 })
 
-                html += '</ul>';
-                $('#reg-err').css('display', 'block');
-                $('#reg-done').css('display', 'none');
-                $('#reg-err').html(html);
+                swal("خطا", html, "error");
             } else {
-                $('#reg-err').css('display', 'none');
-                $('#reg-done').css('display', 'block');
-                $('#reg-done').html('ثبت نام شما با موفقیت انحام شد.');
+                swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
 
                 //login user
+                setTimeout(function () {
+                    window.location.reload('/');
+                }, 2000)
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/fa-ir/manage/Auth/LoginAfterReg',
-                    data: model
-                }).success(function (res) {
-                    $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
-                    // hideLoader();
-                    if (res.length > 0) {
-                        $('#err').css('display', 'block');
-                        var html = '<ul><li>' + res + '</li></ul>';
-                        $('#err').html(res);
-                    } else {
-                        $('#err').css('display', 'none');
-                        location.href = "/";
-                    }
-                }).error(function (err) {
-                    $('#err').css('display', 'block');
-                    $('#err').html("خطای ورود");
-                    $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
-                    console.log(err);
-                })
+             
             }
         }).error(function (err) {
-            $('#reg-err').css('display', 'block');
-            $('#reg-done').css('display', 'none');
-            $('#reg-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+            swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
         })
     })
 
 
 
-    $('#reg-spanser').click(function () {
+    $('form.contactForm .hayatbtn').click(function () {
+        var parent = $(this).parent('form');
         var spanser = {};
-        spanser.__RequestVerificationToken = $('#colleagueForm input[name="__RequestVerificationToken"]').val();
+        spanser.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
         spanser.isAjax = true;
-        spanser.role = $('#colleagueForm select[name="role"]').val();
-        spanser.Email = $('#colleagueForm input[name="username"]').val();
-        spanser.UserName = $('#colleagueForm input[name="username"]').val();
-        spanser.name = $('#colleagueForm input[name="name"]').val();
-        spanser.phone = $('#colleagueForm input[name="phone"]').val();
-        spanser.password = $('#colleagueForm input[name="Password"]').val();
-        spanser.ConfirmPassword = $('#colleagueForm input[name="ConfirmPassword"]').val();
-        spanser.captcha = $('#colleagueForm input[name="captcha"]').val();
+        spanser.role = $(parent).find('select[name="role"]').val();
+        spanser.Email = $(parent).find('input[name="username"]').val();
+        spanser.UserName = $(parent).find('input[name="username"]').val();
+        spanser.name = $(parent).find('input[name="name"]').val();
+        spanser.phone = $(parent).find('input[name="phone"]').val();
+        spanser.password = $(parent).find('input[name="Password"]').val();
+        spanser.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
+        spanser.captcha = $(parent).find('input[name="captcha"]').val();
 
-        var _captcha_guid = $('#_cooprate-captcha-image').attr('src').split('guid=')[1];
+        var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
 
         spanser.captcha_guid = '_cooprate' + _captcha_guid;
+
+        refreshToken();
 
         console.log(spanser);
         $.ajax({
@@ -235,27 +215,19 @@ $(document).ready(function () {
             url: '/fa-ir/manage/Auth/RegisterByRole',
             data: spanser
         }).success(function (res) {
-            $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+            console.log(res);
             if (res.length > 0) {
-                var html = '<ul>'
+                var html = '';
                 $.each(res, function (index, item) {
-                    html += '<li>' + item + '</li>';
+                    html += item + "/";
                 })
 
-                html += '</ul>';
-                $('#coll-err').css('display', 'block');
-                $('#coll-done').css('display', 'none');
-                $('#coll-err').html(html);
+                swal("خطا", html, "error");
             } else {
-                $('#coll-err').css('display', 'none');
-                $('#coll-done').css('display', 'block');
-                $('#coll-done').html('ثبت نام شما با موفقیت انجام شد.');
+                swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
             }
         }).error(function (err) {
-            $('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
-            $('#coll-err').css('display', 'block');
-            $('#coll-done').css('display', 'none');
-            $('#coll-err').html('خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.');
+            swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
         })
     })
 
