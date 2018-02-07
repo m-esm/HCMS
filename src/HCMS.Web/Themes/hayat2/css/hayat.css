@@ -782,7 +782,7 @@ section#signup form {
   height: 457px;
   padding: 10px 44px;
   box-shadow: -3px 3px #000;
-  position: relative;
+  position: absolute;
 }
 section#signup form .hayatbtn {
   position: absolute;
@@ -1020,17 +1020,17 @@ section#signup form #register-form {
   opacity: 1;
 }
 .table table tbody tr.blockA {
-  background-color: #cc0099;
+  background-color: #1f651f;
   color: #000;
   opacity: 1;
 }
 .table table tbody tr.blockB {
-  background-color: #FF0000;
+  background-color: #4f1c1c;
   color: #000;
   opacity: 1;
 }
 .table table tbody tr.blockC {
-  background-color: #29e41a;
+  background-color: #86949f;
   color: #000;
   opacity: 1;
 }
@@ -2535,14 +2535,14 @@ section.page-register form .links a {
     margin-right: 5px;
     float: left;
     cursor: pointer;
+    /*&:hover {
+                        color: @baseColor1;
+                        background-color: unset;
+                        border: 2px solid @baseColor1;
+                        padding: 9px;
+                    }*/
   }
   .show-mobile.top-nav .search .fa-search.active {
-    color: #4e1c1b;
-    background-color: unset;
-    border: 2px solid #4e1c1b;
-    padding: 9px;
-  }
-  .show-mobile.top-nav .search .fa-search:hover {
     color: #4e1c1b;
     background-color: unset;
     border: 2px solid #4e1c1b;
@@ -2593,16 +2593,15 @@ section.page-register form .links a {
     margin-right: 5px;
     float: left;
     cursor: pointer;
+    /*&:hover {
+                            color: @baseColor1;
+                            background-color: unset;
+                            border: 2px solid @baseColor1;
+                            padding: 9px;
+                        }*/
   }
   .show-mobile.bottom-nav .main-icons .left-icons-mobile i.active,
   .show-mobile.bottom-nav .main-icons .right-icons-mobile i.active {
-    color: #4e1c1b;
-    background-color: unset;
-    border: 2px solid #4e1c1b;
-    padding: 9px;
-  }
-  .show-mobile.bottom-nav .main-icons .left-icons-mobile i:hover,
-  .show-mobile.bottom-nav .main-icons .right-icons-mobile i:hover {
     color: #4e1c1b;
     background-color: unset;
     border: 2px solid #4e1c1b;
@@ -2612,7 +2611,7 @@ section.page-register form .links a {
   .show-mobile.bottom-nav .main-icons .right-icons-mobile ul {
     float: left;
     transform: translateX(-300%);
-    transition: all .3s;
+    transition: all 1.3s;
   }
   .show-mobile.bottom-nav .main-icons .left-icons-mobile ul.open,
   .show-mobile.bottom-nav .main-icons .right-icons-mobile ul.open {

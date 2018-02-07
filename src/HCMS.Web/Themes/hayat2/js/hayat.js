@@ -620,8 +620,8 @@ $(document).ready(function () {
     })
     
     $(document).on('tap click', '.bottom-nav ul li', function () {
-        $(this).parent('ul').find('li').removeClass('open');
-        $(this).parent('ul').find('i').removeClass('active');
+        $(this).parent('.bottom-nav').find('li').removeClass('open');
+        $(this).parent('.bottom-nav').find('i').removeClass('active');
         $(this).toggleClass('open');
         $(this).find('i').toggleClass('active');
 
@@ -630,9 +630,8 @@ $(document).ready(function () {
     $(document).on('tap click', '.has-sub', function () {
         $(this).next('.has-sub').siblings('active');
         $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
-        //$(this).parents('.bottom-nav').find('.child').removeClass('min');
+        $(this).parents('.bottom-nav').find('i').removeClass('active');
         $(this).parents('.child').siblings('.child').addClass('min');
-        $(this).find('i').removeClass('active')
         $(this).toggleClass('active');
         $(this).next('ul').toggleClass('open');
         $(this).parent('.child').toggleClass('min')

@@ -245,8 +245,11 @@
                 <ul>
                     @foreach (var item in quickLinks)
             {
+                        var first = item.GetGroup("links").FirstOrDefault();
                         <li>
-                            <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                            <a href="@first.GetValue("url")">
+                                <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                            </a>
                             <div class="descrp">
                                 @Html.Raw(item.GetValue("text"))
                                 <ul>
@@ -272,7 +275,7 @@
                     @foreach (var item in socials)
             {
                         <li>
-                            <a href="@item.GetValue("url")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+                            <a href="@item.GetValue("link")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
                         </li>
 
                     }

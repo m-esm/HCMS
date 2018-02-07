@@ -9,9 +9,9 @@
 @baseColor2: #ff0000;
 @baseColor3: #808080;
 
-@blockA: #cc0099;
-@blockC: #29e41a;
-@blockB: #FF0000;
+@blockA: #1f651f;
+@blockC: #86949f;
+@blockB: rgba(79, 28, 28, 1);
 
 @BgColor1: rgba(0, 0, 0, 0.8);
 @BgColor2: #86949f;
@@ -990,7 +990,7 @@ section#signup {
         height: 457px;
         padding: 10px 44px;
         box-shadow: -3px 3px #000;
-        position: relative;
+        position: absolute;
 
         .hayatbtn {
             position: absolute;
@@ -3268,12 +3268,12 @@ section.page-login, section.page-register {
                         padding: 9px;
                     }
 
-                    &:hover {
+                    /*&:hover {
                         color: @baseColor1;
                         background-color: unset;
                         border: 2px solid @baseColor1;
                         padding: 9px;
-                    }
+                    }*/
                 }
             }
         }
@@ -3330,18 +3330,18 @@ section.page-login, section.page-register {
                             padding: 9px;
                         }
 
-                        &:hover {
+                        /*&:hover {
                             color: @baseColor1;
                             background-color: unset;
                             border: 2px solid @baseColor1;
                             padding: 9px;
-                        }
+                        }*/
                     }
 
                     ul {
                         float: left;
                         transform: translateX(-300%);
-                        transition: all .3s;
+                        transition: all 1.3s;
 
 
                         &.open {
@@ -4402,6 +4402,7 @@ section.page-login, section.page-register {
             display: block;
         }
     }
+
 }
 
 @media only screen and (max-width: 736px) and (orientation: landscape) {

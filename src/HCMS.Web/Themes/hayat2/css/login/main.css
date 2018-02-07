@@ -71,7 +71,6 @@ textarea {
 }
 
 textarea:focus, input:focus {
-  border-color: transparent !important;
 }
 
 input:focus::-webkit-input-placeholder { color:transparent; }
@@ -169,6 +168,7 @@ iframe {
   border-radius: 10px;
   overflow: hidden;
   padding: 55px 55px 37px 55px;
+  padding-bottom:100px;
 
   background: #f7f2ed;
   background: -webkit-linear-gradient(top, #f7f2ed, #ddd);
@@ -234,6 +234,9 @@ iframe {
   height: 45px;
   background: transparent;
   padding: 0 5px 0 38px;
+
+  border-bottom:2px solid #000;
+  border-left:2px solid #000;
 }
 
 /*---------------------------------------------*/ 
@@ -245,6 +248,8 @@ iframe {
   top: 0;
   left: 0;
   pointer-events: none;
+   border-bottom:2px solid #666;
+  border-left:2px solid #666;
 }
 
 .focus-input100::before {
@@ -262,6 +267,9 @@ iframe {
   transition: all 0.4s;
 
   background: #000;
+
+   border-bottom:2px solid #666;
+  border-left:2px solid #666;
 }
 
 .focus-input100::after {
@@ -280,6 +288,9 @@ iframe {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+
+   border-bottom:2px solid #666;
+  border-left:2px solid #666;
 }
 
 .input100:focus {
@@ -443,6 +454,7 @@ iframe {
 @media (max-width: 576px) {
   .wrap-login100 {
     padding: 55px 15px 37px 15px;
+    padding-bottom:100px;
   }
 }
 
