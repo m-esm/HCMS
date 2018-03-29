@@ -5,6 +5,9 @@
 a {
   text-decoration: none !important;
 }
+.fixfixed {
+  position: fixed !important;
+}
 .padding-20px {
   padding: 20px !important;
 }
@@ -75,6 +78,7 @@ body {
   overflow: hidden;
   direction: rtl;
   text-align: right;
+  position: fixed;
 }
 body::-webkit-scrollbar {
   display: none !important;
@@ -609,6 +613,9 @@ article.page-child.page-horizontal.page-deactive-top {
 section.page-custom .buttons {
   text-align: left;
 }
+section.page-custom .buttons i {
+  display: none;
+}
 section.page-custom .inner {
   width: 100%;
   padding: 90px;
@@ -622,7 +629,7 @@ section.page-custom .inner .row {
   height: 100%;
 }
 section.page-custom .inner .row div {
-  height: 100%;
+  /*height: 100%;*/
 }
 section.page-custom .inner .fulltext {
   max-width: 800px;
@@ -725,7 +732,7 @@ section.page-team .inner .pic {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 form {
-  box-shadow: -3px 3px #000;
+  /*box-shadow: -3px 3px #000;*/
 }
 label.required::before {
   content: '*';
@@ -733,11 +740,11 @@ label.required::before {
   color: red;
 }
 .form-control {
-  border: none;
-  border-radius: 0;
-  border-left: 2px solid;
-  border-bottom: 2px solid;
-  box-shadow: none;
+  /*border: none;
+    border-radius: 0;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    box-shadow: none;*/
   background-color: #ece6df;
 }
 .form-control:focus {
@@ -1810,10 +1817,14 @@ body .main .new-block.block .detail .up label {
 }
 section.page-login .inner,
 section.page-register .inner {
-  padding-top: 140px;
+  padding-top: 90px;
   max-width: 600px;
   width: auto;
   margin: 0 auto;
+}
+section.page-login .inner .alert,
+section.page-register .inner .alert {
+  margin: 0;
 }
 section.page-login form,
 section.page-register form {
@@ -1823,6 +1834,10 @@ section.page-register form {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+section.page-login form .title,
+section.page-register form .title {
+  text-align: center;
 }
 section.page-login form .input-field,
 section.page-register form .input-field {
@@ -2004,25 +2019,6 @@ section.page-register form .links a {
   margin-top: 10px;
   margin-left: 15px;
 }
-.login-form {
-  background-color: #f7f2ed;
-  padding: 10px;
-  color: #000;
-  box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.4);
-}
-.login-form label {
-  color: #000;
-}
-.login-form h2 {
-  text-align: center;
-  color: #000;
-}
-.login-form input[type=button] {
-  width: 100%;
-}
-.login-form form {
-  box-shadow: none !important;
-}
 .captcha-field img {
   border-left: 2px solid;
   border-bottom: 2px solid;
@@ -2033,6 +2029,24 @@ section.page-register form .links a {
 .right-icons-mobile,
 .left-icons-mobile {
   display: none;
+}
+.show-safari {
+  display: none;
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  z-index: 999;
+  text-align: justify;
+  word-break: break-word;
+}
+.show-safari.active {
+  display: block;
+}
+.show-safari i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24px;
 }
 @media (max-width: 2560px) {
   header .links ul li i {
@@ -2118,7 +2132,7 @@ section.page-register form .links a {
     padding: 0 35px;
   }
   section#signup form {
-    height: 205px;
+    /*height: 205px;*/
   }
   section#signup form#colleagueForm {
     height: 229px;
@@ -2352,7 +2366,8 @@ section.page-register form .links a {
   }
   section.page-custom .buttons {
     position: fixed;
-    bottom: 38px;
+    bottom: 0;
+    right: 40px;
     font-size: 1.5rem;
   }
   .comments {
@@ -2454,6 +2469,22 @@ section.page-register form .links a {
   }
   section.page-custom .inner .row {
     height: unset;
+  }
+  section.page-custom .buttons {
+    position: fixed;
+    bottom: 55px;
+    right: unset;
+    left: 2px;
+    font-size: 1.1rem;
+  }
+  section.page-custom .buttons .hayatbtn {
+    padding: 9px;
+  }
+  section.page-custom .buttons i {
+    display: block;
+  }
+  section.page-custom .buttons span {
+    display: none;
   }
   section.page-homeforms {
     padding: 60px 0;
@@ -2814,7 +2845,8 @@ section.page-register form .links a {
 }
 @media (max-width: 615px) {
   .container {
-    width: 550px;
+    width: 100%;
+    padding: 0;
   }
   .container .row .col-xs-6 {
     width: 100%;
@@ -2902,25 +2934,29 @@ section.page-register form .links a {
     padding-right: 10px;
   }
   section.page-custom .inner {
-    padding: 0 30px;
+    padding: 0 15px;
     padding-top: 22px;
-    height: 82%;
+    height: 89%;
     overflow: hidden;
   }
-  section.page-custom .inner .text {
+  section.page-custom .text {
     width: 100%;
     float: none;
-    padding: 0;
+    padding: 10px;
     font-size: 1.2rem;
   }
-  section.page-custom .inner .pic {
+  section.page-custom .pic {
     width: 100%;
     padding: 0;
     float: none;
   }
-  div.back-to-top {
+  section.page-custom div.back-to-top {
     right: 10px;
     bottom: 0;
+  }
+  section.page-custom .buttons {
+    height: unset !important;
+    left: 20px;
   }
   header nav {
     padding: 0;
@@ -2970,6 +3006,7 @@ section.page-register form .links a {
   .container {
     width: 500px;
     padding: 0;
+    padding-top: 10px;
   }
   .container .row .col-xs-6 .captcha-field input {
     width: 42%;
@@ -3069,25 +3106,6 @@ section.page-register form .links a {
   }
   h2 {
     font-size: 20px;
-  }
-  .page-login .alert {
-    margin: 0 !important;
-  }
-  .page-login .login-form {
-    box-shadow: unset;
-  }
-  .page-login .login-form h2 {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-  .page-login .login-form .captcha {
-    float: left !important;
-  }
-  .page-login .login-form img {
-    float: left;
-  }
-  .page-login .login-form .links a {
-    width: 100%;
   }
   .container {
     width: 400px;
@@ -3212,6 +3230,9 @@ section.page-register form .links a {
   section#signup .buyer .col-xs-6 .captcha-field img {
     width: 50%;
   }
+  .page-login .full-width {
+    width: 100%;
+  }
 }
 @media (max-width: 390px) {
   h1,
@@ -3321,7 +3342,7 @@ section.page-register form .links a {
     width: 100%;
   }
   header.show-mobile nav ul li a {
-    width: 185px;
+    width: 200px;
   }
   header.show-mobile .search-bar {
     width: 100%;
@@ -3359,10 +3380,14 @@ section.page-register form .links a {
     width: 250px;
   }
   section.page-blocks .block-button {
-    bottom: 200px;
+    bottom: 170px;
   }
   #videos .tv {
     height: calc(100vh - 300px) !important;
+  }
+  section.page-custom .buttons {
+    bottom: 46px;
+    left: 6px;
   }
 }
 @media (max-width: 375px) {
@@ -3468,4 +3493,8 @@ section.page-register form .links a {
   section.page-blocks .block-button li a {
     font-size: 1.2rem;
   }
+}
+.apple-ios {
+  position: fixed;
+  width: 100%;
 }

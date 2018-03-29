@@ -26,7 +26,7 @@
     <SccProvider>SAK</SccProvider>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <UseGlobalApplicationHostFile />
-    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -364,6 +364,7 @@
     <Content Include="Packages\fullpage.js\vendors\jquery.easings.min.js" />
     <Content Include="Packages\fullpage.js\vendors\scrolloverflow.js" />
     <Content Include="Packages\fullpage.js\vendors\scrolloverflow.min.js" />
+    <Content Include="Packages\gallery\fotorama.js" />
     <Content Include="Packages\HCMS\css\404.css">
       <DependentUpon>404.less</DependentUpon>
     </Content>
@@ -426,6 +427,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Packages\gallery\fotorama.scss" />
     <None Include="Packages\jquery-1.6.4\jquery-1.6.4-vsdoc.js" />
     <Content Include="Packages\font-awesome-4.6.3\css\font-awesome.css" />
     <Content Include="Packages\font-awesome-4.6.3\css\font-awesome.min.css" />
@@ -2113,6 +2115,11 @@
     <Content Include="Plugins\Hayat\Views\Contact\SelectBannerImage.cshtml" />
     <Content Include="Plugins\Hayat\Views\Contact\transactions.cshtml" />
     <Content Include="Plugins\Hayat\Views\Contact\transactions_details.cshtml" />
+    <Content Include="Plugins\Hayat\Views\User\Details.cshtml" />
+    <Content Include="Plugins\Hayat\Views\User\Edit.cshtml" />
+    <Content Include="Plugins\Hayat\Views\User\Ix.cshtml" />
+    <Content Include="Plugins\Hayat\Views\User\New.cshtml" />
+    <Content Include="Plugins\Hayat\Views\User\Old.cshtml" />
     <None Include="Properties\PublishProfiles\Publish_Local.pubxml" />
     <Content Include="Packages\HCMS\js\Base.DateHelper.min.js.map">
       <DependentUpon>Base.DateHelper.min.js</DependentUpon>
@@ -2192,6 +2199,84 @@
     <Content Include="Packages\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="SharedViews\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="SharedViews\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Themes\hayat-refactor\css\hayat.css">
+      <DependentUpon>hayat.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\hayat.min.css">
+      <DependentUpon>hayat.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\logo.css">
+      <DependentUpon>logo.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\logo.min.css">
+      <DependentUpon>logo.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\places.css">
+      <DependentUpon>places.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\places.min.css">
+      <DependentUpon>places.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\slider.css">
+      <DependentUpon>slider.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\css\slider.min.css">
+      <DependentUpon>slider.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\img\logo\Ebtekar Saze Samle Logo.png" />
+    <Content Include="Themes\hayat-refactor\img\logo\Hayate no Logo black.png" />
+    <Content Include="Themes\hayat-refactor\img\logo\Hayate no Logo white.png" />
+    <Content Include="Themes\hayat-refactor\img\logo\Icon 02.png" />
+    <Content Include="Themes\hayat-refactor\img\logo\Icon.png" />
+    <Content Include="Themes\hayat-refactor\js\hayat.js" />
+    <Content Include="Themes\hayat-refactor\js\logo.js" />
+    <Content Include="Themes\hayat-refactor\js\logo.min.js">
+      <DependentUpon>logo.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\js\newScroll.js" />
+    <Content Include="Themes\hayat-refactor\js\newScroll.min.js">
+      <DependentUpon>newScroll.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\js\scroll.js" />
+    <Content Include="Themes\hayat-refactor\js\scroll.min.js">
+      <DependentUpon>scroll.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\js\slider.js" />
+    <Content Include="Themes\hayat-refactor\js\slider.min.js">
+      <DependentUpon>slider.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\js\videoslider.js" />
+    <Content Include="Themes\hayat-refactor\js\videoslider.min.js">
+      <DependentUpon>videoslider.js</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat-refactor\lib\animate-css\animate.min.css" />
+    <Content Include="Themes\hayat-refactor\lib\async\async.min.map" />
+    <Content Include="Themes\hayat-refactor\css\logo.less" />
+    <Content Include="Themes\hayat-refactor\css\places.less" />
+    <Content Include="Themes\hayat-refactor\css\slider.less" />
+    <Content Include="Themes\hayat-refactor\css\hayat.less" />
+    <None Include="Themes\hayat-refactor\Pages\Home.cshtml" />
+    <Content Include="Themes\hayat-refactor\css\blocks\block-a.css" />
+    <Content Include="Themes\hayat-refactor\css\blocks\block-b.css" />
+    <Content Include="Themes\hayat-refactor\css\blocks\block-c.css" />
+    <Content Include="Themes\hayat-refactor\css\blocks\block-main.css" />
+    <Content Include="Themes\hayat-refactor\css\plan\plan-a.css" />
+    <Content Include="Themes\hayat-refactor\css\plan\plan-b.css" />
+    <Content Include="Themes\hayat-refactor\css\plan\plan-c.css" />
+    <Content Include="Themes\hayat-refactor\lib\aos\aos.css" />
+    <Content Include="Themes\hayat-refactor\lib\aos\aos.js" />
+    <Content Include="Themes\hayat-refactor\lib\aos\aos.min.css" />
+    <Content Include="Themes\hayat-refactor\lib\aos\aos.min.js" />
+    <Content Include="Themes\hayat-refactor\lib\async\async.js" />
+    <Content Include="Themes\hayat-refactor\lib\async\async.min.js" />
+    <Content Include="Themes\hayat-refactor\lib\jquery\3.1.1\jquery3-1-1.js" />
+    <Content Include="Themes\hayat-refactor\lib\jquery\jquery.min.js" />
+    <Content Include="Themes\hayat-refactor\lib\jquery\jquery.touchSwipe.min.js" />
+    <Content Include="Themes\hayat-refactor\lib\resize-image-map\resize-image-map.js" />
+    <Content Include="Themes\hayat-refactor\lib\underscore\underscore.js" />
+    <Content Include="Themes\hayat-refactor\lib\underscore\underscore.min.js" />
+    <Content Include="Themes\hayat-refactor\preview.jpg" />
+    <Content Include="Themes\hayat-refactor\theme.xml" />
     <Content Include="Themes\hayat2\css\blocks\block-a.css" />
     <Content Include="Themes\hayat2\css\blocks\block-b.css" />
     <Content Include="Themes\hayat2\css\blocks.css">
@@ -2220,6 +2305,12 @@
     </Content>
     <Content Include="Themes\hayat2\css\logo.min.css">
       <DependentUpon>logo.css</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\css\new-hayat.css">
+      <DependentUpon>new-hayat.less</DependentUpon>
+    </Content>
+    <Content Include="Themes\hayat2\css\new-hayat.min.css">
+      <DependentUpon>new-hayat.css</DependentUpon>
     </Content>
     <Content Include="Themes\hayat2\css\places.css">
       <DependentUpon>places.less</DependentUpon>
@@ -2372,6 +2463,8 @@
     <Content Include="Themes\hayat2\img\pov\POV-01.png" />
     <Content Include="Themes\hayat2\img\pov\POV-02.png" />
     <Content Include="Themes\hayat2\img\pov\POV-03.png" />
+    <Content Include="Themes\hayat2\img\slide-ios\arrow.png" />
+    <Content Include="Themes\hayat2\img\slide-ios\highlight.png" />
     <Content Include="Themes\hayat2\img\transparente.gif" />
     <Content Include="Themes\hayat2\js\blocks.es5.js">
       <DependentUpon>blocks.js</DependentUpon>
@@ -2402,6 +2495,15 @@
     <Content Include="Themes\hayat2\css\places.less" />
     <Content Include="Themes\hayat2\css\slider.less" />
     <Content Include="Themes\hayat2\css\gallery.less" />
+    <Content Include="Themes\hayat-refactor\_Layout.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\blocks.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\footer.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\forms.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\partners.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\places.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\slider.cshtml" />
+    <Content Include="Themes\hayat-refactor\Pages\home\videos.cshtml" />
+    <Content Include="Themes\hayat2\css\new-hayat.less" />
     <None Include="Themes\hayat2\less\blocks.less" />
     <Content Include="Themes\hayat2\less\block-main.css" />
     <Content Include="Themes\hayat2\lib\angular\angular-route.js" />

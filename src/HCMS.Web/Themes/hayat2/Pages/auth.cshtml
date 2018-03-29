@@ -1,79 +1,85 @@
-﻿@{ 
+﻿@{
     if (User.Identity.IsAuthenticated && User.IsInRole("user"))
     {
         Response.Redirect("/");
     }
 }
 
-@section styles{
-    
-<link href="~/Themes/hayat2/css/login/main.css" rel="stylesheet" />
-    }
+
 
 <section id="login" class="page page-login cscroll noSwipe">
-   
-    <div class="limiter">
-        <div class="container-login100" style="background-image: url('/Themes/hayat2/img/my-slider/2.jpg');">
 
-            <div class="wrap-login100">
-                <div class="alert alert-info">
-                    برای پر کردن فرم رزرو بازدید باید در سایت <a href="/#signup">ثبت نام</a> کنید.
+    <div class="inner">
+        <div class="alert alert-info">
+            برای پر کردن فرم رزرو بازدید باید در سایت <a href="/#signup">ثبت نام</a> کنید.
+        </div>
+        <form class="login-form">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <input type="hidden" name="isAjax" value="true" />
+            <input type="hidden" name="ReturnUrl" value="/" />
+
+            <h2 class="title" data-aos="fade-down">
+                ورود به حساب کاربری
+            </h2>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label>
+                        <i class="fa fa-envelope"></i>
+                        ایمیل
+                    </label>
+                    <input required name="UserName" class="form-control" type="text" placeholder="ایمیل" />
                 </div>
-                <form class="login100-form ">
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-                    <input type="hidden" name="isAjax" value="true" />
-                    <input type="hidden" name="ReturnUrl" value="/" />
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label>
+                        <i class="fa fa-key"></i>
+                        رمز عبور
+                    </label>
+                    <input required name="password" class="form-control" type="password" placeholder="رمز عبور" />
+                </div>
+            </div>
 
-                    <h2 class="title" data-aos="fade-down">
-                        ورود به حساب کاربری
-                    </h2>
-                    <hr />
-                    <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" required type="text" name="UserName" placeholder="ایمیل">
-                    </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group captcha-field">
+                    <img src="~/manage/Captcha/msdn?prefix=_login" id="captcha-image"/>
+                    <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                </div>
+            </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" required type="password" name="password" placeholder="رمز عبور">
-                    </div>
+            <button class="hayatbtn full-width" type="button" id="submit">
+                ورود
+            </button>
 
-                    <img src="~/manage/Captcha/msdn?prefix=_login" id="captcha-image" />
+            <div class="col-md-12 text-center">
 
-                    <div class="wrap-input100">
-                        <input class="input100" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
-                    </div>
+                <a href="#" class="hayatbtn">
+                    فراموشی رمز عبور
+                </a>
 
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                           مرا به خاطر بسپار
-                        </label>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="button" id="submit">
-                            ورود
-                        </button>
-                    </div>
-
-                    <hr />
-
-                    <div class="text-center p-t-90">
+                <a href="/#signup" class="hayatbtn">
+                    ایجاد حساب کاربری
+                </a>
+                @*<div class="text-center">
                         <a class="txt1" href="#">
                             فراموشی رمز عبور
                         </a>
-                      
                     </div>
-                    <br />
-                    <div class="text-center p-t-90">
+
+                    <div class="text-center">
                         <a class="txt1" href="/#signup">
                             ایجاد حساب کاربری
                         </a>
-                    </div>
-                </form>
+                    </div>*@
             </div>
-        </div>
+
+            <br />
+            <br />
+            <br />
+        </form>
     </div>
+
 
 
 </section>
@@ -97,12 +103,13 @@
             model.password = $('input[name="password"]').val();
             model.captcha = $('input[name="captcha"]').val();
             model.captcha_guid = $('#captcha-image').attr('src').split('guid=')[1];
-
+            console.log(model);
             $.ajax({
                 type: 'POST',
                 url: '/fa-ir/manage/Auth/Login',
                 data: model
             }).success(function (res) {
+                console.log(res);
                 $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
                 // hideLoader();
                 var html = '';

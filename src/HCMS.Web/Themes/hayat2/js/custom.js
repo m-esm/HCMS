@@ -9,12 +9,12 @@
 //});
 
 
-//var nVer = navigator.appVersion;
-//var nAgt = navigator.userAgent;
-//var browserName = navigator.appName;
-//var fullVersion = '' + parseFloat(navigator.appVersion);
-//var majorVersion = parseInt(navigator.appVersion, 10);
-//var nameOffset, verOffset, ix;
+var nVer = navigator.appVersion;
+var nAgt = navigator.userAgent;
+var browserName = navigator.appName;
+var fullVersion = '' + parseFloat(navigator.appVersion);
+var majorVersion = parseInt(navigator.appVersion, 10);
+var nameOffset, verOffset, ix;
 
 //// In Opera 15+, the true version is after "OPR/"
 //if ((verOffset = nAgt.indexOf("OPR/")) != -1) {
@@ -61,6 +61,15 @@
 //}
 //if (browserName != "Firefox" && browserName != "Chrome" && browserName != "Safari")
 //    alert("لطفا از یکی از مرورگرهای گوگل کروم و یا فایر فاکس استفاده کنید")
+if (nAgt.match(/iPad/i) || nAgt.match(/iPhone/i)) {
+    // iPad or iPhone
+    //$('.show-safari').addClass('active');
+    //jQuery('body').addClass('apple-ios');
+}
+else {
+    // Anything else
+
+}
 
 $(document).ready(function () {
 
@@ -75,7 +84,6 @@ $(document).ready(function () {
     if (Modernizr.touch) {
         /* cache dom references */
         var $body = jQuery('body');
-
         /* bind events */
         $(document)
         .on('focus', 'input', function () {
@@ -86,6 +94,20 @@ $(document).ready(function () {
         });
     }
 
+    $('.map-top').click(function () {
+        changePage(false, 'up');
+    })
+
+    $('.map-down').click(function () {
+        changePage(false, 'down');
+    })
+    //$(document).on('tap click', '.map-top', function () {
+    //    changePage(false, 'up');
+    //})
+
+    //$(document).on('tap click', '.map-down', function () {
+    //    changePage(false, 'down');
+    //})
     //end for ios
 
     var refreshToken = function () {
@@ -156,98 +178,138 @@ $(document).ready(function () {
     refreshToken();
 
 
-    $('.register-form .hayatbtn').click(function () {
+    $('.register-form .hayatbtn').click(function (e) {
 
         var buy = {};
         var parent = $(this).parent('form');
-        buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
-        buy.isAjax = true;
+        if (IsValid(parent) === true) {
+            buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
+            buy.isAjax = true;
 
-        buy.Email = (parent).find('input[name="Username"]').val();
-        buy.UserName = $(parent).find('input[name="Username"]').val();
-        buy.password = $(parent).find('input[name="password"]').val();
-        buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
-        buy.captcha = $(parent).find('input[name="captcha"]').val();
+            buy.Email = (parent).find('input[name="Username"]').val();
+            buy.UserName = $(parent).find('input[name="Username"]').val();
+            buy.FirstName = $(parent).find('input[name="FirstName"]').val();
+            buy.password = $(parent).find('input[name="password"]').val();
+            buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
+            buy.captcha = $(parent).find('input[name="captcha"]').val();
 
-        var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
-        console.log(_captcha_guid);
-        buy.captcha_guid = 'captcha' + _captcha_guid;
+            var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
+            buy.captcha_guid = 'captcha' + _captcha_guid;
 
-        console.log(buy);
-        buy.loginAfterReg = true;
+            buy.loginAfterReg = true;
 
-        refreshToken();
+            refreshToken();
 
-        $.ajax({
-            type: 'POST',
-            url: '/fa-ir/manage/Auth/register',
-            data: buy
-        }).success(function (res) {
-            if (res.length > 0) {
-                var html = ''
-                $.each(res, function (index, item) {
-                    html +=  item + '/';
-                })
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/register',
+                data: buy
+            }).success(function (res) {
+                if (res.length > 0) {
+                    var html = ''
+                    $.each(res, function (index, item) {
+                        html += item + '/';
+                    })
 
-                swal("خطا", html, "error");
-            } else {
-                swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
+                    swal("خطا", html, "error");
+                } else {
+                    swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
 
-                //login user
-                setTimeout(function () {
-                    window.location.reload('/');
-                }, 2000)
+                    //login user
+                    setTimeout(function () {
+                        window.location.reload('/');
+                    }, 2000)
 
-             
-            }
-        }).error(function (err) {
-            swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
-        })
+
+                }
+            }).error(function (err) {
+                swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
+            })
+        }
+        e.preventDefault();
     })
 
 
 
-    $('form.contactForm .hayatbtn').click(function () {
+    $('form.contactForm .hayatbtn').click(function (e) {
         var parent = $(this).parent('form');
-        var spanser = {};
-        spanser.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
-        spanser.isAjax = true;
-        spanser.role = $(parent).find('select[name="role"]').val();
-        spanser.Email = $(parent).find('input[name="username"]').val();
-        spanser.UserName = $(parent).find('input[name="username"]').val();
-        spanser.name = $(parent).find('input[name="name"]').val();
-        spanser.phone = $(parent).find('input[name="phone"]').val();
-        spanser.password = $(parent).find('input[name="Password"]').val();
-        spanser.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
-        spanser.captcha = $(parent).find('input[name="captcha"]').val();
+        if (IsValid(parent) === true) {
+            var spanser = {};
+            spanser.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
+            spanser.isAjax = true;
+            spanser.role = $(parent).find('select[name="role"]').val();
+            spanser.Email = $(parent).find('input[name="username"]').val();
+            spanser.UserName = $(parent).find('input[name="username"]').val();
+            spanser.FirstName = $(parent).find('input[name="FirstName"]').val();
+            spanser.phone = $(parent).find('input[name="phone"]').val();
+            spanser.password = $(parent).find('input[name="Password"]').val();
+            spanser.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
+            spanser.captcha = $(parent).find('input[name="captcha"]').val();
 
-        var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
+            var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
 
-        spanser.captcha_guid = '_cooprate' + _captcha_guid;
+            spanser.captcha_guid = '_cooprate' + _captcha_guid;
 
-        refreshToken();
+            refreshToken();
 
-        console.log(spanser);
-        $.ajax({
-            type: 'POST',
-            url: '/fa-ir/manage/Auth/RegisterByRole',
-            data: spanser
-        }).success(function (res) {
-            console.log(res);
-            if (res.length > 0) {
-                var html = '';
-                $.each(res, function (index, item) {
-                    html += item + "/";
-                })
+            $.ajax({
+                type: 'POST',
+                url: '/fa-ir/manage/Auth/RegisterByRole',
+                data: spanser
+            }).success(function (res) {
+                if (res.length > 0) {
+                    var html = '';
+                    $.each(res, function (index, item) {
+                        html += item + "/";
+                    })
 
-                swal("خطا", html, "error");
-            } else {
-                swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
-            }
-        }).error(function (err) {
-            swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
-        })
+                    swal("خطا", html, "error");
+                } else {
+                    swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
+                }
+            }).error(function (err) {
+                swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
+            })
+        }
+        e.preventDefault();
     })
+
+
+    var IsValid = function (_form) {
+        var isValid = true;
+        var form = _form;
+        var inputs = $(form).find('input:required');
+
+        $.each(inputs, function (index, item) {
+            if ($(item).val() === '') {
+                isValid = false;
+                $(item).addClass('has-error');
+            }
+            else
+                $(item).removeClass('has-error');
+        });
+
+        var select = $(form).find('select:required');
+        $.each(select, function (index, item) {
+            if ($(item).val() === '0') {
+                isValid = false;
+                $(item).addClass('has-error');
+            }
+            else
+                $(item).removeClass('has-error');
+        })
+
+        var textarea = $(form).find('textarea:required');
+        $.each(textarea, function (index, item) {
+            if ($(item).val().trim() === '') {
+                isValid = false;
+                $(item).addClass('has-error');
+            }
+            else
+                $(item).removeClass('has-error');
+        })
+        return isValid;
+    }
 
     $(document).on('tap click', '#menu-bar', function () {
         $('header.show-mobile').addClass('open');

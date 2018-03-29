@@ -1,0 +1,26 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    var sliders = DDB.GetTable("cms", "slider").DRows;
+    var sotitr = DDB.GetTable("cms", "sotitr").DRows.FirstOrDefault();
+
+}
+<section id="home" class="page page-slider">
+
+    <div id="slider">
+
+        @foreach (var item in sliders)
+        {
+            <div class="slide">
+                <img src="@item.GetValue("image")" alt="@item.GetValue("title")"/>
+            </div>
+        }
+
+    </div>
+
+    <div class="logo-hayat-no">
+        <img src="~/Themes/hayat-refactor/img/logo/Hayate no Logo white.png" />
+        <h4>@sotitr.GetValue("title")</h4>
+        <h5>@sotitr.GetValue("descrp")</h5>
+    </div>
+
+</section>

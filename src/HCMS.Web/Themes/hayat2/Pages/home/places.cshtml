@@ -1,16 +1,29 @@
 ﻿@using HCMS.Dynamics.Data
 @{
-    var places = DDB.GetTable("cms", "places").DRows.OrderBy(a=>a.GetValue("order").Value);
-
+    var places = DDB.GetTable("cms", "places").DRows.OrderBy(a => a.GetValue("order").Value);
 
 }
 
 <section class="page page-places" id="places">
     <div class="map-wrapper">
-        <div class="map" data-aos="fade-right" style="">
+        <div class="map noSwipe" data-aos="fade-right" style="">
+
+        </div>
+        <div class="map-top" data-aos="fade-left">
+            <i class="fa fa-chevron-up"></i>
+        </div>
+        <div class="map-down" data-aos="fade-lef">
+            <i class="fa fa-chevron-down"></i>
+        </div>
+
+      
+        <div class="menu noSwipe">
+            <span data-action="close" class="fa fa-arrow-circle-o-right"></span>
+            <span data-action="open"  class="fa fa-navicon"></span>
         </div>
         <div class="tabs cscroll" data-aos="fade-left">
-            <ul>
+            <ul class="cscroll">
+                
                 @foreach (var item in places)
                 {
                     var positions = "";
@@ -24,18 +37,20 @@
                         titles += "|" + pos.GetValue("title");
                         descrps += "|" + pos.GetValue("descrp");
                     }
-
-                    <li style="background:@item.GetValue("color")" 
-                        data-title="@titles" 
-                        data-descrp="@descrps" 
-                        data-image="@images" 
-                        data-icon="@item.GetValue("icon")" 
+                    <li 
+                        data-title="@titles"
+                        data-descrp="@descrps"
+                        data-image="@images"
+                        data-icon="@item.GetValue("icon")"
                         data-latlng="@positions"
-                        data-isMain="@item.GetValue("IsMain")"
-                        >
+                        data-cat-name="@item.GetValue("categori.name")"
+                        data-cat-bgcolor="@item.GetValue("categori.background")"
+                        data-cat-color="@item.GetValue("categori.color")"
+                        data-isMain="@item.GetValue("IsMain")">
                         @item.GetValue("name")
 
                     </li>
+
                 }
             </ul>
         </div>

@@ -28,18 +28,18 @@
             label += item.GetValue("label") + ", ";
         }
 
-    <meta name="description" content="@meta.GetValue("description")" >
-    <meta name="Keywords" content="@label">
+        <meta name="description" content="@meta.GetValue("description")">
+        <meta name="Keywords" content="@label">
 
-    <meta name="author" content="HappySpider">
-    <meta name="robots" content="nofollow">
-    @*<meta name="alexaVerifyID" content="zrJoKU2oucs-J6KcPl7fTZY_f-Q" />
-        <meta name="p:domain_verify" content="cc32b168bb374202b716b1056442e601" />*@
-    <meta property="title" content="@meta.GetValue("title")">
-    <meta property="site_name" content="hayat-no">
-    <meta property="url" content="http://hayat-no.com">
-    <meta property="description" content="@meta.GetValue("description2")">
-    <meta property="type" content="article">
+        <meta name="author" content="HappySpider">
+        <meta name="robots" content="nofollow">
+        @*<meta name="alexaVerifyID" content="zrJoKU2oucs-J6KcPl7fTZY_f-Q" />
+            <meta name="p:domain_verify" content="cc32b168bb374202b716b1056442e601" />*@
+        <meta property="title" content="@meta.GetValue("title")">
+        <meta property="site_name" content="hayat-no">
+        <meta property="url" content="http://hayat-no.com">
+        <meta property="description" content="@meta.GetValue("description2")">
+        <meta property="type" content="article">
     }
 
     <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
@@ -63,8 +63,9 @@
 
 
     <!-- hayat styles -->
-    <link href="~/Themes/hayat2/css/hayat.min.css?v=@DateTime.Now" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/blocks.min.css?v=@DateTime.Now" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/hayat.min.css?v=v1" rel="stylesheet" />
+    @*<link href="~/Themes/hayat2/css/new-hayat.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />*@
+    <link href="~/Themes/hayat2/css/blocks.min.css?v=1" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/logo.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/places.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/slider.min.css" rel="stylesheet" />
@@ -175,7 +176,29 @@
                     <li class="pull-left">
                         <a href="">
                             <i class="fa fa-user"></i>
-                            @User.Identity.Name
+                            @{
+                                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+                                if (claimsIdentity != null)
+                                {
+                                    var c = claimsIdentity.FindFirst("FullName");
+
+                                    if (c != null)
+                                    {
+                                        <span>
+                                            @c.Value.ToString()
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            @User.Identity.Name
+                                        </span>
+                                    }
+                                }
+                            }
+                            خوش آمدید
+
                         </a>
 
                         <div class="child-menu">
@@ -184,16 +207,16 @@
                             </form>
                         </div>
                     </li>
-                }
-                else
-                {
-                    <li class="pull-left">
-                        <a href="/auth">
-                            <i class="fa fa-user"></i>
-                            ورود
-                        </a>
-                    </li>
-                }
+                                }
+                                else
+                                {
+                                    <li class="pull-left">
+                                        <a href="/auth">
+                                            <i class="fa fa-user"></i>
+                                            ورود
+                                        </a>
+                                    </li>
+                                }
 
             </ul>
 
@@ -244,7 +267,7 @@
 
                 <ul>
                     @foreach (var item in quickLinks)
-            {
+                    {
                         var first = item.GetGroup("links").FirstOrDefault();
                         <li>
                             <a href="@first.GetValue("url")">
@@ -317,12 +340,12 @@
         </div>
 
         @*<div class="logo">
-            <img src="~/Themes/hayat2/img/logo/Ebtekar Saze Samle Logo.png" />
-        </div>
+                <img src="~/Themes/hayat2/img/logo/Ebtekar Saze Samle Logo.png" />
+            </div>
 
-        <a href="~/" class="homelogo">
-            <img src="~/Themes/hayat2/img/logo/Hayate no Logo black.png" />
-        </a>*@
+            <a href="~/" class="homelogo">
+                <img src="~/Themes/hayat2/img/logo/Hayate no Logo black.png" />
+            </a>*@
 
         <nav>
             <ul>
@@ -358,7 +381,29 @@
                     <li class="pull-left">
                         <a href="">
                             <i class="fa fa-user"></i>
-                            @User.Identity.Name
+                            @{
+                                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+                                if (claimsIdentity != null)
+                                {
+                                    var c = claimsIdentity.FindFirst("FullName");
+
+                                    if (c != null)
+                                    {
+                                        <span>
+                                            @c.Value.ToString()
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            @User.Identity.Name
+                                        </span>
+                                    }
+                                }
+                            }
+                            خوش آمدید
+
                         </a>
 
                         <div class="child-menu">
@@ -370,16 +415,16 @@
                             </form>
                         </div>
                     </li>
-                }
-                else
-                {
-                    <li class="pull-left">
-                        <a href="/auth">
-                            <i class="fa fa-user"></i>
-                            ورود
-                        </a>
-                    </li>
-                }
+                                }
+                                else
+                                {
+                                    <li class="pull-left">
+                                        <a href="/auth">
+                                            <i class="fa fa-user"></i>
+                                            ورود
+                                        </a>
+                                    </li>
+                                }
                 <li>
                     <a href="/Visit">
                         رزرو بازدید
@@ -417,7 +462,10 @@
             </div>*@
     </header>
 
-
+    <div class="alert alert-danger show-safari">
+        وب سایت در مرورگر سافاری ( آیفون و آیپد ) بهینه نشده است. در صورت بروز مشکل در پر کردن فرم ها از مرورگر کروم استفاده کنید. برای دانلود <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8" target="_blank">اینجا</a> کلیک کنید.
+        <i class="fa fa-close" onclick="$('.show-safari').removeClass('active');"></i>
+    </div>
     @RenderBody()
 
 
@@ -431,28 +479,28 @@
     <!-- Required JavaScript Libraries -->
 
     <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
-        </script>
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+    </script>
 
     <script>
         function initMap() {
 
-    if (!$('.page-places .map')[0])
-        return;
+            if (!$('.page-places .map')[0])
+                return;
 
-    var uluru = { lat: 35.789581, lng: 51.495528 };
-    map = new google.maps.Map($('.page-places .map')[0], {
-        zoom: 16,
-        scrollwheel: false,
-        center: uluru
-    });
+            var uluru = { lat: 35.789581, lng: 51.495528 };
+            map = new google.maps.Map($('.page-places .map')[0], {
+                zoom: 16,
+                scrollwheel: false,
+                center: uluru
+            });
 
-    new google.maps.event.addListener(map, 'click', function (event) {
-        this.setOptions({ scrollwheel: true });
-    });
+            new google.maps.event.addListener(map, 'click', function (event) {
+                this.setOptions({ scrollwheel: true });
+            });
 
 
-}
+        }
     </script>
 
     <script src="~/Themes/hayat2/lib/bootstrap/js/bootstrap.min.js"></script>

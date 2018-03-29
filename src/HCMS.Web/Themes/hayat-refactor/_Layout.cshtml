@@ -1,0 +1,470 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    var menu = DDB.GetTable("cms", "menu").DRows;
+
+    var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
+    var socials = DDB.GetTable("cms", "socials").DRows;
+    var sliders = DDB.GetTable("cms", "slider").DRows;
+    var setting = DDB.GetTable("cms", "setting").DRows.FirstOrDefault();
+    var meta = DDB.GetTable("cms", "meta").DRows.FirstOrDefault();
+
+
+}
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+    <base href="~/" />
+    <meta charset="utf-8" />
+    <title>حیات نو | @ViewBag.title </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+
+    @if (meta != null)
+    {
+        var label = "";
+        foreach (var item in meta.GetGroup("keywords"))
+        {
+            label += item.GetValue("label") + ", ";
+        }
+
+        <meta name="description" content="@meta.GetValue("description")">
+        <meta name="Keywords" content="@label">
+
+        <meta name="author" content="HappySpider">
+        <meta name="robots" content="nofollow">
+        @*<meta name="alexaVerifyID" content="zrJoKU2oucs-J6KcPl7fTZY_f-Q" />
+            <meta name="p:domain_verify" content="cc32b168bb374202b716b1056442e601" />*@
+        <meta property="title" content="@meta.GetValue("title")">
+        <meta property="site_name" content="hayat-no">
+        <meta property="url" content="http://hayat-no.com">
+        <meta property="description" content="@meta.GetValue("description2")">
+        <meta property="type" content="article">
+    }
+
+    <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+    <link href="/Themes/hayat-refactor/img/Fave Icon Hayat No.png" rel="shortcut icon">
+    <link href="~/Packages/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS File -->
+    <link href="~/Packages/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Packages/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="~/Packages/sweetalert/sweetalert.min.css" rel="stylesheet" />
+
+    <!-- Libraries CSS Files -->
+    <link href="~/Themes/hayat-refactor/lib/animate-css/animate.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/lib/aos/aos.min.css" rel="stylesheet" />
+
+    <!--Blocks Css-->
+    <link href="~/Themes/hayat-refactor/css/blocks/block-a.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/blocks/block-b.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/blocks/block-c.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/blocks/block-main.css" rel="stylesheet" />
+
+    <!--Plans css-->
+    <link href="~/Themes/hayat-refactor/css/plan/plan-a.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/plan/plan-b.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/plan/plan-c.css" rel="stylesheet" />
+
+    <!--hayat css-->
+    <link href="~/Themes/hayat-refactor/css/logo.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/slider.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/places.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat-refactor/css/hayat.min.css" rel="stylesheet" />
+
+    <script src="~/Themes/hayat-refactor/lib/underscore/underscore.min.js"></script>
+    <script src="~/Themes/hayat-refactor/lib/async/async.min.js"></script>
+    <script src="~/Themes/hayat-refactor/lib/aos/aos.min.js"></script>
+
+    <script src="~/Themes/hayat-refactor/lib/jquery/jquery.min.js"></script>
+    <script src="~/Themes/hayat-refactor/js/logo.min.js"></script>
+
+    <script src="~/Themes/hayat-refactor/lib/jquery/jquery.touchSwipe.min.js"></script>
+
+    @RenderSection("styles", false)
+
+</head>
+
+<body class="container">
+
+
+    <div id="loader">
+        <div class="logo-wrapper">
+            <div class="logobox">
+            </div>
+        </div>
+    </div>
+
+
+
+    <header class="hidden-mobile">
+
+        <div class="logo">
+            <img src="~/Themes/hayat-refactor/img/logo/Ebtekar Saze Samle Logo.png" />
+        </div>
+
+        <a href="~/" class="homelogo" title="بازگشت به صفحه اصلی">
+            <img src="~/Themes/hayat-refactor/img/logo/Hayate no Logo black.png" />
+        </a>
+
+        <div class="links">
+            <ul>
+                <li>
+                    <a href="/visit">
+                        <i class="fa fa-calendar"></i>
+                        <span>
+                            رزرو بازدید
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <span class="ltr email">
+                        @setting.GetValue("email")
+                    </span>
+                </li>
+
+
+                <li>
+                    <i class="fa fa-phone-square"></i>
+                    <span class="ltr phone">
+                        @setting.GetValue("mainPhone")
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <nav>
+            <ul>
+
+                @foreach (var item in menu)
+                {
+
+                    <li>
+                        <a href="@item.GetValue("url")">
+                            @item.GetValue("name")
+
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        {
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+
+                            </div>
+
+                        }
+
+                    </li>
+
+                }
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+                {
+                    <li class="pull-left">
+                        <a href="">
+                            <i class="fa fa-user"></i>
+                            @User.Identity.Name
+                        </a>
+
+                        <div class="child-menu">
+                            <form action="/fa-ir/manage/auth/LogOff" method="post">
+                                <button type="submit" class="btn btn-primary">خروج</button>
+                            </form>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="pull-left">
+                        <a href="/auth">
+                            <i class="fa fa-user"></i>
+                            ورود
+                        </a>
+                    </li>
+                }
+
+            </ul>
+
+        </nav>
+
+        <div class="search-bar">
+            <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+
+
+            <input class="form-control" placeholder="طبقه را وارد کنید" />
+            <select class="form-control">
+                <option>تعداد اتاق را انتخاب کنید</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+
+            <select class="form-control">
+                <option>متراژ </option>
+                <option>80 - 100</option>
+                <option>100 - 120</option>
+                <option>120 - 140</option>
+                <option>140 - 180</option>
+            </select>
+
+        </div>
+    </header>
+
+    <div class="show-mobile top-nav">
+        <div class="bar" id="menu-bar">
+            <img src="~/Themes/hayat-refactor/img/icon.png" />
+        </div>
+
+        <a class="logo" href="/">
+            <img src="~/Themes/hayat-refactor/img/logo/Ebtekar Saze Samle Logo.png" />
+        </a>
+        <div class="search">
+            <i class="fa fa-search" id="top-nav-search"></i>
+        </div>
+    </div>
+
+    <div class="show-mobile bottom-nav">
+        <div class="main-icons">
+            <div class="left-icons-mobile child min">
+                <i class="fa fa-map has-sub" id="share-icons"></i>
+
+
+                <ul>
+                    @foreach (var item in quickLinks)
+                    {
+                        var first = item.GetGroup("links").FirstOrDefault();
+                        <li>
+                            <a href="@first.GetValue("url")">
+                                <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                            </a>
+                            <div class="descrp">
+                                @Html.Raw(item.GetValue("text"))
+                                <ul>
+                                    @foreach (var subitem in item.GetGroup("links"))
+                                    {
+
+                                        <li>
+                                            <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="right-icons-mobile child min">
+                <i class="fa fa-share-alt has-sub" id="right-icon"></i>
+
+                <ul>
+
+                    @foreach (var item in socials)
+            {
+                        <li>
+                            <a href="@item.GetValue("link")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+                        </li>
+
+                    }
+
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="back-to-top"><i class="fa fa-chevron-up"></i></div>
+    </div>
+
+    <div class="search-bar show-mobile">
+
+
+        <input class="form-control" placeholder="طبقه را وارد کنید" />
+        <select class="form-control">
+            <option>تعداد اتاق را انتخاب کنید</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+
+        <select class="form-control">
+            <option>متراژ </option>
+            <option>80 - 100</option>
+            <option>100 - 120</option>
+            <option>120 - 140</option>
+            <option>140 - 180</option>
+        </select>
+
+        <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+
+
+    </div>
+
+    <header class="show-mobile noSwipe">
+        <div class="close">
+            <i class="fa fa-close"></i>
+        </div>
+
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">
+                        صفحه اصلی
+                    </a>
+                </li>
+                @foreach (var item in menu)
+                {
+
+                    <li>
+                        <a href="@item.GetValue("url")" class="under-line-animate">
+                            @item.GetValue("name")
+
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        {
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+
+                            </div>
+
+                        }
+
+                    </li>
+
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="pull-left">
+                        <a href="">
+                            <i class="fa fa-user"></i>
+                            @User.Identity.Name
+                        </a>
+
+                        <div class="child-menu">
+                            <form action="/fa-ir/manage/auth/LogOff" method="post">
+                                <button type="submit" class="btn btn-block hayatbtn">
+                                    <i class="fa fa-lock"></i>
+                                    خروج
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="pull-left">
+                        <a href="/auth">
+                            <i class="fa fa-user"></i>
+                            ورود
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="/Visit">
+                        رزرو بازدید
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/blocks#catalog">
+                        کاتالوگ
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        @*<div class="search-bar">
+                <i class="fa fa-search" onclick="toggleSearchBar()"></i>
+
+
+                <input class="form-control" placeholder="طبقه را وارد کنید" />
+                <select class="form-control">
+                    <option>تعداد اتاق را انتخاب کنید</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+
+                <select class="form-control">
+                    <option>متراژ </option>
+                    <option>80 - 100</option>
+                    <option>100 - 120</option>
+                    <option>120 - 140</option>
+                    <option>140 - 180</option>
+                </select>
+
+            </div>*@
+    </header>
+
+    <div class="alert alert-danger show-safari">
+        وب سایت در مرورگر سافاری ( آیفون و آیپد ) بهینه نشده است. در صورت بروز مشکل در پر کردن فرم ها از مرورگر کروم استفاده کنید. برای دانلود <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8" target="_blank">اینجا</a> کلیک کنید.
+        <i class="fa fa-close" onclick="$('.show-safari').removeClass('active');"></i>
+    </div>
+    @RenderBody()
+
+
+
+
+    <div class="back-to-top hidden-mobile"><i class="fa fa-chevron-up"></i></div>
+
+
+
+
+    <!-- Required JavaScript Libraries -->
+    @*<script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+        </script>*@
+
+    <script>
+        //    function initMap() {
+
+        //if (!$('.page-places .map')[0])
+        //    return;
+
+        //var uluru = { lat: 35.789581, lng: 51.495528 };
+        //map = new google.maps.Map($('.page-places .map')[0], {
+        //    zoom: 16,
+        //    scrollwheel: false,
+        //    center: uluru
+        //});
+
+        //new google.maps.event.addListener(map, 'click', function (event) {
+        //    this.setOptions({ scrollwheel: true });
+        //});
+        //}
+    </script>
+
+    <script src="~/Packages/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="~/Packages/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Packages/modernizr-2.8.3/modernizr-2.8.3.min.js"></script>
+
+    <!--hayat js files-->
+    <script src="~/Themes/hayat-refactor/js/scroll.min.js"></script>
+    <script src="~/Themes/hayat-refactor/js/newScroll.min.js"></script>
+    <script src="~/Themes/hayat-refactor/js/slider.min.js"></script>
+    <script src="~/Themes/hayat-refactor/js/hayat.js"></script>
+
+    @* <script src="~/Themes/hayat-refactor/js/scroll.js"></script>
+        <script src="~/Themes/hayat-refactor/js/newScroll.js"></script>
+        <script src="~/Themes/hayat-refactor/js/unit.js"></script>
+
+        <script src="~/Themes/hayat-refactor/js/slider.js"></script>
+        <script src="~/Themes/hayat-refactor/js/videoslider.js"></script>
+        <script src="~/Themes/hayat-refactor/js/custom.js"></script>
+        <script src="~/Themes/hayat-refactor/js/blocks.js"></script>*@
+
+    <script src="~/Themes/hayat-refactor/lib/resize-image-map/resize-image-map.js"></script>
+    <!-- hayat JS Bundle -->
+
+    @if (Request.Url.ToString().Contains("hayat-no"))
+    {
+        <script type="text/javascript">!function () { function t() { var t = document.createElement("script"); t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o; var e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(t, e) } var e = document, a = window, o = "6ac9b849-cb3a-448c-9ebc-274e235e2753"; "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1) }();</script>
+
+    }
+
+    @RenderSection("scripts", false)
+
+</body>
+
+</html>

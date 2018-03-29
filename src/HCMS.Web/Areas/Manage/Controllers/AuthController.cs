@@ -192,29 +192,31 @@ namespace HCMS.Web.Areas.Manage.Controllers
             var request = HttpContext.Request;//.Current.Request;
             var tokenServiceUrl = request.Url.GetLeftPart(UriPartial.Authority) + request.ApplicationPath + "/Token";
 
-            using (var client = new HttpClient())
-            {
-                var requestParams = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("grant_type", "password"),
-                new KeyValuePair<string, string>("username", user.UserName),
-                new KeyValuePair<string, string>("password", model.Password)
-            };
-                var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
-                var tokenServiceResponse = await client.PostAsync(tokenServiceUrl, requestParamsFormUrlEncoded);
-                var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
-                var responseCode = tokenServiceResponse.StatusCode;
-                var responseMsg = new HttpResponseMessage(responseCode)
-                {
-                    Content = new StringContent(responseString, Encoding.UTF8, "application/json")
-                };
-            }
+        
 
 
 
 
             if (user != null)
             {
+
+                using (var client = new HttpClient())
+                {
+                    var requestParams = new List<KeyValuePair<string, string>>()
+                    {
+                        new KeyValuePair<string, string>("grant_type", "password"),
+                        new KeyValuePair<string, string>("username", user.UserName),
+                        new KeyValuePair<string, string>("password", model.Password)
+                    };
+                    var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
+                    var tokenServiceResponse = await client.PostAsync(tokenServiceUrl, requestParamsFormUrlEncoded);
+                    var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
+                    var responseCode = tokenServiceResponse.StatusCode;
+                    var responseMsg = new HttpResponseMessage(responseCode)
+                    {
+                        Content = new StringContent(responseString, Encoding.UTF8, "application/json")
+                    };
+                }
 
                 //if (user.EmailConfirmed == false && user.MobileConfirmed == false)
                 //{
@@ -389,7 +391,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 {
                     ModelState.AddModelError("", @"جواب معادله اشتباه می باشد");
                 }
-        
+
 
 
             if (!model.Username.Contains("@"))
@@ -398,7 +400,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
 
 
-            var user = new ApplicationUser { UserName = model.Username };
+            var user = new ApplicationUser { UserName = model.Username, FirstName = model.FirstName };
 
             if (model.Username.Contains("@"))
             {
@@ -414,6 +416,8 @@ namespace HCMS.Web.Areas.Manage.Controllers
             {
 
                 user.Mobile = model.Username;
+                user.UserName = model.Username + "@happyspider.org";
+                user.Email = model.Username + "@happyspider.org";
 
                 if (UserRepository.GetUserByMobile(model.Username) != null)
                     ModelState.AddModelError("", @"شماره موبایل وارد شده قبلا استفاده شده است");
@@ -435,11 +439,6 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 }
                 return View(model);
             }
-
-
-
-
-
 
             if (!ModelState.IsValid)
             {
@@ -487,7 +486,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
                     }
 
                     if (loginAfterReg)
-                        await loginUser(new LoginViewModel { UserName = model.Username, Password = model.Password});
+                        await loginUser(new LoginViewModel { UserName = model.Username, Password = model.Password });
 
                     if (model.isAjax)
                     {
@@ -541,7 +540,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
 
 
-            var user = new ApplicationUser { UserName = model.Username };
+            var user = new ApplicationUser { UserName = model.Username, FirstName =  model.FirstName };
 
             if (model.Username.Contains("@"))
             {

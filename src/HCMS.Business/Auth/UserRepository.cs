@@ -246,6 +246,8 @@ namespace HCMS.Business.Auth
             {
                 //I think best solution is UserManager.GetRolesAsync()
                 var role = db.Roles.FirstOrDefault(u => u.Name == roleName);
+                if (role == null)
+                    return new List<ApplicationUser>();
                 var usersInRole = db.Users.Where(u => u.Roles.Select(a => a.RoleId).Contains(role.Id)).ToList();
                 return usersInRole;
             }

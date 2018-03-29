@@ -75,9 +75,39 @@ section.page-places {
             }
         }
     }
+
+    .menu {
+        display: none;
+    }
+
+
+    .map-top, .map-down {
+        position: absolute;
+        width: 30px;
+        line-height: 30px;
+        height: 30px;
+        background-color: #4e1c1b;
+        color: #fff;
+        text-align: center;
+        transition: all ease .5s;
+        cursor: pointer;
+        display: none;
+    }
+
+    .map-top {
+        top: 67px;
+        left: 5px;
+    }
+
+    .map-down {
+        bottom: 145px;
+        left: 5px;
+    }
 }
 
-@media(max-width:600px) {
+
+
+@media(max-width:650px) {
     section.page-places {
         padding: 0;
 
@@ -92,7 +122,87 @@ section.page-places {
         }
 
         .tabs {
-            display: none;
+            /*display: none;*/
+            right:-3px;
+            top: 90px;
+            height: 100%;
+            width: 110px;
+            transition: all 0.5s;
+
+            &.close {
+                transition: all 0.5s;
+                width: 0;
+            }
+
+            ul {
+                li {
+                    &:hover {
+                        font-weight: 100;
+                    }
+                }
+            }
+        }
+
+        .menu {
+            display: block;
+            position: fixed;
+            top: 60px;
+            height: 30px;
+            right: 0;
+            width: 106px;
+            background-color: #000;
+            color: #fff;
+            padding: 3px;
+            transition: all 0.5s;
+
+            .fa {
+                font-size: 25px;
+
+                &.fa-navicon {
+                    display: none;
+                }
+
+                &.fa-arrow-circle-o-right {
+                    display: block;
+                }
+            }
+
+
+
+            &.close {
+                transition: all 0.5s;
+                opacity: 1;
+                width: 30px;
+
+                .fa {
+
+                    &.fa-navicon {
+                        display: block;
+                    }
+
+                    &.fa-arrow-circle-o-right {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .map-top, .map-down {
+            display: block;
+        }
+    }
+}
+
+@media(max-width:390px) {
+    section.page-places {
+
+        .menu {
+            top: 50px;
+        }
+
+        .tabs {
+            /*display: none;*/
+            top: 80px;
         }
     }
 }

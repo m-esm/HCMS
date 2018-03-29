@@ -1,0 +1,146 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    var quickLinks = DDB.GetTable("cms", "quicklinks").DRows;
+    var socials = DDB.GetTable("cms", "socials").DRows;
+   
+
+
+    ViewBag.title = "خانه";
+
+
+}
+
+
+<div class="right-icons hidden-mobile">
+    <ul>
+        @foreach (var item in quickLinks)
+            {
+            <li>
+                <span>@item.GetValue("title")</span>
+                <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                <div class="descrp">
+                    @Html.Raw(item.GetValue("text"))
+                    <ul>
+                        @foreach (var subitem in item.GetGroup("links"))
+                        {
+
+                            <li>
+                                <a href="@subitem.GetValue("url")"> @subitem.GetValue("subtitle")</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="left-icons hidden-mobile">
+    <ul>
+        @foreach (var item in socials)
+            {
+            <li>
+                <a href="@item.GetValue("link")" target="_blank">  <i class="@item.GetValue("icon")"></i></a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="left-icons-mobile">
+    <i class="fa fa-share-alt"></i>
+</div>
+
+<div class="right-icons-mobile">
+    <i class="fa fa-map"></i>
+</div>
+
+@Html.Partial("home/slider")
+
+@Html.Partial("home/blocks")
+
+@Html.Partial("home/videos")
+
+@Html.Partial("home/partners")
+
+@Html.Partial("home/places")
+
+@Html.Partial("home/forms")
+
+@Html.Partial("home/footer")
+
+<div class="gallery">
+
+    <div class="full-image">
+        <i class="fa fa-close"></i>
+
+        <i class="fa fa-chevron-left" id="prev" aria-hidden="true"></i>
+
+        <i class="fa fa-chevron-right" id="next"></i>
+
+        <div class="preview">
+            <img src="" data-item="" class="" />
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts {
+
+    @*<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1YnR95LCRaznjcExHiMVSS6mt8GJXiks&callback=initMap">
+    </script>*@
+    @*<script src="~/Themes/hayat2/js/places.js"></script>*@
+    <script>
+        $('img#img-back-main').rwdImageMaps();
+    </script>
+
+    <script>
+        var result = [];
+        $.ajax({
+            method: 'GET',
+            url: '/Hayat/Comment/GetConfirm'
+        }).success(function (res) {
+            $.each(res, function (index, item) {
+                var find = result.find(a=>a.unitId == item.UnitId);
+                if (find == undefined) {
+                    //result.push({ unitId: item.UnitId, sum: 0, count: 0 });
+                    var _sum = 0;
+                    var _count = 0;
+                    if (item.Ranks.length > 0) {
+                        $.each(item.Ranks, function (rIndex, rItem) {
+                            _sum += rItem.Score;
+                            _count++;
+                        });
+                        result.push({ unitId: item.UnitId, sum: _sum, count: _count, avg: _sum / _count });
+                    }
+
+                } else {
+                    var _sum = find.sum;
+                    var _count = find.count;
+                    if (item.Ranks.length > 0) {
+                        $.each(item.Ranks, function (rIndex, rItem) {
+                            _sum += rItem.Score;
+                            _count++;
+                        });
+                        var _index = result.indexOf(find);
+                        result[_index].sum = _sum;
+                        result[_index].count = _count;
+                        result[_index].avg = _sum / _count;
+                    }
+                }
+
+            });
+            $.each(result, function (index, item) {
+                //var planNumber = $('#blocks_' + item.unitId).attr('data-planNum');
+                //$('tr[data-planNum=' + planNumber + ']').find('.score').html(item.avg.toFixed(2));
+                $('#blocks_' + item.unitId).find('.score').html(item.avg.toFixed(2));
+            })
+
+            console.log(result);
+        }).error(function (err) {
+            console.log(err);
+        })
+    </script>
+
+}

@@ -98,26 +98,44 @@ var slider = {
             $('.slice', slide).remove();
 
             var imgSrc = $('img', elem).attr('src');
-            for (var i = 0; i < $(document).innerHeight() / slider.sliceHeight; i++) {
 
-                var slice = $('<div />')
+            var slice = $('<div />')
                     .addClass('slice')
                     .css('backgroundImage', 'url(' + imgSrc + ')');
 
-                if (!slider.oneSlice)
-                    slice = slide
-                    .height(slider.sliceHeight)
-                        .css('backgroundPosition', '0 ' + i * -1 * slider.sliceHeight + 'px');
+            if (!slider.oneSlice)
+                slice = slide
+                .height(slider.sliceHeight)
+                    .css('backgroundPosition', '0 ' + i * -1 * slider.sliceHeight + 'px');
 
 
-                if (slider.oneSlice)
-                    slice.addClass('one');
+            if (slider.oneSlice)
+                slice.addClass('one');
 
 
 
-                slide.append(slice);
+            slide.append(slice);
 
-            }
+            //for (var i = 0; i < $(document).innerHeight() / slider.sliceHeight; i++) {
+
+            //    var slice = $('<div />')
+            //        .addClass('slice')
+            //        .css('backgroundImage', 'url(' + imgSrc + ')');
+
+            //    if (!slider.oneSlice)
+            //        slice = slide
+            //        .height(slider.sliceHeight)
+            //            .css('backgroundPosition', '0 ' + i * -1 * slider.sliceHeight + 'px');
+
+
+            //    if (slider.oneSlice)
+            //        slice.addClass('one');
+
+
+
+            //    slide.append(slice);
+
+            //}
 
         });
 

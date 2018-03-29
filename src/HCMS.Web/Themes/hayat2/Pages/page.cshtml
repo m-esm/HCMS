@@ -20,6 +20,8 @@
     var pageSections = DDB.GetTable("cms", "pageSections").DRows.Where(p => p.GetValue("pageId").Value == page.RowID.ToString()).OrderBy(p => p.GetValue("order").Value);
 
     var i = 0;
+    var j = 0;
+    var k = 0;
 
     ViewBag.title = page.GetValue("name").Value;
 
@@ -45,12 +47,46 @@
     var hasScroll = Convert.ToBoolean(item.GetValue("hasScroll").Value);
 
     i++;
+
+
     <section id="section-@i" class="page @theme @(horizontal ? "page-horizontal" :"" ) ">
         <div class="inner  @(hasScroll ? "cscroll" : "") noSwipe">
 
             @if (theme.ToString() == "page-team")
-            {
+                {
                 @Html.Raw(item.GetValue("content").Value)
+            }
+            else if (theme.ToString() == "page-slider")
+            {
+
+                <div class="carousel slide article-slide" id="article-photo-carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner cont-slider">
+                        @foreach (var slider in item.GetGroup("sliders"))
+                        {
+                            <div class="item @(j ==0 ? "active" : "")">
+                               
+                                <img alt="" title="" src="@slider.GetValue("slider")">
+                            </div>
+
+                            j++;
+                        }
+                     
+                       
+                    </div>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        @foreach (var slider in item.GetGroup("sliders"))
+                        {
+                            <li class="@(k ==0 ? "active" : "")" data-slide-to="@k" data-target="#article-photo-carousel">
+                                <img alt="" src="@slider.GetValue("slider")">
+                            </li>
+
+                            k++;
+                        }
+                        
+                    </ol>
+                </div>
             }
             else
             {
@@ -64,7 +100,7 @@
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-xs-12 @(i % 2 == 0 ? "pull-left" : "pull-right")">
-                            <div class="text">
+                            <div class="text cscroll">
                                 @Html.Raw(item.GetValue("content").Value)
 
                                 <div class="buttons">
@@ -72,9 +108,13 @@
                                     @if (!string.IsNullOrWhiteSpace(item.GetValue("linkText").Value))
                                     {
                                         <a class="hayatbtn" href="@item.GetValue("link")">
-                                            @item.GetValue("linkText")
+                                            <span>
+                                                @item.GetValue("linkText")
+                                            </span>
+                                            <i class="fa fa-chevron-left"></i>
                                         </a>
                                     }
+
 
                                 </div>
 
@@ -102,7 +142,7 @@
             }
 
             @if (theme.ToString() == "page-map")
-            {
+                {
                 <div class="map" id="map-@i" data-latlang="@latlang" data-aos="fade-right" style="">
                 </div>
             }
@@ -112,6 +152,7 @@
     </section>
 
 
+
 }
 
 @section scripts{
@@ -119,6 +160,12 @@
 
     <script>
         $(document).ready(function () {
+            //slider
+            // Stop carousel
+            $('.carousel').carousel({
+                interval: false
+            });
+            //end slider
             $('.page-map').each(function (item) {
                 var elm = $(this);
                 var latlang = elm.find('.map').attr('data-latlang');

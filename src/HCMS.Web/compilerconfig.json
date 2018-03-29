@@ -54,5 +54,25 @@
   {
     "outputFile": "Themes/hayat2/js/blocks.es5.js",
     "inputFile": "Themes/hayat2/js/blocks.js"
+  },
+  {
+    "outputFile": "Themes/hayat-refactor/css/logo.css",
+    "inputFile": "Themes/hayat-refactor/css/logo.less"
+  },
+  {
+    "outputFile": "Themes/hayat-refactor/css/places.css",
+    "inputFile": "Themes/hayat-refactor/css/places.less"
+  },
+  {
+    "outputFile": "Themes/hayat-refactor/css/slider.css",
+    "inputFile": "Themes/hayat-refactor/css/slider.less"
+  },
+  {
+    "outputFile": "Themes/hayat-refactor/css/hayat.css",
+    "inputFile": "Themes/hayat-refactor/css/hayat.less"
+  },
+  {
+    "outputFile": "Themes/hayat2/css/new-hayat.css",
+    "inputFile": "Themes/hayat2/css/new-hayat.less"
   }
 ]

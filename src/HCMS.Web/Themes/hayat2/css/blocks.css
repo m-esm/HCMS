@@ -250,8 +250,8 @@
   }
   .block-detail .inner .plan-unit {
     left: unset;
-    right: calc(50%- 100px);
-    top: 60px;
+    right: 20px;
+    top: 20px;
     float: left;
     width: 200px;
   }
@@ -280,7 +280,7 @@
   }
   .block-detail .inner .mobile-block ul {
     float: left;
-    width: 100%;
+    width: 20%;
   }
   .block-detail .inner .mobile-block ul li {
     padding: 5px;
@@ -292,7 +292,7 @@
     cursor: pointer;
     font-size: 1.2rem;
     border: 2px solid;
-    width: 18%;
+    width: 100%;
     float: left;
   }
   .block-detail .inner .mobile-block ul li:hover {

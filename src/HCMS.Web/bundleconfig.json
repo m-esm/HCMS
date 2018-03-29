@@ -143,5 +143,35 @@
     "inputFiles": [
       "Themes/hayat2/css/block-main.css"
     ]
+  },
+  {
+    "outputFileName": "Themes/hayat-refactor/js/newScroll.min.js",
+    "inputFiles": [
+      "Themes/hayat-refactor/js/newScroll.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat-refactor/js/scroll.min.js",
+    "inputFiles": [
+      "Themes/hayat-refactor/js/scroll.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat-refactor/js/logo.min.js",
+    "inputFiles": [
+      "Themes/hayat-refactor/js/logo.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat-refactor/js/slider.min.js",
+    "inputFiles": [
+      "Themes/hayat-refactor/js/slider.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/hayat-refactor/js/videoslider.min.js",
+    "inputFiles": [
+      "Themes/hayat-refactor/js/videoslider.js"
+    ]
   }
 ]

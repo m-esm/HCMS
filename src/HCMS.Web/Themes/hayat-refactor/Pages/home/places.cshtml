@@ -1,0 +1,43 @@
+﻿@using HCMS.Dynamics.Data
+@{
+    var places = DDB.GetTable("cms", "places").DRows.OrderBy(a=>a.GetValue("order").Value);
+
+
+}
+
+<section class="page page-places" id="places">
+    <div class="map-wrapper">
+        <div class="map" data-aos="fade-right" style="">
+        </div>
+        <div class="tabs cscroll" data-aos="fade-left">
+            <ul>
+                @foreach (var item in places)
+                {
+                    var positions = "";
+                    var images = "";
+                    var titles = "";
+                    var descrps = "";
+                    foreach (var pos in item.GetGroup("positions"))
+                    {
+                        positions += "|" + pos.GetValue("latlng");
+                        images += "|" + pos.GetValue("Image");
+                        titles += "|" + pos.GetValue("title");
+                        descrps += "|" + pos.GetValue("descrp");
+                    }
+
+                    <li style="background:@item.GetValue("color")" 
+                        data-title="@titles" 
+                        data-descrp="@descrps" 
+                        data-image="@images" 
+                        data-icon="@item.GetValue("icon")" 
+                        data-latlng="@positions"
+                        data-isMain="@item.GetValue("IsMain")"
+                        >
+                        @item.GetValue("name")
+
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

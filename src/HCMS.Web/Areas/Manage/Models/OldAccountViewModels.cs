@@ -73,6 +73,7 @@ namespace HCMS.Web.Areas.Manage.Models
 
     public class RegisterViewModel
     {
+        public string FirstName { get; set; }
         [Required(ErrorMessage = "{0} را وارد کنید")]
         //  [EmailAddress(ErrorMessage = "{0} not valid")]
         [Display(Name = "Username")]

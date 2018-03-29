@@ -258,7 +258,6 @@
         var _captchaDate = Date.now();
         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit&guid=' + _captchaDate);
         $(document).on('click', '#submit-btn', function (e) {
-            console.log
            // $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit');
             if (IsValid() === true) {
                 var url = '@Url.Action("Post", "Visit", new {plugin = "Hayat" })';
@@ -310,7 +309,7 @@
             $.each(inputs, function (index, item) {
                 if ($(item).val() === '')
                 {
-                    isValid = true;
+                    isValid = false;
                     $(item).addClass('has-error');
                 }
                 else
@@ -319,7 +318,7 @@
             var select = $(form).find('select:required');
             $.each(select, function (index, item) {
                 if ($(item).val() === '0') {
-                    isValid = true;
+                    isValid = false;
                     $(item).addClass('has-error');
                 }
                 else
@@ -329,7 +328,7 @@
             var textarea = $(form).find('textarea:required');
             $.each(textarea, function (index, item) {
                 if ($(item).val().trim() === '') {
-                    isValid = true;
+                    isValid = false;
                     $(item).addClass('has-error');
                 }
                 else

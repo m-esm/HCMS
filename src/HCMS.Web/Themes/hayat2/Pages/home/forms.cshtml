@@ -3,7 +3,7 @@
 
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
                 <h3 class="title" data-aos="fade-down">
                     ثبت نام
                     خریدار
@@ -16,9 +16,9 @@
                     <input type="hidden" name="ReturnUrl" value="/" />
                     <input type="email" style="display: none;" />
                     <input type="password" style="display: none;" />
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group">
-                            <label class="hide-615px">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="required">
                                 نام کاربری
                                 (
                                 <i class="fa fa-at"></i>
@@ -34,9 +34,20 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group">
-                            <label class="hide-615px">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="required">
+                                <i class="fa fa-user"></i>
+                                نام و نام خانوادگی
+                            </label>
+                            <input required name="FirstName" class="form-control" type="text" placeholder="نام و نام خانوادگی" />
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="required">
                                 <i class="fa fa-key"></i>
                                 رمز عبور
                             </label>
@@ -44,9 +55,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group">
-                            <label class="hide-615px">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="required">
                                 <i class="fa fa-key"></i>
                                 تکرار رمز عبور
 
@@ -55,14 +66,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group captcha-field">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group captcha-field">
                             <img src="~/manage/Captcha/msdn?prefix=captcha" />
                             <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
                         </div>
                     </div>
 
-                    <button class="hayatbtn" data-aos="fade-left" type="button">
+                    <button class="hayatbtn" type="button">
                         <i class="fa fa-check">
                         </i>
                         ثبت نام
@@ -72,7 +83,7 @@
             </div>
 
 
-            <div class="col-md-6 ">
+            <div class="col-md-6 col-sm-6">
 
                 <h3 class="title" data-aos="fade-down">فرم ثبت نام همکاری</h3>
 
@@ -87,8 +98,8 @@
                         <input type="hidden" name="ReturnUrl" value="/" />
                         <input type="email" style="display: none;" />
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
 
                                 <label class="hide-990px">
                                     <i class="fa fa-cube"></i>
@@ -104,49 +115,49 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
-                                <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input type="text" required name="FirstName" class="form-control" placeholder="نام و نام خانوادگی" />
 
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
                                 <input type="email" required class="form-control" name="username" placeholder="آدرس پست الکترونیکی" />
 
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
                                 <input type="text" required class="form-control" name="phone" placeholder="شماره همراه" />
 
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
 
                                 <input name="Password" required placeholder="رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
 
                                 <input name="ConfirmPassword" required placeholder="تکرار رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group captcha-field">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group captcha-field">
                                 <img src="~/manage/Captcha/msdn?prefix=_cooprate" id="_cooprate-captcha-image" />
                                 <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
                             </div>
                         </div>
 
-                        <button data-aos="fade-left" class="hayatbtn" type="button">
+                        <button class="hayatbtn" type="button">
                             <i class="fa fa-send">
                             </i>
                             ارسال
@@ -159,79 +170,88 @@
     </div>
 </section>
 
+
 <section id="signup2" class="page page-homeforms show-mobile">
     <div class="container">
 
         <div class="row ">
 
-            <div class="col-md-6">
-                <h3 class="title" data-aos="fade-down">
+            <h3 class="title" data-aos="fade-down">
+                ثبت نام
+                خریدار
+            </h3>
+
+            <form method="post" class="cscroll buyer register-form">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+                <input type="hidden" name="isAjax" value="true" />
+                <input type="hidden" name="ReturnUrl" value="/" />
+                <input type="email" style="display: none;" />
+                <input type="password" style="display: none;" />
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label>
+                            نام کاربری
+                            (
+                            <i class="fa fa-at"></i>
+                            ایمیل
+                            <i class="fa fa-mobile-phone"></i>
+
+                            یا شماره همراه
+                            )
+
+                        </label>
+
+                        <input required name="Username" class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
+                    </div>
+                </div>
+                <hr />
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label>
+                            <i class="fa fa-key"></i>
+                            نام و نام خانوادگی
+                        </label>
+                        <input required name="FirstName" class="form-control" type="text" placeholder="نام و نام خانوادگی" />
+                    </div>
+                </div>
+
+                <hr />
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label>
+                            <i class="fa fa-key"></i>
+                            رمز عبور
+                        </label>
+                        <input required name="password" class="form-control" type="password" placeholder="رمز عبور" />
+                    </div>
+                </div>
+                <hr />
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label>
+                            <i class="fa fa-key"></i>
+                            تکرار رمز عبور
+
+                        </label>
+                        <input name="ConfirmPassword" required class="form-control" type="password" placeholder="تکرار رمز عبور" />
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <div class="form-group captcha-field">
+                        <img src="~/manage/Captcha/msdn?prefix=captcha" />
+                        <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                    </div>
+                </div>
+
+
+                <button class="hayatbtn" type="button">
+                    <i class="fa fa-check">
+                    </i>
                     ثبت نام
-                    خریدار
-                </h3>
-
-                <form method="post" action="/fa-ir/manage/Auth/register" class="cscroll buyer register-form">
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary()
-                    <input type="hidden" name="isAjax" value="true" />
-                    <input type="hidden" name="ReturnUrl" value="/" />
-                    <input type="email" style="display: none;" />
-                    <input type="password" style="display: none;" />
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group">
-                            <label class="hide-615px">
-                                نام کاربری
-                                (
-                                <i class="fa fa-at"></i>
-                                ایمیل
-                                <i class="fa fa-mobile-phone"></i>
-
-                                یا شماره همراه
-                                )
-
-                            </label>
-
-                            <input required name="Username" class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group">
-                            <label class="hide-615px">
-                                <i class="fa fa-key"></i>
-                                رمز عبور
-                            </label>
-                            <input required  name="password" class="form-control" type="password" placeholder="رمز عبور" />
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group">
-                            <label class="hide-615px">
-                                <i class="fa fa-key"></i>
-                                تکرار رمز عبور
-
-                            </label>
-                            <input  name="ConfirmPassword" required class="form-control" type="password" placeholder="تکرار رمز عبور" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 col-sm-6 col-xs-6">
-                        <div data-aos="fade-left" class="form-group captcha-field">
-                            <img src="~/manage/Captcha/msdn?prefix=captcha" />
-                            <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
-                        </div>
-                    </div>
-
-
-                    <button class="hayatbtn" data-aos="fade-left" type="button">
-                        <i class="fa fa-check">
-                        </i>
-                        ثبت نام
-                    </button>
-                </form>
-
-            </div>
+                </button>
+            </form>
 
         </div>
     </div>
@@ -260,7 +280,7 @@
                         <input type="email" style="display: none;" />
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="form-group">
 
                                 <label class="hide-990px">
                                     <i class="fa fa-cube"></i>
@@ -277,49 +297,49 @@
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
-                                <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
+                            <div class="form-group">
+                                <input type="text" required name="FirstName" class="form-control" placeholder="نام و نام خانوادگی" />
 
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="form-group">
                                 <input type="email" required class="form-control" name="username" placeholder="آدرس پست الکترونیکی" />
 
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="form-group">
                                 <input type="text" required class="form-control" name="phone" placeholder="شماره همراه" />
 
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="form-group">
 
                                 <input name="Password" required placeholder="رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group">
+                            <div class="form-group">
 
                                 <input name="ConfirmPassword" required placeholder="تکرار رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
-                            <div data-aos="fade-left" class="form-group captcha-field">
+                            <div class="form-group captcha-field">
                                 <img src="~/manage/Captcha/msdn?prefix=_cooprate" id="_cooprate-captcha-image" />
                                 <input class="captcha form-control" autocomplete="off" required type="number" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
                             </div>
                         </div>
 
 
-                        <button data-aos="fade-left" class="hayatbtn" type="button">
+                        <button class="hayatbtn" type="button">
                             <i class="fa fa-send">
                             </i>
                             ارسال
@@ -331,9 +351,3 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
