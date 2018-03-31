@@ -81,7 +81,7 @@ $(function () {
                 }
             }
         },
-        excludedElements: "label, button, input, select, textarea, .noSwipe"
+        excludedElements: " button, input, select, textarea, .noSwipe"
         //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
         //    console.log(e);
         //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))

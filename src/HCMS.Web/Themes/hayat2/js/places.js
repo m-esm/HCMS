@@ -147,9 +147,11 @@ $('.menu .fa').click(function () {
     if (elm.attr('data-action') == 'close') {
         elm.parent('.menu').addClass('close');
         $('.tabs').addClass('close');
+        $('.tabs-top,.tabs-down').addClass('hidden');
     } else {
         elm.parent('.menu').removeClass('close');
         $('.tabs').removeClass('close');
+        $('.tabs-top,.tabs-down').removeClass('hidden');
     }
 })
 
@@ -173,5 +175,26 @@ function toHex(n) {
         h = "0" + h;
     return h;
 }
+
+//بالا پایین کردن در مپ
+$('.tabs-top').click(function () {
+    var elm = $(this).parent().find('.tabs');
+    var _top = elm.scrollTop();
+
+    if (_top > 80)
+        elm.scrollTop(_top - 80);
+    else
+        elm.scrollTop(0);
+})
+
+$('.tabs-down').click(function () {
+    var elm = $(this).parent().find('.tabs');
+    var _height = elm.height();
+    var _top = elm.scrollTop();
+    if (_top < _height)
+        elm.scrollTop(_top + 80);
+    else
+        elm.scrollTop(80);
+})
 
 

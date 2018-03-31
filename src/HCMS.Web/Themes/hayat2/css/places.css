@@ -21,7 +21,7 @@ section.page-places .tabs {
   font-weight: bold;
   font-size: 13px;
   width: 160px;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 131px);
   overflow-y: scroll;
 }
 section.page-places .tabs ul:nth-child(1) li:nth-child(1) {
@@ -129,6 +129,27 @@ section.page-places .map-down {
   bottom: 145px;
   left: 5px;
 }
+section.page-places .tabs-top,
+section.page-places .tabs-down {
+  position: absolute;
+  width: 30px;
+  line-height: 30px;
+  height: 30px;
+  background-color: #4e1c1b;
+  color: #fff;
+  text-align: center;
+  transition: all ease .5s;
+  cursor: pointer;
+  display: none;
+}
+section.page-places .tabs-top {
+  top: 67px;
+  right: 105px;
+}
+section.page-places .tabs-down {
+  bottom: 145px;
+  right: 105px;
+}
 @media (max-width: 650px) {
   section.page-places {
     padding: 0;
@@ -143,9 +164,8 @@ section.page-places .map-down {
   }
   section.page-places .tabs {
     /*display: none;*/
-    right: -3px;
+    right: -4px;
     top: 90px;
-    height: 100%;
     width: 110px;
     transition: all 0.5s;
   }
@@ -189,7 +209,9 @@ section.page-places .map-down {
     display: none;
   }
   section.page-places .map-top,
-  section.page-places .map-down {
+  section.page-places .map-down,
+  section.page-places .tabs-top,
+  section.page-places .tabs-down {
     display: block;
   }
 }
@@ -200,5 +222,9 @@ section.page-places .map-down {
   section.page-places .tabs {
     /*display: none;*/
     top: 80px;
+  }
+  section.page-places .map-down,
+  section.page-places .tabs-down {
+    bottom: 65px;
   }
 }

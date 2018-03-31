@@ -25,7 +25,7 @@ section.page-places {
         font-weight: bold;
         font-size: 13px;
         width: 160px;
-        height: calc(~'100vh - 180px');
+        height: calc(~'100vh - 131px');
         overflow-y: scroll;
 
 
@@ -103,6 +103,29 @@ section.page-places {
         bottom: 145px;
         left: 5px;
     }
+
+    .tabs-top, .tabs-down {
+        position: absolute;
+        width: 30px;
+        line-height: 30px;
+        height: 30px;
+        background-color: #4e1c1b;
+        color: #fff;
+        text-align: center;
+        transition: all ease .5s;
+        cursor: pointer;
+        display: none;
+    }
+
+    .tabs-top {
+        top: 67px;
+        right: 105px;
+    }
+
+    .tabs-down {
+        bottom: 145px;
+        right: 105px;
+    }
 }
 
 
@@ -123,9 +146,8 @@ section.page-places {
 
         .tabs {
             /*display: none;*/
-            right:-3px;
+            right: -4px;
             top: 90px;
-            height: 100%;
             width: 110px;
             transition: all 0.5s;
 
@@ -187,7 +209,7 @@ section.page-places {
             }
         }
 
-        .map-top, .map-down {
+        .map-top, .map-down, .tabs-top, .tabs-down {
             display: block;
         }
     }
@@ -203,6 +225,12 @@ section.page-places {
         .tabs {
             /*display: none;*/
             top: 80px;
+        }
+
+
+
+        .map-down, .tabs-down {
+            bottom: 65px;
         }
     }
 }
