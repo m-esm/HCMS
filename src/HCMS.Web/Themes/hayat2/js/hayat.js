@@ -803,32 +803,65 @@ $(function () {
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
-    $("body").swipe({
-        //Generic swipe handler for all directions
-        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
-            if ( phase == "move" || phase == "start" ) {
-                var $target = e.target.nodeName;
-                if( $target.toLowerCase() === 'input' ) {
-                    return false;
-                } else {
-                    if (duration > 30) {
-                        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-                            return;
-                        changePage(false, direction == "up" ? "down" : "up");
-                    }
-                  
-                }
-            }
-        },
-        excludedElements: " button, input, select, textarea, .noSwipe"
-        //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
-        //    console.log(e);
-        //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-        //        return;
-        //    changePage(false, direction == "up" ? "down" : "up");
 
-        //}
-    });
+    //$("body").humm
+    //var mc = new Hammer($("body"));
+
+    //mc.on("panleft panright tap press", function (ev) {
+    //    myElement.textContent = ev.type + " gesture detected.";
+    //    alert();
+    //});
+
+
+    $(document).on('swipedown', 'body', function (e) {
+        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
+            || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+            return;
+        changePage(false, "up");
+    })
+
+    $(document).on('swipeup', 'body', function (e) {
+        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
+            || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+            return;
+        changePage(false, "down");
+    })
+    //var myPanHandler = function () {
+    //    console.log($(this));
+    //    alert();
+    //}
+
+    //var options = {
+    //    preventDefault: true
+    //};
+    //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
+
+
+    //$("body").swipe({
+    //    //Generic swipe handler for all directions
+    //    swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+    //        if ( phase == "move" || phase == "start" ) {
+    //            var $target = e.target.nodeName;
+    //            if( $target.toLowerCase() === 'input' ) {
+    //                return false;
+    //            } else {
+    //                if (duration > 30) {
+    //                    //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+    //                    //    return;
+    //                    changePage(false, direction == "up" ? "down" : "up");
+    //                }
+
+    //            }
+    //        }
+    //        //$(this).swipe('option', 'preventDefaultEvents', preventDefaultEvents);
+    //    },
+
+    //    //allowPageScroll: "vertical",
+    //    preventDefaultEvents: false,
+    //    threshold:1,
+    //    excludedElements: " button, input, select, textarea, .noSwipe, .cscroll"
+
+    //});
 
 
     // For Chrome

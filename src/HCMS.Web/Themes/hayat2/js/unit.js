@@ -27,7 +27,7 @@ var userComments = [];
 $.ajax({
     method: 'GET',
     url: '/Hayat/Comment/GetConfirm',
-}).success(function (res) {
+}).done(function (res) {
     $.each(res, function (index, item) {
         var find = userComments.find(a=>a.UnitId == item.UnitId);
         if (find == undefined)
@@ -76,10 +76,7 @@ $.ajax({
          .append(_prof);
 
     })
-}).error(function (err) {
-    console.log(err);
 })
-
 var rank = [];
 $('.stars i').click(function () {
 

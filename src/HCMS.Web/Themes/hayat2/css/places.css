@@ -122,11 +122,11 @@ section.page-places .map-down {
   display: none;
 }
 section.page-places .map-top {
-  top: 67px;
+  top: 40%;
   left: 5px;
 }
 section.page-places .map-down {
-  bottom: 145px;
+  bottom: 40%;
   left: 5px;
 }
 section.page-places .tabs-top,
@@ -143,11 +143,11 @@ section.page-places .tabs-down {
   display: none;
 }
 section.page-places .tabs-top {
-  top: 67px;
+  top: 40%;
   right: 105px;
 }
 section.page-places .tabs-down {
-  bottom: 145px;
+  bottom: 40%;
   right: 105px;
 }
 @media (max-width: 650px) {
@@ -222,9 +222,5 @@ section.page-places .tabs-down {
   section.page-places .tabs {
     /*display: none;*/
     top: 80px;
-  }
-  section.page-places .map-down,
-  section.page-places .tabs-down {
-    bottom: 65px;
   }
 }

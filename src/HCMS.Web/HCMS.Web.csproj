@@ -365,6 +365,8 @@
     <Content Include="Packages\fullpage.js\vendors\scrolloverflow.js" />
     <Content Include="Packages\fullpage.js\vendors\scrolloverflow.min.js" />
     <Content Include="Packages\gallery\fotorama.js" />
+    <Content Include="Packages\hammerjs\hammer.min.js" />
+    <Content Include="Packages\hammerjs\jquery.hammer.js" />
     <Content Include="Packages\HCMS\css\404.css">
       <DependentUpon>404.less</DependentUpon>
     </Content>
@@ -457,6 +459,7 @@
     </Content>
     <Content Include="Packages\jquery.mobile-1.4.5\jquery.mobile-1.4.5.js" />
     <Content Include="Packages\jquery.mobile-1.4.5\jquery.mobile-1.4.5.min.js" />
+    <Content Include="Packages\jquery.mobile-1.4.5\jquerymobile-swipeupdown.js" />
     <Content Include="Packages\jquery.toast\jquery.toast.min.css" />
     <Content Include="Packages\jquery.toast\jquery.toast.min.js" />
     <Content Include="Packages\jquery.ui.1.12.1\images\ui-icons_444444_256x240.png" />
