@@ -50,7 +50,7 @@
 
 
     <section id="section-@i" class="page @theme @(horizontal ? "page-horizontal" :"" ) ">
-        <div class="inner  @(hasScroll ? "cscroll" : "") noSwipe">
+        <div class="inner )">
 
             @if (theme.ToString() == "page-team")
                 {
@@ -127,7 +127,7 @@
                     }
                     else
                     {
-                        <div class="fulltext">
+                        <div class="fulltext  @(hasScroll ? "cscroll" : "")">
 
                             @Html.Raw(item.GetValue("content").Value)
 

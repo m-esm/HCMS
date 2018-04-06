@@ -82,11 +82,13 @@ $(function () {
     })
 
     $(document).on('swipeup', 'body', function (e) {
+
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
             || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
             return;
         changePage(false, "down");
     })
+
     //var myPanHandler = function () {
     //    console.log($(this));
     //    alert();

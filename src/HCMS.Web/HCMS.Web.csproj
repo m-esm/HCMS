@@ -446,6 +446,7 @@
     </Content>
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.js" />
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.min.js" />
+    <Content Include="Packages\jquery-3.2.1\jquery-3.2.1.js" />
     <Content Include="Packages\jquery-zoom\jquery.zoom.min.js" />
     <Content Include="Packages\jquery.event.swipe\jquery.event.move.min.js">
       <DependentUpon>jquery.event.move.js</DependentUpon>
@@ -459,6 +460,7 @@
     </Content>
     <Content Include="Packages\jquery.mobile-1.4.5\jquery.mobile-1.4.5.js" />
     <Content Include="Packages\jquery.mobile-1.4.5\jquery.mobile-1.4.5.min.js" />
+    <Content Include="Packages\jquery.mobile-1.4.5\jquery.mobile-1.5.0-alpha.1.min.js" />
     <Content Include="Packages\jquery.mobile-1.4.5\jquerymobile-swipeupdown.js" />
     <Content Include="Packages\jquery.toast\jquery.toast.min.css" />
     <Content Include="Packages\jquery.toast\jquery.toast.min.js" />

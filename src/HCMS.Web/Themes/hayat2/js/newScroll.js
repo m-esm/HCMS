@@ -12,15 +12,13 @@ $(function () {
     if ($('article.page-child').first().attr('id') == undefined)
         return;
 
-    if (window.location.hash == undefined || $(window.location.hash).length == 0)
-    {
+    if (window.location.hash == undefined || $(window.location.hash).length == 0) {
         var _first = $('article.page-child').first();
 
         window.location.hash = _first.attr('id');
 
 
-        if (!$(_first).parent('section.page').hasClass('page-active'))
-        {
+        if (!$(_first).parent('section.page').hasClass('page-active')) {
             $(_first).parent('section.page').addClass('page-active')
             $(_first).addClass('page-active');
         }
@@ -38,12 +36,12 @@ $(function () {
             if (!$(window.location.hash).hasClass('page-active'))
                 $(window.location.hash).addClass('page-active');
 
-            if(!$(window.location.hash).parent('section').hasClass('page-active'))
+            if (!$(window.location.hash).parent('section').hasClass('page-active'))
                 $(window.location.hash).parent('section').addClass('page-active')
         }
-      
+
     }
-  
+
 
 
     $(document).keydown(function (e) {
@@ -68,40 +66,42 @@ $(function () {
 
     $(window).scrollTop(0);
 
+    $('.inner').swiperight(function () {
+        alert();
+    })
+    $(document).on('swipeleft', 'body', function (e) {
+        alert();
+        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+            return;
+        else if (!$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
+            toggleMobileMenu();
+        else
+            changeArticlePage(false, 'right');
+    })
 
-    $("body").swipe({
-        //Generic swipe handler for all directions
-        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
-            if (phase == "move" || phase == "start") {
-                var $target = e.target.nodeName;
-                if ($target.toLowerCase() === 'input') {
-                    return false;
-                } else {
-                    if (duration > 30) {
-                        //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-                        //    return;
-                        changeArticlePage(false, direction == "left" ? "right" : "left");
-                    }
-
-                }
-            }
-        },
-        excludedElements: "label, button, input, select, textarea, .noSwipe"
-        //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
-        //    console.log(e);
-        //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-        //        return;
-        //    changePage(false, direction == "up" ? "down" : "up");
-
-        //}
-    });
+    $(document).on('swiperight', 'body', function (e) {
+        alert();
+        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+            return;
+        changeArticlePage(false, 'left');
+    })
 
     $(window).bind('hashchange', onHashArtChange);
 
 });
 
+$(document).on("pageinit", ".inner", function () {
+    $(document).on("swipeleft swiperight", '.inner', function (event) {
+        alert(event.type);
+
+    });
+});
+
+var toggleMobileMenu = function () {
+    alert();
+}
 var changeArticlePage = function (nextArticle, mode) {
-    
+
     if (nextArticle)
         if (nextArticle.attr("id") != undefined)
             if ($('article[id=' + nextArticle.attr("id") + ']').length == 0)

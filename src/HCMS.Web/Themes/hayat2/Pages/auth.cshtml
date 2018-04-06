@@ -108,7 +108,7 @@
                 type: 'POST',
                 url: '/fa-ir/manage/Auth/Login',
                 data: model
-            }).success(function (res) {
+            }).done(function (res) {
                 console.log(res);
                 $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());
                 // hideLoader();
@@ -121,7 +121,7 @@
                 } else {
                     location.href = "/";
                 }
-            }).error(function (err) {
+            }).fail(function (err) {
                 console.log(err)
                 swal("", "خطای ورود", "error");
                 $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_login&guid=' + Date.now());

@@ -2048,6 +2048,22 @@ section.page-register form .links a {
   left: 0;
   font-size: 24px;
 }
+.btn-arrow {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  line-height: 30px;
+  height: 30px;
+  color: #fff;
+  text-align: center;
+  transition: all ease .5s;
+  background-color: #4e1c1b;
+  cursor: pointer;
+}
+.btn-arrow#page-down {
+  right: 45px;
+}
 @media (max-width: 2560px) {
   header .links ul li i {
     font-size: 26px;

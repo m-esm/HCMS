@@ -34,7 +34,7 @@
         $.ajax({
             method: 'GET',
             url: '/Hayat/Comment/GetConfirm'
-        }).success(function (res) {
+        }).done(function (res) {
             $.each(res, function (index, item) {
                 var find = result.find(a=>a.unitId == item.UnitId);
                 if (find == undefined) {
@@ -72,7 +72,7 @@
             })
 
             console.log(result);
-        }).error(function (err) {
+        }).fail(function (err) {
             console.log(err);
         })
 </script>

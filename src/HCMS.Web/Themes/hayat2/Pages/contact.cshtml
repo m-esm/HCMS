@@ -122,7 +122,7 @@
                         _captchaDate = Date.now();
                         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_contact&guid=' + _captchaDate);
                     },
-                    success: function (res) {
+                    done: function (res) {
                         console.log(res);
                         $('#resultInfo').show();
                         if (res.IsSuccess) {
@@ -136,10 +136,10 @@
                             swal("", html, "error");
                         }
                     },
-                    error: function (jqXhr, textStatus, errorThrown) {
+                    fail: function (jqXhr, textStatus, errorThrown) {
                         console.log(errorThrown);
                     },
-                    complete: function () {
+                    always: function () {
                         $('#loader').css('display', 'none');
                     }
                 });

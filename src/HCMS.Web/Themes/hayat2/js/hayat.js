@@ -457,6 +457,16 @@ $(document).ready(function () {
 
     }, 1000);
 
+    //href not working in mobile.fix it
+    $("a").each(function () {
+        $(this).attr("rel", "external");
+    });
+    $.mobile.loader.prototype.options.disabled = true;
+    //مخفی کردن loading
+    $(document).on("mobileinit", function () {
+        $.mobile.loader.prototype.options.disabled = true;
+    });
+
     //for ios
     /* we need this only on touch devices */
     if (Modernizr.touch) {
@@ -477,6 +487,14 @@ $(document).ready(function () {
     })
 
     $('.map-down').click(function () {
+        changePage(false, 'down');
+    })
+
+    $('#page-up').click(function () {
+        changePage(false, 'up');
+    })
+
+    $('#page-down').click(function () {
         changePage(false, 'down');
     })
     //$(document).on('tap click', '.map-top', function () {
@@ -821,11 +839,13 @@ $(function () {
     })
 
     $(document).on('swipeup', 'body', function (e) {
+
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
             || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
             return;
         changePage(false, "down");
     })
+
     //var myPanHandler = function () {
     //    console.log($(this));
     //    alert();
