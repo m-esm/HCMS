@@ -64,38 +64,10 @@ $(function () {
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
-    $(window).scrollTop(0);
-
-    $('.inner').swiperight(function () {
-        alert();
-    })
-    $(document).on('swipeleft', 'body', function (e) {
-        alert();
-        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-            return;
-        else if (!$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
-            toggleMobileMenu();
-        else
-            changeArticlePage(false, 'right');
-    })
-
-    $(document).on('swiperight', 'body', function (e) {
-        alert();
-        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-            return;
-        changeArticlePage(false, 'left');
-    })
-
     $(window).bind('hashchange', onHashArtChange);
 
 });
 
-$(document).on("pageinit", ".inner", function () {
-    $(document).on("swipeleft swiperight", '.inner', function (event) {
-        alert(event.type);
-
-    });
-});
 
 var toggleMobileMenu = function () {
     alert();

@@ -89,6 +89,26 @@ $(function () {
         changePage(false, "down");
     })
 
+    $(document).on('swiperight', 'body', function (e) {
+        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+            return;
+        changeArticlePage(false, 'left');
+     
+    })
+
+    $(document).on('swipeleft', 'body', function (e) {
+        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+            return;
+        else if (!$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
+            toggleMobileMenu();
+        else
+            changeArticlePage(false, 'right');
+    })
+
+    var toggleMobileMenu = function () {
+        $('#menu-bar').click();
+    }
+
     //var myPanHandler = function () {
     //    console.log($(this));
     //    alert();
