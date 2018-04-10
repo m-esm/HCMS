@@ -83,11 +83,11 @@ $(document).ready(function () {
     $("a").each(function () {
         $(this).attr("rel", "external");
     });
-    $.mobile.loader.prototype.options.disabled = true;
-    //مخفی کردن loading
-    $(document).on("mobileinit", function () {
-        $.mobile.loader.prototype.options.disabled = true;
-    });
+    //$.mobile.loader.prototype.options.disabled = true;
+    ////مخفی کردن loading
+    //$(document).on("mobileinit", function () {
+    //    $.mobile.loader.prototype.options.disabled = true;
+    //});
 
     //for ios
     /* we need this only on touch devices */
@@ -329,7 +329,7 @@ $(document).ready(function () {
         return isValid;
     }
 
-    $(document).on('tap click', '#menu-bar', function () {
+    $('#menu-bar').click(function () {
         $('header.show-mobile').addClass('open');
         $(this).addClass('deactive');
         $('body').addClass('cscroll');
@@ -339,7 +339,7 @@ $(document).ready(function () {
         $('.search-bar.show-mobile').toggleClass('open');
     })
     
-    $(document).on('tap click', '.bottom-nav ul li', function () {
+    $('.bottom-nav ul li').click(function () {
         $(this).parent('.bottom-nav').find('li').removeClass('open');
         $(this).parent('.bottom-nav').find('i').removeClass('active');
         $(this).toggleClass('open');
@@ -347,7 +347,7 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('tap click', '.has-sub', function () {
+    $('.has-sub').click(function () {
         $(this).next('.has-sub').siblings('active');
         $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
         $(this).parents('.bottom-nav').find('i').removeClass('active');

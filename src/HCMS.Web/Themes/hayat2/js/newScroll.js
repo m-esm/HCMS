@@ -64,6 +64,35 @@ $(function () {
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
+
+    //$("body").swipe({
+    //    //Generic swipe handler for all directions
+    //    swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+    //        alert(direction);
+    //        if (phase == "move" || phase == "start") {
+    //            var $target = e.target.nodeName;
+    //            if ($target.toLowerCase() === 'input') {
+    //                return false;
+    //            } else {
+    //                if (duration > 30) {
+    //                    //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+    //                    //    return;
+    //                    changeArticlePage(false, direction == "left" ? "right" : "left");
+    //                }
+
+    //            }
+    //        }
+    //    },
+    //    excludedElements: "label, button, input, select, textarea, .noSwipe"
+    //    //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
+    //    //    console.log(e);
+    //    //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+    //    //        return;
+    //    //    changePage(false, direction == "up" ? "down" : "up");
+
+    //    //}
+    //});
+
     $(window).bind('hashchange', onHashArtChange);
 
 });

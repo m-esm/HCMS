@@ -461,11 +461,11 @@ $(document).ready(function () {
     $("a").each(function () {
         $(this).attr("rel", "external");
     });
-    $.mobile.loader.prototype.options.disabled = true;
-    //مخفی کردن loading
-    $(document).on("mobileinit", function () {
-        $.mobile.loader.prototype.options.disabled = true;
-    });
+    //$.mobile.loader.prototype.options.disabled = true;
+    ////مخفی کردن loading
+    //$(document).on("mobileinit", function () {
+    //    $.mobile.loader.prototype.options.disabled = true;
+    //});
 
     //for ios
     /* we need this only on touch devices */
@@ -707,7 +707,7 @@ $(document).ready(function () {
         return isValid;
     }
 
-    $(document).on('tap click', '#menu-bar', function () {
+    $('#menu-bar').click(function () {
         $('header.show-mobile').addClass('open');
         $(this).addClass('deactive');
         $('body').addClass('cscroll');
@@ -717,7 +717,7 @@ $(document).ready(function () {
         $('.search-bar.show-mobile').toggleClass('open');
     })
     
-    $(document).on('tap click', '.bottom-nav ul li', function () {
+    $('.bottom-nav ul li').click(function () {
         $(this).parent('.bottom-nav').find('li').removeClass('open');
         $(this).parent('.bottom-nav').find('i').removeClass('active');
         $(this).toggleClass('open');
@@ -725,7 +725,7 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('tap click', '.has-sub', function () {
+    $('.has-sub').click(function () {
         $(this).next('.has-sub').siblings('active');
         $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
         $(this).parents('.bottom-nav').find('i').removeClass('active');
@@ -831,36 +831,36 @@ $(function () {
     //});
 
 
-    $(document).on('swipedown', 'body', function (e) {
-        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
-            || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-            return;
-        changePage(false, "up");
-    })
+    //$(document).on('swipedown', 'body', function (e) {
+    //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
+    //        || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+    //        return;
+    //    changePage(false, "up");
+    //})
 
-    $(document).on('swipeup', 'body', function (e) {
+    //$(document).on('swipeup', 'body', function (e) {
 
-        if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
-            || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-            return;
-        changePage(false, "down");
-    })
+    //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
+    //        || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+    //        return;
+    //    changePage(false, "down");
+    //})
 
-    $(document).on('swiperight', 'body', function (e) {
-        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-            return;
-        changeArticlePage(false, 'left');
-     
-    })
+    //$(document).on('swiperight', 'body', function (e) {
+    //    if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+    //        return;
+    //    changeArticlePage(false, 'left');
 
-    $(document).on('swipeleft', 'body', function (e) {
-        if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-            return;
-        else if (!$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
-            toggleMobileMenu();
-        else
-            changeArticlePage(false, 'right');
-    })
+    //})
+
+    //$(document).on('swipeleft', 'body', function (e) {
+    //    if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
+    //        return;
+    //    else if (!$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
+    //        toggleMobileMenu();
+    //    else
+    //        changeArticlePage(false, 'right');
+    //})
 
     var toggleMobileMenu = function () {
         $('#menu-bar').click();
@@ -877,31 +877,37 @@ $(function () {
     //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
 
 
-    //$("body").swipe({
-    //    //Generic swipe handler for all directions
-    //    swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
-    //        if ( phase == "move" || phase == "start" ) {
-    //            var $target = e.target.nodeName;
-    //            if( $target.toLowerCase() === 'input' ) {
-    //                return false;
-    //            } else {
-    //                if (duration > 30) {
-    //                    //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-    //                    //    return;
-    //                    changePage(false, direction == "up" ? "down" : "up");
-    //                }
+    $("body").swipe({
+        //Generic swipe handler for all directions
+        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+            if (phase == "move" || phase == "start") {
+                console.log(direction);
+                var $target = e.target.nodeName;
+                if ($target.toLowerCase() === 'input') {
+                    return false;
+                } else {
+                    if (duration > 30) {
+                        //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
+                        //    return;
 
-    //            }
-    //        }
-    //        //$(this).swipe('option', 'preventDefaultEvents', preventDefaultEvents);
-    //    },
+                        if (direction == "up" || direction == "down")
+                            changePage(false, direction == "up" ? "down" : "up");
 
-    //    //allowPageScroll: "vertical",
-    //    preventDefaultEvents: false,
-    //    threshold:1,
-    //    excludedElements: " button, input, select, textarea, .noSwipe, .cscroll"
+                        if (direction == "right" || direction == "left")
+                            changeArticlePage(false, direction == "left" ? "right" : "left");
+                    }
 
-    //});
+                }
+            }
+            //$(this).swipe('option', 'preventDefaultEvents', preventDefaultEvents);
+        },
+
+        //allowPageScroll: "vertical",
+        preventDefaultEvents: false,
+        threshold: 1,
+        excludedElements: " button, input, select, textarea, .noSwipe, .cscroll"
+
+    });
 
 
     // For Chrome
