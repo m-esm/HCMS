@@ -376,6 +376,12 @@ $(document).on('mouseenter mouseleave', '#recortes-main area', function (e) {
 //    }
 
 //});
+
+$('.plan-unit').click(function () {
+    $('.unit-full-img').addClass('open');
+    $('.unit-full-img .preview img').attr('src', $(this).find('img').attr('src'))
+})
+
 /// <reference path="../lib/aos/aos.js" />
 
 
@@ -528,14 +534,7 @@ $(document).ready(function () {
     }
 
 
-    $('.right-icons li').click(function () {
-
-        $('.right-icons li').not(this).removeClass('open');
-
-        $(this).toggleClass('open');
-
-
-    });
+  
 
     // Smoth scroll on page hash links
     $('a[href*="#"]:not([href="#"])').on('click', function () {
@@ -727,13 +726,21 @@ $(document).ready(function () {
 
     $('.has-sub').click(function () {
         $(this).next('.has-sub').siblings('active');
+
         $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
-        $(this).parents('.bottom-nav').find('i').removeClass('active');
         $(this).parents('.child').siblings('.child').addClass('min');
-        $(this).toggleClass('active');
-        $(this).next('ul').toggleClass('open');
+        $(this).next('ul').addClass('open');
         $(this).parent('.child').toggleClass('min')
+
+         $(this).parents('.bottom-nav').find('.has-sub').not(this).removeClass('active');
+      
+        $(this).toggleClass('active');
     })
+
+    $('.bottom-nav li').click(function () {
+        //$('.right-icons li').not(this).removeClass('open');
+        $(this).toggleClass('open');
+    });
 
     $('header.show-mobile .fa-close').click(function () {
         $('header.show-mobile').removeClass('open');
@@ -741,16 +748,16 @@ $(document).ready(function () {
         $('body').removeClass('cscroll');
     })
 
-    $('.left-icons-mobile').click(function () {
-        $('.left-icons').toggleClass('active');
-    })
+    //$('.left-icons-mobile').click(function () {
+    //    $('.left-icons').toggleClass('active');
+    //})
 
-    $('.right-icons-mobile').click(function () {
-        $('.right-icons').toggleClass('active');
-    })
+    //$('.right-icons-mobile').click(function () {
+    //    $('.right-icons').toggleClass('active');
+    //})
 
+  
 });
-
 
 
 
@@ -759,6 +766,9 @@ $(document).ready(function () {
 var keyLeftRight = false;
 var busy = false;
 
+$(document).on("mobileinit", function () {
+    $.mobile.ignoreContentEnabled = true;
+});
 
 $(function () {
 
@@ -862,9 +872,9 @@ $(function () {
     //        changeArticlePage(false, 'right');
     //})
 
-    var toggleMobileMenu = function () {
-        $('#menu-bar').click();
-    }
+    //var toggleMobileMenu = function () {
+    //    $('#menu-bar').click();
+    //}
 
     //var myPanHandler = function () {
     //    console.log($(this));
@@ -876,12 +886,13 @@ $(function () {
     //};
     //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
 
+   
+
 
     $("body").swipe({
         //Generic swipe handler for all directions
         swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
             if (phase == "move" || phase == "start") {
-                console.log(direction);
                 var $target = e.target.nodeName;
                 if ($target.toLowerCase() === 'input') {
                     return false;
@@ -902,7 +913,6 @@ $(function () {
             //$(this).swipe('option', 'preventDefaultEvents', preventDefaultEvents);
         },
 
-        //allowPageScroll: "vertical",
         preventDefaultEvents: false,
         threshold: 1,
         excludedElements: " button, input, select, textarea, .noSwipe, .cscroll"

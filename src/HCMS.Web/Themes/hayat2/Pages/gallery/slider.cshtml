@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HCMS.Dynamics.Data.DRow>
+@{
+    var j = 0;
+    var k = 0;
+}
+<div class="carousel slide article-slide" id="gallery-photo-carousel">
+    <img class="bg" src="~/Themes/hayat2/img/monitor.png" />
+    <ul class="navbar">
+        <li class="pull-right">
+            <i class="fa fa-eye"></i>
+        </li>
+
+        <li class="pull-left">
+            <i class="fa fa-chevron-left"></i>
+        </li>
+    </ul>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner cont-slider">
+        @foreach (var slider in Model)
+        {
+            <div class="item @(j ==0 ? "active" : "")">
+
+                <img alt="" class="zoom" title="" src="@slider.GetValue("image")" data-zoom-image="@slider.GetValue("image")">
+            </div>
+
+            j++;
+        }
+    </div>
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        @foreach (var slider in Model)
+        {
+            <li class="@(k ==0 ? "active" : "")" data-slide-to="@k" data-target="#gallery-photo-carousel">
+                <img alt="" src="@slider.GetValue("image")">
+            </li>
+
+            k++;
+        }
+
+    </ol>
+</div>
+@*<div class="xzoom-thumbs">
+    <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+    <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+    <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+</div>*@

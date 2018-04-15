@@ -63,9 +63,9 @@
 
 
     <!-- hayat styles -->
-    <link href="~/Themes/hayat2/css/hayat.min.css?v=v2" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/hayat.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
     @*<link href="~/Themes/hayat2/css/new-hayat.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />*@
-    <link href="~/Themes/hayat2/css/blocks.min.css?v=1" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/logo.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/places.min.css" rel="stylesheet" />
     <link href="~/Themes/hayat2/css/slider.min.css" rel="stylesheet" />
@@ -89,13 +89,14 @@
     <script src="~/Themes/hayat2/lib/aos/aos.min.js"></script>
 
     @*<script src="~/Themes/hayat2/lib/jquery/jquery.min.js"></script>*@
-    @*<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>*@
-    @*<script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>*@
-    @*<script src="~/Packages/jquery-3.2.1/jquery-3.2.1.js"></script>
-    <script src="~/Packages/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>*@
 
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    @*<script src="~/Packages/jquery.mobile-1.4.5/jquerymobile-swipeupdown.js"></script>*@
+    @*<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>*@
+    <script src="~/Packages/jquery-3.2.1/jquery-3.2.1.js"></script>
+    @*<script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>*@
+
+@*    <script src="~/Packages/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>*@
+
+    <script src="~/Packages/jquery.mobile-1.4.5/jquerymobile-swipeupdown.js"></script>
 
     <script src="~/Themes/hayat2/js/logo.js"></script>
 
@@ -273,7 +274,7 @@
     <div class="show-mobile bottom-nav">
         <div class="main-icons">
             <div class="left-icons-mobile child min">
-                <i class="fa fa-map has-sub" id="share-icons"></i>
+                <i class="fa fa-map has-sub" id="right-icon"></i>
 
 
                 <ul>
@@ -302,7 +303,7 @@
             </div>
 
             <div class="right-icons-mobile child min">
-                <i class="fa fa-share-alt has-sub" id="right-icon"></i>
+                <i class="fa fa-share-alt has-sub" id="share-icons"></i>
 
                 <ul>
 
@@ -482,6 +483,26 @@
 
 
 
+    <div class="gallery">
+        <div class="full-image">
+            <i class="fa fa-close"></i>
+
+            <i class="fa fa-chevron-left" id="prev" aria-hidden="true"></i>
+
+            <i class="fa fa-chevron-right" id="next"></i>
+
+            <div class="preview cscroll">
+                <img src="" data-item="" class="" />
+            </div>
+        </div>
+    </div>
+
+    <div class="unit-full-img">
+        <i class="fa fa-close"></i>
+        <div class="preview cscroll">
+            <img src=""  class="img-responsive" />
+        </div>
+    </div>
 
     <div class="back-to-top hidden-mobile"><i class="fa fa-chevron-up"></i></div>
 

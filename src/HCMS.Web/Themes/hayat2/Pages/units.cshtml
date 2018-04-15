@@ -14,11 +14,11 @@
 
     foreach (var unit in units)
     {
-        var unitpictures = DDB.GetTable("cms", "unitpictures").DRows.Where(a => a.GetValue("planNumber").Value == unit.GetValue("planNumber").Value);
+        var unitpictures = DDB.GetTable("cms", "unitpictures").DRows.Where(a => a.GetValue("unit").Value == unit.RowID.ToString() && a.GetValue("planNumber").Value == unit.GetValue("planNumber").Value);
         var commentId = "comments_" + unit.RowID;
         var user_comments = "user_comments_" + unit.RowID;
         var unitName = unit.GetValue("name").Value.Replace("block", "b").ToUpper();
-        if (unitpictures.Count() > 0)
+        if (unitpictures.Any())
         {
             <section class="page hasChild" id="@unit.RowID">
 
@@ -35,11 +35,13 @@
                             <u> @pic.GetValue("title")</u>
                             <img class="main-image" src="@pic.GetValue("image").Value" alt="@pic.GetValue("title")" />
 
-                            <div class="arrow">
-                                <img title="بعدی" alt="بعدی" class="right" src="~/Themes/hayat2/img/Arrow Black-Right.png" />
+                            <div class="btn-arrow page-right" ><i class="fa fa-chevron-right"></i></div>
+                            <div class="btn-arrow page-left" ><i class="fa fa-chevron-left"></i></div>
+                            @*<div class="arrow">
+                                    <img title="بعدی" alt="بعدی" class="right" src="~/Themes/hayat2/img/Arrow Black-Right.png" />
 
-                                <img title="قبلی" alt="قبلی" class="left" src="~/Themes/hayat2/img/Arrow Black-left.png" />
-                            </div>
+                                    <img title="قبلی" alt="قبلی" class="left" src="~/Themes/hayat2/img/Arrow Black-left.png" />
+                                </div>*@
                             <div class="footer">
                                 <div class="pull-right">
                                     <div class="share">
@@ -94,83 +96,108 @@
 
                 }
 
-                <article id="@commentId" class="page-horizontal page-child cscroll">
+                <article id="@commentId" class="page-horizontal page-child">
                     <div class="comments">
                         <div>
                             <div class="header">
-                                <h3>نام واحد : 1 بلوک A</h3>
-                                <button class="btn btn-success">مقایسه کن</button>
+                                <h3>نام واحد : @unitName</h3>
+
+                                @*<button class="btn btn-success">مقایسه کن</button>*@
                             </div>
                             <div class="body">
 
-                                <div class="row">
-                                    <div class="item col-md-6 col-sm-6 col-xs-12">
-                                        <div class="prof-comment">
-                                            <h4>نظرات خبرگان و متخصصین</h4>
-                                            <ul></ul>
-                                        </div>
+                                <div class="tabs">
+                                    <div class="header">
+                                        <span data-target="your-score" class="tab active">
+                                            <i class="fa fa-user"></i>
+                                            <label>
+                                                امتیازهای شما
+                                            </label>
+                                        </span>
+                                        <span data-target="prof-comment" class="tab">
+                                            <i class="fa fa-comment"></i>
+                                            <label>
+                                                نظرات خبرگان و متخصصین
+                                            </label>
+                                        </span>
+                                        <span data-target="users-comment" class="tab">
+                                            <i class="fa fa-users"></i>
+                                            <label>
+                                                نظرات سایر کاربران
+                                            </label>
+                                        </span>
                                     </div>
+                                    <div class="body cscroll">
+                                        <div data-element="your-score" class="elm active">
+                                            <div class="item col-md-6 col-md-offset-3 text-center">
+                                                <br />
+                                                <label class="alert alert-info">
+                                                    شما امتیازی نداده اید. با دادن امیتاز ما را در خدمات بهتر یاری کنید.
+                                                </label>
+                                                @if (!User.Identity.IsAuthenticated)
+                                                {
+                                                    <label class="alert alert-info">
+                                                        برای نظر دهی باید <a href="/auth">وارد</a> شوید.
+                                                    </label>
 
+                                                }
+                                                <div class="rate">
+                                                    <ul>
 
-                                    <div class="item col-md-6 col-sm-6 col-xs-12">
-                                        <div class="rate">
-                                            <h4>امتیازهای شما</h4>
-                                            <ul></ul>
+                                                    </ul>
+                                                    <hr/>
 
-                                            <hr />
+                                                    <form class="register">
+                                                        <div class="col-md-6 col-sm-12 p-5">
+                                                            <input type="text" class="form-control" name="name" placeholder="نام و نام خانوادگی"/>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-12  p-5">
+                                                            <input type="text" class="form-control" name="email" placeholder="شماره تماس / ایمیل"/>
+                                                        </div>
+                                                        <div class="col-md-12  p-5">
+                                                            <textarea class="form-control" name="text" placeholder="نظر شما"></textarea>
+                                                        </div>
+                                                        @if (User.Identity.IsAuthenticated)
+                                                        {
+                                                            <a class="btn btn-success submit">ارسال نظر</a>
+                                                        }
+                                                      
+                                                    </form>
 
-                                            <form class="register">
-                                                <div class="col-md-6 col-sm-12">
-                                                    <input type="text" class="form-control" name="name" placeholder="نام و نام خانوادگی" />
+                                                    <br/>
+                                                   
+
                                                 </div>
-                                                <div class="col-md-6 col-sm-12">
-                                                    <input type="text" class="form-control" name="email" placeholder="شماره تماس / ایمیل" />
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label>نظر خود را بنویسید</label>
-                                                    <textarea class="form-control" name="text" placeholder="نظر شما"></textarea>
-                                                </div>
-                                                @if (User.Identity.IsAuthenticated)
-                                                    {
-                                                    <a class="btn btn-success submit">ارسال نظر</a>
-                                                    }
-                                            </form>
-
-                                            <br />
-                                            <div class="alert" style="display:none">
 
                                             </div>
-
                                         </div>
+                                        <div data-element="prof-comment" class="elm">
+                                            <div class="item col-md-12">
+                                                <div class="prof-comment">
+                                                    <ul></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-element="users-comment" class="elm">
+                                            <div>
 
+                                                <div class="user-comment">
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-
-
                                 </div>
-                            </div>
-
-
-                        </div>
-
-                        <div>
-                            <h3>نظرات کاربران دیگر</h3>
-
-                            <div class="user-comment">
-
 
                             </div>
-
                         </div>
                     </div>
-
-
                 </article>
 
             </section>
         }
 
     }
-
 
 }
 

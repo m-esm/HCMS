@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HCMS.Dynamics.Data.DRow>
+
+    <div class="data block-m active" >
+        <div class="table">
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>نام واحد</th>
+                        <th>امکانات</th>
+                        <th>امتیاز</th>
+                        <th>مشاهده</th>
+                    </tr>
+                </thead>
+
+                <tbody class="">
+                    @foreach (var item in Model)
+                    {
+                        var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
+                        var _id = item.GetValue("Floor") + "-" + item.GetValue("Unit");
+                        <tr class="" id="blocks_@item.RowID" data-area="@item.GetValue("area")">
+                            <td>@unitName</td>
+                            <td> @item.GetValue("fact")</td>
+                            <td class="score"> - </td>
+                            <td>
+                                <a class="hayatbtn hayatbtn-sm" href="/units/#@item.RowID">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+
+            </table>
+        </div>
+
+    </div>

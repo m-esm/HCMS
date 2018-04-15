@@ -1,0 +1,176 @@
+﻿@using HCMS.Dynamics.Data
+
+@{
+
+    var blocks = DDB.GetTable("cms", "blocks").DRows.OrderBy(p => p.GetValue("name").Value);
+    //var units = DDB.GetTable("cms", "units").DRows.OrderBy(p => p.GetValue("block.name").Value).ThenBy(p => p.GetValue("block.level").Value);
+    //var unitpictures = DDB.GetTable("cms", "unitpictures").DRows;
+}
+
+
+@foreach (var block in blocks)
+{
+    var units = DDB.GetTable("cms", "units").DRows.Where(p => p.GetValue("blockId").Value == block.RowID.ToString());
+
+    foreach (var unit in units)
+    {
+        var unitpictures = DDB.GetTable("cms", "unitpictures").DRows.Where(a => a.GetValue("planNumber").Value == unit.GetValue("planNumber").Value);
+        var commentId = "comments_" + unit.RowID;
+        var user_comments = "user_comments_" + unit.RowID;
+        var unitName = unit.GetValue("name").Value.Replace("block", "b").ToUpper();
+        if (unitpictures.Count() > 0)
+        {
+            <section class="page hasChild" id="@unit.RowID">
+
+                @foreach (var pic in unitpictures)
+                {
+                    <article id="@pic.RowID" data-title="@pic.GetValue("title")" class="page-horizontal page-child">
+                        <div class="full-image">
+
+                            <div class="pov">
+                                <i class="fa fa-video-camera" aria-hidden="true" title="زاویه دید عکاس"></i>
+                                <img src="@pic.GetValue("pov").Value" alt="زاویه دید عکاس" />
+                            </div>
+
+                            <u> @pic.GetValue("title")</u>
+                            <img class="main-image" src="@pic.GetValue("image").Value" alt="@pic.GetValue("title")" />
+
+                            <div class="arrow">
+                                <img title="بعدی" alt="بعدی" class="right" src="~/Themes/hayat2/img/Arrow Black-Right.png" />
+
+                                <img title="قبلی" alt="قبلی" class="left" src="~/Themes/hayat2/img/Arrow Black-left.png" />
+                            </div>
+                            <div class="footer">
+                                <div class="pull-right">
+                                    <div class="share">
+                                        <ul>
+                                            <li>
+                                                <a href="https://t.me/share/url?url=">
+                                                    <i class="fa fa-telegram"></i>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-instagram"></i>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-linkedin"></i>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pull-left">
+                                    <a class="stars">
+                                        <i class="fa fa-star-o" data-item="1"></i>
+                                        <i class="fa fa-star-o" data-item="2"></i>
+                                        <i class="fa fa-star-o" data-item="3"></i>
+                                        <i class="fa fa-star-o" data-item="4"></i>
+                                        <i class="fa fa-star-o" data-item="5"></i>
+
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+                }
+
+                <article id="@commentId" class="page-horizontal page-child cscroll">
+                    <div class="comments">
+                        <div>
+                            <div class="header">
+                                <h3>نام واحد : 1 بلوک A</h3>
+                                <button class="btn btn-success">مقایسه کن</button>
+                            </div>
+                            <div class="body">
+
+                                <div class="row">
+                                    <div class="item col-md-6 col-sm-6 col-xs-12">
+                                        <div class="prof-comment">
+                                            <h4>نظرات خبرگان و متخصصین</h4>
+                                            <ul></ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="item col-md-6 col-sm-6 col-xs-12">
+                                        <div class="rate">
+                                            <h4>امتیازهای شما</h4>
+                                            <ul></ul>
+
+                                            <hr />
+
+                                            <form class="register">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <input type="text" class="form-control" name="name" placeholder="نام و نام خانوادگی" />
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <input type="text" class="form-control" name="email" placeholder="شماره تماس / ایمیل" />
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label>نظر خود را بنویسید</label>
+                                                    <textarea class="form-control" name="text" placeholder="نظر شما"></textarea>
+                                                </div>
+                                                @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                    <a class="btn btn-success submit">ارسال نظر</a>
+                                                    }
+                                            </form>
+
+                                            <br />
+                                            <div class="alert" style="display:none">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div>
+                            <h3>نظرات کاربران دیگر</h3>
+
+                            <div class="user-comment">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </article>
+
+            </section>
+        }
+
+    }
+
+
+}
+

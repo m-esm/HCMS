@@ -7,12 +7,13 @@
     var blockAId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blocka").RowID;
     var blockBId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blockb").RowID;
     var blockCId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blockc").RowID;
+    var blockMId = blocks.FirstOrDefault(a => a.GetValue("name").ToString() == "Blockm").RowID;
 }
 
 @Html.Partial("blocks/block-a", blockAId)
 @Html.Partial("blocks/block-b", blockBId)
 @Html.Partial("blocks/block-c", blockCId)
-@Html.Partial("blocks/block-m")
+@Html.Partial("blocks/block-m", blockMId)
 @Html.Partial("blocks/catalog")
 
 

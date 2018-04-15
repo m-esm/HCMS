@@ -376,3 +376,8 @@ $(document).on('mouseenter mouseleave', '#recortes-main area', function (e) {
 //    }
 
 //});
+
+$('.plan-unit').click(function () {
+    $('.unit-full-img').addClass('open');
+    $('.unit-full-img .preview img').attr('src', $(this).find('img').attr('src'))
+})

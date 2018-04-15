@@ -2,6 +2,9 @@
 var keyLeftRight = false;
 var busy = false;
 
+$(document).on("mobileinit", function () {
+    $.mobile.ignoreContentEnabled = true;
+});
 
 $(function () {
 
@@ -105,9 +108,9 @@ $(function () {
     //        changeArticlePage(false, 'right');
     //})
 
-    var toggleMobileMenu = function () {
-        $('#menu-bar').click();
-    }
+    //var toggleMobileMenu = function () {
+    //    $('#menu-bar').click();
+    //}
 
     //var myPanHandler = function () {
     //    console.log($(this));
@@ -119,12 +122,13 @@ $(function () {
     //};
     //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
 
+   
+
 
     $("body").swipe({
         //Generic swipe handler for all directions
         swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
             if (phase == "move" || phase == "start") {
-                console.log(direction);
                 var $target = e.target.nodeName;
                 if ($target.toLowerCase() === 'input') {
                     return false;
@@ -145,7 +149,6 @@ $(function () {
             //$(this).swipe('option', 'preventDefaultEvents', preventDefaultEvents);
         },
 
-        //allowPageScroll: "vertical",
         preventDefaultEvents: false,
         threshold: 1,
         excludedElements: " button, input, select, textarea, .noSwipe, .cscroll"

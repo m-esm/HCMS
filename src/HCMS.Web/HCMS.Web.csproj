@@ -448,6 +448,7 @@
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.min.js" />
     <Content Include="Packages\jquery-3.2.1\jquery-3.2.1.js" />
     <Content Include="Packages\jquery-zoom\jquery.zoom.min.js" />
+    <Content Include="Packages\jquery.evelatezoom\jquery.elevatezoom.js" />
     <Content Include="Packages\jquery.event.swipe\jquery.event.move.min.js">
       <DependentUpon>jquery.event.move.js</DependentUpon>
     </Content>
@@ -1504,6 +1505,8 @@
     <Content Include="Packages\UiBuilder\fonts\fontawesome-webfont.woff" />
     <Content Include="Packages\UiBuilder\fonts\fontawesome-webfont.woff2" />
     <Content Include="Packages\UiBuilder\fonts\FontAwesome.otf" />
+    <Content Include="Packages\xzoom\xzoom.css" />
+    <Content Include="Packages\xzoom\xzoom.min.js" />
     <Content Include="Robots.txt" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
@@ -2125,6 +2128,7 @@
     <Content Include="Plugins\Hayat\Views\User\Ix.cshtml" />
     <Content Include="Plugins\Hayat\Views\User\New.cshtml" />
     <Content Include="Plugins\Hayat\Views\User\Old.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Comment\Prof.cshtml" />
     <None Include="Properties\PublishProfiles\Publish_Local.pubxml" />
     <Content Include="Packages\HCMS\js\Base.DateHelper.min.js.map">
       <DependentUpon>Base.DateHelper.min.js</DependentUpon>
@@ -2440,6 +2444,7 @@
     <Content Include="Themes\hayat2\img\map\box\Blocks B Maps Icon-box .png" />
     <Content Include="Themes\hayat2\img\map\box\Blocks C Maps Icon-box .png" />
     <Content Include="Themes\hayat2\img\map\box\Blocks M Maps Icon-box .png" />
+    <Content Include="Themes\hayat2\img\monitor.png" />
     <Content Include="Themes\hayat2\img\my-slider\1.jpg" />
     <Content Include="Themes\hayat2\img\my-slider\2.jpg" />
     <Content Include="Themes\hayat2\img\my-slider\3.jpg" />
@@ -2560,6 +2565,8 @@
     <Content Include="Themes\hayat2\Pages\blocks\block-a.cshtml" />
     <Content Include="Themes\hayat2\Pages\contact.cshtml" />
     <Content Include="Themes\hayat2\Pages\auth - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\blocks\dataM.cshtml" />
+    <Content Include="Themes\hayat2\Pages\gallery\slider.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
@@ -2700,6 +2707,7 @@
     <Content Include="Themes\hayat2\Pages\importUnits.cshtml" />
     <Content Include="Themes\hayat2\Pages\visit.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\data.cshtml" />
+    <Content Include="Themes\hayat2\Pages\units - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2721,7 +2729,6 @@
     <Folder Include="Scripts\vjs-lang\" />
     <Folder Include="Themes\hayat2\etc\" />
     <Folder Include="Themes\hayat2\img\map\block-map\b\" />
-    <Folder Include="Themes\hayat2\Pages\gallery\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">

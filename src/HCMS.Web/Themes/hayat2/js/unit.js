@@ -28,6 +28,7 @@ $.ajax({
     method: 'GET',
     url: '/Hayat/Comment/GetConfirm',
 }).done(function (res) {
+    console.log(res);
     $.each(res, function (index, item) {
         var find = userComments.find(a=>a.UnitId == item.UnitId);
         if (find == undefined)
@@ -46,25 +47,47 @@ $.ajax({
         $.each(item.model, function (i, obj) {
             if (obj.IsUser) {
 
-                _html += '<div class="rate"><h4>' + obj.Name + '</h4>'
-                    + '<div class="msg">' + obj.Text + '</div><ul>';
+                _html += '<div class="rate">' +
+                    '<div class="col-md-9 col-sm-12">' +
+                        '<div class="msg">' +
+                            '<div class="name">' +
+                                '<strong>' + obj.Name + '</strong>' +
+                            '</div>' +
+                            '<div class="ios-msg">' + obj.Text + '</div>' +
+                        '</div>' +
+                    '</div>';
 
-                $.each(obj.Ranks, function (j, rank) {
-                    _html += '<li><label>' + rank.Title + '</label><span>';
-                    for (var i = 1; i <= 5; i++) {
-                        if (i <= rank.Score)
-                            _html += ' <i class="fa fa-star"></i>';
-                        else
-                            _html += ' <i class="fa fa-star-o"></i>';
-                    }
+                if (obj.Ranks.length > 0) {
+                    _html += '<div class="col-md-3 col-sm-12">' +
+                             '<h5 class="full-width">'
+                                + 'امتیاز ها' +
+                             '</h5>' +
+                             '<ul >';
+                    $.each(obj.Ranks, function (j, rank) {
+                        _html += '<li><label>' + rank.Title + '</label><span>';
+                        for (var i = 1; i <= 5; i++) {
+                            if (i <= rank.Score)
+                                _html += ' <i class="fa fa-star"></i>';
+                            else
+                                _html += ' <i class="fa fa-star-o"></i>';
+                        }
 
-                    _html += '</span></li>'
-                })
+                        _html += '</span></li>'
+                    })
+                    _html += '</ul></div>';
+                }
+            
 
-                _html += '</ul> </div>';
+                _html += ' </div>';
             } else {
                 //درج نطر متخصصین
-                _prof += '<li><strong>' + obj.Name + ' : </strong>' + obj.Text + '</li>'
+                _prof += '<li><strong>'
+                    + obj.Name
+                    + ' : </strong>'
+                    + '<label class="ios-msg">'
+                    + obj.Text
+                    + '</label>'
+                    + '</li>'
             }
 
 
@@ -81,18 +104,19 @@ var rank = [];
 $('.stars i').click(function () {
 
     //find parent
-
     var item = parseInt($(this).attr('data-item'));
-    var elm = $(this).parents('article').find('stars i')
+    var elm = $(this).parents('article').find('stars i');
+
+    //clear all stars
+    $(this).parents('article').find('.stars i').removeClass('fa-star').addClass('fa-star-o');
 
     if (elm.hasClass('fa-star'))
-        elm.removeClass('fa-star-o').addClass('fa-star-o');
+        elm.removeClass('fa-star').addClass('fa-star-o');
     for (var i = 1; i <= item; i++) {
         $(this).parents('article').find('.stars i[data-item=' + i + ']').removeClass('fa-star-o').addClass('fa-star');
     }
 
     var id = $(this).parents('article').attr('id');
-    console.log(id);
     var title = $(this).parents('article').attr('data-title');
     var _exist = rank.find(a=>a.unitPicId == id)
     if (_exist === undefined)
@@ -101,29 +125,37 @@ $('.stars i').click(function () {
         var index = rank.indexOf(_exist);
         rank[index].score = item;
     }
-    console.log(rank);
     //find section
     var _secId = $(this).parents('section.hasChild').attr('id');
     var _com = $('#comments_' + _secId).find('.rate ul');
     _com.empty();
-    var _append = "";
-    $.each(rank, function (index, item) {
-        _append += '<li id="' + item.id + '" data-score="' + item.score + '">'
-            + '<lable>' + item.title + '</lable>'
-        + '<span>'
+    var append = "";
+    console.log(rank);
+    $.each(rank,
+        function(index, item) {
+            append += '<li id="' +
+                item.id +
+                '" data-score="' +
+                item.score +
+                '">' +
+                '<lable>' +
+                item.title +
+                '</lable>' +
+                '<span>';
 
-        for (var i = 1; i <= 5; i++) {
-            if (i <= item.score)
-                _append += '<i class="fa fa-star"></i>';
-            else
-                _append += '<i class="fa fa-star-o"></i>';
-        }
 
-        _append += '</span></li>';
+            for (var i = 1; i <= 5; i++) {
+                if (i <= item.score)
+                    append += '<i class="fa fa-star"></i>';
+                else
+                    append += '<i class="fa fa-star-o"></i>';
+            }
 
-    })
+            append += '</span></li>';
 
-    _com.append(_append);
+        });
+
+    _com.append(append);
     //for (var j = 1; j <= item; j++) {
     //    _append += '<li id="' + id + '" data-score="' + j + '">' + item + '</li>'
     //}
@@ -131,64 +163,103 @@ $('.stars i').click(function () {
 
 });
 
-$(document).on('click', '.register .submit', function () {
-    var model = {};
-    model.Name = $(this).parent('form').find('input[name="name"]').val();
-    model.Email = $(this).parent('form').find('input[name="email"]').val();
-    model.Text = $(this).parent('form').find('textarea[name="text"]').val();
-    model.UnitId = $(this).parents('section').attr('id');
-    model.IsUser = true;
-    model.Ranks = rank;
-    var hasError = false;
+$(document).on('click',
+    '.register .submit',
+    function() {
+        var model = {};
+        model.Name = $(this).parent('form').find('input[name="name"]').val();
+        model.Email = $(this).parent('form').find('input[name="email"]').val();
+        model.Text = $(this).parent('form').find('textarea[name="text"]').val();
+        model.UnitId = $(this).parents('section').attr('id');
+        model.IsUser = true;
+        model.Ranks = rank;
+        var hasError = false;
 
-    var _this = $(this);
-    if (model.Name == "") {
-        hasError = true;
-        $(this).parent('form').find('input[name="name"]').addClass('has-error');
-    }
-    else
-        $(this).parent('form').find('input[name="name"]').removeClass('has-error');
+        var _this = $(this);
+        if (model.Name == "") {
+            hasError = true;
+            $(this).parent('form').find('input[name="name"]').addClass('has-error');
+        } else
+            $(this).parent('form').find('input[name="name"]').removeClass('has-error');
 
-    if (model.Email == "") {
-        hasError = true;
-        $(this).parent('form').find('input[name="email"]').addClass('has-error');
-    }
-    else
-        $(this).parent('form').find('input[name="email"]').removeClass('has-error');
+        if (model.Email == "") {
+            hasError = true;
+            $(this).parent('form').find('input[name="email"]').addClass('has-error');
+        } else
+            $(this).parent('form').find('input[name="email"]').removeClass('has-error');
 
-    if (model.Text == "") {
-        hasError = true;
-        $(this).parent('form').find('textarea[name="text"]').addClass('has-error');
-    }
-    else
-        $(this).parent('form').find('textarea[name="text"]').removeClass('has-error');
+        if (model.Text == "") {
+            hasError = true;
+            $(this).parent('form').find('textarea[name="text"]').addClass('has-error');
+        } else
+            $(this).parent('form').find('textarea[name="text"]').removeClass('has-error');
 
-    if (hasError)
+        if (hasError)
+            return;
+
+
+        $.ajax({
+            method: 'POST',
+            url: '/Hayat/Comment/Post',
+            data: model
+        }).done(function(res) {
+
+            if (res.IsSuccess) {
+                //$('#register-alert').addClass('alert-success').html('نظر شما با موفقیت ثبت شد. با تشکر');
+                swal("", 'نظر شما با موفقیت ثبت شد. با تشکر', "success");
+                $(this).closest('form').find("input[type=text], textarea").val("");
+            } else {
+                var html = '';
+                $.each(res.msg,
+                    function(index, item) {
+                        html += item + "/";
+                    })
+                html += '';
+                swal("", html, "error");
+            }
+        }).fail(function(err) {
+            console.log(err);
+        });
+    });
+
+//$('.tabs .tab').click(function () {
+//    alert(0);
+//    if ($(this).hasClass('active'))
+//        return;
+
+//    alert(1);
+//    $('.tabs .tab').removeClass('active');
+//    $('.tabs .elm').removeClass('active');
+
+//    var target = $(this).attr('data-target');
+//    $("span[data-target='" + target + "'").addClass('active');
+//    $("div[data-element='" + target + "'").addClass('active');
+
+//    alert(target)
+
+//});
+
+$(document).on('click tab', '.tabs .tab', function () {
+    if ($(this).hasClass('active'))
         return;
 
+    $('.tabs .tab').removeClass('active');
+    $('.tabs .elm').removeClass('active');
 
+    var target = $(this).attr('data-target');
 
-    $.ajax({
-        method: 'POST',
-        url: '/Hayat/Comment/Post',
-        data: model
-    }).success(function (res) {
-    
-        if (res.IsSuccess) {
-            _alert.addClass('alert-success').html('نظر شما با موفقیت ثبت شد. با تشکر');
-            swal("", 'نظر شما با موفقیت ثبت شد. با تشکر', "success");
-        } else {
-            var html = '';
-            $.each(res.msg, function (index, item) {
-                html +=  item + "/";
-            })
-            html += '';
-            swal("", html, "error");
-        }
-    }).error(function (err) {
-        console.log(err);
-    });
+    $("span[data-target='" + target + "']").addClass('active');
+    $("div[data-element='" + target + "']").addClass('active');
 })
+
+//click for next and prev page
+$('.page-right').click(function () {
+    changeArticlePage(false, 'right');
+});
+
+$('.page-left').click(function () {
+    changeArticlePage(false, 'left');
+});
 
 var IsValid = function () {
     var isValid = true;

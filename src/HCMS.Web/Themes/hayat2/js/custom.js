@@ -150,14 +150,7 @@ $(document).ready(function () {
     }
 
 
-    $('.right-icons li').click(function () {
-
-        $('.right-icons li').not(this).removeClass('open');
-
-        $(this).toggleClass('open');
-
-
-    });
+  
 
     // Smoth scroll on page hash links
     $('a[href*="#"]:not([href="#"])').on('click', function () {
@@ -349,13 +342,21 @@ $(document).ready(function () {
 
     $('.has-sub').click(function () {
         $(this).next('.has-sub').siblings('active');
+
         $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
-        $(this).parents('.bottom-nav').find('i').removeClass('active');
         $(this).parents('.child').siblings('.child').addClass('min');
-        $(this).toggleClass('active');
-        $(this).next('ul').toggleClass('open');
+        $(this).next('ul').addClass('open');
         $(this).parent('.child').toggleClass('min')
+
+         $(this).parents('.bottom-nav').find('.has-sub').not(this).removeClass('active');
+      
+        $(this).toggleClass('active');
     })
+
+    $('.bottom-nav li').click(function () {
+        //$('.right-icons li').not(this).removeClass('open');
+        $(this).toggleClass('open');
+    });
 
     $('header.show-mobile .fa-close').click(function () {
         $('header.show-mobile').removeClass('open');
@@ -363,16 +364,16 @@ $(document).ready(function () {
         $('body').removeClass('cscroll');
     })
 
-    $('.left-icons-mobile').click(function () {
-        $('.left-icons').toggleClass('active');
-    })
+    //$('.left-icons-mobile').click(function () {
+    //    $('.left-icons').toggleClass('active');
+    //})
 
-    $('.right-icons-mobile').click(function () {
-        $('.right-icons').toggleClass('active');
-    })
+    //$('.right-icons-mobile').click(function () {
+    //    $('.right-icons').toggleClass('active');
+    //})
 
+  
 });
-
 
 
 

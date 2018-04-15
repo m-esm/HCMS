@@ -20,6 +20,12 @@ $(document).on('click', '.full-image .fa-close', function () {
     $('.full-image').removeClass('open');
 });
 
+$(document).on('click', '.unit-full-img .fa-close', function () {
+    $('.unit-full-img').removeClass('open');
+});
+
+
+
 $(document).on('click', '#prev', function () {
     var attr = parseInt($('.preview img').attr('data-item'));
     var prevItem = $('.thumnail[data-item=' + (attr + 1) + ']');
@@ -42,4 +48,23 @@ $(document).on('click', '#next', function () {
         $('.preview img').attr('src', $('.thumnail[data-item=' + maximum + ']').attr('src'));
         $('.preview img').attr('data-item', maximum);
     }
+})
+
+$('#gallery .box').click(function () {
+    $('.all-box').removeClass('active');
+    $('.slider-section[data-target="' + $(this).attr('data-target') + '"]').addClass('active');
+})
+
+$(document).on('mouseenter mouseleave', '#gallery-photo-carousel .carousel-inner', function (e) {
+    if (e.type == 'mouseenter')
+        $('#gallery-photo-carousel .navbar').addClass('open');
+    else
+        $('#gallery-photo-carousel .navbar').removeClass('open');
+})
+
+$(document).on('mouseenter mouseleave', ' #gallery-photo-carousel .navbar', function (e) {
+    if (e.type == 'mouseenter')
+        $('#gallery-photo-carousel .navbar').addClass('open');
+    else
+        $('#gallery-photo-carousel .navbar').removeClass('open');
 })

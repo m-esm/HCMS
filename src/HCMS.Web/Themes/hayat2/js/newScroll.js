@@ -102,7 +102,6 @@ var toggleMobileMenu = function () {
     alert();
 }
 var changeArticlePage = function (nextArticle, mode) {
-
     if (nextArticle)
         if (nextArticle.attr("id") != undefined)
             if ($('article[id=' + nextArticle.attr("id") + ']').length == 0)

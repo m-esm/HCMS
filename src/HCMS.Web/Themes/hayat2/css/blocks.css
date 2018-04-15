@@ -39,6 +39,11 @@
 .block-detail .inner .data .table {
   width: 100%;
 }
+.block-detail .inner .data.block-m {
+  width: 800px;
+  float: unset;
+  margin: 0 auto;
+}
 .block-detail .inner .plan {
   position: absolute;
   left: 125px;
@@ -50,6 +55,7 @@
   opacity: 1;
 }
 .block-detail .inner .plan-unit {
+  cursor: pointer;
   width: 400px;
   position: absolute;
   left: calc(50% - 200px);
@@ -101,6 +107,9 @@
   }
   .block-detail .inner .data {
     width: 420px;
+  }
+  .block-detail .inner .data.block-m {
+    width: 700px;
   }
 }
 @media (max-width: 1500px) {
@@ -262,7 +271,7 @@
     position: absolute;
     left: 0;
     top: 20px;
-    width: 100%;
+    width: 20%;
     float: left;
     display: inline-block;
     transition: all 0.3s;
@@ -280,7 +289,7 @@
   }
   .block-detail .inner .mobile-block ul {
     float: left;
-    width: 20%;
+    width: 100%;
   }
   .block-detail .inner .mobile-block ul li {
     padding: 5px;
@@ -328,7 +337,15 @@
     padding: 75px 10px;
   }
 }
+@media (max-width: 650px) {
+  .block-detail .inner .data.block-m {
+    width: 500px;
+  }
+}
 @media (max-width: 450px) {
+  .block-detail .inner .data.block-m {
+    width: 100%;
+  }
   .block-detail .inner .block {
     width: 77%;
     transition: all .5s;

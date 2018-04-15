@@ -1,4 +1,6 @@
-﻿<section id="block-m" class="page block-detail">
+﻿@model int
+
+<section id="block-m" class="page block-detail">
     <div class="arrow">
         <div class="up">
             <i class="fa fa-arrow-up"></i>
@@ -13,5 +15,7 @@
 
   <div class="inner">
       <h3 class="title">مشاعات</h3>
+
+      @Html.Partial("blocks/dataM", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(a => a.GetValue("blockId").ToString() == Model.ToString()))
   </div>
 </section>
