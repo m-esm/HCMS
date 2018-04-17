@@ -9,34 +9,37 @@
 
 
 @foreach (var block in blocks)
-{
-    var units = DDB.GetTable("cms", "units").DRows.Where(p => p.GetValue("blockId").Value == block.RowID.ToString());
-
-    foreach (var unit in units)
-    {
-        var unitpictures = DDB.GetTable("cms", "unitpictures").DRows.Where(a => a.GetValue("unit").Value == unit.RowID.ToString() && a.GetValue("planNumber").Value == unit.GetValue("planNumber").Value);
-        var commentId = "comments_" + unit.RowID;
-        var user_comments = "user_comments_" + unit.RowID;
-        var unitName = unit.GetValue("name").Value.Replace("block", "b").ToUpper();
-        if (unitpictures.Any())
         {
+            var units = DDB.GetTable("cms", "units").DRows.Where(p => p.GetValue("blockId").Value == block.RowID.ToString());
+            var blockName = block.GetValue("name").Value;
+            foreach (var unit in units)
+            {
+                var unitpictures = DDB.GetTable("cms", "unitpictures").DRows.Where(a => a.GetValue("unit").Value == unit.RowID.ToString() && a.GetValue("planNumber").Value == unit.GetValue("planNumber").Value);
+                var commentId = "comments_" + unit.RowID;
+                var user_comments = "user_comments_" + unit.RowID;
+                var unitName = unit.GetValue("name").Value.Replace("block", "b").ToUpper();
+                if (unitpictures.Any())
+                {
             <section class="page hasChild" id="@unit.RowID">
 
                 @foreach (var pic in unitpictures)
-                {
+    {
                     <article id="@pic.RowID" data-title="@pic.GetValue("title")" class="page-horizontal page-child">
                         <div class="full-image">
+                            @if (pic.GetValue("pov").Value != "")
+                            {
 
                             <div class="pov">
                                 <i class="fa fa-video-camera" aria-hidden="true" title="زاویه دید عکاس"></i>
                                 <img src="@pic.GetValue("pov").Value" alt="زاویه دید عکاس" />
                             </div>
+                            }
 
                             <u> @pic.GetValue("title")</u>
                             <img class="main-image" src="@pic.GetValue("image").Value" alt="@pic.GetValue("title")" />
 
-                            <div class="btn-arrow page-right" ><i class="fa fa-chevron-right"></i></div>
-                            <div class="btn-arrow page-left" ><i class="fa fa-chevron-left"></i></div>
+                            <div class="btn-arrow page-right"><i class="fa fa-chevron-right"></i></div>
+                            <div class="btn-arrow page-left"><i class="fa fa-chevron-left"></i></div>
                             @*<div class="arrow">
                                     <img title="بعدی" alt="بعدی" class="right" src="~/Themes/hayat2/img/Arrow Black-Right.png" />
 
@@ -98,10 +101,14 @@
 
                 <article id="@commentId" class="page-horizontal page-child">
                     <div class="comments">
+                        @{
+                            var _blockName = blockName.Substring(0, blockName.Length - 1) + "-" + blockName.Substring(blockName.Length - 1, 1);
+                        }
                         <div>
                             <div class="header">
                                 <h3>نام واحد : @unitName</h3>
-
+                             
+                                <a href="/blocks#@_blockName" class="hayatbtn pull-left">بازگشت به جدول</a>
                                 @*<button class="btn btn-success">مقایسه کن</button>*@
                             </div>
                             <div class="body">
@@ -142,17 +149,15 @@
 
                                                 }
                                                 <div class="rate">
-                                                    <ul>
-
-                                                    </ul>
-                                                    <hr/>
+                                                    <ul></ul>
+                                                    <hr />
 
                                                     <form class="register">
                                                         <div class="col-md-6 col-sm-12 p-5">
-                                                            <input type="text" class="form-control" name="name" placeholder="نام و نام خانوادگی"/>
+                                                            <input type="text" class="form-control" name="name" placeholder="نام و نام خانوادگی" />
                                                         </div>
                                                         <div class="col-md-6 col-sm-12  p-5">
-                                                            <input type="text" class="form-control" name="email" placeholder="شماره تماس / ایمیل"/>
+                                                            <input type="text" class="form-control" name="email" placeholder="شماره تماس / ایمیل" />
                                                         </div>
                                                         <div class="col-md-12  p-5">
                                                             <textarea class="form-control" name="text" placeholder="نظر شما"></textarea>
@@ -161,11 +166,11 @@
                                                         {
                                                             <a class="btn btn-success submit">ارسال نظر</a>
                                                         }
-                                                      
+
                                                     </form>
 
-                                                    <br/>
-                                                   
+                                                    <br />
+
 
                                                 </div>
 

@@ -2747,6 +2747,10 @@
       <Project>{daa46123-ce1f-4133-b402-2938554ed1ed}</Project>
       <Name>HCMS.Hayat</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HCMS.Notification\HCMS.Notification.csproj">
+      <Project>{5a0db776-6b90-4d7a-a04f-96f15704e0f5}</Project>
+      <Name>HCMS.Notification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HCMS.Security\HCMS.Security.csproj">
       <Project>{6e095d4b-1fcc-40ce-af65-ab3510a96123}</Project>
       <Name>HCMS.Security</Name>

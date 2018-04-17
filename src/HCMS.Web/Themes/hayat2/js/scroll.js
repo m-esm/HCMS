@@ -122,7 +122,7 @@ $(function () {
     //};
     //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
 
-   
+
 
 
     $("body").swipe({
@@ -133,15 +133,18 @@ $(function () {
                 if ($target.toLowerCase() === 'input') {
                     return false;
                 } else {
-                    if (duration > 30) {
+                    if (duration > 20) {
                         //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
                         //    return;
-
+                        console.log($(e.target).parents().hasClass('page-horizontal'))
                         if (direction == "up" || direction == "down")
                             changePage(false, direction == "up" ? "down" : "up");
 
-                        if (direction == "right" || direction == "left")
-                            changeArticlePage(false, direction == "left" ? "right" : "left");
+                        else if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
+                            $('#menu-bar').click();
+                        else
+                            if (direction == "right" || direction == "left")
+                                changeArticlePage(false, direction == "left" ? "right" : "left");
                     }
 
                 }
@@ -151,7 +154,7 @@ $(function () {
 
         preventDefaultEvents: false,
         threshold: 1,
-        excludedElements: " button, input, select, textarea, .noSwipe, .cscroll"
+        excludedElements: " .noSwipe, .cscroll"
 
     });
 

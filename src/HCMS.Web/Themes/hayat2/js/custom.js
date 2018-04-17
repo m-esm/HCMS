@@ -133,16 +133,33 @@ $(document).ready(function () {
         $('form.contactForm .captcha-field img').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
     }
 
-    $('#submit').on('keypress', function (e) {
-        if ((e.charCode >= 97 && e.charCode <= 122) || (e.charCode >= 65 && e.charCode <= 90)) {
-            alert('لطفا فارسی تایپ کنید.')
-            e.preventDefault();
+    //$('form').on('keypress', function (e) {
+    //    $.each(e.target.attributes, function (index, item) {
+    //        console.log(item);
+    //    })
+    //    //if ((e.charCode >= 97 && e.charCode <= 122) || (e.charCode >= 65 && e.charCode <= 90)) {
+    //    //    alert('لطفا فارسی تایپ کنید.')
+    //    //    e.preventDefault();
+    //    //}
+    //    //else if (isPersian(e.key))
+    //    //    console.log('Persian');
+    //    //else
+    //    //    console.log('Others')
+    //});
+
+    $(document).on('keypress', 'form input', 'form textarea', function (e) {
+        var attr = $(this).attr('is-not-persian-checked');
+        if (typeof attr === typeof undefined) {
+            if ((e.charCode >= 97 && e.charCode <= 122) || (e.charCode >= 65 && e.charCode <= 90)) {
+                alert('لطفا فارسی تایپ کنید.')
+                e.preventDefault();
+            }
+            else if (isPersian(e.key))
+                console.log('Persian');
+            else
+                console.log('Others')
         }
-        else if (isPersian(e.key))
-            console.log('Persian');
-        else
-            console.log('Others')
-    });
+    })
 
     function isPersian(str) {
         var p = /^[\u0600-\u06FF\s]+$/;
@@ -150,7 +167,7 @@ $(document).ready(function () {
     }
 
 
-  
+
 
     // Smoth scroll on page hash links
     $('a[href*="#"]:not([href="#"])').on('click', function () {
@@ -215,7 +232,7 @@ $(document).ready(function () {
                 type: 'POST',
                 url: '/fa-ir/manage/Auth/register',
                 data: buy
-            }).success(function (res) {
+            }).done(function (res) {
                 if (res.length > 0) {
                     var html = ''
                     $.each(res, function (index, item) {
@@ -233,7 +250,7 @@ $(document).ready(function () {
 
 
                 }
-            }).error(function (err) {
+            }).fail(function (err) {
                 swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
             })
         }
@@ -267,7 +284,7 @@ $(document).ready(function () {
                 type: 'POST',
                 url: '/fa-ir/manage/Auth/RegisterByRole',
                 data: spanser
-            }).success(function (res) {
+            }).done(function (res) {
                 if (res.length > 0) {
                     var html = '';
                     $.each(res, function (index, item) {
@@ -278,7 +295,7 @@ $(document).ready(function () {
                 } else {
                     swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
                 }
-            }).error(function (err) {
+            }).fail(function (err) {
                 swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
             })
         }
@@ -331,7 +348,7 @@ $(document).ready(function () {
     $('#top-nav-search').click(function () {
         $('.search-bar.show-mobile').toggleClass('open');
     })
-    
+
     $('.bottom-nav ul li').click(function () {
         $(this).parent('.bottom-nav').find('li').removeClass('open');
         $(this).parent('.bottom-nav').find('i').removeClass('active');
@@ -348,8 +365,8 @@ $(document).ready(function () {
         $(this).next('ul').addClass('open');
         $(this).parent('.child').toggleClass('min')
 
-         $(this).parents('.bottom-nav').find('.has-sub').not(this).removeClass('active');
-      
+        $(this).parents('.bottom-nav').find('.has-sub').not(this).removeClass('active');
+
         $(this).toggleClass('active');
     })
 
@@ -372,7 +389,7 @@ $(document).ready(function () {
     //    $('.right-icons').toggleClass('active');
     //})
 
-  
+
 });
 
 

@@ -192,11 +192,6 @@ namespace HCMS.Web.Areas.Manage.Controllers
             var request = HttpContext.Request;//.Current.Request;
             var tokenServiceUrl = request.Url.GetLeftPart(UriPartial.Authority) + request.ApplicationPath + "/Token";
 
-        
-
-
-
-
             if (user != null)
             {
 
@@ -263,6 +258,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
                           .Select(e => e.ErrorMessage)
                           .ToArray()));
             }
+
 
             return View("Account/Login", model);
         }
@@ -379,7 +375,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(RegisterViewModel model, bool inapp = false, bool loginAfterReg = false)
+        public async Task<ActionResult> Register(RegisterViewModel model, bool inapp = false, bool loginAfterReg = false, bool sendNotificationAfterReg = false)
         {
             string captcha_session_key = "captcha" + model.captcha_guid;
             if (!inapp)
@@ -484,6 +480,9 @@ namespace HCMS.Web.Areas.Manage.Controllers
                         SmsService.Send(user.Mobile, "کد فعال سازی شما : " + user.MobileConfirmCode);
 
                     }
+
+                    if (!sendNotificationAfterReg)
+                        SmsService.SendWelcome(Convert.ToInt64(user.Mobile), user.FirstName);
 
                     if (loginAfterReg)
                         await loginUser(new LoginViewModel { UserName = model.Username, Password = model.Password });

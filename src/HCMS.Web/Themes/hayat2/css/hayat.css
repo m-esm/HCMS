@@ -631,13 +631,15 @@ section.page-custom .inner .row {
 section.page-custom .inner .row div {
   /*height: 100%;*/
 }
+section.page-custom .inner .cscroll {
+  padding: 0 40px;
+  text-align: justify;
+  height: 400px;
+}
 section.page-custom .inner .fulltext {
   max-width: 800px;
   margin: 0 auto;
-}
-section.page-custom .inner .text {
-  padding: 0 40px;
-  text-align: justify;
+  height: 600px;
 }
 section.page-custom .inner .pic {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -958,14 +960,6 @@ section#signup form #register-form {
 }
 .main-block .mobile-box {
   display: none;
-}
-@keyframes shake {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
-  }
 }
 .sticky-wrapper {
   height: 33px;
@@ -2230,6 +2224,9 @@ section.page-register form .links a {
     width: 100%;
     padding: 90px;
   }
+  section.page-custom .inner .fulltext {
+    height: 500px;
+  }
   header .links ul li i {
     font-size: 20px;
   }
@@ -2329,6 +2326,12 @@ section.page-register form .links a {
   }
   section.page-custom {
     overflow: hidden;
+  }
+  section.page-custom .inner .cscroll {
+    height: 200px;
+  }
+  section.page-custom .inner .fulltext {
+    height: 450px;
   }
   section.page-custom .row .col-md-6 {
     text-align: center;
@@ -2528,9 +2531,9 @@ section.page-register form .links a {
     font-size: 1.5rem !important;
   }
   section.page-custom .buttons {
-    position: fixed;
-    bottom: 0;
-    right: 40px;
+    /*position: fixed;
+            bottom: 0;
+            right: 40px;*/
     font-size: 1.5rem;
   }
   .comments {
@@ -2634,10 +2637,10 @@ section.page-register form .links a {
     height: unset;
   }
   section.page-custom .buttons {
-    position: fixed;
-    bottom: 55px;
-    right: unset;
-    left: 2px;
+    /*position: fixed;
+            bottom: 77px;
+            right: unset;
+            left: 2px;*/
     font-size: 1.1rem;
   }
   section.page-custom .buttons .hayatbtn {
@@ -2648,6 +2651,12 @@ section.page-register form .links a {
   }
   section.page-custom .buttons span {
     display: none;
+  }
+  section.page-custom .inner .cscroll {
+    height: 350px;
+  }
+  section.page-custom .inner .fulltext {
+    height: 450px;
   }
   section.page-homeforms {
     padding: 60px 0;
@@ -3147,7 +3156,7 @@ section.page-register form .links a {
     height: 89%;
     overflow: hidden;
   }
-  section.page-custom .text {
+  section.page-custom .inner .cscroll {
     width: 100%;
     float: none;
     padding: 10px;
@@ -3412,8 +3421,14 @@ section.page-register form .links a {
   .right-icons > ul > li.open .descrp {
     right: 31px;
   }
+  section.page-custom .inner .cscroll {
+    height: 300px;
+  }
+  section.page-custom .inner .fulltext {
+    height: 450px;
+  }
   section.page-custom .buttons {
-    bottom: 68px;
+    /*bottom: 68px;*/
     font-size: 1.3rem;
   }
   .raychat_main_button {
@@ -3465,6 +3480,9 @@ section.page-register form .links a {
   }
   .page-login .full-width {
     width: 100%;
+  }
+  section.page-homeforms {
+    padding-bottom: 200px;
   }
 }
 @media (max-width: 390px) {
@@ -3611,7 +3629,6 @@ section.page-register form .links a {
     height: calc(100vh - 300px) !important;
   }
   section.page-custom .buttons {
-    bottom: 46px;
     left: 6px;
   }
   article.page-child .full-image .btn-arrow {

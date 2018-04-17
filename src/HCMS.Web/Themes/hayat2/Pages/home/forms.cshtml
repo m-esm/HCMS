@@ -13,6 +13,8 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary()
                     <input type="hidden" name="isAjax" value="true" />
+                    <input type="hidden" name="loginAfterReg" value="true" />
+                    <input type="hidden" name="sendNotificationAfterReg" value="true" />
                     <input type="hidden" name="ReturnUrl" value="/" />
                     <input type="email" style="display: none;" />
                     <input type="password" style="display: none;" />
@@ -30,7 +32,7 @@
 
                             </label>
 
-                            <input required name="Username" class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
+                            <input required name="Username" is-not-persian-checked  class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
                         </div>
                     </div>
 
@@ -51,7 +53,7 @@
                                 <i class="fa fa-key"></i>
                                 رمز عبور
                             </label>
-                            <input required name="password" class="form-control" type="password" placeholder="رمز عبور" />
+                            <input required name="password" is-not-persian-checked  class="form-control" type="password" placeholder="رمز عبور" />
                         </div>
                     </div>
 
@@ -62,7 +64,7 @@
                                 تکرار رمز عبور
 
                             </label>
-                            <input name="ConfirmPassword" required class="form-control" type="password" placeholder="تکرار رمز عبور" />
+                            <input name="ConfirmPassword" is-not-persian-checked  required class="form-control" type="password" placeholder="تکرار رمز عبور" />
                         </div>
                     </div>
 
@@ -93,7 +95,8 @@
                     <form action="/fa-ir/manage/Auth/RegisterByRole" method="post" role="form" class="contactForm">
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary()
-
+                        <input type="hidden" name="loginAfterReg" value="true" />
+                        <input type="hidden" name="sendNotificationAfterReg" value="true" />
                         <input type="hidden" name="isAjax" value="true" />
                         <input type="hidden" name="ReturnUrl" value="/" />
                         <input type="email" style="display: none;" />
@@ -124,7 +127,7 @@
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <input type="email" required class="form-control" name="username" placeholder="آدرس پست الکترونیکی" />
+                                <input type="email" is-not-persian-checked  required class="form-control" name="username" placeholder="آدرس پست الکترونیکی" />
 
                             </div>
                         </div>
@@ -139,14 +142,14 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
 
-                                <input name="Password" required placeholder="رمز عبور" class="form-control" type="password" />
+                                <input name="Password" is-not-persian-checked  required placeholder="رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
 
-                                <input name="ConfirmPassword" required placeholder="تکرار رمز عبور" class="form-control" type="password" />
+                                <input name="ConfirmPassword" is-not-persian-checked required placeholder="تکرار رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
@@ -181,11 +184,13 @@
                 خریدار
             </h3>
 
-            <form method="post" class="cscroll buyer register-form">
+            <form method="post" class="buyer register-form">
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
                 <input type="hidden" name="isAjax" value="true" />
                 <input type="hidden" name="ReturnUrl" value="/" />
+                <input type="hidden" name="loginAfterReg" value="true" />
+                <input type="hidden" name="sendNotificationAfterReg" value="true" />
                 <input type="email" style="display: none;" />
                 <input type="password" style="display: none;" />
                 <div class="col-md-12 col-sm-6 col-xs-6">
@@ -202,7 +207,7 @@
 
                         </label>
 
-                        <input required name="Username" class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
+                        <input required name="Username" is-not-persian-checked class="form-control" type="text" placeholder="ایمیل یا شماره همراه" />
                     </div>
                 </div>
                 <hr />
@@ -223,7 +228,7 @@
                             <i class="fa fa-key"></i>
                             رمز عبور
                         </label>
-                        <input required name="password" class="form-control" type="password" placeholder="رمز عبور" />
+                        <input required name="password" is-not-persian-checked class="form-control" type="password" placeholder="رمز عبور" />
                     </div>
                 </div>
                 <hr />
@@ -234,7 +239,7 @@
                             تکرار رمز عبور
 
                         </label>
-                        <input name="ConfirmPassword" required class="form-control" type="password" placeholder="تکرار رمز عبور" />
+                        <input name="ConfirmPassword" is-not-persian-checked required class="form-control" type="password" placeholder="تکرار رمز عبور" />
                     </div>
                 </div>
 
@@ -276,6 +281,8 @@
                         @Html.ValidationSummary()
 
                         <input type="hidden" name="isAjax" value="true" />
+                        <input type="hidden" name="loginAfterReg" value="true" />
+                        <input type="hidden" name="sendNotificationAfterReg" value="true" />
                         <input type="hidden" name="ReturnUrl" value="/" />
                         <input type="email" style="display: none;" />
 
@@ -305,7 +312,7 @@
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
                             <div class="form-group">
-                                <input type="email" required class="form-control" name="username" placeholder="آدرس پست الکترونیکی" />
+                                <input type="email" is-not-persian-checked required class="form-control" name="username" placeholder="آدرس پست الکترونیکی" />
 
                             </div>
                         </div>
@@ -320,14 +327,14 @@
                         <div class="col-md-12 col-sm-6 col-xs-6">
                             <div class="form-group">
 
-                                <input name="Password" required placeholder="رمز عبور" class="form-control" type="password" />
+                                <input name="Password" is-not-persian-checked required placeholder="رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-6 col-xs-6">
                             <div class="form-group">
 
-                                <input name="ConfirmPassword" required placeholder="تکرار رمز عبور" class="form-control" type="password" />
+                                <input name="ConfirmPassword" is-not-persian-checked required placeholder="تکرار رمز عبور" class="form-control" type="password" />
                             </div>
                         </div>
 

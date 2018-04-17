@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HCMS.Notification.Model;
+using HCMS.Notification.SmsDotIr;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -30,6 +32,19 @@ namespace HCMS.Web.Serivces
             {
                 return false;
             }
+        }
+
+        public static bool SendWelcome(long phoneNumber, string fullName)
+        {
+           var userApiKey = System.Configuration.ConfigurationManager.AppSettings["UserApiKey"];
+           var secretKey = System.Configuration.ConfigurationManager.AppSettings["SecretKey"];
+           var lineNumber = System.Configuration.ConfigurationManager.AppSettings["LineNumber"];
+            SmsSender smsSender = new SmsSender(userApiKey, secretKey, lineNumber);
+            var model = new Notification.Model.SmsDto();
+            model.PhoneNumber = phoneNumber;
+            model.Parametrs.Add("username", fullName);
+            model.TemplateId = 1829;
+            return smsSender.Send(model);
         }
     }
 }
