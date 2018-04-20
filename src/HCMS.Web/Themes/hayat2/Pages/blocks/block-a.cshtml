@@ -5,7 +5,7 @@
 <section id="block-a" class="page block-detail">
 
     <div class="arrow">
-               <div class="down">
+        <div class="down">
             <i class="fa fa-arrow-down"></i>
             <label> بلوک B</label>
         </div>
@@ -14,14 +14,14 @@
     <div class="inner container-fluid">
         <h3 class="title">بلوک A</h3>
 
-        
+
 
         @Html.Partial("blocks/data", HCMS.Dynamics.Data.DDB.GetTable("cms", "units").DRows.Where(a => a.GetValue("blockId").ToString() == Model.ToString() && a.GetValue("Floor").ToString() == "1"))
 
-            <div class="alert alert-info">
-                این بلوک دارای یازده طبقه می باشد .طبقات یک ،سه ،پنج ،هفت ،نه  4 واحد  و طبقات دو ،چهار،شش،هشت،ده  3 واحد دارند . طبقه 11 نیز 4 واحد دارد.
-            </div>
-      
+        <div class="alert alert-info">
+            این بلوک دارای یازده طبقه می باشد .طبقات یک ،سه ،پنج ،هفت ،نه  4 واحد  و طبقات دو ،چهار،شش،هشت،ده  3 واحد دارند . طبقه 11 نیز 4 واحد دارد.
+        </div>
+
 
         <div class="plan-unit img-responsive">
             <img src="~/Themes/hayat2/img/plan/A/keys/Block A Plan 001.png" />
@@ -103,51 +103,24 @@
         </div>
 
         <div class="mobile-block show-mobile">
-          @*<ul class="floor">
-              <li>
-                  طبقه اول
-              </li>
-              <li>
-                  طبقه دوم
-              </li>
-              <li>
-                  طبقه سوم
-              </li>
-              <li>
-                  طبقه چهارم
-              </li>
-              <li>
-                  طبقه پنجم
-              </li>
-              <li>
-                  طبقه ششم
-              </li>
-              <li>
-                  طبقه هفتم
-              </li>
-              <li>
-                  طبقه هشتم
-              </li>
-              <li>
-                  طبقه نهم
-              </li>
-              <li>
-                  طبقه دهم
-              </li>
-              <li>
-                  طبقه یازدهم
-              </li>
-          </ul>*@
+
 
             <ul class="unit">
                 <li data-unit="1">واحد 1</li>
                 <li data-unit="2">واحد 2</li>
                 <li data-unit="3">واحد 3</li>
                 <li data-unit="4">واحد 4</li>
+                <li data-unit="plan">پلان</li>
             </ul>
+
         </div>
 
-        
+        <img class="plan-key img-responsive min" src="~/Themes/hayat2/img/plan/A/F2/Key Plan A-01 OK-250.png" />
+
+
+
+
+
 
 
         <div class="plan hidden-mobile">
@@ -156,7 +129,7 @@
 
         </div>
 
-     
+
 
 
     </div>

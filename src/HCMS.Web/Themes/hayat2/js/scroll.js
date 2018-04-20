@@ -154,7 +154,7 @@ $(function () {
 
         preventDefaultEvents: false,
         threshold: 1,
-        excludedElements: " .noSwipe, .cscroll"
+        excludedElements: " input , textarea, .noSwipe, .cscroll"
 
     });
 

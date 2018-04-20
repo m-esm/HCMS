@@ -14,12 +14,11 @@
 }
 <section id="gallery" class="page gallery">
     <div class="container">
-        <div class="row all-box active">
-            @foreach (var item in block)
+        <div class="all-box active" data-aos="fade-up">
+            @*@foreach (var item in block)
             {
                 var img = gallery.FirstOrDefault(a => a.GetValue("blockId").Value == item.RowID.ToString());
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="box" data-target="@item.GetValue("name")">
                         @if (img == null)
                         {
@@ -31,16 +30,29 @@
                         }
                         <div class="title">Title</div>
                     </div>
-                    @*<img class="thumnail" data-item="@i" src="@item.GetValue("image")" />*@
-                </div>
-            }
+            }*@
+
+            <button class="hayatbtn" data-target="Blocka">بلوک A</button>
+            <button class="hayatbtn" data-target="Blockb">بلوک B</button>
+            <button class="hayatbtn" data-target="Blockc">بلوک C</button>
+            <button class="hayatbtn" data-target="Blockm" >مشاعات</button>
 
         </div>
 
         <div class="slider-section" data-target="Blocka" data-aos="fade-down">
             @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blocka").RowID.ToString()))
         </div>
+        <div class="slider-section" data-target="Blockb" data-aos="fade-down">
+            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blockb").RowID.ToString()))
+        </div>
 
+        <div class="slider-section" data-target="Blockc" data-aos="fade-down">
+            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blockc").RowID.ToString()))
+        </div>
+
+        <div class="slider-section" data-target="Blockm" data-aos="fade-down">
+            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blockm").RowID.ToString()))
+        </div>
 
     </div>
 </section>

@@ -102,6 +102,14 @@ $(document).ready(function () {
         .on('blur', 'input', function () {
             $body.removeClass('fixfixed');
         });
+
+        $(document)
+      .on('focus', 'textarea', function () {
+          $body.addClass('fixfixed');
+      })
+      .on('blur', 'textarea', function () {
+          $body.removeClass('fixfixed');
+      });
     }
 
     $('.map-top').click(function () {
@@ -166,6 +174,14 @@ $(document).ready(function () {
         return p.test(str);
     }
 
+    $('.right-icons li').click(function () {
+
+        $('.right-icons li').not(this).removeClass('open');
+
+        $(this).toggleClass('open');
+
+
+    });
 
 
 
@@ -387,6 +403,10 @@ $(document).ready(function () {
 
     //$('.right-icons-mobile').click(function () {
     //    $('.right-icons').toggleClass('active');
+    //})
+
+    //$('.right-icons > ul > li > span').click(function () {
+
     //})
 
 

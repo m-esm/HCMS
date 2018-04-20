@@ -291,14 +291,14 @@ $(document).on('tap click', '.mobile-block .unit li', function () {
         default:
 
     }
-    parent.find('.plan-unit img').attr('src', find.url);
-    parent.find('.plan-unit').addClass('show');
-    parent.find('.hayatbtn').addClass('active');
-
-    //$('#block-a .plan-unit img').attr('src', find.url);
-
-    //$('#block-a .plan-unit').css('display', 'block');
-
+    if (unit == "plan") {
+        $(this).parents('.inner').find('.plan-key').toggleClass('active');
+    }
+    else {
+        parent.find('.plan-unit img').attr('src', find.url);
+        parent.find('.plan-unit').addClass('show');
+        parent.find('.hayatbtn').addClass('active');
+    }
 })
 
 var main_block_hover = [
@@ -381,3 +381,10 @@ $('.plan-unit').click(function () {
     $('.unit-full-img').addClass('open');
     $('.unit-full-img .preview img').attr('src', $(this).find('img').attr('src'))
 })
+
+$('.plan-key').click(function () {
+    $('.unit-full-img').addClass('open');
+    $('.unit-full-img .preview img').attr('src', $(this).attr('src'))
+})
+
+

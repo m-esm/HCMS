@@ -28,7 +28,6 @@ $.ajax({
     method: 'GET',
     url: '/Hayat/Comment/GetConfirm',
 }).done(function (res) {
-    console.log(res);
     $.each(res, function (index, item) {
         var find = userComments.find(a=>a.UnitId == item.UnitId);
         if (find == undefined)

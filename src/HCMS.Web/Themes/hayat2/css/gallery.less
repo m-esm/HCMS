@@ -18,16 +18,21 @@
 
     .all-box {
         display: none;
+        width: 300px;
+        margin-top: 30%;
+        margin-right: ~"calc(50% - 150px)";
 
         &.active {
-            display: block;
+            display: inline-block;
         }
 
         .box {
             width: 250px;
-            height: 300px;
+            height: 250px;
             position: relative;
             cursor: pointer;
+            float: right;
+            margin: 5px;
 
             img {
                 width: 100%;
@@ -294,19 +299,19 @@ section.page-slider {
         }
 
         .slider-section {
-            padding-top:20px;
+            padding-top: 20px;
 
             .carousel-inner {
                 width: 90%;
-               
             }
         }
     }
 
-    .article-slide .carousel-indicators li{
-        width:50px;
-        img{
-            width:100%;
+    .article-slide .carousel-indicators li {
+        width: 50px;
+
+        img {
+            width: 100%;
         }
     }
 }
@@ -335,7 +340,14 @@ section.page-slider {
         }
     }
 
-    .carousel{
+    .carousel {
         /*width:86%;*/
+    }
+
+    .gallery {
+      
+        .all-box {
+            margin-right:25px;
+        }
     }
 }

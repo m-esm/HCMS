@@ -74,13 +74,32 @@
         }
 
         .plan-unit {
-            cursor:pointer;
+            cursor: pointer;
             width: 400px;
             position: absolute;
             left: ~"calc(50% - 200px)";
 
             img {
                 width: 100%;
+            }
+        }
+
+        .plan-key {
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            display: none !important;
+
+            &.min {
+                top: 195px;
+            }
+
+            &.max {
+                top: 218px;
+            }
+
+            &.active {
+                display: block !important;
             }
         }
 
@@ -512,6 +531,10 @@
                 }
             }
 
+            .plan-key {
+                width: 170px;
+            }
+
             .mobile-block {
 
                 ul {
@@ -570,6 +593,10 @@
                 img {
                     width: 90%;
                 }
+            }
+
+              .plan-key {
+                width: 150px;
             }
 
             .mobile-block {

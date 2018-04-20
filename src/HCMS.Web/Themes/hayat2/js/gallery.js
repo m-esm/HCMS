@@ -55,6 +55,24 @@ $('#gallery .box').click(function () {
     $('.slider-section[data-target="' + $(this).attr('data-target') + '"]').addClass('active');
 })
 
+//$('#gallery button').click(function () {
+//    $('.all-box').removeClass('active');
+//    $('.slider-section[data-target="' + $(this).attr('data-target') + '"]').addClass('active');
+//})
+
+$(document).on('tap click', '#gallery button', function () {
+    $('.all-box').removeClass('active');
+    $('.slider-section[data-target="' + $(this).attr('data-target') + '"]').addClass('active');
+})
+
+$('#gallery-back').click(function () {
+    $('.all-box').addClass('active');
+    $('.slider-section').removeClass('active');
+})
+
+
+
+
 $(document).on('mouseenter mouseleave', '#gallery-photo-carousel .carousel-inner', function (e) {
     if (e.type == 'mouseenter')
         $('#gallery-photo-carousel .navbar').addClass('open');

@@ -14,15 +14,20 @@
 }
 .gallery .all-box {
   display: none;
+  width: 300px;
+  margin-top: 30%;
+  margin-right: calc(50% - 150px);
 }
 .gallery .all-box.active {
-  display: block;
+  display: inline-block;
 }
 .gallery .all-box .box {
   width: 250px;
-  height: 300px;
+  height: 250px;
   position: relative;
   cursor: pointer;
+  float: right;
+  margin: 5px;
 }
 .gallery .all-box .box img {
   width: 100%;
@@ -281,5 +286,8 @@ section.page-slider .inner {
   }
   .carousel {
     /*width:86%;*/
+  }
+  .gallery .all-box {
+    margin-right: 25px;
   }
 }

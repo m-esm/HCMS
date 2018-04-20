@@ -65,11 +65,11 @@
     <!-- hayat styles -->
     <link href="~/Themes/hayat2/css/hayat.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
     @*<link href="~/Themes/hayat2/css/new-hayat.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />*@
-    <link href="~/Themes/hayat2/css/blocks.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/logo.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/places.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/slider.min.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/css/gallery.min.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/blocks.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/logo.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/places.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/slider.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link href="~/Themes/hayat2/css/gallery.min.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
 
     <!--Blocks Css-->
     <link href="~/Themes/hayat2/css/blocks/block-a.css" rel="stylesheet" />
@@ -94,7 +94,7 @@
     <script src="~/Packages/jquery-3.2.1/jquery-3.2.1.js"></script>
     @*<script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>*@
 
-@*    <script src="~/Packages/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>*@
+    @*    <script src="~/Packages/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>*@
 
     <script src="~/Packages/jquery.mobile-1.4.5/jquerymobile-swipeupdown.js"></script>
 
@@ -104,7 +104,7 @@
 
     <script src="~/Themes/hayat2/lib/jquery/jquery.touchSwipe.min.js"></script>
     @*<script src="~/Packages/hammerjs/hammer.min.js"></script>
-    <script src="~/Packages/hammerjs/jquery.hammer.js"></script>*@
+        <script src="~/Packages/hammerjs/jquery.hammer.js"></script>*@
     @RenderSection("styles", false)
 
 </head>
@@ -370,31 +370,31 @@
                 @foreach (var item in menu)
                 {
 
-                    <li>
-                        <a href="@item.GetValue("url")" class="under-line-animate">
-                            @item.GetValue("name")
+                <li>
+                    <a href="@item.GetValue("url")" class="under-line-animate">
+                        @item.GetValue("name")
 
-                        </a>
+                    </a>
 
-                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                    @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
                         {
-                            <div class="child-menu">
-                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+                        <div class="child-menu">
+                            @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
 
-                            </div>
+                        </div>
 
                         }
 
-                    </li>
+                </li>
 
                 }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="pull-left">
-                        <a href="">
-                            <i class="fa fa-user"></i>
-                            @{
+                <li class="pull-left">
+                    <a href="">
+                        <i class="fa fa-user"></i>
+                        @{
                                 var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
 
                                 if (claimsIdentity != null)
@@ -403,40 +403,40 @@
 
                                     if (c != null)
                                     {
-                                        <span>
-                                            @c.Value.ToString()
-                                        </span>
+                            <span>
+                                @c.Value.ToString()
+                            </span>
                                     }
                                     else
                                     {
-                                        <span>
-                                            @User.Identity.Name
-                                        </span>
+                            <span>
+                                @User.Identity.Name
+                            </span>
                                     }
                                 }
-                            }
-                            خوش آمدید
+                        }
+                        خوش آمدید
 
-                        </a>
+                    </a>
 
-                        <div class="child-menu">
-                            <form action="/fa-ir/manage/auth/LogOff" method="post">
-                                <button type="submit" class="btn btn-block hayatbtn">
-                                    <i class="fa fa-lock"></i>
-                                    خروج
-                                </button>
-                            </form>
-                        </div>
-                    </li>
+                    <div class="child-menu">
+                        <form action="/fa-ir/manage/auth/LogOff" method="post">
+                            <button type="submit" class="btn btn-block hayatbtn">
+                                <i class="fa fa-lock"></i>
+                                خروج
+                            </button>
+                        </form>
+                    </div>
+                </li>
                                 }
                                 else
                                 {
-                                    <li class="pull-left">
-                                        <a href="/auth">
-                                            <i class="fa fa-user"></i>
-                                            ورود
-                                        </a>
-                                    </li>
+                <li class="pull-left">
+                    <a href="/auth">
+                        <i class="fa fa-user"></i>
+                        ورود
+                    </a>
+                </li>
                                 }
                 <li>
                     <a href="/Visit">
@@ -500,7 +500,7 @@
     <div class="unit-full-img">
         <i class="fa fa-close"></i>
         <div class="preview cscroll">
-            <img src=""  class="img-responsive" />
+            <img src="" class="img-responsive" />
         </div>
     </div>
 
@@ -548,11 +548,11 @@
         <script src="~/Themes/hayat2/js/custom.js"></script>
         <script src="~/Themes/hayat2/js/blocks.js"></script>*@
 
-    <script src="~/Themes/hayat2/js/hayat.js?v=2"></script>
-    <script src="~/Themes/hayat2/js/newScroll.js"></script>
-    <script src="~/Themes/hayat2/js/unit.js"></script>
+    <script src="~/Themes/hayat2/js/hayat.js?v=@DateTime.Now.Ticks"></script>
+    <script src="~/Themes/hayat2/js/newScroll.js?v=@DateTime.Now.Ticks"></script>
+    <script src="~/Themes/hayat2/js/unit.js?v=@DateTime.Now.Ticks"></script>
 
-    <script src="~/Themes/hayat2/js/gallery.js"></script>
+    <script src="~/Themes/hayat2/js/gallery.js?v=@DateTime.Now.Ticks"></script>
     <script src="~/Themes/hayat2/lib/resize-image-map/resize-image-map.js"></script>
     <!-- hayat JS Bundle -->
 

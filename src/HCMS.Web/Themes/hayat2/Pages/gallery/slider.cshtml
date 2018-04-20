@@ -1,16 +1,27 @@
-﻿@model IEnumerable<HCMS.Dynamics.Data.DRow>
+﻿@using HCMS.Dynamics.Data
+
+@model IEnumerable<HCMS.Dynamics.Data.DRow>
 @{
     var j = 0;
     var k = 0;
+
+    var block = DDB.GetTable("cms", "blocks").DRows;
+
+    var blockName = "";
+    var model = Model.FirstOrDefault();
+    if (model != null)
+    {
+        int blockId = Convert.ToInt32(model.GetValue("blockId").Value);
+        blockName = block.First(a => a.RowID == blockId).GetValue("name").Value;
+    }
 }
-<div class="carousel slide article-slide" id="gallery-photo-carousel">
+<div class="carousel slide article-slide" id="gallery-photo-carousel"  data-target="@blockName">
     <img class="bg" src="~/Themes/hayat2/img/monitor.png" />
     <ul class="navbar">
         <li class="pull-right">
             <i class="fa fa-eye"></i>
         </li>
-
-        <li class="pull-left">
+        <li class="pull-left" id="gallery-back">
             <i class="fa fa-chevron-left"></i>
         </li>
     </ul>

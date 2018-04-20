@@ -63,6 +63,21 @@
 .block-detail .inner .plan-unit img {
   width: 100%;
 }
+.block-detail .inner .plan-key {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  display: none !important;
+}
+.block-detail .inner .plan-key.min {
+  top: 195px;
+}
+.block-detail .inner .plan-key.max {
+  top: 218px;
+}
+.block-detail .inner .plan-key.active {
+  display: block !important;
+}
 .block-detail .inner .block {
   position: absolute;
   left: 10px;
@@ -371,6 +386,9 @@
   .block-detail .inner .plan-unit.mobile-max {
     width: 164px;
   }
+  .block-detail .inner .plan-key {
+    width: 170px;
+  }
   .block-detail .inner .mobile-block {
     /*ul.unit {
                     display: none;
@@ -409,6 +427,9 @@
   }
   .block-detail .inner .plan-unit img {
     width: 90%;
+  }
+  .block-detail .inner .plan-key {
+    width: 150px;
   }
   .block-detail .inner .mobile-block ul li {
     font-size: 1rem;
