@@ -1,4 +1,11 @@
-﻿.gallery {
+﻿.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: inline-block !important;
+}
+.gallery {
   padding: 55px 0;
 }
 .gallery .thumnail {
@@ -53,6 +60,10 @@
   z-index: 999;
   transition: all 5s;
   display: none;
+}
+.gallery .full-image .img-responsive {
+  display: block !important;
+  margin: auto;
 }
 .gallery .full-image.open {
   display: block;
@@ -203,13 +214,6 @@ section.page-slider .inner {
   width: 100%;
   height: 100%;
   text-align: center;
-}
-.img-responsive,
-.thumbnail > img,
-.thumbnail a > img,
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-  display: inline-block !important;
 }
 .carousel-indicators {
   right: unset;

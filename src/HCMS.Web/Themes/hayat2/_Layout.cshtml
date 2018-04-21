@@ -105,8 +105,15 @@
     <script src="~/Themes/hayat2/lib/jquery/jquery.touchSwipe.min.js"></script>
     @*<script src="~/Packages/hammerjs/hammer.min.js"></script>
         <script src="~/Packages/hammerjs/jquery.hammer.js"></script>*@
+
+    <link href="~/Packages/introjs/introjs.min.css" rel="stylesheet" />
+    <link href="~/Packages/introjs/introjs-rtl.min.css" rel="stylesheet" />
+
+    <!--loader-->
+    <link href="~/Themes/hayat2/css/loader.css" rel="stylesheet" />
     @RenderSection("styles", false)
 
+    <script src="~/Packages/introjs/intro.min.js"></script>
 </head>
 
 <body>
@@ -370,31 +377,31 @@
                 @foreach (var item in menu)
                 {
 
-                <li>
-                    <a href="@item.GetValue("url")" class="under-line-animate">
-                        @item.GetValue("name")
+                    <li>
+                        <a href="@item.GetValue("url")" class="under-line-animate">
+                            @item.GetValue("name")
 
-                    </a>
+                        </a>
 
-                    @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
+                        @if (!string.IsNullOrWhiteSpace(item.GetValue("text").Value))
                         {
-                        <div class="child-menu">
-                            @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
+                            <div class="child-menu">
+                                @Html.Raw(item.GetValue("text").Value.Replace(Environment.NewLine, "<br />"))
 
-                        </div>
+                            </div>
 
                         }
 
-                </li>
+                    </li>
 
                 }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                <li class="pull-left">
-                    <a href="">
-                        <i class="fa fa-user"></i>
-                        @{
+                    <li class="pull-left">
+                        <a href="">
+                            <i class="fa fa-user"></i>
+                            @{
                                 var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
 
                                 if (claimsIdentity != null)
@@ -403,40 +410,40 @@
 
                                     if (c != null)
                                     {
-                            <span>
-                                @c.Value.ToString()
-                            </span>
+                                        <span>
+                                            @c.Value.ToString()
+                                        </span>
                                     }
                                     else
                                     {
-                            <span>
-                                @User.Identity.Name
-                            </span>
+                                        <span>
+                                            @User.Identity.Name
+                                        </span>
                                     }
                                 }
-                        }
-                        خوش آمدید
+                            }
+                            خوش آمدید
 
-                    </a>
+                        </a>
 
-                    <div class="child-menu">
-                        <form action="/fa-ir/manage/auth/LogOff" method="post">
-                            <button type="submit" class="btn btn-block hayatbtn">
-                                <i class="fa fa-lock"></i>
-                                خروج
-                            </button>
-                        </form>
-                    </div>
-                </li>
+                        <div class="child-menu">
+                            <form action="/fa-ir/manage/auth/LogOff" method="post">
+                                <button type="submit" class="btn btn-block hayatbtn">
+                                    <i class="fa fa-lock"></i>
+                                    خروج
+                                </button>
+                            </form>
+                        </div>
+                    </li>
                                 }
                                 else
                                 {
-                <li class="pull-left">
-                    <a href="/auth">
-                        <i class="fa fa-user"></i>
-                        ورود
-                    </a>
-                </li>
+                                    <li class="pull-left">
+                                        <a href="/auth">
+                                            <i class="fa fa-user"></i>
+                                            ورود
+                                        </a>
+                                    </li>
                                 }
                 <li>
                     <a href="/Visit">
@@ -563,6 +570,41 @@
     }
 
     @RenderSection("scripts", false)
+
+    <script>
+
+        introJs().setOptions(
+                 {
+                     'nextLabel': 'بعد'
+                 , 'prevLabel': 'قبل'
+                 , 'skipLabel': 'خروج'
+                 , 'doneLabel': 'اتمام'
+                 }).onchange(function (targetElement) {
+                   
+                 }).start('.block');
+        
+
+        showTour = function () {
+       
+            introJs().setOptions(
+              {
+                  'nextLabel': 'بعد'
+              , 'prevLabel': 'قبل'
+              , 'skipLabel': 'خروج'
+              , 'doneLabel': 'متوجه شدم'
+              }).onchange(function (targetElement) {
+                  switch (targetElement.getAttribute('data-step')) {
+                      case "1":
+                          break;
+                      case "6":
+                          break;
+                      default:
+
+                  }
+              }).start('.block');
+        }
+
+    </script>
 
 </body>
 

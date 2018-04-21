@@ -1,5 +1,10 @@
 ﻿@baseColor1: #4e1c1b;
 
+
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: inline-block !important;
+}
+
 .gallery {
     padding: 55px 0;
 
@@ -63,6 +68,11 @@
         z-index: 999;
         transition: all 5s;
         display: none;
+
+        .img-responsive{
+            display:block !important;
+            margin:auto
+        }
 
         &.open {
             display: block;
@@ -249,9 +259,6 @@ section.page-slider {
     text-align: center;
 }
 
-.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
-    display: inline-block !important;
-}
 
 .carousel-indicators {
     right: unset;

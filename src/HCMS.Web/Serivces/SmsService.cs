@@ -36,14 +36,15 @@ namespace HCMS.Web.Serivces
 
         public static bool SendWelcome(long phoneNumber, string fullName)
         {
-           var userApiKey = System.Configuration.ConfigurationManager.AppSettings["UserApiKey"];
-           var secretKey = System.Configuration.ConfigurationManager.AppSettings["SecretKey"];
-           var lineNumber = System.Configuration.ConfigurationManager.AppSettings["LineNumber"];
+           var userApiKey = ConfigurationManager.AppSettings["Hayat-No-UserApiKey"];
+           var secretKey = ConfigurationManager.AppSettings["Hayat-No-SecretKey"];
+           var lineNumber = ConfigurationManager.AppSettings["Hayat-No-LineNumber"];
+           var templateId = ConfigurationManager.AppSettings["Hayat-No-template-welcome-id"];
             SmsSender smsSender = new SmsSender(userApiKey, secretKey, lineNumber);
-            var model = new Notification.Model.SmsDto();
+            var model = new SmsDto();
             model.PhoneNumber = phoneNumber;
             model.Parametrs.Add("username", fullName);
-            model.TemplateId = 1829;
+            model.TemplateId = Convert.ToInt32(templateId);
             return smsSender.Send(model);
         }
     }

@@ -133,8 +133,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MoreLinq, Version=2.10.21623.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
-      <HintPath>..\packages\morelinq.2.10.0\lib\net40\MoreLinq.dll</HintPath>
+    <Reference Include="MoreLinq, Version=2.5.20831.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.2.5.0\lib\net40\MoreLinq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -444,6 +444,9 @@
     <Content Include="Packages\imagezoom\js\jquery.spritezoom.min.js">
       <DependentUpon>jquery.spritezoom.js</DependentUpon>
     </Content>
+    <Content Include="Packages\introjs\intro.min.js" />
+    <Content Include="Packages\introjs\introjs-rtl.min.css" />
+    <Content Include="Packages\introjs\introjs.min.css" />
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.js" />
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.min.js" />
     <Content Include="Packages\jquery-3.2.1\jquery-3.2.1.js" />
@@ -2308,6 +2311,7 @@
     <Content Include="Themes\hayat2\css\hayat.min.css">
       <DependentUpon>hayat.css</DependentUpon>
     </Content>
+    <Content Include="Themes\hayat2\css\loader.css" />
     <Content Include="Themes\hayat2\css\login\main.css" />
     <Content Include="Themes\hayat2\css\logo.css">
       <DependentUpon>logo.less</DependentUpon>

@@ -632,7 +632,7 @@ $(document).ready(function () {
             buy.captcha_guid = 'captcha' + _captcha_guid;
 
             buy.loginAfterReg = true;
-
+            console.log(buy);
             refreshToken();
 
             $.ajax({
@@ -640,6 +640,7 @@ $(document).ready(function () {
                 url: '/fa-ir/manage/Auth/register',
                 data: buy
             }).done(function (res) {
+                console.log(res);
                 if (res.length > 0) {
                     var html = ''
                     $.each(res, function (index, item) {
@@ -651,13 +652,12 @@ $(document).ready(function () {
                     swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
 
                     //login user
-                    setTimeout(function () {
-                        window.location.reload('/');
-                    }, 2000)
+                    window.location.reload('/');
 
 
                 }
             }).fail(function (err) {
+                console.log(err)
                 swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
             })
         }
@@ -757,6 +757,7 @@ $(document).ready(function () {
     })
 
     $('.bottom-nav ul li').click(function () {
+        console.log($(this))
         $(this).parent('.bottom-nav').find('li').removeClass('open');
         $(this).parent('.bottom-nav').find('i').removeClass('active');
         $(this).toggleClass('open');
@@ -777,10 +778,10 @@ $(document).ready(function () {
         $(this).toggleClass('active');
     })
 
-    $('.bottom-nav li').click(function () {
-        //$('.right-icons li').not(this).removeClass('open');
-        $(this).toggleClass('open');
-    });
+    //$('.bottom-nav li').click(function () {
+    //    //$('.right-icons li').not(this).removeClass('open');
+    //    //$(this).toggleClass('open');
+    //});
 
     $('header.show-mobile .fa-close').click(function () {
         $('header.show-mobile').removeClass('open');
