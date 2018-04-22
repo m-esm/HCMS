@@ -76,7 +76,7 @@ $(document).ready(function () {
     setTimeout(function () {
 
         $('#loader').fadeOut();
-
+        console.log($('#welcome-to-user'))
     }, 1000);
 
     //href not working in mobile.fix it
@@ -227,6 +227,8 @@ $(document).ready(function () {
         var buy = {};
         var parent = $(this).parent('form');
         if (IsValid(parent) === true) {
+
+
             buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
             buy.isAjax = true;
 
@@ -237,38 +239,62 @@ $(document).ready(function () {
             buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
             buy.captcha = $(parent).find('input[name="captcha"]').val();
 
-            var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
-            buy.captcha_guid = 'captcha' + _captcha_guid;
+            //check if phone number dont should less than 10 number
+            var _err;
+            var _isValid = true;
 
-            buy.loginAfterReg = true;
-            console.log(buy);
-            refreshToken();
-
-            $.ajax({
-                type: 'POST',
-                url: '/fa-ir/manage/Auth/register',
-                data: buy
-            }).done(function (res) {
-                console.log(res);
-                if (res.length > 0) {
-                    var html = ''
-                    $.each(res, function (index, item) {
-                        html += item + '/';
-                    })
-
-                    swal("خطا", html, "error");
+            //اگر ایمیل نبود
+            if (buy.Email.split('@')[1] == undefined) {
+                if ($.isNumeric(buy.Email)) {
+                    if (buy.Email.length < 11) {
+                        _isValid = false;
+                        _err = "شماره باید 11 رقم باشد."
+                    }
                 } else {
-                    swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
-
-                    //login user
-                    window.location.reload('/');
-
-
+                    _isValid = false;
+                    _err = "شماره وارد شده باید فقط شامل اعداد باشد"
                 }
-            }).fail(function (err) {
-                console.log(err)
-                swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
-            })
+            }
+
+            if (!_isValid)
+                swal("خطا", _err, "error");
+            else {
+
+
+                var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
+                buy.captcha_guid = 'captcha' + _captcha_guid;
+
+                buy.loginAfterReg = true;
+                console.log(buy);
+                refreshToken();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/fa-ir/manage/Auth/register',
+                    data: buy
+                }).done(function (res) {
+                    console.log(res);
+                    if (res.length > 0) {
+                        var html = ''
+                        $.each(res, function (index, item) {
+                            html += item + '/';
+                        })
+
+                        swal("خطا", html, "error");
+                    } else {
+                        swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
+
+                        //login user
+                        window.location.reload('/');
+
+
+                    }
+                }).fail(function (err) {
+                    console.log(err)
+                    swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
+                })
+            }
+
         }
         e.preventDefault();
     })

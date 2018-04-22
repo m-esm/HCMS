@@ -24,7 +24,7 @@ using HCMS.Business;
 
 namespace HCMS.Web.Areas.Manage.Controllers
 {
-    [MyAuthorize("Developer,Admin")]
+    [MyAuthorize("developer,admin")]
     public class UsersAdminController : AccountBaseController
     {
         public UsersAdminController()
@@ -43,10 +43,10 @@ namespace HCMS.Web.Areas.Manage.Controllers
         // GET: /Users/
         public ActionResult Index()
         {
-            var role = RoleManager.Roles.FirstOrDefault(u => u.Name == "Developer");
+            var role = RoleManager.Roles.FirstOrDefault(u => u.Name == "developer");
             //var usersInRole = UserManager.Users.Where(u => !u.Roles.Select(a => a.RoleId).Contains(role.Id)).ToList();
 
-           var usersInRole = UserManager.Users.ToList();
+           var usersInRole = UserManager.Users.OrderByDescending(a=>a.RegisterDate).ToList();
 
             return View(usersInRole);
         }

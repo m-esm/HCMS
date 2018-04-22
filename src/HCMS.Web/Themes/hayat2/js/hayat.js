@@ -467,7 +467,7 @@ $(document).ready(function () {
     setTimeout(function () {
 
         $('#loader').fadeOut();
-
+        console.log($('#welcome-to-user'))
     }, 1000);
 
     //href not working in mobile.fix it
@@ -618,6 +618,8 @@ $(document).ready(function () {
         var buy = {};
         var parent = $(this).parent('form');
         if (IsValid(parent) === true) {
+
+
             buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
             buy.isAjax = true;
 
@@ -628,38 +630,62 @@ $(document).ready(function () {
             buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
             buy.captcha = $(parent).find('input[name="captcha"]').val();
 
-            var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
-            buy.captcha_guid = 'captcha' + _captcha_guid;
+            //check if phone number dont should less than 10 number
+            var _err;
+            var _isValid = true;
 
-            buy.loginAfterReg = true;
-            console.log(buy);
-            refreshToken();
-
-            $.ajax({
-                type: 'POST',
-                url: '/fa-ir/manage/Auth/register',
-                data: buy
-            }).done(function (res) {
-                console.log(res);
-                if (res.length > 0) {
-                    var html = ''
-                    $.each(res, function (index, item) {
-                        html += item + '/';
-                    })
-
-                    swal("خطا", html, "error");
+            //اگر ایمیل نبود
+            if (buy.Email.split('@')[1] == undefined) {
+                if ($.isNumeric(buy.Email)) {
+                    if (buy.Email.length < 11) {
+                        _isValid = false;
+                        _err = "شماره باید 11 رقم باشد."
+                    }
                 } else {
-                    swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
-
-                    //login user
-                    window.location.reload('/');
-
-
+                    _isValid = false;
+                    _err = "شماره وارد شده باید فقط شامل اعداد باشد"
                 }
-            }).fail(function (err) {
-                console.log(err)
-                swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
-            })
+            }
+
+            if (!_isValid)
+                swal("خطا", _err, "error");
+            else {
+
+
+                var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
+                buy.captcha_guid = 'captcha' + _captcha_guid;
+
+                buy.loginAfterReg = true;
+                console.log(buy);
+                refreshToken();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/fa-ir/manage/Auth/register',
+                    data: buy
+                }).done(function (res) {
+                    console.log(res);
+                    if (res.length > 0) {
+                        var html = ''
+                        $.each(res, function (index, item) {
+                            html += item + '/';
+                        })
+
+                        swal("خطا", html, "error");
+                    } else {
+                        swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
+
+                        //login user
+                        window.location.reload('/');
+
+
+                    }
+                }).fail(function (err) {
+                    console.log(err)
+                    swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
+                })
+            }
+
         }
         e.preventDefault();
     })
@@ -932,11 +958,47 @@ $(function () {
     //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
 
 
+    //$("body").swipe({
+    //    //Generic swipe handler for all directions
+    //    swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+    //        var str = "<h4>Swipe Phase : " + phase + "<br/>";
+    //        str += "Current direction: " + currentDirection + "<br/>";
+    //        str += "Direction from inital touch: " + direction + "<br/>";
+    //        str += "Distance from inital touch: " + distance + "<br/>";
+    //        str += "Duration of swipe: " + duration + "<br/>";
+    //        str += "Fingers used: " + fingers + "<br/></h4>";
+    //        //Here we can check the:
+    //        //phase : 'start', 'move', 'end', 'cancel'
+    //        //direction : 'left', 'right', 'up', 'down'
+    //        //distance : Distance finger is from initial touch point in px
+    //        //duration : Length of swipe in MS
+    //        //fingerCount : the number of fingers used
+    //        if (phase != "cancel" && phase != "end") {
+    //            if (duration < 5000)
+    //                str += "Under maxTimeThreshold.<h3>Swipe handler will be triggered if you release at this point.</h3>"
+    //            else
+    //                str += "Over maxTimeThreshold. <h3>Swipe handler will be canceled if you release at this point.</h3>"
+    //            if (distance < 200)
+    //                str += "Not yet reached threshold.  <h3>Swipe will be canceled if you release at this point.</h3>"
+    //            else
+    //                str += "Threshold reached <h3>Swipe handler will be triggered if you release at this point.</h3>"
+    //        }
+    //        if (phase == "cancel")
+    //            str += "<br/>Handler not triggered. <br/> One or both of the thresholds was not met "
+    //        if (phase == "end")
+    //            str += "<br/>Handler was triggered."
+    //        $(".top-nav .search").html(str);
+    //    },
+    //    preventDefaultEvents: false,
+    //    threshold: 1,
+    //    excludedElements: " input , textarea, .noSwipe, .cscroll"
+
+    //});
 
 
     $("body").swipe({
         //Generic swipe handler for all directions
-        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+        swipeStatus: function (e, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
             if (phase == "move" || phase == "start") {
                 var $target = e.target.nodeName;
                 if ($target.toLowerCase() === 'input') {
@@ -949,12 +1011,21 @@ $(function () {
                         if (direction == "up" || direction == "down")
                             changePage(false, direction == "up" ? "down" : "up");
 
-                        else if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
-                            $('#menu-bar').click();
+                        //else if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal')) {
+                        //    if (currentDirection == "left" && duration < 100)
+                        //        $('#menu-bar').click();
+
+                        //}
                         else
                             if (direction == "right" || direction == "left")
                                 changeArticlePage(false, direction == "left" ? "right" : "left");
                     }
+
+                }
+            } else {
+                if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal')) {
+                    if (currentDirection == "left" && duration < 300)
+                        $('#menu-bar').click();
 
                 }
             }

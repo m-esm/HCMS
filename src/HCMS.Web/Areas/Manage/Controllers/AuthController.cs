@@ -337,7 +337,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
             //   var redirect = @"~/manage/Auth/Login";
             var redirect = @"~/";
 
-            if (User.IsInRole("User"))
+            if (User.IsInRole("user"))
                 redirect = @"~/";
 
             foreach (var item in Request.Cookies.AllKeys)
@@ -446,12 +446,14 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 }
                 return View(model);
             }
+            user.RegisterDate = DateTime.Now;
             //var result = await UserManager.CreateAsync(user, model.Password);
             var result = UserManager.Create(user, model.Password);
 
             if (result.Succeeded)
             {
-                result = UserManager.AddToRole(user.Id, "User");
+                TempData["userRegister"] = true;
+                result = UserManager.AddToRole(user.Id, "user");
                 if (result.Succeeded)
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -482,7 +484,16 @@ namespace HCMS.Web.Areas.Manage.Controllers
                     }
 
                     if (!sendNotificationAfterReg)
-                        SmsService.SendWelcome(Convert.ToInt64(user.Mobile), user.FirstName);
+                        if (!string.IsNullOrWhiteSpace(user.Mobile))
+                            SmsService.SendWelcome(Convert.ToInt64(user.Mobile), user.FirstName);
+                        else
+                        {
+                            long _phoneNumber;
+                            Int64.TryParse(user.UserName.Split('@')[0], out _phoneNumber);
+
+                            if (_phoneNumber > 0)
+                                SmsService.SendWelcome(_phoneNumber, user.FirstName);
+                        }
 
                     if (loginAfterReg)
                         await loginUser(new LoginViewModel { UserName = model.Username, Password = model.Password });
@@ -519,7 +530,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
         public async Task<ActionResult> RegisterByRole(RegisterViewModel model, bool inapp = false)
         {
             if (string.IsNullOrWhiteSpace(model.role))
-                model.role = "User";
+                model.role = "user";
 
             string captcha_session_key = "captcha" + model.captcha_guid;
             if (!inapp)
@@ -539,7 +550,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
 
 
 
-            var user = new ApplicationUser { UserName = model.Username, FirstName =  model.FirstName };
+            var user = new ApplicationUser { UserName = model.Username, FirstName = model.FirstName };
 
             if (model.Username.Contains("@"))
             {
@@ -1249,7 +1260,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
-                    UserManager.AddToRole(user.Id, "User");
+                    UserManager.AddToRole(user.Id, "user");
 
                 if (result.Succeeded)
                 {
@@ -1319,7 +1330,7 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
-                UserManager.AddToRole(user.Id, "User");
+                UserManager.AddToRole(user.Id, "user");
 
                 if (result.Succeeded)
                 {

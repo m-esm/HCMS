@@ -123,11 +123,47 @@ $(function () {
     //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
 
 
+    //$("body").swipe({
+    //    //Generic swipe handler for all directions
+    //    swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+    //        var str = "<h4>Swipe Phase : " + phase + "<br/>";
+    //        str += "Current direction: " + currentDirection + "<br/>";
+    //        str += "Direction from inital touch: " + direction + "<br/>";
+    //        str += "Distance from inital touch: " + distance + "<br/>";
+    //        str += "Duration of swipe: " + duration + "<br/>";
+    //        str += "Fingers used: " + fingers + "<br/></h4>";
+    //        //Here we can check the:
+    //        //phase : 'start', 'move', 'end', 'cancel'
+    //        //direction : 'left', 'right', 'up', 'down'
+    //        //distance : Distance finger is from initial touch point in px
+    //        //duration : Length of swipe in MS
+    //        //fingerCount : the number of fingers used
+    //        if (phase != "cancel" && phase != "end") {
+    //            if (duration < 5000)
+    //                str += "Under maxTimeThreshold.<h3>Swipe handler will be triggered if you release at this point.</h3>"
+    //            else
+    //                str += "Over maxTimeThreshold. <h3>Swipe handler will be canceled if you release at this point.</h3>"
+    //            if (distance < 200)
+    //                str += "Not yet reached threshold.  <h3>Swipe will be canceled if you release at this point.</h3>"
+    //            else
+    //                str += "Threshold reached <h3>Swipe handler will be triggered if you release at this point.</h3>"
+    //        }
+    //        if (phase == "cancel")
+    //            str += "<br/>Handler not triggered. <br/> One or both of the thresholds was not met "
+    //        if (phase == "end")
+    //            str += "<br/>Handler was triggered."
+    //        $(".top-nav .search").html(str);
+    //    },
+    //    preventDefaultEvents: false,
+    //    threshold: 1,
+    //    excludedElements: " input , textarea, .noSwipe, .cscroll"
+
+    //});
 
 
     $("body").swipe({
         //Generic swipe handler for all directions
-        swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
+        swipeStatus: function (e, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
             if (phase == "move" || phase == "start") {
                 var $target = e.target.nodeName;
                 if ($target.toLowerCase() === 'input') {
@@ -140,12 +176,21 @@ $(function () {
                         if (direction == "up" || direction == "down")
                             changePage(false, direction == "up" ? "down" : "up");
 
-                        else if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
-                            $('#menu-bar').click();
+                        //else if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal')) {
+                        //    if (currentDirection == "left" && duration < 100)
+                        //        $('#menu-bar').click();
+
+                        //}
                         else
                             if (direction == "right" || direction == "left")
                                 changeArticlePage(false, direction == "left" ? "right" : "left");
                     }
+
+                }
+            } else {
+                if (direction == "left" && !$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal')) {
+                    if (currentDirection == "left" && duration < 300)
+                        $('#menu-bar').click();
 
                 }
             }

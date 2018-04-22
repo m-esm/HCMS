@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-
+    <input type="hidden" id="welcome-to-user" value="@TempData["userRegister"]"/>
 
 
     <header class="hidden-mobile">
@@ -204,16 +204,27 @@
 
                                     if (c != null)
                                     {
-                                        <span>
-                                            @c.Value.ToString()
-                                        </span>
+
+                                        if (c.Value.Length > 11)
+                                        {
+                                            <span>
+                                                @c.Value.ToString().Substring(0, 10) ...
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                @c.Value.ToString()
+                                            </span>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <span>
-                                            @User.Identity.Name
-                                        </span>
-                                    }
+                                }
+
+                                else
+                                {
+                                    <span>
+                                        @User.Identity.Name
+                                    </span>
                                 }
                             }
                             خوش آمدید
@@ -410,16 +421,27 @@
 
                                     if (c != null)
                                     {
-                                        <span>
-                                            @c.Value.ToString()
-                                        </span>
+
+                                        if (c.Value.Length > 15)
+                                        {
+                                            <span>
+                                                @c.Value.ToString().Substring(0, 14) ...
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                @c.Value.ToString()
+                                            </span>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <span>
-                                            @User.Identity.Name
-                                        </span>
-                                    }
+                                }
+
+                                else
+                                {
+                                    <span>
+                                        @User.Identity.Name
+                                    </span>
                                 }
                             }
                             خوش آمدید
@@ -580,12 +602,12 @@
                  , 'skipLabel': 'خروج'
                  , 'doneLabel': 'اتمام'
                  }).onchange(function (targetElement) {
-                   
+
                  }).start('.block');
-        
+
 
         showTour = function () {
-       
+
             introJs().setOptions(
               {
                   'nextLabel': 'بعد'
