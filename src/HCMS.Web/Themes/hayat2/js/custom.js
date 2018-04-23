@@ -162,10 +162,10 @@ $(document).ready(function () {
                 alert('لطفا فارسی تایپ کنید.')
                 e.preventDefault();
             }
-            else if (isPersian(e.key))
-                console.log('Persian');
-            else
-                console.log('Others')
+            //else if (isPersian(e.key))
+            //    console.log('Persian');
+            //else
+            //    console.log('Others')
         }
     })
 
@@ -285,8 +285,8 @@ $(document).ready(function () {
                         swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
 
                         //login user
-                        window.location.reload('/');
-
+                        window.location.href = '/#home';
+                        location.reload();
 
                     }
                 }).fail(function (err) {
@@ -301,7 +301,7 @@ $(document).ready(function () {
 
 
 
-    $('form.contactForm .hayatbtn').click(function (e) {
+    $('form.register-by-role .hayatbtn').click(function (e) {
         var parent = $(this).parent('form');
         if (IsValid(parent) === true) {
             var spanser = {};
@@ -393,8 +393,8 @@ $(document).ready(function () {
 
     $('.bottom-nav ul li').click(function () {
         console.log($(this))
-        $(this).parent('.bottom-nav').find('li').removeClass('open');
-        $(this).parent('.bottom-nav').find('i').removeClass('active');
+        $(this).parent('ul').find('li').removeClass('open');
+        $(this).parent('ul').find('i').removeClass('active');
         $(this).toggleClass('open');
         $(this).find('i').toggleClass('active');
 

@@ -264,21 +264,25 @@
 
                 var model = $('#visit-form').serialize();
                 model += "&captcha_guid=" + _captchaDate;
+                console.log(model);
                 $.ajax({
                     method: "post",
-                    url: 'Hayat/visit/Post',
+                    url: url,
                     data: model,
                     contentType: "application/x-www-form-urlencoded",
                     beforeSend: function () {
-                        $('#loader').show();
+                        //$('#loader').show();
                         _captchaDate = Date.now();
                         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit&guid=' + _captchaDate);
                     },
-                    done: function (res) {
+                    success: function (res) {
                         console.log(res);
                         $('#resultInfo').show();
                         if (res.IsSuccess) {
-                            $('#resultInfo').removeClass('alert-danger').addClass('alert-success').html('ثبت نام رزرو بازدید برای شما انجام شد. منتظر تماس از طرف مدیران حیات نو باشید.');
+                            document.getElementById("visit-form").reset();
+                            var _msg = 'ثبت نام رزرو بازدید برای شما انجام شد. منتظر تماس از طرف مدیران حیات نو باشید.';
+                            swal("", _msg, "success");
+                            $('#resultInfo').removeClass('alert-danger').addClass('alert-success').html(_msg);
                         } else {
                             var html = '<ul>';
                             $.each(res.msg, function (index, item) {
@@ -288,10 +292,10 @@
                             $('#resultInfo').removeClass('alert-success').addClass('alert-danger').html(html);
                         }
                     },
-                    fail: function (jqXhr, textStatus, errorThrown) {
+                    error: function (jqXhr, textStatus, errorThrown) {
                         console.log(errorThrown);
                     },
-                    always: function () {
+                    complete: function () {
                         $('#loader').css('display', 'none');
                     }
                 });
@@ -334,7 +338,6 @@
                 else
                     $(item).removeClass('has-error');
             })
-            console.log(isValid);
             return isValid;
         }
     </script>

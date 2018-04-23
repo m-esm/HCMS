@@ -1,5 +1,6 @@
 ﻿using HCMS.Notification.Model;
 using HCMS.Notification.SmsDotIr;
+using SmsIrRestful;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,7 +35,7 @@ namespace HCMS.Web.Serivces
             }
         }
 
-        public static bool SendWelcome(long phoneNumber, string fullName)
+        public static UltraFastSendRespone SendWelcome(long phoneNumber, string fullName)
         {
            var userApiKey = ConfigurationManager.AppSettings["Hayat-No-UserApiKey"];
            var secretKey = ConfigurationManager.AppSettings["Hayat-No-SecretKey"];
