@@ -116,7 +116,7 @@ var changeArticlePage = function (nextArticle, mode) {
         busy = false;
     }, 1000);
 
-
+    if ($('section.page-active'))
     if ($('section.page-active article.page-child.page-active').length == 0) {
         var currentArticle = $('section.page-active article.page-child')[0];
         $(currentArticle).addClass('page-active');

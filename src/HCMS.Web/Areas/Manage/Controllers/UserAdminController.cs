@@ -21,6 +21,10 @@ using ModelBindingContext = System.Web.ModelBinding.ModelBindingContext;
 using HCMS.Web.Areas.Manage.Models;
 using System.IO;
 using HCMS.Business;
+using HCMS.Web.Areas.Manage.Helpers;
+using System.Data;
+using System.ComponentModel;
+using ClosedXML.Excel;
 
 namespace HCMS.Web.Areas.Manage.Controllers
 {
@@ -37,18 +41,63 @@ namespace HCMS.Web.Areas.Manage.Controllers
             RoleManager = roleManager;
         }
 
-      
-
         //
         // GET: /Users/
         public ActionResult Index()
         {
             var role = RoleManager.Roles.FirstOrDefault(u => u.Name == "developer");
             //var usersInRole = UserManager.Users.Where(u => !u.Roles.Select(a => a.RoleId).Contains(role.Id)).ToList();
-
            var usersInRole = UserManager.Users.OrderByDescending(a=>a.RegisterDate).ToList();
-
             return View(usersInRole);
+        }
+
+        public void ExportToExcell()
+        {
+            var res = UserManager.Users.OrderByDescending(a => a.RegisterDate).ToList();
+            var model =UserAdminExportToExcellMapper.Map(res);
+
+            var dt = ConvertToDataTable(model);
+            var name = "Users";
+
+            //var dt = model.ToDataTable();
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt, name);
+                wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                wb.Style.Font.Bold = true;
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;filename= Users.xlsx");
+
+                using (MemoryStream MyMemoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(MyMemoryStream);
+                    MyMemoryStream.WriteTo(Response.OutputStream);
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+        }
+
+        public DataTable ConvertToDataTable<T>(IList<T> data)
+        {
+            PropertyDescriptorCollection properties =
+               TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
+            }
+            return table;
+
         }
 
         //ConfirmEmail

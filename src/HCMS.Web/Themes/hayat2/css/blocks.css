@@ -459,7 +459,7 @@
     width: 123px;
   }
   .block-detail .inner .mobile-block ul {
-    width: 25%;
+    width: 100%;
   }
   .block-detail .inner .mobile-block ul li {
     float: left;

@@ -2437,7 +2437,7 @@ section.page-register form .links a {
     width: 662px;
   }
   section#signup form {
-    height: 199px;
+    height: 400px;
     padding: 0;
   }
   section#signup form#colleagueForm {
@@ -2559,6 +2559,12 @@ section.page-register form .links a {
     width: 82px;
     left: 0;
   }
+  .hasChild .footer {
+    bottom: 40px;
+  }
+  .hasChild .btn-arrow {
+    bottom: 84px;
+  }
 }
 @media (max-width: 710px) {
   .row {
@@ -2573,6 +2579,16 @@ section.page-register form .links a {
   }
   section.page-blocks .main-block .map {
     width: 350px;
+  }
+  nav ul {
+    padding-right: 40px;
+  }
+  nav ul li:before,
+  nav ul li:last-child:after {
+    margin: 0 8px !important;
+  }
+  .logo-hayat-no {
+    bottom: 80px;
   }
 }
 @media (max-width: 670px) {
@@ -2607,7 +2623,7 @@ section.page-register form .links a {
     top: 50px;
   }
   section.page-blocks .block-button {
-    bottom: 60px;
+    bottom: 130px;
   }
   #videos .tv {
     margin: 0 !important;
@@ -2674,7 +2690,7 @@ section.page-register form .links a {
     display: none;
   }
   .logo-hayat-no {
-    bottom: 80px;
+    bottom: 180px;
   }
   .raychat_main_button {
     top: 0 !important;
@@ -3065,6 +3081,12 @@ section.page-register form .links a {
   .comments .ios-msg {
     border-radius: 3px;
   }
+  .hasChild .footer {
+    bottom: 0;
+  }
+  .hasChild .btn-arrow {
+    bottom: 44px;
+  }
 }
 @media (max-width: 615px) {
   .container {
@@ -3080,6 +3102,7 @@ section.page-register form .links a {
   }
   .container .row .col-xs-6 .captcha-field img {
     width: 30%;
+    vertical-align: unset;
   }
   section#signup form {
     height: 188px;
@@ -3629,7 +3652,7 @@ section.page-register form .links a {
     width: 250px;
   }
   section.page-blocks .block-button {
-    bottom: 170px;
+    bottom: 90px;
   }
   #videos .tv {
     height: calc(100vh - 300px) !important;
@@ -3643,6 +3666,34 @@ section.page-register form .links a {
   article.page-child .full-image .footer {
     bottom: 120px;
   }
+  .form-group {
+    margin-bottom: 8px;
+  }
+  .footer {
+    padding: 10px 0;
+  }
+  .footer .line {
+    border: none;
+    padding: 0;
+  }
+  .footer .line .box {
+    border: 1px solid #222;
+    border-radius: 3px;
+    background-color: #222;
+    margin: 5px;
+  }
+  .footer .line .box address {
+    margin-bottom: 5px;
+  }
+  .footer .line footer {
+    margin: 0;
+    border: 1px solid #222;
+    border-radius: 3px;
+    background-color: #222;
+  }
+  .captcha-field .hayatbtn {
+    vertical-align: top;
+  }
 }
 @media (max-width: 375px) {
   .table table {
@@ -3653,6 +3704,12 @@ section.page-register form .links a {
         width: 170px;
         font-size: 1.1rem;
     }*/
+  section.page-blocks .block-button {
+    height: 70px;
+  }
+  section.page .title {
+    font-size: 1.2rem;
+  }
 }
 @media (max-width: 320px) {
   .page-login .alert {
@@ -3672,6 +3729,15 @@ section.page-register form .links a {
   section.page-blocks .main-block .map {
     width: 200px;
     left: 20px;
+  }
+  section.page-blocks .block-button {
+    height: 60px;
+  }
+  .form-group {
+    padding-left: 35px;
+  }
+  .captcha-field input {
+    width: 30%;
   }
 }
 @media (max-width: 315px) {

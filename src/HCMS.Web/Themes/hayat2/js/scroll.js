@@ -239,6 +239,9 @@ var changePage = function (nextPage, mode) {
 
     var currentPage = $('section.page.page-active');
 
+    if (currentPage.hasClass('stop'))
+        return;
+
     if (!nextPage)
         nextPage = currentPage.next('section.page');
     else

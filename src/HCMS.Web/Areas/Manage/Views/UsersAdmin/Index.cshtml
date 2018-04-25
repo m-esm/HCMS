@@ -15,6 +15,10 @@
     @Html.ActionLink(Phrases.Get("Create"), "Create", null, new { @class = "btn btn-success" })
 </p>
 
+<p>
+    @Html.ActionLink("ExportToExcell", "ExportToExcell", null, new { @class = "btn btn-success" })
+</p>
+
 @if (Model == null || !Model.Any())
 {
     <h2>@Phrases.Get("Not Found")</h2>

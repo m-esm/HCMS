@@ -3090,7 +3090,7 @@ section.page-login, section.page-register {
     }
 
     section#signup form {
-        height: 199px;
+        height: 400px;
         padding: 0;
 
         &#colleagueForm {
@@ -3117,10 +3117,10 @@ section.page-login, section.page-register {
 
     article.page-child {
         .full-image {
-            height:80%;
-            text-align:center;
-            vertical-align:middle;
-            display:grid;
+            height: 80%;
+            text-align: center;
+            vertical-align: middle;
+            display: grid;
 
             .footer {
 
@@ -3273,6 +3273,16 @@ section.page-login, section.page-register {
         width: 82px;
         left: 0;
     }
+
+    .hasChild {
+        .footer {
+            bottom: 40px;
+        }
+
+        .btn-arrow {
+            bottom: 84px;
+        }
+    }
 }
 
 
@@ -3301,6 +3311,23 @@ section.page-login, section.page-register {
                 width: 350px;
             }
         }
+    }
+
+    nav {
+
+        ul {
+            padding-right: 40px;
+
+            li {
+                &:before, &:last-child:after {
+                    margin: 0 8px !important;
+                }
+            }
+        }
+    }
+
+    .logo-hayat-no {
+        bottom: 80px;
     }
 }
 
@@ -3351,7 +3378,7 @@ section.page-login, section.page-register {
     }
 
     section.page-blocks .block-button {
-        bottom: 60px;
+        bottom: 130px;
     }
 
     #videos .tv {
@@ -3422,7 +3449,7 @@ section.page-login, section.page-register {
                 height: 350px;
             }
 
-             .fulltext {
+            .fulltext {
                 height: 450px;
             }
         }
@@ -3441,7 +3468,7 @@ section.page-login, section.page-register {
     }
 
     .logo-hayat-no {
-        bottom: 80px;
+        bottom: 180px;
     }
 
     .raychat_main_button {
@@ -3912,6 +3939,16 @@ section.page-login, section.page-register {
             border-radius: 3px;
         }
     }
+
+    .hasChild {
+        .footer {
+            bottom: 0;
+        }
+
+        .btn-arrow {
+            bottom: 44px;
+        }
+    }
 }
 
 @media (max-width:615px) {
@@ -3931,6 +3968,7 @@ section.page-login, section.page-register {
 
                     img {
                         width: 30%;
+                        vertical-align: unset;
                     }
                 }
             }
@@ -4400,7 +4438,7 @@ section.page-login, section.page-register {
                 height: 300px;
             }
 
-             .fulltext {
+            .fulltext {
                 height: 450px;
             }
         }
@@ -4475,8 +4513,8 @@ section.page-login, section.page-register {
         }
     }
 
-     section.page-homeforms {
-        padding-bottom:200px;
+    section.page-homeforms {
+        padding-bottom: 200px;
     }
 }
 
@@ -4673,7 +4711,7 @@ section.page-login, section.page-register {
         }
 
         .block-button {
-            bottom: 170px;
+            bottom: 90px;
         }
     }
 
@@ -4699,6 +4737,43 @@ section.page-login, section.page-register {
             }
         }
     }
+
+    .form-group {
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        padding: 10px 0;
+
+        .line {
+            border: none;
+            padding: 0;
+
+            .box {
+                border: 1px solid #222;
+                border-radius: 3px;
+                background-color: #222;
+                margin: 5px;
+
+                address {
+                    margin-bottom: 5px;
+                }
+            }
+
+            footer {
+                margin: 0;
+                border: 1px solid #222;
+                border-radius: 3px;
+                background-color: #222;
+            }
+        }
+    }
+
+    .captcha-field {
+        .hayatbtn {
+            vertical-align: top;
+        }
+    }
 }
 
 @media (max-width:375px) {
@@ -4711,6 +4786,14 @@ section.page-login, section.page-register {
         width: 170px;
         font-size: 1.1rem;
     }*/
+
+    section.page-blocks .block-button {
+        height: 70px;
+    }
+
+    section.page .title {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width:320px) {
@@ -4743,6 +4826,20 @@ section.page-login, section.page-register {
                 width: 200px;
                 left: 20px;
             }
+        }
+    }
+
+    section.page-blocks .block-button {
+        height: 60px;
+    }
+
+    .form-group {
+        padding-left: 35px;
+    }
+
+    .captcha-field {
+        input {
+            width: 30%;
         }
     }
 }

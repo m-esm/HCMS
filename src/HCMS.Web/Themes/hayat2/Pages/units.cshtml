@@ -5,6 +5,10 @@
     var blocks = DDB.GetTable("cms", "blocks").DRows.OrderBy(p => p.GetValue("name").Value);
     //var units = DDB.GetTable("cms", "units").DRows.OrderBy(p => p.GetValue("block.name").Value).ThenBy(p => p.GetValue("block.level").Value);
     //var unitpictures = DDB.GetTable("cms", "unitpictures").DRows;
+    if (!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("/auth#login");
+    }
 }
 
 
@@ -20,12 +24,12 @@
                 var unitName = unit.GetValue("name").Value.Replace("block", "b").ToUpper();
                 if (unitpictures.Any())
                 {
-            <section class="page hasChild" id="@unit.RowID">
+            <section class="page hasChild stop" id="@unit.RowID">
 
                 @foreach (var pic in unitpictures)
     {
                     <article id="@pic.RowID" data-title="@pic.GetValue("title")" class="page-horizontal page-child">
-                        <div class="full-image">
+                        <div class="full-image text-center">
                             @if (pic.GetValue("pov").Value != "")
                             {
 
@@ -35,7 +39,7 @@
                             </div>
                             }
 
-                            <u> @pic.GetValue("title")</u>
+                            @*<u> @pic.GetValue("title")</u>*@
                             <img class="img img-responsive" src="@pic.GetValue("image").Value" alt="@pic.GetValue("title")" />
 
                             <div class="btn-arrow page-right"><i class="fa fa-chevron-right"></i></div>
