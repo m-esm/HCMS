@@ -3681,6 +3681,7 @@ section.page-register form .links a {
     border-radius: 3px;
     background-color: #222;
     margin: 5px;
+    height: 126px;
   }
   .footer .line .box address {
     margin-bottom: 5px;
@@ -3693,6 +3694,7 @@ section.page-register form .links a {
   }
   .captcha-field .hayatbtn {
     vertical-align: top;
+    margin: 0;
   }
 }
 @media (max-width: 375px) {
@@ -3709,6 +3711,9 @@ section.page-register form .links a {
   }
   section.page .title {
     font-size: 1.2rem;
+  }
+  .footer .line .box {
+    height: 106px;
   }
 }
 @media (max-width: 320px) {
