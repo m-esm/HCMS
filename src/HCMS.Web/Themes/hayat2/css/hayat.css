@@ -3417,6 +3417,9 @@ section.page-register form .links a {
     color: #000;
     text-decoration: none;
   }
+  section.page-blocks .block-button {
+    bottom: 120px;
+  }
   .footer .line .box ul li {
     margin: 0;
     width: 100%;
@@ -3425,7 +3428,7 @@ section.page-register form .links a {
     height: 126px;
   }
   .logo-hayat-no {
-    bottom: 100px;
+    bottom: calc(50%-110px);
   }
   .logo-hayat-no:before {
     width: 100px;
@@ -3526,9 +3529,6 @@ section.page-register form .links a {
   }
   #contact .panel-success {
     margin-bottom: 100px;
-  }
-  .logo-hayat-no {
-    bottom: calc(50%-110px);
   }
   .show-mobile.top-nav {
     height: 50px;

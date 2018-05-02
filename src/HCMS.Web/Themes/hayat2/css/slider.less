@@ -16,19 +16,21 @@
         height: 100%;
         content: ' ';
         width: 100%;
-        background-position: center center;
+        /*background-position: center center;*/
         -webkit-filter: brightness(0.9);
         overflow: hidden;
         transition: filter ease 0.5s;
 
+
         .slice {
             background-size: 100%;
             transform: translateX(-100%);
-
+            background-size: cover;
+            background-repeat: no-repeat; 
 
             &.one {
-                background-size: cover;
-                background-position: center center;
+                /*background-size: cover;
+                background-position: center center;*/
                 height: 100vh;
             }
 

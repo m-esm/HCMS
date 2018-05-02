@@ -1,161 +1,118 @@
-﻿
+﻿@using System.Web.Script.Serialization;
 @using HCMS.Dynamics.Data
 @{
     var gallery = DDB.GetTable("cms", "gallery").DRows;
     var block = DDB.GetTable("cms", "blocks").DRows;
-
-    ViewBag.title = "گالری";
     int i = 0;
 
-}
-
-@section styles{
-
-}
-<section id="gallery" class="page gallery">
-    <div class="container">
-        <div class="all-box active" data-aos="fade-up">
-            @*@foreach (var item in block)
+    List<object> _data = new List<object>();
+    foreach (var item in block)
+        {
+            foreach (var image in gallery.Where(a => a.GetValue("blockId").ToString() == item.RowID.ToString()))
             {
-                var img = gallery.FirstOrDefault(a => a.GetValue("blockId").Value == item.RowID.ToString());
+                i++;
+                var _src = image.GetValue("image").Value;
+                var _type = "jpg";
+                if (_src.Contains(".jpg"))
+                {
+                    _src = image.GetValue("image").Value.Split(new[] { ".jpg" }, StringSplitOptions.None)[0];
+                }
+                else
+                {
+                    _src = image.GetValue("image").Value.Split(new[] { ".png" }, StringSplitOptions.None)[0];
+                    _type = "png";
+                }
+                _data.Add(new
+                {
+                    id = i,
+                    link = '#',
+                    src = _src,
+                    type = _type
+                });
+            }
 
-                    <div class="box" data-target="@item.GetValue("name")">
-                        @if (img == null)
-                        {
-                            <img src="~/Themes/hayat2/img/No_Image_Available.jpg" alt="@item.GetValue("name")" />
-                        }
-                        else
-                        {
-                            <img src="@img.GetValue("image")" alt="@item.GetValue("name")" />
-                        }
-                        <div class="title">Title</div>
-                    </div>
-            }*@
+            JavaScriptSerializer ser = new JavaScriptSerializer();
 
-            <button class="hayatbtn" data-target="Blocka">بلوک A</button>
-            <button class="hayatbtn" data-target="Blockb">بلوک B</button>
-            <button class="hayatbtn" data-target="Blockc">بلوک C</button>
-            <button class="hayatbtn" data-target="Blockm" >مشاعات</button>
+            string json = ser.Serialize(_data);
 
-        </div>
+            //write string to file
+            System.IO.File.WriteAllText(Request.MapPath("~/themes/hayat2/gallery-" + item.GetValue("name").Value + ".json"), json);
+        }
 
-        <div class="slider-section" data-target="Blocka" data-aos="fade-down">
-            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blocka").RowID.ToString()))
-        </div>
-        <div class="slider-section" data-target="Blockb" data-aos="fade-down">
-            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blockb").RowID.ToString()))
-        </div>
+        ViewBag.title = "گالری";
 
-        <div class="slider-section" data-target="Blockc" data-aos="fade-down">
-            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blockc").RowID.ToString()))
-        </div>
+        Layout = null;
 
-        <div class="slider-section" data-target="Blockm" data-aos="fade-down">
-            @Html.Partial("gallery/slider", gallery.Where(a => a.GetValue("blockId").ToString() == block.First(b => b.GetValue("name").Value == "Blockm").RowID.ToString()))
-        </div>
+    }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+
+    <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/style.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/normalize.css" rel="stylesheet" />
+
+    <script src="~/Packages/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+
+    
+
+</head>
+<body>
+    <div class="spinner">
+        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/loader.gif" alt="loader" />
     </div>
-</section>
+    <div class="container">
+        <div class="gallery">
 
-@section scripts{
+            <a href="/" class="homelogo" title="بازگشت به صفحه اصلی" rel="external">
+                <img src="~/Themes/hayat2/img/logo/Hayate no Logo white.png">
+            </a>
 
-    <script>
-        //slider
-        // Stop carousel
-        $(document).ready(function () {
-            $('#gallery-photo-carousel').carousel({
-                pause: "true",
-                interval: 6000
-            })
+            <div class="top-nav">
+                <div data-item="Blocka" class="item">
+                    <label>
+                        بلوک A
+                    </label>
+                </div>
+                <div data-item="Blockb" class="item">
+                    <label>
+                        بلوک B
+                    </label>
+                </div>
+                <div data-item="Blockc" class="item">
+                    <label>
+                        بلوک C
+                    </label>
+                </div>
+                <div data-item="Blockm" class="item">
+                    <label>
+                        مشاعات
+                    </label>
+                </div>
+            </div>
 
-            $('#gallery-photo-carousel').hover(function () {
-                $(this).carousel('pause')
-            }, function () {
-                $(this).carousel('cycle')
-            })
+            <div class="gallery__view">
+                <div class="gallery__thumbs-wrapper">
+                    <button class="scroll__btn left__btn">
+                        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/left-button.png" width="25px" height="45px" alt="left" />
+                    </button>
+                    <button class="scroll__btn right__btn">
+                        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/right-button.png" width="25px" height="45px" alt="right" />
+                    </button>
 
-            //$(".zoom").elevateZoom({
-            //    zoomWindowFadeIn: 500,
-            //    zoomWindowFadeOut: 500,
-            //    lensFadeIn: 500,
-            //    lensFadeOut: 500,
-            //    scrollZoom: true
-            //});
+                    <div class="gallery__thumbs">
+                        <!-- Rendering thumbs with jQuery-->
+                    </div>
+                </div>
+            </div>
 
-            //$(".xzoom").xzoom({
-            //    // top, left, right, bottom, inside, lens, fullscreen, #ID
-            //    position: 'right',
-            //    // inside, fullscreen
-            //    mposition: 'inside',
-            //    // In the HTML structure, this option gives an ability to output xzoom element, to the end of the document body or relative to the parent element of main source image.
-            //    rootOutput: true,
-            //    // x/y offset
-            //    Xoffset: 0,
-            //    Yoffset: 0,
-            //    // Fade in effect, when zoom is opening.
-            //    fadeIn: true,
-            //    // Fade transition effect, when switching images by clicking on thumbnails.
-            //    fadeTrans: true,
-            //    // Fade out effect, when zoom is closing.
-            //    fadeOut: false,
-            //    // Enable smooth effects
-            //    smooth: true,
-            //    // Smooth move effect of the big zoomed image in the zoom output window.
-            //    // The higher value will make movement smoother.
-            //    smoothZoomMove: 3,
-            //    // Smooth move effect of lens.
-            //    smoothLensMove: 1,
-            //    // Smooth move effect of scale.
-            //    smoothScale: 6,
-            //    // From -1 to 1, that means -100% till 100% scale
-            //    defaultScale: 0,
-            //    // Scale on mouse scroll.
-            //    scroll: true,
-            //    // Tint color. Color must be provided in format like "#color".
-            //    tint: false,
-            //    // Tint opacity from 0 to 1.
-            //    tintOpacity: 0.5,
-            //    // Lens color. Color must be provided in format like "#color".
-            //    lens: false,
-            //    // Lens opacity from 0 to 1.
-            //    lensOpacity: 0.5,
-            //    // 'box', 'circle'
-            //    lensShape: 'box',
-            //    // Custom width of zoom window in pixels.
-            //    zoomWidth: 'auto',
-            //    // Custom height of zoom window in pixels.
-            //    zoomHeight: 'auto',
-            //    // Class name for source "div" container.
-            //    sourceClass: 'xzoom-source',
-            //    // Class name for loading "div" container that appear before zoom opens, when image is still loading.
-            //    loadingClass: 'xzoom-loading',
-            //    // Class name for lens "div".
-            //    lensClass: 'xzoom-lens',
-            //    // Class name for zoom window(div).
-            //    zoomClass: 'xzoom-preview',
-            //    // Class name that will be added to active thumbnail image.
-            //    activeClass: 'xactive',
-            //    // With this option you can make a selection action on thumbnail by hover mouse point on it.
-            //    hover: false,
-            //    // Adaptive functionality.
-            //    adaptive: true,
-            //    // When selected position "inside" and this option is set to true, the lens direction of moving will be reversed.
-            //    lensReverse: false,
-            //    // Same as lensReverse, but only available when adaptive is true.
-            //    adaptiveReverse: false,
-            //    // Lens will collide and not go out of main image borders. This option is always false for position "lens".
-            //    lensCollision: true,
-            //    //  Output title/caption of the image, in the zoom output window.
-            //    title: false,
-            //    // Class name for caption "div" container.
-            //    titleClass: 'xzoom-caption',
+        </div>
+    </div>
 
-            //    // Zoom image output as background
-            //    bg: false
-            //});
-
-
-        });
-
-    </script>
-}
+    <script src="~/Themes/hayat2/module/Jquery-FullGallery/js/app.js"></script>
+</body>
+</html>

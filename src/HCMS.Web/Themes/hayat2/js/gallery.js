@@ -85,4 +85,13 @@ $(document).on('mouseenter mouseleave', ' #gallery-photo-carousel .navbar', func
         $('#gallery-photo-carousel .navbar').addClass('open');
     else
         $('#gallery-photo-carousel .navbar').removeClass('open');
-})
+});
+
+$(document).on('click tap', '.carousel-indicators li', function () {
+    $('.carousel-indicators li').removeClass('active');
+    $(this).addClass('active');
+
+    $('.carousel-inner .item').removeClass('active');
+    $('.carousel-inner .item[data-slide-no="' + $(this).attr('data-slide-to') + '"]').addClass('active');
+
+});

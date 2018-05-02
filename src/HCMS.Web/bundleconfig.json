@@ -173,5 +173,11 @@
     "inputFiles": [
       "Themes/hayat-refactor/js/videoslider.js"
     ]
+  },
+  {
+    "outputFileName": "Packages/jquery-3.2.1/jquery-3.2.1.min.js",
+    "inputFiles": [
+      "Packages/jquery-3.2.1/jquery-3.2.1.js"
+    ]
   }
 ]

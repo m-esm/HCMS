@@ -323,8 +323,27 @@ if ($(window).width() < 760) {
 }
 
 
+//$(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
+//    if ($(window).width() < 760) {
+//        $('.' + $(this).attr('data-block')).parent('.child-block').siblings().find('.in').removeClass('in');
+//        var elm = $(this).attr('data-block');
+//        $('.' + elm).toggleClass('in');
+//        $('.' + elm + '-btn').toggleClass('in');
+
+//        var find = main_block_hover.find(a=>a.block == elm.split('-')[1]);
+//        $('#img-back-main').attr('src', find.url);
+       
+//    } else {
+//        //change a table color
+//        var blockId = $(this).attr('data-block-id');
+//        var parent = $(this).parents('#blocks').find('.table tr[data-block-id=' + blockId + ']').addClass('green');
+
+//    }
+//})
+
+
 $(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
-    if ($(window).width() < 760) {
+    if (Modernizr.touch) {
         $('.' + $(this).attr('data-block')).parent('.child-block').siblings().find('.in').removeClass('in');
         var elm = $(this).attr('data-block');
         $('.' + elm).toggleClass('in');
@@ -332,7 +351,7 @@ $(document).on('tap click', '#recortes-main area', '.block-button li a', functio
 
         var find = main_block_hover.find(a=>a.block == elm.split('-')[1]);
         $('#img-back-main').attr('src', find.url);
-       
+
     } else {
         //change a table color
         var blockId = $(this).attr('data-block-id');
@@ -340,6 +359,8 @@ $(document).on('tap click', '#recortes-main area', '.block-button li a', functio
 
     }
 })
+
+
 
 $(document).on('mouseenter mouseleave', '#recortes-main area', function (e) {
     var className = "";

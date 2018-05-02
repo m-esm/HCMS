@@ -470,6 +470,9 @@
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.js" />
     <Content Include="Packages\jquery-1.6.4\jquery-1.6.4.min.js" />
     <Content Include="Packages\jquery-3.2.1\jquery-3.2.1.js" />
+    <Content Include="Packages\jquery-3.2.1\jquery-3.2.1.min.js">
+      <DependentUpon>jquery-3.2.1.js</DependentUpon>
+    </Content>
     <Content Include="Packages\jquery-zoom\jquery.zoom.min.js" />
     <Content Include="Packages\jquery.evelatezoom\jquery.elevatezoom.js" />
     <Content Include="Packages\jquery.event.swipe\jquery.event.move.min.js">
@@ -2583,6 +2586,9 @@
     <Content Include="Themes\hayat2\lib\underscore\underscore.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
     <Content Include="Themes\hayat2\module\controllers.js" />
+    <Content Include="Themes\hayat2\module\Jquery-FullGallery\img\left-button.png" />
+    <Content Include="Themes\hayat2\module\Jquery-FullGallery\img\loader.gif" />
+    <Content Include="Themes\hayat2\module\Jquery-FullGallery\img\right-button.png" />
     <Content Include="Themes\hayat2\Pages\home\blocks - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\block-m.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\catalog.cshtml" />
@@ -2591,6 +2597,10 @@
     <Content Include="Themes\hayat2\Pages\auth - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\blocks\dataM.cshtml" />
     <Content Include="Themes\hayat2\Pages\gallery\slider.cshtml" />
+    <Content Include="Themes\hayat2\module\Jquery-FullGallery\data.json" />
+    <Content Include="Themes\hayat2\module\Jquery-FullGallery\README.md" />
+    <Content Include="Themes\hayat2\Pages\gallery\slider - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\gallery - Copy.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />
@@ -2754,6 +2764,8 @@
     <Folder Include="Scripts\vjs-lang\" />
     <Folder Include="Themes\hayat2\etc\" />
     <Folder Include="Themes\hayat2\img\map\block-map\b\" />
+    <Folder Include="Themes\hayat2\module\Jquery-FullGallery\css\" />
+    <Folder Include="Themes\hayat2\module\Jquery-FullGallery\js\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HCMS.Business\HCMS.Business.csproj">

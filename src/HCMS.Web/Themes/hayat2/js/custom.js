@@ -285,8 +285,8 @@ $(document).ready(function () {
                         swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
 
                         //login user
-                        window.location.href = '/#home';
-                        location.reload();
+                        //window.location.href = '/#home';
+                        //location.reload();
 
                     }
                 }).fail(function (err) {
