@@ -1,4 +1,4 @@
-﻿#slider {
+﻿.slider {
   height: 100vh;
   width: 100%;
   content: ' ';
@@ -7,7 +7,8 @@
   left: 0;
   z-index: 0;
 }
-#slider .slide {
+.slider .slide,
+.slider .mobile {
   position: absolute;
   top: 0;
   left: 0;
@@ -19,40 +20,70 @@
   overflow: hidden;
   transition: filter ease 0.5s;
 }
-#slider .slide .slice {
+.slider .slide .slice,
+.slider .mobile .slice,
+.slider .slide .slice-mobile,
+.slider .mobile .slice-mobile {
   background-size: 100%;
   transform: translateX(-100%);
   background-size: cover;
   background-repeat: no-repeat;
 }
-#slider .slide .slice.one {
+.slider .slide .slice.one,
+.slider .mobile .slice.one,
+.slider .slide .slice-mobile.one,
+.slider .mobile .slice-mobile.one {
   /*background-size: cover;
                 background-position: center center;*/
   height: 100vh;
 }
-#slider .slide .slice.in,
-#slider .slide .slice.out {
+.slider .slide .slice.in,
+.slider .mobile .slice.in,
+.slider .slide .slice-mobile.in,
+.slider .mobile .slice-mobile.in,
+.slider .slide .slice.out,
+.slider .mobile .slice.out,
+.slider .slide .slice-mobile.out,
+.slider .mobile .slice-mobile.out {
   transition: all ease 5s;
 }
-#slider .slide .slice.in {
+.slider .slide .slice.in,
+.slider .mobile .slice.in,
+.slider .slide .slice-mobile.in,
+.slider .mobile .slice-mobile.in {
   transform: translateX(0);
 }
-#slider .slide .slice.out {
+.slider .slide .slice.out,
+.slider .mobile .slice.out,
+.slider .slide .slice-mobile.out,
+.slider .mobile .slice-mobile.out {
   transform: translateX(100%);
   transition: all ease 10s;
 }
-#slider .slide img {
+.slider .slide img,
+.slider .mobile img {
   width: 100%;
   display: none;
 }
-#slider .slide.deactive {
+.slider .slide.deactive,
+.slider .mobile.deactive {
   z-index: 98;
 }
-#slider .slide.active {
+.slider .slide.active,
+.slider .mobile.active {
   z-index: 99;
 }
-#slider .slide:hover {
+.slider .slide:hover,
+.slider .mobile:hover {
   -webkit-filter: none;
+}
+#slider-mobile .slide {
+  height: 100%;
+  padding: 60px 0;
+}
+#slider-mobile .slide .slice,
+#slider-mobile .slide img {
+  height: 100%;
 }
 #videos {
   text-align: center;
@@ -163,4 +194,9 @@
         margin-top: 40px !important;
         height: calc(~"100vh - 210px");
     }*/
+}
+@media (max-width: 390px) {
+  #slider-mobile .slide {
+    padding: 50px 0;
+  }
 }

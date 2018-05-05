@@ -2,6 +2,7 @@
     'use strict';
     $('.item').click(function () {
         var item = $(this).attr('data-item');
+        console.log(item);
         getData(item).then(function (data) {
             _initGallery(data, true)
         });

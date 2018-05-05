@@ -2243,6 +2243,10 @@ body {
 .show-mobile {
     display: none;
 }
+
+.hidden-mobile {
+    display: block;
+}
 //register form
 .section-title {
     font-size: 22px;
@@ -2946,6 +2950,11 @@ section.page-login, section.page-register {
         right: 10px;
     }
 
+      .raychat_main_button {
+          bottom:45px !important;
+        margin: 9px !important;
+    }
+
     section.page-custom {
         overflow: hidden;
 
@@ -2981,6 +2990,16 @@ section.page-login, section.page-register {
     .homelogo {
         width: 86px;
     }
+
+       header nav ul {
+        text-align: right;
+
+        li {
+            a {
+                font-size: 1.2rem;
+            }
+        }
+    }
 }
 
 
@@ -3006,9 +3025,7 @@ section.page-login, section.page-register {
 
 @media (max-width:768px) {
 
-    show-mobile {
-        display: block;
-    }
+  
 
     section.page-blocks {
         .main-block {
@@ -3359,6 +3376,13 @@ section.page-login, section.page-register {
 
 @media (max-width:650px) {
 
+      .show-mobile {
+        display: block;
+    }
+
+    .hidden-mobile{
+        display:none;
+    }
 
     section.page {
         .inner {
@@ -3810,18 +3834,7 @@ section.page-login, section.page-register {
                         }
                     }
 
-                    &:last-child:after {
-                        display: inline-block;
-                        vertical-align: middle;
-                        width: 8px;
-                        height: 8px;
-                        background: #86949f;
-                        content: ' ';
-                        margin: 0 20px;
-                        transform: rotate(45deg);
-                        transition: all ease .5s;
-                    }
-
+                 
                     &:after, &:before {
                         display: inline-block;
                         vertical-align: middle;
@@ -3833,6 +3846,19 @@ section.page-login, section.page-register {
                         transform: rotate(45deg);
                         transition: all ease .5s;
                     }
+
+                       &:last-child:after {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 8px;
+                        height: 8px;
+                        background: #86949f;
+                        content: ' ';
+                        margin: 0 20px !important;
+                        transform: rotate(45deg);
+                        transition: all ease .5s;
+                    }
+
 
                     .child-menu {
                         opacity: 1;
@@ -4378,13 +4404,7 @@ section.page-login, section.page-register {
         }
     }
 
-       section.page-blocks {
-       
-
-        .block-button {
-            bottom: 120px;
-        }
-    }
+      
 
 
     .footer .line .box ul li {
@@ -4491,7 +4511,11 @@ section.page-login, section.page-register {
         }
 
         .block-button {
-            bottom: 100px;
+            bottom: 135px;
+
+            li{
+                width:23.8%;
+            }
         }
     }
 
@@ -4721,6 +4745,10 @@ section.page-login, section.page-register {
 
         .block-button {
             bottom: 90px;
+
+            li{
+                width:23%;
+            }
         }
     }
 

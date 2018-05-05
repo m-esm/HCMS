@@ -51,9 +51,22 @@
     <title>Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <meta name="description" content="گالری حیات نو - عکس ها - تصاویر طبقات">
+    <meta name="Keywords" content="گالری، حیات نو، عکس ها، تصاویر">
 
+    <meta name="author" content="HappySpider">
+    <meta name="robots" content="nofollow">
+    @*<meta name="alexaVerifyID" content="zrJoKU2oucs-J6KcPl7fTZY_f-Q" />
+        <meta name="p:domain_verify" content="cc32b168bb374202b716b1056442e601" />*@
+    <meta property="title" content="گالری حیات نو - عکس ها - تصاویر طبقات">
+    <meta property="site_name" content="hayat-no">
+    <meta property="url" content="http://hayat-no.com/gallery">
+    <meta property="description" content="گالری حیات نو - عکس ها - تصاویر طبقات">
+    <meta property="type" content="gallery">
+    
+    <link href="~/Themes/hayat2/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
-    <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/style.css" rel="stylesheet" />
+    <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/style.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
     <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/normalize.css" rel="stylesheet" />
 
     <script src="~/Packages/jquery-3.2.1/jquery-3.2.1.min.js"></script>
@@ -68,9 +81,9 @@
     <div class="container">
         <div class="gallery">
 
-            <a href="/" class="homelogo" title="بازگشت به صفحه اصلی" rel="external">
+            @*<a href="/" class="homelogo" title="بازگشت به صفحه اصلی" rel="external">
                 <img src="~/Themes/hayat2/img/logo/Hayate no Logo white.png">
-            </a>
+            </a>*@
 
             <div class="top-nav">
                 <div data-item="Blocka" class="item">
@@ -93,6 +106,18 @@
                         مشاعات
                     </label>
                 </div>
+
+                <div class="item pull-left hidden-mobile">
+                    <label>
+                        <a href="/" title="بازگشت به صفحه اصلی" >
+                            بازگشت به صفحه اصلی
+                        </a>
+                    </label>
+                </div>
+
+                <a href="/" title="بازگشت به صفحه اصلی" class="item pull-left show-mobile">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a>
             </div>
 
             <div class="gallery__view">

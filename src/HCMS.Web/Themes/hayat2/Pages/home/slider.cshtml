@@ -1,6 +1,7 @@
 ﻿@using HCMS.Dynamics.Data
 @{
-  var sliders = DDB.GetTable("cms", "slider").DRows;
+    var sliders = DDB.GetTable("cms", "slider").DRows;
+    var mobileSlider = DDB.GetTable("cms", "slider-mobile").DRows;
     var sotitr = DDB.GetTable("cms", "sotitr").DRows.FirstOrDefault();
 
 }
@@ -9,11 +10,22 @@
    
 
 
-    <div id="slider">
+    <div id="slider" class="slider hidden-mobile">
 
         @foreach (var item in sliders)
         {
             <div class="slide">
+                <img src="@item.GetValue("image")" />
+            </div>
+        }
+
+    </div>
+
+    <div id="slider-mobile" class="slider show-mobile">
+
+        @foreach (var item in mobileSlider)
+        {
+            <div class="mobile">
                 <img src="@item.GetValue("image")" />
             </div>
         }

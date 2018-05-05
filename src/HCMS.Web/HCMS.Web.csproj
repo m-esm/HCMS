@@ -2585,7 +2585,6 @@
     <Content Include="Themes\hayat2\lib\resize-image-map\resize-image-map.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.js" />
     <Content Include="Themes\hayat2\lib\underscore\underscore.min.js" />
-    <Content Include="Themes\hayat2\module\controllers.js" />
     <Content Include="Themes\hayat2\module\Jquery-FullGallery\img\left-button.png" />
     <Content Include="Themes\hayat2\module\Jquery-FullGallery\img\loader.gif" />
     <Content Include="Themes\hayat2\module\Jquery-FullGallery\img\right-button.png" />

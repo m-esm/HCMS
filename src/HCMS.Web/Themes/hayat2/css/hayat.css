@@ -1771,6 +1771,9 @@ body .main .new-block.block .detail .up label {
 .show-mobile {
   display: none;
 }
+.hidden-mobile {
+  display: block;
+}
 .section-title {
   font-size: 22px;
 }
@@ -2324,6 +2327,10 @@ section.page-register form .links a {
   div.back-to-top {
     right: 10px;
   }
+  .raychat_main_button {
+    bottom: 45px !important;
+    margin: 9px !important;
+  }
   section.page-custom {
     overflow: hidden;
   }
@@ -2345,6 +2352,12 @@ section.page-register form .links a {
   .homelogo {
     width: 86px;
   }
+  header nav ul {
+    text-align: right;
+  }
+  header nav ul li a {
+    font-size: 1.2rem;
+  }
 }
 @media (max-width: 810px) {
   header nav ul {
@@ -2361,9 +2374,6 @@ section.page-register form .links a {
   display: none;
 }
 @media (max-width: 768px) {
-  show-mobile {
-    display: block;
-  }
   section.page-blocks .main-block .map {
     display: block;
     width: 400px;
@@ -2610,6 +2620,12 @@ section.page-register form .links a {
   }
 }
 @media (max-width: 650px) {
+  .show-mobile {
+    display: block;
+  }
+  .hidden-mobile {
+    display: none;
+  }
   section.page .inner {
     padding: 60px 5px !important;
   }
@@ -2986,7 +3002,8 @@ section.page-register form .links a {
     bottom: 0;
     left: 0;
   }
-  header.show-mobile nav ul li:last-child:after {
+  header.show-mobile nav ul li:after,
+  header.show-mobile nav ul li:before {
     display: inline-block;
     vertical-align: middle;
     width: 8px;
@@ -2997,15 +3014,14 @@ section.page-register form .links a {
     transform: rotate(45deg);
     transition: all ease .5s;
   }
-  header.show-mobile nav ul li:after,
-  header.show-mobile nav ul li:before {
+  header.show-mobile nav ul li:last-child:after {
     display: inline-block;
     vertical-align: middle;
     width: 8px;
     height: 8px;
     background: #86949f;
     content: ' ';
-    margin: 0 20px;
+    margin: 0 20px !important;
     transform: rotate(45deg);
     transition: all ease .5s;
   }
@@ -3417,9 +3433,6 @@ section.page-register form .links a {
     color: #000;
     text-decoration: none;
   }
-  section.page-blocks .block-button {
-    bottom: 120px;
-  }
   .footer .line .box ul li {
     margin: 0;
     width: 100%;
@@ -3495,7 +3508,10 @@ section.page-register form .links a {
     font-size: 10px;
   }
   section.page-blocks .block-button {
-    bottom: 100px;
+    bottom: 135px;
+  }
+  section.page-blocks .block-button li {
+    width: 23.8%;
   }
   #videos .tv {
     height: calc(100vh - 260px) !important;
@@ -3653,6 +3669,9 @@ section.page-register form .links a {
   }
   section.page-blocks .block-button {
     bottom: 90px;
+  }
+  section.page-blocks .block-button li {
+    width: 23%;
   }
   #videos .tv {
     height: calc(100vh - 300px) !important;
