@@ -389,6 +389,20 @@ $(document).ready(function () {
 
     $('#top-nav-search').click(function () {
         $('.search-bar.show-mobile').toggleClass('open');
+    });
+
+    //search
+    $('.search-bar button').click(function () {
+        var elm = $(this).parents('.search-bar');
+        console.log(elm);
+        var floor = elm.find('input[name="floor"]').val();
+        var roomCount = elm.find('select[name="roomCount"]').val();
+        var area = elm.find('select[name="area"]').val();
+        console.log(floor, roomCount, area);
+        var data = JSON.stringify({ floor: floor, roomCount: roomCount, area: area })
+        localStorage.setItem('search', data);
+
+        window.location = "/search";
     })
 
     $('.bottom-nav ul li').click(function () {

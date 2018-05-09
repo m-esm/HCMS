@@ -1,0 +1,79 @@
+﻿@using HCMS.Dynamics.Data;
+@model HCMS.Hayat.Dto.SearchDto
+@{
+    ViewBag.title = "جست و جو";
+
+    var models = DDB.GetTable("cms", "units").DRows;
+
+
+}
+
+<section id="search" class="page cscrol">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+
+
+                <h3 data-aos="fade-down" class="text-center">
+                    نتایج جستجو
+                </h3>
+                <div class="table cscroll">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>نام واحد</th>
+                                <th>طبقه</th>
+                                <th>متراژ</th>
+                                <th>جهت</th>
+                                <th>اتاق</th>
+                                <th>امتیاز</th>
+                                <th>مشاهده</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="">
+                            @foreach (var item in models)
+            {
+                var unitName = item.GetValue("name").Value.Replace("block", "b").ToUpper();
+
+                                <tr id="blocks_@item.RowID" data-block-id="@item.GetValue("blockId")" data-planNum="@item.GetValue("planNumber")">
+                                    <td>@unitName</td>
+                                    <td> @item.GetValue("floor")</td>
+                                    <td> @item.GetValue("area")</td>
+                                    <td></td>
+                                    <td> @item.GetValue("rooms")</td>
+                                    <td class="score"> - </td>
+                                    <td>
+                                        <a class="hayatbtn hayatbtn-sm" href="/units/#@item.RowID">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+
+                    </table>
+                </div>
+             
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+@section scripts{
+    
+    <script>
+
+        console.log(localStorage.getItem('search'));
+
+    </script>
+    }

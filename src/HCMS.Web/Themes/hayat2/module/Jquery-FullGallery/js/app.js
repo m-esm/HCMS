@@ -103,6 +103,8 @@
                   images[i] = new Image();
                   images[i].src = imageSrc[i];
               }
+              console.log(thumbs[0]);
+              if (thumbs[0] !== undefined)
               this.$sliderWiew.css('background-image', 'url(' + thumbs[0].src + '.' + thumbs[0].type + ')');
 
               this.$thumbsImg.empty();

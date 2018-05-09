@@ -307,6 +307,12 @@ var main_block_hover = [
     { block: 'c', url: '/Themes/hayat2/img/hover/Blocks Selection/Block C-Hover.png' },
     { block: 'm', url: '/Themes/hayat2/img/hover/Blocks Selection/Block M-Hover.png' },
 ];
+if (Modernizr.touch) {
+    //show main mobile
+    $('#capaRecorte-main').attr('src', '');
+    $('#recortes-main area').attr('href', '#blocks');
+    $('#blocks map').addClass('show-mobile');
+}
 if ($(window).width() < 760) {
     //show main mobile
     $('#capaRecorte-main').attr('src', '');
@@ -801,6 +807,20 @@ $(document).ready(function () {
 
     $('#top-nav-search').click(function () {
         $('.search-bar.show-mobile').toggleClass('open');
+    });
+
+    //search
+    $('.search-bar button').click(function () {
+        var elm = $(this).parents('.search-bar');
+        console.log(elm);
+        var floor = elm.find('input[name="floor"]').val();
+        var roomCount = elm.find('select[name="roomCount"]').val();
+        var area = elm.find('select[name="area"]').val();
+        console.log(floor, roomCount, area);
+        var data = JSON.stringify({ floor: floor, roomCount: roomCount, area: area })
+        localStorage.setItem('search', data);
+
+        window.location = "/search";
     })
 
     $('.bottom-nav ul li').click(function () {

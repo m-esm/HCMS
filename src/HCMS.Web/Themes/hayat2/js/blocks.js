@@ -307,6 +307,12 @@ var main_block_hover = [
     { block: 'c', url: '/Themes/hayat2/img/hover/Blocks Selection/Block C-Hover.png' },
     { block: 'm', url: '/Themes/hayat2/img/hover/Blocks Selection/Block M-Hover.png' },
 ];
+if (Modernizr.touch) {
+    //show main mobile
+    $('#capaRecorte-main').attr('src', '');
+    $('#recortes-main area').attr('href', '#blocks');
+    $('#blocks map').addClass('show-mobile');
+}
 if ($(window).width() < 760) {
     //show main mobile
     $('#capaRecorte-main').attr('src', '');

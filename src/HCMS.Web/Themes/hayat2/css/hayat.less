@@ -557,23 +557,31 @@ header {
 
     .search-bar {
         position: absolute;
-        left: -690px;
+        left: -766px;
         top: 141px;
-        width: 724px;
+        width: 800px;
         display: inline-block;
-        transition: all 1s;
+        transition: all .3s;
 
         &.open {
-            left: -41px;
+            left: -25px;
         }
 
         input, select {
             float: right;
-            width: 30%;
+            width: 26%;
             border-radius: 0;
-            background-color: rgba(2,2,2, 0.5);
-            color: #fff;
+            /*background-color: rgba(2,2,2, 0.9);*/
+            /*color: #fff;*/
         }
+
+        button {
+            float: right;
+            width: 15%;
+            border-radius: unset;
+            line-height: 20px;
+        }
+
 
         i {
             background-color: @baseColor1;
@@ -1322,6 +1330,10 @@ section#signup {
 section.page-blocks {
     padding-top: 100px;
     min-height: 80%;
+
+    .block-button {
+        display: none;
+    }
 
     .row {
         .col-md-6 {
@@ -2777,6 +2789,8 @@ section.page-login, section.page-register {
 
 
 
+
+
 @media (max-width:2560px) {
     header .links ul li {
         i {
@@ -2905,6 +2919,7 @@ section.page-login, section.page-register {
     .table {
         width: 100%;
         padding: 0 35px;
+        display: none;
     }
 
     section#signup {
@@ -2950,8 +2965,8 @@ section.page-login, section.page-register {
         right: 10px;
     }
 
-      .raychat_main_button {
-          bottom:45px !important;
+    .raychat_main_button {
+        bottom: 45px !important;
         margin: 9px !important;
     }
 
@@ -2979,24 +2994,51 @@ section.page-login, section.page-register {
         }
     }
 
-    section.page-block {
-        .main-block {
-            .map {
-                display: none;
-            }
-        }
-    }
 
     .homelogo {
         width: 86px;
     }
 
-       header nav ul {
+    header nav ul {
         text-align: right;
 
         li {
             a {
                 font-size: 1.2rem;
+            }
+        }
+    }
+
+    section.page-blocks {
+        .block-button {
+            display: block;
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+
+            li {
+                width: 24%;
+                float: left;
+                padding: 5px;
+                background-color: @baseColor1;
+                margin: 0 2px;
+                text-align: center;
+                border: 2px solid;
+
+
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                &:hover {
+                    background-color: unset;
+
+                    a {
+                        color: @baseColor1;
+                    }
+                }
             }
         }
     }
@@ -3025,7 +3067,31 @@ section.page-login, section.page-register {
 
 @media (max-width:768px) {
 
-  
+
+    header {
+        nav {
+
+            ul {
+                padding-right: 40px;
+
+                li {
+                    &:before, &:last-child:after {
+                        margin: 0 8px !important;
+                    }
+                }
+            }
+        }
+
+        .search-bar {
+            left: -615px;
+            width: 650px;
+
+            &.open{
+                left:-12px;
+            }
+        }
+    }
+
 
     section.page-blocks {
         .main-block {
@@ -3330,18 +3396,7 @@ section.page-login, section.page-register {
         }
     }
 
-    nav {
 
-        ul {
-            padding-right: 40px;
-
-            li {
-                &:before, &:last-child:after {
-                    margin: 0 8px !important;
-                }
-            }
-        }
-    }
 
     .logo-hayat-no {
         bottom: 80px;
@@ -3376,12 +3431,9 @@ section.page-login, section.page-register {
 
 @media (max-width:650px) {
 
-      .show-mobile {
-        display: block;
-    }
 
-    .hidden-mobile{
-        display:none;
+    .hidden-mobile {
+        display: none;
     }
 
     section.page {
@@ -3402,7 +3454,7 @@ section.page-login, section.page-register {
     }
 
     section.page-blocks .block-button {
-        bottom: 130px;
+        bottom: 150px;
     }
 
     #videos .tv {
@@ -3487,9 +3539,6 @@ section.page-login, section.page-register {
         padding: 0 10px;
     }
 
-    .hidden-mobile {
-        display: none;
-    }
 
     .logo-hayat-no {
         bottom: 180px;
@@ -3740,6 +3789,10 @@ section.page-login, section.page-register {
             left: ~"calc(50%-20px)";
             width: 40px;
         }
+
+        button{
+            width:100%;
+        }
     }
 
     header.show-mobile {
@@ -3834,7 +3887,7 @@ section.page-login, section.page-register {
                         }
                     }
 
-                 
+
                     &:after, &:before {
                         display: inline-block;
                         vertical-align: middle;
@@ -3847,7 +3900,7 @@ section.page-login, section.page-register {
                         transition: all ease .5s;
                     }
 
-                       &:last-child:after {
+                    &:last-child:after {
                         display: inline-block;
                         vertical-align: middle;
                         width: 8px;
@@ -4404,7 +4457,7 @@ section.page-login, section.page-register {
         }
     }
 
-      
+
 
 
     .footer .line .box ul li {
@@ -4513,8 +4566,8 @@ section.page-login, section.page-register {
         .block-button {
             bottom: 135px;
 
-            li{
-                width:23.8%;
+            li {
+                width: 23.8%;
             }
         }
     }
@@ -4548,9 +4601,6 @@ section.page-login, section.page-register {
     section.page-homeforms {
         padding-bottom: 200px;
     }
-
-    
- 
 }
 
 @media (max-width:390px) {
@@ -4567,7 +4617,7 @@ section.page-login, section.page-register {
         }
     }
 
-  
+
 
     .show-mobile {
 
@@ -4746,8 +4796,8 @@ section.page-login, section.page-register {
         .block-button {
             bottom: 90px;
 
-            li{
-                width:23%;
+            li {
+                width: 23%;
             }
         }
     }

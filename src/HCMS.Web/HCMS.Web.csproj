@@ -2600,6 +2600,7 @@
     <Content Include="Themes\hayat2\module\Jquery-FullGallery\README.md" />
     <Content Include="Themes\hayat2\Pages\gallery\slider - Copy.cshtml" />
     <Content Include="Themes\hayat2\Pages\gallery - Copy.cshtml" />
+    <Content Include="Themes\hayat2\Pages\search.cshtml" />
     <None Include="Themes\hayat2\Pages\home\footer.cshtml" />
     <None Include="Themes\hayat2\Pages\gallery.cshtml" />
     <Content Include="Themes\hayat2\preview.jpg" />

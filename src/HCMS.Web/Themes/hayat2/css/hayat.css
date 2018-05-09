@@ -445,22 +445,28 @@ header nav ul li:hover > div {
 }
 header .search-bar {
   position: absolute;
-  left: -690px;
+  left: -766px;
   top: 141px;
-  width: 724px;
+  width: 800px;
   display: inline-block;
-  transition: all 1s;
+  transition: all .3s;
 }
 header .search-bar.open {
-  left: -41px;
+  left: -25px;
 }
 header .search-bar input,
 header .search-bar select {
   float: right;
-  width: 30%;
+  width: 26%;
   border-radius: 0;
-  background-color: rgba(2, 2, 2, 0.5);
-  color: #fff;
+  /*background-color: rgba(2,2,2, 0.9);*/
+  /*color: #fff;*/
+}
+header .search-bar button {
+  float: right;
+  width: 15%;
+  border-radius: unset;
+  line-height: 20px;
 }
 header .search-bar i {
   background-color: #4e1c1b;
@@ -1042,6 +1048,9 @@ section#signup form #register-form {
 section.page-blocks {
   padding-top: 100px;
   min-height: 80%;
+}
+section.page-blocks .block-button {
+  display: none;
 }
 section.page-blocks .row .col-md-6 {
   padding: 0;
@@ -2295,6 +2304,7 @@ section.page-register form .links a {
   .table {
     width: 100%;
     padding: 0 35px;
+    display: none;
   }
   section#signup form {
     /*height: 205px;*/
@@ -2346,9 +2356,6 @@ section.page-register form .links a {
   section.page-custom .row .col-md-6 .pic {
     height: 240px;
   }
-  section.page-block .main-block .map {
-    display: none;
-  }
   .homelogo {
     width: 86px;
   }
@@ -2357,6 +2364,32 @@ section.page-register form .links a {
   }
   header nav ul li a {
     font-size: 1.2rem;
+  }
+  section.page-blocks .block-button {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+  }
+  section.page-blocks .block-button li {
+    width: 24%;
+    float: left;
+    padding: 5px;
+    background-color: #4e1c1b;
+    margin: 0 2px;
+    text-align: center;
+    border: 2px solid;
+  }
+  section.page-blocks .block-button li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  section.page-blocks .block-button li:hover {
+    background-color: unset;
+  }
+  section.page-blocks .block-button li:hover a {
+    color: #4e1c1b;
   }
 }
 @media (max-width: 810px) {
@@ -2374,6 +2407,20 @@ section.page-register form .links a {
   display: none;
 }
 @media (max-width: 768px) {
+  header nav ul {
+    padding-right: 40px;
+  }
+  header nav ul li:before,
+  header nav ul li:last-child:after {
+    margin: 0 8px !important;
+  }
+  header .search-bar {
+    left: -615px;
+    width: 650px;
+  }
+  header .search-bar.open {
+    left: -12px;
+  }
   section.page-blocks .main-block .map {
     display: block;
     width: 400px;
@@ -2590,13 +2637,6 @@ section.page-register form .links a {
   section.page-blocks .main-block .map {
     width: 350px;
   }
-  nav ul {
-    padding-right: 40px;
-  }
-  nav ul li:before,
-  nav ul li:last-child:after {
-    margin: 0 8px !important;
-  }
   .logo-hayat-no {
     bottom: 80px;
   }
@@ -2620,9 +2660,6 @@ section.page-register form .links a {
   }
 }
 @media (max-width: 650px) {
-  .show-mobile {
-    display: block;
-  }
   .hidden-mobile {
     display: none;
   }
@@ -2639,7 +2676,7 @@ section.page-register form .links a {
     top: 50px;
   }
   section.page-blocks .block-button {
-    bottom: 130px;
+    bottom: 150px;
   }
   #videos .tv {
     margin: 0 !important;
@@ -2701,9 +2738,6 @@ section.page-register form .links a {
   }
   .table {
     padding: 0 10px;
-  }
-  .hidden-mobile {
-    display: none;
   }
   .logo-hayat-no {
     bottom: 180px;
@@ -2929,6 +2963,9 @@ section.page-register form .links a {
     bottom: 5px;
     left: calc(50%-20px);
     width: 40px;
+  }
+  .search-bar.show-mobile button {
+    width: 100%;
   }
   header.show-mobile {
     position: fixed;
