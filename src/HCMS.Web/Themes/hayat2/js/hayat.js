@@ -426,7 +426,6 @@ $('.plan-key').click(function () {
 //    delay: 500,
 //});
 
-
 var nVer = navigator.appVersion;
 var nAgt = navigator.userAgent;
 var browserName = navigator.appName;
@@ -489,12 +488,19 @@ else {
 
 }
 
+function startLoader() {
+    $('#spinner').css('display', 'block');
+}
+
+function doneLoader() {
+    $('#spinner').css('display', 'none');
+}
+
 $(document).ready(function () {
 
     setTimeout(function () {
 
         $('#loader').fadeOut();
-        console.log($('#welcome-to-user'))
     }, 1000);
 
     //href not working in mobile.fix it
@@ -573,19 +579,27 @@ $(document).ready(function () {
     //    //    console.log('Others')
     //});
 
-    $(document).on('keypress', 'form input', 'form textarea', function (e) {
-        var attr = $(this).attr('is-not-persian-checked');
-        if (typeof attr === typeof undefined) {
-            if ((e.charCode >= 97 && e.charCode <= 122) || (e.charCode >= 65 && e.charCode <= 90)) {
-                alert('لطفا فارسی تایپ کنید.')
-                e.preventDefault();
-            }
-            //else if (isPersian(e.key))
-            //    console.log('Persian');
-            //else
-            //    console.log('Others')
-        }
-    })
+    $(document)
+        .on('keypress',
+            'form input',
+            'form textarea',
+            function (e) {
+                var attr = $(this).attr('is-not-persian-checked');
+                if (typeof attr === typeof undefined) {
+                    if ((e.charCode >= 97 && e.charCode <= 122) 
+                        || (e.charCode >= 65 && e.charCode <= 90)) {
+                        alert('لطفا فارسی تایپ کنید.');
+                        e.preventDefault();
+                    }
+                    //else if (isPersian(e.key))
+                    //    console.log('Persian');
+                    //else
+                    //    console.log('Others')
+                }else if (e.charCode >= 1632 && e.charCode <= 1641) {
+                    alert('لطفا انگلیسی تایپ کنید.');
+                    e.preventDefault();
+                }
+            });
 
     function isPersian(str) {
         var p = /^[\u0600-\u06FF\s]+$/;
@@ -640,82 +654,90 @@ $(document).ready(function () {
     refreshToken();
 
 
-    $('.register-form .hayatbtn').click(function (e) {
+    $('.register-form .hayatbtn')
+        .click(function(e) {
 
-        var buy = {};
-        var parent = $(this).parent('form');
-        if (IsValid(parent) === true) {
-
-
-            buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
-            buy.isAjax = true;
-
-            buy.Email = (parent).find('input[name="Username"]').val();
-            buy.UserName = $(parent).find('input[name="Username"]').val();
-            buy.FirstName = $(parent).find('input[name="FirstName"]').val();
-            buy.password = $(parent).find('input[name="password"]').val();
-            buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
-            buy.captcha = $(parent).find('input[name="captcha"]').val();
-
-            //check if phone number dont should less than 10 number
-            var _err;
-            var _isValid = true;
-
-            //اگر ایمیل نبود
-            if (buy.Email.split('@')[1] == undefined) {
-                if ($.isNumeric(buy.Email)) {
-                    if (buy.Email.length < 11) {
-                        _isValid = false;
-                        _err = "شماره باید 11 رقم باشد."
-                    }
-                } else {
-                    _isValid = false;
-                    _err = "شماره وارد شده باید فقط شامل اعداد باشد"
-                }
-            }
-
-            if (!_isValid)
-                swal("خطا", _err, "error");
-            else {
+            var buy = {};
+            var parent = $(this).parents('form');
+            console.log(parent);
+            if (IsValid(parent) === true) {
 
 
-                var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
-                buy.captcha_guid = 'captcha' + _captcha_guid;
+                buy.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
+                buy.isAjax = true;
 
-                buy.loginAfterReg = true;
-                console.log(buy);
-                refreshToken();
+                buy.Email = (parent).find('input[name="Username"]').val();
+                buy.UserName = $(parent).find('input[name="Username"]').val();
+                buy.FirstName = $(parent).find('input[name="FirstName"]').val();
+                buy.password = $(parent).find('input[name="password"]').val();
+                buy.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
+                buy.captcha = $(parent).find('input[name="captcha"]').val();
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/fa-ir/manage/Auth/register',
-                    data: buy
-                }).done(function (res) {
-                    console.log(res);
-                    if (res.length > 0) {
-                        var html = ''
-                        $.each(res, function (index, item) {
-                            html += item + '/';
-                        })
+                //check if phone number dont should less than 10 number
+                var _err;
+                var _isValid = true;
 
-                        swal("خطا", html, "error");
+                //اگر ایمیل نبود
+                if (buy.Email.split('@')[1] == undefined) {
+                    if ($.isNumeric(buy.Email)) {
+                        if (buy.Email.length < 11) {
+                            _isValid = false;
+                            _err = "شماره باید 11 رقم باشد."
+                        }
                     } else {
-                        swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
-
-                        //login user
-                        //window.location.href = '/#home';
-                        //location.reload();
-
+                        _isValid = false;
+                        _err = "شماره وارد شده باید فقط شامل اعداد باشد"
                     }
-                }).fail(function (err) {
-                    console.log(err)
-                    swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
-                })
-            }
+                }
 
-        }
-        e.preventDefault();
-    })
+                if (!_isValid)
+                    swal("خطا", _err, "error");
+                else {
+
+
+                    var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
+                    buy.captcha_guid = 'captcha' + _captcha_guid;
+
+                    buy.loginAfterReg = true;
+                    console.log(buy);
+                    refreshToken();
+
+                    startLoader();
+
+                    $.ajax({
+                            type: 'POST',
+                            url: '/fa-ir/manage/Auth/register',
+                            data: buy
+                        })
+                        .done(function(res) {
+                            console.log(res);
+                            doneLoader();
+                            if (res.length > 0) {
+                                var html = ''
+                                $.each(res,
+                                    function(index, item) {
+                                        html += item + '/';
+                                    })
+
+                                swal("خطا", html, "error");
+                            } else {
+                                swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
+
+                                //login user
+                                window.location.href = '/#home';
+                                location.reload();
+
+                            }
+                        })
+                        .fail(function(err) {
+                            console.log(err)
+                            swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
+                        })
+                }
+
+            }
+            e.preventDefault();
+        });
 
 
 
@@ -739,12 +761,14 @@ $(document).ready(function () {
             spanser.captcha_guid = '_cooprate' + _captcha_guid;
 
             refreshToken();
+            startLoader();
 
             $.ajax({
                 type: 'POST',
                 url: '/fa-ir/manage/Auth/RegisterByRole',
                 data: spanser
             }).done(function (res) {
+                doneLoader();
                 if (res.length > 0) {
                     var html = '';
                     $.each(res, function (index, item) {
@@ -824,7 +848,7 @@ $(document).ready(function () {
     })
 
     $('.bottom-nav ul li').click(function () {
-        console.log($(this))
+      
         $(this).parent('ul').find('li').removeClass('open');
         $(this).parent('ul').find('i').removeClass('active');
         $(this).toggleClass('open');
@@ -832,29 +856,31 @@ $(document).ready(function () {
 
     });
 
-    $('.has-sub').click(function () {
-        $(this).next('.has-sub').siblings('active');
+    $('.has-sub')
+        .click(function() {
+            $(this).next('.has-sub').siblings('active');
 
-        $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
-        $(this).parents('.child').siblings('.child').addClass('min');
-        $(this).next('ul').addClass('open');
-        $(this).parent('.child').toggleClass('min')
+            $(this).parents('.bottom-nav').find('.has-sub').find('ul').removeClass('open');
+            $(this).parents('.child').siblings('.child').addClass('min');
+            $(this).next('ul').addClass('open');
+            $(this).parent('.child').toggleClass('min');
 
-        $(this).parents('.bottom-nav').find('.has-sub').not(this).removeClass('active');
+            $(this).parents('.bottom-nav').find('.has-sub').not(this).removeClass('active');
 
-        $(this).toggleClass('active');
-    })
+            $(this).toggleClass('active');
+        });
 
     //$('.bottom-nav li').click(function () {
     //    //$('.right-icons li').not(this).removeClass('open');
     //    //$(this).toggleClass('open');
     //});
 
-    $('header.show-mobile .fa-close').click(function () {
-        $('header.show-mobile').removeClass('open');
-        $('#menu-bar').removeClass('deactive');
-        $('body').removeClass('cscroll');
-    })
+    $('header.show-mobile .fa-close')
+        .click(function() {
+            $('header.show-mobile').removeClass('open');
+            $('#menu-bar').removeClass('deactive');
+            $('body').removeClass('cscroll');
+        });
 
     //$('.left-icons-mobile').click(function () {
     //    $('.left-icons').toggleClass('active');
@@ -872,7 +898,21 @@ $(document).ready(function () {
 });
 
 
+$('.bottom-nav .fa-close')
+    .click(function (e) {
+        var elm = $(this).parents('li');
+        if(elm.hasClass('open'))
+            elm.removeClass('open');
 
+        e.stopPropagation();
+    });
+
+$('#Province')
+    .change(function () {
+        $('#city').find('option').addClass('hidden');
+        var res = $('#Province').find(":selected").val();
+        $('#city').find('option[data-pId="' + res + '"]').removeClass('hidden');
+    });
 
 /// <reference path="../lib/jquery/3.1.1/jquery3-1-1.js" />
 var keyLeftRight = false;

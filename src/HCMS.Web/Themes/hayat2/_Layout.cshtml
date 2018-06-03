@@ -92,6 +92,7 @@
 
     @*<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>*@
     <script src="~/Packages/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     @*<script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>*@
 
     @*    <script src="~/Packages/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>*@
@@ -118,6 +119,9 @@
 
 <body>
 
+    <div class="spinner" id="spinner">
+        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/loader.gif" alt="loader" />
+    </div>
 
     <div id="loader">
         <div class="logo-wrapper">
@@ -125,7 +129,7 @@
             </div>
         </div>
     </div>
-    <input type="hidden" id="welcome-to-user" value="@TempData["userRegister"]"/>
+    <input type="hidden" id="welcome-to-user" value="@TempData["userRegister"]" />
 
 
     <header class="hidden-mobile">
@@ -254,7 +258,7 @@
 
         <div class="search-bar">
             <i class="fa fa-search" onclick="toggleSearchBar()"></i>
-            
+
 
             <input class="form-control" name="floor" placeholder="طبقه را وارد کنید" />
             <select class="form-control" name="roomCount">
@@ -303,10 +307,11 @@
                         var first = item.GetGroup("links").FirstOrDefault();
                         <li>
                             <a href="@first.GetValue("url")">
-                                <i title="@item.GetValue("title")" class="@item.GetValue("icon")"></i>
+                                <i title="@item.GetValue("title")" data-target="link" class="@item.GetValue("icon")"></i>
                             </a>
                             <div class="descrp">
                                 @Html.Raw(item.GetValue("text"))
+                                <i class="fa fa-close"></i>
                                 <ul>
                                     @foreach (var subitem in item.GetGroup("links"))
                                     {
@@ -507,10 +512,10 @@
             </div>*@
     </header>
 
-    <div class="alert alert-danger show-safari">
+    @*<div class="alert alert-danger show-safari">
         وب سایت در مرورگر سافاری ( آیفون و آیپد ) بهینه نشده است. در صورت بروز مشکل در پر کردن فرم ها از مرورگر کروم استفاده کنید. برای دانلود <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8" target="_blank">اینجا</a> کلیک کنید.
         <i class="fa fa-close" onclick="$('.show-safari').removeClass('active');"></i>
-    </div>
+    </div>*@
     @RenderBody()
 
 
@@ -598,36 +603,36 @@
 
     <script>
 
-        introJs().setOptions(
-                 {
-                     'nextLabel': 'بعد'
-                 , 'prevLabel': 'قبل'
-                 , 'skipLabel': 'خروج'
-                 , 'doneLabel': 'اتمام'
-                 }).onchange(function (targetElement) {
+        //introJs().setOptions(
+        //         {
+        //             'nextLabel': 'بعد'
+        //         , 'prevLabel': 'قبل'
+        //         , 'skipLabel': 'خروج'
+        //         , 'doneLabel': 'اتمام'
+        //         }).onchange(function (targetElement) {
 
-                 }).start('.block');
+        //         }).start('.block');
 
 
-        showTour = function () {
+        //showTour = function () {
 
-            introJs().setOptions(
-              {
-                  'nextLabel': 'بعد'
-              , 'prevLabel': 'قبل'
-              , 'skipLabel': 'خروج'
-              , 'doneLabel': 'متوجه شدم'
-              }).onchange(function (targetElement) {
-                  switch (targetElement.getAttribute('data-step')) {
-                      case "1":
-                          break;
-                      case "6":
-                          break;
-                      default:
+        //    introJs().setOptions(
+        //      {
+        //          'nextLabel': 'بعد'
+        //      , 'prevLabel': 'قبل'
+        //      , 'skipLabel': 'خروج'
+        //      , 'doneLabel': 'متوجه شدم'
+        //      }).onchange(function (targetElement) {
+        //          switch (targetElement.getAttribute('data-step')) {
+        //              case "1":
+        //                  break;
+        //              case "6":
+        //                  break;
+        //              default:
 
-                  }
-              }).start('.block');
-        }
+        //          }
+        //      }).start('.block');
+        //}
 
     </script>
 

@@ -26,6 +26,29 @@
 @headerLinksFontSize: 13px;
 
 
+.spinner {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(1,1,1, 0.6);
+    z-index: 999;
+    display: none;
+
+
+    img {
+        width: 70px;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
 a {
     text-decoration: none !important;
 }
@@ -2922,6 +2945,23 @@ section.page-login, section.page-register {
         display: none;
     }
 
+    .block-m {
+        .table {
+            display: block;
+        }
+    }
+
+
+    .data {
+
+        &.active {
+            .table {
+                display: block;
+            }
+        }
+    }
+
+
     section#signup {
         form {
             /*height: 205px;*/
@@ -3059,13 +3099,57 @@ section.page-login, section.page-register {
     .homelogo {
         width: 84px;
     }
+
+    section.page-blocks {
+        .main-block {
+            .map {
+                display: block;
+                width: 400px;
+                float: left;
+
+                .child-block {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    width: 90px;
+                    display: inline-block;
+
+                    .block-a, .block-b, .block-c, .block-m {
+                        right: unset;
+                        left: unset;
+                        top: unset;
+                        float: right;
+                        position: unset;
+                        margin: 2px 0;
+                    }
+
+                    .block-a-btn, .block-b-btn, .block-c-btn, .block-m-btn {
+                        position: fixed;
+                        right: 0;
+                        bottom: 0;
+                        transform: scale(0.2);
+                        opacity: 0;
+                        transition: transform ease 0.5s, opacity ease .8s;
+                        z-index: -100;
+                        overflow: hidden;
+
+                        &.in {
+                            transform: translate(0);
+                            opacity: 1;
+                            z-index: 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .show-768px {
     display: none;
 }
 
-@media (max-width:768px) {
+@media (max-width:769px) {
 
 
     header {
@@ -3086,8 +3170,8 @@ section.page-login, section.page-register {
             left: -615px;
             width: 650px;
 
-            &.open{
-                left:-12px;
+            &.open {
+                left: -12px;
             }
         }
     }
@@ -3731,7 +3815,14 @@ section.page-login, section.page-register {
                                 transition: all 0.3s;
                                 padding: 5px;
                                 font-size: 1.2rem;
-                                z-index: 998;
+                                z-index: 898;
+
+                                .fa-close {
+                                    position: absolute;
+                                    left: -17px;
+                                    top: -17px;
+                                    z-index:998;
+                                }
 
                                 ul {
                                     width: 100% !important;
@@ -3790,8 +3881,8 @@ section.page-login, section.page-register {
             width: 40px;
         }
 
-        button{
-            width:100%;
+        button {
+            width: 100%;
         }
     }
 

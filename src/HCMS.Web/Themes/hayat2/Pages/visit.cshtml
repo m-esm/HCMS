@@ -178,7 +178,7 @@
 
                                         <div class="col-md-4 unpadding-right">
                                             <label class="required">استان / ایالت</label>
-                                            <select class="form-control" name="ProvinceId" required>
+                                            <select class="form-control" name="ProvinceId" id="Province" required>
                                                 <option value="0">انتخاب کنید</option>
                                                 @foreach (var item in province)
                                                 {
@@ -189,11 +189,11 @@
 
                                         <div class="col-md-4 unpadding">
                                             <label class="required">شهر</label>
-                                            <select class="form-control" name="CityId" required>
+                                            <select class="form-control" name="CityId" id="city" required>
                                                 <option value="0">انتخاب کنید</option>
                                                 @foreach (var item in city)
                                                 {
-                                                    <option value="@item.RowID">@item.GetValue("Name")</option>
+                                                    <option class="hidden" value="@item.RowID" data-pId="@item.GetValue("ProvinceId")">@item.GetValue("Name")</option>
                                                 }
                                             </select>
                                         </div>

@@ -2,6 +2,25 @@
   font-family: 'IRANSansWeb';
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
+.spinner {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(1, 1, 1, 0.6);
+  z-index: 999;
+  display: none;
+}
+.spinner img {
+  width: 70px;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
 a {
   text-decoration: none !important;
 }
@@ -2306,6 +2325,12 @@ section.page-register form .links a {
     padding: 0 35px;
     display: none;
   }
+  .block-m .table {
+    display: block;
+  }
+  .data.active .table {
+    display: block;
+  }
   section#signup form {
     /*height: 205px;*/
   }
@@ -2402,11 +2427,55 @@ section.page-register form .links a {
   .homelogo {
     width: 84px;
   }
+  section.page-blocks .main-block .map {
+    display: block;
+    width: 400px;
+    float: left;
+  }
+  section.page-blocks .main-block .map .child-block {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 90px;
+    display: inline-block;
+  }
+  section.page-blocks .main-block .map .child-block .block-a,
+  section.page-blocks .main-block .map .child-block .block-b,
+  section.page-blocks .main-block .map .child-block .block-c,
+  section.page-blocks .main-block .map .child-block .block-m {
+    right: unset;
+    left: unset;
+    top: unset;
+    float: right;
+    position: unset;
+    margin: 2px 0;
+  }
+  section.page-blocks .main-block .map .child-block .block-a-btn,
+  section.page-blocks .main-block .map .child-block .block-b-btn,
+  section.page-blocks .main-block .map .child-block .block-c-btn,
+  section.page-blocks .main-block .map .child-block .block-m-btn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transform: scale(0.2);
+    opacity: 0;
+    transition: transform ease 0.5s, opacity ease .8s;
+    z-index: -100;
+    overflow: hidden;
+  }
+  section.page-blocks .main-block .map .child-block .block-a-btn.in,
+  section.page-blocks .main-block .map .child-block .block-b-btn.in,
+  section.page-blocks .main-block .map .child-block .block-c-btn.in,
+  section.page-blocks .main-block .map .child-block .block-m-btn.in {
+    transform: translate(0);
+    opacity: 1;
+    z-index: 2;
+  }
 }
 .show-768px {
   display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   header nav ul {
     padding-right: 40px;
   }
@@ -2917,6 +2986,13 @@ section.page-register form .links a {
     transition: all 0.3s;
     padding: 5px;
     font-size: 1.2rem;
+    z-index: 898;
+  }
+  .show-mobile.bottom-nav .main-icons .left-icons-mobile ul li .descrp .fa-close,
+  .show-mobile.bottom-nav .main-icons .right-icons-mobile ul li .descrp .fa-close {
+    position: absolute;
+    left: -17px;
+    top: -17px;
     z-index: 998;
   }
   .show-mobile.bottom-nav .main-icons .left-icons-mobile ul li .descrp ul,
