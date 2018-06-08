@@ -10,7 +10,7 @@
 @{
 
 
-    if (!User.Identity.IsAuthenticated ||  !User.IsInRole("user"))
+    if (!User.Identity.IsAuthenticated || !User.IsInRole("user"))
     {
         Response.Redirect("/auth");
     }
@@ -32,7 +32,7 @@
 
             <div class="col-md-9 col-md-offset-2">
 
-                <h3 data-aos="fade-down">فرم ثبت نام رزرو بازدید</h3>
+                <h3 class="text-center" data-aos="fade-down">فرم ثبت نام رزرو بازدید</h3>
 
                 <div class="alert alert-info">
                     <i class="fa fa-exclamation-circle"></i>
@@ -57,6 +57,19 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+
+                                    <label class="required">
+                                        <i class="fa fa-child"></i>
+                                        سن
+                                    </label>
+                                    <input type="number" required name="age" class="form-control" placeholder="سن" />
+
+                                </div>
+                            </div>
+
+
 
                             <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
@@ -77,7 +90,15 @@
                                         <i class="fa fa-university"></i>
                                         تحصیلات
                                     </label>
-                                    <input type="text" required name="academic" class="form-control" placeholder="تحصیلات" />
+                                    <select required name="academic" class="form-control">
+                                        <option value="-1">انتخاب کنید</option>
+                                        <option value="0">دیپلم</option>
+                                        <option value="1">فوق دیپلم</option>
+                                        <option value="2">لیسانس</option>
+                                        <option value="3">فوق لیسانس</option>
+                                        <option value="4">دکترا</option>
+                                    </select>
+                                    @*<input type="text" required name="academic" class="form-control" placeholder="تحصیلات" />*@
                                 </div>
                             </div>
 
@@ -101,6 +122,10 @@
                                 </div>
                             </div>
 
+                            <div class="title border-bottom">
+                                اولویت اول
+                            </div>
+
                             <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
                                     <label class="required">
@@ -108,6 +133,7 @@
                                         مساحت ( متراژ)
                                     </label>
                                     <select required name="type" class="form-control">
+                                        <option value="-1">انتخاب کنید</option>
                                         @foreach (var item in types)
                                         {
                                             <option value="@item">
@@ -120,20 +146,97 @@
                                 </div>
                             </div>
 
+
                             <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
                                     <label class="required">
-                                        <i class="fa fa-cc-discover"></i>
+                                        <i class="fa fa-home"></i>
                                         تعداد اتاق
                                     </label>
-                                    <select required name="RoomCount" class="form-control">
+                                    <select required name="RoomCount2" class="form-control">
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                     </select>
                                 </div>
                             </div>
 
+                            <div class="title border-bottom">
+                                اولویت دوم
+                            </div>
+
                             <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-cc-discover"></i>
+                                        مساحت ( متراژ)
+                                    </label>
+                                    <select name="type2" class="form-control">
+                                        <option value="-1">انتخاب کنید</option>
+                                        @foreach (var item in types)
+                                        {
+                                            <option value="@item">
+                                                واحد @item
+                                                متری
+                                            </option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        <div class="col-md-6 col-sm-12">
+                            <div data-aos="fade-left" class="form-group">
+                                <label class="required">
+                                    <i class="fa fa-home"></i>
+                                    تعداد اتاق
+                                </label>
+                                <select required name="RoomCount2" class="form-control">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                            <div class="title border-bottom">
+                                اولویت سوم
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-cc-discover"></i>
+                                        مساحت ( متراژ)
+                                    </label>
+                                    <select name="type3" class="form-control">
+                                        <option value="-1">انتخاب کنید</option>
+                                        @foreach (var item in types)
+                                        {
+                                            <option value="@item">
+                                                واحد @item
+                                                متری
+                                            </option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-12">
+                                <div data-aos="fade-left" class="form-group">
+                                    <label class="required">
+                                        <i class="fa fa-home"></i>
+                                        تعداد اتاق
+                                    </label>
+                                    <select required name="RoomCount3" class="form-control">
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
 
                                     <label class="required">
@@ -142,7 +245,7 @@
                                     </label>
 
                                     <select name="PriceType" class="form-control" required>
-                                        <option value="0">انتخاب کنید</option>
+                                        <option value="-1">انتخاب کنید</option>
                                         @foreach (var item in price)
                                         {
                                             <option value="@item.RowID">
@@ -154,59 +257,71 @@
                             </div>
 
 
-
-
-
-                            <div class="col-md-12 col-sm-12 ">
+                            <div class="col-md-6 col-sm-12">
                                 <div data-aos="fade-left" class="form-group">
                                     <label class="required">
-                                        <i class="fa fa-location-arrow"></i>
-                                        آدرس سکونت فعلی
+                                        <i class="fa fa-cc-discover"></i>
+                                        هدف از بازدید
                                     </label>
+                                    <select required name="target" class="form-control">
+                                        <option value="-1">انتخاب کنید</option>
+                                        <option value="0">خرید</option>
+                                        <option value="1">رهن و اجاره</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                    <div class="col-md-12 unpadding">
-                                        <div class="col-md-4 unpadding-right">
-                                            <label class="required">کشور</label>
-                                            <select class="form-control" name="CountryId" required>
-                                                <option value="0">انتخاب کنید</option>
-                                                @foreach(var item in country)
-                                                {
-                                                    <option value="@item.RowID">@item.GetValue("Name")</option>
-                                                }
-                                            </select>
-                                        </div>
 
-                                        <div class="col-md-4 unpadding-right">
-                                            <label class="required">استان / ایالت</label>
-                                            <select class="form-control" name="ProvinceId" id="Province" required>
-                                                <option value="0">انتخاب کنید</option>
-                                                @foreach (var item in province)
-                                                {
-                                                    <option value="@item.RowID">@item.GetValue("Name")</option>
-                                                }
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-4 unpadding">
-                                            <label class="required">شهر</label>
-                                            <select class="form-control" name="CityId" id="city" required>
-                                                <option value="0">انتخاب کنید</option>
-                                                @foreach (var item in city)
-                                                {
-                                                    <option class="hidden" value="@item.RowID" data-pId="@item.GetValue("ProvinceId")">@item.GetValue("Name")</option>
-                                                }
-                                            </select>
-                                        </div>
+                            @*<div class="col-md-12 col-sm-12 ">
+                                    <div data-aos="fade-left" class="form-group">
+                                        <label class="required">
+                                            <i class="fa fa-location-arrow"></i>
+                                            آدرس سکونت فعلی
+                                        </label>
 
                                         <div class="col-md-12 unpadding">
-                                            <label class="required">ادامه آدرس</label>
-                                            <textarea required class="form-control" name="Address"></textarea>
+                                            <div class="col-md-4 unpadding-right">
+                                                <label class="required">کشور</label>
+                                                <select class="form-control" name="CountryId" required>
+                                                    <option value="0">انتخاب کنید</option>
+                                                    @foreach(var item in country)
+                                                    {
+                                                        <option value="@item.RowID">@item.GetValue("Name")</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4 unpadding-right">
+                                                <label class="required">استان / ایالت</label>
+                                                <select class="form-control" name="ProvinceId" id="Province" required>
+                                                    <option value="0">انتخاب کنید</option>
+                                                    @foreach (var item in province)
+                                                    {
+                                                        <option value="@item.RowID">@item.GetValue("Name")</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4 unpadding">
+                                                <label class="required">شهر</label>
+                                                <select class="form-control" name="CityId" id="city" required>
+                                                    <option value="0">انتخاب کنید</option>
+                                                    @foreach (var item in city)
+                                                    {
+                                                        <option class="hidden" value="@item.RowID" data-pId="@item.GetValue("ProvinceId")">@item.GetValue("Name")</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-12 unpadding">
+                                                <label class="required">ادامه آدرس</label>
+                                                <textarea required class="form-control" name="Address"></textarea>
+                                            </div>
+
                                         </div>
 
                                     </div>
-
-                                </div>
-                            </div>
+                                </div>*@
 
                         </div>
 
@@ -258,13 +373,14 @@
         var _captchaDate = Date.now();
         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit&guid=' + _captchaDate);
         $(document).on('click', '#submit-btn', function (e) {
-           // $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit');
+            // $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit');
             if (IsValid() === true) {
                 var url = '@Url.Action("Post", "Visit", new {plugin = "Hayat" })';
 
                 var model = $('#visit-form').serialize();
                 model += "&captcha_guid=" + _captchaDate;
                 console.log(model);
+                startLoader();
                 $.ajax({
                     method: "post",
                     url: url,
@@ -296,11 +412,12 @@
                         console.log(errorThrown);
                     },
                     complete: function () {
+                        doneLoader();
                         $('#loader').css('display', 'none');
                     }
                 });
 
-              
+
             }
             e.preventDefault();
 
@@ -311,8 +428,7 @@
             var form = $('#visit-form');
             var inputs = $(form).find('input:required');
             $.each(inputs, function (index, item) {
-                if ($(item).val() === '')
-                {
+                if ($(item).val() === '') {
                     isValid = false;
                     $(item).addClass('has-error');
                 }
@@ -321,7 +437,8 @@
             })
             var select = $(form).find('select:required');
             $.each(select, function (index, item) {
-                if ($(item).val() === '0') {
+                console.log($(item).val());
+                if ($(item).val() === '-1') {
                     isValid = false;
                     $(item).addClass('has-error');
                 }
@@ -343,3 +460,4 @@
     </script>
 
 }
+

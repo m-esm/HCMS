@@ -6,8 +6,10 @@
 @blackColor: #222;
 @blackColor2: #1e1e1e;
 @baseColor1: #4e1c1b;
-@baseColor2: #ff0000;
-@baseColor3: #808080;
+/*@baseColor2: #ff0000;
+@baseColor3: #808080;*/
+@baseColor2: rgb(255,104,51);
+@baseColor3: rgb(160,160,160);
 
 @blockA: #1f651f;
 @blockC: #86949f;
@@ -3821,7 +3823,7 @@ section.page-login, section.page-register {
                                     position: absolute;
                                     left: -17px;
                                     top: -17px;
-                                    z-index:998;
+                                    z-index: 998;
                                 }
 
                                 ul {
@@ -5125,4 +5127,14 @@ section.page-login, section.page-register {
 .apple-ios {
     position: fixed;
     width: 100%;
+}
+
+@baseGreenColor : rgb(25,150,140);
+#visit-form {
+    .title {
+        text-align:center;
+        padding: 3px;
+        border-bottom: 2px solid @baseGreenColor;
+        margin-bottom: 10px;
+    }
 }

@@ -2,6 +2,8 @@
   font-family: 'IRANSansWeb';
   src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
+/*@baseColor2: #ff0000;
+@baseColor3: #808080;*/
 .spinner {
   position: fixed;
   width: 100%;
@@ -3951,4 +3953,10 @@ section.page-register form .links a {
 .apple-ios {
   position: fixed;
   width: 100%;
+}
+#visit-form .title {
+  text-align: center;
+  padding: 3px;
+  border-bottom: 2px solid #19968c;
+  margin-bottom: 10px;
 }
