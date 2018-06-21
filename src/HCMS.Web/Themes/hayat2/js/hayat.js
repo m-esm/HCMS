@@ -497,7 +497,6 @@ function doneLoader() {
 }
 
 $(document).ready(function () {
-
     setTimeout(function () {
 
         $('#loader').fadeOut();
@@ -536,21 +535,25 @@ $(document).ready(function () {
       });
     }
 
-    $('.map-top').click(function () {
-        changePage(false, 'up');
-    })
+    $('.map-top')
+        .click(function() {
+            changePage(false, 'up');
+        });
 
-    $('.map-down').click(function () {
-        changePage(false, 'down');
-    })
+    $('.map-down')
+        .click(function() {
+            changePage(false, 'down');
+        });
 
-    $('#page-up').click(function () {
-        changePage(false, 'up');
-    })
+    $('#page-up')
+        .click(function() {
+            changePage(false, 'up');
+        });
 
-    $('#page-down').click(function () {
-        changePage(false, 'down');
-    })
+    $('#page-down')
+        .click(function() {
+            changePage(false, 'down');
+        });
     //$(document).on('tap click', '.map-top', function () {
     //    changePage(false, 'up');
     //})
@@ -565,19 +568,6 @@ $(document).ready(function () {
         $('form.contactForm .captcha-field img').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
     }
 
-    //$('form').on('keypress', function (e) {
-    //    $.each(e.target.attributes, function (index, item) {
-    //        console.log(item);
-    //    })
-    //    //if ((e.charCode >= 97 && e.charCode <= 122) || (e.charCode >= 65 && e.charCode <= 90)) {
-    //    //    alert('لطفا فارسی تایپ کنید.')
-    //    //    e.preventDefault();
-    //    //}
-    //    //else if (isPersian(e.key))
-    //    //    console.log('Persian');
-    //    //else
-    //    //    console.log('Others')
-    //});
 
     $(document)
         .on('keypress',
@@ -611,8 +601,6 @@ $(document).ready(function () {
         $('.right-icons li').not(this).removeClass('open');
 
         $(this).toggleClass('open');
-
-
     });
 
 
@@ -643,14 +631,11 @@ $(document).ready(function () {
                     $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
                     $('#mobile-body-overly').fadeOut();
                 }
-
-                return false;
             }
         }
     });
 
 
-    //$('#_cooprate-captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
     refreshToken();
 
 
@@ -740,51 +725,54 @@ $(document).ready(function () {
         });
 
 
+    $('form.register-by-role .hayatbtn')
+        .click(function(e) {
+            var parent = $(this).parent('form');
+            if (IsValid(parent) === true) {
+                var spanser = {};
+                spanser.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
+                spanser.isAjax = true;
+                spanser.role = $(parent).find('select[name="role"]').val();
+                spanser.Email = $(parent).find('input[name="username"]').val();
+                spanser.UserName = $(parent).find('input[name="username"]').val();
+                spanser.FirstName = $(parent).find('input[name="FirstName"]').val();
+                spanser.phone = $(parent).find('input[name="phone"]').val();
+                spanser.password = $(parent).find('input[name="Password"]').val();
+                spanser.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
+                spanser.captcha = $(parent).find('input[name="captcha"]').val();
 
-    $('form.register-by-role .hayatbtn').click(function (e) {
-        var parent = $(this).parent('form');
-        if (IsValid(parent) === true) {
-            var spanser = {};
-            spanser.__RequestVerificationToken = $(parent).find('input[name="__RequestVerificationToken"]').val();
-            spanser.isAjax = true;
-            spanser.role = $(parent).find('select[name="role"]').val();
-            spanser.Email = $(parent).find('input[name="username"]').val();
-            spanser.UserName = $(parent).find('input[name="username"]').val();
-            spanser.FirstName = $(parent).find('input[name="FirstName"]').val();
-            spanser.phone = $(parent).find('input[name="phone"]').val();
-            spanser.password = $(parent).find('input[name="Password"]').val();
-            spanser.ConfirmPassword = $(parent).find('input[name="ConfirmPassword"]').val();
-            spanser.captcha = $(parent).find('input[name="captcha"]').val();
+                var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
 
-            var _captcha_guid = $(parent).find('.captcha-field img').attr('src').split('guid=')[1];
+                spanser.captcha_guid = '_cooprate' + _captcha_guid;
 
-            spanser.captcha_guid = '_cooprate' + _captcha_guid;
+                refreshToken();
+                startLoader();
 
-            refreshToken();
-            startLoader();
-
-            $.ajax({
-                type: 'POST',
-                url: '/fa-ir/manage/Auth/RegisterByRole',
-                data: spanser
-            }).done(function (res) {
-                doneLoader();
-                if (res.length > 0) {
-                    var html = '';
-                    $.each(res, function (index, item) {
-                        html += item + "/";
+                $.ajax({
+                        type: 'POST',
+                        url: '/fa-ir/manage/Auth/RegisterByRole',
+                        data: spanser
                     })
+                    .done(function(res) {
+                        doneLoader();
+                        if (res.length > 0) {
+                            var html = '';
+                            $.each(res,
+                                function(index, item) {
+                                    html += item + "/";
+                                })
 
-                    swal("خطا", html, "error");
-                } else {
-                    swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
-                }
-            }).fail(function (err) {
-                swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
-            })
-        }
-        e.preventDefault();
-    })
+                            swal("خطا", html, "error");
+                        } else {
+                            swal("", 'ثبت نام شما با موفقیت انجام شد.', "success");
+                        }
+                    })
+                    .fail(function(err) {
+                        swal("خطا", 'خطا رخ داده است. لطفا بعدا مجددا تلاش نمایید.', "error");
+                    })
+            }
+            e.preventDefault();
+        });
 
 
     var IsValid = function (_form) {
@@ -802,50 +790,52 @@ $(document).ready(function () {
         });
 
         var select = $(form).find('select:required');
-        $.each(select, function (index, item) {
-            if ($(item).val() === '0') {
-                isValid = false;
-                $(item).addClass('has-error');
-            }
-            else
-                $(item).removeClass('has-error');
-        })
+        $.each(select,
+            function(index, item) {
+                if ($(item).val() === '0') {
+                    isValid = false;
+                    $(item).addClass('has-error');
+                } else
+                    $(item).removeClass('has-error');
+            });
 
         var textarea = $(form).find('textarea:required');
-        $.each(textarea, function (index, item) {
-            if ($(item).val().trim() === '') {
-                isValid = false;
-                $(item).addClass('has-error');
-            }
-            else
-                $(item).removeClass('has-error');
-        })
+        $.each(textarea,
+            function(index, item) {
+                if ($(item).val().trim() === '') {
+                    isValid = false;
+                    $(item).addClass('has-error');
+                } else
+                    $(item).removeClass('has-error');
+            });
         return isValid;
     }
 
-    $('#menu-bar').click(function () {
-        $('header.show-mobile').addClass('open');
-        $(this).addClass('deactive');
-        $('body').addClass('cscroll');
-    })
+    $('#menu-bar')
+        .click(function() {
+            $('header.show-mobile').addClass('open');
+            $(this).addClass('deactive');
+            $('body').addClass('cscroll');
+        });
 
     $('#top-nav-search').click(function () {
         $('.search-bar.show-mobile').toggleClass('open');
     });
 
     //search
-    $('.search-bar button').click(function () {
-        var elm = $(this).parents('.search-bar');
-        console.log(elm);
-        var floor = elm.find('input[name="floor"]').val();
-        var roomCount = elm.find('select[name="roomCount"]').val();
-        var area = elm.find('select[name="area"]').val();
-        console.log(floor, roomCount, area);
-        var data = JSON.stringify({ floor: floor, roomCount: roomCount, area: area })
-        localStorage.setItem('search', data);
+    $('.search-bar button')
+        .click(function() {
+            var elm = $(this).parents('.search-bar');
+            console.log(elm);
+            var floor = elm.find('input[name="floor"]').val();
+            var roomCount = elm.find('select[name="roomCount"]').val();
+            var area = elm.find('select[name="area"]').val();
+            console.log(floor, roomCount, area);
+            var data = JSON.stringify({ floor: floor, roomCount: roomCount, area: area })
+            localStorage.setItem('search', data);
 
-        window.location = "/search";
-    })
+            window.location = "/search";
+        });
 
     $('.bottom-nav ul li').click(function () {
       
@@ -881,20 +871,7 @@ $(document).ready(function () {
             $('#menu-bar').removeClass('deactive');
             $('body').removeClass('cscroll');
         });
-
-    //$('.left-icons-mobile').click(function () {
-    //    $('.left-icons').toggleClass('active');
-    //})
-
-    //$('.right-icons-mobile').click(function () {
-    //    $('.right-icons').toggleClass('active');
-    //})
-
-    //$('.right-icons > ul > li > span').click(function () {
-
-    //})
-
-
+    
 });
 
 

@@ -78,75 +78,47 @@ $(document).on('tap click', '#recortes-plan-a area', function () {
 
 });
 
-//$('#recortes-plan-a area').click(function () {
-//    var unit = $(this).attr('data-unit');
-//    var find = plan_a_keys.find(a=>a.unit == unit);
-//    $('#block-a .plan-unit img').attr('src', find.url);
 
-//    $('#block-a .plan-unit').css('display', 'block');
-
-//    //set data table select and active
-//    var _id = '1-' + unit;
-//    console.log(_id);
-//    //remove class from another child
-//    $('#block-a .table tr').removeClass('selected');
-//    $('#block-a .table tr').removeClass('active');
-
-//    //find plan number 
-//    var _area = parseInt($('#block-a #' + _id).attr('data-area'));
-//    for (var i = _area - 10; i < _area + 10; i++) {
-//        $('#block-a .table tr[data-area=' + i + ']').addClass('active');
-//    }
-//    console.log(_area);
-//    $('#block-a #' + _id).addClass('selected');
-
-//    var plan = $(this).attr('data-unit');
-//    $('#figur-plan-a area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
-
-//    $('#block-a .hayatbtn').addClass('active');
-
-//    //نشان دادن در حالت موبایلی
-//    $('#block-a .block').addClass('mobile-min');
-//    $('#block-a .plan-unit').addClass('mobile-max');
-
-//});
-
-$(document).on('tap click', '.block-detail .mobile-min', function () {
-    $(this).removeClass('mobile-min');
-    $(this).parents('.block-detail').find('.plan-unit').removeClass('mobile-max');
-})
+$(document)
+    .on('tap click',
+        '.block-detail .mobile-min',
+        function() {
+            $(this).removeClass('mobile-min');
+            $(this).parents('.block-detail').find('.plan-unit').removeClass('mobile-max');
+        });
 
 
-$('.block-detail .hayatbtn').click(function () {
+$('.block-detail .hayatbtn')
+    .click(function() {
 
-    var elm = $(this).parents('.block-detail');
+        var elm = $(this).parents('.block-detail');
 
-    if ($(this).hasClass('prev')) {
-        //elm.find('.data').removeClass('active');
-        //elm.find('.plan').css('display', 'block');
-        //elm.find('.block').css('display', 'block');
-        //elm.find('.plan-unit').css('display', 'block');
+        if ($(this).hasClass('prev')) {
+            //elm.find('.data').removeClass('active');
+            //elm.find('.plan').css('display', 'block');
+            //elm.find('.block').css('display', 'block');
+            //elm.find('.plan-unit').css('display', 'block');
 
-        elm.find('.data').removeClass('active');
-        elm.find('.plan').removeClass('prev');
-        elm.find('.block').removeClass('prev');
-        elm.find('.plan-unit').removeClass('prev');
-        elm.find('.mobile-block').removeClass('prev');
+            elm.find('.data').removeClass('active');
+            elm.find('.plan').removeClass('prev');
+            elm.find('.block').removeClass('prev');
+            elm.find('.plan-unit').removeClass('prev');
+            elm.find('.mobile-block').removeClass('prev');
 
-        $(this).removeClass('prev').find('label').html('برای مشاهده مشخصات کلی کلیک کنید');
-        $(this).find('i').removeClass('fa-arrow-up').addClass('fa-eye');
-    } else {
-        elm.find('.data').addClass('active');
-        elm.find('.plan').addClass('prev');
-        elm.find('.block').addClass('prev');
-        elm.find('.plan-unit').addClass('prev');
-        elm.find('.mobile-block').addClass('prev');
+            $(this).removeClass('prev').find('label').html('برای مشاهده مشخصات کلی کلیک کنید');
+            $(this).find('i').removeClass('fa-arrow-up').addClass('fa-eye');
+        } else {
+            elm.find('.data').addClass('active');
+            elm.find('.plan').addClass('prev');
+            elm.find('.block').addClass('prev');
+            elm.find('.plan-unit').addClass('prev');
+            elm.find('.mobile-block').addClass('prev');
 
-        $(this).addClass('prev').find('label').html('برای بازگشت کلیک کنید');
-        $(this).find('i').removeClass('fa-eye').addClass('fa-arrow-up');
-    }
+            $(this).addClass('prev').find('label').html('برای بازگشت کلیک کنید');
+            $(this).find('i').removeClass('fa-eye').addClass('fa-arrow-up');
+        }
 
-})
+    });
 
 $('#recortes-plan-b area').click(function () {
     var unit = $(this).attr('data-unit');
@@ -162,17 +134,7 @@ $('#recortes-plan-b area').click(function () {
     $('#block-b .table tr').removeClass('selected');
     $('#block-b .table tr').removeClass('active');
 
-    //find plan number 
-    //var _area = parseInt($('#block-b #' + _id).attr('data-area'));
-    //for (var i = _area - 10; i < _area + 10; i++) {
-    //    $('#block-b .table tr[data-area=' + i + ']').addClass('active');
-    //}
-    //console.log(_area);
-    //$('#block-b #' + _id).addClass('selected');
-
-    //var floor = $(this).attr('data-floor');
-    //$('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
-
+   
     $('#block-b .hayatbtn').addClass('active');
 
     //نشان دادن در حالت موبایلی
@@ -224,21 +186,19 @@ $('#recortes-c area').click(function () {
 });
 
 
-$('#recortes-a area').click(function () {
-    var floor = $(this).attr('data-floor');
-    $('#figur-a area:nth-of-type(' + floor + ') ~ #capaRecorte-a').css('clip-path', 'url(#F' + floor + '-a)').css('display', 'block');
-})
+$('#recortes-a area')
+    .click(function() {
+        var floor = $(this).attr('data-floor');
+        $('#figur-a area:nth-of-type(' + floor + ') ~ #capaRecorte-a')
+            .css('clip-path', 'url(#F' + floor + '-a)')
+            .css('display', 'block');
+    });
 
 $('#recortes-b area').click(function () {
     var floor = $(this).attr('data-floor');
     $('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
 });
 
-//$('#recortes-plan-b area').click(function () {
-//    alert();
-//    var plan = $(this).attr('data-unit');
-//    $('#figur-plan-b area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-b').css('clip-path', 'url(#PB' + plan + ')').css('display', 'block');
-//})
 
 
 $('#recortes-c area').click(function () {
@@ -255,51 +215,58 @@ var toggleSearchBar = function () {
     $('.search-bar').toggleClass('open');
 }
 
-$('section.page .arrow .up').click(function () {
-    changePage(false, 'up');
-})
+$('section.page .arrow .up')
+    .click(function() {
+        changePage(false, 'up');
+    });
 
-$('section.page .arrow .down').click(function () {
-    changePage(false, 'down');
-})
+$('section.page .arrow .down')
+    .click(function() {
+        changePage(false, 'down');
+    });
 
 
-$(document).on('tap click', '.mobile-block ul li', function () {
-    $(this).siblings('li').removeClass('active');
-    $(this).toggleClass('active');
+$(document)
+    .on('tap click',
+        '.mobile-block ul li',
+        function() {
+            $(this).siblings('li').removeClass('active');
+            $(this).toggleClass('active');
 
-    //active unint
-    $(this).parent('ul').next('ul').addClass('active');
-})
+            //active unint
+            $(this).parent('ul').next('ul').addClass('active');
+        });
 
-$(document).on('tap click', '.mobile-block .unit li', function () {
-    //show plan
-    var parent = $(this).parents('section')
-    console.log(parent.attr('id'));
-    var unit = $(this).attr('data-unit');
-    var find;
-    switch (parent.attr('id')) {
-        case 'block-a':
-            find = plan_a_keys.find(a=>a.unit == unit);
-            break;
-        case 'block-b':
-            find = plan_b_keys.find(a=>a.unit == unit);
-            break;
-        case 'block-c':
-            find = plan_c_keys.find(a=>a.unit == unit);
-            break;
-        default:
+$(document)
+    .on('tap click',
+        '.mobile-block .unit li',
+        function() {
+            //show plan
+            var parent = $(this).parents('section');
+            console.log(parent.attr('id'));
+            var unit = $(this).attr('data-unit');
+            var find;
+            switch (parent.attr('id')) {
+            case 'block-a':
+                find = plan_a_keys.find(a => a.unit == unit);
+                break;
+            case 'block-b':
+                find = plan_b_keys.find(a => a.unit == unit);
+                break;
+            case 'block-c':
+                find = plan_c_keys.find(a => a.unit == unit);
+                break;
+            default:
 
-    }
-    if (unit == "plan") {
-        $(this).parents('.inner').find('.plan-key').toggleClass('active');
-    }
-    else {
-        parent.find('.plan-unit img').attr('src', find.url);
-        parent.find('.plan-unit').addClass('show');
-        parent.find('.hayatbtn').addClass('active');
-    }
-})
+            }
+            if (unit == "plan") {
+                $(this).parents('.inner').find('.plan-key').toggleClass('active');
+            } else {
+                parent.find('.plan-unit img').attr('src', find.url);
+                parent.find('.plan-unit').addClass('show');
+                parent.find('.hayatbtn').addClass('active');
+            }
+        });
 
 var main_block_hover = [
     { block: 'a', url: '/Themes/hayat2/img/hover/Blocks Selection/Block A-Hover.png' },
@@ -348,23 +315,30 @@ if ($(window).width() < 760) {
 //})
 
 
-$(document).on('tap click', '#recortes-main area', '.block-button li a', function () {
-    if (Modernizr.touch) {
-        $('.' + $(this).attr('data-block')).parent('.child-block').siblings().find('.in').removeClass('in');
-        var elm = $(this).attr('data-block');
-        $('.' + elm).toggleClass('in');
-        $('.' + elm + '-btn').toggleClass('in');
+$(document)
+    .on('tap click',
+        '#recortes-main area',
+        '.block-button li a',
+        function() {
+            if (Modernizr.touch) {
+                $('.' + $(this).attr('data-block')).parent('.child-block').siblings().find('.in').removeClass('in');
+                var elm = $(this).attr('data-block');
+                $('.' + elm).toggleClass('in');
+                $('.' + elm + '-btn').toggleClass('in');
 
-        var find = main_block_hover.find(a=>a.block == elm.split('-')[1]);
-        $('#img-back-main').attr('src', find.url);
+                var find = main_block_hover.find(a => a.block == elm.split('-')[1]);
+                $('#img-back-main').attr('src', find.url);
 
-    } else {
-        //change a table color
-        var blockId = $(this).attr('data-block-id');
-        var parent = $(this).parents('#blocks').find('.table tr[data-block-id=' + blockId + ']').addClass('green');
+            } else {
+                //change a table color
+                var blockId = $(this).attr('data-block-id');
+                var parent = $(this)
+                    .parents('#blocks')
+                    .find('.table tr[data-block-id=' + blockId + ']')
+                    .addClass('green');
 
-    }
-})
+            }
+        });
 
 
 
@@ -404,14 +378,16 @@ $(document).on('mouseenter mouseleave', '#recortes-main area', function (e) {
 
 //});
 
-$('.plan-unit').click(function () {
-    $('.unit-full-img').addClass('open');
-    $('.unit-full-img .preview img').attr('src', $(this).find('img').attr('src'))
-})
+$('.plan-unit')
+    .click(function() {
+        $('.unit-full-img').addClass('open');
+        $('.unit-full-img .preview img').attr('src', $(this).find('img').attr('src'))
+    });
 
-$('.plan-key').click(function () {
-    $('.unit-full-img').addClass('open');
-    $('.unit-full-img .preview img').attr('src', $(this).attr('src'))
-})
+$('.plan-key')
+    .click(function() {
+        $('.unit-full-img').addClass('open');
+        $('.unit-full-img .preview img').attr('src', $(this).attr('src'))
+    });
 
 

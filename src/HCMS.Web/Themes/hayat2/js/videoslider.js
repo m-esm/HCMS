@@ -2,16 +2,12 @@
 
 $(function () {
 
-
     $('#videos .tv').click(function () {
 
         var video = $('#video')[0];
 
-
-
         if (!video)
             return;
-
 
         if ($('source', video).length == 0)
             playVideo($('#videos .thumbnails div').attr('data-src'),false);
@@ -28,10 +24,7 @@ $(function () {
             $(this).removeClass('play');
 
             video.pause();
-
         }
-
-
     });
     var playVideo = function (src, play) {
 
@@ -42,14 +35,10 @@ $(function () {
             .html('')
              .append($("<source type='video/webm' />").attr('src', src))[0];
 
-
-
         if (play) 
             $('#videos .tv').addClass('play');
         else
             $('#videos .tv').removeClass('play');
-
-
 
         video.loop = true;
 
@@ -59,20 +48,11 @@ $(function () {
 
         if (play)
             video.play();
-
-
     };
-
 
     $('#videos .thumbnails div').click(function () {
 
         playVideo($(this).attr('data-src'), true);
 
     });
-
-
-
-
-
-
 });

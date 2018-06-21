@@ -19,7 +19,7 @@ $(function () {
 
 
         if (!$(_first).parent('section.page').hasClass('page-active')) {
-            $(_first).parent('section.page').addClass('page-active')
+            $(_first).parent('section.page').addClass('page-active');
             $(_first).addClass('page-active');
         }
         console.log($(_first).parent('section.page'));
@@ -28,7 +28,7 @@ $(function () {
     else {
         if ($('section' + window.location.hash).length > 0) {
             if (!$('section' + window.location.hash).hasClass('page-active'))
-                $('section' + window.location.hash).addClass('page-active')
+                $('section' + window.location.hash).addClass('page-active');
 
 
             $('section' + window.location.hash + ' article').first().addClass('page-active');
@@ -45,6 +45,7 @@ $(function () {
 
 
     $(document).keydown(function (e) {
+        alert(e.which);
         switch (e.which) {
             case 37:
                 changeArticlePage(false, 'left');
@@ -64,35 +65,6 @@ $(function () {
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
-
-    //$("body").swipe({
-    //    //Generic swipe handler for all directions
-    //    swipeStatus: function (e, phase, direction, duration, distance, fingerCount) {
-    //        alert(direction);
-    //        if (phase == "move" || phase == "start") {
-    //            var $target = e.target.nodeName;
-    //            if ($target.toLowerCase() === 'input') {
-    //                return false;
-    //            } else {
-    //                if (duration > 30) {
-    //                    //if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-    //                    //    return;
-    //                    changeArticlePage(false, direction == "left" ? "right" : "left");
-    //                }
-
-    //            }
-    //        }
-    //    },
-    //    excludedElements: "label, button, input, select, textarea, .noSwipe"
-    //    //swipe: function (e, direction, distance, duration, fingerCount, fingerData) {
-    //    //    console.log(e);
-    //    //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
-    //    //        return;
-    //    //    changePage(false, direction == "up" ? "down" : "up");
-
-    //    //}
-    //});
-
     $(window).bind('hashchange', onHashArtChange);
 
 });
@@ -104,7 +76,7 @@ var toggleMobileMenu = function () {
 var changeArticlePage = function (nextArticle, mode) {
     if (nextArticle)
         if (nextArticle.attr("id") != undefined)
-            if ($('article[id=' + nextArticle.attr("id") + ']').length == 0)
+            if ($('article[id=' + nextArticle.attr("id") + ']').length === 0)
                 return;
 
     if (busy)
@@ -117,7 +89,7 @@ var changeArticlePage = function (nextArticle, mode) {
     }, 1000);
 
     if ($('section.page-active'))
-    if ($('section.page-active article.page-child.page-active').length == 0) {
+    if ($('section.page-active article.page-child.page-active').length === 0) {
         var currentArticle = $('section.page-active article.page-child')[0];
         $(currentArticle).addClass('page-active');
     }
@@ -162,7 +134,7 @@ var changeArticlePage = function (nextArticle, mode) {
             prevArticle
                 .addClass('page-active')
                 .removeClass('page-deactive-top')
-                .removeClass('page-deactive-down')
+                .removeClass('page-deactive-down');
 
             if (window.location.pathname === "/")
                 if (!prevArticle.parent('section.page').hasClass('page-slider'))
@@ -192,7 +164,7 @@ var changeArticlePage = function (nextArticle, mode) {
             nextArticle
                 .addClass('page-active')
                 .removeClass('page-deactive-top')
-                .removeClass('page-deactive-down')
+                .removeClass('page-deactive-down');
 
             if (window.location.pathname === "/")
                 if (!nextArticle.parent('section.page').hasClass('page-slider'))

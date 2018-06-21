@@ -25,80 +25,89 @@ var userComments = [];
 
 //get all User Comment
 $.ajax({
-    method: 'GET',
-    url: '/Hayat/Comment/GetConfirm',
-}).done(function (res) {
-    $.each(res, function (index, item) {
-        var find = userComments.find(a=>a.UnitId == item.UnitId);
-        if (find == undefined)
-            userComments.push({ UnitId: item.UnitId, model: [item] });
-        else {
-            var _find = userComments.find(a=>a.UnitId == item.UnitId)
-            var index = userComments.indexOf(_find);
-            userComments[index].model.push(item)
-        }
-    });
-    //fill comment to
- 
-    $.each(userComments, function (index, item) {
-        var _html = '';
-        var _prof = '';
-        $.each(item.model, function (i, obj) {
-            if (obj.IsUser) {
+        method: 'GET',
+        url: '/Hayat/Comment/GetConfirm',
+    })
+    .done(function(res) {
+        $.each(res,
+            function(index, item) {
+                var find = userComments.find(a => a.UnitId == item.UnitId);
+                if (find == undefined)
+                    userComments.push({ UnitId: item.UnitId, model: [item] });
+                else {
+                    var _find = userComments.find(a => a.UnitId == item.UnitId);
+                    var index = userComments.indexOf(_find);
+                    userComments[index].model.push(item);
+                }
+            });
+        //fill comment to
 
-                _html += '<div class="rate">' +
-                    '<div class="col-md-9 col-sm-12">' +
-                        '<div class="msg">' +
-                            '<div class="name">' +
-                                '<strong>' + obj.Name + '</strong>' +
-                            '</div>' +
-                            '<div class="ios-msg">' + obj.Text + '</div>' +
-                        '</div>' +
-                    '</div>';
+        $.each(userComments,
+            function(index, item) {
+                var _html = '';
+                var _prof = '';
+                $.each(item.model,
+                    function(i, obj) {
+                        if (obj.IsUser) {
 
-                if (obj.Ranks.length > 0) {
-                    _html += '<div class="col-md-3 col-sm-12">' +
-                             '<h5 class="full-width">'
-                                + 'امتیاز ها' +
-                             '</h5>' +
-                             '<ul >';
-                    $.each(obj.Ranks, function (j, rank) {
-                        _html += '<li><label>' + rank.Title + '</label><span>';
-                        for (var i = 1; i <= 5; i++) {
-                            if (i <= rank.Score)
-                                _html += ' <i class="fa fa-star"></i>';
-                            else
-                                _html += ' <i class="fa fa-star-o"></i>';
+                            _html += '<div class="rate">' +
+                                '<div class="col-md-9 col-sm-12">' +
+                                '<div class="msg">' +
+                                '<div class="name">' +
+                                '<strong>' +
+                                obj.Name +
+                                '</strong>' +
+                                '</div>' +
+                                '<div class="ios-msg">' +
+                                obj.Text +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+
+                            if (obj.Ranks.length > 0) {
+                                _html += '<div class="col-md-3 col-sm-12">' +
+                                    '<h5 class="full-width">' +
+                                    'امتیاز ها' +
+                                    '</h5>' +
+                                    '<ul >';
+                                $.each(obj.Ranks,
+                                    function(j, rank) {
+                                        _html += '<li><label>' + rank.Title + '</label><span>';
+                                        for (var i = 1; i <= 5; i++) {
+                                            if (i <= rank.Score)
+                                                _html += ' <i class="fa fa-star"></i>';
+                                            else
+                                                _html += ' <i class="fa fa-star-o"></i>';
+                                        }
+
+                                        _html += '</span></li>';
+                                    });
+                                _html += '</ul></div>';
+                            }
+
+
+                            _html += ' </div>';
+                        } else {
+                            //درج نطر متخصصین
+                            _prof += '<li><strong>' +
+                                obj.Name +
+                                ' : </strong>' +
+                                '<label class="ios-msg">' +
+                                obj.Text +
+                                '</label>' +
+                                '</li>';
                         }
 
-                        _html += '</span></li>'
-                    })
-                    _html += '</ul></div>';
-                }
-            
 
-                _html += ' </div>';
-            } else {
-                //درج نطر متخصصین
-                _prof += '<li><strong>'
-                    + obj.Name
-                    + ' : </strong>'
-                    + '<label class="ios-msg">'
-                    + obj.Text
-                    + '</label>'
-                    + '</li>'
-            }
+                    });
+                $('section#' + item.UnitId + ' #comments_' + item.UnitId + ' .user-comment')
+                    .append(_html);
 
+                $('section#' + item.UnitId + ' #comments_' + item.UnitId + ' .prof-comment > ul')
+                    .append(_prof);
 
-        })
-        $('section#' + item.UnitId + ' #comments_' + item.UnitId + ' .user-comment')
-        .append(_html);
-
-        $('section#' + item.UnitId + ' #comments_' + item.UnitId + ' .prof-comment > ul')
-         .append(_prof);
-
-    })
-})
+            });
+    });
 var rank = [];
 $('.stars i').click(function () {
 
@@ -117,7 +126,7 @@ $('.stars i').click(function () {
 
     var id = $(this).parents('article').attr('id');
     var title = $(this).parents('article').attr('data-title');
-    var _exist = rank.find(a=>a.unitPicId == id)
+    var _exist = rank.find(a => a.unitPicId == id);
     if (_exist === undefined)
         rank.push({ unitPicId: id, title: title, score: item });
     else {
@@ -212,7 +221,7 @@ $(document).on('click',
                 $.each(res.msg,
                     function(index, item) {
                         html += item + "/";
-                    })
+                    });
                 html += '';
                 swal("", html, "error");
             }
@@ -221,35 +230,22 @@ $(document).on('click',
         });
     });
 
-//$('.tabs .tab').click(function () {
-//    alert(0);
-//    if ($(this).hasClass('active'))
-//        return;
 
-//    alert(1);
-//    $('.tabs .tab').removeClass('active');
-//    $('.tabs .elm').removeClass('active');
+$(document)
+    .on('click tab',
+        '.tabs .tab',
+        function() {
+            if ($(this).hasClass('active'))
+                return;
 
-//    var target = $(this).attr('data-target');
-//    $("span[data-target='" + target + "'").addClass('active');
-//    $("div[data-element='" + target + "'").addClass('active');
+            $('.tabs .tab').removeClass('active');
+            $('.tabs .elm').removeClass('active');
 
-//    alert(target)
+            var target = $(this).attr('data-target');
 
-//});
-
-$(document).on('click tab', '.tabs .tab', function () {
-    if ($(this).hasClass('active'))
-        return;
-
-    $('.tabs .tab').removeClass('active');
-    $('.tabs .elm').removeClass('active');
-
-    var target = $(this).attr('data-target');
-
-    $("span[data-target='" + target + "']").addClass('active');
-    $("div[data-element='" + target + "']").addClass('active');
-})
+            $("span[data-target='" + target + "']").addClass('active');
+            $("div[data-element='" + target + "']").addClass('active');
+        });
 
 //click for next and prev page
 $('.page-right').click(function () {
@@ -264,14 +260,14 @@ var IsValid = function () {
     var isValid = true;
     var form = $('#visit-form');
     var inputs = $(form).find('input:required');
-    $.each(inputs, function (index, item) {
-        if ($(item).val() === '') {
-            isValid = true;
-            $(item).addClass('has-error');
-        }
-        else
-            $(item).removeClass('has-error');
-    })
+    $.each(inputs,
+        function(index, item) {
+            if ($(item).val() === '') {
+                isValid = true;
+                $(item).addClass('has-error');
+            } else
+                $(item).removeClass('has-error');
+        });
     return isValid;
 }
 

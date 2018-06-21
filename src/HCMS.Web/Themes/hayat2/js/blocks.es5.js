@@ -58,39 +58,6 @@ $(document).on('tap click', '#recortes-plan-a area', function () {
     //$('#imagen-plan-a').css('display', 'none');
 });
 
-//$('#recortes-plan-a area').click(function () {
-//    var unit = $(this).attr('data-unit');
-//    var find = plan_a_keys.find(a=>a.unit == unit);
-//    $('#block-a .plan-unit img').attr('src', find.url);
-
-//    $('#block-a .plan-unit').css('display', 'block');
-
-//    //set data table select and active
-//    var _id = '1-' + unit;
-//    console.log(_id);
-//    //remove class from another child
-//    $('#block-a .table tr').removeClass('selected');
-//    $('#block-a .table tr').removeClass('active');
-
-//    //find plan number
-//    var _area = parseInt($('#block-a #' + _id).attr('data-area'));
-//    for (var i = _area - 10; i < _area + 10; i++) {
-//        $('#block-a .table tr[data-area=' + i + ']').addClass('active');
-//    }
-//    console.log(_area);
-//    $('#block-a #' + _id).addClass('selected');
-
-//    var plan = $(this).attr('data-unit');
-//    $('#figur-plan-a area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-a').css('clip-path', 'url(#PA' + plan + ')').css('display', 'block');
-
-//    $('#block-a .hayatbtn').addClass('active');
-
-//    //نشان دادن در حالت موبایلی
-//    $('#block-a .block').addClass('mobile-min');
-//    $('#block-a .plan-unit').addClass('mobile-max');
-
-//});
-
 $(document).on('tap click', '.block-detail .mobile-min', function () {
     $(this).removeClass('mobile-min');
     $(this).parents('.block-detail').find('.plan-unit').removeClass('mobile-max');
@@ -141,17 +108,6 @@ $('#recortes-plan-b area').click(function () {
     //remove class from another child
     $('#block-b .table tr').removeClass('selected');
     $('#block-b .table tr').removeClass('active');
-
-    //find plan number
-    //var _area = parseInt($('#block-b #' + _id).attr('data-area'));
-    //for (var i = _area - 10; i < _area + 10; i++) {
-    //    $('#block-b .table tr[data-area=' + i + ']').addClass('active');
-    //}
-    //console.log(_area);
-    //$('#block-b #' + _id).addClass('selected');
-
-    //var floor = $(this).attr('data-floor');
-    //$('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
 
     $('#block-b .hayatbtn').addClass('active');
 
@@ -211,12 +167,6 @@ $('#recortes-b area').click(function () {
     var floor = $(this).attr('data-floor');
     $('#figur-b area:nth-of-type(' + floor + ') ~ #capaRecorte-b').css('clip-path', 'url(#F' + floor + '-b)').css('display', 'block');
 });
-
-//$('#recortes-plan-b area').click(function () {
-//    alert();
-//    var plan = $(this).attr('data-unit');
-//    $('#figur-plan-b area:nth-of-type(' + plan + '):hover ~ #capaRecorte-plan-b').css('clip-path', 'url(#PB' + plan + ')').css('display', 'block');
-//})
 
 $('#recortes-c area').click(function () {
     var floor = $(this).attr('data-floor');

@@ -8,32 +8,18 @@ $(document).on("mobileinit", function () {
 
 $(function () {
 
-
-
     var onHashChange = function () {
         if (!busy && !keyLeftRight)
             changePage($(window.location.hash.toLowerCase()), "down");
-
     };
 
     $('.back-to-top').click(function () {
-
-        var btn = $(this);
-
-
         window.location.hash = $('section.page').first().attr('id');
-
-
     });
 
-
-
-
     var mousewheel = function (e) {
-
         if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll'))
             return;
-
 
         var wheelDelta = e.wheelDelta ? e.wheelDelta : -e.detail;
 
@@ -42,12 +28,10 @@ $(function () {
         } else {
             changePage(false, 'down');
         }
-
-
     };
 
-
     $(document).keydown(function (e) {
+       
         switch (e.which) {
             case 37:
                 keyLeftRight = true;
@@ -66,100 +50,6 @@ $(function () {
         }
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
-
-
-    //$("body").humm
-    //var mc = new Hammer($("body"));
-
-    //mc.on("panleft panright tap press", function (ev) {
-    //    myElement.textContent = ev.type + " gesture detected.";
-    //    alert();
-    //});
-
-
-    //$(document).on('swipedown', 'body', function (e) {
-    //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
-    //        || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-    //        return;
-    //    changePage(false, "up");
-    //})
-
-    //$(document).on('swipeup', 'body', function (e) {
-
-    //    if ($(e.target).parents().hasClass('cscroll') || $(e.target).hasClass('cscroll')
-    //        || $(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-    //        return;
-    //    changePage(false, "down");
-    //})
-
-    //$(document).on('swiperight', 'body', function (e) {
-    //    if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-    //        return;
-    //    changeArticlePage(false, 'left');
-
-    //})
-
-    //$(document).on('swipeleft', 'body', function (e) {
-    //    if ($(e.target).parents().hasClass('noSwipe') || $(e.target).hasClass('noSwipe'))
-    //        return;
-    //    else if (!$(e.target).parents().hasClass('page-horizontal') && !$(e.target).hasClass('page-horizontal'))
-    //        toggleMobileMenu();
-    //    else
-    //        changeArticlePage(false, 'right');
-    //})
-
-    //var toggleMobileMenu = function () {
-    //    $('#menu-bar').click();
-    //}
-
-    //var myPanHandler = function () {
-    //    console.log($(this));
-    //    alert();
-    //}
-
-    //var options = {
-    //    preventDefault: true
-    //};
-    //$('body').hammer(options).bind("dragup dragdown swipeup swipedown", myPanHandler);
-
-
-    //$("body").swipe({
-    //    //Generic swipe handler for all directions
-    //    swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
-    //        var str = "<h4>Swipe Phase : " + phase + "<br/>";
-    //        str += "Current direction: " + currentDirection + "<br/>";
-    //        str += "Direction from inital touch: " + direction + "<br/>";
-    //        str += "Distance from inital touch: " + distance + "<br/>";
-    //        str += "Duration of swipe: " + duration + "<br/>";
-    //        str += "Fingers used: " + fingers + "<br/></h4>";
-    //        //Here we can check the:
-    //        //phase : 'start', 'move', 'end', 'cancel'
-    //        //direction : 'left', 'right', 'up', 'down'
-    //        //distance : Distance finger is from initial touch point in px
-    //        //duration : Length of swipe in MS
-    //        //fingerCount : the number of fingers used
-    //        if (phase != "cancel" && phase != "end") {
-    //            if (duration < 5000)
-    //                str += "Under maxTimeThreshold.<h3>Swipe handler will be triggered if you release at this point.</h3>"
-    //            else
-    //                str += "Over maxTimeThreshold. <h3>Swipe handler will be canceled if you release at this point.</h3>"
-    //            if (distance < 200)
-    //                str += "Not yet reached threshold.  <h3>Swipe will be canceled if you release at this point.</h3>"
-    //            else
-    //                str += "Threshold reached <h3>Swipe handler will be triggered if you release at this point.</h3>"
-    //        }
-    //        if (phase == "cancel")
-    //            str += "<br/>Handler not triggered. <br/> One or both of the thresholds was not met "
-    //        if (phase == "end")
-    //            str += "<br/>Handler was triggered."
-    //        $(".top-nav .search").html(str);
-    //    },
-    //    preventDefaultEvents: false,
-    //    threshold: 1,
-    //    excludedElements: " input , textarea, .noSwipe, .cscroll"
-
-    //});
-
 
     $("body").swipe({
         //Generic swipe handler for all directions
@@ -223,6 +113,7 @@ $(function () {
 
 
 var changePage = function (nextPage, mode) {
+  
     if (busy)
         return;
 
@@ -233,9 +124,6 @@ var changePage = function (nextPage, mode) {
         busy = false;
 
     }, 1000);
-
-
-
 
     var currentPage = $('section.page.page-active');
 
@@ -265,6 +153,12 @@ var changePage = function (nextPage, mode) {
         else
             find = true;
     }
+ 
+    //if sign up age refresh captcha
+    if (nextPage.attr('id') === 'signup' || nextPage.attr('id') === 'signup2' || nextPage.attr('id') === 'signup3') {
+    
+        refreshCaptcha();
+    }
 
     setTimeout(function () {
 
@@ -278,19 +172,10 @@ var changePage = function (nextPage, mode) {
     if (nextPage.hasClass('page-horizontal') || prevPage.hasClass('page-horizontal'))
         $('.back-to-top').addClass('horizontal');
 
-    // $('[data-aos]', currentPage).removeClass('aos-animate');
-
-
-
-
-
-
 
     if (window.location.pathname !== "/") {
 
         $('header').addClass('navhide');
-        //$('.top-nav').addClass('navhide');
-        //$('.bottom-nav').addClass('navhide');
         $('.homelogo').fadeIn();
 
     }
@@ -298,7 +183,6 @@ var changePage = function (nextPage, mode) {
     if (mode === "up") {
 
         if (prevPage.length > 0) {
-
 
             prevPage.addClass('page-active')
                 .removeClass('page-deactive-top')
@@ -326,19 +210,11 @@ var changePage = function (nextPage, mode) {
                 if (!prevPage.hasClass('page-slider'))
                     $('header').addClass('stick');
 
-
             if (prevPage.attr('id'))
                 window.location.hash = prevPage.attr('id');
-
-
         }
-
-
     }
     if (mode === "down") {
-
-
-
         if (nextPage.length > 0) {
 
             nextPage
@@ -360,24 +236,17 @@ var changePage = function (nextPage, mode) {
                 $('.back-to-top').fadeIn();
             }
 
-
             if (window.location.pathname === "/")
                 if (!nextPage.hasClass('page-slider'))
                     $('header').addClass('stick');
 
-
             if (nextPage.attr('id'))
                 window.location.hash = nextPage.attr('id');
-
-
-
         }
-
-
     }
-
-    //   $(window).bind('hashchange', onHashChange);
-
-
 };
 
+var refreshCaptcha = function() {
+    $('form.register-form .captcha-field img').attr('src', 'manage/Captcha/msdn?prefix=captcha&guid=' + Date.now());
+    $('form.contactForm .captcha-field img').attr('src', 'manage/Captcha/msdn?prefix=_cooprate&guid=' + Date.now());
+}
