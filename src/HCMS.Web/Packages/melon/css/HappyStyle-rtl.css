@@ -3,7 +3,9 @@
     src: url('../fonts/IRANSansWeb.eot') format('embedded-opentype'), url('../fonts/IRANSansWeb.ttf') format('truetype'), url('../fonts/IRANSansWeb.woff') format('woff');
 }
 
-
+* {
+     font-family: "IRANSansWeb", sans-serif !important;
+}
 body {
     font-family: "IRANSansWeb", sans-serif !important;
     direction: rtl;

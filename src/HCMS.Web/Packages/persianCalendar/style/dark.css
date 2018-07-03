@@ -1,0 +1,47 @@
+﻿
+
+.bd-main {
+	background-color: #ddd;
+	border: 1px solid #fff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+.bd-next, .bd-prev {
+	background-color: #000;
+}
+
+.bd-table thead {
+	background-color: #555555;
+	color: #FFF;
+}
+
+
+.bd-table-days button {
+	background-color: #444;
+}
+
+.bd-table-days button:hover {
+	color: red;
+	background-color: #333;
+}
+
+.bd-today {
+	background-color: #333 !important;
+	color: green;
+}
+
+.bd-holiday {
+    background-color: #e25856 !important;
+    font-size: 16px;
+}
+
+.bd-selected-day {
+	color: #fff;
+}
+
+.bd-goto-today {
+	color: #FFF;
+	background-color: #555555;
+}

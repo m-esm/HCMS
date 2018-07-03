@@ -389,12 +389,22 @@ namespace HCMS.Web.Areas.Manage.Controllers
                 }
 
 
+            if (!ModelState.IsValid)
+            {
+                if (model.isAjax)
+                {
+                    return Json(LocalizeErrors(ModelState.Values.SelectMany(m => m.Errors)
+                                 .Select(e => e.ErrorMessage)
+                                 .ToArray()));
+                }
+                return View(model);
+            }
+            //if (!model.Username.Contains("@"))
+            //    if (!Regex.IsMatch(model.Username, @"^\d+$"))
+            //        ModelState.AddModelError("", @"نام کاربری  باید ایمیل یا شماره موبایل باشد !");
 
-            if (!model.Username.Contains("@"))
-                if (!Regex.IsMatch(model.Username, @"^\d+$"))
-                    ModelState.AddModelError("", @"نام کاربری  باید ایمیل یا شماره موبایل باشد !");
-
-
+            if (!Regex.IsMatch(model.Username, @"^\d+$"))
+                ModelState.AddModelError("", @"شماره وارد شده معتبر نمی باشد");
 
             var user = new ApplicationUser { UserName = model.Username, FirstName = model.FirstName };
 

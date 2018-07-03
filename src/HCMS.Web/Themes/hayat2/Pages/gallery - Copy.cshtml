@@ -1,55 +1,54 @@
-﻿
-@using HCMS.Dynamics.Data
-@{
-    var gallery = DDB.GetTable("cms", "gallery").DRows;
-    var block = DDB.GetTable("cms", "blocks").DRows;
+﻿<div class="reserve-box">
 
-    ViewBag.title = "گالری";
-    int i = 0;
-
-    Layout = null;
-
-}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Gallery</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-
-
-    <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/style.css" rel="stylesheet" />
-    <link href="~/Themes/hayat2/module/Jquery-FullGallery/css/normalize.css" rel="stylesheet" />
-
-    <script src="~/Packages/jquery-3.2.1/jquery-3.2.1.min.js"></script>
-
-    <script src="~/Themes/hayat2/module/Jquery-FullGallery/js/app.js"></script>
-
-</head>
-<body>
-    <div class="spinner">
-        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/loader.gif" alt="loader" />
-    </div>
-    <div class="container">
-        <div class="gallery">
-
-            <div class="gallery__view">
-                <div class="gallery__thumbs-wrapper">
-                    <button class="scroll__btn left__btn">
-                        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/left-button.png" width="25px" height="45px" alt="left" />
-                    </button>
-                    <button class="scroll__btn right__btn">
-                        <img src="~/Themes/hayat2/module/Jquery-FullGallery/img/right-button.png" width="25px" height="45px" alt="right" />
-                    </button>
-
-                    <div class="gallery__thumbs">
-                        <!-- Rendering thumbs with jQuery-->
-                    </div>
-                </div>
-            </div>
-
+    <div class="reserve-box-header">
+        <div class="date">
+            <label>یکشنبه, تیر ۱۰ ۱۳۹۷</label>
+        </div>
+        <div class="full-desc">ظرفیت تکمیل شده است </div>
+        <div class="sign">
+            <i class="fa fa-chevron-down"></i>
         </div>
     </div>
-</body>
-</html>
+    <div class="reserve-box-body">
+        <div class="child">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ساعت</th>
+                        <th>ظرفیت</th>
+                        <th>باقیمانده</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>undefined</td>
+                        <td>10:00</td>
+                        <td>4</td>
+                        <td>
+                            <button class="hayatbtn">رزرو</button>
+                        </td>
+                    </tr>
+                    <tr class="disabled">
+                        <td>10 - 12</td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td>
+                    </tr>
+                    <tr><td>undefined</td><td>12:00</td><td>4</td><td><button class="hayatbtn">رزرو</button></td></tr>
+                    <tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr>
+                    <tr><td>undefined</td><td>16:00</td><td>4</td><td><button class="hayatbtn">رزرو</button></td></tr>
+                    <tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr>
+                    <tr><td>undefined</td><td>18:00</td><td>4</td><td><button class="hayatbtn">رزرو</button></td></tr>
+                    <tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr>
+                    <tr><td>undefined</td><td>null</td><td>0</td><td><button class="hayatbtn">رزرو</button></td></tr>
+                    <tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr>
+                    <tr><td>undefined</td><td>null</td><td>0</td><td><button class="hayatbtn">رزرو</button></td></tr>
+                    <tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="reserve-box"><div class="reserve-box-header"><div class="date"><label>دوشنبه, تیر ۱۱ ۱۳۹۷</label></div><div class="full-desc">ظرفیت تکمیل شده است </div><div class="sign"><i class="fa fa-chevron-down"></i></div></div><div class="reserve-box-body"><div class="child"><table><thead><tr><th>ساعت</th><th>ظرفیت</th><th>باقیمانده</th><th></th> </tr></thead><tbody><tr><td>undefined</td><td>10:00</td><td>4</td><td><button class="hayatbtn">رزرو</button></td></tr><tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr><tr><td>undefined</td><td>12:00</td><td>3</td><td><button class="hayatbtn">رزرو</button></td></tr><tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr><tr><td>undefined</td><td>null</td><td>0</td><td><button class="hayatbtn">رزرو</button></td></tr><tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr><tr><td>undefined</td><td>null</td><td>0</td><td><button class="hayatbtn">رزرو</button></td></tr><tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr><tr><td>undefined</td><td>null</td><td>0</td><td><button class="hayatbtn">رزرو</button></td></tr><tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr><tr><td>undefined</td><td>null</td><td>0</td><td><button class="hayatbtn">رزرو</button></td></tr><tr class="disabled"><td>10 - 12</td><td>4</td><td>0</td><td><button class="hayatbtn" disabled="disabled">ظرفیت تکمیل</button></td></tr></tbody></table></div></div></div>

@@ -12,352 +12,329 @@
 
     if (!User.Identity.IsAuthenticated || !User.IsInRole("user"))
     {
-        Response.Redirect("/auth");
+        Response.Redirect("/auth?returnUrl=visit");
     }
 
     var user = new HCMS.Data.Identity.ApplicationDbContext().Users.FirstOrDefault(p => p.UserName == User.Identity.Name);
-
-    var types = DDB.GetTable("cms", "units").DRows.Select(p => p.GetValue("area").Value).DistinctBy(p => p).OrderBy(p => p);
+    //var types = DDB.GetTable("cms", "unit-visit").DRows.Select(p => p.GetValue("value").Value).DistinctBy(p => p).OrderBy(p => p); ;
+    //var types = DDB.GetTable("cms", "units").DRows.Select(p => p.GetValue("area").Value).DistinctBy(p => p).OrderBy(p => p);
     var price = DDB.GetTable("cms", "UnitsPrice").DRows.OrderBy(p => p.GetValue("Order").Value);
     var country = DDB.GetTable("cms", "Country").DRows.OrderBy(p => p.GetValue("Name").Value);
     var province = DDB.GetTable("cms", "Province").DRows.OrderBy(p => p.GetValue("Name").Value);
     var city = DDB.GetTable("cms", "City").DRows.OrderBy(p => p.GetValue("Name").Value);
 
+
     ViewBag.title = "رزرو باردید";
 }
+
 
 <section id="submit" class="page page-homeforms">
     <div class="container">
         <div class="row">
 
+
             <div class="col-md-9 col-md-offset-2">
 
-                <h3 class="text-center" data-aos="fade-down">فرم ثبت نام رزرو بازدید</h3>
 
-                <div class="alert alert-info">
-                    <i class="fa fa-exclamation-circle"></i>
-                    این سایت و شرکت ابتکار سازه
-                    محافظ حریم شخصی شماست
-                </div>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-target="visit">
+                            فرم بازدید
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-target="reserve">
+                            رزرو بازدید
+                        </a>
+                    </li>
+                </ul>
 
-                <div class="form">
-                    <form id="visit-form" method="post" role="form" class="contactForm">
+                <div class="tab-content">
+                    <div id="visit" class="tab-pane fade  in active">
 
-                        <div class="row">
+                        <h3 class="text-center" data-aos="fade-down">فرم ثبت نام رزرو بازدید</h3>
 
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-
-                                    <label class="required">
-                                        <i class="fa fa-user"></i>
-                                        نام و نام خانوادگی
-                                    </label>
-                                    <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-
-                                    <label class="required">
-                                        <i class="fa fa-child"></i>
-                                        سن
-                                    </label>
-                                    <input type="number" required name="age" class="form-control" placeholder="سن" />
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-
-                                    <label class="required">
-                                        <i class="fa fa-user-circle"></i>
-                                        تعداد خانوار
-                                    </label>
-                                    <input type="number" required name="familyCount" class="form-control" placeholder="تعداد خانوار" />
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-university"></i>
-                                        تحصیلات
-                                    </label>
-                                    <select required name="academic" class="form-control">
-                                        <option value="-1">انتخاب کنید</option>
-                                        <option value="0">دیپلم</option>
-                                        <option value="1">فوق دیپلم</option>
-                                        <option value="2">لیسانس</option>
-                                        <option value="3">فوق لیسانس</option>
-                                        <option value="4">دکترا</option>
-                                    </select>
-                                    @*<input type="text" required name="academic" class="form-control" placeholder="تحصیلات" />*@
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-handshake-o"></i>
-                                        شغل
-                                    </label>
-                                    <input type="text" required name="job" class="form-control" placeholder="شغل" />
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-mobile-phone"></i>
-                                        شماره همراه
-                                    </label>
-                                    <input type="text" required class="form-control" name="phone" placeholder="شماره همراه" />
-                                </div>
-                            </div>
-
-                            <div class="title border-bottom">
-                                اولویت اول
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-cc-discover"></i>
-                                        مساحت ( متراژ)
-                                    </label>
-                                    <select required name="type" class="form-control">
-                                        <option value="-1">انتخاب کنید</option>
-                                        @foreach (var item in types)
-                                        {
-                                            <option value="@item">
-                                                واحد @item
-                                                متری
-                                            </option>
-                                        }
-
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-home"></i>
-                                        تعداد اتاق
-                                    </label>
-                                    <select required name="RoomCount2" class="form-control">
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="title border-bottom">
-                                اولویت دوم
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-cc-discover"></i>
-                                        مساحت ( متراژ)
-                                    </label>
-                                    <select name="type2" class="form-control">
-                                        <option value="-1">انتخاب کنید</option>
-                                        @foreach (var item in types)
-                                        {
-                                            <option value="@item">
-                                                واحد @item
-                                                متری
-                                            </option>
-                                        }
-
-                                    </select>
-                                </div>
-                            </div>
-
-
-                        <div class="col-md-6 col-sm-12">
-                            <div data-aos="fade-left" class="form-group">
-                                <label class="required">
-                                    <i class="fa fa-home"></i>
-                                    تعداد اتاق
-                                </label>
-                                <select required name="RoomCount2" class="form-control">
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
+                        <div class="alert alert-info">
+                            <i class="fa fa-exclamation-circle"></i>
+                            این سایت و شرکت ابتکار سازه
+                            محافظ حریم شخصی شماست
                         </div>
 
-                            <div class="title border-bottom">
-                                اولویت سوم
-                            </div>
+                        <div class="form">
+                            <form id="visit-form" method="post" role="form" class="contactForm">
 
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-cc-discover"></i>
-                                        مساحت ( متراژ)
-                                    </label>
-                                    <select name="type3" class="form-control">
-                                        <option value="-1">انتخاب کنید</option>
-                                        @foreach (var item in types)
-                                        {
-                                            <option value="@item">
-                                                واحد @item
-                                                متری
-                                            </option>
-                                        }
+                                <div class="row">
 
-                                    </select>
-                                </div>
-                            </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
 
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-home"></i>
-                                        تعداد اتاق
-                                    </label>
-                                    <select required name="RoomCount3" class="form-control">
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-
-                                    <label class="required">
-                                        <i class="fa fa-dollar"></i>
-                                        قیمت مورد نظر
-                                    </label>
-
-                                    <select name="PriceType" class="form-control" required>
-                                        <option value="-1">انتخاب کنید</option>
-                                        @foreach (var item in price)
-                                        {
-                                            <option value="@item.RowID">
-                                                از @item.GetValue("From").Value تا @item.GetValue("To").Value میلیون تومان
-                                            </option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label class="required">
-                                        <i class="fa fa-cc-discover"></i>
-                                        هدف از بازدید
-                                    </label>
-                                    <select required name="target" class="form-control">
-                                        <option value="-1">انتخاب کنید</option>
-                                        <option value="0">خرید</option>
-                                        <option value="1">رهن و اجاره</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            @*<div class="col-md-12 col-sm-12 ">
-                                    <div data-aos="fade-left" class="form-group">
-                                        <label class="required">
-                                            <i class="fa fa-location-arrow"></i>
-                                            آدرس سکونت فعلی
-                                        </label>
-
-                                        <div class="col-md-12 unpadding">
-                                            <div class="col-md-4 unpadding-right">
-                                                <label class="required">کشور</label>
-                                                <select class="form-control" name="CountryId" required>
-                                                    <option value="0">انتخاب کنید</option>
-                                                    @foreach(var item in country)
-                                                    {
-                                                        <option value="@item.RowID">@item.GetValue("Name")</option>
-                                                    }
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4 unpadding-right">
-                                                <label class="required">استان / ایالت</label>
-                                                <select class="form-control" name="ProvinceId" id="Province" required>
-                                                    <option value="0">انتخاب کنید</option>
-                                                    @foreach (var item in province)
-                                                    {
-                                                        <option value="@item.RowID">@item.GetValue("Name")</option>
-                                                    }
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4 unpadding">
-                                                <label class="required">شهر</label>
-                                                <select class="form-control" name="CityId" id="city" required>
-                                                    <option value="0">انتخاب کنید</option>
-                                                    @foreach (var item in city)
-                                                    {
-                                                        <option class="hidden" value="@item.RowID" data-pId="@item.GetValue("ProvinceId")">@item.GetValue("Name")</option>
-                                                    }
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-12 unpadding">
-                                                <label class="required">ادامه آدرس</label>
-                                                <textarea required class="form-control" name="Address"></textarea>
-                                            </div>
+                                            <label class="required">
+                                                <i class="fa fa-user"></i>
+                                                نام و نام خانوادگی
+                                            </label>
+                                            <input type="text" required name="name" class="form-control" placeholder="نام و نام خانوادگی" />
 
                                         </div>
-
                                     </div>
-                                </div>*@
 
-                        </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
 
-                        <hr />
-                        <h3>نظر شما</h3>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div data-aos="fade-left" class="form-group">
-                                    <label>
-                                        <i class="fa fa-comment"></i>
-                                        نظر شما در مورد این واحد
-                                    </label>
-                                    <textarea class="form-control" name="comment"></textarea>
+                                            <label class="required">
+                                                <i class="fa fa-child"></i>
+                                                سن
+                                            </label>
+                                            <input type="number" required name="age" class="form-control" placeholder="سن" />
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+
+                                            <label class="required">
+                                                <i class="fa fa-user-circle"></i>
+                                                تعداد خانوار
+                                            </label>
+                                            <input type="number" required name="familyCount" class="form-control" placeholder="تعداد خانوار" />
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-university"></i>
+                                                تحصیلات
+                                            </label>
+                                            <select required name="academic" class="form-control">
+                                                <option value="انتخاب نشده است">انتخاب کنید</option>
+                                                <option value="دیپلم">دیپلم</option>
+                                                <option value="فوق دیپلم">فوق دیپلم</option>
+                                                <option value="لیسانس">لیسانس</option>
+                                                <option value="فوق لیسانس">فوق لیسانس</option>
+                                                <option value="دکترا">دکترا</option>
+                                            </select>
+                                            @*<input type="text" required name="academic" class="form-control" placeholder="تحصیلات" />*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-handshake-o"></i>
+                                                شغل
+                                            </label>
+                                            <input type="text" required name="job" class="form-control" placeholder="شغل" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-mobile-phone"></i>
+                                                شماره همراه
+                                            </label>
+                                            <input type="text" required class="form-control" name="phone" placeholder="شماره همراه" />
+                                        </div>
+                                    </div>
+
+                                    <div class="title border-bottom">
+                                        اولویت اول
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-cc-discover"></i>
+                                                مساحت ( متراژ)
+                                            </label>
+                                            <select required name="type" class="form-control">
+                                                <option value="-1">انتخاب کنید</option>
+                                                @*@foreach (var item in types)
+                                                    {
+                                                    <option value="@item">
+                                                        واحد @item
+                                                        متری
+                                                    </option>
+                                                    }*@
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-home"></i>
+                                                تعداد اتاق
+                                            </label>
+                                            <select required name="RoomCount2" class="form-control">
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="title border-bottom">
+                                        اولویت دوم
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-cc-discover"></i>
+                                                مساحت ( متراژ)
+                                            </label>
+                                            <select name="type2" class="form-control">
+                                                <option value="-1">انتخاب کنید</option>
+                                                @*@foreach (var item in types)
+                                                    {
+                                                    <option value="@item">
+                                                        واحد @item
+                                                        متری
+                                                    </option>
+                                                    }*@
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-home"></i>
+                                                تعداد اتاق
+                                            </label>
+                                            <select required name="RoomCount2" class="form-control">
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="title border-bottom">
+                                        اولویت سوم
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-cc-discover"></i>
+                                                مساحت ( متراژ)
+                                            </label>
+                                            <select name="type3" class="form-control">
+                                                <option value="-1">انتخاب کنید</option>
+                                                @*@foreach (var item in types)
+                                                    {
+                                                    <option value="@item">
+                                                        واحد @item
+                                                        متری
+                                                    </option>
+                                                    }*@
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-home"></i>
+                                                تعداد اتاق
+                                            </label>
+                                            <select required name="RoomCount3" class="form-control">
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+
+                                            <label class="required">
+                                                <i class="fa fa-dollar"></i>
+                                                قیمت مورد نظر
+                                            </label>
+
+                                            <select name="PriceType" class="form-control" required>
+                                                <option value="-1">انتخاب کنید</option>
+                                                @foreach (var item in price)
+                                                {
+                                                    <option value="@item.RowID">
+                                                        از @item.GetValue("From").Value تا @item.GetValue("To").Value میلیون تومان
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label class="required">
+                                                <i class="fa fa-cc-discover"></i>
+                                                هدف از بازدید
+                                            </label>
+                                            <select required name="target" class="form-control">
+                                                <option value="-1">انتخاب کنید</option>
+                                                <option value="0">خرید</option>
+                                                <option value="1">رهن و اجاره</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                            </div>
 
-                            <div class="col-md-12 col-sm-12">
-                                <div data-aos="fade-left" class="form-group captcha-field">
-                                    <img src="~/manage/Captcha/msdn?prefix=_visits" id="captcha-image" />
-                                    <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                                <hr />
+                                <h3>توضیحات شما شما</h3>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group">
+                                            <label>
+                                                <i class="fa fa-comment"></i>
+                                                موارد دیگری که برایتان حائز اهمیت است
+                                            </label>
+                                            <textarea class="form-control" name="comment"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div data-aos="fade-left" class="form-group captcha-field">
+                                            <img src="~/manage/Captcha/msdn?prefix=_visits" id="captcha-image" />
+                                            <input class="captcha form-control" autocomplete="off" required type="text" name="captcha" placeholder="کد امنیتی را وارد کنید ..." />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+
+
+                                <div class="alert" id="resultInfo" style="display: none">
+
+                                </div>
+
+                                <button data-aos="fade-left" id="submit-btn" class="hayatbtn" type="button">
+                                    <i class="fa fa-send">
+                                    </i>
+                                    ارسال
+                                </button>
+                            </form>
                         </div>
+                    </div>
+                    <div id="reserve" class="tab-pane fade">
+                        <h3 class="text-center" data-aos="fade-down">زمان بازدید را رزرو کنید</h3>
 
-
-                        <div class="alert" id="resultInfo" style="display:none">
-
-                        </div>
-
-                        <button data-aos="fade-left" id="submit-btn" class="hayatbtn" type="button">
-                            <i class="fa fa-send">
-                            </i>
-                            ارسال
-                        </button>
-                    </form>
+                    </div>
                 </div>
+
+
             </div>
 
 
@@ -368,8 +345,161 @@
 </section>
 
 @section scripts{
-
+    <script src="~/Packages/persian-date/dist/persian-date.min.js"></script>
     <script>
+
+        var mil = new persianDate(new Date()).format();
+        console.log(mil);
+        function csharpDate(jsonDate) {
+
+            var date = new Date(parseInt(jsonDate.substr(6)));
+            return date;
+        };
+        //get all reserve
+        $.ajax({
+            method: 'Get',
+            url: '/reservation/reserve/get',
+            success: function (res) {
+                console.log(res)
+                var html = '';
+                $.each(res,
+                    function (index, item) {
+                        var date = new persianDate(item.reserve.Date).format("dddd, DD MMMM YYYY");
+                        var className = '';
+                        if (item.isFull)
+                            className = 'full';
+                        console.log(className)
+                        html += ' <div class="reserve-box ' +
+                            className +
+                            '">' +
+                            '<div class="reserve-box-header">' +
+                            '<div class="date">' +
+                            '<label>' +
+                            date +
+                            '</label>' +
+                            '</div>' +
+                            '<div class="full-desc">' +
+                            'ظرفیت تکمیل شده است' +
+                            ' </div>' +
+                            '<div class="sign">' +
+                            '<i class="fa fa-chevron-down"></i>' +
+                            '</div>' +
+                            '</div>';
+                        if (!item.isFull) {
+
+                            html += '<div class="reserve-box-body">' +
+                                '<div class="child">' +
+                                '<table>' +
+                                '<thead>' +
+                                '<tr>' +
+                                '<th>ساعت</th>' +
+                                '<th>ظرفیت</th>' +
+                                '<th>باقیمانده</th>' +
+                                '<th></th>' +
+                                ' </tr>' +
+                                '</thead>' +
+                                '<tbody>';
+
+                            $.each(item.times,
+                                function (i, time) {
+                                    var timeClass = '';
+                                    if (time.Remaind <= 0)
+                                        timeClass = 'disabled';
+                                    if (time.MaxCount > 0)
+                                        html +=
+                                            '<tr class="' + timeClass + '">' +
+                                            '<td>' +
+                                            time.To +
+                                            ' - ' +
+                                            time.From +
+                                            '</td>' +
+                                            '<td>' +
+                                            time.MaxCount +
+                                            '</td>' +
+                                            '<td>' +
+                                            time.Remaind +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<button class="hayatbtn reserve" data-id="' +
+                                            time.Id +
+                                            '">' +
+                                            'رزرو' +
+                                            '</button>' +
+                                            '</td>';
+                                });
+
+                            html += '</tbody>';
+                        }
+
+                        html += '</table>' +
+                             '</div>' +
+                             '</div>' +
+                             '</div>'
+                    });
+
+                $('#reserve').append(html);
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
+        $(document)
+            .on('click',
+                '.reserve',
+                function () {
+                    startLoader();
+                    var timeId = $(this).attr('data-id');
+                    $.ajax({
+                        method: 'POST',
+                        url: '/Reservation/reserveGuide/Post',
+                        data: { timeid: timeId },
+                        success: function (res) {
+                            console.log(res);
+                            if (res.success) {
+                                swal("", "کارشناس شما " + res.guideName + " شما را در بازدید از پروژه حیات همراهی خواهد کرد", "success");
+                            } else {
+                                swal("", res.msg, "error");
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            swal("", res.msg, "error");
+                        },
+                        complete: function () {
+                            doneLoader();
+                            $('#loader').css('display', 'none');
+                        }
+                    })
+                });
+        $('.reserve')
+            .click(function () {
+                alert($(this).attr('data-id'));
+            });
+
+        $('#submit .nav li a')
+            .click(function () {
+                var target = $(this).attr('data-target');
+                $('#submit .nav-tabs li').removeClass('active');
+                $(this).parent('li').addClass('active');
+                $('#submit .tab-content .tab-pane').removeClass('in active');
+                $('#submit .tab-content #' + target).addClass('in active');
+            });
+
+        //get reserve data
+        $(document).on('click', '.reserve-box .reserve-box-header .sign', function () {
+            $(this).parents('.reserve-box').find('.reserve-box-body').slideToggle('open');
+            var elm = $(this).find('i');
+            if (elm.hasClass('fa-chevron-down')) {
+                elm.removeClass('fa-chevron-down');
+                elm.addClass('fa-chevron-up');
+            } else {
+                elm.removeClass('fa-chevron-up');
+                elm.addClass('fa-chevron-down');
+            }
+        });
+
         var _captchaDate = Date.now();
         $('#captcha-image').attr('src', 'manage/Captcha/msdn?prefix=_visit&guid=' + _captchaDate);
         $(document).on('click', '#submit-btn', function (e) {

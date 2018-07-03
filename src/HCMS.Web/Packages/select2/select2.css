@@ -62,7 +62,7 @@ Version: 3.4.1 Timestamp: Thu Jun 27 18:02:10 PDT 2013
   position: relative;
   border: 1px solid #cccccc;
   white-space: nowrap;
-  color: #555;
+  color: #fff;
   text-decoration: none;
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
@@ -73,7 +73,7 @@ Version: 3.4.1 Timestamp: Thu Jun 27 18:02:10 PDT 2013
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: #fff;
+  background-color: #222;
 }
 .select2-container.select2-drop-above .select2-choice {
   border-bottom-color: #aaa;

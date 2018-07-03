@@ -88,6 +88,22 @@ a {
         text-decoration: none !important;
     }
 
+    &[disabled] {
+        background: #ddd;
+        border: 1px solid #999;
+        box-shadow: none;
+        text-shadow: none;
+        color: #999;
+
+        &:hover {
+            background: #ddd;
+            color: #666;
+            box-shadow: none;
+            text-shadow: none;
+            cursor: not-allowed;
+        }
+    }
+
     &.hayatbtn-sm {
         line-height: 20px;
         width: 20px;
@@ -1458,12 +1474,12 @@ section.page-blocks {
 
             &.seconde {
                 left: 73px;
-                bottom: 303px;
+                bottom: 0;
             }
 
             &.third {
                 left: 47%;
-                bottom: 400px;
+                bottom: -160px;
             }
         }
 
@@ -2000,16 +2016,23 @@ body {
             top: ~"calc(50% - 150px)";
             cursor: pointer;
 
+             img {
+                height: 100%;
+                display:none;
+            }
+
             &:hover {
                 height: 400px;
                 top: ~"calc(50% - 200px)";
                 padding: 20px;
                 transition: all 0.5s;
+
+                img{
+                    display:block;
+                }
             }
 
-            img {
-                height: 100%;
-            }
+           
         }
     }
 
@@ -2127,6 +2150,14 @@ body {
         top: ~"calc(50% - 150px)";
         cursor: pointer;
 
+        
+        img {
+            height: 100%;
+            position: absolute;
+            left: 40px;
+            display:none;
+        }
+
         &:hover {
             height: 300px;
             top: ~"calc(50% - 150px)";
@@ -2135,6 +2166,7 @@ body {
 
             img {
                 z-index: 2;
+                display:block;
             }
         }
 
@@ -2147,11 +2179,6 @@ body {
             font-size: 30px;
         }
 
-        img {
-            height: 100%;
-            position: absolute;
-            left: 40px;
-        }
     }
 
     .btn-arrow {
@@ -2813,8 +2840,179 @@ section.page-login, section.page-register {
 }
 
 
+.nav-tabs {
+    border-bottom: 4px solid @baseColor2;
 
+    > li {
+        width: 200px;
 
+        &:first-child {
+            margin-right: ~"calc(50% - 200px)";
+        }
+
+        a {
+            cursor: pointer;
+            text-align: center;
+            background: #ddd;
+            color: #999;
+
+            &:hover {
+                background: @baseColor2;
+                color: #fff;
+            }
+        }
+
+        &.active {
+            a {
+                background: @baseColor2;
+                color: #fff;
+
+                &:hover {
+                    background: @baseColor2;
+                    color: #fff;
+                }
+            }
+        }
+
+        &.de-active {
+            a {
+                cursor: not-allowed;
+                background: #ddd;
+                color: #fff;
+
+                &:hover {
+                    background: #ddd;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.reserve-box {
+    box-shadow: 2px 2px 4px 1px #666;
+
+    .reserve-box-header {
+        display: inline-block;
+        width: 100%;
+        border-bottom: 4px solid #31708f;
+        background-color: #d9edf7;
+        padding: 5px;
+
+        .full-desc{
+            display:none;
+        }
+
+        .date {
+            float: right;
+
+            label {
+                padding: 3px 5px;
+                color: #31708f;
+            }
+        }
+
+        .sign {
+            float: left;
+            height: 30px;
+            width: 30px;
+            padding: 5px;
+            background-color: @baseColor1;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+
+            .fa {
+                font-size: 19px;
+            }
+        }
+    }
+
+    .reserve-box-body {
+        display: none;
+
+        &.open {
+            display: block;
+        }
+
+        .child {
+            padding: 10px;
+
+            table {
+                width: 100%;
+
+                thead {
+                    width: 100%;
+
+                    tr {
+                        background-color: #31708f;
+                        color: #d9edf7;
+
+                        th {
+                            text-align: center;
+                            border: 1px solid;
+                            padding: 5px;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        height:52px;
+                        td {
+                            text-align: center;
+                            color: #31708f;
+                            background-color: #d9edf7;
+                            border: 1px solid;
+                        }
+
+                        text {
+                            display: none;
+                        }
+
+                        &.disabled {
+                            cursor: not-allowed;
+
+                            td {
+                                color: #999;
+                                background-color: #ddd;
+                            }
+
+                            button{
+                                display:none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.full {
+        .reserve-box-header {
+            color: #999;
+            background-color: #ddd;
+            cursor: not-allowed;
+
+            label {
+                color: #999;
+                cursor: not-allowed;
+            }
+
+            .sign {
+                display: none;
+            }
+
+            .full-desc{
+                display:block;
+                color:#ff1700;
+                text-align:left;
+                font-size:18px;
+                font-weight:bold;
+            }
+        }
+    }
+}
 
 @media (max-width:2560px) {
     header .links ul li {
@@ -5129,10 +5327,11 @@ section.page-login, section.page-register {
     width: 100%;
 }
 
-@baseGreenColor : rgb(25,150,140);
+@baseGreenColor: rgb(25,150,140);
+
 #visit-form {
     .title {
-        text-align:center;
+        text-align: center;
         padding: 3px;
         border-bottom: 2px solid @baseGreenColor;
         margin-bottom: 10px;

@@ -697,6 +697,38 @@
     <Content Include="Packages\miniTip-master\miniTip.min.css" />
     <Content Include="Packages\mixitup\jquery.mixitup.min.js" />
     <Content Include="Packages\nprogress\nprogress.css" />
+    <Content Include="Packages\persian-date\.markdown-doctest-setup.js" />
+    <Content Include="Packages\persian-date\coverage\base.css" />
+    <Content Include="Packages\persian-date\coverage\index.html" />
+    <Content Include="Packages\persian-date\coverage\persian-date.js.html" />
+    <Content Include="Packages\persian-date\coverage\prettify.css" />
+    <Content Include="Packages\persian-date\coverage\prettify.js" />
+    <Content Include="Packages\persian-date\coverage\sort-arrow-sprite.png" />
+    <Content Include="Packages\persian-date\coverage\sorter.js" />
+    <Content Include="Packages\persian-date\dist\persian-date.js" />
+    <Content Include="Packages\persian-date\dist\persian-date.min.js" />
+    <Content Include="Packages\persian-date\Gruntfile.js" />
+    <Content Include="Packages\persian-date\src\algorithms.js" />
+    <Content Include="Packages\persian-date\src\astro.js" />
+    <Content Include="Packages\persian-date\src\constants.js" />
+    <Content Include="Packages\persian-date\src\duration.js" />
+    <Content Include="Packages\persian-date\src\en.js" />
+    <Content Include="Packages\persian-date\src\fa.js" />
+    <Content Include="Packages\persian-date\src\helpers.js" />
+    <Content Include="Packages\persian-date\src\init.js" />
+    <Content Include="Packages\persian-date\src\on.js" />
+    <Content Include="Packages\persian-date\src\pDate.js" />
+    <Content Include="Packages\persian-date\src\type-checking.js" />
+    <Content Include="Packages\persian-date\test\gregorian.js" />
+    <Content Include="Packages\persian-date\test\index.html" />
+    <Content Include="Packages\persian-date\test\leap-year.js" />
+    <Content Include="Packages\persian-date\test\test.js" />
+    <Content Include="Packages\persian-date\webpack.config.js" />
+    <Content Include="Packages\persianCalendar\js\kamadatepicker.js" />
+    <Content Include="Packages\persianCalendar\js\kamadatepicker.min.js" />
+    <Content Include="Packages\persianCalendar\style\dark.css" />
+    <Content Include="Packages\persianCalendar\style\kamadatepicker.css" />
+    <Content Include="Packages\persianCalendar\style\kamadatepicker.min.css" />
     <Content Include="Packages\pickadate\pickadate.css" />
     <Content Include="Packages\reset.css\reset.css" />
     <Content Include="Packages\reset.css\reset.min.css">
@@ -2057,7 +2089,9 @@
     <Content Include="Areas\Manage\Views\Settings\List.cshtml" />
     <Content Include="Areas\Manage\Views\Settings\Create.cshtml" />
     <Content Include="Areas\Manage\Views\Update\Index.cshtml" />
-    <Content Include="Plugins\web.config" />
+    <Content Include="Plugins\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Manage\Views\Phrases\index.cshtml" />
     <Content Include="Areas\Manage\Views\PhraseKeys\Index.cshtml" />
     <Content Include="Areas\Manage\Views\Cultures\index.cshtml" />
@@ -2140,7 +2174,7 @@
     <Content Include="Packages\melon\fonts\IRANSansWeb.woff2" />
     <Content Include="Plugins\Hayat\Views\Comment\Delete.cshtml" />
     <Content Include="Plugins\Hayat\Views\Contact\_Search.cshtml" />
-    <Content Include="Plugins\Hayat\Views\Contact\Delete.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Reserve\Delete.cshtml" />
     <Content Include="Plugins\Hayat\Views\Contact\Details.cshtml" />
     <Content Include="Plugins\Hayat\Views\Contact\Edit.cshtml" />
     <Content Include="Plugins\Hayat\Views\Contact\Ix.cshtml" />
@@ -2155,6 +2189,36 @@
     <Content Include="Plugins\Hayat\Views\User\New.cshtml" />
     <Content Include="Plugins\Hayat\Views\User\Old.cshtml" />
     <Content Include="Plugins\Hayat\Views\Comment\Prof.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Reserve\Index.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Reserve\Create.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Reserve\Ix.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Reserve\Details.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Reserve\Create - Copy.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Reserve\Create.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Reserve\Details.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Reserve\Index.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Reserve\Ix.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Guide\Create.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Guide\Details.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Guide\Index.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Guide\Ix.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Guide\Edit.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Guide\Delete.cshtml" />
+    <Content Include="Plugins\Reservation\Views\Reserve\Edit.cshtml" />
+    <Content Include="Plugins\Hayat\Views\Contact\Delete.cshtml" />
+    <Content Include="Packages\persian-date\.eslintrc.json" />
+    <Content Include="Packages\persian-date\.jshintrc" />
+    <Content Include="Packages\persian-date\.npmignore" />
+    <Content Include="Packages\persian-date\.travis.yml" />
+    <Content Include="Packages\persian-date\.vscode\settings.json" />
+    <Content Include="Packages\persian-date\bower.json" />
+    <Content Include="Packages\persian-date\CHANGELOG.md" />
+    <Content Include="Packages\persian-date\doc\document.md" />
+    <Content Include="Packages\persian-date\doc\leapyear.md" />
+    <Content Include="Packages\persian-date\package.json" />
+    <Content Include="Packages\persian-date\README.md" />
+    <Content Include="Plugins\Reservation\Views\ReserveGuide\Index.cshtml" />
+    <Content Include="Plugins\Reservation\Views\ReserveGuide\Ix.cshtml" />
     <None Include="Properties\PublishProfiles\Publish_Local.pubxml" />
     <Content Include="Packages\HCMS\js\Base.DateHelper.min.js.map">
       <DependentUpon>Base.DateHelper.min.js</DependentUpon>
@@ -2788,6 +2852,10 @@
       <Project>{5a0db776-6b90-4d7a-a04f-96f15704e0f5}</Project>
       <Name>HCMS.Notification</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HCMS.Reservation\HCMS.Reservation.csproj">
+      <Project>{6141b771-3eb6-4c22-bc5c-925c033421fa}</Project>
+      <Name>HCMS.Reservation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HCMS.Security\HCMS.Security.csproj">
       <Project>{6e095d4b-1fcc-40ce-af65-ab3510a96123}</Project>
       <Name>HCMS.Security</Name>
@@ -2798,6 +2866,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Packages\persian-date\typings\persian-date.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
